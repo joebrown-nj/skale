@@ -360,7 +360,7 @@ a:hover {
     }
 }
 
-.why-choose ol {
+/* .why-choose ol {
     list-style-type: none;
 }
 
@@ -375,7 +375,7 @@ a:hover {
     display: block;
     position: absolute;
     top: 2px;
-    /* Adjust < -number | number+ > */
+    *//* Adjust < -number | number+ > *//*
     left: -65px;
     width: 3.25rem;
     height: 3.25rem;
@@ -386,4 +386,4 @@ a:hover {
     text-align: center;
     border-radius: 25px;
     border:3px solid #FFF;
-}
+} */
