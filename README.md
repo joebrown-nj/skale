@@ -34,10 +34,6 @@ Animate on scroll
 https://github.com/PHPMailer/PHPMailer
 PHP Mailer for sending email
 
+<!-- install and start up -->
 
-
-TRUNCATE TABLE contact;
-TRUNCATE TABLE email_list_signups;
-ALTER TABLE email_list_signups ADD UNIQUE(email);
-
-
+composer install
