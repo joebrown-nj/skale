@@ -1,0 +1,54 @@
+godaddy
+
+email: joebro84@yahoo.com
+user: joebro84
+pass: joe1291984Jb!
+
+database
+
+user: jbrown
+pass: d]1ie-~yU^VJ8{ZBb9
+
+
+ftp
+
+host: skaleup.it.com
+user: jbrown@skaleup.it.com
+pass: M^bl%#DvZcyH{o1*^e
+
+
+ssh
+
+50.62.223.135
+user: jgl4mgjefbnw
+pass: qqyU!sVQ#1xw
+
+
+email
+
+user: info@skaleup.it.com
+pass: !EMWu6ykeaO5
+pass: joe1291984Jb!
+
+
+email admin
+
+zoho.com
+user: joebro84@yahoo.com
+pass: joe1291984Jb!
+
+
+
+mx	@	mail.skaleup.it.com. (Priority: 0)	1 Hour
+
+txt	@	v=spf1 a mx ptr include:secureserver.net ~all	1 Hour
+
+txt	@	v=spf1 include:zohomail.com ~all	1 Hour
+
+txt	admin	v=spf1 a mx ptr include:secureserver.net ~all	1 Hour
+
+
+
+
+
+

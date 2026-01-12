@@ -1,0 +1,22 @@
+UPDATE `menu` SET `listingOrder` = '10' WHERE `menu`.`id` = 4;
+
+UPDATE `menu` SET `listingOrder` = '9' WHERE `menu`.`id` = 3;
+
+INSERT INTO `menu` (`id`, `title`, `url`, `class`, `pageContentId`, `parentId`, `listingOrder`, `menuLocation`) VALUES (NULL, 'Our Process', 'our-process', 'nav-link', '14', '0', '3', 'main'),
+(NULL, 'Portfolio', 'portfolio', 'nav-link', '15', '0', '4', 'main');
+
+---------------------------------------------------------------------------------
+
+INSERT INTO `menu` (`id`, `title`, `url`, `class`, `pageContentId`, `parentId`, `listingOrder`, `menuLocation`) VALUES (NULL, 'Lead', 'lead', '', '18', '0', '0', 'hidden');
+
+INSERT INTO `page_content` (`id`, `title`, `content`, `metaTitle`, `metaDescription`, `metaKeywords`, `dateAdded`, `dateUpdated`) VALUES (NULL, 'Lead', '', 'Websites, Software, Marketing & IT Solutions', 'Skale helps businesses scale faster with web development, software automation, IT solutions, and digital marketing. Book a free strategy call.', 'web development, software automation, IT consulting, digital marketing, SEO, business growth', '2025-10-07 10:49:52', '2025-10-07 10:49:52');
+
+
+
+
+
+
+
+
+
+

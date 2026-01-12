@@ -1,0 +1,21 @@
+{
+    "name": "root/skaleup",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.3",
+        "vimeo/psalm": "^6.5"
+    },
+    "require": {
+        "symfony/dotenv": "^7.3",
+        "smarty/smarty": "^5.5",
+        "thingengineer/mysqli-database-class": "dev-master",
+        "phpmailer/phpmailer": "^6.10"
+    },
+    "config": {
+    }
+}
