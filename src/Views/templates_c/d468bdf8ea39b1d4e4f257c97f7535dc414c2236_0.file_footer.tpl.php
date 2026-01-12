@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:59:41
+/* Smarty version 5.5.2, created on 2026-01-12 19:08:13
   from 'file:inc/layout/footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fe4d28b3a8_12954600',
+  'unifunc' => 'content_6965469da0ba37_15551673',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/layout/mainLogo.tpl' => 1,
   ),
 ))) {
-function content_6964fe4d28b3a8_12954600 (\Smarty\Template $_smarty_tpl) {
+function content_6965469da0ba37_15551673 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 ?></div>
 
@@ -97,9 +97,9 @@ email-list-signup">
                         <div class="row">
                             <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('serviceList'), 'service', false, 'key');
-$foreach7DoElse = true;
+$foreach8DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('key')->value => $_smarty_tpl->getVariable('service')->value) {
-$foreach7DoElse = false;
+$foreach8DoElse = false;
 ?>
                                 <div class="col-md-6">
                                     <p>
@@ -159,9 +159,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                         <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('footerNav'), 'item', false, 'key', 'name', array (
 ));
-$foreach8DoElse = true;
+$foreach9DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('key')->value => $_smarty_tpl->getVariable('item')->value) {
-$foreach8DoElse = false;
+$foreach9DoElse = false;
 ?>
                             <li class="<?php echo $_smarty_tpl->getSmarty()->getModifierCallback('replace')($_smarty_tpl->getValue('item')['url'],'/','-');?>
  nav-link px-2 text-body-secondary <?php if ($_smarty_tpl->getValue('p1') == $_smarty_tpl->getValue('item')['url']) {?>active<?php }?> <?php if ($_smarty_tpl->getValue('item')['children']) {?>dropdown<?php }?>">

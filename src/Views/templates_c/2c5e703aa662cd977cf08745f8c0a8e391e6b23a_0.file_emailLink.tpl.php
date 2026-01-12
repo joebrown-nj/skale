@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:59:40
+/* Smarty version 5.5.2, created on 2026-01-12 19:08:13
   from 'file:inc/buttons/emailLink.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fe4cdabbb5_57818421',
+  'unifunc' => 'content_6965469d66f074_77887763',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6964fe4cdabbb5_57818421 (\Smarty\Template $_smarty_tpl) {
+function content_6965469d66f074_77887763 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\buttons';
 if ($_smarty_tpl->getValue('type') == 'link') {?>
     <p>

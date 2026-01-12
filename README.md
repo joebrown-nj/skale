@@ -37,3 +37,10 @@ PHP Mailer for sending email
 <!-- install and start up -->
 
 composer install
+
+./vendor/bin/phpunit tests
+./vendor/bin/phpunit tests --display-phpunit-deprecations
+./vendor/bin/phpunit --display-phpunit-deprecations tests
+
+cd public_html
+php -S localhost:8080

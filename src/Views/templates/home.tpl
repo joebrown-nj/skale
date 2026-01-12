@@ -179,9 +179,9 @@
 
 {include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
 
-<div class="container-fluid text-bg-light why-choose logo-bg-small-light">
-    <div data-aos="fade-up" class="row justify-content-center pt-5">
-        {include file="inc/blog/blogListContainer.tpl" serviceList=$serviceList}
+<div class="container-fluid home-callout parallax container-fluid" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
+    <div data-aos="fade-up" class="row justify-content-center px-4 py-4">
+        {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogFeatured=$data.blogFeatured}
     </div>
 </div>
 

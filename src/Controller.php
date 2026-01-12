@@ -7,7 +7,7 @@ use App\Controllers\NavController;
 use App\Controllers\PageContentController;
 use App\Controllers\ServiceController;
 use App\Models\ServiceModel;
-use App\Models\BlogModel;
+// use App\Models\BlogModel;
 
 class Controller {
     private Smarty $smarty;
@@ -89,8 +89,8 @@ class Controller {
         $serviceModel = new ServiceModel();
         $this->smarty->assign('serviceList', $serviceModel->getAllServices());
 
-        $blogModel = new BlogModel();
-        $this->smarty->assign('blogList', $blogModel->getAllBlogs());
+        // $blogModel = new BlogModel();
+        // $this->smarty->assign('blogList', $blogModel->getAllBlogs());
 
         $pageContentController = new PageContentController();
         $pageContent = $pageContentController->getPageContent();
@@ -100,7 +100,14 @@ class Controller {
 // die;
         $this->smarty->assign('pageContent', $pageContent);
         $this->smarty->assign('contactContent', $pageContentController->getPageContent($_ENV['URL_CONTACT']));
+// $this->prettyPrint($data);
+// die;
 
+// foreach($data as $key => $value) {
+//     echo $key.' => '.gettype($value).'<br>';
+// }
+// die;
+        
         if(isset($_GET['meta-data'])) {
             if($pageContent) {
                 $metaData = json_encode(array(

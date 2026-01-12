@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:59:38
+/* Smarty version 5.5.2, created on 2026-01-12 19:08:11
   from 'file:inc/layout/header.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fe4ace0e95_64302193',
+  'unifunc' => 'content_6965469b3b7797_98803146',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/layout/breadcrumb.tpl' => 1,
   ),
 ))) {
-function content_6964fe4ace0e95_64302193 (\Smarty\Template $_smarty_tpl) {
+function content_6965469b3b7797_98803146 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 if ((true && ($_smarty_tpl->hasVariable('header') && null !== ($_smarty_tpl->getValue('header') ?? null))) && $_smarty_tpl->getValue('header') === 'false') {?>
 

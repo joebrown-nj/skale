@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:59:40
+/* Smarty version 5.5.2, created on 2026-01-12 19:08:13
   from 'file:inc/buttons/phoneLink.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fe4cbc24a1_92993686',
+  'unifunc' => 'content_6965469d430f16_29806959',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6964fe4cbc24a1_92993686 (\Smarty\Template $_smarty_tpl) {
+function content_6965469d430f16_29806959 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\buttons';
 if ((true && (true && null !== ($_ENV['SITE_PHONE'] ?? null))) && $_ENV['SITE_PHONE'] != '') {?>
     <?php if ($_smarty_tpl->getValue('type') == 'link') {?>

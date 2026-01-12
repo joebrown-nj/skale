@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:59:40
+/* Smarty version 5.5.2, created on 2026-01-12 19:08:13
   from 'file:inc/layout/footerContactForm.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fe4c8ff4d5_44653572',
+  'unifunc' => 'content_6965469d160c57_30688367',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/contact/contactForm.tpl' => 1,
   ),
 ))) {
-function content_6964fe4c8ff4d5_44653572 (\Smarty\Template $_smarty_tpl) {
+function content_6965469d160c57_30688367 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 ?><div class="clearfix py-4" style="background-color:#01010A;">
     <div class="container-fluid py-4">
