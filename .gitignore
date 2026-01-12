@@ -1,3 +1,5 @@
 node_modules/
 public_html/images/
 public_html/videos/
+vendor/
+src/Views/templates_c/

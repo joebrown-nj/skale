@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:45:44
+/* Smarty version 5.5.2, created on 2026-01-12 13:59:40
   from 'file:inc/blog/blogListContainer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fb08e835f8_57006615',
+  'unifunc' => 'content_6964fe4c3ae719_00260140',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/blog/blogListSingle.tpl' => 1,
   ),
 ))) {
-function content_6964fb08e835f8_57006615 (\Smarty\Template $_smarty_tpl) {
+function content_6964fe4c3ae719_00260140 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\blog';
 ?><div data-aos="fade-up" class="container-fluid">
     <div class="row">

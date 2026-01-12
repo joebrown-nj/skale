@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:45:44
+/* Smarty version 5.5.2, created on 2026-01-12 13:59:39
   from 'file:inc/layout/mainLogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fb085c9ee9_60581900',
+  'unifunc' => 'content_6964fe4b98a2d9_87138651',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6964fb085c9ee9_60581900 (\Smarty\Template $_smarty_tpl) {
+function content_6964fe4b98a2d9_87138651 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 ?><h1 class="main-logo">
     <a href="/" class="clearfix mbtn lbc" aria-describedby="logo">

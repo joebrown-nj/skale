@@ -179,7 +179,11 @@
 
 {include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
 
-{include file="inc/blog/blogListContainer.tpl" serviceList=$serviceList}
+<div class="container-fluid text-bg-light why-choose logo-bg-small-light">
+    <div data-aos="fade-up" class="row justify-content-center pt-5">
+        {include file="inc/blog/blogListContainer.tpl" serviceList=$serviceList}
+    </div>
+</div>
 
 {include file="inc/layout/footerContactForm.tpl"}
 {include file="inc/layout/footer.tpl"}

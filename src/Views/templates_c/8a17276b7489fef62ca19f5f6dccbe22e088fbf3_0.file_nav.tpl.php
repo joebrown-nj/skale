@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:45:43
+/* Smarty version 5.5.2, created on 2026-01-12 13:59:39
   from 'file:inc/layout/nav.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fb07d59a65_00038022',
+  'unifunc' => 'content_6964fe4b4748c1_15907685',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/layout/mainLogo.tpl' => 2,
   ),
 ))) {
-function content_6964fb07d59a65_00038022 (\Smarty\Template $_smarty_tpl) {
+function content_6964fe4b4748c1_15907685 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 ?><div class="offcanvas offcanvas-end" tabindex="-1" id="oCNav" aria-labelledby="oCNavLabel" data-bs-scroll="true">
     <div class="offcanvas-header py-2">

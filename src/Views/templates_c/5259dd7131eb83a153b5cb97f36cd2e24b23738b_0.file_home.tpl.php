@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:45:42
+/* Smarty version 5.5.2, created on 2026-01-12 13:59:38
   from 'file:home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fb06973c94_70966321',
+  'unifunc' => 'content_6964fe4a82b7c6_00193926',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5259dd7131eb83a153b5cb97f36cd2e24b23738b' => 
     array (
       0 => 'home.tpl',
-      1 => 1767745072,
+      1 => 1768226373,
       2 => 'file',
     ),
   ),
@@ -25,7 +25,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/layout/footer.tpl' => 1,
   ),
 ))) {
-function content_6964fb06973c94_70966321 (\Smarty\Template $_smarty_tpl) {
+function content_6964fe4a82b7c6_00193926 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates';
 $_smarty_tpl->renderSubTemplate("file:inc/layout/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
@@ -136,8 +136,12 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 <?php $_smarty_tpl->renderSubTemplate("file:inc/service/serviceListContainer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('serviceList'=>$_smarty_tpl->getValue('serviceList')), (int) 0, $_smarty_current_dir);
 ?>
 
-<?php $_smarty_tpl->renderSubTemplate("file:inc/blog/blogListContainer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('serviceList'=>$_smarty_tpl->getValue('serviceList')), (int) 0, $_smarty_current_dir);
+<div class="container-fluid text-bg-light why-choose logo-bg-small-light">
+    <div data-aos="fade-up" class="row justify-content-center pt-5">
+        <?php $_smarty_tpl->renderSubTemplate("file:inc/blog/blogListContainer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('serviceList'=>$_smarty_tpl->getValue('serviceList')), (int) 0, $_smarty_current_dir);
 ?>
+    </div>
+</div>
 
 <?php $_smarty_tpl->renderSubTemplate("file:inc/layout/footerContactForm.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 $_smarty_tpl->renderSubTemplate("file:inc/layout/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);

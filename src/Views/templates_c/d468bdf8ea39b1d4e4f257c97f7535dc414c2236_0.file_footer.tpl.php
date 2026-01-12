@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.2, created on 2026-01-12 13:45:46
+/* Smarty version 5.5.2, created on 2026-01-12 13:59:41
   from 'file:inc/layout/footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.2',
-  'unifunc' => 'content_6964fb0a423867_10181508',
+  'unifunc' => 'content_6964fe4d28b3a8_12954600',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -23,7 +23,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:inc/layout/mainLogo.tpl' => 1,
   ),
 ))) {
-function content_6964fb0a423867_10181508 (\Smarty\Template $_smarty_tpl) {
+function content_6964fe4d28b3a8_12954600 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\wamp64\\www\\skaleup\\src\\Views\\templates\\inc\\layout';
 ?></div>
 
