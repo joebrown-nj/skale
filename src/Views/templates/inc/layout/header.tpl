@@ -72,7 +72,7 @@
     {include file="inc/layout/breadcrumb.tpl"}
 {/if}
 
-{if $p1 == 'blog'}
+{if $p1 == 'blog' && $p2}
     <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
         <div class="logo-bg logo-bg-overlay"></div>
         <h1 class="display-1 BricolageGrotesque-ExtraBold">{$data.blogDetail.title}</h1>

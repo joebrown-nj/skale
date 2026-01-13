@@ -12,13 +12,21 @@ INSERT INTO `menu` (`id`, `title`, `url`, `class`, `pageContentId`, `parentId`, 
 INSERT INTO `page_content` (`id`, `title`, `content`, `metaTitle`, `metaDescription`, `metaKeywords`, `dateAdded`, `dateUpdated`) VALUES (NULL, 'Lead', '', 'Websites, Software, Marketing & IT Solutions', 'Skale helps businesses scale faster with web development, software automation, IT solutions, and digital marketing. Book a free strategy call.', 'web development, software automation, IT consulting, digital marketing, SEO, business growth', '2025-10-07 10:49:52', '2025-10-07 10:49:52');
 
 
+
 create a ready to publish blog post about ------ would be beneficial for businesses. html, internal links to services pages. marketing focused
 
 
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/joebrown-nj/skale.git
-git push -u origin main
+
+https://skale.so/
+https://skalestrategy.com/
+https://skaleglobal.com/
+https://skalemedia.io/
+https://www.skale.space/
+https://skale.agency/
+https://skale.digital/
+
+
+
 
 
 
