@@ -18,6 +18,14 @@
                     {$pageContent.menuTitle}
                 </li>
             {/if}
+        {elseif $p1 == 'blog' && isset($data.blogDetail.title)}
+            <li class="breadcrumb-item active" aria-current="page">
+                <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}blog">Blog</a>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+                {$data.blogDetail.title}
+            </li>
         {/if}
     </ol>
 </nav>

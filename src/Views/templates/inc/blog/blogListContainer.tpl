@@ -36,37 +36,39 @@
 
         <div class="col-md-4">
             <div class="p-4 mb-3 bg-body-tertiary rounded">
-                <h4 class="fst-italic">{$data.blogContent.title}</h4>
-                <p>{$data.blogContent.content|strip_tags}</p>
+                <h4 class="fst-italic">{$blogContent.title}</h4>
+                <p>{$blogContent.content|strip_tags}</p>
             </div>
         </div>
     </div>
 
     <div class="row g-5">
         <div class="col-md-8">
-            <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">Latest Posts</h3>
 
             <div class="row g-4">
                 {foreach from=$blogList key=key item=blog name=blogs}
-                    <div class="col-md-6">
-                        <div class="card">
-                            {if $blog.image != ''}
-                                <img src="{$smarty.ENV.WEB_ROOT}images/{$blog.image}" class="card-img-top" alt="{$blog.title}">
-                            {/if}
+                    {if $key < 6}
+                        <div class="col-md-6">
+                            <div class="card">
+                                {if $blog.image != ''}
+                                    <img src="{$smarty.ENV.WEB_ROOT}images/{$blog.image}" class="card-img-top" alt="{$blog.title}">
+                                {/if}
 
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc" aria-describedby="blog {$blog.title}">
-                                        {$blog.title}
-                                    </a>
-                                </h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc" aria-describedby="blog {$blog.title}">
+                                            {$blog.title}
+                                        </a>
+                                    </h5>
 
-                                <p class="card-text">{$blog.shortText|strip_tags}</p>
+                                    <p class="card-text">{$blog.shortText|strip_tags}</p>
 
-                                <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc btn btn-primary" aria-describedby="blog {$blog.title}">Read More</a>
+                                    <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc btn btn-primary" aria-describedby="blog {$blog.title}">Read More</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {/if}
                 {/foreach}
             </div>
 
@@ -188,95 +190,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="position-sticky" style="top: 2rem;">
-                {* <div class="p-4 mb-3 bg-body-tertiary rounded">
-                    <h4 class="fst-italic">{$data.blogContent.title}</h4>
-                    <p>{$data.blogContent.content|strip_tags}</p>
-                </div> *}
-
-                <div>
-                    <h4 class="fst-italic">Recent posts</h4>
-
-                    <ul class="list-unstyled">
-                        {foreach from=$blogList key=key item=blog name=blogs}
-                            {if $key < 4}
-                                <li>
-                                    <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top">
-                                        <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                            <rect width="100%" height="100%" fill="#777"></rect>
-                                        </svg>
-
-                                        <div class="col-lg-8">
-                                            <h6 class="mb-0">{$blog.title}</h6>
-                                            <small class="text-body-secondary">{$blog.datePosted|date_format:"%B %e, %Y"}</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            {/if}
-                        {/foreach}
-                        {* <li>
-                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                                <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="100%" height="100%" fill="#777"></rect>
-                                </svg>
-                                <div class="col-lg-8">
-                                    <h6 class="mb-0">Example blog post title</h6>
-                                    <small class="text-body-secondary">January 15, 2024</small> 
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                                <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="100%" height="100%" fill="#777"></rect>
-                                </svg>
-                                <div class="col-lg-8">
-                                    <h6 class="mb-0">This is another blog post title</h6>
-                                    <small class="text-body-secondary">January 14, 2024</small> 
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
-                                <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="100%" height="100%" fill="#777"></rect>
-                                </svg>
-                                <div class="col-lg-8">
-                                    <h6 class="mb-0">Longer blog post title: This one has multiple lines!</h6>
-                                    <small class="text-body-secondary">January 13, 2024</small> 
-                                </div>
-                            </a>
-                        </li> *}
-                    </ul>
-                </div>
-
-                {* <div class="p-4">
-                    <h4 class="fst-italic">Archives</h4>
-                    <ol class="list-unstyled mb-0">
-                        <li><a href="#">March 2021</a></li>
-                        <li><a href="#">February 2021</a></li>
-                        <li><a href="#">January 2021</a></li>
-                        <li><a href="#">December 2020</a></li>
-                        <li><a href="#">November 2020</a></li>
-                        <li><a href="#">October 2020</a></li>
-                        <li><a href="#">September 2020</a></li>
-                        <li><a href="#">August 2020</a></li>
-                        <li><a href="#">July 2020</a></li>
-                        <li><a href="#">June 2020</a></li>
-                        <li><a href="#">May 2020</a></li>
-                        <li><a href="#">April 2020</a></li>
-                    </ol>
-                </div> *}
-
-                {* <div class="p-4">
-                    <h4 class="fst-italic">Elsewhere</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Social</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ol>
-                </div> *}
-            </div>
+            {include file="inc/blog/oldPostListing.tpl" blogList=$blogList}
         </div>
     </div>
 </main>

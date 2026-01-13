@@ -13,7 +13,7 @@ class BlogModel
     }
 
     public function getAllBlogs() : Array | NULL  {
-        $returnVal = $this->db->where('featured', 0)->orderBy('datePosted','desc')->get('blog', 6);
+        $returnVal = $this->db->where('featured', 0)->orderBy('datePosted','desc')->get('blog', 10);
         return $returnVal;
     }
 

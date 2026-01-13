@@ -97,6 +97,7 @@ class Controller {
 
         if($this->getP2() != '') $this->smarty->assign('p1Content', $pageContentController->getPageContent($this->getP1()));
 // print_r($pageContent);
+// echo '<hr>';
 // die;
         $this->smarty->assign('pageContent', $pageContent);
         $this->smarty->assign('contactContent', $pageContentController->getPageContent($_ENV['URL_CONTACT']));
