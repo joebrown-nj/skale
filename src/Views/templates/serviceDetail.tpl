@@ -36,7 +36,6 @@
                         <div class="d-grid gap-2">
                             <p>{include file="inc/buttons/contactLink.tpl" buttonText="Get Started" type="button" interest=replace($data.url, 'services/', '') service=$data.title}</p>
                             <p>{include file="inc/buttons/phoneLink.tpl" type="button"}</p>
-                            {* <p>{include file="inc/buttons/emailLink.tpl" type="button"}</p> *}
                         </div>
                     </div>
                 </div>

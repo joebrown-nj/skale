@@ -11,17 +11,13 @@
             <meta name="keywords" content="{if isset($pageContent.metaKeywords)}{$pageContent.metaKeywords}{/if}{if isset($data.blogDetail.metaKeywords)}{$data.blogDetail.metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
-            {* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-            <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css " rel="stylesheet"> *}
             <script src="{$smarty.ENV.WEB_ROOT}js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
             <link href=" {$smarty.ENV.WEB_ROOT}css/bootstrap.min.css " rel="stylesheet">
 
             <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            {* <link href="{$smarty.ENV.WEB_ROOT}css/font-awesome.all.min.css" rel="stylesheet"> *}
             <link href="{$smarty.ENV.WEB_ROOT}css/style.min.css" rel="stylesheet">
-            {* <link href="{$smarty.ENV.WEB_ROOT}css/style.css?{$smarty.now}" rel="stylesheet"> *}
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
             <!-- Meta Pixel Code -->

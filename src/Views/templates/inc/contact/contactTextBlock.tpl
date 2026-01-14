@@ -10,12 +10,10 @@
     <div class="border-bottom py-4">
         <h2 class="mb-2 Bahnschrift logo-bg-small"><i class="fa-solid fa-phone"></i> Phone</h2>
         {include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}
-        {* {include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="button"} *}
     </div>
 {/if}
 
 <div class="py-4">
     <h2 class="mb-2 Bahnschrift logo-bg-small"><i class="fa-solid fa-envelope"></i> Email</h2>
     {include file="inc/buttons/emailLink.tpl" phone=$smarty.ENV.SITE_EMAIL type="link"}
-    {* {include file="inc/buttons/emailLink.tpl" phone=$smarty.ENV.SITE_EMAIL type="button"} *}
 </div>

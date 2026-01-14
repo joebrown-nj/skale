@@ -11,7 +11,6 @@
                     <a 
                         aria-describedby="main nav {$item.title}"
                         href="{$smarty.ENV.SITE_URL}{$item.url}"
-                        {* href="{if $item.url == ''}{$smarty.ENV.WEB_ROOT}{else}{$smarty.ENV.WEB_ROOT}{$item.url}{/if}" *}
                         class="mbtn lbc {$item.class} {if $p1 == $item.url}active{/if}" 
                     >
                         {$item.title}
@@ -24,7 +23,6 @@
                                     <a 
                                         aria-describedby="sub nav {$child.title}"
                                         class="pb-1 pt-0 fs-6 mbtn lbc dropdown-item {$child.class} {if $p2 == $child.url}active{/if}" 
-                                        {* href="{$smarty.ENV.SITE_URL}{$child.url}" *}
                                         href="{$smarty.ENV.SITE_URL}{$child.url}"
                                     >
                                         {$child.title}
@@ -36,8 +34,6 @@
                 </li>
             {/foreach}
         </ul>
-        
-        {* {include file="inc/buttons/phoneLink.tpl" type="link" class=""} *}
     </div>
 </div>
 
@@ -46,9 +42,6 @@
         {include file="inc/layout/mainLogo.tpl"}
 
         <ul class="navbar-nav ms-auto">
-            {* <li style="margin-right:20px;" class="d-none d-sm-block">
-                {include file="inc/buttons/phoneLink.tpl" type="button" class=""}
-            </li> *}
             <li>
                 <button style="display:block; height:100%;" class="btn-lg navbar-toggler" data-bs-toggle="offcanvas" href="#oCNav" role="button" aria-controls="oCNav" aria-label="Menu">
                     <span class="navbar-toggler-icon"></span>

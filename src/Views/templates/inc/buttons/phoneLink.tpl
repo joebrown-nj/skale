@@ -1,7 +1,6 @@
 {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
     {if $type == 'link'}
         <p>
-            {* <i class="fa-solid fa-mobile-screen"></i> *}
             <i class="fa-solid fa-phone"></i>
             <a class="d-none d-lg-inline {$class}" href="tel:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}">{$smarty.ENV.SITE_PHONE}</a>
             <a class="d-lg-none {$class}" href="sms:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}">{$smarty.ENV.SITE_PHONE}</a>
