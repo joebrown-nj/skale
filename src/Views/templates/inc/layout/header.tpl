@@ -6,9 +6,9 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{$smarty.ENV.SITE_NAME}{if isset($pageContent['metaTitle']) && $pageContent['metaTitle'] != ''} | {$pageContent['metaTitle']}{/if}</title>
-            <meta name="description" content="{if isset($pageContent['metaDescription'])}{$pageContent['metaDescription']}{/if}">
-            <meta name="keywords" content="{if isset($pageContent['metaKeywords'])}{$pageContent['metaKeywords']}{/if}">
+            <title>{$smarty.ENV.SITE_NAME}{if isset($pageContent.metaTitle) && $pageContent.metaTitle != ''} | {$pageContent.metaTitle}{/if}{if isset($data.blogDetail.metaTitle) && $data.blogDetail.metaTitle != ''} blog | {$data.blogDetail.metaTitle}{/if}</title>
+            <meta name="description" content="{if isset($pageContent.metaDescription)}{$pageContent.metaDescription}{/if}{if isset($data.blogDetail.metaDescription)}{$data.blogDetail.metaDescription}{/if}">
+            <meta name="keywords" content="{if isset($pageContent.metaKeywords)}{$pageContent.metaKeywords}{/if}{if isset($data.blogDetail.metaKeywords)}{$data.blogDetail.metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
             {* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -43,10 +43,10 @@
             <!-- End Meta Pixel Code -->
 
             <!-- Open Graph -->
-            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent['metaTitle']) && $pageContent['metaTitle'] != ''} | {$pageContent['metaTitle']}{/if}">
-            <meta property="og:description" content="{if isset($pageContent['metaDescription'])}{$pageContent['metaDescription']}{/if}">
+            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent.metaTitle) && $pageContent.metaTitle != ''} | {$pageContent.metaTitle}{/if}{if isset($data.blogDetail.metaTitle) && $data.blogDetail.metaTitle != ''} | {$data.blogDetail.metaTitle}{/if}">
+            <meta property="og:description" content="{if isset($pageContent.metaDescription)}{$pageContent.metaDescription}{/if}{if isset($data.blogDetail.metaDescription)}{$data.blogDetail.metaDescription}{/if}">
             <meta property="og:type" content="{if isset($smarty.get.p1) && $smarty.get.p1 == 'blog'}article{else}website{/if}">
-            <meta property="og:URL" content="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
+            <meta property="og:URL" content="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
         </head>
 
         <body class="bg-dark">
