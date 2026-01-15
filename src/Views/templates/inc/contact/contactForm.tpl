@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button aria-describedby="contact form button" class="lbc shadow-hover btn btn-lg btn-primary" type="submit">Submit</button>
+                    <button aria-describedby="contact form button" class="lbc btn btn-lg btn-primary" type="submit">Submit</button>
                 </div>
             </form>
         </section>

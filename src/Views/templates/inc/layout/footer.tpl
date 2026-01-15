@@ -50,7 +50,7 @@
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                                 <label for="email" class="visually-hidden">Email address</label>
                                 <input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
-                                <button class="shadow-hover btn btn-primary" type="button">Subscribe</button>
+                                <button class="btn btn-primary" type="button">Subscribe</button>
                             </div>
                         </form>
                     </div>

@@ -13,13 +13,13 @@
                 <p class="blog-post-meta">{$data.blogDetail.datePosted|date_format:"%B %e, %Y"}</p>
 
                 {if $data.blogDetail.image != ''}
-                    <div class="img">
+                    <div class="img mb-4 float-end">
                         <img class="card-top" alt="{$data.blogDetail.title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail.image}">
                     </div>
 
-                    <figure>
-                        <img src="/images/skale-launch.jpg" alt="Skale digital solutions launch" loading="lazy" width="100%">
-                    </figure>
+                    {* <figure>
+                        <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail.image}" alt="{$data.blogDetail.title}" loading="lazy" width="100%">
+                    </figure> *}
                 {/if}
 
                 {$data.blogDetail.text}

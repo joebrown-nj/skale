@@ -9,8 +9,8 @@
                     <h2 class="display-6 mb-4 ubuntu-regular">{$data.hero.subHeading}</h2>
                     {$data.hero.text}
 
-                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="mb-4 d-block logo-bg-small shadow-hover mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More</a>
-                    <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="d-block logo-bg-small shadow-hover mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
+                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="mb-4 d-block logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More</a>
+                    <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="d-block logo-bg-small mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
                     <h2 style="font-size:40px;" class="mb-4 ubuntu-regular">{$data.hero.subHeading}</h2>
                     {$data.hero.text}
 
-                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="logo-bg-small shadow-hover mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More: {$data.hero.buttonText}</a>
-                    <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="logo-bg-small shadow-hover mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
+                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More: {$data.hero.buttonText}</a>
+                    <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="logo-bg-small mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
                 </div>
             </div>
         </div>

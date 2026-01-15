@@ -25,10 +25,13 @@
                 </div>
 
                 <div class="col-auto d-none d-lg-block">
-                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img " height="100%" preserveAspectRatio="xMidYMid slice" role="img" width="200" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img " height="100%" role="img" width="200" xmlns="http://www.w3.org/2000/svg">
                         <title>{$blogFeatured.title}</title>
                         <rect width="100%" height="100%" fill="#55595c"></rect>
-                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">{$blogFeatured.title}</text>
+                        {if $blogFeatured.image != ''}
+                            <image x="-100%" href="{$smarty.ENV.WEB_ROOT}images/{$blogFeatured.image}" height="100%"></image>
+                        {/if}
                     </svg>
                 </div>
             </div>
@@ -50,9 +53,9 @@
                 {foreach from=$blogList key=key item=blog name=blogs}
                     {if $key < 6}
                         <div class="col-md-6">
-                            <div class="card">
+                            <div class="card h-100 shadow-sm">
                                 {if $blog.image != ''}
-                                    <img src="{$smarty.ENV.WEB_ROOT}images/{$blog.image}" class="card-img-top" alt="{$blog.title}">
+                                    <img style="max-height:226px;" src="{$smarty.ENV.WEB_ROOT}images/{$blog.image}" class="card-img-top" alt="{$blog.title}">
                                 {/if}
 
                                 <div class="card-body">
@@ -63,8 +66,18 @@
                                     </h5>
 
                                     <p class="card-text">{$blog.shortText|strip_tags}</p>
+                                </div>
 
-                                    <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc btn btn-primary stretched-link" aria-describedby="blog {$blog.title}">Read More</a>
+                                <div class="card-footer text-body-secondary">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <a href="{$smarty.ENV.SITE_URL}blog/{$blog.datePosted|date_format:"%Y-%m-%d"}/{$blog.url}" class="mbtn lbc btn btn-primary stretched-link" aria-describedby="blog {$blog.title}">Read More</a>
+                                        </div>
+
+                                        <div class="col-md-8 text-end">
+                                            <small>{$blog.datePosted|date_format:"%B %e, %Y"}</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
