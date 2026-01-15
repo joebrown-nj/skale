@@ -20,6 +20,8 @@ class BlogModel
     public function getBlogByUrl($url='') : Array | NULL {
         $url = explode('/', rtrim($url, '/'));
         $returnVal = $this->db->where('datePosted', $url[1])->where('url', $url[2])->getOne('blog');
+        echo $this->db->getLastQuery();
+        die;
         return $returnVal;
     }
 

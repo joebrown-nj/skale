@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controller;
-use App\Controllers\pageContentController;
-use App\Models\blogModel;
+use App\Controllers\PageContentController;
+use App\Models\BlogModel;
 
 class BlogController extends Controller
 {
@@ -25,7 +25,7 @@ class BlogController extends Controller
         ));
     }
 
-    public function detail($url='') {
+    public function detail() {
         $blog = $this->blogModel->getBlogByUrl(substr($this->getUri(), 1));
         $this->render('blogDetail', array(
             'blogList' => $this->blogModel->getAllBlogs(),
