@@ -39,9 +39,9 @@
             <!-- End Meta Pixel Code -->
 
             <!-- Open Graph -->
-            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent.metaTitle) && $pageContent.metaTitle != ''} | {$pageContent.metaTitle}{/if}{if isset($data.blogDetail.metaTitle) && $data.blogDetail.metaTitle != ''} | {$data.blogDetail.metaTitle}{/if}">
+            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent.metaTitle) && $pageContent.metaTitle != ''} | {$pageContent.metaTitle}{/if}{if isset($data.blogDetail.metaTitle) && $data.blogDetail.metaTitle != ''} blog | {$data.blogDetail.metaTitle}{/if}">
             <meta property="og:description" content="{if isset($pageContent.metaDescription)}{$pageContent.metaDescription}{/if}{if isset($data.blogDetail.metaDescription)}{$data.blogDetail.metaDescription}{/if}">
-            <meta property="og:type" content="{if isset($smarty.get.p1) && $smarty.get.p1 == 'blog'}article{else}website{/if}">
+            <meta property="og:type" content="{if isset($p1) && $p1 == 'blog' && $p3}article{else}website{/if}">
             <meta property="og:URL" content="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
         </head>
 

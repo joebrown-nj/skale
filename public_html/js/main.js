@@ -77,7 +77,7 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
         type: 'GET',
         url: slug + '?header=false&footer=false' + (queryString && queryString.length > 0 ? '&' + queryString : ''),
         success: function(data){
-            console.log('ajaxGetPageContent success:', data);
+            // console.log('ajaxGetPageContent success:', data);
             $('.page-content').html(data);
             $(window).scrollTop(0);
         }
@@ -98,11 +98,12 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
                     $('meta[name=keywords]').attr('content', json.keywords);
                     $('head title').text(json.title);
 
-                    // const searchParams = new URLSearchParams(window.location.search);
-                    // const urlParam = searchParams.get('interests');
-                    // console.log('window.location.href:', window.location.href, 'urlParam', urlParam, 'searchParams:', searchParams.toString());
-                    // $('link[rel="canonical"]').attr('href', window.location.href + url + (urlParam ? '?interests=' + urlParam : ''));
                     $('link[rel="canonical"]').attr('href', window.location.href);
+
+                    $('meta[property="og:description"]').attr('content', json.description);
+                    $('meta[property="og:type"]').attr('content', window.location.href.includes('/blog/') ? 'article' : 'website');
+                    $('meta[property="og:title"]').attr('content', json.title);
+                    $('meta[property="og:URL"]').attr('content', window.location.href);
                 }
             }
         });
@@ -168,7 +169,6 @@ $(document).on('click', '#newsletterForm button', function(){
             data: $('#newsletterForm').serializeArray(),
             dataType: "json",
             success: function(data){
-                console.log(data);
                 if(data.error && data.error.length > 0){
                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.error + '</div>');
                 }
