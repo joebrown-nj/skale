@@ -2,32 +2,49 @@
 
 namespace App\Controllers;
 
-use App\Controller;
-use App\Controllers\PageContentController;
+use App\Core\ErrorHandler;
+use App\Core\Traits\RedirectTrait;
+use App\Core\Traits\ValidateMethodTrait;
+use App\Models\PageContentModel;
 use App\Models\BlogModel;
+use App\Core\View;
+use App\Core\LoadSessionData;
 
-class BlogController extends Controller
+class BlogController
 {
-    private $blogModel;
-    private $pageContentController;
+    use ValidateMethodTrait;
+    use RedirectTrait;
 
-    public function __construct() {
-        parent::__construct();
-        $this->blogModel = new BlogModel();
-        $this->pageContentController = new pageContentController();
+    private BlogModel $blogModel;
+    private PageContentModel $pageContentModel;
+    private View $view;
+    private LoadSessionData $loadSessionData;
+
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData) {
+        $this->blogModel = $blogModel;
+        $this->pageContentModel = $pageContentModel;
+        $this->view = new View();
+        $this->loadSessionData = $loadSessionData;
     }
 
     public function index() {
-        $this->render('blogList', array(
+        $this->view->render('blogList', array(
             'blogList' => $this->blogModel->getAllBlogs(),
-            'blogContent' => $this->pageContentController->getPageContent('blog'),
+            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
             'blogFeatured' => $this->blogModel->getFeaturedBlog()
         ));
     }
 
-    public function detail() {
-        $blog = $this->blogModel->getBlogByUrl(substr($this->getUri(), 1));
-        $this->render('blogDetail', array(
+    public function archive() {
+        $this->view->render('blogList', array(
+            'blogList' => $this->blogModel->getBlogArchive(),
+            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
+        ));
+    }
+
+    public function getBlogDetail($date, $slug) {
+        $blog = $this->blogModel->getBlogByUrl('blog/' . $date . '/' . $slug);
+        $this->view->render('blogDetail', array(
             'blogList' => $this->blogModel->getAllBlogs(),
             'blogDetail' => $blog
         ));

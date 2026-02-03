@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Controllers;
+// namespace App\Controllers;
+// use App\Core\View;
 
-use App\Controller;
+// class PortfolioController
+// {
+//     private View $view;
 
-class PortfolioController extends Controller
-{
-    public function index()
-    {
-        $this->render('portfolio');
-    }
-}
+//     public function __construct() {
+//         $this->view = new View();
+//     }
+
+//     public function index()
+//     {
+//         $this->view->render('portfolio');
+//     }
+// }

@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col">
-                {foreach from=$serviceList key=key item=service name=services key=key}
+                {foreach from=$smarty.SESSION.serviceList key=key item=service name=services key=key}
                     {include file="inc/service/serviceListSingle.tpl" key=$key}
                 {/foreach}
             </div>
@@ -30,7 +30,7 @@
             <div class="col-md-5">
                 <div class="row position-relative">
                     <div class="col">
-                        {foreach from=$serviceList key=key item=service name=services key=key}
+                        {foreach from=$smarty.SESSION.serviceList key=key item=service name=services key=key}
                             {include file="inc/service/serviceListSingle.tpl" key=$key}
                         {/foreach}
                     </div>

@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Controllers;
+// namespace App\Controllers;
+// use App\Core\View;
 
-use App\Controller;
+// class OurProcessController
+// {
+//     private View $view;
 
-class OurProcessController extends Controller
-{
-    public function index()
-    {
-        $this->render('ourProcess');
-    }
-}
+//     public function __construct() {
+//         $this->view = new View();
+//     }
+
+//     public function index()
+//     {
+//         $this->view->render('ourProcess');
+//     }
+// }

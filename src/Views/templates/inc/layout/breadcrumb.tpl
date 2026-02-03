@@ -4,27 +4,27 @@
             <a href="{$smarty.ENV.SITE_URL}" aria-details="breadcrumb link home" class="mbtn lbc" ><i class="fa-solid fa-house"></i></a>
         </li>
 
-        {if isset($pageContent.menuTitle)}
+        {if isset($data.pageContent.menu->title)}
             <li class="breadcrumb-item active" aria-current="page">
-                {if $p2 && isset($p1Content) && $p1Content != ''}
-                    <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}{$p1Content.url}">{$p1Content.title}</a>
+                {if $p2 && isset($data.p1Content.pageContent) && $data.p1Content.pageContent != ''}
+                    <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}{$data.p1Content.menu->url}">{$data.p1Content.pageContent->title}</a>
                 {else}
-                    {$pageContent.menuTitle}
+                    {$data.pageContent.menu->title}
                 {/if}
             </li>
 
             {if $p2}
                 <li class="breadcrumb-item active" aria-current="page">
-                    {$pageContent.menuTitle}
+                    {$data.pageContent.menu->title}
                 </li>
             {/if}
-        {elseif $p1 == 'blog' && isset($data.blogDetail.title)}
+        {elseif $p1 == 'blog' && isset($data.blogDetail->title)}
             <li class="breadcrumb-item active" aria-current="page">
                 <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}blog">Blog</a>
             </li>
 
             <li class="breadcrumb-item active" aria-current="page">
-                {$data.blogDetail.title}
+                {$data.blogDetail->title}
             </li>
         {/if}
     </ol>

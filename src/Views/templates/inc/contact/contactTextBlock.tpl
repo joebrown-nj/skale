@@ -3,7 +3,7 @@
 
 <div class="border-bottom py-4">
     <h2 class="mb-2 Bahnschrift logo-bg-small">Questions? Ready to start now?</h2>
-    {$contactContent.content}
+    {$smarty.SESSION.contactContent.pageContent->content}
 </div>
 
 {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}

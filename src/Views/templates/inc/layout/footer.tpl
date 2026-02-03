@@ -58,10 +58,12 @@
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">Services</h6>
                         <div class="row">
-                            {foreach from=$serviceList key=key item=service}
+                            {foreach from=$smarty.SESSION.serviceList key=key item=service}
                                 <div class="col-md-6">
                                     <p>
-                                        <a aria-describedby="footer services {$service.title}" href="{$smarty.ENV.SITE_URL}{$service.url}" class="link-underline link-underline-opacity-0 mbtn lbc text-reset">{$service.icon} {$service.title}</a>
+                                        <a aria-describedby="footer services {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn lbc text-reset">
+                                            {include file="inc/service/serviceIcon.tpl" serviceDetail=$service} {$service->title}
+                                        </a>
                                     </p>
                                 </div>
                             {/foreach}

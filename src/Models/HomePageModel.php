@@ -1,29 +1,30 @@
 <?php
 
 namespace App\Models;
-use MysqliDb;
+
+use App\Core\ErrorHandler;
+use App\Core\Db\DatabaseORM;
+use App\Entities\BlogEntity;
+use Doctrine\ORM\EntityManager;
+use App\Models\Entities\HomePageEntity;
 
 class HomePageModel
 {
-    private $db;
+    private EntityManager $entityManager;
 
-    public function __construct() {
-        $this->db = new MysqliDb ($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
+    public function __construct(EntityManager $entityManager) {
+        $this->entityManager = $entityManager;
     }
 
-   public function getHeroContent()
+    public function getHeroContent(): HomePageEntity | NULL
     {
-        $this->db->orderBy('impressions', 'asc');
-        $r = $this->db->getOne('home_page');
-
-        $data = Array ('impressions' => $r['impressions'] + 1);
-        $this->db->where ('id', $r['id']);
-        if (!$this->db->update ('home_page', $data)) die('update failed: ' . $db->getLastError());
-
-        return $r;
+        $repository = $this->entityManager->getRepository(HomePageEntity::class);
+        $query = $repository->createQueryBuilder('hp')->orderBy('hp.impressions', 'ASC')->setMaxResults(1)->getQuery();
+        $returnVal = $query->getOneOrNullResult();
+        return $returnVal;
     }
 
-    public function getWhyChooseUsContent()
+    public function getWhyChooseUsContent(): array
     {
         return array(
             array(

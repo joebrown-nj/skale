@@ -5,24 +5,24 @@
         <div class="col-md-8">
             <article class="blog-post">
                 <h2 class="display-5 link-body-emphasis mb-1">
-                    <a aria-describedby="blog {$data.blogDetail.title}" href="{$smarty.ENV.SITE_URL}blog/{$data.blogDetail.datePosted|date_format:"%Y-%m-%d"}/{$data.blogDetail.url}" class="mbtn lbc link-light link-underline-opacity-0">
-                        {$data.blogDetail.title}
+                    <a aria-describedby="blog {$data.blogDetail->title}" href="{$smarty.ENV.SITE_URL}blog/{$data.blogDetail->datePosted|date_format:"%Y-%m-%d"}/{$data.blogDetail->url}" class="mbtn lbc link-light link-underline-opacity-0">
+                        {$data.blogDetail->title}
                     </a>
                 </h2>
 
-                <p class="blog-post-meta">{$data.blogDetail.datePosted|date_format:"%B %e, %Y"}</p>
+                <p class="blog-post-meta">{$data.blogDetail->datePosted|date_format:"%B %e, %Y"}</p>
 
-                {if $data.blogDetail.image != ''}
+                {if $data.blogDetail->image != ''}
                     <div class="img mb-4 float-end">
-                        <img class="card-top" alt="{$data.blogDetail.title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail.image}">
+                        <img class="card-top" alt="{$data.blogDetail->title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}">
                     </div>
 
                     {* <figure>
-                        <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail.image}" alt="{$data.blogDetail.title}" loading="lazy" width="100%">
+                        <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}" alt="{$data.blogDetail->title}" loading="lazy" width="100%">
                     </figure> *}
                 {/if}
 
-                {$data.blogDetail.text}
+                {$data.blogDetail->text}
             </article>
         </div>
 

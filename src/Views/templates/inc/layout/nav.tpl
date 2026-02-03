@@ -6,7 +6,7 @@
 
     <div class="offcanvas-body py-2">
         <ul class="navbar-nav ms-auto">
-            {foreach from=$nav item=item key=key name=name}
+            {foreach from=$smarty.SESSION.nav item=item key=key name=name}
                 <li class="{$item.url|replace:'/':'-'} nav-item {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
                     <a 
                         aria-describedby="main nav {$item.title}"

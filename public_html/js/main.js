@@ -1,3 +1,5 @@
+const bsOffcanvas = new bootstrap.Offcanvas('#oCNav')
+
 $(document).on('click', '.lbc', function(){
     logButtonClick(this);
 });
@@ -31,7 +33,17 @@ $(document).on('click', '.mbtn', function(t){
     // console.log(this.href);
     // console.log(t.href);
     ajaxGetPageContent(slug, queryString, t);
-    $('.offcanvas').offcanvas('hide');
+
+    // const bsOffcanvas = new bootstrap.Offcanvas('.offcanvas');
+    // if(bsOffcanvas.getInstance()){
+    //     bsOffcanvas.hide();
+    // }
+
+    // if($('.offcanvas').Offcanvas){
+        // $('.offcanvas').Offcanvas('hide');
+    // }
+    bsOffcanvas.hide();
+
     return false;
 });
 
@@ -89,25 +101,22 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
         }
 
         $.ajax({
-            type: 'GET',
-            url: slug + '?meta-data=1',
-            success: function(data){
+            type:'GET',
+            url:'/meta-data?slug='+encodeURIComponent(slug),
+            success:function(data){
                 if(data){
-                    var json = $.parseJSON(data);
-                    $('meta[name=description]').attr('content', json.description);
-                    $('meta[name=keywords]').attr('content', json.keywords);
+                    // console.log(data);
+                    var json=$.parseJSON(data);$('meta[name=description]').attr('content',json.description);
+                    $('meta[name=keywords]').attr('content',json.keywords);
                     $('head title').text(json.title);
-
-                    $('link[rel="canonical"]').attr('href', window.location.href);
-
-                    $('meta[property="og:description"]').attr('content', json.description);
-                    $('meta[property="og:type"]').attr('content', window.location.href.includes('/blog/') ? 'article' : 'website');
-                    $('meta[property="og:title"]').attr('content', json.title);
-                    $('meta[property="og:URL"]').attr('content', window.location.href);
+                    $('link[rel="canonical"]').attr('href',window.location.href);
+                    $('meta[property="og:description"]').attr('content',json.description);
+                    $('meta[property="og:type"]').attr('content',window.location.href.includes('/blog/')?'article':'website');
+                    $('meta[property="og:title"]').attr('content',json.title);
+                    $('meta[property="og:URL"]').attr('content',window.location.href)
                 }
             }
         });
-
         // hideOverlay();
     });
 
@@ -169,6 +178,7 @@ $(document).on('click', '#newsletterForm button', function(){
             data: $('#newsletterForm').serializeArray(),
             dataType: "json",
             success: function(data){
+                document.getElementById("newsletterForm").reset();
                 if(data.error && data.error.length > 0){
                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.error + '</div>');
                 }
@@ -212,6 +222,7 @@ $(document).on('click', '#contactForm button', function(){
                 }
 
                 if(data.success && data.success.length > 0) {
+                    document.getElementById("contactForm").reset();
                     $('#contactForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
                 }
             }
@@ -277,3 +288,21 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5HMT5HBM1Y');
+
+// const myOffcanvas = document.getElementById('oCNav')
+
+// myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
+//     console.log(event);
+// });
+
+// myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
+//     console.log(event);
+// });
+
+// myOffcanvas.addEventListener('show.bs.offcanvas', event => {
+//     console.log(event);
+// });
+
+// myOffcanvas.addEventListener('shown.bs.offcanvas', event => {
+//     console.log(event);
+// });

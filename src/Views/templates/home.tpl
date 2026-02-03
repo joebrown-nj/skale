@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center" style="height: 100vh;">
                 <div class="col-md-8">
-                    <h1 class="display-3 mb-4 BricolageGrotesque">{$data.hero.headline}</h1>
-                    <h2 class="display-6 mb-4 ubuntu-regular">{$data.hero.subHeading}</h2>
-                    {$data.hero.text}
+                    <h1 class="display-3 mb-4 BricolageGrotesque">{$data.hero->headline}</h1>
+                    <h2 class="display-6 mb-4 ubuntu-regular">{$data.hero->subHeading}</h2>
+                    {$data.hero->text}
 
-                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="mb-4 d-block logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More</a>
+                    <a aria-describedby="home hero {$data.hero->buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero->url}" class="mb-4 d-block logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More</a>
                     <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="d-block logo-bg-small mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
                 </div>
             </div>
@@ -23,12 +23,12 @@
             <div class="row justify-content-center align-items-center" style="height: 100vh;">
                 <div class="col-md-8">
                     <h1 style="font-size:56px;" class="mb-4 BricolageGrotesque">
-                        <strong>{$data.hero.headline}</strong>
+                        <strong>{$data.hero->headline}</strong>
                     </h1>
-                    <h2 style="font-size:40px;" class="mb-4 ubuntu-regular">{$data.hero.subHeading}</h2>
-                    {$data.hero.text}
+                    <h2 style="font-size:40px;" class="mb-4 ubuntu-regular">{$data.hero->subHeading}</h2>
+                    {$data.hero->text}
 
-                    <a aria-describedby="home hero {$data.hero.buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero.url}" class="logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More: {$data.hero.buttonText}</a>
+                    <a aria-describedby="home hero {$data.hero->buttonText}" href="{$smarty.ENV.SITE_URL}{$data.hero->url}" class="logo-bg-small mbtn ubuntu-regular lbc btn btn-primary btn-lg">Learn More: {$data.hero->buttonText}</a>
                     <a aria-describedby="home hero contact" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="logo-bg-small mbtn ubuntu-regular lbc btn btn-secondary btn-lg brand-color-bg">Contact Us</a>
                 </div>
             </div>
@@ -69,11 +69,11 @@
     </div>
 </div>
 
-{include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
+{include file="inc/service/serviceListContainer.tpl" serviceList=$smarty.SESSION.serviceList}
 
 <div class="container-fluid home-callout parallax" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
     <div data-aos="fade-up" class="row justify-content-center px-4 py-4">
-        {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogFeatured=$data.blogFeatured blogContent=$data.blogContent}
+        {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogFeatured=$data.blogFeatured pageContent=$data.pageContent}
     </div>
 </div>
 

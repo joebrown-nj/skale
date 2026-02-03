@@ -28,8 +28,9 @@ class Router extends Controller
     public function dispatch()
     {
         $uri = $this->getP1(); //strtok($_SERVER['REQUEST_URI'], '?');
-        $uri = $uri == '' ? 'home' : $uri;
-        $uri2 = $this->getP2() ? 'detail' : '';
+        // $uri = $uri == '' ? 'home' : $uri;
+        $uri2 = $this->getP2(); // ? 'detail' : '';
+        $uri3 = $this->getP3();
         $method =  $_SERVER['REQUEST_METHOD'];
 // echo $uri;
 // echo $uri2;
@@ -40,11 +41,12 @@ class Router extends Controller
             $action = $this->routes[$method][$uri]['action'];
 
             $controller = new $controller();
-            if($uri2) $controller->$uri2();
-            else $controller->$action();
+            // if($uri2) $controller->$uri2();
+            // else $controller->$action();
+            $controller->$action();
         } else {
             // throw new \Exception("No route found for URI: $uri");
-            $this->render("404");
+            $this->view->render("404");
         }
     }
 }

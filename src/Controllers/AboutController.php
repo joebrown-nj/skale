@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Controller;
+// use App\Core\View;
 
-class AboutController extends Controller
-{
-    public function index()
-    {
-        $this->render('about');
-    }
-}
+// class AboutController
+// {
+//     private View $view;
+
+//     public function __construct()
+//     {
+//         $this->view = new View();
+//     }
+
+//     public function index()
+//     {
+//         $this->view->render('about');
+//     }
+// }

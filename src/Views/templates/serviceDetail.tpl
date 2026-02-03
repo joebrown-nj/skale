@@ -3,23 +3,23 @@
 <div data-aos="fade-up" class="container-fluid">
     <div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">
         <div class="col-md-7">
-            <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{$data.icon} {$data.title}</h2>
-            <p class="lead">{if isset($data.shortText) && $data.shortText != ''}{$data.shortText}{else}Learn more about our {$data.title} services.{/if}</p>
+            <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{include file="inc/service/serviceIcon.tpl" serviceDetail=$data.serviceDetail} {$data.serviceDetail->title}</h2>
+            <p class="lead">{if isset($data.serviceDetail->shortText) && $data.serviceDetail->shortText != ''}{$data.serviceDetail->shortText}{else}Learn more about our {$data.serviceDetail->title} services.{/if}</p>
         </div>
 
         <div class="col-md-3">
-            <img style="max-width:100%; border:10px solid #171b1e;" alt="{$data.title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.image}" style="width:100%; max-height:400px; object-fit:cover; object-position:center;">
+            <img style="max-width:100%; border:10px solid #171b1e;" alt="{$data.serviceDetail->title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.serviceDetail->image}" style="width:100%; max-height:400px; object-fit:cover; object-position:center;">
         </div>
     </div>
 
     <div class="row justify-content-center py-4">
         <div class="col-md-7">
             <div class="service-detail">
-                {$data.text}
+                {$data.serviceDetail->text}
             </div>
 
             <div class="service-footer-callout px-4 py-4 border-bottom border-top mb-4 mt-4 text-bg-dark">
-                {$data.footerCallout}
+                {$data.serviceDetail->footerCallout}
             </div>
         </div>
 
@@ -31,10 +31,10 @@
                     </div>
 
                     <div class="card-body px-4 text-body-secondary logo-bg">
-                        {$data.whyChooseList}
+                        {$data.serviceDetail->whyChooseList}
 
                         <div class="d-grid gap-2">
-                            <p>{include file="inc/buttons/contactLink.tpl" buttonText="Get Started" type="button" interest=replace($data.url, 'services/', '') service=$data.title}</p>
+                            <p>{include file="inc/buttons/contactLink.tpl" buttonText="Get Started" type="button" interest=replace($data.serviceDetail->url, 'services/', '') service=$data.serviceDetail->title}</p>
                             <p>{include file="inc/buttons/phoneLink.tpl" type="button"}</p>
                         </div>
                     </div>

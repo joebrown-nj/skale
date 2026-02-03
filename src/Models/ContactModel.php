@@ -2,78 +2,61 @@
 
 namespace App\Models;
 
-use App\Models\EmailModel;
-use App\Controllers\LogController;
-use MysqliDb;
+use App\Core\ErrorHandler;
+use App\Core\Db\DatabaseORM;
+use Doctrine\ORM\EntityManager;
+// use App\Models\EmailModel;
+// use App\Controllers\LogController;
+use App\Models\Entities\ContactEntity;
 
 class ContactModel
 {
-    private $db;
+    private EntityManager $entityManager;
 
-    public function __construct() {
-        $this->db = new MysqliDb ($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
+    public function __construct(EntityManager $entityManager) {
+        $this->entityManager = $entityManager;
     }
 
-    public function checkContactForm($p): Array {
+    public function checkContactForm($data): Array {
         $error = array();
 
-        if(empty($p['name'])){
+        if(empty($data['name'])){
             $error[] = 'Name is required';
         }
 
-        if(empty($p['email']) || !filter_var($p['email'], FILTER_VALIDATE_EMAIL)){
+        if(empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
             $error[] = 'Email is required';
         }
 
-        if(empty($p['comment'])){
+        if(empty($data['phone'])){
+            $error[] = 'Phone is required';
+        }
+
+        if(empty($data['comment'])){
             $error[] = 'Comment is required';
         }
 
         return $error;
     }
 
-    public function processContactForm($p): Array {
-        $msg = '<p>Thanks for being awesome!</p>';
-        $msg .= '<p>We have received your message and would like to thank you for writing to us. If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members.</p>';
-        $msg .= '<p>Otherwise, we will reply by email as soon as possible.</p>';
-        $msg .= '<p>Talk to you soon, '.$_ENV['SITE_NAME'].'</p>';
+    public function processContactForm($data): bool {
+        try {
+            $contact = new ContactEntity();
+            $contact->setname($data['name']);
+            $contact->setemail($data['email']);
+            $contact->setphone($data['phone']);
+            // $contact->setsubject($data['subject']);
+            $contact->setmessage($data['comment']);
+            $contact->setinterestedIn(json_encode($data['interests']));
+            // $contact->setdate();
 
-        $success[] = $msg;
-
-        $data = Array (
-            'name' => $p['name'],
-            'email' => $p['email'],
-            'phone' => $p['phone'],
-            'subject' => 'subject',
-            'message' => $p['comment'],
-            'interestedIn' => json_encode($p['interests'])
-        );
-
-        $this->db->insert ('contact', $data);
-
-        if($this->db->getLastError()){
-            echo $this->db->getLastError();
-            return array('There was an error saving your contact form. Please try again later. '.$this->db->getLastError());
+            $this->entityManager->persist($contact);
+            $this->entityManager->flush();
+            return true;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            echo $e->getMessage();
+            return false;
         }
-
-        $emailModel = new EmailModel();
-        $emailMsg = $emailModel->emailTemplate('<p>Hi '.$p['name'].',</p>'.$msg, $p['email']);
-        $emailModel->sendEmail($p['email'], 'Thanks for filling out the contact form', $emailMsg, $p['name']);
-
-        $logController = new LogController();
-        if(isset($p['subscribe']) && $p['subscribe'] == 1){
-            $logController->emailListSignup(0);
-        }
-
-        $msg = 'Form data: <br>';
-        $msg .= json_encode($_POST);
-        $msg .= '<br><br>Server data: <br>';
-        $msg .= json_encode($_SERVER);
-        $msg .= '<br><br>User data: <br>';
-        $msg .= json_encode($logController->getUser());
-        $emailMsg = $emailModel->emailTemplate($msg, $p['email']);
-        $emailModel->sendEmail($_ENV['CONTACT_FORM_MY_EMAIL'], 'Someone filled out the contact form', $emailMsg);
-
-        return $success;
     }
 }

@@ -8,13 +8,17 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^12.3",
-        "vimeo/psalm": "^6.5"
+        "vimeo/psalm": "^6.5",
+        "symfony/var-exporter": "^7.0"
     },
     "require": {
         "symfony/dotenv": "^7.3",
         "smarty/smarty": "^5.5",
         "thingengineer/mysqli-database-class": "dev-master",
-        "phpmailer/phpmailer": "^6.10"
+        "phpmailer/phpmailer": "^6.10",
+        "phroute/phroute": "^2.2",
+        "doctrine/orm": "^3.6",
+        "symfony/cache": "^8.0"
     },
     "config": {
     }

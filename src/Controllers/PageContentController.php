@@ -2,27 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Controller;
-use MysqliDb;
+use App\Models\PageContentModel;
+use App\Models\Entities\PageContentEntity;
 
-class PageContentController extends Controller
+class PageContentController
 {
-    public function getPageContent($url=''): Array | NULL
+    private PageContentModel $pageContentModel;
+
+    public function __construct(PageContentModel $pageContentModel) {
+        $this->pageContentModel = $pageContentModel;
+    }
+
+    public function getPageContent($url=''): PageContentEntity | NULL
     {
-        $url = !empty($url)
-            ? $url 
-            : (isset($_SERVER['PATH_INFO'])
-                ? substr($_SERVER['PATH_INFO'], 1, strlen($_SERVER['PATH_INFO'])) 
-                : '');
-
-        $url = rtrim($url, '/');
-
-        $db = new MysqliDb ($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
-
-        $db->join("menu m", "p.id=m.pageContentId", "LEFT");
-        $db->where("m.url", $url);
-        $returnVal = $db->getOne("page_content p", "p.*, m.title as menuTitle, m.url");
-// echo $db->getLastQuery();
+        $returnVal = $this->pageContentModel->getPageContentByUrl($url);
         return $returnVal;
     }
 }

@@ -1,69 +1,57 @@
 <?php
 
-// namespace App\Models;
+namespace App\Models;
 
-// use App\Models\EmailModel;
-// use App\Models\LogModel;
-// use MysqliDb;
+use App\Core\ErrorHandler;
+use App\Core\Db\DatabaseORM;
+use Doctrine\ORM\EntityManager;
+use App\Models\Entities\LogButtonClicksEntity;
 
-// class LogModel
-// {
-//     private $db;
-//     private $user;
+class LogModel
+{
+    private EntityManager $entityManager;
 
-//     public function __construct() {
-//         $userController = new UserController();
-//         $this->user = $userController->getUserLocation();
-//         $this->db = new MysqliDb ($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
-//     }
+    public function __construct(EntityManager $entityManager) {
+        $this->entityManager = $entityManager;
+    }
 
-//     public function logButtonClick() {
-//         $data = Array ('target' => isset($_POST['target']) ? $_POST['target'] : '',
-//                     'url' => isset($_POST['url']) ? $_POST['url'] : '',
-//                     'detail' => isset($_POST['detail']) ? $_POST['detail'] : '',
-//                     'userInfo' => json_encode($this->user),
-//                     'serverInfo' => json_encode($_SERVER)
-//         );
+    public function logButtonClick(array $data) : bool {
+        try {
+            $post = new LogButtonClicksEntity();
+            $post->settarget($data['target']);
+            $post->seturl($data['url']);
+            $post->setdetail($data['detail']);
+            $post->setuserIP($data['userIP']);
+            $post->setuserInfo($data['userInfo']);
+            $post->setserverInfo($data['serverInfo']);
 
-//         try {
-//             $this->db->insert ('log_button_clicks', $data);
-//         } catch (Exception $e) {
-//             die($e->getMessage());
-//             error_log($e->getMessage());
-//             return false;
-//         }
-//         return true;
-//     }
+            $this->entityManager->persist($post);
+            $this->entityManager->flush();
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            echo $e->getMessage();
+            return false;
+        }
+        return true;
+    }
  
-//     public function validateEmail($email) {
-//         return filter_var($email, FILTER_VALIDATE_EMAIL);
-//     }
+    public function emailListSignup(array $data) : bool {
+        // try {
+        //     $this->db->insert ('email_list_signups', $data);
+        // } catch (Exception $e) {
+        //     die($e->getMessage());
+        //     error_log($e->getMessage());
+        //     return false;
+        // }
 
-//     public function emailListSignup() {
-//         if(!$this->validateEmail($_POST['email'])){
-//             $error[] = 'A valid email is required';
-//         }
+        return true;
+    }
 
-//         if(empty($error)){
-//             $msg = 'Thanks for joining the mailing list!';
-
-//             $data = Array ('email' => $_POST['email'],
-//                         'userInfo' => json_encode($this->user)
-//             );
-
-//             try {
-//                 $this->db->insert ('email_list_signups', $data);
-//             } catch (Exception $e) {
-//                 die($e->getMessage());
-//                 error_log($e->getMessage());
-//                 return false;
-//             }
-
-//             echo json_encode(array('success' => $msg));
-//             return true;
-//         }
-
-//         echo json_encode(array('error' => $error));
-//         return false;
-//     }
-// }
+    public function checkIfEmailIsOnList(string $email): bool {
+        // $results = $this->entityManager->where ('email', $email)->getOne('email_list_signups');
+        // if($results){
+        //     return true;
+        // }
+        // return false;
+    }
+}
