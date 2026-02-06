@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use App\Core\ErrorHandler;
 use App\Core\Db\DatabaseORM;
 use Doctrine\ORM\EntityManager;
@@ -18,18 +19,42 @@ class BlogModel
 
     public function getAllBlogs() : Array | NULL  {
         try {
-            $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findBy([], ['datePosted' => 'DESC']);
-// print_r($posts); die;
+            // $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findBy([], ['datePosted' => 'DESC']);
+            $repository = $this->entityManager->getRepository(BlogEntity::class);
+            $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')->setMaxResults(10)->getQuery();
+            $returnVal = $query->getResult();
         } catch (\Throwable $e) {
-            ErrorHandler::getInstance()->handleError($e);
+            // ErrorHandler::getInstance()->handleError($e);
+            print_r($e);die;
             return [];
         }
         return $returnVal;
     }
 
-    public function getBlogArchive() : Array | NULL  {
-        $returnVal = $this->entityManager->orderBy('datePosted','desc')->get('blog');
+    public function getBlogArchive(int $start=0, int $limit=10) : Array | NULL  {
+        // try {
+        //     $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findBy([], ['datePosted' => 'DESC']);
+        // } catch (\Throwable $e) {
+        //     ErrorHandler::getInstance()->handleError($e);
+        //     return [];
+        // }
+
+        $repository = $this->entityManager->getRepository(BlogEntity::class);
+        $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')
+            ->setFirstResult($start)
+            ->setMaxResults($limit)
+            ->getQuery();
+        $returnVal = $query->getResult();
+
         return $returnVal;
+    }
+ 
+    public function getBlogTotalCount() : int {
+        $repository = $this->entityManager->getRepository(BlogEntity::class)
+            ->createQueryBuilder('b')
+            ->select('count(b.id)');
+        $count = $repository->getQuery()->getSingleScalarResult();
+        return $count;
     }
 
     public function getBlogByUrl($url='') : BlogEntity | NULL {

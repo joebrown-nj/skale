@@ -60,20 +60,19 @@
 
             <div class="page-content">
 {/if}
-{* {isset($data.pageContent)} - {$p1} *}
-{if $p1 && $p1 != '' && isset($data.pageContent) && isset({$data.pageContent.menu->title})}
+
+{if $p1 && $p1 != ''}
     <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center" style="{if isset($data->pageContent.menu->headerImage)}background: url('{$smarty.ENV.WEB_ROOT}images/{$data->pageContent.menu->headerImage}') no-repeat center center; background-size: 100%;{/if}">
         <div class="logo-bg logo-bg-overlay"></div>
-        <h1 class="display-1 BricolageGrotesque-ExtraBold">{$data.pageContent.menu->title}</h1>
-    </div>
+        <h1 class="display-3 BricolageGrotesque-ExtraBold">
+            {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset({$data.blogDetail->title})}
+                {$data.blogDetail->title}
+            {/if}
 
-    {include file="inc/layout/breadcrumb.tpl"}
-{/if}
-
-{if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset({$data.blogDetail->title})}
-    <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
-        <div class="logo-bg logo-bg-overlay"></div>
-        <h1 class="display-1 BricolageGrotesque-ExtraBold">{$data.blogDetail->title}</h1>
+            {if isset($data.pageContent) && isset({$data.pageContent.menu->title})}
+                {$data.pageContent.menu->title}
+            {/if}
+        </h1>
     </div>
 
     {include file="inc/layout/breadcrumb.tpl"}

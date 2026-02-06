@@ -21,27 +21,11 @@ function logButtonClick(t) {
 
 $(document).on('click', '.mbtn', function(t){
     const url = !t.target.href ? '' : new URL(t.target.href);
-    // console.log(this.href);
-    // console.log(this.pathname);
-    var slug = !t.target.pathname ? '/' : t.target.pathname; //t.target.href;
-    const interests = !url ? '' : url.searchParams.get("interests");
-    const queryString = interests ? 'interests=' + interests : '';
-    // console.log('mbtn clicked: ', slug);
-// return false;
-    // console.log(url);
-    // console.log(t);
-    // console.log(this.href);
-    // console.log(t.href);
+    const slug = !t.target.pathname ? '/' : t.target.pathname;
+    const queryString = url.search.replace('?','');
+
     ajaxGetPageContent(slug, queryString, t);
 
-    // const bsOffcanvas = new bootstrap.Offcanvas('.offcanvas');
-    // if(bsOffcanvas.getInstance()){
-    //     bsOffcanvas.hide();
-    // }
-
-    // if($('.offcanvas').Offcanvas){
-        // $('.offcanvas').Offcanvas('hide');
-    // }
     bsOffcanvas.hide();
 
     return false;
@@ -102,7 +86,7 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
 
         $.ajax({
             type:'GET',
-            url:'/meta-data?slug='+encodeURIComponent(slug),
+            url:'/meta-data/'+encodeURIComponent(slug),
             success:function(data){
                 if(data){
                     // console.log(data);

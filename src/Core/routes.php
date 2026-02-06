@@ -54,7 +54,7 @@ class Routes
         $this->router->get('/privacy-policy', [SubPageController::class, 'index']);
         $this->router->get('/terms-of-service', [SubPageController::class, 'index']);
         $this->router->get('/about', [SubPageController::class, 'index']);
-        $this->router->get('/meta-data', [MetaDataController::class, 'index']);
+        $this->router->get('/meta-data/{slug}', [MetaDataController::class, 'index']);
 
         // Auth routes
         // $this->router->get('/register', [AuthController::class, 'showRegistrationForm']);
@@ -92,13 +92,11 @@ class Routes
     {
         http_response_code(404);
         echo (new View)->render('error/404');
-        // $this->render('error/404');
     }
 
     private function handleError(\Exception $e): void
     {   echo $e->getMessage();
         http_response_code(500);
         echo (new View)->render('error/500');
-        // $this->render('error/500');
     }
 }

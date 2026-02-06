@@ -17,15 +17,12 @@ class PageContentModel
         $this->entityManager = $entityManager;
     }
 
-    public function getPageContentByUrl(string $url=''): Array | NULL
+    public function getPageContentByUrl(string $url=''): Array | bool
     {
+        if(substr($url, 0, 1) == '/') { $url = substr($url, 1); }
         $menuQuery = $this->entityManager->getRepository(MenuEntity::class)->findOneBy(['url' => $url]);
-        // echo $url;
-        // print_r($menuQuery);
-        // die;
+        if(empty($menuQuery)) return false;
         $returnVal = $this->entityManager->getRepository(PageContentEntity::class)->findOneBy(['id' => $menuQuery->pageContentId]);
-        // print_r($returnVal);
-        // die;
         return array('menu' => $menuQuery, 'pageContent' => $returnVal);
     }
 }

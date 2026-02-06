@@ -33,15 +33,15 @@ class LoadSessionData
         // $_SESSION['contactContent'] = '';
         // unset($_SESSION['contactContent']);
 
-        $_SESSION['nav'] = isset($_SESSION['nav']) ? $_SESSION['nav'] : $this->navModel->getNav('main', 0);
-        $_SESSION['footerNav'] = isset($_SESSION['footerNav']) ? $_SESSION['footerNav'] : $this->navModel->getNav('footer', 0);
-        $_SESSION['serviceList'] = isset($_SESSION['serviceList']) ? $_SESSION['serviceList'] : $this->serviceModel->getAllServices();
-        $_SESSION['contactContent'] = isset($_SESSION['contactContent']) ? $_SESSION['contactContent'] : $this->pageContentModel->getPageContentByUrl($_ENV['URL_CONTACT']);
+        // $_SESSION['nav'] = isset($_SESSION['nav']) ? $_SESSION['nav'] : $this->navModel->getNav('main', 0);
+        // $_SESSION['footerNav'] = isset($_SESSION['footerNav']) ? $_SESSION['footerNav'] : $this->navModel->getNav('footer', 0);
+        // $_SESSION['serviceList'] = isset($_SESSION['serviceList']) ? $_SESSION['serviceList'] : $this->serviceModel->getAllServices();
+        // $_SESSION['contactContent'] = isset($_SESSION['contactContent']) ? $_SESSION['contactContent'] : $this->pageContentModel->getPageContentByUrl($_ENV['URL_CONTACT']);
 
-        // $_SESSION['nav'] = $this->navModel->getNav('main', 0);
-        // $_SESSION['footerNav'] = $this->navModel->getNav('footer', 0);
-        // $_SESSION['serviceList'] = $this->serviceModel->getAllServices();
-        // $_SESSION['contactContent'] = $this->pageContentModel->getPageContentByUrl($_ENV['URL_CONTACT']);
+        $_SESSION['nav'] = $this->navModel->getNav('main', 0);
+        $_SESSION['footerNav'] = $this->navModel->getNav('footer', 0);
+        $_SESSION['serviceList'] = $this->serviceModel->getAllServices();
+        $_SESSION['contactContent'] = $this->pageContentModel->getPageContentByUrl($_ENV['URL_CONTACT']);
 
         // print_r($_SESSION['contactContent']['pageContent']->content);
         // die;

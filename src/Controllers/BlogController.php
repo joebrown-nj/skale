@@ -36,9 +36,19 @@ class BlogController
     }
 
     public function archive() {
-        $this->view->render('blogList', array(
-            'blogList' => $this->blogModel->getBlogArchive(),
-            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
+        $totalCount = $this->blogModel->getBlogTotalCount();
+        $numberOfpages = round($totalCount/$_ENV['BLOG_ITEMS_PER_PAGE']);
+        $pagesArray = range(1, $numberOfpages);
+        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($currentPage - 1) * $_ENV['BLOG_ITEMS_PER_PAGE'];
+        $this->view->render('blogArchive', array(
+            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog/'.$this->view->getP2()),
+            'blogList' => $this->blogModel->getBlogArchive($start, $_ENV['BLOG_ITEMS_PER_PAGE']),
+            'p1Content' => $this->pageContentModel->getPageContentByUrl('blog'),
+            'totalCount' => $totalCount,
+            'numberOfpages' => $numberOfpages,
+            'currentPage' => $currentPage,
+            'pagesArray' => $pagesArray
         ));
     }
 

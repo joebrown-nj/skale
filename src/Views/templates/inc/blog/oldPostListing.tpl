@@ -7,7 +7,7 @@
                 {if ($p2 != '' && $p2 != $blog->datePosted && $key < 5) || ($p2 == '' && $key > 5 && $key < 10)}
                     <li>
                         <a href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}" 
-                            class="mbtn lbc d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" 
+                            class="stretched-link mbtn lbc d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" 
                             aria-describedby="blog more posts {$blog->title}"
                         >
                             <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -25,6 +25,17 @@
                     </li>
                 {/if}
             {/foreach}
+
+            <li>
+                <a href="{$smarty.ENV.SITE_URL}blog/archive" 
+                    class="stretched-link mbtn lbc d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" 
+                    aria-describedby="blog archive"
+                >
+                    <div class="col-lg-12">
+                        <h6 class="mb-0">Archive</h6>
+                    </div>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

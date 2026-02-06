@@ -34,24 +34,4 @@ class LogModel
         }
         return true;
     }
- 
-    public function emailListSignup(array $data) : bool {
-        // try {
-        //     $this->db->insert ('email_list_signups', $data);
-        // } catch (Exception $e) {
-        //     die($e->getMessage());
-        //     error_log($e->getMessage());
-        //     return false;
-        // }
-
-        return true;
-    }
-
-    public function checkIfEmailIsOnList(string $email): bool {
-        // $results = $this->entityManager->where ('email', $email)->getOne('email_list_signups');
-        // if($results){
-        //     return true;
-        // }
-        // return false;
-    }
 }

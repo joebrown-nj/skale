@@ -19,10 +19,10 @@ class NavModel
         $repository = $this->entityManager->getRepository(MenuEntity::class);
 
         $query = $repository->createQueryBuilder('m')
-            ->where('m.menuLocation = :menuLocation and m.parentId = :parentId')
+            ->where('m.menuLocation = :menuLocation and m.parentId = :parentId and m.active = :active')
             ->setParameter('menuLocation', $menuLocation)
-            // ->where('m.parentId = :parentId')
             ->setParameter('parentId', $parent)
+            ->setParameter('active', 1)
             ->orderBy('m.listingOrder', 'ASC')
             ->getQuery();
 

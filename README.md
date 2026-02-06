@@ -20,8 +20,11 @@ PHP HTTP client that makes it easy to send HTTP requests and trivial to integrat
 https://psalm.dev/docs/running_psalm/installation/
 Static analysis tool that helps you identify problems in your code
 
-https://github.com/ThingEngineer/PHP-MySQLi-Database-Class
-Database class
+<!-- https://github.com/ThingEngineer/PHP-MySQLi-Database-Class
+Database class -->
+
+https://medium.com/@syed.fawzul.azim/building-a-php-web-application-with-mvc-custom-dependency-injection-and-doctrine-orm-edd2251ade81
+Basic setup - https://github.com/syedfawzulazim/mvc_web_application/tree/develop
 
 https://www.ip2location.io/dashboard
 IP Location for getting user location information

@@ -22,24 +22,28 @@ class ServiceController
     }
  
     public function index() {
-        // $serviceList = isset($_SESSION['serviceList']) ? $_SESSION['serviceList'] : $this->serviceModel->getAllServices();
         $this->view->render('serviceList', array(
             'pageContent' => $this->pageContentModel->getPageContentByUrl('services'),
-        )); //, array('serviceList' => $serviceList));
+        ));
     }
 
     public function getServiceDetail(string $slug) {
-        // echo "slug: " . $slug;
-        // echo "<br>";
-        // echo "URI: " . substr($this->getUri(), 1);
-        // die;
         $service = $this->serviceModel->getServiceByUrl($slug);
-        // print_r($service); die;
-        // $service->icon = $this->serviceModel->showIcon($service->iconType == 'bootstrap' ? $service->iconBootstrap : $service->iconFontAwesome, $service->iconType);
+        if(empty($service)) {
+            http_response_code(404);
+            $this->view->render('error/404');
+        }
+
+        $pageContent = $this->pageContentModel->getPageContentByUrl('services/'.$slug);
+        if(empty($pageContent) || $pageContent === false) {
+            http_response_code(404);
+            $this->view->render('error/404');
+        }
+
         $this->view->render('serviceDetail', array(
             'serviceDetail' => $service,
             'p1Content' => $this->pageContentModel->getPageContentByUrl('services'),
-            'pageContent' => $this->pageContentModel->getPageContentByUrl('services/'.$slug),
+            'pageContent' => $pageContent,
         ));
     }
 }

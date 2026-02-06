@@ -6,8 +6,8 @@
 
         {if isset($data.pageContent.menu->title)}
             <li class="breadcrumb-item active" aria-current="page">
-                {if $p2 && isset($data.p1Content.pageContent) && $data.p1Content.pageContent != ''}
-                    <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}{$data.p1Content.menu->url}">{$data.p1Content.pageContent->title}</a>
+                {if $p2 && isset($data.p1Content.menu) && $data.p1Content.menu != ''}
+                    <a aria-details="breadcrumb link {$p1}" class="mbtn lbc" href="{$smarty.ENV.SITE_URL}{$data.p1Content.menu->url}">{$data.p1Content.menu->title}</a>
                 {else}
                     {$data.pageContent.menu->title}
                 {/if}
