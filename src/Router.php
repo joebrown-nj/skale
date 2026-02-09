@@ -1,5 +1,6 @@
 <?php
 
+/*
 namespace App;
 
 use App\Controller;
@@ -25,6 +26,7 @@ class Router extends Controller
     /**
      * @return void
      */
+/*
     public function dispatch()
     {
         $uri = $this->getP1(); //strtok($_SERVER['REQUEST_URI'], '?');
@@ -50,3 +52,4 @@ class Router extends Controller
         }
     }
 }
+    */

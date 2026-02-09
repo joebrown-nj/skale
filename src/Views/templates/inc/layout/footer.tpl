@@ -123,7 +123,7 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-    <script src="{$smarty.ENV.WEB_ROOT}js/main.js?{$smarty.now}"></script>
+    <script src="{$smarty.ENV.WEB_ROOT}js/main.min.js?{$smarty.now}"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script>
 

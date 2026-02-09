@@ -20,10 +20,16 @@ function logButtonClick(t) {
 }
 
 $(document).on('click', '.mbtn', function(t){
-    const url = !t.target.href ? '' : new URL(t.target.href);
-    const slug = !t.target.pathname ? '/' : t.target.pathname;
-    const queryString = url.search.replace('?','');
-
+    const url = $(this).attr('href') == '/' ? '' : new URL($(this).attr('href')); //!t.target.href ? '' : new URL(t.target.href);
+    const slug = url.pathname; //!t.target.pathname ? '/' : t.target.pathname;
+    const searchString = url ? url.search : '';
+    const queryString = searchString.toString().replace('?','');
+// console.log('url.pathname', url.pathname);
+// console.log('this.attr.href', $(this).attr('href'));
+// console.log('searchString', searchString);
+// console.log('queryString', queryString);
+// console.log('slug', slug);
+// return false;
     ajaxGetPageContent(slug, queryString, t);
 
     bsOffcanvas.hide();
@@ -63,6 +69,8 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
     if(addToHistory){
         var page = event.state ? event.state.page : slug;
         var title = event.state ? event.state.title : document.title;
+        // console.log('page', page);
+        // console.log('title', title)
         history.pushState({page:page, title: title}, title, url);
     }
 // console.log('setActiveNavItem called: ', slug, url, queryString);

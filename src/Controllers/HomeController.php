@@ -28,27 +28,15 @@ class HomeController
 
     public function index()
     {
-        // $this->view->render('home', array(
-        //         'hero' => $this->homePageModel->getHeroContent(),
-        //         'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
-        //         'blogFeatured' => $this->blogModel->getFeaturedBlog(),
-        //         'blogList' => $this->blogModel->getAllBlogs(),
-        //         'whyChooseUs' => $this->homePageModel->getWhyChooseUsContent(),
-        //         'whyChooseUsHeading' => '<h3 class="BricolageGrotesque-ExtraBold fs-2">Why Choose <a href="/" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business?</h3><p class="lead">We specialize in delivering comprehensive solutions that drive business growth. Here\'s why partnering with us is the right choice for your company.</p>'
-        //     )
-        // );
-// print_r($_SESSION['serviceList']);
-// die;
         $data = array(
             'hero' => $this->homePageModel->getHeroContent(),
             'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogList' => $this->blogModel->getAllBlogs(),
             'whyChooseUs' => $this->homePageModel->getWhyChooseUsContent(),
-            'whyChooseUsHeading' => '<h3 class="BricolageGrotesque-ExtraBold fs-2">Why Choose <a href="/" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business?</h3><p class="lead">We specialize in delivering comprehensive solutions that drive business growth. Here\'s why partnering with us is the right choice for your company.</p>'
+            'whyChooseUsHeading' => '<h3 class="BricolageGrotesque-ExtraBold fs-2">Why Choose <a href="'.$_ENV['SITE_URL'].'" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business?</h3><p class="lead">We specialize in delivering comprehensive solutions that drive business growth. Here\'s why partnering with us is the right choice for your company.</p>'
         );
-/* ?><pre><?php print_r($data);?></pre><?php die; */
-        // echo (new View)->render('home', $data);
+
         $this->view->render('home', $data);
     }
 
