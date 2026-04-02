@@ -1,6 +1,13 @@
-<main data-aos="fade-up" class="container-fluid">
+<main class="container-fluid">
     <div class="row mb-2">
-        <div class="col-md-8">
+        <div class="col-md-4 shadow-lg">
+            <div class="p-4 mb-3 bg-body-tertiary rounded">
+                <h4 class="fst-italic">{$blogContent['pageContent']->title}</h4>
+                <p>{$blogContent['pageContent']->content|strip_tags}</p>
+            </div>
+        </div>
+
+        <div class="col-md-8 shadow-lg">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     <h3 class="mb-0">Featured post</h3>
@@ -36,13 +43,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4">
-            <div class="p-4 mb-3 bg-body-tertiary rounded">
-                <h4 class="fst-italic">{$pageContent['pageContent']->title}</h4>
-                <p>{$pageContent['pageContent']->content|strip_tags}</p>
-            </div>
-        </div>
     </div>
 
     <div class="row g-5">
@@ -52,7 +52,7 @@
             <div class="row g-4">
                 {foreach from=$blogList key=key item=blog name=blogs}
                     {if $key < 6}
-                        <div class="col-md-6">
+                        <div class="col-md-6 shadow-lg" data-aos="fade-up">
                             <div class="card h-100 shadow-sm">
                                 {if $blog->image != ''}
                                     <img style="max-height:226px;" src="{$smarty.ENV.WEB_ROOT}images/{$blog->image}" class="card-img-top" alt="{$blog->title}">

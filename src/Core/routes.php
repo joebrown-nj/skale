@@ -18,6 +18,8 @@ use App\Controllers\LogController;
 use App\Controllers\SubPageController;
 use App\Controllers\MetaDataController;
 use App\Controllers\EmailController;
+use App\Controllers\GetStartedController;
+use App\Controllers\PortfolioController;
 
 class Routes
 {
@@ -48,13 +50,19 @@ class Routes
         $this->router->get('/blog/archive', [BlogController::class, 'archive']);
         $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
         $this->router->get('/contact', [ContactController::class, 'index']);
-        $this->router->post('/contact-form', [ContactController::class, 'submit']);
-        $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
-        $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
         $this->router->get('/privacy-policy', [SubPageController::class, 'index']);
         $this->router->get('/terms-of-service', [SubPageController::class, 'index']);
         $this->router->get('/about', [SubPageController::class, 'index']);
-        $this->router->get('/meta-data/{slug}', [MetaDataController::class, 'index']);
+        $this->router->get('/portfolio', [PortfolioController::class, 'index']);
+        $this->router->get('/meta-data/', [MetaDataController::class, 'index']);
+        $this->router->get('/meta-data/{p1}', [MetaDataController::class, 'index']);
+        $this->router->get('/meta-data/{p1}/{p2}', [MetaDataController::class, 'index']);
+        $this->router->get('/meta-data/{p1}/{p2}/{p3}', [MetaDataController::class, 'index']);
+
+        $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
+        $this->router->post('/contact-form', [ContactController::class, 'submit']);
+        $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
+        $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
 
         // Auth routes
         // $this->router->get('/register', [AuthController::class, 'showRegistrationForm']);

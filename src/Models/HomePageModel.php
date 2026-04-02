@@ -19,8 +19,19 @@ class HomePageModel
     public function getHeroContent(): HomePageEntity | NULL
     {
         $repository = $this->entityManager->getRepository(HomePageEntity::class);
-        $query = $repository->createQueryBuilder('hp')->orderBy('hp.impressions', 'ASC')->setMaxResults(1)->getQuery();
+        $query = $repository->createQueryBuilder('hp')
+            ->where('hp.active = :active')->setParameter('active', true)
+            ->orderBy('hp.impressions', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery();
         $returnVal = $query->getOneOrNullResult();
+
+        if ($returnVal) {
+            $returnVal->impressions = $returnVal->impressions + 1;
+            $this->entityManager->persist($returnVal);
+            $this->entityManager->flush();
+        }
+
         return $returnVal;
     }
 

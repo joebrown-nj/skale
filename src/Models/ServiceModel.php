@@ -44,7 +44,7 @@ class ServiceModel
         // return $serviceList;
 
         $repository = $this->entityManager->getRepository(ServicesEntity::class);
-        $query = $repository->createQueryBuilder('s')->orderBy('s.listingOrder', 'ASC')->getQuery();
+        $query = $repository->createQueryBuilder('s')->where('s.active = 1')->orderBy('s.listingOrder', 'ASC')->getQuery();
         $results = $query->getResult();
 
         // foreach($result as $v) {

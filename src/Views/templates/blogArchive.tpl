@@ -8,7 +8,7 @@
             {include file="inc/blog/pagination.tpl"}
 
             {foreach from=$data.blogList key=key item=blog name=blogs}
-                <div class="col-md-4">
+                <div class="col-md-4 shadow-lg" data-aos="fade-up">
                     <div class="card h-100 shadow-sm">
                         {if $blog->image != ''}
                             <img style="max-height:226px;" src="{$smarty.ENV.WEB_ROOT}images/{$blog->image}" class="card-img-top" alt="{$blog->title}">

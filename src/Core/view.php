@@ -180,7 +180,10 @@ class View
             // //     echo $key.' => '.gettype($value).'<br>';
             // // }
             // // die;
-// print_r($data);die;
+// echo '<pre>';
+// print_r($data);
+// echo '</pre>';
+// die;
 
             $this->smarty->display("$view.tpl");
         // }

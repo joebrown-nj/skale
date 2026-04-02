@@ -16,13 +16,20 @@ class MetaDataController
         $this->blogModel = $blogModel;
     }
 
-    public function index($slug)
+    public function index($p1 = '', $p2 = '', $p3 = ''): void
     {
-        $adjustedSlug = urldecode($slug);
-        $p = explode('/', $adjustedSlug);
+        // $adjustedSlug = urldecode($slug);
+        $adjustedSlug = $p1;
+        if($p2) $adjustedSlug .= '/' . $p2;
+        if($p3) $adjustedSlug .= '/' . $p3;
+        $adjustedSlug = trim($adjustedSlug, '/');
+        // $p = explode('/', $adjustedSlug);
+// echo 'p1: ' . $p1 . ', p2: ' . $p2 . ', p3: ' . $p3;
+// die;
+// return;
 
-        if(isset($p[1]) && $p[1] == 'blog' && isset($p[3])) {
-            $blog = $this->blogModel->getBlogByUrl('blog/' . $p[2] . '/' . $p[3]);
+        if($p1 == 'blog' && $p2 && $p3) {
+            $blog = $this->blogModel->getBlogByUrl('blog/' . $p2 . '/' . $p3);
 
             if($blog) {
                 $metaData = json_encode(array(
@@ -35,6 +42,8 @@ class MetaDataController
             $pageContent = $this->pageContentModel->getPageContentByUrl($adjustedSlug);
 
             if($pageContent) {
+                // echo $adjustedSlug;
+                // echo $pageContent['pageContent']->id;
                 $metaData = json_encode(array(
                     'keywords' => $pageContent['pageContent']->metaKeywords,
                     'description' => $pageContent['pageContent']->metaDescription,
@@ -44,7 +53,9 @@ class MetaDataController
         }
 
         if($metaData) {
-            echo $metaData;
+            echo trim($metaData);
         }
+
+        return;
     }
 }

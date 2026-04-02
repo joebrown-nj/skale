@@ -33,7 +33,7 @@ class Router extends Controller
         // $uri = $uri == '' ? 'home' : $uri;
         $uri2 = $this->getP2(); // ? 'detail' : '';
         $uri3 = $this->getP3();
-        $method =  $_SERVER['REQUEST_METHOD'];
+        $method = $_SERVER['REQUEST_METHOD'];
 // echo $uri;
 // echo $uri2;
 // $this->prettyPrint($this->routes);

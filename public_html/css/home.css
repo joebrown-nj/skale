@@ -25,7 +25,7 @@
 
 .parallax, .parallax-mobile {
     /* The image used */
-    background-image: url("/images/hero.webp");
+    /* background-image: url("/images/hero.webp"); */
     /* background-image: url("/images/underwater-gulf-scallops2.png"); */
 
     /* Set a specific height */
@@ -50,7 +50,7 @@
 }
 
 .parallax-mobile {
-    background-image: url("/images/hero-mobile.webp");
+    /* background-image: url("/images/hero-mobile.webp"); */
 }
 
 

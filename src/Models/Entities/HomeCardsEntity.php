@@ -39,12 +39,12 @@ class HomeCardsEntity
 
 public function __construct($val=NULL)
 {
-    $this->title =  !isset($val->title) ? NULL : $val->title;
-    $this->image =  !isset($val->image) ? NULL : $val->image;
-    $this->bgImage =  !isset($val->bgImage) ? NULL : $val->bgImage;
-    $this->url =  !isset($val->url) ? NULL : $val->url;
-    $this->shortText =  !isset($val->shortText) ? NULL : $val->shortText;
-    $this->text =  !isset($val->text) ? NULL : $val->text;
+    $this->title = !isset($val->title) ? NULL : $val->title;
+    $this->image = !isset($val->image) ? NULL : $val->image;
+    $this->bgImage = !isset($val->bgImage) ? NULL : $val->bgImage;
+    $this->url = !isset($val->url) ? NULL : $val->url;
+    $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
+    $this->text = !isset($val->text) ? NULL : $val->text;
 }
 
 public function gettitle()
@@ -84,32 +84,32 @@ public function gettext()
 
 public function settitle($val)
 {
-    $this->title =  !isset($val->title) ? NULL : $val->title;
+    $this->title = !isset($val->title) ? NULL : $val->title;
 }
 
 public function setimage($val)
 {
-    $this->image =  !isset($val->image) ? NULL : $val->image;
+    $this->image = !isset($val->image) ? NULL : $val->image;
 }
 
 public function setbgImage($val)
 {
-    $this->bgImage =  !isset($val->bgImage) ? NULL : $val->bgImage;
+    $this->bgImage = !isset($val->bgImage) ? NULL : $val->bgImage;
 }
 
 public function seturl($val)
 {
-    $this->url =  !isset($val->url) ? NULL : $val->url;
+    $this->url = !isset($val->url) ? NULL : $val->url;
 }
 
 public function setshortText($val)
 {
-    $this->shortText =  !isset($val->shortText) ? NULL : $val->shortText;
+    $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
 }
 
 public function settext($val)
 {
-    $this->text =  !isset($val->text) ? NULL : $val->text;
+    $this->text = !isset($val->text) ? NULL : $val->text;
 }
 
 

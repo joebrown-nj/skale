@@ -18,7 +18,7 @@
 //     private ?string $p3 = null;
 
 //     public function __construct() {
-//         $this->method =  $_SERVER['REQUEST_METHOD'];
+//         $this->method = $_SERVER['REQUEST_METHOD'];
 //         $this->uri = strtok($_SERVER['REQUEST_URI'], '?');
 
 //         $pages = explode('/', $this->uri);

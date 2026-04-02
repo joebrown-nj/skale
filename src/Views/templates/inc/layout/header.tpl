@@ -6,10 +6,20 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{$smarty.ENV.SITE_NAME}{if isset($pageContent->metaTitle) && $pageContent->metaTitle != ''} | {$pageContent->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
-            <meta name="description" content="{if isset($pageContent->metaDescription)}{$pageContent->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
-            <meta name="keywords" content="{if isset($pageContent->metaKeywords)}{$pageContent->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
+            <title>{$smarty.ENV.SITE_NAME}{if isset($data.pageContent.pageContent->metaTitle) && $data.pageContent.pageContent->metaTitle != ''} | {$data.pageContent.pageContent->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
+            <meta name="description" content="{if isset($data.pageContent.pageContent->metaDescription)}{$data.pageContent.pageContent->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
+            <meta name="keywords" content="{if isset($data.pageContent.pageContent->metaKeywords)}{$data.pageContent.pageContent->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
+
+            <!-- Google Tag Manager -->
+            {literal}
+                <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-MGKXRNV7');</script>
+                <!-- End Google Tag Manager -->
+            {/literal}
 
             <script src="{$smarty.ENV.WEB_ROOT}js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
             <link href="{$smarty.ENV.WEB_ROOT}css/bootstrap.min.css " rel="stylesheet">
@@ -19,24 +29,6 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link href="{$smarty.ENV.WEB_ROOT}css/style.min.css" rel="stylesheet">
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
-
-            <!-- Meta Pixel Code -->
-            {literal}
-                <!-- <script>
-                    !function(f,b,e,v,n,t,s)
-                        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                        n.queue=[];t=b.createElement(e);t.async=!0;
-                        t.src=v;s=b.getElementsByTagName(e)[0];
-                        s.parentNode.insertBefore(t,s)}(window, document,'script',
-                            'https://connect.facebook.net/en_US/fbevents.js');
-                        fbq('init', '1637675473876321');
-                        fbq('track', 'PageView');
-                </script>
-                <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1637675473876321&ev=PageView&noscript=1"/></noscript> -->
-            {/literal}
-            <!-- End Meta Pixel Code -->
 
             <!-- Open Graph -->
             <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent->metaTitle) && $pageContent->metaTitle != ''} | {$pageContent->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}">
@@ -48,6 +40,11 @@
         </head>
 
         <body class="bg-dark">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGKXRNV7"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
             <div id="overlay">
                 <div class="cv-spinner">
                     <span class="spinner">

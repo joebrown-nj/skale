@@ -73,24 +73,27 @@ class ServicesEntity
     #[ORM\Column(type: 'integer')]
     public int $listingOrder;
 
+    #[ORM\Column(type: 'boolean')]
+    public bool $active;
+
     // public function __construct($val=NULL)
     // {
-    //     $this->id =  !isset($val->id) ? NULL : $val->id;
-    //     $this->title =  !isset($val->title) ? NULL : $val->title;
-    //     $this->url =  !isset($val->url) ? NULL : $val->url;
-    //     $this->iconType =  !isset($val->iconType) ? NULL : $val->iconType;
-    //     $this->iconBootstrap =  !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
-    //     $this->iconFontAwesome =  !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
-    //     $this->largeIcon =  !isset($val->largeIcon) ? NULL : $val->largeIcon;
-    //     $this->shortText =  !isset($val->shortText) ? NULL : $val->shortText;
-    //     $this->text =  !isset($val->text) ? NULL : $val->text;
-    //     $this->image =  !isset($val->image) ? NULL : $val->image;
-    //     $this->headerImage =  !isset($val->headerImage) ? NULL : $val->headerImage;
-    //     $this->whyChooseList =  !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
-    //     $this->footerCallout =  !isset($val->footerCallout) ? NULL : $val->footerCallout;
-    //     $this->dateAdded =  !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;
-    //     $this->dateUpdated =  !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
-    //     $this->listingOrder =  !isset($val->listingOrder) ? NULL : $val->listingOrder;
+    //     $this->id = !isset($val->id) ? NULL : $val->id;
+    //     $this->title = !isset($val->title) ? NULL : $val->title;
+    //     $this->url = !isset($val->url) ? NULL : $val->url;
+    //     $this->iconType = !isset($val->iconType) ? NULL : $val->iconType;
+    //     $this->iconBootstrap = !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
+    //     $this->iconFontAwesome = !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
+    //     $this->largeIcon = !isset($val->largeIcon) ? NULL : $val->largeIcon;
+    //     $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
+    //     $this->text = !isset($val->text) ? NULL : $val->text;
+    //     $this->image = !isset($val->image) ? NULL : $val->image;
+    //     $this->headerImage = !isset($val->headerImage) ? NULL : $val->headerImage;
+    //     $this->whyChooseList = !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
+    //     $this->footerCallout = !isset($val->footerCallout) ? NULL : $val->footerCallout;
+    //     $this->dateAdded = !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;
+    //     $this->dateUpdated = !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
+    //     $this->listingOrder = !isset($val->listingOrder) ? NULL : $val->listingOrder;
     // }
 
     public function getid()
@@ -175,82 +178,82 @@ class ServicesEntity
 
     public function setid($val)
     {
-        $this->id =  !isset($val->id) ? NULL : $val->id;
+        $this->id = !isset($val->id) ? NULL : $val->id;
     }
 
     public function settitle($val)
     {
-        $this->title =  !isset($val->title) ? NULL : $val->title;
+        $this->title = !isset($val->title) ? NULL : $val->title;
     }
 
     public function seturl($val)
     {
-        $this->url =  !isset($val->url) ? NULL : $val->url;
+        $this->url = !isset($val->url) ? NULL : $val->url;
     }
 
     public function seticonType($val)
     {
-        $this->iconType =  !isset($val->iconType) ? NULL : $val->iconType;
+        $this->iconType = !isset($val->iconType) ? NULL : $val->iconType;
     }
 
     public function seticonBootstrap($val)
     {
-        $this->iconBootstrap =  !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
+        $this->iconBootstrap = !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
     }
 
     public function seticonFontAwesome($val)
     {
-        $this->iconFontAwesome =  !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
+        $this->iconFontAwesome = !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
     }
 
     public function setlargeIcon($val)
     {
-        $this->largeIcon =  !isset($val->largeIcon) ? NULL : $val->largeIcon;
+        $this->largeIcon = !isset($val->largeIcon) ? NULL : $val->largeIcon;
     }
 
     public function setshortText($val)
     {
-        $this->shortText =  !isset($val->shortText) ? NULL : $val->shortText;
+        $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
     }
 
     public function settext($val)
     {
-        $this->text =  !isset($val->text) ? NULL : $val->text;
+        $this->text = !isset($val->text) ? NULL : $val->text;
     }
 
     public function setimage($val)
     {
-        $this->image =  !isset($val->image) ? NULL : $val->image;
+        $this->image = !isset($val->image) ? NULL : $val->image;
     }
 
     public function setheaderImage($val)
     {
-        $this->headerImage =  !isset($val->headerImage) ? NULL : $val->headerImage;
+        $this->headerImage = !isset($val->headerImage) ? NULL : $val->headerImage;
     }
 
     public function setwhyChooseList($val)
     {
-        $this->whyChooseList =  !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
+        $this->whyChooseList = !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
     }
 
     public function setfooterCallout($val)
     {
-        $this->footerCallout =  !isset($val->footerCallout) ? NULL : $val->footerCallout;
+        $this->footerCallout = !isset($val->footerCallout) ? NULL : $val->footerCallout;
     }
 
     public function setdateAdded($val)
     {
-        $this->dateAdded =  !isset($val->dateAdded) ? 'CURRENT_TIMESTAMP' : $val->dateAdded;
+        $this->dateAdded = !isset($val->dateAdded) ? 'CURRENT_TIMESTAMP' : $val->dateAdded;
     }
 
     public function setdateUpdated($val)
     {
-        $this->dateUpdated =  !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
+        $this->dateUpdated = !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
     }
 
     public function setlistingOrder($val)
     {
-        $this->listingOrder =  !isset($val->listingOrder) ? NULL : $val->listingOrder;
+        $this->listingOrder = !isset($val->listingOrder) ? NULL : $val->listingOrder;
     }
 } 
 

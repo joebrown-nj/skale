@@ -127,3 +127,133 @@ B (Longer/Logical):
 Competing Online Isn’t Enough Anymore—You Need to Lead.
 Subheading: Skale Up empowers businesses with sleek design, cutting-edge development, and future-ready IT services.
 
+
+
+Headline:
+Turn Visitors Into Customers—Automatically.
+
+Subheading:
+Skale builds high-performing websites and IT systems designed to capture leads and grow your business 24/7.
+
+CTA Buttons:
+
+Primary: Get a Free Website Audit
+Secondary: See How It Works
+
+Layout Structure:
+
+Left: Headline, subheading, CTAs
+Right: Visual (dashboard, analytics growth, or funnel graphic)
+
+Conversion Boosters:
+
+✅ “No obligation. 100% free audit” microcopy
+⭐ “Trusted by growing businesses” (social proof line)
+🔹 2. Value Proposition Hero
+
+
+
+Headline:
+Your Growth Starts With Better Technology.
+
+Subheading:
+From stunning websites to reliable IT solutions, Skale gives your business the tools to attract, convert, and scale.
+
+CTA Buttons:
+
+Primary: Start Your Project
+Secondary: View Our Work
+
+Layout Structure:
+
+Centered (clean + premium feel)
+Background: subtle gradient or abstract tech pattern
+
+Conversion Boosters:
+
+📈 Add 3 quick stats under CTA:
+“+200% lead growth”
+“Fast, secure builds”
+“Ongoing support”
+🔹 3. Lead Magnet Hero
+
+
+
+Headline:
+Get More Leads Without More Effort.
+
+Subheading:
+We design websites that capture leads, automate workflows, and drive consistent growth.
+
+CTA Buttons:
+
+Primary: Get Free Lead Strategy
+Secondary: Download Free Guide
+
+Layout Structure:
+
+Left: Copy
+Right: Lead capture form (Name, Email, Website URL)
+
+Conversion Boosters:
+
+📩 Inline form = higher conversions
+🔒 “We respect your privacy. No spam.”
+🎯 Offer: “Free 10-min growth plan”
+🔹 4. Pain Point Hero
+
+
+
+Headline:
+Stop Losing Leads to a Bad Website.
+
+Subheading:
+Skale creates fast, modern, conversion-focused websites backed by expert IT solutions.
+
+CTA Buttons:
+
+Primary: Fix My Website
+Secondary: Get a Free Audit
+
+Layout Structure:
+
+Split screen:
+Left: “Problem” (slow, outdated site visual)
+Right: “Solution” (modern, sleek UI)
+
+Conversion Boosters:
+
+⚡ “See results in weeks, not months”
+🔍 Before/After mini visual cue
+🔹 5. Action-Oriented Hero
+
+
+
+Headline:
+Ready to Scale Your Business?
+
+Subheading:
+Partner with Skale for web design, development, and IT services that turn traffic into leads.
+
+CTA Buttons:
+
+Primary: Book a Free Call
+Secondary: Get Pricing
+
+Layout Structure:
+
+Centered with strong CTA emphasis
+Background: subtle motion or animated gradient
+
+Conversion Boosters:
+
+📅 “Free 15-minute strategy call”
+⏱ “No commitment” reassurance
+👤 Optional: small founder/team photo for trust
+🔥 Pro Tip (What Actually Converts Best)
+
+If your goal is lead capture, the highest-performing combo is usually:
+
+👉 Headline #3 (Lead Magnet) + Inline Form + “Free Audit/Strategy” CTA
+
+This reduces friction and gives users immediate value.

@@ -45,7 +45,7 @@
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4"></i>Subscribe to our newsletter</h6>
-                        <form id="newsletterForm" class="mb-4" method="POST" action="{$smarty.ENV.WEB_ROOT}email-list-signup">
+                        <form id="newsletterForm" class="mb-4 ajaxForm" method="POST" action="{$smarty.ENV.WEB_ROOT}email-list-signup">
                             <p>Monthly digest of what's new and exciting from us.</p>
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                                 <label for="email" class="visually-hidden">Email address</label>

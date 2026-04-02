@@ -92,27 +92,30 @@ function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
             $('header.menu-bar').addClass('menu-bar-bg');
         }
 
-        $.ajax({
-            type:'GET',
-            url:'/meta-data/'+encodeURIComponent(slug),
-            success:function(data){
-                if(data){
-                    // console.log(data);
-                    var json=$.parseJSON(data);$('meta[name=description]').attr('content',json.description);
-                    $('meta[name=keywords]').attr('content',json.keywords);
-                    $('head title').text(json.title);
-                    $('link[rel="canonical"]').attr('href',window.location.href);
-                    $('meta[property="og:description"]').attr('content',json.description);
-                    $('meta[property="og:type"]').attr('content',window.location.href.includes('/blog/')?'article':'website');
-                    $('meta[property="og:title"]').attr('content',json.title);
-                    $('meta[property="og:URL"]').attr('content',window.location.href)
-                }
-            }
-        });
-        // hideOverlay();
+        ajaxGetPageMetaData(slug);
     });
 
     return false;
+}
+
+function ajaxGetPageMetaData(slug) {
+    $.ajax({
+        type:'GET',
+        url:'/meta-data'+slug,
+        success:function(data){
+            if(data){
+                // console.log(data);
+                var json=$.parseJSON(data);$('meta[name=description]').attr('content',json.description);
+                $('meta[name=keywords]').attr('content',json.keywords);
+                $('head title').text(json.title);
+                $('link[rel="canonical"]').attr('href',window.location.href);
+                $('meta[property="og:description"]').attr('content',json.description);
+                $('meta[property="og:type"]').attr('content',window.location.href.includes('/blog/')?'article':'website');
+                $('meta[property="og:title"]').attr('content',json.title);
+                $('meta[property="og:URL"]').attr('content',window.location.href)
+            }
+        }
+    });
 }
 
 //page loading spinner
@@ -148,74 +151,118 @@ function removeAllAlerts() {
 }
 
 // email-list-signup form validation
-$(document).on('click', '#newsletterForm button', function(){
-    let errors = [];
-    showOverlay();
-    $('#newsletterForm .required').each(function(t){
-        if(!$(this).val()){
-            errors.push(capitalizeFirstLetter(this.name) + ' is required');
-        }
-    });
+// $(document).on('click', '#newsletterForm button', function(){
+//     let errors = [];
+//     showOverlay();
+//     $('#newsletterForm .required').each(function(t){
+//         if(!$(this).val()){
+//             errors.push(capitalizeFirstLetter(this.name) + ' is required');
+//         }
+//     });
 
-    $('#newsletterForm .alert-danger').remove();
-    $('#newsletterForm .alert-success').remove();
+//     $('#newsletterForm .alert-danger').remove();
+//     $('#newsletterForm .alert-success').remove();
 
-    if(errors.length > 0){
-        $('#newsletterForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('. ') + '.</div>');
-        hideOverlay();
-    } else {
-        $.ajax({
-            type: 'POST',
-            url:    '/email-list-signup?header=false&footer=false',
-            data: $('#newsletterForm').serializeArray(),
-            dataType: "json",
-            success: function(data){
-                document.getElementById("newsletterForm").reset();
-                if(data.error && data.error.length > 0){
-                    $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.error + '</div>');
-                }
+//     if(errors.length > 0){
+//         $('#newsletterForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('. ') + '.</div>');
+//         hideOverlay();
+//     } else {
+//         $.ajax({
+//             type: 'POST',
+//             url:    '/email-list-signup?header=false&footer=false',
+//             data: $('#newsletterForm').serializeArray(),
+//             dataType: "json",
+//             success: function(data){
+//                 document.getElementById("newsletterForm").reset();
+//                 if(data.error && data.error.length > 0){
+//                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.error + '</div>');
+//                 }
 
-                if(data.success && data.success.length > 0) {
-                    $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
-                }
-            }
-        }).done(function() {
-            hideOverlay();
-        });
-    }
-    return false;
-});
+//                 if(data.success && data.success.length > 0) {
+//                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
+//                 }
+//             }
+//         }).done(function() {
+//             hideOverlay();
+//         });
+//     }
+//     return false;
+// });
 
 // contact form validation
-$(document).on('click', '#contactForm button', function(){
+// $(document).on('click', '#contactForm button', function(){
+//     let errors = [];
+//     showOverlay();
+//     $('#contactForm .required').each(function(t){
+//         if(!$(this).val()){
+//             errors.push(capitalizeFirstLetter(this.name) + ' is required');
+//         }
+//     });
+
+//     $('#contactForm .alert-danger').remove();
+//     $('#contactForm .alert-success').remove();
+
+//     if(errors.length > 0){
+//         $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('<br/>') + '.</div>');
+//         hideOverlay();
+//     } else {
+//         $.ajax({
+//             type: 'POST',
+//             url:    '/contact-form?header=false&footer=false',
+//             data: $('#contactForm').serializeArray(),
+//             dataType: "json",
+//             success: function(data){
+//                 if(data.error && data.error.length > 0){
+//                     $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
+//                 }
+
+//                 if(data.success && data.success.length > 0) {
+//                     document.getElementById("contactForm").reset();
+//                     $('#contactForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
+//                 }
+//             }
+//         }).done(function() {
+//             hideOverlay();
+//         });
+//     }
+
+//     return false;
+// });
+
+// get started form validation
+$(document).on('click', '.ajaxForm button', function(){
     let errors = [];
+    let form = $(this).closest('form');
+    let formId = form.attr('id');
+    let action = form.attr('action');
     showOverlay();
-    $('#contactForm .required').each(function(t){
+    form.find('.required').each(function(t){
         if(!$(this).val()){
             errors.push(capitalizeFirstLetter(this.name) + ' is required');
         }
     });
 
-    $('#contactForm .alert-danger').remove();
-    $('#contactForm .alert-success').remove();
+    form.find('.alert-danger').remove();
+    form.find('.alert-success').remove();
 
     if(errors.length > 0){
-        $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('<br/>') + '.</div>');
+        form.prepend('<div class="alert alert-danger" role="alert">' + errors.join('<br/>') + '.</div>');
         hideOverlay();
     } else {
         $.ajax({
             type: 'POST',
-            url:    '/contact-form?header=false&footer=false',
-            data: $('#contactForm').serializeArray(),
+            url: action + '?header=false&footer=false',
+            data: form.serializeArray(),
             dataType: "json",
             success: function(data){
                 if(data.error && data.error.length > 0){
-                    $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
+                    form.prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
                 }
 
                 if(data.success && data.success.length > 0) {
-                    document.getElementById("contactForm").reset();
-                    $('#contactForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
+                    // document.getElementById(formId).reset();
+                    form[0].reset();
+                    form.prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
                 }
             }
         }).done(function() {
@@ -225,7 +272,6 @@ $(document).on('click', '#contactForm button', function(){
 
     return false;
 });
-
 
 // $(window).scroll(function() {
 // adds background to menu bar on scroll
@@ -279,7 +325,9 @@ AOS.init({
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-5HMT5HBM1Y');
+gtag('config', 'G-5HMT5HBM1Y', {
+     cookie_flags: 'secure;samesite=none'
+});
 
 // const myOffcanvas = document.getElementById('oCNav')
 

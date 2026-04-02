@@ -34,28 +34,37 @@ class HomePageEntity
     #[ORM\Column(type: 'string', length: 250)]
     public string $subHeading;
 
-    #[ORM\Column(type: 'text')]
-    public string $text;
+    // #[ORM\Column(type: 'string', length: 500)]
+    // public string $text;
 
     #[ORM\Column(type: 'integer')]
     public int $impressions;
 
-    #[ORM\Column(type: 'string', length: 250)]
-    public string $url;
-
     #[ORM\Column(type: 'string', length: 150)]
     public string $buttonText;
 
+    #[ORM\Column(type: 'string', length: 150)]
+    public string $buttonUrl;
+
+    #[ORM\Column(type: 'string', length: 150)]
+    public string $secondaryButtonText;
+
+    #[ORM\Column(type: 'string', length: 150)]
+    public string $secondaryButtonUrl;
+
+    #[ORM\Column(type: 'boolean')]
+    public bool $active;
+
     public function __construct($val=NULL)
     {
-        // $this->id =  !isset($val->id) ? NULL : $val->id;
-        // $this->type =  !isset($val->type) ? NULL : $val->type;
-        // $this->headline =  !isset($val->headline) ? NULL : $val->headline;
-        // $this->subHeading =  !isset($val->subHeading) ? NULL : $val->subHeading;
-        // $this->text =  !isset($val->text) ? NULL : $val->text;
-        // $this->impressions =  !isset($val->impressions) ? '0' : $val->impressions;
-        // $this->url =  !isset($val->url) ? NULL : $val->url;
-        // $this->buttonText =  !isset($val->buttonText) ? NULL : $val->buttonText;
+        // $this->id = !isset($val->id) ? NULL : $val->id;
+        // $this->type = !isset($val->type) ? NULL : $val->type;
+        // $this->headline = !isset($val->headline) ? NULL : $val->headline;
+        // $this->subHeading = !isset($val->subHeading) ? NULL : $val->subHeading;
+        // $this->text = !isset($val->text) ? NULL : $val->text;
+        // $this->impressions = !isset($val->impressions) ? '0' : $val->impressions;
+        // $this->url = !isset($val->url) ? NULL : $val->url;
+        // $this->buttonText = !isset($val->buttonText) ? NULL : $val->buttonText;
     }
 
     public function getid()
@@ -78,19 +87,14 @@ class HomePageEntity
         return $this->subHeading;
     }
 
-    public function gettext()
-    {
-        return $this->text;
-    }
+    // public function gettext()
+    // {
+    //     return $this->text;
+    // }
 
     public function getimpressions()
     {
         return $this->impressions;
-    }
-
-    public function geturl()
-    {
-        return $this->url;
     }
 
     public function getbuttonText()
@@ -98,44 +102,84 @@ class HomePageEntity
         return $this->buttonText;
     }
 
+    public function getbuttonUrl()
+    {
+        return $this->buttonUrl;
+    }
+
+    public function getsecondaryButtonText()
+    {
+        return $this->secondaryButtonText;
+    }
+
+    public function getsecondaryButtonUrl()
+    {
+        return $this->secondaryButtonUrl;
+    }
+
+    public function getactive()
+    {
+        return $this->active;
+    }
+
     public function setid($val)
     {
-        $this->id =  !isset($val->id) ? NULL : $val->id;
+        $this->id = !isset($val->id) ? NULL : $val->id;
     }
 
     public function settype($val)
     {
-        $this->type =  !isset($val->type) ? NULL : $val->type;
+        $this->type = !isset($val->type) ? NULL : $val->type;
     }
 
     public function setheadline($val)
     {
-        $this->headline =  !isset($val->headline) ? NULL : $val->headline;
+        $this->headline = !isset($val->headline) ? NULL : $val->headline;
     }
 
     public function setsubHeading($val)
     {
-        $this->subHeading =  !isset($val->subHeading) ? NULL : $val->subHeading;
+        $this->subHeading = !isset($val->subHeading) ? NULL : $val->subHeading;
     }
 
-    public function settext($val)
-    {
-        $this->text =  !isset($val->text) ? NULL : $val->text;
-    }
+    // public function settext($val)
+    // {
+    //     $this->text = !isset($val->text) ? NULL : $val->text;
+    // }
 
     public function setimpressions($val)
     {
-        $this->impressions =  !isset($val->impressions) ? '0' : $val->impressions;
+        $this->impressions = !isset($val->impressions) ? '0' : $val->impressions;
     }
 
     public function seturl($val)
     {
-        $this->url =  !isset($val->url) ? NULL : $val->url;
+        $this->url = !isset($val->url) ? NULL : $val->url;
     }
 
     public function setbuttonText($val)
     {
-        $this->buttonText =  !isset($val->buttonText) ? NULL : $val->buttonText;
+        $this->buttonText = !isset($val->buttonText) ? NULL : $val->buttonText;
+    }
+
+    public function setbuttonUrl($val)
+    {
+        $this->buttonUrl = !isset($val->buttonUrl) ? NULL : $val->buttonUrl;
+    }
+
+    public function setsecondaryButtonText($val)
+    {
+        $this->secondaryButtonText = !isset($val->secondaryButtonText) ? NULL : $val->secondaryButtonText;
+    }
+
+    public function setsecondaryButtonUrl($val)
+    {
+        $this->secondaryButtonUrl = !isset($val->secondaryButtonUrl) ? NULL : $val->secondaryButtonUrl;
+    }
+
+    public function setactive($val)
+    {
+        $this->active = !isset($val->active) ? NULL : $val->active;
     }
 } 
 
