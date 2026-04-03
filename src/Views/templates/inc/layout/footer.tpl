@@ -102,7 +102,7 @@
 
                 <div class="col-md-4">
                     <ul class="nav justify-content-end">
-                        {foreach from=$footerNav item=item key=key name=name}
+                        {foreach from=$smarty.SESSION.footerNav item=item key=key name=name}
                             <li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
                                 <a 
                                     aria-describedby="footer nav {$item.title}"
