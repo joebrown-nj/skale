@@ -18,11 +18,11 @@ class HomeController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, LoadSessionData $loadSessionData) {
+    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, LoadSessionData $loadSessionData, View $view) {
         $this->homePageModel = $homePageModel;
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
 

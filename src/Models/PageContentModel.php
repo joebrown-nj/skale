@@ -25,6 +25,7 @@ class PageContentModel
 // print_r($menuQuery);die;
         if(empty($menuQuery)) return false;
         $returnVal = $this->entityManager->getRepository(PageContentEntity::class)->findOneBy(['id' => $menuQuery->pageContentId]);
+// print_r($returnVal);die;
         return array('menu' => $menuQuery, 'pageContent' => $returnVal);
     }
 }

@@ -10,10 +10,10 @@ class EmailController
     private EmailModel $emailModel;
     private View $view;
 
-    public function __construct(EmailModel $emailModel)
+    public function __construct(EmailModel $emailModel, View $view)
     {
         $this->emailModel = $emailModel;
-        $this->view = new View();
+        $this->view = $view;
     }
 
     public function signUp(): string

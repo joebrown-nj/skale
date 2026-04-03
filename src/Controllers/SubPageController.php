@@ -11,9 +11,9 @@ class SubPageController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData) {
+    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, View $view) {
         $this->pageContentModel = $pageContentModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
 

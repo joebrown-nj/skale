@@ -14,10 +14,10 @@ class ServiceController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(ServiceModel $serviceModel, LoadSessionData $loadSessionData, PageContentModel $pageContentModel) {
+    public function __construct(ServiceModel $serviceModel, LoadSessionData $loadSessionData, PageContentModel $pageContentModel, View $view) {
         $this->serviceModel = $serviceModel;
         $this->pageContentModel = $pageContentModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
  

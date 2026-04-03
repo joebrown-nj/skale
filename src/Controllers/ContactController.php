@@ -16,12 +16,12 @@ class ContactController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ContactModel $contactModel, EmailModel $emailModel)
+    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ContactModel $contactModel, EmailModel $emailModel, View $view)
     {
         $this->emailModel = $emailModel;
         $this->pageContentModel = $pageContentModel;
         $this->contactModel = $contactModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
 

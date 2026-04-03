@@ -11,8 +11,8 @@ class PortfolioController
     private PageContentModel $pageContentModel;
     private PortfolioModel $portfolioModel;
 
-    public function __construct(PageContentModel $pageContentModel, PortfolioModel $portfolioModel) {
-        $this->view = new View();
+    public function __construct(PageContentModel $pageContentModel, PortfolioModel $portfolioModel, View $view) {
+        $this->view = $view;
         $this->pageContentModel = $pageContentModel;
         $this->portfolioModel = $portfolioModel;
     }

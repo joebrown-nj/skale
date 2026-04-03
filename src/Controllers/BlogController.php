@@ -20,10 +20,10 @@ class BlogController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData) {
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData, View $view) {
         $this->blogModel = $blogModel;
         $this->pageContentModel = $pageContentModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
 

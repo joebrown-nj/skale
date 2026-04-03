@@ -13,9 +13,9 @@ class LeadController
     private View $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, LoadSessionData $loadSessionData) {
+    public function __construct(HomePageModel $homePageModel, LoadSessionData $loadSessionData, View $view) {
         $this->homePageModel = $homePageModel;
-        $this->view = new View();
+        $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
 
