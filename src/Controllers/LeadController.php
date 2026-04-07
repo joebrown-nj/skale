@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\EmailModel;
 use App\Models\HomePageModel;
 use App\Core\Contracts\ViewInterface;
 use App\Core\LoadSessionData;

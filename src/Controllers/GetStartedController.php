@@ -2,18 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
-use App\Core\LoadSessionData;
 use App\Models\GetStartedModel;
-use App\Models\EmailModel;
 
 class GetStartedController
 {
-    private EmailModel $emailModel;
+    private EmailServiceInterface $emailModel;
     private GetStartedModel $getStartedModel;
     private ViewInterface $view;
 
-    public function __construct(EmailModel $emailModel, GetStartedModel $getStartedModel, ViewInterface $view) {
+    public function __construct(EmailServiceInterface $emailModel, GetStartedModel $getStartedModel, ViewInterface $view) {
         $this->emailModel = $emailModel;
         $this->getStartedModel = $getStartedModel;
         $this->view = $view;

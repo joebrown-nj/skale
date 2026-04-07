@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Models\HomePageModel;
-use App\Models\EmailModel;
 use App\Models\BlogModel;
 use App\Models\PageContentModel;
 use App\Core\LoadSessionData;
@@ -14,11 +14,11 @@ class HomeController
     private HomePageModel $homePageModel;
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
-    private EmailModel $emailModel;
+    private EmailServiceInterface $emailModel;
     private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, EmailModel $emailModel, LoadSessionData $loadSessionData, ViewInterface $view) {
+    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, EmailServiceInterface $emailModel, LoadSessionData $loadSessionData, ViewInterface $view) {
         $this->homePageModel = $homePageModel;
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;

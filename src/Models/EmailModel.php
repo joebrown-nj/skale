@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-use App\Core\ErrorHandler;
-use App\Core\Db\DatabaseORM;
-use Doctrine\ORM\EntityManager;
+use App\Core\Contracts\EmailServiceInterface;
 use App\Models\Entities\EmailListSignupsEntity;
+use Doctrine\ORM\EntityManager;
+use PHPMailer\PHPMailer\PHPMailer;
+use Throwable;
 
-class EmailModel
+class EmailModel implements EmailServiceInterface
 {
     protected PHPMailer $mailer;
     private EntityManager $entityManager;
@@ -48,58 +46,57 @@ class EmailModel
      * @param string|null $fromName Sender name
      * @return bool
      */
-    public function sendEmail($to, $subject, $body, $toName=null) //, $from, $fromName = null)
+    public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool
     {
         try {
-            // $this->mailer->setFrom($from, $fromName);
+            $this->mailer->clearAllRecipients();
+            $this->mailer->clearAttachments();
             $this->mailer->isHTML(true);
             $this->mailer->addAddress($to, $toName);
             $this->mailer->Subject = $subject;
             $this->mailer->Body = $body;
 
             return $this->mailer->send();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             // Log error or handle as needed
+            error_log($e->getMessage());
             return false;
         }
     }
 
-    public function emailListUnsubscribe($email): bool {
-        // $results = $this->db->where ('email', $email)->getOne('email_list_signups');
-        // if($results){
-        //     $this->db->where('id', $results['id']);
-        //     if($this->db->delete('email_list_signups')){
-        //         return true;
-        //     }
-        // }
-        // return false;
+    public function emailListUnsubscribe(string $email): bool
+    {
+        try {
+            $signup = $this->entityManager
+                ->getRepository(EmailListSignupsEntity::class)
+                ->findOneBy(['email' => $email]);
 
-        // $exists = $this->entityManager->getRepository(EmailListSignupsEntity::class)->findOneBy(['email' => $email]);
-        // print_r($exists);
-        // die;
+            if ($signup === null) {
+                return false;
+            }
+
+            $this->entityManager->remove($signup);
+            $this->entityManager->flush();
+
+            return true;
+        } catch (Throwable $e) {
+            error_log($e->getMessage());
+            return false;
+        }
     }
  
-    public function processEmailListSignup(array $data) : bool {
-        // try {
-        //     $this->db->insert ('email_list_signups', $data);
-        // } catch (Exception $e) {
-        //     die($e->getMessage());
-        //     error_log($e->getMessage());
-        //     return false;
-        // }
-        // return true;
+    public function processEmailListSignup(array $data): bool
+    {
         try {
             $email = new EmailListSignupsEntity();
             $email->setemail($data['email']);
-            // $email->setsignUpDate();
-            $email->setuserInfo(json_encode($data['userInfo']));
+            $email->setuserInfo($data['userInfo'] ?? null);
 
             $this->entityManager->persist($email);
             $this->entityManager->flush();
             return true;
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             error_log($e->getMessage());
-            echo $e->getMessage();
             return false;
         }
     }
@@ -110,36 +107,31 @@ class EmailModel
         return false;
     }
  
-    public function validateEmail($email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    public function validateEmail(string $email): bool {
+        return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    public function emailListSignup($data, $user): bool {
-        if(!$this->validateEmail($_POST['email'])){
-            $error[] = 'A valid email is required';
-            return json_encode(array('error' => $error));
+    public function emailListSignup(array $data, ?array $user): bool
+    {
+        $email = $data['email'] ?? '';
+
+        if (!$this->validateEmail($email)) {
+            return false;
         }
 
-        if(empty($error)){
-            if($this->checkIfEmailIsOnList($_POST['email'])){
-                // if($output == 1) {
-                //     return json_encode(array('error' => 'You are already on the list'));
-                // }
-                // return false;
-            } else {
-                $data = Array ('email' => $_POST['email'], 'userInfo' => json_encode($user));
-                if($this->processEmailListSignup($data)){
-                    // $msg = 'Thanks for joining the mailing list!';
-                    // return $msg;
-                    return true;
-                }
-            }
+        if ($this->checkIfEmailIsOnList($email)) {
+            return false;
         }
 
-        return false;
+        $payload = [
+            'email' => $email,
+            'userInfo' => json_encode($user),
+        ];
+
+        return $this->processEmailListSignup($payload);
     }
 
-    public function emailTemplate($content='', $email='')
+    public function emailTemplate(string $content = '', string $email = ''): string
     {
         return $this->emailHeader().'<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>

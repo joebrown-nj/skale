@@ -2,21 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Core\Contracts\EmailServiceInterface;
 use App\Models\ContactModel;
 use App\Core\Contracts\ViewInterface;
 use App\Core\LoadSessionData;
 use App\Models\PageContentModel;
-use App\Models\EmailModel;
 
 class ContactController
 {
-    private EmailModel $emailModel;
+    private EmailServiceInterface $emailModel;
     private PageContentModel $pageContentModel;
     private ContactModel $contactModel;
     private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ContactModel $contactModel, EmailModel $emailModel, ViewInterface $view)
+    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ContactModel $contactModel, EmailServiceInterface $emailModel, ViewInterface $view)
     {
         $this->emailModel = $emailModel;
         $this->pageContentModel = $pageContentModel;

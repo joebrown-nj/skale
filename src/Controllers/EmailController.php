@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\EmailModel;
+use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
 
 class EmailController
 {
-    private EmailModel $emailModel;
+    private EmailServiceInterface $emailModel;
     private ViewInterface $view;
 
-    public function __construct(EmailModel $emailModel, ViewInterface $view)
+    public function __construct(EmailServiceInterface $emailModel, ViewInterface $view)
     {
         $this->emailModel = $emailModel;
         $this->view = $view;
@@ -34,5 +34,7 @@ class EmailController
                 }
             }
         }
+
+        return json_encode(array('error' => 'Unable to process email signup'));
     }
 }
