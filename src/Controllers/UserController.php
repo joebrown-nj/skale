@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-class UserController {
+use App\Core\Contracts\UserLocationProviderInterface;
+
+class UserController implements UserLocationProviderInterface {
     private $apiKey;
     private $urlTemplate;
 

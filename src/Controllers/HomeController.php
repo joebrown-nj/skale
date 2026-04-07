@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Core\View;
-use App\Controllers\LogController;
+use App\Core\Contracts\ViewInterface;
 use App\Models\HomePageModel;
 use App\Models\EmailModel;
 use App\Models\BlogModel;
@@ -15,13 +14,15 @@ class HomeController
     private HomePageModel $homePageModel;
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
-    private View $view;
+    private EmailModel $emailModel;
+    private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, LoadSessionData $loadSessionData, View $view) {
+    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, EmailModel $emailModel, LoadSessionData $loadSessionData, ViewInterface $view) {
         $this->homePageModel = $homePageModel;
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
+        $this->emailModel = $emailModel;
         $this->view = $view;
         $this->loadSessionData = $loadSessionData;
     }
@@ -59,15 +60,13 @@ class HomeController
 
     public function unsubscribe()
     {
-        $logController = new LogController();
-        $emailModel = new EmailModel();
         $successMessage = '';
         $errorMessage = '';
 
-        if(!isset($_GET['email']) || !$logController->validateEmail($_GET['email'])){
+        if(!isset($_GET['email']) || !$this->emailModel->validateEmail($_GET['email'])){
             $errorMessage = 'A valid email is required to unsubscribe';
         } else {
-            if($emailModel->emailListUnsubscribe($_GET['email'])){
+            if($this->emailModel->emailListUnsubscribe($_GET['email'])){
                 $successMessage = 'You have been unsubscribed';
             } else {
                 $errorMessage = 'There was a problem unsubscribing you. Please try again later.';

@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\EmailModel;
-use App\Core\View;
+use App\Core\Contracts\ViewInterface;
 
 class EmailController
 {
     private EmailModel $emailModel;
-    private View $view;
+    private ViewInterface $view;
 
-    public function __construct(EmailModel $emailModel, View $view)
+    public function __construct(EmailModel $emailModel, ViewInterface $view)
     {
         $this->emailModel = $emailModel;
         $this->view = $view;

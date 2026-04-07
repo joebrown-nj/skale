@@ -3,42 +3,28 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Contracts\UserLocationProviderInterface;
+use App\Core\Contracts\ViewInterface;
 use Smarty\Smarty;
-// use App\Controllers\PageContentController;
-// use App\Controllers\NavController;
-// use App\Models\ServiceModel;
-use App\Controllers\UserController;
 
-class View
+class View implements ViewInterface
 {
     private Smarty $smarty;
-    // private PageContentController $pageContentController;
-    // private NavController $navController;
-    // private ServiceModel $serviceModel;
     private ?string $uri = null;
     private ?string $p1 = null;
     private ?string $p2 = null;
     private ?string $p3 = null;
-
-    
-    private UserController $userController;
+    private UserLocationProviderInterface $userController;
     private array $user;
 
-    public function __construct() {
-        $this->smarty = new Smarty();
+    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController) {
+        $this->smarty = $smarty;
         $this->smarty->caching = Smarty::CACHING_OFF;
         $this->smarty->setTemplateDir($_ENV['SMARTY_TEMPLATE_DIR']);
         $this->smarty->setCompileDir($_ENV['SMARTY_TEMPLATE_C_DIR']);
         $this->smarty->setConfigDir($_ENV['SMARTY_CONFIG']);
         $this->smarty->setCacheDir($_ENV['SMARTY_CACHE']);
-        // $this->smarty->setCaching(Smarty::CACHING_OFF); // Disable caching for development
-        // $this->smarty->clearAllCache();
-        // $this->smarty->clearCompiledTemplate();
         $this->smarty->assign('app_name', 'Skaleup');
-
-    //     $this->pageContentController = $pageContentController;
-    //     $this->navController = $navController;
-    //     $this->serviceModel = $serviceModel;
 
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $this->uri = substr($uri, 0, 1) == '/' ? substr($uri, 1) : $uri;
@@ -48,8 +34,7 @@ class View
         $this->p2 = isset($pages[1]) ? $pages[1] : '';
         $this->p3 = isset($pages[2]) ? $pages[2] : '';
 
-        $this->userController = new UserController();
-        // $this->userController = $userController;
+        $this->userController = $userController;
         $this->user = $this->userController->getUserLocation();
     }
 

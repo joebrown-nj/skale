@@ -4,16 +4,16 @@ namespace App\Controllers;
 
 use App\Models\EmailModel;
 use App\Models\HomePageModel;
-use App\Core\View;
+use App\Core\Contracts\ViewInterface;
 use App\Core\LoadSessionData;
 
 class LeadController
 {
     private HomePageModel $homePageModel;
-    private View $view;
+    private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, LoadSessionData $loadSessionData, View $view) {
+    public function __construct(HomePageModel $homePageModel, LoadSessionData $loadSessionData, ViewInterface $view) {
         $this->homePageModel = $homePageModel;
         $this->view = $view;
         $this->loadSessionData = $loadSessionData;

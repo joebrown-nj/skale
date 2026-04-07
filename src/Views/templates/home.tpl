@@ -132,7 +132,7 @@
 <div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
     <div data-aos="fade-up" class="row justify-content-center pt-5">
         <div class="col-md-8 text-center mb-4">
-            <h3 class="BricolageGrotesque fs-1 mb-2 fw-bold">{$data.whyChooseUsHeading}</h3>
+            <h3 class="fs-1 mb-2 fw-bold">{$data.whyChooseUsHeading}</h3>
             <p class="lead">{$data.whyChooseUsSubHeading}</p>
         </div>
     </div>
@@ -140,7 +140,7 @@
     {foreach from=$data.whyChooseUs item=item name=items}
         <div class="row justify-content-center align-items-center mb-4" data-aos="fade-left">
             <div class="col-md-1 text-center">
-                <p class="display-2 fw-bold">{$smarty.foreach.items.index + 1}</p>
+                <p class="display-2 fw-bold text-secondary">{$smarty.foreach.items.index + 1}</p>
             </div>
 
             <div class="col-md-6">

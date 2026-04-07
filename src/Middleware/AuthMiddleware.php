@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Middleware;
 
 use App\Core\Traits\RedirectTrait;
-use App\Core\View;
 
 class AuthMiddleware
 {

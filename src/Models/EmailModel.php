@@ -12,14 +12,13 @@ use App\Models\Entities\EmailListSignupsEntity;
 
 class EmailModel
 {
-    protected $mailer;
+    protected PHPMailer $mailer;
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, PHPMailer $mailer)
     {
         $this->entityManager = $entityManager;
-
-        $this->mailer = new PHPMailer(true);
+        $this->mailer = $mailer;
         // Configure SMTP settings here if needed
         // $this->mailer->SMTPDebug = SMTP::DEBUG_SERVER;                     //Enable verbose debug output
         // $this->mailer->isSMTP();                                            //Send using SMTP

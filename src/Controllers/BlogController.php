@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 use App\Core\ErrorHandler;
+use App\Core\Contracts\ViewInterface;
 use App\Core\Traits\RedirectTrait;
 use App\Core\Traits\ValidateMethodTrait;
 use App\Models\PageContentModel;
 use App\Models\BlogModel;
-use App\Core\View;
 use App\Core\LoadSessionData;
 
 class BlogController
@@ -17,14 +17,19 @@ class BlogController
 
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
-    private View $view;
+    private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData, View $view) {
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ViewInterface $view) {
         $this->blogModel = $blogModel;
         $this->pageContentModel = $pageContentModel;
         $this->view = $view;
         $this->loadSessionData = $loadSessionData;
+    }
+
+    protected function getView(): ViewInterface
+    {
+        return $this->view;
     }
 
     public function index() {

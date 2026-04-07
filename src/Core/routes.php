@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Contracts\ViewInterface;
 use App\Core\DI\Container;
 use App\Middleware\AuthMiddleware;
 use Phroute\Phroute\RouteCollector;
@@ -39,7 +40,7 @@ class Routes
     private function registerRoutes(): void
     {
         $this->router->filter('auth', function() {
-            return (new AuthMiddleware)->handle();
+            return $this->container->get(AuthMiddleware::class)->handle();
         });
 
         // Public routes
@@ -99,12 +100,12 @@ class Routes
     private function handleNotFound(): void
     {
         http_response_code(404);
-        echo (new View)->render('error/404');
+        echo $this->container->get(ViewInterface::class)->render('error/404');
     }
 
     private function handleError(\Exception $e): void
     {   echo $e->getMessage();
         http_response_code(500);
-        echo (new View)->render('error/500');
+        echo $this->container->get(ViewInterface::class)->render('error/500');
     }
 }

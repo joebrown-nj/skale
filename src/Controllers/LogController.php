@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Controllers\UserController;
+use App\Core\Contracts\UserLocationProviderInterface;
 use App\Models\LogModel;
 
 class LogController {
-    private UserController $userController;
+    private UserLocationProviderInterface $userController;
     private LogModel $logModel;
     private array $user;
 
-    public function __construct(UserController $userController, LogModel $logModel) {
+    public function __construct(UserLocationProviderInterface $userController, LogModel $logModel) {
         $this->userController = $userController;
         $this->logModel = $logModel;
         $this->user = $this->userController->getUserLocation();

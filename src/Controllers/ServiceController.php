@@ -4,17 +4,17 @@ namespace App\Controllers;
 
 use App\Models\ServiceModel;
 use App\Models\PageContentModel;
-use App\Core\View;
+use App\Core\Contracts\ViewInterface;
 use App\Core\LoadSessionData;
 
 class ServiceController
 {
     private ServiceModel $serviceModel;
     private PageContentModel $pageContentModel;
-    private View $view;
+    private ViewInterface $view;
     private LoadSessionData $loadSessionData;
 
-    public function __construct(ServiceModel $serviceModel, LoadSessionData $loadSessionData, PageContentModel $pageContentModel, View $view) {
+    public function __construct(ServiceModel $serviceModel, LoadSessionData $loadSessionData, PageContentModel $pageContentModel, ViewInterface $view) {
         $this->serviceModel = $serviceModel;
         $this->pageContentModel = $pageContentModel;
         $this->view = $view;

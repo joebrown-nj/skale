@@ -3,9 +3,14 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Controllers\UserController;
+use App\Core\Contracts\UserLocationProviderInterface;
+use App\Core\Contracts\ViewInterface;
 use App\Core\db\DatabaseORM;
 use App\Core\DI\Container;
 use Doctrine\ORM\EntityManager;
+use PHPMailer\PHPMailer\PHPMailer;
+use Smarty\Smarty;
 use Symfony\Component\Dotenv\Dotenv;
 
 class Application
@@ -38,6 +43,7 @@ class Application
         $this->loadEnvironment();
 
         $this->registerEntityManager();
+        $this->registerSharedDependencies();
 
         // Initialize routes
         $this->routes = new Routes();
@@ -67,6 +73,25 @@ class Application
         // Register EntityManager
         $this->container->set(EntityManager::class, function () {
             return $this->container->get(DatabaseORM::class)->initialize();
+        });
+    }
+
+    private function registerSharedDependencies(): void
+    {
+        $this->container->set(UserLocationProviderInterface::class, function () {
+            return $this->container->get(UserController::class);
+        });
+
+        $this->container->set(ViewInterface::class, function () {
+            return $this->container->get(View::class);
+        });
+
+        $this->container->set(PHPMailer::class, function () {
+            return new PHPMailer(true);
+        });
+
+        $this->container->set(Smarty::class, function () {
+            return new Smarty();
         });
     }
 

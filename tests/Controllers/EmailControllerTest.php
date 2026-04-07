@@ -3,7 +3,7 @@
 namespace Tests\Controllers;
 
 use App\Controllers\EmailController;
-use App\Core\View;
+use App\Core\Contracts\ViewInterface;
 use App\Models\EmailModel;
 use PHPUnit\Framework\TestCase;
 
@@ -24,7 +24,7 @@ final class EmailControllerTest extends TestCase
             ->with('not-an-email')
             ->willReturn(false);
 
-        $view = $this->createMock(View::class);
+        $view = $this->createMock(ViewInterface::class);
         $view->expects($this->never())
             ->method('getUser');
 
@@ -58,7 +58,7 @@ final class EmailControllerTest extends TestCase
             ])
             ->willReturn(true);
 
-        $view = $this->createMock(View::class);
+        $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('getUser')
             ->willReturn($user);

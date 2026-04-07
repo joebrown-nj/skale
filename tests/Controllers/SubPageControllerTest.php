@@ -3,8 +3,8 @@
 namespace Tests\Controllers;
 
 use App\Controllers\SubPageController;
+use App\Core\Contracts\ViewInterface;
 use App\Core\LoadSessionData;
-use App\Core\View;
 use App\Models\PageContentModel;
 use PHPUnit\Framework\TestCase;
 
@@ -22,7 +22,7 @@ final class SubPageControllerTest extends TestCase
 
         $loadSessionData = $this->createStub(LoadSessionData::class);
 
-        $view = $this->createMock(View::class);
+        $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('getUri')
             ->willReturn('privacy-policy');
