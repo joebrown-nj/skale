@@ -1,348 +1,280 @@
-const bsOffcanvas = new bootstrap.Offcanvas('#oCNav')
+const offcanvasElement = document.getElementById('oCNav');
+const bsOffcanvas = offcanvasElement ? new bootstrap.Offcanvas(offcanvasElement) : null;
 
-$(document).on('click', '.lbc', function(){
-    logButtonClick(this);
-});
+const OVERLAY_FADE_MS = 300;
+const OVERLAY_HIDE_DELAY_MS = 250;
+const MENU_BAR_BG_CLASS = 'menu-bar-bg';
 
-function logButtonClick(t) {
-    var d = { 
-        'target': $(t).attr('href'), 
-        'url': window.location.pathname,
-        'detail': $(t).attr('aria-describedby')
-    };
-
-    $.ajax({
-        type: 'POST',
-        url:    '/log-button-click',
-        data: d,
-    });
-    return false;
+function buildUrl(path, params = {}) {
+    const query = new URLSearchParams(params).toString();
+    return query ? `${path}?${query}` : path;
 }
 
-$(document).on('click', '.mbtn', function(t){
-    const url = $(this).attr('href') == '/' ? '' : new URL($(this).attr('href')); //!t.target.href ? '' : new URL(t.target.href);
-    const slug = url.pathname; //!t.target.pathname ? '/' : t.target.pathname;
-    const searchString = url ? url.search : '';
-    const queryString = searchString.toString().replace('?','');
-// console.log('url.pathname', url.pathname);
-// console.log('this.attr.href', $(this).attr('href'));
-// console.log('searchString', searchString);
-// console.log('queryString', queryString);
-// console.log('slug', slug);
-// return false;
-    ajaxGetPageContent(slug, queryString, t);
-
-    bsOffcanvas.hide();
-
-    return false;
-});
-
-function setActiveNavItem(url) {
-    $('#oCNav .active').removeClass('active');
-
-    var adjustedUrl = url == '/' || url == '' ? url : url.replace('/','').replaceAll('/','-');
-    adjustedUrl = adjustedUrl.trim();
-
-    if(url != '/')
-        $('.navbar-nav li.' + adjustedUrl).addClass('active');
-    else
-        $('.navbar-nav li').first().addClass('active');
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (character) => (
+        {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+        }[character]
+    ));
 }
 
-/*********************************************************************************** */
-// back button support for ajax loaded pages
-function handlePopState(event) {
-    if (event.state.page) {
-        ajaxGetPageContent(event.state.page, '', event, false);
+function normalizeMessages(messages) {
+    if (Array.isArray(messages)) {
+        return messages.filter(Boolean);
     }
-};
 
-window.onpopstate = handlePopState;
-/*********************************************************************************** */
-
-function ajaxGetPageContent(slug, queryString, event, addToHistory=true) {
-    removeAllAlerts();
-// console.log('ajaxGetPageContent called: ', slug, url);
-    // handles back button support - do not add to history if triggered by back button
-    var url = slug  + (queryString && queryString.length > 0 ? '?' + queryString : '');
-
-    if(addToHistory){
-        var page = event.state ? event.state.page : slug;
-        var title = event.state ? event.state.title : document.title;
-        // console.log('page', page);
-        // console.log('title', title)
-        history.pushState({page:page, title: title}, title, url);
+    if (messages === null || messages === undefined || messages === '') {
+        return [];
     }
-// console.log('setActiveNavItem called: ', slug, url, queryString);
-    setActiveNavItem(slug);
 
-    // get page html content
-    $.ajax({
-        type: 'GET',
-        url: slug + '?header=false&footer=false' + (queryString && queryString.length > 0 ? '&' + queryString : ''),
-        success: function(data){
-            // console.log('ajaxGetPageContent success:', data);
-            $('.page-content').html(data);
-            $(window).scrollTop(0);
-        }
-    }).done(function() {
-        if(!slug || slug.length == 0 || slug == '/'){
-            $('header.menu-bar').removeClass('menu-bar-bg');
-        } else {
-            $('header.menu-bar').addClass('menu-bar-bg');
-        }
-
-        ajaxGetPageMetaData(slug);
-    });
-
-    return false;
+    return [messages];
 }
 
-function ajaxGetPageMetaData(slug) {
-    $.ajax({
-        type:'GET',
-        url:'/meta-data'+slug,
-        success:function(data){
-            if(data){
-                // console.log(data);
-                var json=$.parseJSON(data);$('meta[name=description]').attr('content',json.description);
-                $('meta[name=keywords]').attr('content',json.keywords);
-                $('head title').text(json.title);
-                $('link[rel="canonical"]').attr('href',window.location.href);
-                $('meta[property="og:description"]').attr('content',json.description);
-                $('meta[property="og:type"]').attr('content',window.location.href.includes('/blog/')?'article':'website');
-                $('meta[property="og:title"]').attr('content',json.title);
-                $('meta[property="og:URL"]').attr('content',window.location.href)
-            }
-        }
-    });
+function renderAlert($form, type, messages) {
+    const content = normalizeMessages(messages)
+        .map((message) => escapeHtml(message))
+        .join('<br>');
+
+    if (!content) {
+        return;
+    }
+
+    $form.prepend(`<div class="alert alert-${type}" role="alert">${content}</div>`);
 }
 
-//page loading spinner
-$(document).ajaxSend(function() {
-    showOverlay();
-});
-
-// $(document).ajaxComplete(function() {
-$(document).ajaxStop(function() {
-    hideOverlay();
-});
-
-function showOverlay() {
-    $('#overlay').fadeIn(300);
-    $('body').css({'overflow':'hidden', 'padding-right': '17px'});
-    // $('body').attr('data-bs-scroll', 'false');
-}
-
-function hideOverlay() {
-    setTimeout(function(){
-        $('#overlay').fadeOut(300);
-        $('body').css({'overflow':'auto', 'padding-right': ''});
-        // $('body').attr('data-bs-scroll', 'true');
-    },250);
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
+function capitalizeFirstLetter(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
 function removeAllAlerts() {
     $('.alert').remove();
 }
 
-// email-list-signup form validation
-// $(document).on('click', '#newsletterForm button', function(){
-//     let errors = [];
-//     showOverlay();
-//     $('#newsletterForm .required').each(function(t){
-//         if(!$(this).val()){
-//             errors.push(capitalizeFirstLetter(this.name) + ' is required');
-//         }
-//     });
+function updateHeaderBackground(slug) {
+    $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, Boolean(slug && slug !== '/'));
+}
 
-//     $('#newsletterForm .alert-danger').remove();
-//     $('#newsletterForm .alert-success').remove();
+function setActiveNavItem(url) {
+    $('#oCNav .active').removeClass('active');
 
-//     if(errors.length > 0){
-//         $('#newsletterForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('. ') + '.</div>');
-//         hideOverlay();
-//     } else {
-//         $.ajax({
-//             type: 'POST',
-//             url:    '/email-list-signup?header=false&footer=false',
-//             data: $('#newsletterForm').serializeArray(),
-//             dataType: "json",
-//             success: function(data){
-//                 document.getElementById("newsletterForm").reset();
-//                 if(data.error && data.error.length > 0){
-//                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.error + '</div>');
-//                 }
+    const adjustedUrl = url === '/' || url === ''
+        ? url
+        : url.replace('/', '').replaceAll('/', '-').trim();
 
-//                 if(data.success && data.success.length > 0) {
-//                     $('#newsletterForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
-//                 }
-//             }
-//         }).done(function() {
-//             hideOverlay();
-//         });
-//     }
-//     return false;
-// });
+    if (url !== '/') {
+        $(`.navbar-nav li.${adjustedUrl}`).addClass('active');
+        return;
+    }
 
-// contact form validation
-// $(document).on('click', '#contactForm button', function(){
-//     let errors = [];
-//     showOverlay();
-//     $('#contactForm .required').each(function(t){
-//         if(!$(this).val()){
-//             errors.push(capitalizeFirstLetter(this.name) + ' is required');
-//         }
-//     });
+    $('.navbar-nav li').first().addClass('active');
+}
 
-//     $('#contactForm .alert-danger').remove();
-//     $('#contactForm .alert-success').remove();
+function showOverlay() {
+    $('#overlay').fadeIn(OVERLAY_FADE_MS);
+    $('body').css({ overflow: 'hidden', 'padding-right': '17px' });
+}
 
-//     if(errors.length > 0){
-//         $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + errors.join('<br/>') + '.</div>');
-//         hideOverlay();
-//     } else {
-//         $.ajax({
-//             type: 'POST',
-//             url:    '/contact-form?header=false&footer=false',
-//             data: $('#contactForm').serializeArray(),
-//             dataType: "json",
-//             success: function(data){
-//                 if(data.error && data.error.length > 0){
-//                     $('#contactForm').prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
-//                 }
+function hideOverlay() {
+    setTimeout(() => {
+        $('#overlay').fadeOut(OVERLAY_FADE_MS);
+        $('body').css({ overflow: 'auto', 'padding-right': '' });
+    }, OVERLAY_HIDE_DELAY_MS);
+}
 
-//                 if(data.success && data.success.length > 0) {
-//                     document.getElementById("contactForm").reset();
-//                     $('#contactForm').prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
-//                 }
-//             }
-//         }).done(function() {
-//             hideOverlay();
-//         });
-//     }
+function logButtonClick(element) {
+    $.ajax({
+        type: 'POST',
+        url: '/log-button-click',
+        data: {
+            target: $(element).attr('href'),
+            url: window.location.pathname,
+            detail: $(element).attr('aria-describedby'),
+        },
+    });
 
-//     return false;
-// });
+    return false;
+}
 
-// get started form validation
-$(document).on('click', '.ajaxForm button', function(){
-    let errors = [];
-    let form = $(this).closest('form');
-    let formId = form.attr('id');
-    let action = form.attr('action');
-    showOverlay();
-    form.find('.required').each(function(t){
-        if(!$(this).val()){
-            errors.push(capitalizeFirstLetter(this.name) + ' is required');
+function parseLinkUrl(href) {
+    if (!href || href === '/') {
+        return { slug: '/', queryString: '' };
+    }
+
+    const url = new URL(href, window.location.origin);
+    return {
+        slug: url.pathname || '/',
+        queryString: url.searchParams.toString(),
+    };
+}
+
+function ajaxGetPageMetaData(slug) {
+    $.ajax({
+        type: 'GET',
+        url: `/meta-data${slug}`,
+        success(data) {
+            if (!data) {
+                return;
+            }
+
+            const json = $.parseJSON(data);
+            $('meta[name=description]').attr('content', json.description);
+            $('meta[name=keywords]').attr('content', json.keywords);
+            $('head title').text(json.title);
+            $('link[rel="canonical"]').attr('href', window.location.href);
+            $('meta[property="og:description"]').attr('content', json.description);
+            $('meta[property="og:type"]').attr('content', window.location.href.includes('/blog/') ? 'article' : 'website');
+            $('meta[property="og:title"]').attr('content', json.title);
+            $('meta[property="og:URL"]').attr('content', window.location.href);
+        },
+    });
+}
+
+function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory = true) {
+    removeAllAlerts();
+
+    const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
+
+    if (addToHistory) {
+        const page = event?.state?.page ?? slug;
+        const title = event?.state?.title ?? document.title;
+        history.pushState({ page, title }, title, historyUrl);
+    }
+
+    setActiveNavItem(slug);
+
+    $.ajax({
+        type: 'GET',
+        url: buildUrl(slug, {
+            header: 'false',
+            footer: 'false',
+            ...Object.fromEntries(new URLSearchParams(queryString)),
+        }),
+        success(data) {
+            $('.page-content').html(data);
+            $(window).scrollTop(0);
+        },
+    }).done(() => {
+        updateHeaderBackground(slug);
+        ajaxGetPageMetaData(slug);
+    });
+
+    return false;
+}
+
+function handlePopState(event) {
+    if (event.state?.page) {
+        ajaxGetPageContent(event.state.page, '', event, false);
+    }
+}
+
+function validateRequiredFields($form) {
+    const errors = [];
+
+    $form.find('.required').each(function validateField() {
+        if (!$(this).val()) {
+            errors.push(`${capitalizeFirstLetter(this.name)} is required`);
         }
     });
 
-    form.find('.alert-danger').remove();
-    form.find('.alert-success').remove();
+    return errors;
+}
 
-    if(errors.length > 0){
-        form.prepend('<div class="alert alert-danger" role="alert">' + errors.join('<br/>') + '.</div>');
+function submitAjaxForm(button) {
+    const $form = $(button).closest('form');
+    const action = $form.attr('action');
+    const errors = validateRequiredFields($form);
+
+    showOverlay();
+    $form.find('.alert').remove();
+
+    if (!action) {
+        renderAlert($form, 'danger', 'Form action is missing.');
         hideOverlay();
-    } else {
-        $.ajax({
-            type: 'POST',
-            url: action + '?header=false&footer=false',
-            data: form.serializeArray(),
-            dataType: "json",
-            success: function(data){
-                if(data.error && data.error.length > 0){
-                    form.prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
-                }
-
-                if(data.success && data.success.length > 0) {
-                    // document.getElementById(formId).reset();
-                    form[0].reset();
-                    form.prepend('<div class="alert alert-success" role="alert">' + data.success + '</div>');
-                }
-            }
-        }).done(function() {
-            hideOverlay();
-        });
+        return false;
     }
+
+    if (errors.length > 0) {
+        renderAlert($form, 'danger', errors);
+        hideOverlay();
+        return false;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: buildUrl(action, { header: 'false', footer: 'false' }),
+        data: $form.serializeArray(),
+        dataType: 'json',
+        success(data) {
+            renderAlert($form, 'danger', data.error);
+
+            if (normalizeMessages(data.success).length > 0) {
+                $form[0].reset();
+                renderAlert($form, 'success', data.success);
+            }
+        },
+    }).always(() => {
+        hideOverlay();
+    });
+
+    return false;
+}
+
+$(document).on('click', '.lbc', function handleLogClick() {
+    logButtonClick(this);
+});
+
+$(document).on('click', '.mbtn', function handleMenuClick(event) {
+    const { slug, queryString } = parseLinkUrl($(this).attr('href'));
+
+    ajaxGetPageContent(slug, queryString, event);
+    bsOffcanvas?.hide();
 
     return false;
 });
 
-// $(window).scroll(function() {
-// adds background to menu bar on scroll
-$(document).on('scroll', function(){
-    if($(".home-callout").length){
-        var header = $('header.menu-bar');
-        var hieghtThreshold = $(".home-callout").offset().top - 150;
-        var scroll = $(window).scrollTop();
-
-        if (scroll >= hieghtThreshold) {
-            header.addClass('menu-bar-bg');
-        } else {
-            header.removeClass('menu-bar-bg');
-        }
-    }
+$(document).on('click', '.ajaxForm button', function handleAjaxFormClick() {
+    return submitAjaxForm(this);
 });
 
-// $(document).on('scroll', function(){
-//     if($(".service-cards-container").length){
-//         // var cardContainerHeight = $(".service-cards-container").outerHeight();
-//         var cards = $('.service-card');
-//         var hieghtThresholdTop = $(".service-cards-container").offset().top - 150;
-//         var hieghtThresholdBottom = hieghtThresholdTop + $(".service-cards-container").outerHeight();
-//         var scroll = $(window).scrollTop();
+$(document).on('scroll', function handleScroll() {
+    const $callout = $('.home-callout');
 
-//         if(scroll < hieghtThresholdTop || scroll >= hieghtThresholdBottom) {
-//             $('.service-card').removeClass('service-card-in');
-//             $(".service-cards-container").css('padding-top');
-//         } else {
-//             cards.each(function(){
-//                 var cardTop = $(this).offset().top - 150;
-//                 var cardHeight = $(this).outerHeight();
+    if (!$callout.length) {
+        return;
+    }
 
-//                 if (scroll >= cardTop) {
-//                     $(this).addClass('service-card-in');
-//                     $(this).addClass('sticky-top');
-//                 }
-//             });
-//         }
-//     }
-// });
+    const heightThreshold = $callout.offset().top - 150;
+    const scrollTop = $(window).scrollTop();
 
-// Initialize AOS (Animate On Scroll) library
-// AOS.init();
+    $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, scrollTop >= heightThreshold);
+});
+
+$(document).ajaxSend(() => {
+    showOverlay();
+});
+
+$(document).ajaxStop(() => {
+    hideOverlay();
+});
+
+window.onpopstate = handlePopState;
+
 AOS.init({
-    // once: true,
     duration: 900,
-    easing: 'ease-out-cubic'
+    easing: 'ease-out-cubic',
 });
 
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
 gtag('js', new Date());
 gtag('config', 'G-5HMT5HBM1Y', {
-     cookie_flags: 'secure;samesite=none'
+    cookie_flags: 'secure;samesite=none',
 });
-
-// const myOffcanvas = document.getElementById('oCNav')
-
-// myOffcanvas.addEventListener('hidden.bs.offcanvas', event => {
-//     console.log(event);
-// });
-
-// myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
-//     console.log(event);
-// });
-
-// myOffcanvas.addEventListener('show.bs.offcanvas', event => {
-//     console.log(event);
-// });
-
-// myOffcanvas.addEventListener('shown.bs.offcanvas', event => {
-//     console.log(event);
-// });
