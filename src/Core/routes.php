@@ -11,7 +11,6 @@ use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 use App\Controllers\HomeController;
-// use App\Controllers\AuthController;
 use App\Controllers\ServiceController;
 use App\Controllers\BlogController;
 use App\Controllers\ContactController;
