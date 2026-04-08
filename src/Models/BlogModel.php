@@ -19,7 +19,6 @@ class BlogModel
 
     public function getAllBlogs() : Array | NULL  {
         try {
-            // $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findBy([], ['datePosted' => 'DESC']);
             $repository = $this->entityManager->getRepository(BlogEntity::class);
             $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')->setMaxResults(10)->getQuery();
             $returnVal = $query->getResult();
@@ -31,13 +30,6 @@ class BlogModel
     }
 
     public function getBlogArchive(int $start=0, int $limit=10) : Array | NULL  {
-        // try {
-        //     $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findBy([], ['datePosted' => 'DESC']);
-        // } catch (\Throwable $e) {
-        //     ErrorHandler::getInstance()->handleError($e);
-        //     return [];
-        // }
-
         $repository = $this->entityManager->getRepository(BlogEntity::class);
         $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')
             ->setFirstResult($start)
@@ -63,21 +55,11 @@ class BlogModel
     }
 
     public function getFeaturedBlog() : BlogEntity | NULL {
-        // $returnVal = $this->entityManager->where('featured', 1)->orderBy('datePosted', 'desc')->getOne('blog');
-        // $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findOneBy(['featured' => 1]);
-
-        // $repository = $this->entityManager->getRepository(BlogEntity::class);
-        // $query = $repository->createQueryBuilder('b')->where('b.featured', '1')
-        //     ->orderBy('b.datePosted', 'DESC')->setMaxResults(1)->getQuery();
-        // $returnVal = $query->getOneOrNullResult();
-
         $repository = $this->entityManager->getRepository(BlogEntity::class);
         $query = $repository->createQueryBuilder('b')->where('b.featured = 1')
             ->orderBy('b.datePosted', 'DESC')->setMaxResults(1)->getQuery();
         $returnVal = $query->getOneOrNullResult();
 
-        // echo $query->getSQL();die;
-        // print_r($returnVal); die;
         return $returnVal;
     }
 }

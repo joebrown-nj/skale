@@ -64,22 +64,6 @@ class Routes
         $this->router->post('/contact-form', [ContactController::class, 'submit']);
         $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
         $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
-
-        // Auth routes
-        // $this->router->get('/register', [AuthController::class, 'showRegistrationForm']);
-        // $this->router->post('/register', [AuthController::class, 'register']);
-        // $this->router->get('/signin', [AuthController::class, 'showSignInForm']);
-        // $this->router->post('/signin', [AuthController::class, 'signIn']);
-        // $this->router->get('/logout', [AuthController::class, 'logout']);
-
-        // Protected routes
-        // $this->router->group(['before' => 'auth'], function($router) {
-        //     $router->get('/blog/create', [BlogController::class, 'index']);
-        //     $router->post('/blog/create', [BlogController::class, 'create']);
-        //     $router->get('/blog/edit/{id:\d+}', [BlogController::class, 'edit']);
-        //     $router->post('/blog/edit/{id:\d+}', [BlogController::class, 'update']);
-        //     $router->get('/blog/delete/{id:\d+}', [BlogController::class, 'delete']);
-        // });
     }
 
     public function dispatch(): void

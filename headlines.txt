@@ -250,10 +250,13 @@ Conversion Boosters:
 📅 “Free 15-minute strategy call”
 ⏱ “No commitment” reassurance
 👤 Optional: small founder/team photo for trust
+
+
+
+
+
 🔥 Pro Tip (What Actually Converts Best)
 
 If your goal is lead capture, the highest-performing combo is usually:
-
 👉 Headline #3 (Lead Magnet) + Inline Form + “Free Audit/Strategy” CTA
-
 This reduces friction and gives users immediate value.

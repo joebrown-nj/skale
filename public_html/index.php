@@ -14,14 +14,4 @@ use App\Core\Application;
 $app = Application::getInstance();
 $app->run();
 
-// ini_set('display_errors', '1');
-// ini_set('display_startup_errors', '1');
-// error_reporting(E_ALL);
-
-// session_start();
-
-// require '../vendor/autoload.php';
-
-// $router = require '../src/Routes/index.php';
-
 ?>

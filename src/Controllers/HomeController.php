@@ -41,22 +41,9 @@ class HomeController
             'whyChooseUsHeading' => count($wCU).' Reasons to Choose <a href="'.$_ENV['SITE_URL'].'" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business',
              'whyChooseUsSubHeading' => 'We specialize in delivering comprehensive solutions that drive business growth.<br>Here\'s why partnering with us is the right choice for your company.',
         );
-// print_r($data['pageContent']['pageContent']);
-// die;
+
         $this->view->render('home', $data);
     }
-
-//     public function emailTemplate()
-//     {
-// $msg = '<p>Hi Name,</p>';
-// $msg .= '<p>Thanks for being awesome!</p>';
-// $msg .= '<p>We have received your message and would like to thank you for writing to us. If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members.</p>';
-// $msg .= '<p>Otherwise, we will reply by email as soon as possible.</p>';
-// $msg .= '<p>Talk to you soon, '.$_ENV['SITE_NAME'].'</p>';
-//         $emailModel = new EmailModel();
-//         $template = $emailModel->emailTemplate($msg);
-//         echo $template;
-//     }
 
     public function unsubscribe()
     {

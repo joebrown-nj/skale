@@ -18,16 +18,10 @@ class MetaDataController
     public function index($p1 = '', $p2 = '', $p3 = ''): void
     {
         $metaData = null;
-        // $adjustedSlug = urldecode($slug);
         $adjustedSlug = $p1;
         if($p2) $adjustedSlug .= '/' . $p2;
         if($p3) $adjustedSlug .= '/' . $p3;
         $adjustedSlug = trim($adjustedSlug, '/');
-// echo 'Adjusted slug: ' . $adjustedSlug.'<br>';
-        // $p = explode('/', $adjustedSlug);
-// echo 'p1: ' . $p1 . ', p2: ' . $p2 . ', p3: ' . $p3;
-// die;
-// return;
 
         if($p1 == 'blog' && $p2 && $p3) {
             $blog = $this->blogModel->getBlogByUrl('blog/' . $p2 . '/' . $p3);
@@ -43,8 +37,6 @@ class MetaDataController
             $pageContent = $this->pageContentModel->getPageContentByUrl($adjustedSlug);
 
             if($pageContent) {
-                // echo $adjustedSlug;
-                // echo $pageContent['pageContent']->id;
                 $metaData = json_encode(array(
                     'keywords' => $pageContent['pageContent']->metaKeywords,
                     'description' => $pageContent['pageContent']->metaDescription,
