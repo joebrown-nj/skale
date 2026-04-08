@@ -84,12 +84,13 @@ class Routes
     private function handleNotFound(): void
     {
         http_response_code(404);
-        echo $this->container->get(ViewInterface::class)->render('error/404');
+        $this->container->get(ViewInterface::class)->render('error/404');
     }
 
     private function handleError(\Exception $e): void
-    {   echo $e->getMessage();
+    {
+        echo $e->getMessage();
         http_response_code(500);
-        echo $this->container->get(ViewInterface::class)->render('error/500');
+        $this->container->get(ViewInterface::class)->render('error/500');
     }
 }
