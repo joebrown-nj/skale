@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controllers;
 
 use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
+use App\Core\Http\JsonResponse;
 use App\Models\GetStartedModel;
 
 class GetStartedController
@@ -18,31 +20,59 @@ class GetStartedController
         $this->view = $view;
     }
 
-    public function postGetStarted()
+    public function postGetStarted(?array $input = null): string
     {
-        $result = $this->getStartedModel->checkForm($_POST);
+        $input ??= $_POST;
+        $user = $this->view->getUser();
+        $validationErrors = $this->getStartedModel->checkForm($input);
 
-        if(!empty($result)) {
-            echo json_encode(array('error' => $result));
+        if (!empty($validationErrors)) {
+            return JsonResponse::error($validationErrors);
         } else {
-            if($this->getStartedModel->processGetStartedForm($_POST)) {
-                $msg = '<p class="mb-0">Thanks we will be in touch soon, '.$_ENV['SITE_NAME'].'</p>';
-                $success[] = $msg;
-
-                $emailMsg = $this->emailModel->emailTemplate('<p>Hi '.$_POST['name'].',</p>'.$msg, $_POST['email']);
-                $this->emailModel->sendEmail($_POST['email'], 'Thanks for filling out the contact form', $emailMsg, $_POST['name']);
-
-                $msg = 'Form data: <br>';
-                $msg .= json_encode($_POST);
-                $msg .= '<br><br>Server data: <br>';
-                $msg .= json_encode($_SERVER);
-                $msg .= '<br><br>User data: <br>';
-                $msg .= json_encode($this->view->getUser());
-                $emailMsg = $this->emailModel->emailTemplate($msg, $_POST['email']);
-                $this->emailModel->sendEmail($_ENV['CONTACT_FORM_MY_EMAIL'], 'Someone filled out the contact form', $emailMsg);
-
-                echo json_encode(array('success' => $success));
+            if (!$this->getStartedModel->processGetStartedForm($input)) {
+                return JsonResponse::error('There was a problem submitting the form. Please try again.');
             }
+
+            $successMessage = $this->buildSuccessMessage();
+            $emailMessage = $this->emailModel->emailTemplate(
+                '<p>Hi '.$input['name'].',</p>'.$successMessage,
+                $input['email']
+            );
+            $this->emailModel->sendEmail(
+                $input['email'],
+                'Thanks for filling out the contact form',
+                $emailMessage,
+                $input['name']
+            );
+
+            $adminEmailMessage = $this->emailModel->emailTemplate(
+                $this->buildAdminEmailBody($input, $user),
+                $input['email']
+            );
+            $this->emailModel->sendEmail(
+                $_ENV['CONTACT_FORM_MY_EMAIL'],
+                'Someone filled out the contact form',
+                $adminEmailMessage
+            );
+
+            return JsonResponse::success('Thanks, we will be in touch soon.');
         }
+    }
+
+    private function buildSuccessMessage(): string
+    {
+        return '<p class="mb-0">Thanks we will be in touch soon, '.$_ENV['SITE_NAME'].'</p>';
+    }
+
+    private function buildAdminEmailBody(array $input, ?array $user): string
+    {
+        $message = 'Form data: <br>';
+        $message .= json_encode($input);
+        $message .= '<br><br>Server data: <br>';
+        $message .= json_encode($_SERVER);
+        $message .= '<br><br>User data: <br>';
+        $message .= json_encode($user);
+
+        return $message;
     }
 }

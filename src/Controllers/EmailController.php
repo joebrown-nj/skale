@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controllers;
 
 use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
+use App\Core\Http\JsonResponse;
 
 class EmailController
 {
@@ -16,25 +18,23 @@ class EmailController
         $this->view = $view;
     }
 
-    public function signUp(): string
+    public function signUp(?array $input = null): string
     {
-        $email = $_POST['email'];
-        if(!$this->emailModel->validateEmail($email)){
-            $error[] = 'A valid email is required';
-            return json_encode(array('error' => $error));
+        $input ??= $_POST;
+        $email = $input['email'] ?? '';
+
+        if (!$this->emailModel->validateEmail($email)) {
+            return JsonResponse::error(['A valid email is required']);
         }
 
-        if(empty($error)){
-            if($this->emailModel->checkIfEmailIsOnList($email)){
-                return json_encode(array('error' => 'You are already on the list'));
-            } else {
-                $data = Array ('email' => $email, 'userInfo' => json_encode($this->view->getUser()));
-                if($this->emailModel->processEmailListSignup($data)){
-                    return json_encode(array('success' => 'Thanks for joining the mailing list!'));
-                }
-            }
+        if ($this->emailModel->checkIfEmailIsOnList($email)) {
+            return JsonResponse::error('You are already on the list');
         }
 
-        return json_encode(array('error' => 'Unable to process email signup'));
+        if ($this->emailModel->emailListSignup($input, $this->view->getUser())) {
+            return JsonResponse::success('Thanks for joining the mailing list!');
+        }
+
+        return JsonResponse::error('Unable to process email signup');
     }
 }

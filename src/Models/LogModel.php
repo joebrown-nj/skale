@@ -1,21 +1,23 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Core\ErrorHandler;
-use App\Core\Db\DatabaseORM;
-use Doctrine\ORM\EntityManager;
 use App\Models\Entities\LogButtonClicksEntity;
+use Doctrine\ORM\EntityManager;
+use Throwable;
 
 class LogModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function logButtonClick(array $data) : bool {
+    public function logButtonClick(array $data): bool
+    {
         try {
             $post = new LogButtonClicksEntity();
             $post->settarget($data['target']);
@@ -27,9 +29,8 @@ class LogModel
 
             $this->entityManager->persist($post);
             $this->entityManager->flush();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             error_log($e->getMessage());
-            echo $e->getMessage();
             return false;
         }
         return true;

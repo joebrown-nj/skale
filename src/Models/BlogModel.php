@@ -24,8 +24,7 @@ class BlogModel
             $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')->setMaxResults(10)->getQuery();
             $returnVal = $query->getResult();
         } catch (\Throwable $e) {
-            // ErrorHandler::getInstance()->handleError($e);
-            print_r($e);die;
+            error_log($e->getMessage());
             return [];
         }
         return $returnVal;
