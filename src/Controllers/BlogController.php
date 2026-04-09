@@ -8,7 +8,6 @@ use App\Core\Traits\RedirectTrait;
 use App\Core\Traits\ValidateMethodTrait;
 use App\Models\PageContentModel;
 use App\Models\BlogModel;
-use App\Core\LoadSessionData;
 
 class BlogController
 {
@@ -18,13 +17,11 @@ class BlogController
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
     private ViewInterface $view;
-    private LoadSessionData $loadSessionData;
 
-    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ViewInterface $view) {
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, ViewInterface $view) {
         $this->blogModel = $blogModel;
         $this->pageContentModel = $pageContentModel;
         $this->view = $view;
-        $this->loadSessionData = $loadSessionData;
     }
 
     protected function getView(): ViewInterface

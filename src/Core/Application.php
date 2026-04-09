@@ -13,7 +13,9 @@ use App\Models\EmailModel;
 use Doctrine\ORM\EntityManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use Smarty\Smarty;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class Application
 {
@@ -94,6 +96,14 @@ class Application
 
         $this->container->set(Smarty::class, function () {
             return new Smarty();
+        });
+
+        $this->container->set(CacheInterface::class, function () {
+            return new FilesystemAdapter(
+                namespace: 'site_data',
+                defaultLifetime: 86400,
+                directory: dirname(__DIR__, 2).'/var/cache'
+            );
         });
 
         $this->container->set(EmailServiceInterface::class, function () {

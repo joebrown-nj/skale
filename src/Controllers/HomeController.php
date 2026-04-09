@@ -7,7 +7,6 @@ use App\Core\Contracts\ViewInterface;
 use App\Models\HomePageModel;
 use App\Models\BlogModel;
 use App\Models\PageContentModel;
-use App\Core\LoadSessionData;
 
 class HomeController
 {
@@ -16,15 +15,13 @@ class HomeController
     private PageContentModel $pageContentModel;
     private EmailServiceInterface $emailModel;
     private ViewInterface $view;
-    private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, EmailServiceInterface $emailModel, LoadSessionData $loadSessionData, ViewInterface $view) {
+    public function __construct(HomePageModel $homePageModel, PageContentModel $pageContentModel, BlogModel $blogModel, EmailServiceInterface $emailModel, ViewInterface $view) {
         $this->homePageModel = $homePageModel;
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
         $this->emailModel = $emailModel;
         $this->view = $view;
-        $this->loadSessionData = $loadSessionData;
     }
 
     public function index()

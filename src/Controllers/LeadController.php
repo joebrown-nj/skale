@@ -4,18 +4,15 @@ namespace App\Controllers;
 
 use App\Models\HomePageModel;
 use App\Core\Contracts\ViewInterface;
-use App\Core\LoadSessionData;
 
 class LeadController
 {
     private HomePageModel $homePageModel;
     private ViewInterface $view;
-    private LoadSessionData $loadSessionData;
 
-    public function __construct(HomePageModel $homePageModel, LoadSessionData $loadSessionData, ViewInterface $view) {
+    public function __construct(HomePageModel $homePageModel, ViewInterface $view) {
         $this->homePageModel = $homePageModel;
         $this->view = $view;
-        $this->loadSessionData = $loadSessionData;
     }
 
     public function index()

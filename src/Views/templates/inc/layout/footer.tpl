@@ -58,7 +58,7 @@
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">Services</h6>
                         <div class="row">
-                            {foreach from=$smarty.SESSION.serviceList key=key item=service}
+                            {foreach from=$serviceList key=key item=service}
                                 <div class="col-md-6">
                                     <p>
                                         <a aria-describedby="footer services {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn lbc text-reset">
@@ -102,7 +102,7 @@
 
                 <div class="col-md-4">
                     <ul class="nav justify-content-end">
-                        {foreach from=$smarty.SESSION.footerNav item=item key=key name=name}
+                        {foreach from=$footerNav item=item key=key name=name}
                             <li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
                                 <a 
                                     aria-describedby="footer nav {$item.title}"

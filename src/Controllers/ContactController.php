@@ -5,7 +5,6 @@ namespace App\Controllers;
 
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
-use App\Core\LoadSessionData;
 use App\Core\Services\FormSubmissionService;
 use App\Models\ContactModel;
 use App\Models\PageContentModel;
@@ -16,15 +15,13 @@ class ContactController
     private ContactModel $contactModel;
     private FormSubmissionService $formSubmissionService;
     private ViewInterface $view;
-    private LoadSessionData $loadSessionData;
 
-    public function __construct(PageContentModel $pageContentModel, LoadSessionData $loadSessionData, ContactModel $contactModel, FormSubmissionService $formSubmissionService, ViewInterface $view)
+    public function __construct(PageContentModel $pageContentModel, ContactModel $contactModel, FormSubmissionService $formSubmissionService, ViewInterface $view)
     {
         $this->pageContentModel = $pageContentModel;
         $this->contactModel = $contactModel;
         $this->formSubmissionService = $formSubmissionService;
         $this->view = $view;
-        $this->loadSessionData = $loadSessionData;
     }
 
     public function index(): void

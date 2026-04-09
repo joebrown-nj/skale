@@ -152,7 +152,7 @@
     {/foreach}
 </div>
 
-{include file="inc/service/serviceListContainer.tpl" serviceList=$smarty.SESSION.serviceList}
+{include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
 
 <div class="bg-gradient container-fluid home-callout parallax" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
     <div class="row justify-content-center px-4 py-4">

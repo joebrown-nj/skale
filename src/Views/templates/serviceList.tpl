@@ -11,7 +11,7 @@
     </div>
 {/if}
 
-{include file="inc/service/serviceListContainer.tpl" serviceList=$smarty.SESSION.serviceList}
+{include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
 
 {include file="inc/layout/footerContactForm.tpl"}
 {include file="inc/layout/footer.tpl"}

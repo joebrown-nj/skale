@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label class="fs-5 mb-2">Interested in:</label>
                     <div class="row">
-                        {foreach from=$smarty.SESSION.serviceList key=key item=service}
+                        {foreach from=$serviceList key=key item=service}
                             <div class="col-md-6">
                                 {* <input id="formInteresteIn-{$key}" {if $service->selected}checked="checked"{/if} name="interests[]" class="form-check-input" type="checkbox" value="{$service->title}"> *}
                                 <input id="formInteresteIn-{$key}" {if isset($interests) && in_array(($service->url|replace:'services/':''), $interests)}checked="checked"{/if} name="interests[]" class="cursor-pointer form-check-input" type="checkbox" value="{$service->title}">
