@@ -43,17 +43,28 @@ class PageContentEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $dateUpdated;
 
-    public function __construct($val=NULL)
-    {
-        // $this->id = !isset($val->id) ? NULL : $val->id;
-        // $this->title = !isset($val->title) ? NULL : $val->title;
-        // $this->content = !isset($val->content) ? NULL : $val->content;
-        // $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
-        // $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
-        // $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
-        // $this->dateAdded = !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;        
-        // $this->dateUpdated = !isset($val->dateUpdated) ? date('Y-m-d H:i:s') : $val->dateUpdated;
-    }
+    // /**
+    //  * Many Menus have Many Pages.
+    //  * @var Collection<int, MenuEntity>
+    //  */
+    // #[ManyToMany(targetEntity: MenuEntity::class, inversedBy: 'pages')]
+    // #[JoinTable(name: 'menu_page_content')]
+    // private Collection $menus;
+    // public function __construct() {
+    //     $this->menus = new ArrayCollection();
+    // }
+
+    // public function __construct($val=NULL)
+    // {
+    //     $this->id = !isset($val->id) ? NULL : $val->id;
+    //     $this->title = !isset($val->title) ? NULL : $val->title;
+    //     $this->content = !isset($val->content) ? NULL : $val->content;
+    //     $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
+    //     $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
+    //     $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
+    //     $this->dateAdded = !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;        
+    //     $this->dateUpdated = !isset($val->dateUpdated) ? date('Y-m-d H:i:s') : $val->dateUpdated;
+    // }
 
     public function getid()
     {

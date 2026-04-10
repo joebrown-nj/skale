@@ -40,6 +40,9 @@ PHP Mailer for sending email
 https://github.com/mrjgreen/phroute
 PHP router
 
+https://symfony.com/doc/current/doctrine.html
+Database class
+
 <!-- install and start up -->
 
 composer install

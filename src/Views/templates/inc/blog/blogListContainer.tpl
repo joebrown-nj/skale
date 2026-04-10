@@ -1,8 +1,8 @@
 <section class="cta-section py-5">
     <div class="row mb-5 align-items-center justify-content-center">
         <div class="col-md-6">
-            <h2 class="display-6 fw-bold text-white mb-4">{$blogContent['pageContent']->title}</h2>
-            <p class="lead text-white-100 mb-4">{$blogContent['pageContent']->content|strip_tags}</p>
+            <h2 class="display-6 fw-bold text-white mb-4">{$blogContent['title']}</h2>
+            <p class="lead text-white-100 mb-4">{$blogContent['content']|strip_tags}</p>
         </div>
 
         <div class="col-md-4">
@@ -56,8 +56,8 @@
     <div class="row mb-2">
         <div class="col-md-4 shadow-lg">
             <div class="p-4 mb-3 bg-body-tertiary rounded">
-                <h4 class="fst-italic">{$blogContent['pageContent']->title}</h4>
-                <p>{$blogContent['pageContent']->content|strip_tags}</p>
+                <h4 class="fst-italic">{$blogContent->title}</h4>
+                <p>{$blogContent->content|strip_tags}</p>
             </div>
         </div>
 

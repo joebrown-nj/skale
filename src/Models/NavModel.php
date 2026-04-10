@@ -13,26 +13,38 @@ class NavModel
         $this->entityManager = $entityManager;
     }
 
-    public function getNav($menuLocation, $parent=0): Array {
-        $returnVal = array();
-
+    public function getNav(string $menuLocation, int $parent = 0): array {
         $repository = $this->entityManager->getRepository(MenuEntity::class);
 
-        $query = $repository->createQueryBuilder('m')
-            ->where('m.menuLocation = :menuLocation and m.parentId = :parentId and m.active = :active')
+        $navItems = $repository->createQueryBuilder('m')
+            ->where('m.menuLocation = :menuLocation and m.active = :active')
             ->setParameter('menuLocation', $menuLocation)
-            ->setParameter('parentId', $parent)
             ->setParameter('active', 1)
-            ->orderBy('m.listingOrder', 'ASC')
-            ->getQuery();
+            ->orderBy('m.parentId', 'ASC')
+            ->addOrderBy('m.listingOrder', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
 
-        $nav = $query->getArrayResult();
+        $itemsByParent = [];
 
-        foreach($nav as $v) {
-            $v['children'] = $v['parentId'] == 0 ? $this->getNav($menuLocation, $v['id']) : '';
-            $returnVal[] = $v;
+        foreach ($navItems as $item) {
+            $itemsByParent[$item['parentId']][] = $item;
         }
 
-        return $returnVal;
+        return $this->buildNavTree((int) $parent, $itemsByParent);
+    }
+
+    private function buildNavTree(int $parentId, array $itemsByParent): array
+    {
+        $navItems = $itemsByParent[$parentId] ?? [];
+        $tree = [];
+
+        foreach ($navItems as $item) {
+            $children = $this->buildNavTree((int) $item['id'], $itemsByParent);
+            $item['children'] = $children === [] ? '' : $children;
+            $tree[] = $item;
+        }
+
+        return $tree;
     }
 }

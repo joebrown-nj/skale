@@ -51,6 +51,17 @@ class MenuEntity
     #[ORM\Column(type: 'boolean')]
     public bool $active;
 
+    // /**
+    //  * Many Menus have Many Pages.
+    //  * @var Collection<int, PageContentEntity>
+    //  */
+    // #[ManyToMany(targetEntity: PageContentEntity::class, inversedBy: 'menus')]
+    // #[JoinTable(name: 'page_content')]
+    // private Collection $pages;
+    // public function __construct() {
+    //     $this->pages = new ArrayCollection();
+    // }
+
     // public function __construct($val=NULL)
     // {
         // $this->id = !isset($val->id) ? NULL : $val->id;
@@ -155,6 +166,28 @@ class MenuEntity
         $this->menuLocation = !isset($val->menuLocation) ? NULL : $val->menuLocation;
     }
 } 
+
+// #[Entity]
+// class PageContentEntity
+// {
+//     // ...
+//     /** Many pageContent have one menu. This is the owning side. */
+//     #[ManyToOne(targetEntity: MenuEntity::class, inversedBy: 'pageContents')]
+//     #[JoinColumn(name: 'menu_id', referencedColumnName: 'id')]
+//     private MenuEntity|null $menu = null;
+//     // ...
+// }
+
+// #[Entity]
+// class Feature
+// {
+//     // ...
+//     /** Many features have one product. This is the owning side. */
+//     #[ManyToOne(targetEntity: Product::class, inversedBy: 'features')]
+//     #[JoinColumn(name: 'product_id', referencedColumnName: 'id')]
+//     private Product|null $product = null;
+//     // ...
+// }
 
 ?>
 

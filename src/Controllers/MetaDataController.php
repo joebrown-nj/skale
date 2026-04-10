@@ -38,9 +38,9 @@ class MetaDataController
 
             if($pageContent) {
                 $metaData = json_encode(array(
-                    'keywords' => $pageContent['pageContent']->metaKeywords,
-                    'description' => $pageContent['pageContent']->metaDescription,
-                    'title' => $_ENV['SITE_NAME'].' | '.$pageContent['pageContent']->metaTitle,
+                    'keywords' => $pageContent['metaKeywords'],
+                    'description' => $pageContent['metaDescription'],
+                    'title' => $_ENV['SITE_NAME'].' | '.$pageContent['metaTitle'],
                 ));
             }
         }

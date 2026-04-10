@@ -6,9 +6,9 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{$smarty.ENV.SITE_NAME}{if isset($data.pageContent.pageContent->metaTitle) && $data.pageContent.pageContent->metaTitle != ''} | {$data.pageContent.pageContent->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
-            <meta name="description" content="{if isset($data.pageContent.pageContent->metaDescription)}{$data.pageContent.pageContent->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
-            <meta name="keywords" content="{if isset($data.pageContent.pageContent->metaKeywords)}{$data.pageContent.pageContent->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
+            <title>{$smarty.ENV.SITE_NAME}{if isset($data.pageContent['metaTitle']) && $data.pageContent['metaTitle'] != ''} | {$data.pageContent['metaTitle']}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
+            <meta name="description" content="{if isset($data.pageContent['metaDescription'])}{$data.pageContent['metaDescription']}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
+            <meta name="keywords" content="{if isset($data.pageContent['metaKeywords'])}{$data.pageContent['metaKeywords']}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
             <!-- Google Tag Manager -->
@@ -62,12 +62,12 @@
     <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center" style="{if isset($data->pageContent.menu->headerImage)}background: url('{$smarty.ENV.WEB_ROOT}images/{$data->pageContent.menu->headerImage}') no-repeat center center; background-size: 100%;{/if}">
         <div class="logo-bg logo-bg-overlay"></div>
         <h1 class="display-3 BricolageGrotesque-ExtraBold">
-            {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset({$data.blogDetail->title})}
+            {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
                 {$data.blogDetail->title}
             {/if}
 
-            {if isset($data.pageContent) && isset({$data.pageContent.menu->title})}
-                {$data.pageContent.menu->title}
+            {if isset($data.pageContent) && isset($data.pageContent['title'])}
+                {$data.pageContent['title']}
             {/if}
         </h1>
     </div>

@@ -12,7 +12,7 @@ class NavController
         $this->navModel = $navModel;
     }
 
-    public function getNav($parent=0): Array {
-        return $this->navModel->getNav($parent);
+    public function getNav(string $menuLocation, int $parent = 0): array {
+        return $this->navModel->getNav($menuLocation, $parent);
     }
 }
