@@ -1,29 +1,18 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        home_page
-* GENERATION DATE:  2026-01-20 01:40:40
-* CLASS FILE:       home_page.class.php
-* FOR MYSQL TABLE:  home_page
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "home_page")]
+#[ORM\Table(name: 'home_page')]
 class HomePageEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $type;
@@ -33,9 +22,6 @@ class HomePageEntity
 
     #[ORM\Column(type: 'string', length: 250)]
     public string $subHeading;
-
-    // #[ORM\Column(type: 'string', length: 500)]
-    // public string $text;
 
     #[ORM\Column(type: 'integer')]
     public int $impressions;
@@ -55,133 +41,116 @@ class HomePageEntity
     #[ORM\Column(type: 'boolean')]
     public bool $active;
 
-    public function __construct($val=NULL)
-    {
-        // $this->id = !isset($val->id) ? NULL : $val->id;
-        // $this->type = !isset($val->type) ? NULL : $val->type;
-        // $this->headline = !isset($val->headline) ? NULL : $val->headline;
-        // $this->subHeading = !isset($val->subHeading) ? NULL : $val->subHeading;
-        // $this->text = !isset($val->text) ? NULL : $val->text;
-        // $this->impressions = !isset($val->impressions) ? '0' : $val->impressions;
-        // $this->url = !isset($val->url) ? NULL : $val->url;
-        // $this->buttonText = !isset($val->buttonText) ? NULL : $val->buttonText;
-    }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function gettype()
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function getheadline()
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getHeadline(): string
     {
         return $this->headline;
     }
 
-    public function getsubHeading()
+    public function setHeadline(string $headline): self
+    {
+        $this->headline = $headline;
+
+        return $this;
+    }
+
+    public function getSubHeading(): string
     {
         return $this->subHeading;
     }
 
-    // public function gettext()
-    // {
-    //     return $this->text;
-    // }
+    public function setSubHeading(string $subHeading): self
+    {
+        $this->subHeading = $subHeading;
 
-    public function getimpressions()
+        return $this;
+    }
+
+    public function getImpressions(): int
     {
         return $this->impressions;
     }
 
-    public function getbuttonText()
+    public function setImpressions(int $impressions): self
+    {
+        $this->impressions = $impressions;
+
+        return $this;
+    }
+
+    public function getButtonText(): string
     {
         return $this->buttonText;
     }
 
-    public function getbuttonUrl()
+    public function setButtonText(string $buttonText): self
+    {
+        $this->buttonText = $buttonText;
+
+        return $this;
+    }
+
+    public function getButtonUrl(): string
     {
         return $this->buttonUrl;
     }
 
-    public function getsecondaryButtonText()
+    public function setButtonUrl(string $buttonUrl): self
+    {
+        $this->buttonUrl = $buttonUrl;
+
+        return $this;
+    }
+
+    public function getSecondaryButtonText(): string
     {
         return $this->secondaryButtonText;
     }
 
-    public function getsecondaryButtonUrl()
+    public function setSecondaryButtonText(string $secondaryButtonText): self
+    {
+        $this->secondaryButtonText = $secondaryButtonText;
+
+        return $this;
+    }
+
+    public function getSecondaryButtonUrl(): string
     {
         return $this->secondaryButtonUrl;
     }
 
-    public function getactive()
+    public function setSecondaryButtonUrl(string $secondaryButtonUrl): self
+    {
+        $this->secondaryButtonUrl = $secondaryButtonUrl;
+
+        return $this;
+    }
+
+    public function isActive(): bool
     {
         return $this->active;
     }
 
-    public function setid($val)
+    public function setActive(bool $active): self
     {
-        $this->id = !isset($val->id) ? NULL : $val->id;
+        $this->active = $active;
+
+        return $this;
     }
-
-    public function settype($val)
-    {
-        $this->type = !isset($val->type) ? NULL : $val->type;
-    }
-
-    public function setheadline($val)
-    {
-        $this->headline = !isset($val->headline) ? NULL : $val->headline;
-    }
-
-    public function setsubHeading($val)
-    {
-        $this->subHeading = !isset($val->subHeading) ? NULL : $val->subHeading;
-    }
-
-    // public function settext($val)
-    // {
-    //     $this->text = !isset($val->text) ? NULL : $val->text;
-    // }
-
-    public function setimpressions($val)
-    {
-        $this->impressions = !isset($val->impressions) ? '0' : $val->impressions;
-    }
-
-    public function seturl($val)
-    {
-        $this->url = !isset($val->url) ? NULL : $val->url;
-    }
-
-    public function setbuttonText($val)
-    {
-        $this->buttonText = !isset($val->buttonText) ? NULL : $val->buttonText;
-    }
-
-    public function setbuttonUrl($val)
-    {
-        $this->buttonUrl = !isset($val->buttonUrl) ? NULL : $val->buttonUrl;
-    }
-
-    public function setsecondaryButtonText($val)
-    {
-        $this->secondaryButtonText = !isset($val->secondaryButtonText) ? NULL : $val->secondaryButtonText;
-    }
-
-    public function setsecondaryButtonUrl($val)
-    {
-        $this->secondaryButtonUrl = !isset($val->secondaryButtonUrl) ? NULL : $val->secondaryButtonUrl;
-    }
-
-    public function setactive($val)
-    {
-        $this->active = !isset($val->active) ? NULL : $val->active;
-    }
-} 
-
-?>
-
+}

@@ -1,29 +1,18 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        page_content
-* GENERATION DATE:  2026-01-20 01:41:12
-* CLASS FILE:       page_content.class.php
-* FOR MYSQL TABLE:  page_content
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "page_content")]
+#[ORM\Table(name: 'page_content')]
 class PageContentEntity
-{ 
+{
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $title;
@@ -43,109 +32,80 @@ class PageContentEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $dateUpdated;
 
-    // /**
-    //  * Many Menus have Many Pages.
-    //  * @var Collection<int, MenuEntity>
-    //  */
-    // #[ManyToMany(targetEntity: MenuEntity::class, inversedBy: 'pages')]
-    // #[JoinTable(name: 'menu_page_content')]
-    // private Collection $menus;
-    // public function __construct() {
-    //     $this->menus = new ArrayCollection();
-    // }
-
-    // public function __construct($val=NULL)
-    // {
-    //     $this->id = !isset($val->id) ? NULL : $val->id;
-    //     $this->title = !isset($val->title) ? NULL : $val->title;
-    //     $this->content = !isset($val->content) ? NULL : $val->content;
-    //     $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
-    //     $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
-    //     $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
-    //     $this->dateAdded = !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;        
-    //     $this->dateUpdated = !isset($val->dateUpdated) ? date('Y-m-d H:i:s') : $val->dateUpdated;
-    // }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function gettitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function getcontent()
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getmetaTitle()
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getMetaTitle(): string
     {
         return $this->metaTitle;
     }
 
-    public function getmetaDescription()
+    public function setMetaTitle(string $metaTitle): self
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    public function getMetaDescription(): string
     {
         return $this->metaDescription;
     }
 
-    public function getmetaKeywords()
+    public function setMetaDescription(string $metaDescription): self
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    public function getMetaKeywords(): string
     {
         return $this->metaKeywords;
     }
 
-    public function getdateAdded()
+    public function setMetaKeywords(string $metaKeywords): self
     {
-        return $this->dateAdded;
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
     }
 
-    public function getdateUpdated()
+    public function getDateUpdated(): string
     {
         return $this->dateUpdated;
     }
 
-    public function setid($val)
+    public function setDateUpdated(string $dateUpdated): self
     {
-        $this->id = !isset($val->id) ? NULL : $val->id;
+        $this->dateUpdated = $dateUpdated;
+
+        return $this;
     }
-
-    public function settitle($val)
-    {
-        $this->title = !isset($val->title) ? NULL : $val->title;
-    }
-
-    public function setcontent($val)
-    {
-        $this->content = !isset($val->content) ? NULL : $val->content;
-    }
-
-    public function setmetaTitle($val)
-    {
-        $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
-    }
-
-    public function setmetaDescription($val)
-    {
-        $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
-    }
-
-    public function setmetaKeywords($val)
-    {
-        $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
-    }
-
-    public function setdateAdded($val)
-    {
-        $this->dateAdded = !isset($val->dateAdded) ? 'CURRENT_TIMESTAMP' : $val->dateAdded;
-    }
-
-    public function setdateUpdated($val)
-    {
-        $this->dateUpdated = !isset($val->dateUpdated) ? 'CURRENT_TIMESTAMP' : $val->dateUpdated;
-    }
-} 
-
-?>
-
+}

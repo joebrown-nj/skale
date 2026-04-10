@@ -1,35 +1,21 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        log_button_clicks
-* GENERATION DATE:  2026-01-20 01:40:55
-* CLASS FILE:       log_button_clicks.class.php
-* FOR MYSQL TABLE:  log_button_clicks
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "log_button_clicks")]
+#[ORM\Table(name: 'log_button_clicks')]
 class LogButtonClicksEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $target;
-
-    // #[ORM\Column(type: 'datetime')]
-    // public DateTime $date;
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $url;
@@ -46,98 +32,80 @@ class LogButtonClicksEntity
     #[ORM\Column(type: 'text')]
     public string $serverInfo;
 
-    // public function __construct($val=NULL)
-    // {
-    //     $this->id = !isset($val->id) ? NULL : $val->id;
-    //     $this->target = !isset($val->target) ? NULL : $val->target;
-    //     $this->date = !isset($val->date) ? date('Y-m-d H:i:s') : $val->date;
-    //     $this->url = !isset($val->url) ? NULL : $val->url;
-    //     $this->detail = !isset($val->detail) ? NULL : $val->detail;
-    //     $this->userIP = !isset($val->userIP) ? NULL : $val->userIP;
-    //     $this->userInfo = !isset($val->userInfo) ? NULL : $val->userInfo;
-    //     $this->serverInfo = !isset($val->serverInfo) ? NULL : $val->serverInfo;
-    // }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function gettarget()
+    public function getTarget(): string
     {
         return $this->target;
     }
 
-    public function getdate()
+    public function setTarget(string $target): self
     {
-        return $this->date;
+        $this->target = $target;
+
+        return $this;
     }
 
-    public function geturl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function getdetail()
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getDetail(): string
     {
         return $this->detail;
     }
 
-    public function getuserIP()
+    public function setDetail(string $detail): self
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    public function getUserIP(): string
     {
         return $this->userIP;
     }
 
-    public function getuserInfo()
+    public function setUserIP(string $userIP): self
+    {
+        $this->userIP = $userIP;
+
+        return $this;
+    }
+
+    public function getUserInfo(): string
     {
         return $this->userInfo;
     }
 
-    public function getserverInfo()
+    public function setUserInfo(string $userInfo): self
+    {
+        $this->userInfo = $userInfo;
+
+        return $this;
+    }
+
+    public function getServerInfo(): string
     {
         return $this->serverInfo;
     }
 
-    public function setid($val)
+    public function setServerInfo(string $serverInfo): self
     {
-        $this->id = !isset($val) ? NULL : $val;
-    }
+        $this->serverInfo = $serverInfo;
 
-    public function settarget($val)
-    {
-        $this->target = !isset($val) ? '' : $val;
-    }
-
-    // public function setdate($val)
-    // {
-    //     $this->date = !isset($val->date) ? 'CURRENT_TIMESTAMP' : $val->date;
-    // }
-
-    public function seturl($val)
-    {
-        $this->url = !isset($val) ? '' : $val;
-    }
-
-    public function setdetail($val)
-    {
-        $this->detail = !isset($val) ? '' : $val;
-    }
-
-    public function setuserIP($val)
-    {
-        $this->userIP = !isset($val) ? '' : $val;
-    }
-
-    public function setuserInfo($val)
-    {
-        $this->userInfo = !isset($val) ? '' : $val;
-    }
-
-    public function setserverInfo($val)
-    {
-        $this->serverInfo = !isset($val) ? '' : $val;
+        return $this;
     }
 }
-
-?>
-

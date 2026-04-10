@@ -1,185 +1,172 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        blog
-* GENERATION DATE:  2026-01-20 01:38:15
-* CLASS FILE:       blog.class.php
-* FOR MYSQL TABLE:  blog
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "blog")]
+#[ORM\Table(name: 'blog')]
 class BlogEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $title;
 
     #[ORM\Column(type: 'string', length: 100)]
-    public $url;
+    public string $url;
 
     #[ORM\Column(type: 'text')]
-    public $text;
+    public string $text;
 
     #[ORM\Column(type: 'text')]
-    public $shortText;
+    public string $shortText;
 
     #[ORM\Column(type: 'string', length: 100)]
-    public $image;
+    public string $image;
 
     #[ORM\Column(type: 'datetime')]
-    public $datePosted;
+    public DateTime $datePosted;
 
     #[ORM\Column(type: 'boolean')]
-    public $featured;
+    public bool $featured;
 
     #[ORM\Column(type: 'string', length: 100)]
-    public $metaTitle;
+    public string $metaTitle;
 
     #[ORM\Column(type: 'string', length: 100)]
-    public $metaDescription;
+    public string $metaDescription;
 
     #[ORM\Column(type: 'string', length: 100)]
-    public $metaKeywords;
+    public string $metaKeywords;
 
-    // public function __construct($val=NULL)
-    // {
-        // $this->id = !isset($val->id) ? NULL : $val->id;
-        // $this->title = !isset($val->title) ? NULL : $val->title;
-        // $this->url = !isset($val->url) ? NULL : $val->url;
-        // $this->text = !isset($val->text) ? NULL : $val->text;
-        // $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
-        // $this->image = !isset($val->image) ? NULL : $val->image;
-        // $this->datePosted = !isset($val->datePosted) ? NULL : $val->datePosted;
-        // $this->featured = !isset($val->featured) ? NULL : $val->featured;
-        // $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
-        // $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
-        // $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
-    // }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function gettitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function geturl()
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function gettext()
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getText(): string
     {
         return $this->text;
     }
 
-    public function getshortText()
+    public function setText(string $text): self
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    public function getShortText(): string
     {
         return $this->shortText;
     }
 
-    public function getimage()
+    public function setShortText(string $shortText): self
+    {
+        $this->shortText = $shortText;
+
+        return $this;
+    }
+
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function getdatePosted()
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getDatePosted(): DateTime
     {
         return $this->datePosted;
     }
 
-    public function getfeatured()
+    public function setDatePosted(DateTime $datePosted): self
+    {
+        $this->datePosted = $datePosted;
+
+        return $this;
+    }
+
+    public function isFeatured(): bool
     {
         return $this->featured;
     }
 
-    public function getmetaTitle()
+    public function setFeatured(bool $featured): self
+    {
+        $this->featured = $featured;
+
+        return $this;
+    }
+
+    public function getMetaTitle(): string
     {
         return $this->metaTitle;
     }
 
-    public function getmetaDescription()
+    public function setMetaTitle(string $metaTitle): self
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    public function getMetaDescription(): string
     {
         return $this->metaDescription;
     }
 
-    public function getmetaKeywords()
+    public function setMetaDescription(string $metaDescription): self
+    {
+        $this->metaDescription = $metaDescription;
+
+        return $this;
+    }
+
+    public function getMetaKeywords(): string
     {
         return $this->metaKeywords;
     }
 
-    public function setid($val)
+    public function setMetaKeywords(string $metaKeywords): self
     {
-        $this->id = !isset($val->id) ? NULL : $val->id;
+        $this->metaKeywords = $metaKeywords;
+
+        return $this;
     }
-
-    public function settitle($val)
-    {
-        $this->title = !isset($val->title) ? NULL : $val->title;
-    }
-
-    public function seturl($val)
-    {
-        $this->url = !isset($val->url) ? NULL : $val->url;
-    }
-
-    public function settext($val)
-    {
-        $this->text = !isset($val->text) ? NULL : $val->text;
-    }
-
-    public function setshortText($val)
-    {
-        $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
-    }
-
-    public function setimage($val)
-    {
-        $this->image = !isset($val->image) ? NULL : $val->image;
-    }
-
-    public function setdatePosted($val)
-    {
-        $this->datePosted = !isset($val->datePosted) ? NULL : $val->datePosted;
-    }
-
-    public function setfeatured($val)
-    {
-        $this->featured = !isset($val->featured) ? NULL : $val->featured;
-    }
-
-    public function setmetaTitle($val)
-    {
-        $this->metaTitle = !isset($val->metaTitle) ? NULL : $val->metaTitle;
-    }
-
-    public function setmetaDescription($val)
-    {
-        $this->metaDescription = !isset($val->metaDescription) ? NULL : $val->metaDescription;
-    }
-
-    public function setmetaKeywords($val)
-    {
-        $this->metaKeywords = !isset($val->metaKeywords) ? NULL : $val->metaKeywords;
-    }
-} 
-
-?>
-
+}

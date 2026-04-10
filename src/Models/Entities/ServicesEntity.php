@@ -1,32 +1,19 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        services
-* GENERATION DATE:  2026-01-20 01:41:20
-* CLASS FILE:       services.class.php
-* FOR MYSQL TABLE:  services
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
 use DateTime;
-// use Doctrine\DBAL\Types\Type;
-// use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "services")]
+#[ORM\Table(name: 'services')]
 class ServicesEntity
-{ 
+{
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $title;
@@ -76,186 +63,200 @@ class ServicesEntity
     #[ORM\Column(type: 'boolean')]
     public bool $active;
 
-    // public function __construct($val=NULL)
-    // {
-    //     $this->id = !isset($val->id) ? NULL : $val->id;
-    //     $this->title = !isset($val->title) ? NULL : $val->title;
-    //     $this->url = !isset($val->url) ? NULL : $val->url;
-    //     $this->iconType = !isset($val->iconType) ? NULL : $val->iconType;
-    //     $this->iconBootstrap = !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
-    //     $this->iconFontAwesome = !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
-    //     $this->largeIcon = !isset($val->largeIcon) ? NULL : $val->largeIcon;
-    //     $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
-    //     $this->text = !isset($val->text) ? NULL : $val->text;
-    //     $this->image = !isset($val->image) ? NULL : $val->image;
-    //     $this->headerImage = !isset($val->headerImage) ? NULL : $val->headerImage;
-    //     $this->whyChooseList = !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
-    //     $this->footerCallout = !isset($val->footerCallout) ? NULL : $val->footerCallout;
-    //     $this->dateAdded = !isset($val->dateAdded) ? date('Y-m-d H:i:s') : $val->dateAdded;
-    //     $this->dateUpdated = !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
-    //     $this->listingOrder = !isset($val->listingOrder) ? NULL : $val->listingOrder;
-    // }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function gettitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function geturl()
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    public function geticonType()
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getIconType(): string
     {
         return $this->iconType;
     }
 
-    public function geticonBootstrap()
+    public function setIconType(string $iconType): self
+    {
+        $this->iconType = $iconType;
+
+        return $this;
+    }
+
+    public function getIconBootstrap(): string
     {
         return $this->iconBootstrap;
     }
 
-    public function geticonFontAwesome()
+    public function setIconBootstrap(string $iconBootstrap): self
+    {
+        $this->iconBootstrap = $iconBootstrap;
+
+        return $this;
+    }
+
+    public function getIconFontAwesome(): string
     {
         return $this->iconFontAwesome;
     }
 
-    public function getlargeIcon()
+    public function setIconFontAwesome(string $iconFontAwesome): self
+    {
+        $this->iconFontAwesome = $iconFontAwesome;
+
+        return $this;
+    }
+
+    public function getLargeIcon(): string
     {
         return $this->largeIcon;
     }
 
-    public function getshortText()
+    public function setLargeIcon(string $largeIcon): self
+    {
+        $this->largeIcon = $largeIcon;
+
+        return $this;
+    }
+
+    public function getShortText(): string
     {
         return $this->shortText;
     }
 
-    public function gettext()
+    public function setShortText(string $shortText): self
+    {
+        $this->shortText = $shortText;
+
+        return $this;
+    }
+
+    public function getText(): string
     {
         return $this->text;
     }
 
-    public function getimage()
+    public function setText(string $text): self
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    public function getImage(): string
     {
         return $this->image;
     }
 
-    public function getheaderImage()
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getHeaderImage(): string
     {
         return $this->headerImage;
     }
 
-    public function getwhyChooseList()
+    public function setHeaderImage(string $headerImage): self
+    {
+        $this->headerImage = $headerImage;
+
+        return $this;
+    }
+
+    public function getWhyChooseList(): string
     {
         return $this->whyChooseList;
     }
 
-    public function getfooterCallout()
+    public function setWhyChooseList(string $whyChooseList): self
+    {
+        $this->whyChooseList = $whyChooseList;
+
+        return $this;
+    }
+
+    public function getFooterCallout(): string
     {
         return $this->footerCallout;
     }
 
-    public function getdateAdded()
+    public function setFooterCallout(string $footerCallout): self
+    {
+        $this->footerCallout = $footerCallout;
+
+        return $this;
+    }
+
+    public function getDateAdded(): DateTime
     {
         return $this->dateAdded;
     }
 
-    public function getdateUpdated()
+    public function setDateAdded(DateTime $dateAdded): self
+    {
+        $this->dateAdded = $dateAdded;
+
+        return $this;
+    }
+
+    public function getDateUpdated(): DateTime
     {
         return $this->dateUpdated;
     }
 
-    public function getlistingOrder()
+    public function setDateUpdated(DateTime $dateUpdated): self
+    {
+        $this->dateUpdated = $dateUpdated;
+
+        return $this;
+    }
+
+    public function getListingOrder(): int
     {
         return $this->listingOrder;
     }
 
-    public function setid($val)
+    public function setListingOrder(int $listingOrder): self
     {
-        $this->id = !isset($val->id) ? NULL : $val->id;
+        $this->listingOrder = $listingOrder;
+
+        return $this;
     }
 
-    public function settitle($val)
+    public function isActive(): bool
     {
-        $this->title = !isset($val->title) ? NULL : $val->title;
+        return $this->active;
     }
 
-    public function seturl($val)
+    public function setActive(bool $active): self
     {
-        $this->url = !isset($val->url) ? NULL : $val->url;
+        $this->active = $active;
+
+        return $this;
     }
-
-    public function seticonType($val)
-    {
-        $this->iconType = !isset($val->iconType) ? NULL : $val->iconType;
-    }
-
-    public function seticonBootstrap($val)
-    {
-        $this->iconBootstrap = !isset($val->iconBootstrap) ? NULL : $val->iconBootstrap;
-    }
-
-    public function seticonFontAwesome($val)
-    {
-        $this->iconFontAwesome = !isset($val->iconFontAwesome) ? NULL : $val->iconFontAwesome;
-    }
-
-    public function setlargeIcon($val)
-    {
-        $this->largeIcon = !isset($val->largeIcon) ? NULL : $val->largeIcon;
-    }
-
-    public function setshortText($val)
-    {
-        $this->shortText = !isset($val->shortText) ? NULL : $val->shortText;
-    }
-
-    public function settext($val)
-    {
-        $this->text = !isset($val->text) ? NULL : $val->text;
-    }
-
-    public function setimage($val)
-    {
-        $this->image = !isset($val->image) ? NULL : $val->image;
-    }
-
-    public function setheaderImage($val)
-    {
-        $this->headerImage = !isset($val->headerImage) ? NULL : $val->headerImage;
-    }
-
-    public function setwhyChooseList($val)
-    {
-        $this->whyChooseList = !isset($val->whyChooseList) ? NULL : $val->whyChooseList;
-    }
-
-    public function setfooterCallout($val)
-    {
-        $this->footerCallout = !isset($val->footerCallout) ? NULL : $val->footerCallout;
-    }
-
-    public function setdateAdded($val)
-    {
-        $this->dateAdded = !isset($val->dateAdded) ? 'CURRENT_TIMESTAMP' : $val->dateAdded;
-    }
-
-    public function setdateUpdated($val)
-    {
-        $this->dateUpdated = !isset($val->dateUpdated) ? NULL : $val->dateUpdated;
-    }
-
-    public function setlistingOrder($val)
-    {
-        $this->listingOrder = !isset($val->listingOrder) ? NULL : $val->listingOrder;
-    }
-} 
-
-?>
-
+}

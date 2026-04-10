@@ -1,29 +1,18 @@
 <?php
-   
-/*
-*
-* -------------------------------------------------------
-* CLASSNAME:        contact
-* GENERATION DATE:  2026-01-20 01:39:54
-* CLASS FILE:       contact.class.php
-* FOR MYSQL TABLE:  contact
-* FOR MYSQL DB:     skaleup
-* -------------------------------------------------------
-*
-*/
+declare(strict_types=1);
 
 namespace App\Models\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: "contact")]
+#[ORM\Table(name: 'contact')]
 class ContactEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    public int|null $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $name;
@@ -34,109 +23,74 @@ class ContactEntity
     #[ORM\Column(type: 'string', length: 20)]
     public string $phone;
 
-    // #[ORM\Column(type: 'string', length: 100)]
-    // public string $subject;
-
     #[ORM\Column(type: 'text')]
     public string $message;
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $interestedIn;
 
-    // #[ORM\Column(type: 'datetime')]
-    // public DateTime $date;
-
-    // public function __construct($val=NULL)
-    // {
-    //     $this->id = !isset($val->id) ? NULL : $val->id;
-    //     $this->name = !isset($val->name) ? NULL : $val->name;
-    //     $this->email = !isset($val->email) ? NULL : $val->email;
-    //     $this->phone = !isset($val->phone) ? NULL : $val->phone;
-    //     $this->subject = !isset($val->subject) ? NULL : $val->subject;
-    //     $this->message = !isset($val->message) ? NULL : $val->message;
-    //     $this->interestedIn = !isset($val->interestedIn) ? NULL : $val->interestedIn;
-    //     $this->date = !isset($val->date) ? date('Y-m-d H:i:s') : $val->date;         
-    // }
-
-    public function getid()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getname()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getemail()
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getphone()
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
-    // public function getsubject()
-    // {
-    //     return $this->subject;
-    // }
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
-    public function getmessage()
+        return $this;
+    }
+
+    public function getMessage(): string
     {
         return $this->message;
     }
 
-    public function getinterestedIn()
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    public function getInterestedIn(): string
     {
         return $this->interestedIn;
     }
 
-    // public function getdate()
-    // {
-    //     return $this->date;
-    // }
-
-    public function setid($val)
+    public function setInterestedIn(string $interestedIn): self
     {
-        $this->id = !isset($val->id) ? NULL : $val->id;
+        $this->interestedIn = $interestedIn;
+
+        return $this;
     }
-
-    public function setname($val)
-    {
-        $this->name = $val;
-    }
-
-    public function setemail($val)
-    {
-        $this->email = $val;
-    }
-
-    public function setphone($val)
-    {
-        $this->phone = $val;
-    }
-
-    // public function setsubject($val)
-    // {
-    //     $this->subject = $val;
-    // }
-
-    public function setmessage($val)
-    {
-        $this->message = $val;
-    }
-
-    public function setinterestedIn($val)
-    {
-        $this->interestedIn = $val;
-    }
-
-    // public function setdate($val='')
-    // {
-    //     $this->date = empty($val) ? date('Y-m-d H:i:s') : $val;
-    // }
-} 
-
-?>
+}
