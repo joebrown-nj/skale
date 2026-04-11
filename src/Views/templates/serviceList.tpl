@@ -1,11 +1,11 @@
 {include file="inc/layout/header.tpl"}
 
-{if isset($data.pageContent)}
+{if isset($page.content)}
     <div data-aos="fade-up" class="container-fluid">
         <div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">
             <div class="col-md-7">
-                <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{$data.pageContent['title']}</h2>
-                {$data.pageContent['content']}
+                <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{$page.content->title}</h2>
+                {$page.content->content}
             </div>
         </div>
     </div>

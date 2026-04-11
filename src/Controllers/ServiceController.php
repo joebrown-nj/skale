@@ -19,9 +19,7 @@ class ServiceController
     }
  
     public function index() {
-        $this->view->render('serviceList', array(
-            'pageContent' => $this->pageContentModel->getPageContentByUrl('services'),
-        ));
+        $this->view->render('serviceList');
     }
 
     public function getServiceDetail(string $slug) {
@@ -39,8 +37,7 @@ class ServiceController
 
         $this->view->render('serviceDetail', array(
             'serviceDetail' => $service,
-            'p1Content' => $this->pageContentModel->getPageContentByUrl('services'),
-            'pageContent' => $pageContent,
+            'p1Page' => $this->pageContentModel->getPageContentByUrl('services'),
         ));
     }
 }

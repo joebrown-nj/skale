@@ -32,6 +32,16 @@ class PageContentEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $dateUpdated;
 
+    // one page content can be linked to multiple menu items, 
+    // but each menu item can only link to one page content
+    #[ORM\OneToMany(mappedBy: 'pageContent', targetEntity: MenuEntity::class)]
+    private $menus;
+
+    public function __construct()
+    {
+        $this->menus = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,5 +117,13 @@ class PageContentEntity
         $this->dateUpdated = $dateUpdated;
 
         return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection|MenuEntity[]
+     */
+    public function getMenus()
+    {
+        return $this->menus;
     }
 }

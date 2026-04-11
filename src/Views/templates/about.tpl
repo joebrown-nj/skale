@@ -1,6 +1,8 @@
 {include file="inc/layout/header.tpl"}
 
-{$pageContent.content}
+{if isset($page.content)}
+    {$page.content->content}
+{/if}
 
 <div class="container-fluid">
    <div data-aos="fade-up" class="row justify-content-center align-items-center py-4 text-bg-dark">

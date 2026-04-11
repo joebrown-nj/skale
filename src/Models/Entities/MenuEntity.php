@@ -38,6 +38,10 @@ class MenuEntity
     #[ORM\Column(type: 'boolean')]
     public bool $active;
 
+    #[ORM\ManyToOne(targetEntity: PageContentEntity::class)]
+    #[ORM\JoinColumn(name: 'pageContentId', referencedColumnName: 'id')]
+    private ?PageContentEntity $pageContent = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +139,18 @@ class MenuEntity
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getPageContent(): ?PageContentEntity
+    {
+        return $this->pageContent;
+    }
+
+    public function setPageContent(?PageContentEntity $pageContent): self
+    {
+        $this->pageContent = $pageContent;
 
         return $this;
     }

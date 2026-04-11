@@ -34,13 +34,13 @@ class MetaDataController
                 ));
             }
         } else {
-            $pageContent = $this->pageContentModel->getPageContentByUrl($adjustedSlug);
+            $page = $this->pageContentModel->getPageContentByUrl($adjustedSlug);
 
-            if($pageContent) {
+            if($page && isset($page['content'])) {
                 $metaData = json_encode(array(
-                    'keywords' => $pageContent['metaKeywords'],
-                    'description' => $pageContent['metaDescription'],
-                    'title' => $_ENV['SITE_NAME'].' | '.$pageContent['metaTitle'],
+                    'keywords' => $page['content']->metaKeywords,
+                    'description' => $page['content']->metaDescription,
+                    'title' => $_ENV['SITE_NAME'].' | '.$page['content']->metaTitle,
                 ));
             }
         }

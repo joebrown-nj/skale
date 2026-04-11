@@ -6,9 +6,9 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{$smarty.ENV.SITE_NAME}{if isset($data.pageContent['metaTitle']) && $data.pageContent['metaTitle'] != ''} | {$data.pageContent['metaTitle']}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
-            <meta name="description" content="{if isset($data.pageContent['metaDescription'])}{$data.pageContent['metaDescription']}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
-            <meta name="keywords" content="{if isset($data.pageContent['metaKeywords'])}{$data.pageContent['metaKeywords']}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
+            <title>{$smarty.ENV.SITE_NAME}{if isset($page.content) && isset($page.content->metaTitle) && $page.content->metaTitle != ''} | {$page.content->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
+            <meta name="description" content="{if isset($page.content) && isset($page.content->metaDescription)}{$page.content->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
+            <meta name="keywords" content="{if isset($page.content) && isset($page.content->metaKeywords)}{$page.content->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
             <!-- Google Tag Manager -->
@@ -31,8 +31,8 @@
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
             <!-- Open Graph -->
-            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($pageContent->metaTitle) && $pageContent->metaTitle != ''} | {$pageContent->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}">
-            <meta property="og:description" content="{if isset($pageContent->metaDescription)}{$pageContent->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
+            <meta property="og:title" content="{$smarty.ENV.SITE_NAME}{if isset($page.content) && isset($page.content->metaTitle) && $page.content->metaTitle != ''} | {$page.content->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}">
+            <meta property="og:description" content="{if isset($page.content) && isset($page.content->metaDescription)}{$page.content->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
             <meta property="og:type" content="{if isset($p1) && $p1 == 'blog' && $p3}article{else}website{/if}">
             <meta property="og:URL" content="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
@@ -59,15 +59,15 @@
 {/if}
 
 {if $p1 && $p1 != ''}
-    <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center" style="{if isset($data->pageContent.menu->headerImage)}background: url('{$smarty.ENV.WEB_ROOT}images/{$data->pageContent.menu->headerImage}') no-repeat center center; background-size: 100%;{/if}">
+    <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
         <div class="logo-bg logo-bg-overlay"></div>
         <h1 class="display-3 BricolageGrotesque-ExtraBold">
             {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
                 {$data.blogDetail->title}
             {/if}
 
-            {if isset($data.pageContent) && isset($data.pageContent['title'])}
-                {$data.pageContent['title']}
+            {if isset($page.content) && isset($page.content->title)}
+                {$page.content->title}
             {/if}
         </h1>
     </div>

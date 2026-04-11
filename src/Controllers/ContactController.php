@@ -11,14 +11,12 @@ use App\Models\PageContentModel;
 
 class ContactController
 {
-    private PageContentModel $pageContentModel;
     private ContactModel $contactModel;
     private FormSubmissionService $formSubmissionService;
     private ViewInterface $view;
 
-    public function __construct(PageContentModel $pageContentModel, ContactModel $contactModel, FormSubmissionService $formSubmissionService, ViewInterface $view)
+    public function __construct(ContactModel $contactModel, FormSubmissionService $formSubmissionService, ViewInterface $view)
     {
-        $this->pageContentModel = $pageContentModel;
         $this->contactModel = $contactModel;
         $this->formSubmissionService = $formSubmissionService;
         $this->view = $view;
@@ -26,9 +24,7 @@ class ContactController
 
     public function index(): void
     {
-        $this->view->render('contact', array(
-            'pageContent' => $this->pageContentModel->getPageContentByUrl($this->view->getUri())
-        ));
+        $this->view->render('contact');
     }
 
     public function submit(?array $input = null): string

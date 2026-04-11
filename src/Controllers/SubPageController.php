@@ -1,23 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controllers;
+
 use App\Core\Contracts\ViewInterface;
-use App\Models\PageContentModel;
 
 class SubPageController
 {
-    private PageContentModel $pageContentModel;
     private ViewInterface $view;
 
-    public function __construct(PageContentModel $pageContentModel, ViewInterface $view) {
-        $this->pageContentModel = $pageContentModel;
+    public function __construct(ViewInterface $view) {
         $this->view = $view;
     }
 
     public function index()
     {
-        $this->view->render('subpage', array(
-            'pageContent' => $this->pageContentModel->getPageContentByUrl($this->view->getUri())
-        ));
+        $this->view->render('subpage');
     }
 }

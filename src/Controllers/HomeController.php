@@ -27,16 +27,16 @@ class HomeController
     public function index()
     {
         $wCU = $this->homePageModel->getWhyChooseUsContent();
+        $blogPage = $this->pageContentModel->getPageContentByUrl('blog');
 
         $data = array(
             'hero' => $this->homePageModel->getHeroContent(),
-            'pageContent' => $this->pageContentModel->getPageContentByUrl(),
-            'blogContent' => $this->pageContentModel->getPageContentByUrl('blog'),
+            'blogContent' => $blogPage !== false ? $blogPage['content'] : null,
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogList' => $this->blogModel->getAllBlogs(),
             'whyChooseUs' => $wCU,
             'whyChooseUsHeading' => count($wCU).' Reasons to Choose <a href="'.$_ENV['SITE_URL'].'" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business',
-             'whyChooseUsSubHeading' => 'We specialize in delivering comprehensive solutions that drive business growth.<br>Here\'s why partnering with us is the right choice for your company.',
+            'whyChooseUsSubHeading' => 'We specialize in delivering comprehensive solutions that drive business growth.<br>Here\'s why partnering with us is the right choice for your company.',
         );
 
         $this->view->render('home', $data);

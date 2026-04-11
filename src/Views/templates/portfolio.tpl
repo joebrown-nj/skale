@@ -3,8 +3,8 @@
 <div class="container py-5">
    <div class="row justify-content-center">
       <div class="col-md-8 text-center">
-         {if isset($data.pageContent) && isset($data.pageContent) && isset($data.pageContent->content)}
-            {$data.pageContent->content}
+         {if isset($page.content) && isset($page.content->content)}
+            {$page.content->content}
          {/if}
       </div>
    </div>

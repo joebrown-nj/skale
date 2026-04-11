@@ -1,6 +1,6 @@
-1775846566
+1775943731
 site_data.services
-O:1:"©":1:{s:6:"°õX";a:4:{i:0;O:34:"App\Models\Entities\ServicesEntity":17:{s:2:"id";i:1;s:5:"title";s:8:"Websites";s:3:"url";s:17:"services/websites";s:8:"iconType";s:11:"fontawesome";s:13:"iconBootstrap";s:6:"laptop";s:15:"iconFontAwesome";s:18:"fa-solid fa-laptop";s:9:"largeIcon";s:31:"icon-web-design-development.png";s:9:"shortText";s:322:"<h4>Build a Powerful Online Presence with Skale</h4>
+O:1:"©":1:{s:6:"¨ù@";a:4:{i:0;O:34:"App\Models\Entities\ServicesEntity":17:{s:2:"id";i:1;s:5:"title";s:8:"Websites";s:3:"url";s:17:"services/websites";s:8:"iconType";s:11:"fontawesome";s:13:"iconBootstrap";s:6:"laptop";s:15:"iconFontAwesome";s:18:"fa-solid fa-laptop";s:9:"largeIcon";s:31:"icon-web-design-development.png";s:9:"shortText";s:322:"<h4>Build a Powerful Online Presence with Skale</h4>
 <p>We craft modern, responsive websites that not only look stunning but <strong>drive results</strong>. Our web design and development services are tailored to help your business grow, ensuring every site is fast, user-friendly, and built to scale with your goals.</p>";s:4:"text";s:1095:"<h2>Elevate Your Brand with Stunning Web Design</h2>
 <p>We know your website is often the first interaction customers have with your business. That&rsquo;s why we craft clean, modern designs that capture your attention and also reflect your brand&rsquo;s personality and values. Our goal is to make your digital presence memorable, professional, and built to impress.</p>
 <h2>Seamless Web Development for Lasting Impact</h2>

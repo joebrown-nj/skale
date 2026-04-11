@@ -16,9 +16,10 @@ class View implements ViewInterface
     private ?string $p3 = null;
     private UserLocationProviderInterface $userController;
     private SiteDataCache $siteDataCache;
+    private PageContextProvider $pageContextProvider;
     private array $user;
 
-    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController, SiteDataCache $siteDataCache) {
+    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider) {
         $this->smarty = $smarty;
         $this->smarty->caching = Smarty::CACHING_OFF;
         $this->smarty->setTemplateDir($_ENV['SMARTY_TEMPLATE_DIR']);
@@ -37,6 +38,7 @@ class View implements ViewInterface
 
         $this->userController = $userController;
         $this->siteDataCache = $siteDataCache;
+        $this->pageContextProvider = $pageContextProvider;
         $this->user = $this->userController->getUserLocation();
     }
 
@@ -62,7 +64,10 @@ class View implements ViewInterface
     
     public function render(string $view, array $data = []): void
     {
+        $page = $this->pageContextProvider->resolve($this->uri);
+
         $this->smarty->assign($this->siteDataCache->getSharedData());
+        $this->smarty->assign('page', $page);
         $this->smarty->assign('data', $data);
         $this->smarty->assign('header', isset($_GET['header']) ? $_GET['header'] : true);
         $this->smarty->assign('footer', isset($_GET['footer']) ? $_GET['footer'] : true);

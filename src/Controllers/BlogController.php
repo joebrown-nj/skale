@@ -32,7 +32,6 @@ class BlogController
     public function index() {
         $this->view->render('blogList', array(
             'blogList' => $this->blogModel->getAllBlogs(),
-            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog'),
             'blogFeatured' => $this->blogModel->getFeaturedBlog()
         ));
     }
@@ -44,9 +43,8 @@ class BlogController
         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
         $start = ($currentPage - 1) * $_ENV['BLOG_ITEMS_PER_PAGE'];
         $this->view->render('blogArchive', array(
-            'pageContent' => $this->pageContentModel->getPageContentByUrl('blog/'.$this->view->getP2()),
             'blogList' => $this->blogModel->getBlogArchive($start, $_ENV['BLOG_ITEMS_PER_PAGE']),
-            'p1Content' => $this->pageContentModel->getPageContentByUrl('blog'),
+            'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
             'numberOfpages' => $numberOfpages,
             'currentPage' => $currentPage,
