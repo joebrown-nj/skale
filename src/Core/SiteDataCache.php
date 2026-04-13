@@ -5,7 +5,7 @@ namespace App\Core;
 
 use App\Models\NavModel;
 use App\Models\PageContentModel;
-use App\Models\ServiceModel;
+use App\Models\SolutionModel;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -16,13 +16,14 @@ class SiteDataCache
     public function __construct(
         private CacheInterface $cache,
         private NavModel $navModel,
-        private ServiceModel $serviceModel,
+        private SolutionModel $SolutionModel,
         private PageContentModel $pageContentModel,
     ) {
     }
 
     public function getSharedData(): array
     {
+        $this->cache->clear();
         return [
             'nav' => $this->getMainNav(),
             'footerNav' => $this->getFooterNav(),
@@ -54,7 +55,7 @@ class SiteDataCache
         return $this->cache->get('site_data.services', function (ItemInterface $item): array {
             $item->expiresAfter(self::DEFAULT_TTL);
 
-            return $this->serviceModel->getAllServices() ?? [];
+            return $this->SolutionModel->getAllSolutions() ?? [];
         });
     }
 

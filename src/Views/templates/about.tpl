@@ -34,9 +34,9 @@
       <div class="col-md-7">
          <h2 class="mb-4 BricolageGrotesque-ExtraBold">What We Do</h2>
          <ul class="lead">
-            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/services/websites" aria-details="about Web Design Development">Web Design &amp; Development</a> - Beautiful, user-friendly websites built for performance and conversion.</li>
-            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/services/automation" aria-details="about IT Solutions Automation">IT Solutions &amp; Automation</a> - Smart systems and integrations to streamline operations and save time.</li>
-            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/services/branding" aria-details="about Marketing Branding">Marketing &amp; Branding</a> - Creative campaigns and powerful brand strategies that capture attention and inspire loyalty.</li>
+            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/{$smarty.ENV.URL_SERVICES_SOLUTIONS}/websites" aria-details="about Web Design Development">Web Design &amp; Development</a> - Beautiful, user-friendly websites built for performance and conversion.</li>
+            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation" aria-details="about IT Solutions Automation">IT Solutions &amp; Automation</a> - Smart systems and integrations to streamline operations and save time.</li>
+            <li class="mb-4"><a style="font-weight: bold;" class="mbtn lbc" href="/{$smarty.ENV.URL_SERVICES_SOLUTIONS}/branding" aria-details="about Marketing Branding">Marketing &amp; Branding</a> - Creative campaigns and powerful brand strategies that capture attention and inspire loyalty.</li>
          </ul>
       </div>
    </div>

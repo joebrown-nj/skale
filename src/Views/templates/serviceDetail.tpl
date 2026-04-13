@@ -34,7 +34,7 @@
                         {$data.serviceDetail->whyChooseList}
 
                         <div class="d-grid gap-2">
-                            <p>{include file="inc/buttons/contactLink.tpl" buttonText="Get Started" type="button" interest=replace($data.serviceDetail->url, 'services/', '') service=$data.serviceDetail->title}</p>
+                            <p>{include file="inc/buttons/contactLink.tpl" buttonText="Get Started" type="button" interest=replace($data.serviceDetail->url, '{$smarty.ENV.URL_SERVICES_SOLUTIONS}/', '') service=$data.serviceDetail->title}</p>
                             <p>{include file="inc/buttons/phoneLink.tpl" type="button"}</p>
                         </div>
                     </div>

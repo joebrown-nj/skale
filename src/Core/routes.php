@@ -11,7 +11,7 @@ use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
 
 use App\Controllers\HomeController;
-use App\Controllers\ServiceController;
+use App\Controllers\SolutionController;
 use App\Controllers\BlogController;
 use App\Controllers\ContactController;
 use App\Controllers\LogController;
@@ -44,8 +44,8 @@ class Routes
 
         // Public routes
         $this->router->get('/', [HomeController::class, 'index']);
-        $this->router->get('/services', [ServiceController::class, 'index']);
-        $this->router->get('/services/{slug}', [ServiceController::class, 'getServiceDetail']);
+        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
+        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionDetail']);
         $this->router->get('/blog', [BlogController::class, 'index']);
         $this->router->get('/blog/archive', [BlogController::class, 'archive']);
         $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
