@@ -4,7 +4,7 @@
     <div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">
         <div class="col-md-7">
             <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{include file="inc/service/serviceIcon.tpl" serviceDetail=$data.serviceDetail} {$data.serviceDetail->title}</h2>
-            <p class="lead">{if isset($data.serviceDetail->shortText) && $data.serviceDetail->shortText != ''}{$data.serviceDetail->shortText}{else}Learn more about our {$data.serviceDetail->title} services.{/if}</p>
+            <p class="lead">{if isset($data.serviceDetail->shortText) && $data.serviceDetail->shortText != ''}{$data.serviceDetail->shortText}{else}Learn more about our {$data.serviceDetail->title} solutions.{/if}</p>
         </div>
 
         <div class="col-md-3">

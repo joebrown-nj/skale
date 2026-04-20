@@ -53,7 +53,7 @@ Seamless web and IT solutions that scale with you.
 Headline:
 Empowering Businesses With Smarter Web & IT Solutions
 Subheading:
-At Skale Up, we design impactful websites, deliver reliable IT services, and create strategies that help your business grow faster, stronger, and smarter.
+At Skale Up, we design impactful websites, deliver reliable IT solutions, and create strategies that help your business grow faster, stronger, and smarter.
 
 Headline:
 Where Innovation Meets Growth
@@ -125,7 +125,7 @@ Don’t Compete. Dominate.
 Subheading: Scale your brand with powerful web design and IT solutions.
 B (Longer/Logical):
 Competing Online Isn’t Enough Anymore—You Need to Lead.
-Subheading: Skale Up empowers businesses with sleek design, cutting-edge development, and future-ready IT services.
+Subheading: Skale Up empowers businesses with sleek design, cutting-edge development, and future-ready IT solutions.
 
 
 
@@ -233,7 +233,7 @@ Headline:
 Ready to Scale Your Business?
 
 Subheading:
-Partner with Skale for web design, development, and IT services that turn traffic into leads.
+Partner with Skale for web design, development, and IT solutions that turn traffic into leads.
 
 CTA Buttons:
 

@@ -117,7 +117,7 @@
 <div data-aos="fade-in-up" class="home-callout parallax container-fluid py-5" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
     <div class="row justify-content-center py-5">
         <div class="col-md-8 text-center">
-            <h2 class="pb-4 BricolageGrotesque-ExtraBold"><span class="brand-color">skale</span> your business with custom IT solutions and results driven marketing services.</h2>
+            <h2 class="pb-4 BricolageGrotesque-ExtraBold"><span class="brand-color">skale</span> your business with custom IT solutions and results driven marketing solutions.</h2>
             <a aria-describedby="home call out contact button" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn lbc btn btn-outline-warning btn-lg logo-bg-small brand-color-bg" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>

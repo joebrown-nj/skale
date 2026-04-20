@@ -44,7 +44,7 @@
    <div data-aos="fade-up" class="row justify-content-center align-items-center py-4 text-bg-dark">
       <div class="col-md-7">
          <h2 class="mb-4 BricolageGrotesque-ExtraBold">Why Choose Skale</h2>
-         <p class="lead">Because we don't just deliver services - we deliver growth. Every project we take on is backed by data-driven strategies, forward-thinking design, and a commitment to helping our clients thrive in a competitive digital world. When you partner with us, you're not just investing in technology - you're investing in your future.</p>
+         <p class="lead">Because we don't just deliver solutions - we deliver growth. Every project we take on is backed by data-driven strategies, forward-thinking design, and a commitment to helping our clients thrive in a competitive digital world. When you partner with us, you're not just investing in technology - you're investing in your future.</p>
       </div>
       <div class="col-md-3 d-none d-lg-block"><img alt="Why Choose Skale" class="img-100" src="{$smarty.ENV.WEB_ROOT}images/pexels-pixabay-262333.jpg"></div>
    </div>

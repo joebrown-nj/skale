@@ -4,7 +4,7 @@
     </div>
 
     <h5 class="card-header px-3 pt-2 pb-3 mb-0 border-0" style="background-color: #171b1e;">
-        <a aria-describedby="home services {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="mbtn lbc link-light link-underline-opacity-0">
+        <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="mbtn lbc link-light link-underline-opacity-0">
             {include file="inc/service/serviceIcon.tpl" serviceDetail=$service} {$service->title}
         </a>
     </h5>
@@ -14,6 +14,6 @@
     </div>
 
     <div class="card-footer">
-        <a aria-describedby="home services {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="logo-bg-small mbtn btn btn-primary btn-lg">Learn more about {$service->title}</a>
+        <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="logo-bg-small mbtn btn btn-primary btn-lg">Learn more about {$service->title}</a>
     </div>
 </div>

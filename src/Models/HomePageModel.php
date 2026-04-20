@@ -40,7 +40,7 @@ class HomePageModel
         return array(
             array(
                 'title' => 'All-in-One Expertise',
-                'description' => 'A single, reliable partner for websites, IT, software, marketing, and consulting services, simplifying your operations and improving efficiency.'
+                'description' => 'A single, reliable partner for websites, IT, software, marketing, and consulting solutions, simplifying your operations and improving efficiency.'
             ),
             array(
                 'title' => 'Custom-Built Solutions',

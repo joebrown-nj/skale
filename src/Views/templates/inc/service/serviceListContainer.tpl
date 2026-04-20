@@ -62,7 +62,7 @@
                             <h3 class="card-title px-0 mb-0 ubuntu-regular">{$service->title}</h3>
                             {* <p class="card-text"></p> *}
                             {$service->shortText}
-                            <a aria-describedby="home services {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="stretched-link logo-bg-small mbtn btn btn-primary btn">Learn more about {$service->title}</a>
+                            <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="stretched-link logo-bg-small mbtn btn btn-primary btn">Learn more about {$service->title}</a>
                         </div>
                     </div>
                 </div>

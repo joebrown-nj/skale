@@ -79,7 +79,7 @@ class SiteDataCache
             return $this->serviceList;
         }
 
-        $this->serviceList = $this->cache->get('site_data.services', function (ItemInterface $item): array {
+        $this->serviceList = $this->cache->get('site_data.solutions', function (ItemInterface $item): array {
             $item->expiresAfter(self::DEFAULT_TTL);
 
             return $this->SolutionModel->getAllSolutions() ?? [];

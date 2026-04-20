@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Core\ErrorHandler;
 use App\Core\Db\DatabaseORM;
 use Doctrine\ORM\EntityManager;
-use App\Models\Entities\ServicesEntity;
+use App\Models\Entities\SolutionsEntity;
 
 class SolutionModel
 {
@@ -16,15 +16,15 @@ class SolutionModel
     }
 
     public function getAllSolutions(): Array | NULL {
-        $repository = $this->entityManager->getRepository(ServicesEntity::class);
+        $repository = $this->entityManager->getRepository(SolutionsEntity::class);
         $query = $repository->createQueryBuilder('s')->where('s.active = 1')->orderBy('s.listingOrder', 'ASC')->getQuery();
         $results = $query->getResult();
         return $results;
     }
 
-    public function getSolutionByUrl($url=''): ServicesEntity | NULL {
+    public function getSolutionByUrl($url=''): SolutionsEntity | NULL {
         $url = $_ENV['URL_SERVICES_SOLUTIONS'].'/'.rtrim($url, '/');
-        $returnVal = $this->entityManager->getRepository(ServicesEntity::class)->findOneBy(['url' => $url]);
+        $returnVal = $this->entityManager->getRepository(SolutionsEntity::class)->findOneBy(['url' => $url]);
         return $returnVal;
     }
 }

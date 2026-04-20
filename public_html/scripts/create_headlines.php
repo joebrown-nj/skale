@@ -112,7 +112,7 @@ INSERT INTO `home_page` (type, title, headline, subHeading, text) VALUES
 ("Longer & Benefit-Driven Versions (great for SEO, storytelling & conversions)", 
 "Empowering Businesses With Smarter Web & IT Solutions", 
 "Empowering Businesses With Smarter Web & IT Solutions", 
-"At Skale Up, we design impactful websites, deliver reliable IT services, and create strategies that help your business grow faster, stronger, and smarter.", 
+"At Skale Up, we design impactful websites, deliver reliable IT solutions, and create strategies that help your business grow faster, stronger, and smarter.", 
 ""),
 
 
@@ -217,5 +217,5 @@ INSERT INTO `home_page` (type, title, headline, subHeading, text) VALUES
 ("Competitive Edge (Longer/Logical)", 
 "Competing Online Isn’t Enough Anymore—You Need to Lead.", 
 "Competing Online Isn’t Enough Anymore—You Need to Lead.", 
-"Skale Up empowers businesses with sleek design, cutting-edge development, and future-ready IT services.", 
+"Skale Up empowers businesses with sleek design, cutting-edge development, and future-ready IT solutions.", 
 "");

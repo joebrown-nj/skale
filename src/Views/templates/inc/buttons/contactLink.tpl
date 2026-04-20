@@ -1,7 +1,7 @@
 {if $type == 'link'}
     <p>
         <i class="fa-solid fa-envelope"></i>
-        <a aria-details="contact link" class="{$class} mbtn lbc" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}{if $interest}?interests={$interest}{/if}" title="Contact {$smarty.ENV.SITE_NAME} {if $service}interested in {$service} service{/if}">{$buttonText}</a>
+        <a aria-details="contact link" class="{$class} mbtn lbc" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}{if $interest}?interests={$interest}{/if}" title="Contact {$smarty.ENV.SITE_NAME} {if $service}interested in {$service} solution{/if}">{$buttonText}</a>
     </p>
 {/if}
 
