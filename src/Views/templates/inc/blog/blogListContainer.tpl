@@ -29,7 +29,7 @@
         <div class="col-md-8">
             {foreach from=$blogList key=key item=blog name=blogs}
                 {if $key < 6}
-                    <div class="card border-dark shadow-lg mb-5 overflow-hidden" data-aos="fade-up">
+                    <div class="card border-0 shadow-lg mb-5 overflow-hidden" data-aos="fade-up">
                         <div class="row g-0">
                             <div class="col-md-3">
                                 <img src="{$smarty.ENV.WEB_ROOT}images/{$blog->image}" alt="{$blog->title}" class="img-fluid h-100 w-100">

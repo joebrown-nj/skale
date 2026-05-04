@@ -4,11 +4,10 @@ namespace App\Models;
 
 use App\Core\ErrorHandler;
 use App\Core\Db\DatabaseORM;
-use App\Entities\BlogEntity;
 use Doctrine\ORM\EntityManager;
-use App\Models\Entities\HomePageEntity;
+use App\Models\Entities\HomeCardEntity;
 
-class HomePageModel
+class HomeCardsModel
 {
     private EntityManager $entityManager;
 
@@ -16,25 +15,16 @@ class HomePageModel
         $this->entityManager = $entityManager;
     }
 
-    public function getHeroContent(): HomePageEntity | NULL
+    public function getHomeCards(): array | NULL
     {
-        $repository = $this->entityManager->getRepository(HomePageEntity::class);
-        $query = $repository->createQueryBuilder('hp')
-            ->where('hp.active = :active')->setParameter('active', true)
-            ->orderBy('hp.impressions', 'ASC')
-            ->setMaxResults(1)
+        $repository = $this->entityManager->getRepository(HomeCardEntity::class);
+        $query = $repository->createQueryBuilder('hc')
+            ->orderBy('hc.id', 'ASC')
             ->getQuery();
-        $returnVal = $query->getOneOrNullResult();
-
-        if ($returnVal) {
-            $returnVal->impressions = $returnVal->impressions + 1;
-            $this->entityManager->persist($returnVal);
-            $this->entityManager->flush();
-        }
-
+        $returnVal = $query->getResult();
         return $returnVal;
     }
-
+/*
     public function getTheResultsContent(): array
     {
         return array(
@@ -42,23 +32,19 @@ class HomePageModel
             'results' => array(
                 array(
                     'title' => 'Consistency',
-                    'description' => 'A steady stream of high-quality leads that convert into customers.',
-                    'icon' => 'fa-solid fa-calendar-days'
+                    'description' => 'A steady stream of high-quality leads that convert into customers.'
                 ),
                 array(
                     'title' => 'Automation',
-                    'description' => 'Automate repetitive tasks and streamline operations for efficiency.',
-                    'icon' => 'fa-solid fa-gears'
+                    'description' => 'Automate repetitive tasks and streamline operations for efficiency.'
                 ),
                 array(
                     'title' => 'Conversions',
-                    'description' => 'Optimize each stage of your sales funnel to maximize conversions.',
-                    'icon' => 'fa-solid fa-filter-circle-dollar'
+                    'description' => 'Optimize each stage of your sales funnel to maximize conversions.'
                 ),
                 array(
                     'title' => 'Visibility',
-                    'description' => 'Gain actionable insights to drive strategic decisions and growth.',
-                    'icon' => 'fa-solid fa-chart-column'
+                    'description' => 'Gain actionable insights to drive strategic decisions and growth.'
                 )
             )
         );
@@ -71,23 +57,19 @@ class HomePageModel
             'steps' => array(
                 array(
                     'title' => 'Diagnose',
-                    'description' => 'Identify inefficiencies, gaps, and missed opportunities.',
-                    'icon' => 'fa-solid fa-stethoscope'
+                    'description' => 'Identify inefficiencies, gaps, and missed opportunities.'
                 ),
                 array(
                     'title' => 'Architect',
-                    'description' => 'Design a scalable system tailored to your business.',
-                    'icon' => 'fa-solid fa-compass-drafting'
+                    'description' => 'Design a scalable system tailored to your business.'
                 ),
                 array(
                     'title' => 'Build & Integrate',
-                    'description' => 'Implement your infrastructure and systems.',
-                    'icon' => 'fa-solid fa-hammer'
+                    'description' => 'Implement your infrastructure and systems.'
                 ),
                 array(
                     'title' => 'Optimize & Scale',
-                    'description' => 'Refine, automate, and grow continuously.',
-                    'icon' => 'fa-solid fa-scale-balanced'
+                    'description' => 'Refine, automate, and grow continuously.'
                 )
             )
         );

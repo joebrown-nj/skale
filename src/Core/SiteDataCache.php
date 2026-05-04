@@ -29,6 +29,8 @@ class SiteDataCache
 
     public function getSharedData(): array
     {
+        $this->cache->clear();
+
         if ($this->sharedData !== null) {
             return $this->sharedData;
         }

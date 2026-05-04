@@ -136,7 +136,7 @@
                                             <!-- <td><a href="?t=<?= $table ?>&id=<?= $d['id'] ?>">edit</a></td> -->
                                             <?php foreach($fields as $col): ?>
                                                 <?php if($col['Type'] !== 'text' && $col['Type'] !== 'longtext' && $col['Field'] !== 'shortText'): ?>
-                                                    <td><?= substr(strip_tags($d[$col['Field']]), 0, 150) ?></td>
+                                                    <td><?= $d[$col['Field']] ? substr(strip_tags($d[$col['Field']]), 0, 150) : '' ?></td>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         </tr>

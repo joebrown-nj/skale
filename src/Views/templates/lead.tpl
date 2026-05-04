@@ -46,7 +46,7 @@
 
 <section class="hero text-center" data-aos="fade-up">
     <div class="container">
-        <h1 class="display-5 fw-bold mb-3">Build, Automate, and Grow — Faster with Skale</h1>
+        <h1 class="display-5 fw-bold mb-3">Build, Automate, and Grow  -  Faster with Skale</h1>
         <p class="lead mb-4">Web, software, IT, and marketing solutions designed to scale your business.</p>
         <a href="#lead-form" class="btn btn-primary btn-lg">Get a Free Strategy Call</a>
         <p class="mt-3 small text-muted">Free 30-minute consult • No obligation</p>

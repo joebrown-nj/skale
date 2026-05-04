@@ -133,6 +133,78 @@ function ajaxGetPageMetaData(slug) {
     });
 }
 
+$(document).ready(function() {
+    initializeHomePageForm();
+});
+
+var currentStep = 1;
+
+function getHomePageStepCount() {
+    return $('#goals-form').find('.step').length;
+}
+
+function updateProgressBar() {
+    var totalSteps = getHomePageStepCount();
+    var progressPercentage = totalSteps > 1
+        ? ((currentStep - 1) / (totalSteps - 1)) * 100
+        : 0;
+
+    $('.progress-bar').css('width', progressPercentage + '%');
+}
+
+function initializeHomePageForm() {
+    var $form = $('#goals-form');
+
+    if (!$form.length) {
+        currentStep = 1;
+        return;
+    }
+
+    currentStep = 1;
+
+    if ($form.length && $form[0]) {
+        $form[0].reset();
+    }
+
+    $form.find('.step').removeClass('aos-animate').hide();
+    $form.find('.step-1').show().addClass('aos-animate');
+
+    $('.progress-container').find('.btn')
+        .removeClass('btn-primary')
+        .addClass('btn-secondary')
+        .first()
+        .removeClass('btn-secondary')
+        .addClass('btn-primary');
+
+    updateProgressBar();
+}
+
+$(document).on('click', '.next-step', function() {
+    if (currentStep < getHomePageStepCount()) {
+        $(".step-" + currentStep).addClass("aos-animate");
+        currentStep++;
+        setTimeout(function() {
+            $(".step").removeClass("aos-animate").hide();
+            $(".step-" + currentStep).show().addClass("aos-animate");
+            updateProgressBar();
+            $(".progress-container").find('.btn').eq(currentStep - 1).removeClass('btn-secondary').addClass('btn-primary');
+        }, 500);
+    }
+});
+
+$(document).on('click', '.prev-step', function() {
+    if (currentStep > 1) {
+        $(".step-" + currentStep).addClass("aos-animate");
+        currentStep--;
+        setTimeout(function() {
+            $(".step").removeClass("aos-animate").hide();
+            $(".step-" + currentStep).show().addClass("aos-animate");
+            updateProgressBar();
+            $(".progress-container").find('.btn').eq(currentStep).removeClass('btn-primary').addClass('btn-secondary');
+        }, 500);
+    }
+});
+
 function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory = true) {
     removeAllAlerts();
 
@@ -155,6 +227,7 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
         }),
         success(data) {
             $('.page-content').html(data);
+            initializeHomePageForm();
             $(window).scrollTop(0);
         },
     }).done(() => {

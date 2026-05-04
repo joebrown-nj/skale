@@ -55,9 +55,6 @@ class Application
 
     private function loadEnvironment(): void
     {
-        // $dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2));
-        // $dotenv->load();
-
         $dotenv = new Dotenv();
         $dotenv->load('../.env');
         $dotenv->load('../'.strtoupper($_ENV['APP_ENV']).'.env');

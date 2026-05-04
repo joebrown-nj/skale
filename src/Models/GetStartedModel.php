@@ -54,7 +54,7 @@ class GetStartedModel
         $contact->setname($data['name']);
         $contact->setemail($data['email']);
         $contact->setphone($data['phone']);
-        $contact->setmessage('Get started form submission');
+        $contact->setmessage($data['goals']);
         $contact->setinterestedIn(json_encode([]));
 
         return $contact;

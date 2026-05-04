@@ -54,12 +54,11 @@ class Routes
         $this->router->get('/terms-of-service', [SubPageController::class, 'index']);
         $this->router->get('/about', [SubPageController::class, 'index']);
         $this->router->get('/portfolio', [PortfolioController::class, 'index']);
-        $this->router->get('/meta-data/', [MetaDataController::class, 'index']);
-        $this->router->get('/meta-data/{p1}', [MetaDataController::class, 'index']);
-        $this->router->get('/meta-data/{p1}/{p2}', [MetaDataController::class, 'index']);
-        $this->router->get('/meta-data/{p1}/{p2}/{p3}', [MetaDataController::class, 'index']);
+        $this->router->get('/thank-you', [SubPageController::class, 'index']);
+        $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
-        $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
+        // $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
+        $this->router->post('/', [GetStartedController::class, 'postGetStarted']);
         $this->router->post('/contact-form', [ContactController::class, 'submit']);
         $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
         $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
@@ -84,6 +83,18 @@ class Routes
     {
         http_response_code(404);
         $this->container->get(ViewInterface::class)->render('error/404');
+    }
+
+    private function registerSegmentedGetRoutes(string $basePath, int $maxDepth, array $handler): void
+    {
+        $this->router->get($basePath.'/', $handler);
+
+        $segments = [];
+
+        for ($depth = 1; $depth <= $maxDepth; $depth++) {
+            $segments[] = '{p'.$depth.'}';
+            $this->router->get($basePath.'/'.implode('/', $segments), $handler);
+        }
     }
 
     private function handleError(\Exception $e): void
