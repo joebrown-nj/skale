@@ -4,3 +4,4 @@ public_html/videos/
 vendor/
 src/Views/templates_c/
 var/cache/
+var/sessions/
