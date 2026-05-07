@@ -61,7 +61,8 @@
                     <input name="phone" type="tel" class="form-control" placeholder="Phone" aria-label="Phone" required>
                 </div>
 
-                <button type="button" class="btn btn-primary prev-step">Back</button>
+                {* <button type="button" class="btn btn-primary prev-step">Back</button> *}
+                <a class="btn btn-primary prev-step">Back</a>
                 <button type="submit" class="lbc btn btn-success">Get My Free Growth Plan</button>
             </div>
         </form>
