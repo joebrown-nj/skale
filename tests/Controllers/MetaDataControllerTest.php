@@ -27,7 +27,7 @@ final class MetaDataControllerTest extends TestCase
         $pageContentModel->expects($this->once())
             ->method('getPageContentByUrl')
             ->with('about')
-            ->willReturn(['pageContent' => $page]);
+            ->willReturn(['content' => $page]);
 
         $blogModel = $this->createMock(BlogModel::class);
         $blogModel->expects($this->never())
@@ -41,6 +41,36 @@ final class MetaDataControllerTest extends TestCase
 
         $this->assertSame(
             '{"keywords":"marketing, seo","description":"Page description","title":"Skaleup | About Us"}',
+            $output
+        );
+    }
+
+    public function testIndexCombinesNestedSlugSegmentsForPageLookup(): void
+    {
+        $page = (object) [
+            'metaKeywords' => 'privacy, policy',
+            'metaDescription' => 'Privacy details',
+            'metaTitle' => 'Privacy Policy',
+        ];
+
+        $pageContentModel = $this->createMock(PageContentModel::class);
+        $pageContentModel->expects($this->once())
+            ->method('getPageContentByUrl')
+            ->with('legal/privacy-policy')
+            ->willReturn(['content' => $page]);
+
+        $blogModel = $this->createMock(BlogModel::class);
+        $blogModel->expects($this->never())
+            ->method('getBlogByUrl');
+
+        $controller = new MetaDataController($pageContentModel, $blogModel);
+
+        ob_start();
+        $controller->index('legal', 'privacy-policy');
+        $output = ob_get_clean();
+
+        $this->assertSame(
+            '{"keywords":"privacy, policy","description":"Privacy details","title":"Skaleup | Privacy Policy"}',
             $output
         );
     }
@@ -72,6 +102,27 @@ final class MetaDataControllerTest extends TestCase
             '{"keywords":"growth, strategy","description":"Blog description","title":"Skaleup blog | How to Scale"}',
             $output
         );
+    }
+
+    public function testIndexOutputsNothingWhenBlogDoesNotExist(): void
+    {
+        $pageContentModel = $this->createMock(PageContentModel::class);
+        $pageContentModel->expects($this->never())
+            ->method('getPageContentByUrl');
+
+        $blogModel = $this->createMock(BlogModel::class);
+        $blogModel->expects($this->once())
+            ->method('getBlogByUrl')
+            ->with('blog/2026-01-01/missing-post')
+            ->willReturn(null);
+
+        $controller = new MetaDataController($pageContentModel, $blogModel);
+
+        ob_start();
+        $controller->index('blog', '2026-01-01', 'missing-post');
+        $output = ob_get_clean();
+
+        $this->assertSame('', $output);
     }
 
     public function testIndexOutputsNothingWhenNoPageContentExists(): void

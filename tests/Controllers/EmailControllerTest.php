@@ -3,8 +3,8 @@
 namespace Tests\Controllers;
 
 use App\Controllers\EmailController;
+use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
-use App\Models\EmailModel;
 use PHPUnit\Framework\TestCase;
 
 final class EmailControllerTest extends TestCase
@@ -18,7 +18,7 @@ final class EmailControllerTest extends TestCase
     {
         $_POST['email'] = 'not-an-email';
 
-        $emailModel = $this->createMock(EmailModel::class);
+        $emailModel = $this->createMock(EmailServiceInterface::class);
         $emailModel->expects($this->once())
             ->method('validateEmail')
             ->with('not-an-email')
@@ -36,12 +36,40 @@ final class EmailControllerTest extends TestCase
         );
     }
 
+    public function testSignUpReturnsErrorWhenEmailAlreadyExists(): void
+    {
+        $_POST['email'] = 'user@example.com';
+
+        $emailModel = $this->createMock(EmailServiceInterface::class);
+        $emailModel->expects($this->once())
+            ->method('validateEmail')
+            ->with('user@example.com')
+            ->willReturn(true);
+        $emailModel->expects($this->once())
+            ->method('checkIfEmailIsOnList')
+            ->with('user@example.com')
+            ->willReturn(true);
+        $emailModel->expects($this->never())
+            ->method('emailListSignup');
+
+        $view = $this->createMock(ViewInterface::class);
+        $view->expects($this->never())
+            ->method('getUser');
+
+        $controller = new EmailController($emailModel, $view);
+
+        $this->assertSame(
+            '{"error":"You are already on the list"}',
+            $controller->signUp()
+        );
+    }
+
     public function testSignUpUsesInjectedViewUserDataForSuccessfulSignup(): void
     {
         $_POST['email'] = 'user@example.com';
         $user = ['country_name' => 'United States'];
 
-        $emailModel = $this->createMock(EmailModel::class);
+        $emailModel = $this->createMock(EmailServiceInterface::class);
         $emailModel->expects($this->once())
             ->method('validateEmail')
             ->with('user@example.com')
@@ -51,11 +79,8 @@ final class EmailControllerTest extends TestCase
             ->with('user@example.com')
             ->willReturn(false);
         $emailModel->expects($this->once())
-            ->method('processEmailListSignup')
-            ->with([
-                'email' => 'user@example.com',
-                'userInfo' => json_encode($user),
-            ])
+            ->method('emailListSignup')
+            ->with($_POST, $user)
             ->willReturn(true);
 
         $view = $this->createMock(ViewInterface::class);
@@ -68,6 +93,38 @@ final class EmailControllerTest extends TestCase
         $this->assertSame(
             '{"success":"Thanks for joining the mailing list!"}',
             $controller->signUp()
+        );
+    }
+
+    public function testSignUpReturnsFailureWhenSignupCannotBeProcessed(): void
+    {
+        $input = ['email' => 'user@example.com', 'source' => 'footer'];
+        $user = ['country_name' => 'United States'];
+
+        $emailModel = $this->createMock(EmailServiceInterface::class);
+        $emailModel->expects($this->once())
+            ->method('validateEmail')
+            ->with('user@example.com')
+            ->willReturn(true);
+        $emailModel->expects($this->once())
+            ->method('checkIfEmailIsOnList')
+            ->with('user@example.com')
+            ->willReturn(false);
+        $emailModel->expects($this->once())
+            ->method('emailListSignup')
+            ->with($input, $user)
+            ->willReturn(false);
+
+        $view = $this->createMock(ViewInterface::class);
+        $view->expects($this->once())
+            ->method('getUser')
+            ->willReturn($user);
+
+        $controller = new EmailController($emailModel, $view);
+
+        $this->assertSame(
+            '{"error":"Unable to process email signup"}',
+            $controller->signUp($input)
         );
     }
 }
