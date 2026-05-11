@@ -9,17 +9,15 @@
 
         {foreach from=$serviceList key=key item=service name=services key=key}
             <div class="card border-0 shadow-lg mb-5" data-aos="fade-up">
-                <div class="row g-0">
+                <div class="row g-0 align-items-center">
                     <div class="col-md-4">
                         <img src="{$smarty.ENV.WEB_ROOT}images/{$service->image}" alt="{$service->title}" class="img-fluid rounded-start h-100 w-100">
                     </div>
 
                     <div class="col-md-8">
                         <div class="card-body">
-                            {* <h5 class="card-title"> *}
-                            <h3 class="card-title px-0 mb-0 ubuntu-regular">{$service->title}</h3>
-                            {* <p class="card-text"></p> *}
-                            {$service->shortText}
+                            <h2 class="card-title px-0 mb-4 ubuntu-regular">{$service->title}</h2>
+                            <p class="fs-5">{$service->shortText}</p>
                             <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="stretched-link logo-bg-small mbtn btn btn-primary btn">Learn more about {$service->title}</a>
                         </div>
                     </div>
