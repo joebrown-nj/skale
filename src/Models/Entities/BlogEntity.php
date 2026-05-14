@@ -22,7 +22,7 @@ class BlogEntity
     public string $url;
 
     #[ORM\Column(type: 'text')]
-    public string $text;
+    public string $content;
 
     #[ORM\Column(type: 'text')]
     public string $shortText;
@@ -74,14 +74,14 @@ class BlogEntity
         return $this;
     }
 
-    public function getText(): string
+    public function getContent(): string
     {
-        return $this->text;
+        return $this->content;
     }
 
-    public function setText(string $text): self
+    public function setContent(string $content): self
     {
-        $this->text = $text;
+        $this->content = $content;
 
         return $this;
     }

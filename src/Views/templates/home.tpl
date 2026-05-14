@@ -99,7 +99,7 @@
 </div>
 
 <div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
-    {foreach from=$data.homeCards item=item key=key name=name}
+    {* {foreach from=$data.homeCards item=item key=key name=name}
         <div class="row pt-5 px-5 mb-4 align-items-center" data-aos="fade-up">
             <div class="col-md-3">
                 <div class="card">
@@ -117,118 +117,29 @@
 
             <div class="col-md-6">
                 <h2>{$item->subTitle}</h2>
-                {$item->text}
+                {$item->content}
             </div>
         </div>
-    {/foreach}
-</div>
+    {/foreach} *}
 
-{* <div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
-    <div class="row justify-content-center pt-5 px-5">
-        <div class="col-md-5 text-center mb-4" data-aos="fade-up">
-            <div class="card bg-gradient" aria-hidden="true">
-                <svg aria-label="Placeholder" class="bd-placeholder-img card-img-top" 
-                    height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" 
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                </svg>
-
-                <div class="card-body px-4 py-4">
-                    <h2 class="card-title">{$data.whyChooseUsHeading}</h2>
-                    <div class="card-text">
-                        <h4>{$data.whyChooseUsSubHeading}</h4>
+<div class="row row-cols-1 row-cols-md-2 g-4 card-group px-5 py-5">
+        {foreach from=$data.homeCards item=item key=key name=name}
+            <div class="col" data-aos="fade-up">
+                <div class="card h-100">
+                    <div class="bd-placeholder-img card-img-top">
+                        <img src="{$smarty.ENV.IMG_ROOT}{$item->image}" class="img-fluid" alt="{$item->title}">
                     </div>
-                    {$data.whyChooseUsContent}
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-5 text-center mb-4" data-aos="fade-up">
-            <div class="card bg-gradient" aria-hidden="true">
-                <svg aria-label="Placeholder" class="bd-placeholder-img card-img-top" 
-                    height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" 
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                </svg>
-
-                <div class="card-body px-4 py-4">
-                    <h2 class="card-title">Built Differently</h2>
-                    <div class="card-text">
-                        <h4>Systems-first approach (not project-based)</h4>
-                        Full-stack execution (strategy → build → scale)
-                        Designed for long-term growth, not quick wins
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">{$item->title}</h5>
+                        <h2>{$item->subTitle}</h2>
+                        {$item->content}
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-md-5 text-center mb-4" data-aos="fade-up">
-            <div class="card bg-gradient" aria-hidden="true">
-                <svg aria-label="Placeholder" class="bd-placeholder-img card-img-top" 
-                    height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" 
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                </svg>
-
-                <div class="card-body px-4 py-4">
-                    <h2 class="card-title">WHO THIS IS FOR</h2>
-                    <div class="card-text">
-                        <h4>We work best with businesses that:</h4>
-                        Are growing but feel operational friction
-                        Have multiple tools that don't work well together
-                        Want to automate and scale efficiently
-                        Are ready to invest in long-term infrastructure
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-5 text-center mb-4" data-aos="fade-up">
-            <div class="card bg-gradient" aria-hidden="true">
-                <svg aria-label="Placeholder" class="bd-placeholder-img card-img-top" 
-                    height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" 
-                    xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                </svg>
-
-                <div class="card-body px-4 py-4">
-                    <h2 class="card-title">ENGAGEMENT OPTIONS</h2>
-                    <div class="card-text">
-                        <h4>Flexible Ways to Work Together</h4>
-                        Growth Audit
-                        Identify gaps, inefficiencies, and opportunities in your current systems.
-
-                        System Buildout
-                        Design and implement your full growth and operations infrastructure.
-
-                        Ongoing Optimization
-                        Continuous improvement, automation, and scaling support.
-                    </div>
-                </div>
-            </div>
-        </div>
+        {/foreach}
     </div>
-</div> *}
-
-
-{* <div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
-    {foreach from=$data.whyChooseUs item=item name=items}
-        <div class="row justify-content-center align-items-center mb-4" data-aos="fade-left">
-            <div class="col-md-1 text-center">
-                <p class="display-2 fw-bold text-secondary">{$smarty.foreach.items.index + 1}</p>
-            </div>
-
-            <div class="col-md-6">
-                <h5 class="fw-bold">{$item.title}</h5>
-                <p class="lead">{$item.description}</p>
-            </div>
-        </div>
-    {/foreach}
-</div> *}
+</div>
 
 <div class="bg-gradient container-fluid home-callout parallax" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
     <div class="row justify-content-center px-4 py-4">
@@ -236,5 +147,4 @@
     </div>
 </div>
 
-{* {include file="inc/layout/footerContactForm.tpl"} *}
 {include file="inc/layout/footer.tpl"}

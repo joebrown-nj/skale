@@ -18,11 +18,11 @@
                     </div>
 
                     {* <figure>
-                        <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}" alt="{$data.blogDetail->title}" loading="lazy" width="100%">
+                        <img src="{$smarty.ENV.IMG_ROOT}{$data.blogDetail->image}" alt="{$data.blogDetail->title}" loading="lazy" width="100%">
                     </figure> *}
                 {/if}
 
-                {$data.blogDetail->text}
+                {$data.blogDetail->content}
             </article>
         </div>
 

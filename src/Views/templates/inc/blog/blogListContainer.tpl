@@ -12,7 +12,7 @@
                 <div class="card border-dark shadow-lg mb-5 overflow-hidden" data-aos="fade-up">
                     <div class="row g-0">
                         <div class="col-md">
-                            <img src="{$smarty.ENV.WEB_ROOT}images/{$blogFeatured->image}" alt="{$blogFeatured->title}" class="img-fluid">
+                            <img src="{$smarty.ENV.IMG_ROOT}{$blogFeatured->image}" alt="{$blogFeatured->title}" class="img-fluid">
                             <div class="card-body">
                                 <h3 class="card-title px-0 mb-0 ubuntu-regular">{$blogFeatured->title}</h3>
                                 <p>{$blogFeatured->shortText}</p>
@@ -32,7 +32,7 @@
                     <div class="card border-0 shadow-lg mb-5 overflow-hidden" data-aos="fade-up">
                         <div class="row g-0">
                             <div class="col-md-3">
-                                <img src="{$smarty.ENV.WEB_ROOT}images/{$blog->image}" alt="{$blog->title}" class="img-fluid h-100 w-100">
+                                <img src="{$smarty.ENV.IMG_ROOT}{$blog->image}" alt="{$blog->title}" class="img-fluid h-100 w-100">
                             </div>
 
                             <div class="col-md-9">

@@ -6,7 +6,7 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{if isset($page.content) && isset($page.content->metaTitle) && $page.content->metaTitle != ''}{$page.content->metaTitle} | {/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''}{$data.blogDetail->metaTitle} | blog | {/if}{$smarty.ENV.SITE_NAME}</title>
+            <title>{$smarty.ENV.SITE_NAME}{if isset($page.content) && isset($page.content->metaTitle) && $page.content->metaTitle != ''} | {$page.content->metaTitle}{/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''} blog | {$data.blogDetail->metaTitle}{/if}</title>
             <meta name="description" content="{if isset($page.content) && isset($page.content->metaDescription)}{$page.content->metaDescription}{/if}{if isset($data.blogDetail->metaDescription)}{$data.blogDetail->metaDescription}{/if}">
             <meta name="keywords" content="{if isset($page.content) && isset($page.content->metaKeywords)}{$page.content->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">

@@ -21,7 +21,7 @@ class PortfolioEntity
     public string $url;
 
     #[ORM\Column(type: 'string', length: 500)]
-    public string $text;
+    public string $content;
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $image;
@@ -55,14 +55,14 @@ class PortfolioEntity
         return $this;
     }
 
-    public function getText(): string
+    public function getContent(): string
     {
-        return $this->text;
+        return $this->content;
     }
 
-    public function setText(string $text): self
+    public function setContent(string $content): self
     {
-        $this->text = $text;
+        $this->content = $content;
 
         return $this;
     }

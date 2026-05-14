@@ -11,7 +11,7 @@
             <div class="card border-0 shadow-lg mb-5" data-aos="fade-up">
                 <div class="row g-0 align-items-center">
                     <div class="col-md-4">
-                        <img src="{$smarty.ENV.WEB_ROOT}images/{$service->image}" alt="{$service->title}" class="img-fluid rounded-start h-100 w-100">
+                        <img src="{$smarty.ENV.IMG_ROOT}{$service->image}" alt="{$service->title}" class="img-fluid rounded-start h-100 w-100">
                     </div>
 
                     <div class="col-md-8">

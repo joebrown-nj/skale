@@ -37,7 +37,7 @@ class SolutionsEntity
     public string $shortText;
 
     #[ORM\Column(type: 'text')]
-    public string $text;
+    public string $content;
 
     #[ORM\Column(type: 'string', length: 50)]
     public string $image;
@@ -152,14 +152,14 @@ class SolutionsEntity
         return $this;
     }
 
-    public function getText(): string
+    public function getContent(): string
     {
-        return $this->text;
+        return $this->content;
     }
 
-    public function setText(string $text): self
+    public function setContent(string $content): self
     {
-        $this->text = $text;
+        $this->content = $content;
 
         return $this;
     }
