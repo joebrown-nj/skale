@@ -16,7 +16,7 @@
 
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title px-0 mb-4 ubuntu-regular">{$service->title}</h2>
+                            <h2 class="card-title px-0 mb-2 ubuntu-regular">{$service->title}</h2>
                             <p class="fs-5">{$service->shortText}</p>
                             <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="stretched-link logo-bg-small mbtn btn btn-primary btn">Learn more about {$service->title}</a>
                         </div>
