@@ -1,8 +1,8 @@
 <div class="card border-0 shadow-lg" data-aos="fade-up">
     <div class="card-body p-5">
         <div class="pb-4">
-            <h3 class="card-title mb-4 ubuntu-regular">Get a Custom Growth Plan for Your Business</h3>
-            <p class="lead">Tell us where you want to go - we'll map out the strategy, tech, and systems to get you there within 24 hours.</p>
+            <h3 class="card-title mb-2 ubuntu-regular">Get a Custom Growth Plan for Your Business</h3>
+            <p class="text-secondary">Tell us where you want to go - we'll map out the strategy, tech, and systems to get you there within 24 hours.</p>
         </div>
 
         <div class="position-relative mb-4 mx-2 px-0 py-0 progress-container">
@@ -68,7 +68,7 @@
         </form>
 
         <div class="border-top mt-4 pt-2 text-secondary">
-            <p class="mb-2">No spam, just a custom growth plan delivered to your inbox.</p>
+            <p class="mb-1">No spam, just a custom growth plan delivered to your inbox.</p>
             <p>Prefer to talk? <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="">Book a Free Strategy Call →</a></p>
         </div>
     </div>
