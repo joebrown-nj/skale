@@ -68,10 +68,23 @@ class Routes
 
     public function dispatch(): void
     {
+        $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+
+        if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
+            $normalizedPath = rtrim($requestPath, '/');
+            $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
+                ? '?' . $_SERVER['QUERY_STRING']
+                : '';
+
+            http_response_code(301);
+            header('Location: ' . $normalizedPath . $queryString, true, 301);
+            return;
+        }
+
         try {
             $response = $this->dispatcher->dispatch(
                 $_SERVER['REQUEST_METHOD'],
-                parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+                $requestPath
             );
             echo $response;
         } catch (HttpRouteNotFoundException $e) {

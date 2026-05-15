@@ -29,7 +29,7 @@ class View implements ViewInterface
         $this->smarty->assign('app_name', 'Skaleup');
 
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
-        $this->uri = substr($uri, 0, 1) == '/' ? substr($uri, 1) : $uri;
+        $this->uri = trim((string) $uri, '/');
 
         $pages = explode('/', $this->uri);
         $this->p1 = isset($pages[0]) ? $pages[0] : '';

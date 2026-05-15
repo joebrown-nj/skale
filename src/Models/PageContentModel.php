@@ -16,7 +16,7 @@ class PageContentModel
 
     public function getPageContentByUrl(string $url=''): array | bool
     {
-        $url = ltrim($url, '/');
+        $url = trim($url, '/');
 
         $result = $this->entityManager->createQueryBuilder()
             ->select('m', 'p')
