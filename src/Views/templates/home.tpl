@@ -1,8 +1,8 @@
 {include file="inc/layout/header.tpl"}
 
-<section class="parallax cta-section py-5 bg-gradient border-bottom">
-    <div class="container vh-100 pt-5 pb-5 d-flex align-items-center justify-content-center">
-        <div class="row align-items-center">
+<section class="parallax cta-section home-hero py-5 bg-gradient border-bottom">
+    <div class="container home-hero-inner pt-5 pb-5 d-flex align-items-center justify-content-center">
+        <div class="row align-items-center home-hero-grid">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h2 class="display-4 fw-bold text-white mb-4">{$data.hero->headline}</h2>
                 <p class="lead text-white-100 mb-4">{$data.hero->subHeading}</p>
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 home-hero-form">
                 {include file="inc/home/hero-contact-form.tpl"}
             </div>
         </div>
@@ -99,30 +99,7 @@
 </div>
 
 <div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
-    {* {foreach from=$data.homeCards item=item key=key name=name}
-        <div class="row pt-5 px-5 mb-4 align-items-center" data-aos="fade-up">
-            <div class="col-md-3">
-                <div class="card">
-                    <svg aria-label="{$item->title}" class="bd-placeholder-img card-img-top" 
-                        height="180" preserveAspectRatio="xMidYMid slice" role="img" width="100%" 
-                        xmlns="http://www.w3.org/2000/svg">
-                        <title>{$item->title}</title>
-                        <rect width="100%" height="100%" fill="#868e96"></rect>
-                    </svg>
-                    <div class="card-body">
-                        <h5 class="card-title mb-0">{$item->title}</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <h2>{$item->subTitle}</h2>
-                {$item->content}
-            </div>
-        </div>
-    {/foreach} *}
-
-<div class="row row-cols-1 row-cols-md-2 g-4 card-group px-5 py-5">
+    <div class="row row-cols-1 row-cols-md-2 g-4 card-group px-5 py-5">
         {foreach from=$data.homeCards item=item key=key name=name}
             <div class="col" data-aos="fade-up">
                 <div class="card h-100">

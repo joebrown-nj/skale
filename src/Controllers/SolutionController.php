@@ -22,6 +22,16 @@ class SolutionController
         $this->view->render('serviceList');
     }
 
+    public function redirectLegacyServicesIndex(): string
+    {
+        return $this->redirectToSolutions();
+    }
+
+    public function redirectLegacyServicesDetail(string $slug): string
+    {
+        return $this->redirectToSolutions($slug);
+    }
+
     public function getSolutionDetail(string $slug) {
         $solution = $this->SolutionModel->getSolutionByUrl($slug);
         if(empty($solution)) {
@@ -39,5 +49,23 @@ class SolutionController
             'serviceDetail' => $solution,
             'p1Page' => $this->pageContentModel->getPageContentByUrl($_ENV['URL_SERVICES_SOLUTIONS']),
         ));
+    }
+
+    private function redirectToSolutions(?string $slug = null): string
+    {
+        $location = '/' . trim((string) $_ENV['URL_SERVICES_SOLUTIONS'], '/');
+
+        if ($slug !== null && $slug !== '') {
+            $location .= '/' . ltrim($slug, '/');
+        }
+
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            $location .= '?' . $_SERVER['QUERY_STRING'];
+        }
+
+        http_response_code(301);
+        header('Location: ' . $location, true, 301);
+
+        return '';
     }
 }

@@ -85,6 +85,16 @@ function hideOverlay() {
     }, OVERLAY_HIDE_DELAY_MS);
 }
 
+function refreshAos(delay = 0) {
+    if (typeof AOS === 'undefined') {
+        return;
+    }
+
+    window.setTimeout(() => {
+        AOS.refreshHard();
+    }, delay);
+}
+
 function logButtonClick(element) {
     $.ajax({
         type: 'POST',
@@ -229,10 +239,12 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
             $('.page-content').html(data);
             initializeHomePageForm();
             $(window).scrollTop(0);
+            refreshAos(50);
         },
     }).done(() => {
         updateHeaderBackground(slug);
         ajaxGetPageMetaData(slug);
+        refreshAos(150);
     });
 
     return false;
@@ -339,6 +351,13 @@ window.onpopstate = handlePopState;
 AOS.init({
     duration: 900,
     easing: 'ease-out-cubic',
+    offset: 60,
+    once: true,
+});
+
+$(window).on('load', function handleWindowLoad() {
+    refreshAos(0);
+    refreshAos(200);
 });
 
 window.dataLayer = window.dataLayer || [];

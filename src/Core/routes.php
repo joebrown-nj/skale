@@ -44,6 +44,8 @@ class Routes
 
         // Public routes
         $this->router->get('/', [HomeController::class, 'index']);
+        $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
+        $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
         $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
         $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionDetail']);
         $this->router->get('/blog', [BlogController::class, 'index']);

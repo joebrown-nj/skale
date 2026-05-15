@@ -345,6 +345,19 @@ a:hover {
     }
 }
 
+.home-hero {
+    overflow: clip;
+    padding-top: 6rem !important;
+}
+
+.home-hero-inner {
+    min-height: calc(100vh - 75px);
+}
+
+.home-hero-grid {
+    width: 100%;
+}
+
 
 /* #hero {
     height: 800px;
@@ -665,7 +678,7 @@ a:hover {
 }
 
 /* Vertical Steps Style */
- .steps-vertical {
+.steps-vertical {
      max-width: 500px;
      margin: 2rem auto;
      padding: 0;
@@ -743,5 +756,43 @@ a:hover {
     .btn:disabled {
         background: #dee2e6;
         cursor: not-allowed;
+    }
+}
+
+@media only screen and (max-width: 991.98px) {
+    .parallax,
+    .parallax-mobile,
+    .logo-bg-small-light,
+    .page-title-block {
+        background-attachment: scroll;
+    }
+
+    .home-hero {
+        min-height: auto;
+        padding-top: 5.5rem !important;
+        padding-bottom: 2.5rem !important;
+    }
+
+    .home-hero-inner {
+        min-height: auto;
+        display: block !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .home-hero-grid {
+        row-gap: 1.5rem;
+    }
+
+    .home-hero .display-4 {
+        font-size: clamp(2.25rem, 8vw, 3.25rem);
+    }
+
+    .home-hero .lead {
+        font-size: 1.05rem;
+    }
+
+    .home-hero-form .card-body {
+        padding: 1.5rem;
     }
 }
