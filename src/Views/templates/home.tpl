@@ -81,7 +81,7 @@
 
                 <div class="steps-vertical">
                     {foreach from=$data.theResults.results item=item key=key name=name}
-                        <div class="step-vertical align-items-center shadow-lg " data-aos="fade-up">
+                        <div class="step-vertical align-items-center shadow-lg" data-aos="fade-up">
                             <div class="step-vertical-icon text-center fs-3 fw-bold text-white">
                                 <i class="{$item.icon}"></i>
                             </div>

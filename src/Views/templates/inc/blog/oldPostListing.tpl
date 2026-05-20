@@ -15,7 +15,7 @@
                             class="mbtn lbc d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis text-decoration-none border-top" 
                             aria-describedby="blog more posts {$blog->title}"
                         >
-                            <svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
+                            <svg aria-hidden="true" class="bd-placeholder-img" height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="100%" height="100%" fill="#777"></rect>
                                 {if $blog->image != ''}
                                     <image href="{$smarty.ENV.WEB_ROOT}images/{$blog->image}" height="96" width="100%" preserveAspectRatio="xMidYMid slice"></image>

@@ -62,7 +62,8 @@
                                 <div class="col-md-6">
                                     <p>
                                         <a aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn lbc text-reset">
-                                            {include file="inc/service/serviceIcon.tpl" serviceDetail=$service} {$service->title}
+                                            {* {include file="inc/service/serviceIcon.tpl" serviceDetail=$service}  *}
+                                            {$service->title}
                                         </a>
                                     </p>
                                 </div>

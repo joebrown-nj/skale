@@ -11,7 +11,7 @@
             <meta name="keywords" content="{if isset($page.content) && isset($page.content->metaKeywords)}{$page.content->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
-            <link href="{$smarty.ENV.WEB_ROOT}css/bootstrap.min.css " rel="stylesheet">
+            <link href="{$smarty.ENV.WEB_ROOT}css/bootstrap.min.css" rel="stylesheet">
 
             <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
