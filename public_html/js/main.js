@@ -121,6 +121,23 @@ function parseLinkUrl(href) {
     };
 }
 
+function getCurrentLocationState() {
+    return {
+        page: window.location.pathname || '/',
+        queryString: window.location.search.replace(/^\?/, ''),
+        title: document.title,
+    };
+}
+
+function initializeHistoryState() {
+    const currentState = history.state ?? {};
+
+    history.replaceState({
+        ...currentState,
+        ...getCurrentLocationState(),
+    }, document.title, window.location.href);
+}
+
 function ajaxGetPageMetaData(slug) {
     $.ajax({
         type: 'GET',
@@ -221,9 +238,11 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
     const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
 
     if (addToHistory) {
-        const page = event?.state?.page ?? slug;
-        const title = event?.state?.title ?? document.title;
-        history.pushState({ page, title }, title, historyUrl);
+        history.pushState({
+            page: slug,
+            queryString,
+            title: document.title,
+        }, document.title, historyUrl);
     }
 
     setActiveNavItem(slug);
@@ -251,9 +270,10 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
 }
 
 function handlePopState(event) {
-    if (event.state?.page) {
-        ajaxGetPageContent(event.state.page, '', event, false);
-    }
+    const page = event.state?.page ?? window.location.pathname ?? '/';
+    const queryString = event.state?.queryString ?? window.location.search.replace(/^\?/, '');
+
+    ajaxGetPageContent(page, queryString, event, false);
 }
 
 function validateRequiredFields($form) {
@@ -347,6 +367,7 @@ $(document).ajaxStop(() => {
 });
 
 window.onpopstate = handlePopState;
+initializeHistoryState();
 
 AOS.init({
     duration: 900,
