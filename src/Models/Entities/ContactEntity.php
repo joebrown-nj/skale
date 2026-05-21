@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models\Entities;
 
+use Doctrine\DBAL\Schema\DefaultExpression\CurrentTimestamp;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -28,6 +29,15 @@ class ContactEntity
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $interestedIn;
+
+    #[ORM\Column(
+        type: 'datetime',
+        insertable: false,
+        updatable: false,
+        generated: 'INSERT',
+        options: ['default' => new CurrentTimestamp()]
+    )]
+    public ?\DateTimeInterface $date = null;
 
     public function getId(): ?int
     {
@@ -90,6 +100,18 @@ class ContactEntity
     public function setInterestedIn(string $interestedIn): self
     {
         $this->interestedIn = $interestedIn;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
