@@ -7,14 +7,12 @@ use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\FormSubmissionService;
 use App\Models\GetStartedModel;
-use App\Core\Traits\RedirectTrait;
 
 class GetStartedController
 {
     private FormSubmissionService $formSubmissionService;
     private GetStartedModel $getStartedModel;
     private ViewInterface $view;
-    use RedirectTrait;
 
     public function __construct(FormSubmissionService $formSubmissionService, GetStartedModel $getStartedModel, ViewInterface $view) {
         $this->formSubmissionService = $formSubmissionService;
@@ -38,7 +36,8 @@ class GetStartedController
 
         $this->formSubmissionService->handleGetStartedSubmission($input, $user, $_SERVER);
 
-        // return JsonResponse::success('Thanks, we will be in touch soon.');
-        return $this->redirect('/thank-you');
+        return JsonResponse::success([
+            'redirect' => '/thank-you',
+        ]);
     }
 }

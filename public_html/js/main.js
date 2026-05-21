@@ -95,6 +95,53 @@ function refreshAos(delay = 0) {
     }, delay);
 }
 
+function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true) {
+    const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
+
+    if (addToHistory) {
+        history.pushState({
+            page: slug,
+            queryString,
+            title: document.title,
+        }, document.title, historyUrl);
+    }
+
+    setActiveNavItem(slug);
+    $('.page-content').html(data);
+    initializeHomePageForm();
+    $(window).scrollTop(0);
+    refreshAos(50);
+
+    updateHeaderBackground(slug);
+    ajaxGetPageMetaData(slug);
+    refreshAos(150);
+}
+
+function tryParseJsonResponse(data, contentType = '') {
+    if (typeof data === 'object' && data !== null) {
+        return data;
+    }
+
+    if (typeof data !== 'string') {
+        return null;
+    }
+
+    const trimmed = data.trim();
+    const looksLikeJson = contentType.includes('application/json')
+        || trimmed.startsWith('{')
+        || trimmed.startsWith('[');
+
+    if (!looksLikeJson) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(trimmed);
+    } catch (error) {
+        return null;
+    }
+}
+
 function logButtonClick(element) {
     $.ajax({
         type: 'POST',
@@ -235,18 +282,6 @@ $(document).on('click', '.prev-step', function() {
 function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory = true) {
     removeAllAlerts();
 
-    const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
-
-    if (addToHistory) {
-        history.pushState({
-            page: slug,
-            queryString,
-            title: document.title,
-        }, document.title, historyUrl);
-    }
-
-    setActiveNavItem(slug);
-
     $.ajax({
         type: 'GET',
         url: buildUrl(slug, {
@@ -255,15 +290,8 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
             ...Object.fromEntries(new URLSearchParams(queryString)),
         }),
         success(data) {
-            $('.page-content').html(data);
-            initializeHomePageForm();
-            $(window).scrollTop(0);
-            refreshAos(50);
+            renderAjaxPageContent(slug, data, queryString, addToHistory);
         },
-    }).done(() => {
-        updateHeaderBackground(slug);
-        ajaxGetPageMetaData(slug);
-        refreshAos(150);
     });
 
     return false;
@@ -312,14 +340,60 @@ function submitAjaxForm(button) {
         type: 'POST',
         url: buildUrl(action, { header: 'false', footer: 'false' }),
         data: $form.serializeArray(),
-        dataType: 'json',
-        success(data) {
-            renderAlert($form, 'danger', data.error);
+        success(data, textStatus, jqXHR) {
+            const contentType = jqXHR.getResponseHeader('Content-Type') || '';
+            const json = tryParseJsonResponse(data, contentType);
 
-            if (normalizeMessages(data.success).length > 0) {
-                $form[0].reset();
-                renderAlert($form, 'success', data.success);
+            if (json) {
+                const redirectTarget = json.success?.redirect;
+
+                if (redirectTarget) {
+                    ajaxGetPageContent(redirectTarget, '', null, true);
+                    return;
+                }
+
+                renderAlert($form, 'danger', json.error);
+
+                if (normalizeMessages(json.success).length > 0) {
+                    $form[0].reset();
+                    renderAlert($form, 'success', json.success);
+                }
+
+                return;
             }
+
+            const { slug, queryString } = parseLinkUrl(jqXHR.responseURL || action);
+            renderAjaxPageContent(slug, data, queryString, true);
+        },
+        error(jqXHR) {
+            const contentType = jqXHR.getResponseHeader('Content-Type') || '';
+            const json = tryParseJsonResponse(jqXHR.responseText, contentType);
+
+            if (json) {
+                const redirectTarget = json.success?.redirect;
+
+                if (redirectTarget) {
+                    ajaxGetPageContent(redirectTarget, '', null, true);
+                    return;
+                }
+
+                renderAlert($form, 'danger', json.error);
+
+                if (normalizeMessages(json.success).length > 0) {
+                    $form[0].reset();
+                    renderAlert($form, 'success', json.success);
+                }
+
+                return;
+            }
+
+            if (jqXHR.responseText) {
+                const { slug, queryString } = parseLinkUrl(jqXHR.responseURL || action);
+                renderAjaxPageContent(slug, jqXHR.responseText, queryString, true);
+                return;
+            }
+
+            renderAlert($form, 'danger', 'There was a problem submitting the form. Please try again.');
         },
     }).always(() => {
         hideOverlay();
@@ -391,3 +465,29 @@ gtag('js', new Date());
 gtag('config', 'G-5HMT5HBM1Y', {
     cookie_flags: 'secure;samesite=none',
 });
+
+//Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
