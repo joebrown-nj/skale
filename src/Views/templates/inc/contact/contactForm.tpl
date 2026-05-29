@@ -1,10 +1,10 @@
-<div class="card text-bg-dark">
+{* <div class="card text-bg-dark">
     <div class="card-header">
         <h2 class="logo-bg-small mb-0 card-title BricolageGrotesque-ExtraBold display-5">Let's talk.</h2>
     </div>
 
     <div class="card-body px-4">
-        <section id="formcontent" class="row">
+        <section id="formcontent" class="row"> *}
             <form action="{$smarty.ENV.SITE_URL}contact-form" id="contactForm" class="mt-0 row g-3 needs-validation ajaxForm" novalidate method="POST">
                 <div class="form-group mt-0">
                     <label class="fs-5 mb-2" for="formName">Name</label>
@@ -47,6 +47,6 @@
                     <button aria-describedby="contact form button" class="lbc btn btn-lg btn-primary" type="submit">Submit</button>
                 </div>
             </form>
-        </section>
+        {* </section>
     </div>
-</div>
+</div> *}

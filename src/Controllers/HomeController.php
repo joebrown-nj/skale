@@ -40,17 +40,6 @@ class HomeController
             'blogList' => $this->blogModel->getAllBlogs(),
             'howItWorks' => $this->homePageModel->getHowItWorksContent(),
             'theResults' => $this->homePageModel->getTheResultsContent(),
-            // 'whyChooseUs' => $wCU,
-            // 'whyChooseUsHeading' => count($wCU).' Reasons to Choose <a href="'.$_ENV['SITE_URL'].'" class="mbtn lbc brand color" aria-describedby="why choose skale">Skale</a> for Your Business',
-            // 'whyChooseUsSubHeading' => 'We specialize in delivering comprehensive solutions that drive business growth.<br>Here\'s why partnering with us is the right choice for your company.',
-//             'whyChooseUsHeading' => 'WHY SKALE',
-//             'whyChooseUsSubHeading' => 'Where Engineering Meets Growth',
-//             'whyChooseUsContent' => 'Most agencies specialize in one area. We connect all of them:
-// Software
-// Automation
-// Marketing
-// Infrastructure
-// So instead of managing vendors and tools, you have one system that works.',
         );
 
         $this->view->render('home', $data);

@@ -26,6 +26,27 @@
             <meta property="og:URL" content="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
             {* <script>let FF_FOUC_FIX;/*to prevent Firefox FOUC, this must be here*/</script> *}
+
+            <!-- Meta Pixel Code -->
+            <script>
+                {literal}
+                    !function(f,b,e,v,n,t,s)
+                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                    n.queue=[];t=b.createElement(e);t.async=!0;
+                    t.src=v;s=b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '341250316314045');
+                    fbq('track', 'PageView');
+                {/literal}
+            </script>
+
+            <noscript>
+                <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=341250316314045&ev=PageView&noscript=1"/>
+            </noscript>
+            <!-- End Meta Pixel Code -->
         </head>
 
         <body class="bg-dark">
@@ -48,7 +69,7 @@
 {/if}
 
 {if $p1 && $p1 != ''}
-    <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
+    {* <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
         <div class="logo-bg logo-bg-overlay"></div>
         <h1 class="display-3 BricolageGrotesque-ExtraBold">
             {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
@@ -59,7 +80,7 @@
                 {$page.content->title}
             {/if}
         </h1>
-    </div>
+    </div> *}
 
     {include file="inc/layout/breadcrumb.tpl"}
 {/if}

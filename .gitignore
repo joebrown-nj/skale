@@ -6,3 +6,4 @@ src/Views/templates_c/
 var/cache/
 var/sessions/
 .phpunit.cache/
+public_html/.well-known/

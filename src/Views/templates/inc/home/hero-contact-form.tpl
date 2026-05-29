@@ -2,7 +2,7 @@
     <div class="card-body p-5">
         <div class="pb-4">
             <h3 class="card-title mb-2 ubuntu-regular">Get a Custom Growth Plan for Your Business</h3>
-            <p class="text-secondary">Tell us where you want to go - we'll map out the strategy, tech, and systems to get you there within 24 hours.</p>
+            <p class="text-secondary">Tell us where you want to go - we'll map out the strategy, tech, and systems to get you there.</p>
         </div>
 
         <div class="position-relative mb-4 mx-2 px-0 py-0 progress-container">
@@ -36,8 +36,8 @@
                 <!-- Step 2 form fields here -->
                 <h3>What's your main goal?</h3>
                 <div class="mb-4">
-                    <label for="goals" class="form-label">What would you like to improve or achieve in the next 90 days?</label>
-                    <textarea class="form-control" id="goals" name="goals" rows="4" placeholder="Generate more leads, improve conversions, automate workflows, rebuild website, etc."></textarea>
+                    <label for="comment" class="form-label">What would you like to improve or achieve in the next 90 days?</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" placeholder="Generate more leads, improve conversions, automate workflows, rebuild website, etc."></textarea>
                 </div>
 
                 {* <button type="button" class="btn btn-primary prev-step">Back</button>

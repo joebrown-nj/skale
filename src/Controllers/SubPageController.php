@@ -17,4 +17,9 @@ class SubPageController
     {
         $this->view->render('subpage');
     }
+
+    public function thankYou()
+    {
+        $this->view->render('thankYou');
+    }
 }

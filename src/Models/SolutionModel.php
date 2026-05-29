@@ -15,10 +15,15 @@ class SolutionModel
         $this->entityManager = $entityManager;
     }
 
-    public function getAllSolutions(): Array | NULL {
+    public function getAllSolutions(bool $activeOnly = true): Array | NULL {
         $repository = $this->entityManager->getRepository(SolutionsEntity::class);
-        $query = $repository->createQueryBuilder('s')->where('s.active = 1')->orderBy('s.listingOrder', 'ASC')->getQuery();
-        $results = $query->getResult();
+        $query = $repository->createQueryBuilder('s');
+        if ($activeOnly) {
+            $query->where('s.active = 1');
+        }
+        $query->orderBy('s.listingOrder', 'ASC');
+
+        $results = $query->getQuery()->getResult();
         return $results;
     }
 

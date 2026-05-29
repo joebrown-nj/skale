@@ -3,7 +3,7 @@
 {if (isset($footer) && $footer === 'false')}
 
 {else}
-    <footer class="logo-bg text-center text-lg-start bg-body-tertiary text-muted">
+<footer class="logo-bg text-center text-lg-start bg-body-tertiary text-muted">
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style="background-color: rgba(0, 0, 0, 0.05);">
             <div class="me-5 d-none d-lg-block">
                 <span>Get connected:</span>

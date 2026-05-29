@@ -1,35 +1,34 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Models\HomePageModel;
+use App\Models\ContactModel;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\FormSubmissionService;
-use App\Models\ContactModel;
-use App\Models\PageContentModel;
 
-class ContactController
+class LandingPageController
 {
     private ContactModel $contactModel;
-    private FormSubmissionService $formSubmissionService;
     private ViewInterface $view;
+    private FormSubmissionService $formSubmissionService;
 
-    public function __construct(ContactModel $contactModel, FormSubmissionService $formSubmissionService, ViewInterface $view)
-    {
+    public function __construct(ViewInterface $view, ContactModel $contactModel, FormSubmissionService $formSubmissionService) {
+        $this->view = $view;
         $this->contactModel = $contactModel;
         $this->formSubmissionService = $formSubmissionService;
-        $this->view = $view;
     }
 
-    public function index(): void
+    public function index()
     {
-        $this->view->render('contact');
+        $this->view->render('landing');
     }
 
-    public function submit(?array $input = null): string
+    public function postLeadForm()
     {
         $input ??= $_POST;
+        $input['comment'] = 'Landing Page Lead Form Submission - '. $input['comment'];
         $user = $this->view->getUser();
         $validationErrors = $this->contactModel->checkContactForm($input);
 
@@ -43,8 +42,6 @@ class ContactController
 
         $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
 
-        return JsonResponse::success([
-            'redirect' => '/thank-you',
-        ]);
+        return JsonResponse::success('Thanks for contacting us. We will reply by email as soon as possible.');
     }
 }

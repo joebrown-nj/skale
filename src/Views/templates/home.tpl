@@ -1,5 +1,7 @@
 {include file="inc/layout/header.tpl"}
 
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css">
+
 <section class="parallax cta-section home-hero py-5 bg-gradient border-bottom">
     <div class="container home-hero-inner pt-5 pb-5 d-flex align-items-center justify-content-center">
         <div class="row align-items-center home-hero-grid">

@@ -1,5 +1,7 @@
 {include file="inc/layout/header.tpl"}
 
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css">
+
 {if isset($page.content)}
     <div data-aos="fade-up" class="container-fluid">
         <div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">

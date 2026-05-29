@@ -20,16 +20,19 @@ use App\Controllers\MetaDataController;
 use App\Controllers\EmailController;
 use App\Controllers\GetStartedController;
 use App\Controllers\PortfolioController;
+use App\Controllers\LandingPageController;
 
 class Routes
 {
     private RouteCollector $router;
     private Dispatcher $dispatcher;
     private Container $container;
+    private PageContextProvider $pageContextProvider;
 
     public function __construct()
     {
         $this->container = Application::getInstance()->getContainer();
+        $this->pageContextProvider = $this->container->get(PageContextProvider::class);
         $this->router = new RouteCollector();
         $this->registerRoutes();
         $resolver = new PhrouteHandlerResolver($this->container);
@@ -52,11 +55,15 @@ class Routes
         $this->router->get('/blog/archive', [BlogController::class, 'archive']);
         $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
         $this->router->get('/contact', [ContactController::class, 'index']);
-        $this->router->get('/privacy-policy', [SubPageController::class, 'index']);
-        $this->router->get('/terms-of-service', [SubPageController::class, 'index']);
-        $this->router->get('/about', [SubPageController::class, 'index']);
         $this->router->get('/portfolio', [PortfolioController::class, 'index']);
-        $this->router->get('/thank-you', [SubPageController::class, 'index']);
+
+        $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
+
+        $this->router->get('/website-development', [LandingPageController::class, 'index']);
+        $this->router->get('/marketing', [LandingPageController::class, 'index']);
+        $this->router->get('/automation', [LandingPageController::class, 'index']);
+        $this->router->post('/post-lead-form', [LandingPageController::class, 'postLeadForm']);
+
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
         // $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
@@ -88,10 +95,31 @@ class Routes
             );
             echo $response;
         } catch (HttpRouteNotFoundException $e) {
-            $this->handleNotFound();
+            $this->handleDynamicPageOrNotFound($requestPath);
         } catch (\Exception $e) {
             $this->handleError($e);
         }
+    }
+
+    private function handleDynamicPageOrNotFound(string $requestPath): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && $this->isDynamicPage($requestPath)) {
+            $this->container->get(SubPageController::class)->index();
+            return;
+        }
+
+        $this->handleNotFound();
+    }
+
+    private function isDynamicPage(string $requestPath): bool
+    {
+        $normalizedPath = trim($requestPath, '/');
+
+        if ($normalizedPath === '') {
+            return false;
+        }
+
+        return $this->pageContextProvider->resolve($normalizedPath) !== null;
     }
 
     private function handleNotFound(): void
