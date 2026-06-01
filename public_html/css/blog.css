@@ -1,0 +1,111 @@
+table.xdebug-error {
+    color:#000 !important;
+}
+
+.blog-card {
+    transition: all .3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.25);
+}
+
+.blog-image {
+    transition: transform .4s ease;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+}
+
+.blog-card:hover .blog-image {
+    transform: scale(1.05);
+}
+
+.blog-card h3 {
+    line-height: 1.4;
+}
+
+.blog-card p {
+    line-height: 1.8;
+}
+
+.article-progress-wrapper {
+        position: sticky;
+        bottom: 1.5rem;
+        z-index: 10;
+        max-width: 760px;
+        margin: 2rem auto 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .2s ease, visibility .2s ease;
+        pointer-events: none;
+}
+
+.article-progress-wrapper.is-visible {
+        opacity: 1;
+        visibility: visible;
+}
+
+.article-progress {
+        height: 1.75rem;
+        width: 100%;
+        background: rgba(255,255,255,.08);
+        overflow: hidden;
+        border-radius: 999px;
+}
+
+.article-progress .progress-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 0;
+        min-width: 0;
+        padding: 0 .75rem;
+        white-space: nowrap;
+        color: #fff;
+        font-size: .875rem;
+        font-weight: 600;
+        transition: width .1s linear;
+}
+
+@media (max-width: 767.98px) {
+        .article-progress-wrapper {
+                position: fixed;
+                left: 1rem;
+                right: 1rem;
+                bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+                max-width: none;
+                margin: 0;
+        }
+
+        .article-progress {
+                height: 1.5rem;
+        }
+
+        .article-progress .progress-bar {
+                padding: 0 .5rem;
+                font-size: .75rem;
+        }
+}
+
+.article-content {
+        max-width: 760px;
+        margin: auto;
+}
+
+.article-content p {
+        font-size: 1.15rem;
+        line-height: 2;
+        color: rgba(255,255,255,.85);
+        margin-bottom: 2rem;
+}
+
+.article-content h2 {
+        font-size: 2rem;
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
+}
+
+.article-content ul li {
+        margin-bottom: 1rem;
+}

@@ -45,6 +45,9 @@ class BlogEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $metaKeywords;
 
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    public ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,6 +169,18 @@ class BlogEntity
     public function setMetaKeywords(string $metaKeywords): self
     {
         $this->metaKeywords = $metaKeywords;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

@@ -95,6 +95,25 @@ function refreshAos(delay = 0) {
     }, delay);
 }
 
+function getAjaxContentScrollTop(slug, queryString = '') {
+    const params = new URLSearchParams(queryString);
+    const isBlogFilterRequest = (slug === '/blog' || slug === '/blog/archive') && params.has('category');
+
+    if (!isBlogFilterRequest) {
+        return 0;
+    }
+
+    const $categoryFilters = $('.blog-list .d-flex.flex-wrap.gap-2').first();
+
+    if (!$categoryFilters.length) {
+        return 0;
+    }
+
+    const headerOffset = $('header.menu-bar').outerHeight() || 0;
+
+    return Math.max($categoryFilters.offset().top - headerOffset - 24, 0);
+}
+
 function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true) {
     const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
 
@@ -109,7 +128,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     setActiveNavItem(slug);
     $('.page-content').html(data);
     initializeHomePageForm();
-    $(window).scrollTop(0);
+    $(window).scrollTop(getAjaxContentScrollTop(slug, queryString));
     refreshAos(50);
 
     updateHeaderBackground(slug);
@@ -466,28 +485,68 @@ gtag('config', 'G-5HMT5HBM1Y', {
     cookie_flags: 'secure;samesite=none',
 });
 
-//Get the button
-let mybutton = document.getElementById("btn-back-to-top");
+//Get the button.
+const mybutton = document.getElementById('btn-back-to-top');
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () {
-  scrollFunction();
-};
+function updateBackToTopButton() {
+    if (!mybutton) {
+        return;
+    }
 
-function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+    const isVisible = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
+
+    mybutton.style.display = isVisible ? 'block' : 'none';
 }
-// When the user clicks on the button, scroll to the top of the document
-mybutton.addEventListener("click", backToTop);
+
+function updateArticleProgress() {
+    const articleSection = document.querySelector('section.article');
+    const article = articleSection?.querySelector('.article-content');
+    const progressWrapper = articleSection?.querySelector('.article-progress-wrapper');
+    const progress = articleSection?.querySelector('.article-progress');
+    const progressBar = document.getElementById('article-progress-bar');
+
+    if (!articleSection || !article || !progressWrapper || !progress || !progressBar) {
+        return;
+    }
+
+    const articleSectionRect = articleSection.getBoundingClientRect();
+    const isArticleInView = articleSectionRect.top < window.innerHeight && articleSectionRect.bottom >= 0;
+    progressWrapper.classList.toggle('is-visible', isArticleInView);
+
+    const articleTop = article.getBoundingClientRect().top + window.scrollY;
+    const articleHeight = article.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const progressStart = articleTop - viewportHeight;
+    const progressEnd = articleTop + articleHeight - viewportHeight;
+    const scrollableDistance = Math.max(progressEnd - progressStart, 1);
+    const scrollPosition = window.scrollY - progressStart;
+    const progressValue = Math.max(0, Math.min((scrollPosition / scrollableDistance) * 100, 100));
+    const roundedProgress = Math.round(progressValue);
+    const progressLabel = window.innerWidth < 768
+        ? `${roundedProgress}%`
+        : `${roundedProgress}% completed`;
+
+    progressBar.style.width = `${progressValue}%`;
+    progressBar.setAttribute('aria-valuenow', roundedProgress);
+    progress.setAttribute('aria-valuenow', roundedProgress);
+    progressBar.textContent = progressLabel;
+}
+
+function handleWindowScroll() {
+    updateBackToTopButton();
+    updateArticleProgress();
+}
+
+window.addEventListener('scroll', handleWindowScroll, { passive: true });
+window.addEventListener('resize', updateArticleProgress);
+
+if (mybutton) {
+    mybutton.addEventListener('click', backToTop);
+}
 
 function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
+
+handleWindowScroll();

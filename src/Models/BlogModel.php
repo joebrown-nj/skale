@@ -17,10 +17,20 @@ class BlogModel
         $this->entityManager = $entityManager;
     }
 
-    public function getAllBlogs() : Array | NULL  {
+    public function getAllBlogs(?string $category = null) : Array | NULL  {
         try {
             $repository = $this->entityManager->getRepository(BlogEntity::class);
-            $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')->setMaxResults(10)->getQuery();
+            $queryBuilder = $repository->createQueryBuilder('b')
+                ->orderBy('b.datePosted', 'DESC')
+                ->setMaxResults(10);
+
+            if ($category !== null && $category !== '') {
+                $queryBuilder
+                    ->andWhere('b.category = :category')
+                    ->setParameter('category', $category);
+            }
+
+            $query = $queryBuilder->getQuery();
             $returnVal = $query->getResult();
         } catch (\Throwable $e) {
             error_log($e->getMessage());
@@ -29,21 +39,35 @@ class BlogModel
         return $returnVal;
     }
 
-    public function getBlogArchive(int $start=0, int $limit=10) : Array | NULL  {
+    public function getBlogArchive(int $start = 0, int $limit = 10, ?string $category = null) : Array | NULL  {
         $repository = $this->entityManager->getRepository(BlogEntity::class);
-        $query = $repository->createQueryBuilder('b')->orderBy('b.datePosted', 'DESC')
+        $queryBuilder = $repository->createQueryBuilder('b')
+            ->orderBy('b.datePosted', 'DESC')
             ->setFirstResult($start)
-            ->setMaxResults($limit)
-            ->getQuery();
+            ->setMaxResults($limit);
+
+        if ($category !== null && $category !== '') {
+            $queryBuilder
+                ->andWhere('b.category = :category')
+                ->setParameter('category', $category);
+        }
+
+        $query = $queryBuilder->getQuery();
         $returnVal = $query->getResult();
 
         return $returnVal;
     }
  
-    public function getBlogTotalCount() : int {
-        $repository = $this->entityManager->getRepository(BlogEntity::class)
-            ->createQueryBuilder('b')
+    public function getBlogTotalCount(?string $category = null) : int {
+        $repository = $this->entityManager->getRepository(BlogEntity::class)->createQueryBuilder('b')
             ->select('count(b.id)');
+
+        if ($category !== null && $category !== '') {
+            $repository
+                ->andWhere('b.category = :category')
+                ->setParameter('category', $category);
+        }
+
         $count = $repository->getQuery()->getSingleScalarResult();
         return $count;
     }
@@ -61,5 +85,21 @@ class BlogModel
         $returnVal = $query->getOneOrNullResult();
 
         return $returnVal;
+    }
+
+    public function getBlogCategories() : Array {
+        $repository = $this->entityManager->getRepository(BlogEntity::class);
+        $query = $repository->createQueryBuilder('b')
+            ->select('DISTINCT b.category')
+            ->where('b.category IS NOT NULL')
+            ->andWhere('b.category != :emptyCategory')
+            ->setParameter('emptyCategory', '')
+            ->orderBy('b.category', 'ASC')
+            ->getQuery();
+        $returnVal = $query->getResult();
+
+        return array_map(function($item) {
+            return $item['category'];
+        }, $returnVal);
     }
 }

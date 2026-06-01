@@ -43,7 +43,7 @@
         <section class="border-top">
             <div class="container-fluid text-center text-md-start mt-5">
                 <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id="subscribe">
                         <h6 class="text-uppercase fw-bold mb-4"></i>Subscribe to our newsletter</h6>
                         <form id="newsletterForm" class="mb-4 ajaxForm" method="POST" action="{$smarty.ENV.WEB_ROOT}email-list-signup">
                             <p>Monthly digest of what's new and exciting from us.</p>

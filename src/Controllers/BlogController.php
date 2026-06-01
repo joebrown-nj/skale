@@ -29,26 +29,44 @@ class BlogController
         return $this->view;
     }
 
+    private function getSelectedCategory(): ?string
+    {
+        $category = isset($_GET['category']) ? trim((string) $_GET['category']) : '';
+
+        return $category === '' ? null : $category;
+    }
+
     public function index() {
+        $selectedCategory = $this->getSelectedCategory();
+
         $this->view->render('blogList', array(
-            'blogList' => $this->blogModel->getAllBlogs(),
-            'blogFeatured' => $this->blogModel->getFeaturedBlog()
+            'blogList' => $this->blogModel->getAllBlogs($selectedCategory),
+            'blogFeatured' => $this->blogModel->getFeaturedBlog(),
+            'blogCategories' => $this->blogModel->getBlogCategories(),
+            'activeCategory' => $selectedCategory,
+            'filterPath' => $_ENV['SITE_URL'] . 'blog',
         ));
     }
 
     public function archive() {
-        $totalCount = $this->blogModel->getBlogTotalCount();
-        $numberOfpages = round($totalCount/$_ENV['BLOG_ITEMS_PER_PAGE']);
-        $pagesArray = range(1, $numberOfpages);
-        $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+        $selectedCategory = $this->getSelectedCategory();
+        $totalCount = $this->blogModel->getBlogTotalCount($selectedCategory);
+        $numberOfpages = $totalCount > 0 ? (int) ceil($totalCount / (int) $_ENV['BLOG_ITEMS_PER_PAGE']) : 0;
+        $pagesArray = $numberOfpages > 0 ? range(1, $numberOfpages) : [];
+        $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+        $currentPage = max(1, $currentPage);
         $start = ($currentPage - 1) * $_ENV['BLOG_ITEMS_PER_PAGE'];
+
         $this->view->render('blogArchive', array(
-            'blogList' => $this->blogModel->getBlogArchive($start, $_ENV['BLOG_ITEMS_PER_PAGE']),
+            'blogList' => $this->blogModel->getBlogArchive($start, $_ENV['BLOG_ITEMS_PER_PAGE'], $selectedCategory),
             'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
             'numberOfpages' => $numberOfpages,
             'currentPage' => $currentPage,
-            'pagesArray' => $pagesArray
+            'pagesArray' => $pagesArray,
+            'blogCategories' => $this->blogModel->getBlogCategories(),
+            'activeCategory' => $selectedCategory,
+            'filterPath' => $_ENV['SITE_URL'] . 'blog/archive',
         ));
     }
 

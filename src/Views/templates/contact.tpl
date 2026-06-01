@@ -19,12 +19,10 @@
 <style>
     :root {
         --bg: #081120;
-        --card: rgba(17, 24, 39, .82);
         --primary: #2563eb;
         --primary-light: #60a5fa;
         --text: #ffffff;
         --muted: #cbd5e1;
-        --border: rgba(255, 255, 255, .08);
     }
 
     * {
@@ -105,16 +103,6 @@
         line-height: 1.8;
         margin-bottom: 35px;
         max-width: 650px;
-    }
-
-    /* Glass Card */
-    .glass-card {
-        background: var(--card);
-        backdrop-filter: blur(14px);
-        border: 1px solid var(--border);
-        border-radius: 24px;
-        padding: 40px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
     }
 
     .form-control,
@@ -278,10 +266,6 @@
     @media(max-width:768px) {
         .section-padding {
             padding: 70px 0;
-        }
-
-        .glass-card {
-            padding: 30px 24px;
         }
 
         .cta-box {
