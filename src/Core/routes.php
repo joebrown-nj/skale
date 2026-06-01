@@ -24,126 +24,126 @@ use App\Controllers\LandingPageController;
 
 class Routes
 {
-    private RouteCollector $router;
-    private Dispatcher $dispatcher;
-    private Container $container;
-    private PageContextProvider $pageContextProvider;
+ private RouteCollector $router;
+ private Dispatcher $dispatcher;
+ private Container $container;
+ private PageContextProvider $pageContextProvider;
 
-    public function __construct()
-    {
-        $this->container = Application::getInstance()->getContainer();
-        $this->pageContextProvider = $this->container->get(PageContextProvider::class);
-        $this->router = new RouteCollector();
-        $this->registerRoutes();
-        $resolver = new PhrouteHandlerResolver($this->container);
-        $this->dispatcher = new Dispatcher($this->router->getData(), $resolver);
-    }
+ public function __construct()
+ {
+ $this->container = Application::getInstance()->getContainer();
+ $this->pageContextProvider = $this->container->get(PageContextProvider::class);
+ $this->router = new RouteCollector();
+ $this->registerRoutes();
+ $resolver = new PhrouteHandlerResolver($this->container);
+ $this->dispatcher = new Dispatcher($this->router->getData(), $resolver);
+ }
 
-    private function registerRoutes(): void
-    {
-        $this->router->filter('auth', function() {
-            return $this->container->get(AuthMiddleware::class)->handle();
-        });
+ private function registerRoutes(): void
+ {
+ $this->router->filter('auth', function() {
+ return $this->container->get(AuthMiddleware::class)->handle();
+ });
 
-        // Public routes
-        $this->router->get('/', [HomeController::class, 'index']);
-        $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
-        $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
-        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
-        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionDetail']);
-        $this->router->get('/blog', [BlogController::class, 'index']);
-        $this->router->get('/blog/archive', [BlogController::class, 'archive']);
-        $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
-        $this->router->get('/contact', [ContactController::class, 'index']);
-        $this->router->get('/portfolio', [PortfolioController::class, 'index']);
+ // Public routes
+ $this->router->get('/', [HomeController::class, 'index']);
+ $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
+ $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
+ $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
+ $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionDetail']);
+ $this->router->get('/blog', [BlogController::class, 'index']);
+ $this->router->get('/blog/archive', [BlogController::class, 'archive']);
+ $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
+ $this->router->get('/contact', [ContactController::class, 'index']);
+ $this->router->get('/portfolio', [PortfolioController::class, 'index']);
 
-        $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
+ $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
 
-        $this->router->get('/website-development', [LandingPageController::class, 'index']);
-        $this->router->get('/marketing', [LandingPageController::class, 'index']);
-        $this->router->get('/automation', [LandingPageController::class, 'index']);
-        $this->router->post('/post-lead-form', [LandingPageController::class, 'postLeadForm']);
+ $this->router->get('/website-development', [LandingPageController::class, 'index']);
+ $this->router->get('/marketing', [LandingPageController::class, 'index']);
+ $this->router->get('/automation', [LandingPageController::class, 'index']);
+ $this->router->post('/post-lead-form', [LandingPageController::class, 'postLeadForm']);
 
-        $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
+ $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
-        // $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
-        $this->router->post('/', [GetStartedController::class, 'postGetStarted']);
-        $this->router->post('/contact-form', [ContactController::class, 'submit']);
-        $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
-        $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
-    }
+ // $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
+ $this->router->post('/', [GetStartedController::class, 'postGetStarted']);
+ $this->router->post('/contact-form', [ContactController::class, 'submit']);
+ $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
+ $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
+ }
 
-    public function dispatch(): void
-    {
-        $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+ public function dispatch(): void
+ {
+ $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
 
-        if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
-            $normalizedPath = rtrim($requestPath, '/');
-            $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
-                ? '?' . $_SERVER['QUERY_STRING']
-                : '';
+ if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
+ $normalizedPath = rtrim($requestPath, '/');
+ $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
+ ? '?' . $_SERVER['QUERY_STRING']
+ : '';
 
-            http_response_code(301);
-            header('Location: ' . $normalizedPath . $queryString, true, 301);
-            return;
-        }
+ http_response_code(301);
+ header('Location: ' . $normalizedPath . $queryString, true, 301);
+ return;
+ }
 
-        try {
-            $response = $this->dispatcher->dispatch(
-                $_SERVER['REQUEST_METHOD'],
-                $requestPath
-            );
-            echo $response;
-        } catch (HttpRouteNotFoundException $e) {
-            $this->handleDynamicPageOrNotFound($requestPath);
-        } catch (\Exception $e) {
-            $this->handleError($e);
-        }
-    }
+ try {
+ $response = $this->dispatcher->dispatch(
+ $_SERVER['REQUEST_METHOD'],
+ $requestPath
+ );
+ echo $response;
+ } catch (HttpRouteNotFoundException $e) {
+ $this->handleDynamicPageOrNotFound($requestPath);
+ } catch (\Exception $e) {
+ $this->handleError($e);
+ }
+ }
 
-    private function handleDynamicPageOrNotFound(string $requestPath): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && $this->isDynamicPage($requestPath)) {
-            $this->container->get(SubPageController::class)->index();
-            return;
-        }
+ private function handleDynamicPageOrNotFound(string $requestPath): void
+ {
+ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $this->isDynamicPage($requestPath)) {
+ $this->container->get(SubPageController::class)->index();
+ return;
+ }
 
-        $this->handleNotFound();
-    }
+ $this->handleNotFound();
+ }
 
-    private function isDynamicPage(string $requestPath): bool
-    {
-        $normalizedPath = trim($requestPath, '/');
+ private function isDynamicPage(string $requestPath): bool
+ {
+ $normalizedPath = trim($requestPath, '/');
 
-        if ($normalizedPath === '') {
-            return false;
-        }
+ if ($normalizedPath === '') {
+ return false;
+ }
 
-        return $this->pageContextProvider->resolve($normalizedPath) !== null;
-    }
+ return $this->pageContextProvider->resolve($normalizedPath) !== null;
+ }
 
-    private function handleNotFound(): void
-    {
-        http_response_code(404);
-        $this->container->get(ViewInterface::class)->render('error/404');
-    }
+ private function handleNotFound(): void
+ {
+ http_response_code(404);
+ $this->container->get(ViewInterface::class)->render('error/404');
+ }
 
-    private function registerSegmentedGetRoutes(string $basePath, int $maxDepth, array $handler): void
-    {
-        $this->router->get($basePath.'/', $handler);
+ private function registerSegmentedGetRoutes(string $basePath, int $maxDepth, array $handler): void
+ {
+ $this->router->get($basePath.'/', $handler);
 
-        $segments = [];
+ $segments = [];
 
-        for ($depth = 1; $depth <= $maxDepth; $depth++) {
-            $segments[] = '{p'.$depth.'}';
-            $this->router->get($basePath.'/'.implode('/', $segments), $handler);
-        }
-    }
+ for ($depth = 1; $depth <= $maxDepth; $depth++) {
+ $segments[] = '{p'.$depth.'}';
+ $this->router->get($basePath.'/'.implode('/', $segments), $handler);
+ }
+ }
 
-    private function handleError(\Exception $e): void
-    {
-        echo $e->getMessage();
-        http_response_code(500);
-        $this->container->get(ViewInterface::class)->render('error/500');
-    }
+ private function handleError(\Exception $e): void
+ {
+ echo $e->getMessage();
+ http_response_code(500);
+ $this->container->get(ViewInterface::class)->render('error/500');
+ }
 }

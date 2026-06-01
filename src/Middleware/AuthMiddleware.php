@@ -7,14 +7,14 @@ use App\Core\Traits\RedirectTrait;
 
 class AuthMiddleware
 {
-    use RedirectTrait;
+ use RedirectTrait;
 
-    public function handle(): ?string
-    {
-        if (!isset($_SESSION['user_id'])) {
-            $_SESSION['error'] = 'Please login to access this page';
-            $this->redirect('/signin');
-        }
-        return null;
-    }
+ public function handle(): ?string
+ {
+ if (!isset($_SESSION['user_id'])) {
+ $_SESSION['error'] = 'Please login to access this page';
+ $this->redirect('/signin');
+ }
+ return null;
+ }
 }

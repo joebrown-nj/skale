@@ -239,17 +239,29 @@ function tryParseJsonResponse(data, contentType = '') {
 }
 
 function logButtonClick(element) {
+    if (!element) {
+        return;
+    }
+
+    const $element = $(element);
+    const href = $element.attr('href');
+    const formAction = $element.closest('form').attr('action');
+    const target = href || formAction || window.location.pathname;
+    const detail = $element.attr('aria-describedby') || $element.attr('aria-details') || $element.text().trim();
+
+    if (!detail) {
+        return;
+    }
+
     $.ajax({
         type: 'POST',
         url: '/log-button-click',
         data: {
-            target: $(element).attr('href'),
+            target,
             url: window.location.pathname,
-            detail: $(element).attr('aria-describedby'),
+            detail,
         },
     });
-
-    return false;
 }
 
 function parseLinkUrl(href) {
@@ -262,6 +274,25 @@ function parseLinkUrl(href) {
         slug: url.pathname || '/',
         queryString: url.searchParams.toString(),
     };
+}
+
+function shouldHandleAjaxLink(href) {
+    if (!href) {
+        return false;
+    }
+
+    const trimmedHref = href.trim().toLowerCase();
+
+    if (
+        trimmedHref === '#'
+        || trimmedHref.startsWith('#')
+        || trimmedHref.startsWith('mailto:')
+        || trimmedHref.startsWith('tel:')
+    ) {
+        return false;
+    }
+
+    return true;
 }
 
 function getCurrentLocationState() {
@@ -379,6 +410,12 @@ $(document).on('click', '.prev-step', function() {
 function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory = true) {
     removeAllAlerts();
 
+    const sourceElement = event?.currentTarget ?? event?.target ?? null;
+
+    if (sourceElement) {
+        logButtonClick(sourceElement);
+    }
+
     $.ajax({
         type: 'GET',
         url: buildUrl(slug, {
@@ -418,6 +455,7 @@ function submitAjaxForm(button) {
     const action = $form.attr('action');
     const errors = validateRequiredFields($form);
 
+    logButtonClick(button);
     showOverlay();
     $form.find('.alert').remove();
 
@@ -499,12 +537,14 @@ function submitAjaxForm(button) {
     return false;
 }
 
-$(document).on('click', '.lbc', function handleLogClick() {
-    logButtonClick(this);
-});
-
 $(document).on('click', '.mbtn', function handleMenuClick(event) {
-    const { slug, queryString } = parseLinkUrl($(this).attr('href'));
+    const href = $(this).attr('href');
+
+    if (!shouldHandleAjaxLink(href)) {
+        return true;
+    }
+
+    const { slug, queryString } = parseLinkUrl(href);
 
     ajaxGetPageContent(slug, queryString, event);
     bsOffcanvas?.hide();

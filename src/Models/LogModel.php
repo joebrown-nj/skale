@@ -9,30 +9,30 @@ use Throwable;
 
 class LogModel
 {
-    private EntityManager $entityManager;
+ private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
+ public function __construct(EntityManager $entityManager)
+ {
+ $this->entityManager = $entityManager;
+ }
 
-    public function logButtonClick(array $data): bool
-    {
-        try {
-            $post = new LogButtonClicksEntity();
-            $post->settarget($data['target']);
-            $post->seturl($data['url']);
-            $post->setdetail($data['detail']);
-            $post->setuserIP($data['userIP']);
-            $post->setuserInfo($data['userInfo']);
-            $post->setserverInfo($data['serverInfo']);
+ public function logButtonClick(array $data): bool
+ {
+ try {
+ $post = new LogButtonClicksEntity();
+ $post->settarget($data['target']);
+ $post->seturl($data['url']);
+ $post->setdetail($data['detail']);
+ $post->setuserIP($data['userIP']);
+ $post->setuserInfo($data['userInfo']);
+ $post->setserverInfo($data['serverInfo']);
 
-            $this->entityManager->persist($post);
-            $this->entityManager->flush();
-        } catch (Throwable $e) {
-            error_log($e->getMessage());
-            return false;
-        }
-        return true;
-    }
+ $this->entityManager->persist($post);
+ $this->entityManager->flush();
+ } catch (Throwable $e) {
+ error_log($e->getMessage());
+ return false;
+ }
+ return true;
+ }
 }

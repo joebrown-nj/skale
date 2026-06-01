@@ -7,69 +7,69 @@ use App\Core\Contracts\UserLocationProviderInterface;
 
 class UserController implements UserLocationProviderInterface
 {
-    private string $apiKey;
-    private string $urlTemplate;
+ private string $apiKey;
+ private string $urlTemplate;
 
-    public function __construct()
-    {
-        $this->apiKey = $_ENV['IP2LOCATION_API_KEY'];
-        $this->urlTemplate = 'https://api.ip2location.io/?ip=%s&key=' . $this->apiKey . '&format=json';
-    }
+ public function __construct()
+ {
+ $this->apiKey = $_ENV['IP2LOCATION_API_KEY'];
+ $this->urlTemplate = 'https://api.ip2location.io/?ip=%s&key=' . $this->apiKey . '&format=json';
+ }
 
-    public function getIPAddress(?array $server = null): string
-    {
-        $server ??= $_SERVER;
+ public function getIPAddress(?array $server = null): string
+ {
+ $server ??= $_SERVER;
 
-        if (isset($server['HTTP_CLIENT_IP'])) {
-            return $server['HTTP_CLIENT_IP'];
-        }
+ if (isset($server['HTTP_CLIENT_IP'])) {
+ return $server['HTTP_CLIENT_IP'];
+ }
 
-        if (isset($server['HTTP_X_FORWARDED_FOR'])) {
-            return $server['HTTP_X_FORWARDED_FOR'];
-        }
+ if (isset($server['HTTP_X_FORWARDED_FOR'])) {
+ return $server['HTTP_X_FORWARDED_FOR'];
+ }
 
-        return $server['REMOTE_ADDR'] ?? '127.0.0.1';
-    }
+ return $server['REMOTE_ADDR'] ?? '127.0.0.1';
+ }
 
-    public function getUserLocation(): array
-    {
-        $ipAddress = $this->getIPAddress();
+ public function getUserLocation(): array
+ {
+ $ipAddress = $this->getIPAddress();
 
-        if (
-            isset($_SESSION['userLocation']) &&
-            isset($_SESSION['userLocation']['ipAddress']) &&
-            $_SESSION['userLocation']['ipAddress'] == $ipAddress
-        ) {
-            return $_SESSION['userLocation'];
-        }
+ if (
+ isset($_SESSION['userLocation']) &&
+ isset($_SESSION['userLocation']['ipAddress']) &&
+ $_SESSION['userLocation']['ipAddress'] == $ipAddress
+ ) {
+ return $_SESSION['userLocation'];
+ }
 
-        $urlToCall = sprintf($this->urlTemplate, $ipAddress);
-        $rawJson = @file_get_contents($urlToCall);
-        $data = is_string($rawJson) ? json_decode($rawJson, true) : null;
+ $urlToCall = sprintf($this->urlTemplate, $ipAddress);
+ $rawJson = @file_get_contents($urlToCall);
+ $data = is_string($rawJson) ? json_decode($rawJson, true) : null;
 
-        if (is_array($data) && isset($data['city_name']) && $data['city_name'] !== '-') {
-            $this->setUserLocationSession($data);
-            return $data;
-        }
+ if (is_array($data) && isset($data['city_name']) && $data['city_name'] !== '-') {
+ $this->setUserLocationSession($data);
+ return $data;
+ }
 
-        $fallbackLocation = $this->buildFallbackLocation($ipAddress);
-        $this->setUserLocationSession($fallbackLocation);
+ $fallbackLocation = $this->buildFallbackLocation($ipAddress);
+ $this->setUserLocationSession($fallbackLocation);
 
-        return $fallbackLocation;
-    }
+ return $fallbackLocation;
+ }
 
-    private function setUserLocationSession(array $data): void
-    {
-        $_SESSION['userLocation'] = $data;
-    }
+ private function setUserLocationSession(array $data): void
+ {
+ $_SESSION['userLocation'] = $data;
+ }
 
-    private function buildFallbackLocation(string $ipAddress): array
-    {
-        return [
-            'ipAddress' => $ipAddress,
-            'city_name' => 'Localhost',
-            'region_name' => 'Localhost',
-            'country_name' => 'Localhost',
-        ];
-    }
+ private function buildFallbackLocation(string $ipAddress): array
+ {
+ return [
+ 'ipAddress' => $ipAddress,
+ 'city_name' => 'Localhost',
+ 'region_name' => 'Localhost',
+ 'country_name' => 'Localhost',
+ ];
+ }
 }

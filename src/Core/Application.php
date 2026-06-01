@@ -19,109 +19,109 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class Application
 {
-    private static ?Application $instance = null;
-    private Routes $routes;
-    private Container $container;
+ private static ?Application $instance = null;
+ private Routes $routes;
+ private Container $container;
 
-    private function __construct()
-    {
-        self::$instance = $this;
-        $this->container = Container::getInstance();
-        $this->initialize();
-    }
+ private function __construct()
+ {
+ self::$instance = $this;
+ $this->container = Container::getInstance();
+ $this->initialize();
+ }
 
-    public static function getInstance(): Application
-    {
-        if(self::$instance === null){
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
+ public static function getInstance(): Application
+ {
+ if(self::$instance === null){
+ self::$instance = new self();
+ }
+ return self::$instance;
+ }
 
-    private function initialize(): void
-    {
-        // Start session
-        $this->startSession();
+ private function initialize(): void
+ {
+ // Start session
+ $this->startSession();
 
-        // Load environment variables
-        $this->loadEnvironment();
+ // Load environment variables
+ $this->loadEnvironment();
 
-        $this->registerEntityManager();
-        $this->registerSharedDependencies();
+ $this->registerEntityManager();
+ $this->registerSharedDependencies();
 
-        // Initialize routes
-        $this->routes = new Routes();
-    }
+ // Initialize routes
+ $this->routes = new Routes();
+ }
 
-    private function loadEnvironment(): void
-    {
-        $dotenv = new Dotenv();
-        $dotenv->load('../.env');
-        $dotenv->load('../'.strtoupper($_ENV['APP_ENV']).'.env');
-    }
+ private function loadEnvironment(): void
+ {
+ $dotenv = new Dotenv();
+ $dotenv->load('../.env');
+ $dotenv->load('../'.strtoupper($_ENV['APP_ENV']).'.env');
+ }
 
-    private function registerEntityManager(): void
-    {
-        $this->container->set(DatabaseORM::class, function (){
-            return new DatabaseORM(
-                $_ENV['DB_NAME'],
-                $_ENV['DB_HOST'],
-                $_ENV['DB_USER'],
-                $_ENV['DB_PASS'],
-                $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
-            );
-        });
-        // Register EntityManager
-        $this->container->set(EntityManager::class, function () {
-            return $this->container->get(DatabaseORM::class)->initialize();
-        });
-    }
+ private function registerEntityManager(): void
+ {
+ $this->container->set(DatabaseORM::class, function (){
+ return new DatabaseORM(
+ $_ENV['DB_NAME'],
+ $_ENV['DB_HOST'],
+ $_ENV['DB_USER'],
+ $_ENV['DB_PASS'],
+ $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
+ );
+ });
+ // Register EntityManager
+ $this->container->set(EntityManager::class, function () {
+ return $this->container->get(DatabaseORM::class)->initialize();
+ });
+ }
 
-    private function registerSharedDependencies(): void
-    {
-        $this->container->set(UserLocationProviderInterface::class, function () {
-            return $this->container->get(UserController::class);
-        });
+ private function registerSharedDependencies(): void
+ {
+ $this->container->set(UserLocationProviderInterface::class, function () {
+ return $this->container->get(UserController::class);
+ });
 
-        $this->container->set(ViewInterface::class, function () {
-            return $this->container->get(View::class);
-        });
+ $this->container->set(ViewInterface::class, function () {
+ return $this->container->get(View::class);
+ });
 
-        $this->container->set(PHPMailer::class, function () {
-            return new PHPMailer(true);
-        });
+ $this->container->set(PHPMailer::class, function () {
+ return new PHPMailer(true);
+ });
 
-        $this->container->set(Smarty::class, function () {
-            return new Smarty();
-        });
+ $this->container->set(Smarty::class, function () {
+ return new Smarty();
+ });
 
-        $this->container->set(CacheInterface::class, function () {
-            return new FilesystemAdapter(
-                namespace: 'site_data',
-                defaultLifetime: 86400,
-                directory: dirname(__DIR__, 2).'/var/cache'
-            );
-        });
+ $this->container->set(CacheInterface::class, function () {
+ return new FilesystemAdapter(
+ namespace: 'site_data',
+ defaultLifetime: 86400,
+ directory: dirname(__DIR__, 2).'/var/cache'
+ );
+ });
 
-        $this->container->set(EmailServiceInterface::class, function () {
-            return $this->container->get(EmailModel::class);
-        });
-    }
+ $this->container->set(EmailServiceInterface::class, function () {
+ return $this->container->get(EmailModel::class);
+ });
+ }
 
-    private function startSession(): void
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-    }
+ private function startSession(): void
+ {
+ if (session_status() === PHP_SESSION_NONE) {
+ session_start();
+ }
+ }
 
-    public function getContainer(): Container
-    {
-        return $this->container;
-    }
+ public function getContainer(): Container
+ {
+ return $this->container;
+ }
 
-    public function run(): void
-    {
-        $this->routes->dispatch();
-    }
+ public function run(): void
+ {
+ $this->routes->dispatch();
+ }
 } 

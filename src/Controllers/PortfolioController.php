@@ -8,19 +8,19 @@ use App\Models\PortfolioModel;
 
 class PortfolioController
 {
-    private ViewInterface $view;
-    private PortfolioModel $portfolioModel;
+ private ViewInterface $view;
+ private PortfolioModel $portfolioModel;
 
-    public function __construct(PortfolioModel $portfolioModel, ViewInterface $view) {
-        $this->view = $view;
-        $this->portfolioModel = $portfolioModel;
-    }
+ public function __construct(PortfolioModel $portfolioModel, ViewInterface $view) {
+ $this->view = $view;
+ $this->portfolioModel = $portfolioModel;
+ }
 
-    public function index()
-    {
-        $data = array(
-            'portfolioItems' => $this->portfolioModel->getPortfolioItems(),
-        );
-        $this->view->render('portfolio', $data);
-    }
+ public function index()
+ {
+ $data = array(
+ 'portfolioItems' => $this->portfolioModel->getPortfolioItems(),
+ );
+ $this->view->render('portfolio', $data);
+ }
 }

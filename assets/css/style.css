@@ -1,3 +1,9 @@
+ :root {
+	--card: rgba(17, 24, 39, .82);
+	--border: rgba(255, 255, 255, .08);
+	--muted: #cbd5e1;
+}
+
 @font-face {
 	font-family: 'Bahnschrift';
 	src: url(../fonts/Bahnschrift.ttf);
@@ -572,4 +578,19 @@ a:hover {
     padding: 10px 18px;
     color: var(--muted);
     font-size: .95rem;
+}
+
+.glass-card {
+	background: var(--card);
+	backdrop-filter: blur(14px);
+	border: 1px solid var(--border);
+	border-radius: 24px;
+	padding: 40px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+}
+
+@media(max-width:768px) {
+	.glass-card {
+		padding: 30px 24px;
+	}
 }

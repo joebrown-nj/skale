@@ -53,3 +53,20 @@ composer install
 
 cd public_html
 php -S localhost:8080
+
+
+npm install
+
+npm run build:assets
+npm run watch:assets
+npm run check:css
+
+Asset workflow
+
+- Edit source files in `assets/js/` and `assets/css/`
+- Runtime files are generated into `public_html/js/*.min.js` and `public_html/css/*.min.css`
+- `npm run build:assets` rebuilds all minified assets
+- `npm run watch:assets` rebuilds assets while you work
+- `npm run check:css` verifies built CSS matches the source files
+- If you add a new custom CSS file, update `scripts/assets.config.mjs`
+

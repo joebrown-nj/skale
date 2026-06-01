@@ -9,43 +9,43 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'email_list_signups')]
 class EmailListSignupsEntity
 {
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    public ?int $id = null;
+ #[ORM\Id]
+ #[ORM\Column(type: 'integer')]
+ #[ORM\GeneratedValue]
+ public ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 100)]
-    public string $email;
+ #[ORM\Column(type: 'string', length: 100)]
+ public string $email;
 
-    #[ORM\Column(type: 'string', length: 500)]
-    public string $userInfo;
+ #[ORM\Column(type: 'string', length: 500)]
+ public string $userInfo;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+ public function getId(): ?int
+ {
+ return $this->id;
+ }
 
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
+ public function getEmail(): string
+ {
+ return $this->email;
+ }
 
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+ public function setEmail(string $email): self
+ {
+ $this->email = $email;
 
-        return $this;
-    }
+ return $this;
+ }
 
-    public function getUserInfo(): string
-    {
-        return $this->userInfo;
-    }
+ public function getUserInfo(): string
+ {
+ return $this->userInfo;
+ }
 
-    public function setUserInfo(string $userInfo): self
-    {
-        $this->userInfo = $userInfo;
+ public function setUserInfo(string $userInfo): self
+ {
+ $this->userInfo = $userInfo;
 
-        return $this;
-    }
+ return $this;
+ }
 }

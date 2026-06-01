@@ -1,5 +1,15 @@
 {
+  "scripts": {
+    "build:assets": "node scripts/build-assets.mjs",
+    "watch:assets": "node scripts/build-assets.mjs --watch",
+    "check:css": "node scripts/check-css-sync.mjs"
+  },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12"
+  },
+  "devDependencies": {
+    "@parcel/watcher": "^2.5.1",
+    "esbuild": "^0.25.9",
+    "lightningcss": "^1.30.1"
   }
 }

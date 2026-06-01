@@ -9,17 +9,17 @@ use App\Models\Entities\PortfolioEntity;
 
 class PortfolioModel
 {
-    private EntityManager $entityManager;
+ private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
-        $this->entityManager = $entityManager;
-    }
+ public function __construct(EntityManager $entityManager) {
+ $this->entityManager = $entityManager;
+ }
 
-    public function getPortfolioItems(): array
-    {
-        $repository = $this->entityManager->getRepository(PortfolioEntity::class);
-        $query = $repository->createQueryBuilder('p')->orderBy('p.id', 'DESC')->getQuery();
-        $portfolioItems = $query->getResult();
-        return $portfolioItems;
-    }
+ public function getPortfolioItems(): array
+ {
+ $repository = $this->entityManager->getRepository(PortfolioEntity::class);
+ $query = $repository->createQueryBuilder('p')->orderBy('p.id', 'DESC')->getQuery();
+ $portfolioItems = $query->getResult();
+ return $portfolioItems;
+ }
 }

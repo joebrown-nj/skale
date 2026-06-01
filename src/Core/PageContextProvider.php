@@ -7,27 +7,27 @@ use App\Models\PageContentModel;
 
 class PageContextProvider
 {
-    /**
-     * @var array<string, array|null>
-     */
-    private array $resolvedPages = [];
+ /**
+ * @var array<string, array|null>
+ */
+ private array $resolvedPages = [];
 
-    public function __construct(
-        private PageContentModel $pageContentModel,
-    ) {
-    }
+ public function __construct(
+ private PageContentModel $pageContentModel,
+ ) {
+ }
 
-    public function resolve(?string $uri): ?array
-    {
-        $cacheKey = (string) ($uri ?? '');
+ public function resolve(?string $uri): ?array
+ {
+ $cacheKey = (string) ($uri ?? '');
 
-        if (array_key_exists($cacheKey, $this->resolvedPages)) {
-            return $this->resolvedPages[$cacheKey];
-        }
+ if (array_key_exists($cacheKey, $this->resolvedPages)) {
+ return $this->resolvedPages[$cacheKey];
+ }
 
-        $page = $this->pageContentModel->getPageContentByUrl($cacheKey);
-        $this->resolvedPages[$cacheKey] = $page === false ? null : $page;
+ $page = $this->pageContentModel->getPageContentByUrl($cacheKey);
+ $this->resolvedPages[$cacheKey] = $page === false ? null : $page;
 
-        return $this->resolvedPages[$cacheKey];
-    }
+ return $this->resolvedPages[$cacheKey];
+ }
 }
