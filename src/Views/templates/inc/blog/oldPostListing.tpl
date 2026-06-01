@@ -1,4 +1,4 @@
-<div class="position-sticky mb-4" style="top:5rem;">
+<div class="position-sticky old-post-listing mb-4">
     <div class="card border-dark shadow-lg overflow-hidden">
         <div class="card-body">
             <h5 class="card-title">More Posts</h5>

@@ -1,0 +1,61 @@
+.home-callout-bg {
+    min-height: auto;
+    height: auto;
+    background-color: #04010f;
+    background-image: url(/images/circle-skale-up-logo-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.service-detail-hero-image {
+    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    border: 10px solid #171b1e;
+}
+
+.unsubscribe-panel {
+    margin-top: 100px;
+}
+
+.old-post-listing {
+    top: 5rem;
+}
+
+.goals-progress {
+    height: 1px;
+}
+
+.goals-progress-bar {
+    width: 0;
+}
+
+.goals-step-pill {
+    width: 2rem;
+    height: 2rem;
+}
+
+.breadcrumb-container {
+    --bs-breadcrumb-divider: '>';
+    margin-top: 75px;
+}
+
+.footer-social-strip,
+.footer-legal-strip {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.footer-contact-shell {
+    background-color: #01010A;
+}
+
+.hidden-tracking-pixel {
+    display: none;
+}
+
+.hidden-noscript-frame {
+    display: none;
+    visibility: hidden;
+}

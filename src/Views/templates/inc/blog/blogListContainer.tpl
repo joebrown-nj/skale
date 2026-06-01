@@ -12,7 +12,7 @@
                             <span class="badge bg-primary mb-3">Featured Article</span>
                             <h2 class="fw-bold mb-3">{$blogFeatured->title}</h2>
                             <p class="text-secondary mb-4">{$blogFeatured->shortText}</p>
-                            <a class="mbtn btn btn-primary"  aria-describedby="blog {$blogFeatured->title}" href="{$smarty.ENV.SITE_URL}blog/{$blogFeatured->datePosted|date_format:"%Y-%m-%d"}/{$blogFeatured->url}">Read Article</a>
+                            <a class="mbtn btn btn-primary stretched-link"  aria-describedby="blog {$blogFeatured->title}" href="{$smarty.ENV.SITE_URL}blog/{$blogFeatured->datePosted|date_format:"%Y-%m-%d"}/{$blogFeatured->url}">Read Article</a>
                         </div>
                     </div>
                 </div>

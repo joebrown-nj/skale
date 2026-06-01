@@ -1,7 +1,7 @@
 {include file="inc/layout/header.tpl" hideBreadcrumb=true hideMenu=true}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/landing.css">
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterHide.css">
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/landing.css" data-ajax-managed-stylesheet="true">
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterHide.css" data-ajax-managed-stylesheet="true">
 
 {if $p1 == 'website-development'}
     {include file="inc/landing-pages/website-development.tpl"}

@@ -17,6 +17,7 @@
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link href="{$smarty.ENV.WEB_ROOT}css/style.min.css" rel="stylesheet">
+            <link href="{$smarty.ENV.WEB_ROOT}css/templates.css" rel="stylesheet">
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
             <!-- Open Graph -->
@@ -44,7 +45,7 @@
             </script>
 
             <noscript>
-                <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=341250316314045&ev=PageView&noscript=1"/>
+                <img height="1" width="1" class="hidden-tracking-pixel" src="https://www.facebook.com/tr?id=341250316314045&ev=PageView&noscript=1"/>
             </noscript>
             <!-- End Meta Pixel Code -->
         </head>
@@ -52,7 +53,7 @@
         <body class="bg-dark">
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGKXRNV7"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            height="0" width="0" class="hidden-noscript-frame"></iframe></noscript>
             <!-- End Google Tag Manager (noscript) -->
 
             <div id="overlay">

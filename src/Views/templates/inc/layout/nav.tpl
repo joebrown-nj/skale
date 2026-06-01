@@ -43,7 +43,7 @@
 
         <ul class="navbar-nav ms-auto">
             <li>
-                <button style="display:block; height:100%;" class="btn-lg navbar-toggler" data-bs-toggle="offcanvas" href="#oCNav" role="button" aria-controls="oCNav" aria-label="Menu">
+                <button class="d-block h-100 btn-lg navbar-toggler" data-bs-toggle="offcanvas" href="#oCNav" role="button" aria-controls="oCNav" aria-label="Menu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </li>

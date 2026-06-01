@@ -1,7 +1,7 @@
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css">
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.css">
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css" data-ajax-managed-stylesheet="true">
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.css" data-ajax-managed-stylesheet="true">
 
 <section class="parallax cta-section home-hero py-5 bg-gradient border-bottom">
     <div class="container home-hero-inner pt-5 pb-5 d-flex align-items-center justify-content-center">
@@ -24,7 +24,7 @@
     </div>
 </section>
 
-<div class="home-callout parallax container-fluid py-5" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;" data-aos="fade-in-up">
+<div class="home-callout home-callout-bg parallax container-fluid py-5" data-aos="fade-in-up">
     <div class="row justify-content-center py-5">
         <div class="col-md-8">
             <h2 class="pb-4 BricolageGrotesque-ExtraBold lh-base">
@@ -121,7 +121,7 @@
     </div>
 </div>
 
-<div class="bg-gradient container-fluid home-callout parallax" style="min-height:auto; height:auto; background-color:#04010f; background-image: url('{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo-bg.png'); background-repeat: no-repeat; background-position: center;">
+<div class="bg-gradient container-fluid home-callout home-callout-bg parallax">
     <div class="row justify-content-center px-4 py-4">
         {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogFeatured=$data.blogFeatured blogContent=$data.blogContent limit=6}
     </div>

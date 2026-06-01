@@ -95,6 +95,79 @@ function refreshAos(delay = 0) {
     }, delay);
 }
 
+function getManagedStylesheetSelector() {
+    return 'link[rel="stylesheet"][data-ajax-managed-stylesheet]';
+}
+
+function normalizeStylesheetHref(href) {
+    return new URL(href, window.location.origin).href;
+}
+
+function extractManagedStylesheetsFromMarkup(markup) {
+    const container = document.createElement('div');
+    container.innerHTML = markup;
+
+    const managedStylesheets = Array.from(
+        container.querySelectorAll(getManagedStylesheetSelector()),
+    ).map((element) => {
+        const href = element.getAttribute('href') ?? '';
+        element.remove();
+        return href;
+    }).filter(Boolean);
+
+    return {
+        html: container.innerHTML,
+        stylesheets: managedStylesheets,
+    };
+}
+
+function syncManagedStylesheets(stylesheets = []) {
+    const desiredStylesheets = [...new Set(stylesheets.map(normalizeStylesheetHref))];
+    const existingManagedStylesheets = Array.from(
+        document.head.querySelectorAll(getManagedStylesheetSelector()),
+    );
+
+    existingManagedStylesheets.forEach((element) => {
+        if (!desiredStylesheets.includes(normalizeStylesheetHref(element.href))) {
+            element.remove();
+        }
+    });
+
+    desiredStylesheets.forEach((href) => {
+        const alreadyLoaded = document.head.querySelector(
+            `${getManagedStylesheetSelector()}[href="${href}"]`,
+        );
+
+        if (alreadyLoaded) {
+            return;
+        }
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.setAttribute('data-ajax-managed-stylesheet', 'true');
+        document.head.appendChild(link);
+    });
+}
+
+function initializeManagedStylesheets() {
+    const pageContent = document.querySelector('.page-content');
+
+    if (!pageContent) {
+        return;
+    }
+
+    const managedStylesheets = Array.from(
+        pageContent.querySelectorAll(getManagedStylesheetSelector()),
+    ).map((element) => {
+        const href = element.getAttribute('href') ?? '';
+        element.remove();
+        return href;
+    }).filter(Boolean);
+
+    syncManagedStylesheets(managedStylesheets);
+}
+
 function getAjaxContentScrollTop(slug, queryString = '') {
     const params = new URLSearchParams(queryString);
     const isBlogFilterRequest = (slug === '/blog' || slug === '/blog/archive') && params.has('category');
@@ -116,6 +189,9 @@ function getAjaxContentScrollTop(slug, queryString = '') {
 
 function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true) {
     const historyUrl = buildUrl(slug, Object.fromEntries(new URLSearchParams(queryString)));
+    const pageMarkup = typeof data === 'string'
+        ? extractManagedStylesheetsFromMarkup(data)
+        : { html: data, stylesheets: [] };
 
     if (addToHistory) {
         history.pushState({
@@ -126,7 +202,8 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     }
 
     setActiveNavItem(slug);
-    $('.page-content').html(data);
+    $('.page-content').html(pageMarkup.html);
+    syncManagedStylesheets(pageMarkup.stylesheets);
     initializeHomePageForm();
     $(window).scrollTop(getAjaxContentScrollTop(slug, queryString));
     refreshAos(50);
@@ -227,6 +304,7 @@ function ajaxGetPageMetaData(slug) {
 }
 
 $(document).ready(function() {
+    initializeManagedStylesheets();
     initializeHomePageForm();
 });
 

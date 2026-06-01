@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">
-        <div class="col-md-4" style="margin-top: 100px;">
+        <div class="col-md-4 unsubscribe-panel">
             <h2 class="display-4 fw-bold Bahnschrift logo-bg-small">Unsubscribe</h2>
             {if $data.successMessage != ''}
                 <div class="alert alert-success" role="alert">

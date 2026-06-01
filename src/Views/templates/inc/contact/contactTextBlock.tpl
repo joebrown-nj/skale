@@ -1,5 +1,5 @@
 
-<img alt="contact {$smarty.ENV.SITE_NAME}" src="{$smarty.ENV.WEB_ROOT}images/contact-temp.jpg" class="mb-4" style="width: 100%;"/>
+<img alt="contact {$smarty.ENV.SITE_NAME}" src="{$smarty.ENV.WEB_ROOT}images/contact-temp.jpg" class="img-fluid w-100 mb-4"/>
 
 <div class="border-bottom py-4">
     <h2 class="mb-2 Bahnschrift logo-bg-small">Questions? Ready to start now?</h2>

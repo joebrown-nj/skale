@@ -1,4 +1,4 @@
-<nav aria-label="breadcrumb" class="breadcrumb-container py-3 text-bg-dark border-bottom {if $hideBreadcrumb === true}d-none{/if}" style="--bs-breadcrumb-divider: '>'; /*background-color:#07021a;*/ margin-top: 75px;">
+<nav aria-label="breadcrumb" class="breadcrumb-container py-3 text-bg-dark border-bottom {if $hideBreadcrumb === true}d-none{/if}">
     <ol class="breadcrumb mb-0 px-3">
         <li class="breadcrumb-item">
             <a href="{$smarty.ENV.SITE_URL}" aria-details="breadcrumb link home" class="mbtn lbc" ><i class="fa-solid fa-house"></i></a>

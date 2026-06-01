@@ -4,7 +4,7 @@
 
 {else}
 <footer class="logo-bg text-center text-lg-start bg-body-tertiary text-muted">
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style="background-color: rgba(0, 0, 0, 0.05);">
+        <section class="footer-social-strip d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <div class="me-5 d-none d-lg-block">
                 <span>Get connected:</span>
             </div>
@@ -88,7 +88,7 @@
             </div>
         </section>
 
-        <div class="p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <div class="footer-legal-strip p-4">
             <div class="row">
                 <div class="col-md-4 mb-0 text-body-secondary">
                     <p class="p-3 m-0">

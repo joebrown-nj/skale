@@ -1,4 +1,4 @@
-<div class="clearfix py-4" style="background-color:#01010A;">
+<div class="footer-contact-shell clearfix py-4">
     <div class="container-fluid py-4">
         <div class="row justify-content-center py-4">
             <div class="col-md-5 d-none d-sm-block">

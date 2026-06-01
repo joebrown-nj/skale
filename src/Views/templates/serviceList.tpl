@@ -1,6 +1,6 @@
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css">
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.css" data-ajax-managed-stylesheet="true">
 
 {if isset($page.content)}
     <div data-aos="fade-up" class="container-fluid">

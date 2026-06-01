@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-4">
-            <img style="max-width:100%; border:10px solid #171b1e;" alt="{$data.serviceDetail->title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.serviceDetail->image}" style="width:100%; max-height:400px; object-fit:cover; object-position:center;">
+            <img class="img-fluid service-detail-hero-image" alt="{$data.serviceDetail->title}" src="{$smarty.ENV.WEB_ROOT}images/{$data.serviceDetail->image}">
         </div>
     </div>
 </div>

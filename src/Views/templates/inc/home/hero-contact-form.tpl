@@ -5,13 +5,13 @@
     </div>
 
     <div class="position-relative mb-4 mx-2 px-0 py-0 progress-container">
-        <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 1px;">
-            <div class="progress-bar" style="width:0%"></div>
+        <div class="progress goals-progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar goals-progress-bar"></div>
         </div>
 
-        <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-        <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
-        <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+        <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill goals-step-pill">1</button>
+        <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill goals-step-pill">2</button>
+        <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill goals-step-pill">3</button>
     </div>
 
     <form method="post" action="{$smarty.ENV.SITE_URL}" id="goals-form" class="ajaxForm">
