@@ -60,6 +60,9 @@ npm install
 npm run build:assets
 npm run watch:assets
 npm run check:css
+npm run format:tpl
+npm run check:tpl
+npm run check:frontend
 
 Asset workflow
 
@@ -68,5 +71,18 @@ Asset workflow
 - `npm run build:assets` rebuilds all minified assets
 - `npm run watch:assets` rebuilds assets while you work
 - `npm run check:css` verifies built CSS matches the source files
+- `npm run format:tpl` reformats Smarty `.tpl` files so indentation stays readable
+- `npm run check:tpl` verifies template formatting without changing files
+- `npm run check:frontend` runs both frontend checks together
 - If you add a new custom CSS file, update `scripts/assets.config.mjs`
+
+Template formatting
+
+- Template readability is handled by formatting, not linting
+- The formatter is implemented in `scripts/format-templates.mjs`
+- The shared formatting rules live in `scripts/template-format-utils.mjs`
+- Recommended workflow:
+  - run `npm run format:tpl` after editing `.tpl` files
+  - run `npm run check:frontend` before committing
+  - keep template formatting checks in CI or pre-commit rather than rewriting files during asset builds
 

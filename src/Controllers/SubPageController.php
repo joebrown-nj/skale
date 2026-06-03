@@ -7,19 +7,19 @@ use App\Core\Contracts\ViewInterface;
 
 class SubPageController
 {
- private ViewInterface $view;
+    private ViewInterface $view;
 
- public function __construct(ViewInterface $view) {
- $this->view = $view;
- }
+    public function __construct(ViewInterface $view) {
+        $this->view = $view;
+    }
 
- public function index()
- {
- $this->view->render('subpage');
- }
+    public function index()
+    {
+        $this->view->render('subpage');
+    }
 
- public function thankYou()
- {
- $this->view->render('thankYou');
- }
+    public function thankYou()
+    {
+        $this->view->render('thankYou');
+    }
 }

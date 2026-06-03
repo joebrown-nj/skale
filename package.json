@@ -2,7 +2,10 @@
   "scripts": {
     "build:assets": "node scripts/build-assets.mjs",
     "watch:assets": "node scripts/build-assets.mjs --watch",
-    "check:css": "node scripts/check-css-sync.mjs"
+    "check:css": "node scripts/check-css-sync.mjs",
+    "format:tpl": "node scripts/format-templates.mjs",
+    "check:tpl": "node scripts/check-template-format.mjs",
+    "check:frontend": "npm run check:css && npm run check:tpl"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12"
