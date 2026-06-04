@@ -205,6 +205,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     $('.page-content').html(pageMarkup.html);
     syncManagedStylesheets(pageMarkup.stylesheets);
     initializeHomePageForm();
+    initializeStatsCounter();
     $(window).scrollTop(getAjaxContentScrollTop(slug, queryString));
     refreshAos(50);
 
@@ -337,6 +338,7 @@ function ajaxGetPageMetaData(slug) {
 $(document).ready(function() {
     initializeManagedStylesheets();
     initializeHomePageForm();
+    initializeStatsCounter();
 });
 
 var currentStep = 1;
@@ -580,12 +582,7 @@ $(document).ajaxStop(() => {
 window.onpopstate = handlePopState;
 initializeHistoryState();
 
-AOS.init({
-    duration: 900,
-    easing: 'ease-out-cubic',
-    offset: 60,
-    once: true,
-});
+AOS.init();
 
 $(window).on('load', function handleWindowLoad() {
     refreshAos(0);
@@ -668,3 +665,93 @@ function backToTop() {
 }
 
 handleWindowScroll();
+
+let statsObserver = null;
+
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+
+    const step = (timestamp) => {
+        if (!startTimestamp) {
+            startTimestamp = timestamp;
+        }
+
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = `${Math.floor((progress * (end - start)) + start)}`;
+
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+            return;
+        }
+
+        element.textContent = `${end}`;
+    };
+
+    window.requestAnimationFrame(step);
+}
+
+function animateStatsSection(statsSection) {
+    const statsElements = statsSection.querySelectorAll('.stat-number span[data-value]');
+
+    statsElements.forEach((element) => {
+        if (element.dataset.countAnimated === 'true') {
+            return;
+        }
+
+        const endValue = parseInt(element.dataset.value ?? '', 10);
+
+        if (Number.isNaN(endValue)) {
+            return;
+        }
+
+        element.dataset.countAnimated = 'true';
+        element.textContent = '0';
+        animateValue(element, 0, endValue, 2000);
+    });
+
+    statsSection.dataset.statsAnimated = 'true';
+}
+
+function initializeStatsCounter() {
+    if (statsObserver) {
+        statsObserver.disconnect();
+        statsObserver = null;
+    }
+
+    const statsSections = Array.from(document.querySelectorAll('section.stats'));
+
+    if (!statsSections.length) {
+        return;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+        statsSections.forEach((section) => {
+            if (section.dataset.statsAnimated !== 'true') {
+                animateStatsSection(section);
+            }
+        });
+
+        return;
+    }
+
+    statsObserver = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting || entry.target.dataset.statsAnimated === 'true') {
+                return;
+            }
+
+            animateStatsSection(entry.target);
+            observerInstance.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.35,
+    });
+
+    statsSections.forEach((section) => {
+        if (section.dataset.statsAnimated === 'true') {
+            return;
+        }
+
+        statsObserver.observe(section);
+    });
+}
