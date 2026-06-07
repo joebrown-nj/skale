@@ -7,3 +7,4 @@ var/cache/
 var/sessions/
 .phpunit.cache/
 public_html/.well-known/
+docs/
