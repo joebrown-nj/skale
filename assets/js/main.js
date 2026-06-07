@@ -601,16 +601,16 @@ gtag('config', 'G-5HMT5HBM1Y', {
 });
 
 //Get the button.
-const mybutton = document.getElementById('btn-back-to-top');
+const backToTopButton = document.getElementById('btn-back-to-top');
 
 function updateBackToTopButton() {
-    if (!mybutton) {
+    if (!backToTopButton) {
         return;
     }
 
     const isVisible = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20;
 
-    mybutton.style.display = isVisible ? 'block' : 'none';
+    backToTopButton.style.display = isVisible ? 'block' : 'none';
 }
 
 function updateArticleProgress() {
@@ -655,8 +655,8 @@ function handleWindowScroll() {
 window.addEventListener('scroll', handleWindowScroll, { passive: true });
 window.addEventListener('resize', updateArticleProgress);
 
-if (mybutton) {
-    mybutton.addEventListener('click', backToTop);
+if (backToTopButton) {
+    backToTopButton.addEventListener('click', backToTop);
 }
 
 function backToTop() {
