@@ -66,7 +66,6 @@ class Routes
 
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
-        // $this->router->post('/get-started-form', [GetStartedController::class, 'postGetStarted']);
         $this->router->post('/', [GetStartedController::class, 'postGetStarted']);
         $this->router->post('/contact-form', [ContactController::class, 'submit']);
         $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);

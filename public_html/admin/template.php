@@ -26,31 +26,18 @@
                 toolbar: 'code undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                 tinycomments_mode: 'embedded',
                 tinycomments_author: 'Author name',
-                // mergetags_list: [
-                //     { value: 'First.Name', title: 'First Name' },
-                //     { value: 'Email', title: 'Email' },
-                // ],
-                // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
                 uploadcare_public_key: '611011dc099627236bd1',
                 relative_urls: false,
             });
         </script>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <!-- <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script> -->
-
-        <!-- <script src="https://cdn.datatables.net/2.3.4/js/dataTables.min.js"></script> -->
         <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
         <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.js"></script>
-        <!-- <link href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css"> -->
-        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css"> -->
         <link href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.css">
-        <!-- https://code.jquery.com/jquery-3.7.1.js -->
-        <!-- https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js -->
 
         <style>
             #dataTable th { cursor: pointer; }
-            /* .table-responsive { overflow: hidden !important; } */
             .clickable-row { cursor: pointer; }
             .clickable-row:hover td { background-color: #12161a; }
         </style>
@@ -62,9 +49,6 @@
                 <div class="sidebar border-end col-md-3 col-lg-2 p-0 bg-body-tertiary">
                     <div class="d-flex flex-column flex-shrink-0 p-3">
                         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <!-- <svg class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
-                                <use xlink:href="#bootstrap"></use>
-                            </svg> -->
                             <span class="fs-4">Tables</span> 
                         </a>
 
@@ -76,9 +60,6 @@
                                 ?>
                                     <li class="nav-item">
                                         <a href="?t=<?= $t ?>" class="nav-link text-white <?= $class ?>" aria-current="page">
-                                            <!-- <svg class="bi pe-none me-2" width="16" height="16" aria-hidden="true">
-                                                <use xlink:href="#<?= $t ?>"></use>
-                                            </svg> -->
                                             <?= ucwords(str_replace('_', ' ', $t)) ?>
                                             
                                         </a>
@@ -118,11 +99,9 @@
 
                     <?php if($table != '' && $getId == 0): ?>
                         <div class="table-responsive small dt-container dt-bootstrap5">
-                            <!-- <table class="display table table-striped table-hover table-sm dataTable"> -->
                             <table id="dataTable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <!-- <th></th> -->
                                         <?php foreach($fields as $t): ?>
                                             <?php if($t['Type'] !== 'text' && $t['Type'] !== 'longtext' && $t['Field'] !== 'shortText'): ?>
                                                 <th scope="col"><?= $t['Field'] ?></th>
@@ -133,7 +112,6 @@
                                 <tbody>
                                     <?php foreach($tableData as $d): ?>
                                         <tr class="clickable-row" data-href="?t=<?= $table ?>&id=<?= $d['id'] ?>">
-                                            <!-- <td><a href="?t=<?= $table ?>&id=<?= $d['id'] ?>">edit</a></td> -->
                                             <?php foreach($fields as $col): ?>
                                                 <?php if($col['Type'] !== 'text' && $col['Type'] !== 'longtext' && $col['Field'] !== 'shortText'): ?>
                                                     <td><?= $d[$col['Field']] ? substr(strip_tags($d[$col['Field']]), 0, 150) : '' ?></td>
@@ -192,14 +170,10 @@
     </body>
     
     <script>
-        // let table = new DataTable('#dataTable');
         $('#dataTable').DataTable();
 
-        // jQuery(document).ready(function($) {
         $(document).on('click', 'tr.clickable-row', function(t){
-            // $(".clickable-row").click(function() {
-                window.location = $(this).data("href");
-            // });
+            window.location = $(this).data("href");
         });
 
         $(document).ready(function() {

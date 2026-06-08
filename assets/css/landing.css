@@ -1,24 +1,8 @@
-/* body {
-    font-family:Arial,sans-serif;
-    background:#0d1117;
-    color:#fff;
-} */
-
 .menu-bar-bg {
     background:transparent !important;
     backdrop-filter: none !important;
     box-shadow: none !important;
 }
-
-/* .hero {
-    padding:100px 0;
-    background:linear-gradient(135deg,#0d1117,#151f35);
-} */
-
-/* .brand {
-    font-size:32px;
-    font-weight:700;
-} */
 
 .brand a {
     color:#FFF;
@@ -76,11 +60,6 @@
     background:linear-gradient(135deg,#4dabff,#2563eb);
 }
 
-/* footer {
-    padding:30px;
-    background:#000;
-} */
-
 .sticky-mobile {
     position:fixed;
     bottom:0;
@@ -122,20 +101,6 @@
     transform: translateY(-6px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
-
-/* .form-control, .form-select {
-    background-color: #020617;
-    border: 1px solid #1e293b;
-    color: #e5e7eb;
-} */
-
-/* .form-control::placeholder {
-    color: #94a3b8;
-} */
-
-/* .section-padding {
-    padding: 4rem 1rem;
-} */
 
 .accordion-item {
     border: none;
@@ -179,6 +144,5 @@
 }
 
 .accordion-body {
-    /* padding: 25px; */
     background-color: #ffffff;
 }
