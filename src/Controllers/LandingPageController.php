@@ -103,6 +103,8 @@ class LandingPageController
 
         $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
 
-        return JsonResponse::success('Thanks for contacting us. We will reply by email as soon as possible.');
+        return JsonResponse::success([
+            'redirect' => '/thank-you',
+        ]);
     }
 }
