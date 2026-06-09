@@ -63,8 +63,8 @@
             </div>
 
             {* <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
             </div> *}
         </div>
     </div>
@@ -184,7 +184,7 @@
                 <div class="glass-card shadow-xl" data-aos="fade-up">
                     <h3 class="h2 fw-bold mb-3">Built for More Than Just Launch Day</h3>
                     <p class="mb-4 text-secondary">Your website should be your hardest-working business asset. At Skale, we combine website development, automation, analytics, and growth strategy to create systems that help businesses generate more leads, operate more efficiently, and scale with confidence.</p>
-                    <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
                         Get Your Free Growth Strategy Session
                     </button>
                 </div>

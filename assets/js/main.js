@@ -210,9 +210,84 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     refreshAos(50);
 
     updateHeaderBackground(slug);
-    ajaxGetPageMetaData(slug);
+    syncMetaTrackingContext(slug);
+    ajaxGetPageMetaData(slug, () => {
+        trackMetaPageView(slug, true);
+    });
     refreshAos(150);
 }
+
+window.skaleMetaTracking = window.skaleMetaTracking || (function createMetaTracking() {
+    let lastTrackedPath = null;
+
+    function sanitizeValue(value, fallback = '') {
+        return typeof value === 'string' && value.trim() !== '' ? value.trim() : fallback;
+    }
+
+    function getBodyDataset() {
+        return document.body?.dataset ?? {};
+    }
+
+    function buildBaseParams(pathname = window.location.pathname || '/') {
+        const dataset = getBodyDataset();
+        const normalizedPath = sanitizeValue(pathname, '/');
+
+        return {
+            page_path: normalizedPath,
+            page_title: document.title,
+            page_type: sanitizeValue(dataset.pageType, 'page'),
+            route_path: sanitizeValue(dataset.routePath, normalizedPath),
+            view_name: sanitizeValue(dataset.viewName, 'unknown'),
+        };
+    }
+
+    function dispatch(command, eventName, params = {}) {
+        if (typeof window.fbq !== 'function') {
+            return;
+        }
+
+        window.fbq(command, eventName, params);
+    }
+
+    return {
+        getBaseParams(pathname) {
+            return buildBaseParams(pathname);
+        },
+        track(eventName, params = {}) {
+            dispatch('track', eventName, {
+                ...buildBaseParams(),
+                ...params,
+            });
+        },
+        trackCustom(eventName, params = {}) {
+            dispatch('trackCustom', eventName, {
+                ...buildBaseParams(),
+                ...params,
+            });
+        },
+        trackPageView(pathname = window.location.pathname || '/', force = false) {
+            const normalizedPath = sanitizeValue(pathname, '/');
+
+            if (!force && lastTrackedPath === normalizedPath) {
+                return;
+            }
+
+            lastTrackedPath = normalizedPath;
+
+            const baseParams = buildBaseParams(normalizedPath);
+            dispatch('track', 'PageView', baseParams);
+
+            if (baseParams.page_type === 'landing') {
+                dispatch('track', 'ViewContent', {
+                    ...baseParams,
+                    content_name: document.title,
+                    content_category: 'Landing Page',
+                    content_ids: [normalizedPath],
+                });
+            }
+        },
+    };
+}());
 
 function tryParseJsonResponse(data, contentType = '') {
     if (typeof data === 'object' && data !== null) {
@@ -236,6 +311,247 @@ function tryParseJsonResponse(data, contentType = '') {
         return JSON.parse(trimmed);
     } catch (error) {
         return null;
+    }
+}
+
+function normalizeTrackingPath(pathname = window.location.pathname || '/') {
+    if (!pathname) {
+        return '/';
+    }
+
+    try {
+        return new URL(pathname, window.location.origin).pathname || '/';
+    } catch (error) {
+        return pathname.startsWith('/') ? pathname : `/${pathname}`;
+    }
+}
+
+function getMetaTracker() {
+    return window.skaleMetaTracking || null;
+}
+
+function inferMetaPageType(pathname = window.location.pathname || '/') {
+    const normalizedPath = normalizeTrackingPath(pathname);
+
+    if (normalizedPath === '/') {
+        return 'home';
+    }
+
+    if (['/landing', '/website-development', '/marketing', '/automation'].includes(normalizedPath)) {
+        return 'landing';
+    }
+
+    if (normalizedPath === '/contact') {
+        return 'contact';
+    }
+
+    if (normalizedPath === '/portfolio') {
+        return 'portfolio';
+    }
+
+    if (normalizedPath === '/thank-you') {
+        return 'thank-you';
+    }
+
+    if (normalizedPath === '/blog' || normalizedPath === '/blog/archive') {
+        return 'blog';
+    }
+
+    if (normalizedPath.startsWith('/blog/')) {
+        return 'blog-article';
+    }
+
+    if (normalizedPath === '/solutions' || normalizedPath === '/services') {
+        return 'service-list';
+    }
+
+    if (normalizedPath.startsWith('/solutions/') || normalizedPath.startsWith('/services/')) {
+        return 'service-detail';
+    }
+
+    return document.body?.dataset.pageType || 'page';
+}
+
+function syncMetaTrackingContext(pathname = window.location.pathname || '/') {
+    if (!document.body) {
+        return;
+    }
+
+    const normalizedPath = normalizeTrackingPath(pathname);
+    const pageType = inferMetaPageType(normalizedPath);
+    document.body.dataset.routePath = normalizedPath;
+    document.body.dataset.pageType = pageType;
+    document.body.dataset.viewName = pageType;
+}
+
+function trackMetaPageView(pathname = window.location.pathname || '/', force = false) {
+    syncMetaTrackingContext(pathname);
+    getMetaTracker()?.trackPageView(normalizeTrackingPath(pathname), force);
+}
+
+function trackMetaEvent(eventName, params = {}) {
+    if (!eventName) {
+        return;
+    }
+
+    getMetaTracker()?.track(eventName, params);
+}
+
+function trackMetaCustomEvent(eventName, params = {}) {
+    if (!eventName) {
+        return;
+    }
+
+    getMetaTracker()?.trackCustom(eventName, params);
+}
+
+function getElementTrackingLabel(element) {
+    if (!element) {
+        return '';
+    }
+
+    return element.dataset.metaLabel
+        || element.getAttribute('aria-describedby')
+        || element.getAttribute('aria-details')
+        || element.getAttribute('title')
+        || element.textContent?.trim()
+        || '';
+}
+
+function resolveMetaClickConfig(element) {
+    if (!element) {
+        return null;
+    }
+
+    const href = element.getAttribute('href')?.trim() ?? '';
+    const normalizedHref = href.toLowerCase();
+    const label = getElementTrackingLabel(element);
+    const destinationUrl = href || element.dataset.bsTarget || '';
+
+    if (element.dataset.metaEvent || element.dataset.metaCustomEvent) {
+        return {
+            standardEvent: element.dataset.metaEvent || '',
+            customEvent: element.dataset.metaCustomEvent || '',
+            params: {
+                cta_label: label,
+                destination_url: destinationUrl,
+            },
+        };
+    }
+
+    if (element.dataset.bsTarget === '#staticBackdrop') {
+        return {
+            standardEvent: '',
+            customEvent: 'LandingLeadModalOpen',
+            params: {
+                cta_label: label,
+                destination_url: element.dataset.bsTarget,
+            },
+        };
+    }
+
+    if (normalizedHref.startsWith('tel:') || normalizedHref.startsWith('mailto:')) {
+        return {
+            standardEvent: 'Contact',
+            customEvent: '',
+            params: {
+                cta_label: label,
+                destination_url: href,
+            },
+        };
+    }
+
+    if (normalizedHref.includes('/contact')) {
+        return {
+            standardEvent: '',
+            customEvent: 'ContactIntent',
+            params: {
+                cta_label: label,
+                destination_url: href,
+            },
+        };
+    }
+
+    return null;
+}
+
+function trackMetaClick(element) {
+    const config = resolveMetaClickConfig(element);
+
+    if (!config) {
+        return;
+    }
+
+    if (config.standardEvent) {
+        trackMetaEvent(config.standardEvent, config.params);
+    }
+
+    if (config.customEvent) {
+        trackMetaCustomEvent(config.customEvent, config.params);
+    }
+}
+
+function resolveFormTrackingConfig(form) {
+    if (!form) {
+        return null;
+    }
+
+    const action = normalizeTrackingPath(form.getAttribute('action') || window.location.pathname || '/');
+    const formName = form.dataset.metaFormName || form.getAttribute('id') || action || 'form';
+
+    let successEvent = form.dataset.metaSuccessEvent || '';
+
+    if (!successEvent) {
+        if (action === '/post-lead-form' || action === '/') {
+            successEvent = 'Lead';
+        } else if (action === '/contact-form') {
+            successEvent = 'Contact';
+        } else if (action === '/email-list-signup') {
+            successEvent = 'CompleteRegistration';
+        }
+    }
+
+    return {
+        action,
+        formName,
+        successEvent,
+        successCustomEvent: form.dataset.metaSuccessCustomEvent || '',
+        startCustomEvent: form.dataset.metaStartCustomEvent || '',
+    };
+}
+
+function trackMetaFormStart(form) {
+    const config = resolveFormTrackingConfig(form);
+
+    if (!config || form.dataset.metaStarted === 'true') {
+        return;
+    }
+
+    form.dataset.metaStarted = 'true';
+    trackMetaCustomEvent(config.startCustomEvent || 'FormStarted', {
+        form_name: config.formName,
+        form_action: config.action,
+    });
+}
+
+function trackMetaFormSuccess(form) {
+    const config = resolveFormTrackingConfig(form);
+
+    if (!config) {
+        return;
+    }
+
+    const params = {
+        form_name: config.formName,
+        form_action: config.action,
+    };
+
+    if (config.successEvent) {
+        trackMetaEvent(config.successEvent, params);
+    }
+
+    if (config.successCustomEvent) {
+        trackMetaCustomEvent(config.successCustomEvent, params);
     }
 }
 
@@ -313,16 +629,39 @@ function initializeHistoryState() {
     }, document.title, window.location.href);
 }
 
-function ajaxGetPageMetaData(slug) {
+function ajaxGetPageMetaData(slug, onComplete = null) {
+    let callbackTriggered = false;
+
+    const finish = (metaData = null) => {
+        if (callbackTriggered) {
+            return;
+        }
+
+        callbackTriggered = true;
+
+        if (typeof onComplete === 'function') {
+            onComplete(metaData);
+        }
+    };
+
     $.ajax({
         type: 'GET',
         url: `/meta-data${slug}`,
         success(data) {
             if (!data) {
+                finish(null);
                 return;
             }
 
-            const json = $.parseJSON(data);
+            let json = null;
+
+            try {
+                json = $.parseJSON(data);
+            } catch (error) {
+                finish(null);
+                return;
+            }
+
             $('meta[name=description]').attr('content', json.description);
             $('meta[name=keywords]').attr('content', json.keywords);
             $('head title').text(json.title);
@@ -331,7 +670,13 @@ function ajaxGetPageMetaData(slug) {
             $('meta[property="og:type"]').attr('content', window.location.href.includes('/blog/') ? 'article' : 'website');
             $('meta[property="og:title"]').attr('content', json.title);
             $('meta[property="og:URL"]').attr('content', window.location.href);
+            finish(json);
         },
+        error() {
+            finish(null);
+        },
+    }).always(() => {
+        finish(null);
     });
 }
 
@@ -339,6 +684,7 @@ $(document).ready(function() {
     initializeManagedStylesheets();
     initializeHomePageForm();
     initializeStatsCounter();
+    trackMetaPageView(window.location.pathname, true);
 });
 
 var currentStep = 1;
@@ -392,6 +738,10 @@ $(document).on('click', '.next-step', function() {
             $(".step-" + currentStep).show().addClass("aos-animate");
             updateProgressBar();
             $(".progress-container").find('.btn').eq(currentStep - 1).removeClass('btn-secondary').addClass('btn-primary');
+            trackMetaCustomEvent('GrowthPlanStepAdvance', {
+                form_name: 'home-growth-plan-form',
+                step_number: currentStep,
+            });
         }, 500);
     }
 });
@@ -405,6 +755,10 @@ $(document).on('click', '.prev-step', function() {
             $(".step-" + currentStep).show().addClass("aos-animate");
             updateProgressBar();
             $(".progress-container").find('.btn').eq(currentStep).removeClass('btn-primary').addClass('btn-secondary');
+            trackMetaCustomEvent('GrowthPlanStepBack', {
+                form_name: 'home-growth-plan-form',
+                step_number: currentStep,
+            });
         }, 500);
     }
 });
@@ -457,6 +811,8 @@ function submitAjaxForm(button) {
     const action = $form.attr('action');
     const errors = validateRequiredFields($form);
 
+    trackMetaClick(button);
+    trackMetaFormStart($form[0]);
     logButtonClick(button);
     showOverlay();
     $form.find('.alert').remove();
@@ -483,16 +839,20 @@ function submitAjaxForm(button) {
 
             if (json) {
                 const redirectTarget = json.success?.redirect;
+                const hasSuccessMessages = normalizeMessages(json.success).length > 0;
 
                 if (redirectTarget) {
+                    trackMetaFormSuccess($form[0]);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }
 
                 renderAlert($form, 'danger', json.error);
 
-                if (normalizeMessages(json.success).length > 0) {
+                if (hasSuccessMessages) {
+                    trackMetaFormSuccess($form[0]);
                     $form[0].reset();
+                    delete $form[0].dataset.metaStarted;
                     renderAlert($form, 'success', json.success);
                 }
 
@@ -508,16 +868,20 @@ function submitAjaxForm(button) {
 
             if (json) {
                 const redirectTarget = json.success?.redirect;
+                const hasSuccessMessages = normalizeMessages(json.success).length > 0;
 
                 if (redirectTarget) {
+                    trackMetaFormSuccess($form[0]);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }
 
                 renderAlert($form, 'danger', json.error);
 
-                if (normalizeMessages(json.success).length > 0) {
+                if (hasSuccessMessages) {
+                    trackMetaFormSuccess($form[0]);
                     $form[0].reset();
+                    delete $form[0].dataset.metaStarted;
                     renderAlert($form, 'success', json.success);
                 }
 
@@ -540,6 +904,7 @@ function submitAjaxForm(button) {
 }
 
 $(document).on('click', '.mbtn', function handleMenuClick(event) {
+    trackMetaClick(this);
     const href = $(this).attr('href');
 
     if (!shouldHandleAjaxLink(href)) {
@@ -554,8 +919,22 @@ $(document).on('click', '.mbtn', function handleMenuClick(event) {
     return false;
 });
 
+$(document).on('click', '[data-meta-event], [data-meta-custom-event]', function handleTrackedElementClick() {
+    if ($(this).closest('.ajaxForm').length || $(this).hasClass('mbtn')) {
+        return true;
+    }
+
+    trackMetaClick(this);
+    return true;
+});
+
 $(document).on('click', '.ajaxForm button', function handleAjaxFormClick() {
     return submitAjaxForm(this);
+});
+
+$(document).on('focusin', '.ajaxForm input, .ajaxForm select, .ajaxForm textarea', function handleTrackedFormFocus() {
+    const form = $(this).closest('form')[0];
+    trackMetaFormStart(form);
 });
 
 $(document).on('scroll', function handleScroll() {
@@ -755,3 +1134,9 @@ function initializeStatsCounter() {
         statsObserver.observe(section);
     });
 }
+
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MGKXRNV7');

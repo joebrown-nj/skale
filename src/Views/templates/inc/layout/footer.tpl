@@ -45,78 +45,87 @@
                 <div class="row mt-3">
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id="subscribe">
                     <h6 class="text-uppercase fw-bold mb-4"></i>Subscribe to our newsletter</h6>
-                    <form id="newsletterForm" class="mb-4 ajaxForm" method="POST" action="{$smarty.ENV.WEB_ROOT}email-list-signup">
-                        <p>Monthly digest of what's new and exciting from us.</p>
-                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <label for="email" class="visually-hidden">Email address</label>
-                            <input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">Solutions</h6>
-                    <div class="row">
-                        {foreach from=$serviceList key=key item=service}
-                            <div class="col-md-6">
-                                <p>
-                                    <a aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn text-reset">
-                                        {* {include file="inc/service/serviceIcon.tpl" serviceDetail=$service} *}
-                                        {$service->title}
-                                    </a>
-                                </p>
-                            </div>
-                        {/foreach}
+                    <form
+                    id="newsletterForm"
+                    class="mb-4 ajaxForm"
+                    method="POST"
+                    action="{$smarty.ENV.WEB_ROOT}email-list-signup"
+                    data-meta-form-name="newsletter-form"
+                    data-meta-success-event="CompleteRegistration"
+                    data-meta-success-custom-event="NewsletterSubscribed"
+                    data-meta-start-custom-event="NewsletterSignupStarted"
+                    >
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="email" class="visually-hidden">Email address</label>
+                        <input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button" data-meta-custom-event="NewsletterSubscribeClick" data-meta-label="newsletter subscribe button">Subscribe</button>
                     </div>
-                </div>
+                </form>
+            </div>
 
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                    {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
-                        {include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}
-                    {/if}
-
-                    {include file="inc/buttons/emailLink.tpl" email=$smarty.ENV.SITE_EMAIL type="link"}
-
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact link">Contact Us</a>
-                    </p>
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold mb-4">Solutions</h6>
+                <div class="row">
+                    {foreach from=$serviceList key=key item=service}
+                        <div class="col-md-6">
+                            <p>
+                                <a aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn text-reset">
+                                    {* {include file="inc/service/serviceIcon.tpl" serviceDetail=$service} *}
+                                    {$service->title}
+                                </a>
+                            </p>
+                        </div>
+                    {/foreach}
                 </div>
             </div>
-        </div>
-    </section>
 
-    <div class="footer-legal-strip p-4">
-        <div class="row">
-            <div class="col-md-4 mb-0 text-body-secondary">
-                <p class="p-3 m-0">
-                    &copy; {$smarty.now|date_format:"Y"}
-                    <a class="text-reset fw-bold" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
+                    {include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}
+                {/if}
+
+                {include file="inc/buttons/emailLink.tpl" email=$smarty.ENV.SITE_EMAIL type="link"}
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact link">Contact Us</a>
                 </p>
             </div>
-
-            <div class="col-md-4 mb-0 text-body-secondary text-center">
-                {include file="inc/layout/mainLogo.tpl" class="footer-logo"}
-            </div>
-
-            <div class="col-md-4">
-                <ul class="nav justify-content-end">
-                    {foreach from=$footerNav item=item key=key name=name}
-                        <li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
-                            <a
-                            aria-describedby="footer nav {$item.title}"
-                            href="{$smarty.ENV.SITE_URL}{$item.url}"
-                            class="text-body-secondary mbtn {$item.class} {if $p1 == $item.url}active{/if}"
-                            >
-                            {$item.title}
-                        </a>
-                    </li>
-                {/foreach}
-            </ul>
         </div>
     </div>
+</section>
+
+<div class="footer-legal-strip p-4">
+    <div class="row">
+        <div class="col-md-4 mb-0 text-body-secondary">
+            <p class="p-3 m-0">
+                &copy; {$smarty.now|date_format:"Y"}
+                <a class="text-reset fw-bold" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>
+            </p>
+        </div>
+
+        <div class="col-md-4 mb-0 text-body-secondary text-center">
+            {include file="inc/layout/mainLogo.tpl" class="footer-logo"}
+        </div>
+
+        <div class="col-md-4">
+            <ul class="nav justify-content-end">
+                {foreach from=$footerNav item=item key=key name=name}
+                    <li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
+                        <a
+                        aria-describedby="footer nav {$item.title}"
+                        href="{$smarty.ENV.SITE_URL}{$item.url}"
+                        class="text-body-secondary mbtn {$item.class} {if $p1 == $item.url}active{/if}"
+                        >
+                        {$item.title}
+                    </a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
 </div>
 </footer>
 
@@ -130,5 +139,4 @@
 </body>
 </html>
 {/if}
-
 
