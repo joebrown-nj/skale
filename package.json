@@ -7,6 +7,15 @@
     "check:tpl": "node scripts/check-template-format.mjs",
     "check:frontend": "npm run check:css && npm run check:tpl"
   },
+  "pre-commit": {
+    "run": [
+      "check:frontend",
+      "format:tpl",
+      "check:tpl",
+      "check:css",
+      "build:assets"
+    ]
+  },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12"
   },
