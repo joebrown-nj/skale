@@ -86,6 +86,7 @@ function hideOverlay() {
     setTimeout(() => {
         $('#overlay').fadeOut(OVERLAY_FADE_MS);
         $('body').css({ overflow: 'auto', 'padding-right': '' });
+        $('.modal-backdrop').hide();
     }, OVERLAY_HIDE_DELAY_MS);
 }
 
