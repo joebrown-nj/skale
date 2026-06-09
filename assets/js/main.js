@@ -10,6 +10,10 @@ function buildUrl(path, params = {}) {
     return query ? `${path}?${query}` : path;
 }
 
+function sanitizeTrackingEventName(value) {
+    return typeof value === 'string' ? value.trim() : '';
+}
+
 function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, (character) => (
         {
@@ -242,11 +246,13 @@ window.skaleMetaTracking = window.skaleMetaTracking || (function createMetaTrack
     }
 
     function dispatch(command, eventName, params = {}) {
-        if (typeof window.fbq !== 'function') {
+        const normalizedEventName = sanitizeTrackingEventName(eventName);
+
+        if (typeof window.fbq !== 'function' || !normalizedEventName) {
             return;
         }
 
-        window.fbq(command, eventName, params);
+        window.fbq(command, normalizedEventName, params);
     }
 
     return {
@@ -254,12 +260,24 @@ window.skaleMetaTracking = window.skaleMetaTracking || (function createMetaTrack
             return buildBaseParams(pathname);
         },
         track(eventName, params = {}) {
+            const normalizedEventName = sanitizeTrackingEventName(eventName);
+
+            if (!normalizedEventName) {
+                return;
+            }
+
             dispatch('track', eventName, {
                 ...buildBaseParams(),
                 ...params,
             });
         },
         trackCustom(eventName, params = {}) {
+            const normalizedEventName = sanitizeTrackingEventName(eventName);
+
+            if (!normalizedEventName) {
+                return;
+            }
+
             dispatch('trackCustom', eventName, {
                 ...buildBaseParams(),
                 ...params,
@@ -427,11 +445,13 @@ function resolveMetaClickConfig(element) {
     const normalizedHref = href.toLowerCase();
     const label = getElementTrackingLabel(element);
     const destinationUrl = href || element.dataset.bsTarget || '';
+    const metaEvent = sanitizeTrackingEventName(element.dataset.metaEvent);
+    const metaCustomEvent = sanitizeTrackingEventName(element.dataset.metaCustomEvent);
 
-    if (element.dataset.metaEvent || element.dataset.metaCustomEvent) {
+    if (metaEvent || metaCustomEvent) {
         return {
-            standardEvent: element.dataset.metaEvent || '',
-            customEvent: element.dataset.metaCustomEvent || '',
+            standardEvent: metaEvent,
+            customEvent: metaCustomEvent,
             params: {
                 cta_label: label,
                 destination_url: destinationUrl,
@@ -499,7 +519,7 @@ function resolveFormTrackingConfig(form) {
     const action = normalizeTrackingPath(form.getAttribute('action') || window.location.pathname || '/');
     const formName = form.dataset.metaFormName || form.getAttribute('id') || action || 'form';
 
-    let successEvent = form.dataset.metaSuccessEvent || '';
+    let successEvent = sanitizeTrackingEventName(form.dataset.metaSuccessEvent);
 
     if (!successEvent) {
         if (action === '/post-lead-form' || action === '/') {
@@ -515,8 +535,8 @@ function resolveFormTrackingConfig(form) {
         action,
         formName,
         successEvent,
-        successCustomEvent: form.dataset.metaSuccessCustomEvent || '',
-        startCustomEvent: form.dataset.metaStartCustomEvent || '',
+        successCustomEvent: sanitizeTrackingEventName(form.dataset.metaSuccessCustomEvent),
+        startCustomEvent: sanitizeTrackingEventName(form.dataset.metaStartCustomEvent),
     };
 }
 
