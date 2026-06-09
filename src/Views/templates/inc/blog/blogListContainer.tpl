@@ -1,10 +1,10 @@
 {if $blogFeatured}
     <section class="blog-featured py-5">
         <div class="container">
-            <div class="glass-card">
+            <div class="blog-card glass-card p-0 overflow-hidden" data-aos="fade-up">
                 <div class="row g-0">
                     <div class="col-lg-6">
-                        <img src="{$smarty.ENV.IMG_ROOT}{$blogFeatured->image}" class="img-fluid h-100 object-fit-cover" alt="">
+                        <img src="{$smarty.ENV.IMG_ROOT}{$blogFeatured->image}" class="blog-image img-fluid h-100 object-fit-cover" alt="">
                     </div>
 
                     <div class="col-lg-6">
