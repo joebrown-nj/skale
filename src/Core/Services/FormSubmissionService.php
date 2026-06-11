@@ -8,10 +8,12 @@ use App\Core\Contracts\EmailServiceInterface;
 class FormSubmissionService
 {
     private EmailServiceInterface $emailService;
+    private EmailQueueService $emailQueueService;
 
-    public function __construct(EmailServiceInterface $emailService)
+    public function __construct(EmailServiceInterface $emailService, EmailQueueService $emailQueueService)
     {
         $this->emailService = $emailService;
+        $this->emailQueueService = $emailQueueService;
     }
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
@@ -23,7 +25,7 @@ class FormSubmissionService
             '<p>Hi '.$input['name'].',</p>'.$successMessage,
             $input['email']
         );
-        $this->emailService->sendEmail(
+        $this->deliverEmail(
             $input['email'],
             'Thanks for filling out the contact form',
             $emailMessage,
@@ -41,7 +43,7 @@ class FormSubmissionService
             $this->buildAdminEmailBody($input, $user, $server),
             $input['email']
         );
-        $this->emailService->sendEmail(
+        $this->deliverEmail(
             $_ENV['CONTACT_FORM_MY_EMAIL'],
             'Someone filled out the contact form',
             $adminEmailMessage
@@ -57,7 +59,7 @@ class FormSubmissionService
             '<p>Hi '.$input['name'].',</p>'.$successMessage,
             $input['email']
         );
-        $this->emailService->sendEmail(
+        $this->deliverEmail(
             $input['email'],
             'Thanks for filling out the contact form',
             $emailMessage,
@@ -68,11 +70,20 @@ class FormSubmissionService
             $this->buildAdminEmailBody($input, $user, $server),
             $input['email']
         );
-        $this->emailService->sendEmail(
+        $this->deliverEmail(
             $_ENV['CONTACT_FORM_MY_EMAIL'],
             'Someone filled out the contact form',
             $adminEmailMessage
         );
+    }
+
+    private function deliverEmail(string $to, string $subject, string $body, ?string $toName = null): void
+    {
+        if ($this->emailQueueService->isEnabled() && $this->emailQueueService->enqueueEmail($to, $subject, $body, $toName)) {
+            return;
+        }
+
+        $this->emailService->sendEmail($to, $subject, $body, $toName);
     }
 
     private function buildContactSuccessMessage(): string

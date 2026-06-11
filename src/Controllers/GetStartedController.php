@@ -38,7 +38,7 @@ class GetStartedController
             return JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
-        $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
+        $this->formSubmissionService->handleGetStartedSubmission($input, $user, $_SERVER);
 
         return JsonResponse::success([
             'redirect' => '/thank-you',
