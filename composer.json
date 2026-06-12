@@ -22,5 +22,16 @@
         "symfony/cache": "^8.0"
     },
     "config": {
+    },
+    "scripts": {
+        "patch:phroute": [
+            "php scripts/patch-phroute-php84.php"
+        ],
+        "post-install-cmd": [
+            "@patch:phroute"
+        ],
+        "post-update-cmd": [
+            "@patch:phroute"
+        ]
     }
 }
