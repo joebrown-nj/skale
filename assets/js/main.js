@@ -576,6 +576,22 @@ function trackMetaFormSuccess(form) {
     }
 }
 
+function logInteraction({ target, url = window.location.pathname, detail }) {
+    if (!detail) {
+        return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/log-button-click',
+        data: {
+            target,
+            url,
+            detail,
+        },
+    });
+}
+
 function logButtonClick(element) {
     if (!element) {
         return;
@@ -587,18 +603,16 @@ function logButtonClick(element) {
     const target = href || formAction || window.location.pathname;
     const detail = $element.attr('aria-describedby') || $element.attr('aria-details') || $element.text().trim();
 
-    if (!detail) {
-        return;
-    }
+    logInteraction({
+        target,
+        detail,
+    });
+}
 
-    $.ajax({
-        type: 'POST',
-        url: '/log-button-click',
-        data: {
-            target,
-            url: window.location.pathname,
-            detail,
-        },
+function logLandingPage() {
+    logInteraction({
+        target: window.location.pathname,
+        detail: 'Landing page',
     });
 }
 
@@ -705,6 +719,7 @@ $(document).ready(function() {
     initializeManagedStylesheets();
     initializeHomePageForm();
     initializeStatsCounter();
+    logLandingPage();
     trackMetaPageView(window.location.pathname, true);
 });
 

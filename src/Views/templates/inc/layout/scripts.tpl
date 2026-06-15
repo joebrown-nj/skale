@@ -12,7 +12,7 @@
     {literal}
         window.dataLayer = window.dataLayer || [];
         window.gtag = window.gtag || function () {
-            dataLayer.push(arguments);
+        dataLayer.push(arguments);
         };
 
         gtag('js', new Date());
