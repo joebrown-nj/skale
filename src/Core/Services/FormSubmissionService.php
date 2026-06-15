@@ -18,7 +18,6 @@ class FormSubmissionService
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
     {
-        $server ??= $_SERVER;
         $successMessage = $this->buildContactSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
@@ -40,7 +39,7 @@ class FormSubmissionService
         }
 
         $adminEmailMessage = $this->emailService->emailTemplate(
-            $this->buildAdminEmailBody($input, $user, $server),
+            $this->buildAdminEmailBody($input, $user),
             $input['email']
         );
         $this->deliverEmail(
@@ -52,7 +51,6 @@ class FormSubmissionService
 
     public function handleGetStartedSubmission(array $input, ?array $user, ?array $server = null): void
     {
-        $server ??= $_SERVER;
         $successMessage = $this->buildGetStartedSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
@@ -67,7 +65,7 @@ class FormSubmissionService
         );
 
         $adminEmailMessage = $this->emailService->emailTemplate(
-            $this->buildAdminEmailBody($input, $user, $server),
+            $this->buildAdminEmailBody($input, $user),
             $input['email']
         );
         $this->deliverEmail(
@@ -101,15 +99,100 @@ class FormSubmissionService
         return '<p class="mb-0">Thanks we will be in touch soon, '.$_ENV['SITE_NAME'].'</p>';
     }
 
-    private function buildAdminEmailBody(array $input, ?array $user, array $server): string
+    private function buildAdminEmailBody(array $input, ?array $user): string
     {
-        $message = 'Form data: <br>';
-        $message .= json_encode($input);
-        $message .= '<br><br>Server data: <br>';
-        $message .= json_encode($server);
-        $message .= '<br><br>User data: <br>';
-        $message .= json_encode($user);
+        $message = '<p><strong>New form submission received.</strong></p>';
+        $message .= '<h2 style="font-size:18px; margin:24px 0 12px;">Submitted Form Data</h2>';
+        $message .= $this->buildDetailsList($this->normalizeFormInput($input));
+
+        $userDetails = $this->normalizeUserDetails($user);
+
+        if ($userDetails !== []) {
+            $message .= '<h2 style="font-size:18px; margin:24px 0 12px;">User Information</h2>';
+            $message .= $this->buildDetailsList($userDetails);
+        }
 
         return $message;
+    }
+
+    private function normalizeFormInput(array $input): array
+    {
+        $details = [];
+
+        foreach ($input as $key => $value) {
+            $details[$this->formatLabel((string) $key)] = $this->stringifyValue($value);
+        }
+
+        return $details;
+    }
+
+    private function normalizeUserDetails(?array $user): array
+    {
+        if ($user === null) {
+            return [];
+        }
+
+        $userFields = [
+            'ipAddress' => 'IP Address',
+            'city_name' => 'City',
+            'region_name' => 'Region',
+            'country_name' => 'Country',
+        ];
+
+        $details = [];
+
+        foreach ($userFields as $key => $label) {
+            if (!isset($user[$key]) || $user[$key] === '' || $user[$key] === '-') {
+                continue;
+            }
+
+            $details[$label] = $this->stringifyValue($user[$key]);
+        }
+
+        return $details;
+    }
+
+    private function buildDetailsList(array $details): string
+    {
+        if ($details === []) {
+            return '<p>No additional information provided.</p>';
+        }
+
+        $items = '';
+
+        foreach ($details as $label => $value) {
+            $items .= '<li style="margin-bottom:8px;"><strong>'.$this->escapeHtml($label).':</strong> '.$this->escapeHtml($value).'</li>';
+        }
+
+        return '<ul style="padding-left:20px; margin:0;">'.$items.'</ul>';
+    }
+
+    private function formatLabel(string $key): string
+    {
+        return ucwords(str_replace(['_', '-'], ' ', $key));
+    }
+
+    private function stringifyValue(mixed $value): string
+    {
+        if (is_array($value)) {
+            $parts = array_map(fn (mixed $item): string => $this->stringifyValue($item), $value);
+
+            return implode(', ', array_filter($parts, static fn (string $item): bool => $item !== ''));
+        }
+
+        if (is_bool($value)) {
+            return $value ? 'Yes' : 'No';
+        }
+
+        if ($value === null) {
+            return '';
+        }
+
+        return trim((string) $value);
+    }
+
+    private function escapeHtml(string $value): string
+    {
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
     }
 }
