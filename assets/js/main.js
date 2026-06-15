@@ -995,11 +995,6 @@ function gtag() {
     dataLayer.push(arguments);
 }
 
-gtag('js', new Date());
-gtag('config', 'G-5HMT5HBM1Y', {
-    cookie_flags: 'secure;samesite=none',
-});
-
 //Get the button.
 const backToTopButton = document.getElementById('btn-back-to-top');
 
@@ -1166,3 +1161,8 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-1029303333');
+
+// gtag('js', new Date());
+// gtag('config', 'G-5HMT5HBM1Y', {
+//     cookie_flags: 'secure;samesite=none',
+// });

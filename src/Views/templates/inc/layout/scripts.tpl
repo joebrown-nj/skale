@@ -6,4 +6,6 @@
 
 <script defer src="{$smarty.ENV.WEB_ROOT}js/main.min.js"></script>
 
-<script defer src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script>
+{* <script defer src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script> *}
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1029303333"></script>
