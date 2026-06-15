@@ -15,7 +15,7 @@ class BlogEntity
     #[ORM\GeneratedValue]
     public ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 250)]
     public string $title;
 
     #[ORM\Column(type: 'string', length: 100)]
