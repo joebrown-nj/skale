@@ -217,7 +217,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     updateHeaderBackground(slug);
     syncMetaTrackingContext(slug);
     ajaxGetPageMetaData(slug, () => {
-        trackGooglePageView(slug);
+        dispatchRoutePageView(slug);
         trackMetaPageView(slug, true);
     });
     refreshAos(150);
@@ -409,15 +409,17 @@ function trackMetaPageView(pathname = window.location.pathname || '/', force = f
     getMetaTracker()?.trackPageView(normalizeTrackingPath(pathname), force);
 }
 
-function getGoogleTracker() {
-    return window.skaleGoogleTracking || null;
+function dispatchRoutePageView(pathname = window.location.pathname || '/') {
+    const normalizedPath = normalizeTrackingPath(pathname);
+
+    window.dispatchEvent(new CustomEvent('skale:page-view', {
+        detail: {
+            pathname: normalizedPath,
+        },
+    }));
 }
 
-function trackGooglePageView(pathname = window.location.pathname || '/') {
-    getGoogleTracker()?.trackPage(normalizeTrackingPath(pathname));
-}
-
-function markPendingContactGoogleConversion(form, redirectTarget = '') {
+function markPendingContactConversion(form, redirectTarget = '') {
     const config = resolveFormTrackingConfig(form);
     const normalizedRedirectTarget = normalizeTrackingPath(redirectTarget);
 
@@ -425,7 +427,7 @@ function markPendingContactGoogleConversion(form, redirectTarget = '') {
         return;
     }
 
-    getGoogleTracker()?.markPendingContactConversion();
+    window.dispatchEvent(new Event('skale:contact-form-conversion-pending'));
 }
 
 function trackMetaEvent(eventName, params = {}) {
@@ -899,7 +901,7 @@ function submitAjaxForm(button) {
 
                 if (redirectTarget) {
                     trackMetaFormSuccess($form[0]);
-                    markPendingContactGoogleConversion($form[0], redirectTarget);
+                    markPendingContactConversion($form[0], redirectTarget);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }
@@ -929,7 +931,7 @@ function submitAjaxForm(button) {
 
                 if (redirectTarget) {
                     trackMetaFormSuccess($form[0]);
-                    markPendingContactGoogleConversion($form[0], redirectTarget);
+                    markPendingContactConversion($form[0], redirectTarget);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }
