@@ -216,6 +216,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     updateHeaderBackground(slug);
     syncMetaTrackingContext(slug);
+    trackGooglePageView(slug);
     ajaxGetPageMetaData(slug, () => {
         trackMetaPageView(slug, true);
     });
@@ -406,6 +407,25 @@ function syncMetaTrackingContext(pathname = window.location.pathname || '/') {
 function trackMetaPageView(pathname = window.location.pathname || '/', force = false) {
     syncMetaTrackingContext(pathname);
     getMetaTracker()?.trackPageView(normalizeTrackingPath(pathname), force);
+}
+
+function getGoogleTracker() {
+    return window.skaleGoogleTracking || null;
+}
+
+function trackGooglePageView(pathname = window.location.pathname || '/') {
+    getGoogleTracker()?.trackPage(normalizeTrackingPath(pathname));
+}
+
+function markPendingContactGoogleConversion(form, redirectTarget = '') {
+    const config = resolveFormTrackingConfig(form);
+    const normalizedRedirectTarget = normalizeTrackingPath(redirectTarget);
+
+    if (!config || config.action !== '/contact-form' || normalizedRedirectTarget !== '/thank-you') {
+        return;
+    }
+
+    getGoogleTracker()?.markPendingContactConversion();
 }
 
 function trackMetaEvent(eventName, params = {}) {
@@ -721,6 +741,7 @@ $(document).ready(function() {
     initializeStatsCounter();
     logLandingPage();
     trackMetaPageView(window.location.pathname, true);
+    trackGooglePageView(window.location.pathname);
 });
 
 var currentStep = 1;
@@ -879,6 +900,7 @@ function submitAjaxForm(button) {
 
                 if (redirectTarget) {
                     trackMetaFormSuccess($form[0]);
+                    markPendingContactGoogleConversion($form[0], redirectTarget);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }
@@ -908,6 +930,7 @@ function submitAjaxForm(button) {
 
                 if (redirectTarget) {
                     trackMetaFormSuccess($form[0]);
+                    markPendingContactGoogleConversion($form[0], redirectTarget);
                     ajaxGetPageContent(redirectTarget, '', null, true);
                     return;
                 }

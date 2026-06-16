@@ -48,11 +48,6 @@
             </noscript>
             <!-- End Meta Pixel Code -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1029303333"></script>
-            <script>
-                window.skaleGoogleTrackingConfig = {
-                isThankYouPage: {if $p1 == 'thank-you'}true{else}false{/if}
-                };
-            </script>
             <script src="{$smarty.ENV.WEB_ROOT}js/google.min.js"></script>
         </head>
 
@@ -62,37 +57,32 @@
         data-page-type="{if $viewName == 'landing'}landing{elseif $viewName == 'home'}home{elseif $viewName == 'contact'}contact{elseif $viewName == 'portfolio'}portfolio{elseif $viewName == 'thankYou'}thank-you{elseif $p1 == 'blog' && $p2 && $p3}blog-article{elseif $p1 == 'blog'}blog{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS && $p2}service-detail{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS}service-list{elseif isset($page.content)}content{else}page{/if}"
         data-view-name="{$viewName|escape:'html'}"
         >
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGKXRNV7"
-    height="0" width="0" class="hidden-noscript-frame"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <div id="overlay">
-        <div class="cv-spinner">
-            <span class="spinner">
-                <img class="skale-up" src="{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo.png" alt="{$smarty.ENV.SITE_NAME}">
-            </span>
+        <div id="overlay">
+            <div class="cv-spinner">
+                <span class="spinner">
+                    <img class="skale-up" src="{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo.png" alt="{$smarty.ENV.SITE_NAME}">
+                </span>
+            </div>
         </div>
-    </div>
 
-    {include file="inc/layout/nav.tpl"}
+        {include file="inc/layout/nav.tpl"}
 
-    <div class="page-content">
-    {/if}
-
-    {if $p1 && $p1 != ''}
-        {* <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
-        <div class="logo-bg logo-bg-overlay"></div>
-        <h1 class="display-3 BricolageGrotesque-ExtraBold">
-        {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
-        {$data.blogDetail->title}
+        <div class="page-content">
         {/if}
 
-        {if isset($page.content) && isset($page.content->title)}
-        {$page.content->title}
-        {/if}
-        </h1>
-        </div> *}
+        {if $p1 && $p1 != ''}
+            {* <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
+            <div class="logo-bg logo-bg-overlay"></div>
+            <h1 class="display-3 BricolageGrotesque-ExtraBold">
+            {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
+            {$data.blogDetail->title}
+            {/if}
 
-        {include file="inc/layout/breadcrumb.tpl"}
-    {/if}
+            {if isset($page.content) && isset($page.content->title)}
+            {$page.content->title}
+            {/if}
+            </h1>
+            </div> *}
+
+            {include file="inc/layout/breadcrumb.tpl"}
+        {/if}
