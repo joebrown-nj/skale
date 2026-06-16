@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -16,7 +17,7 @@ final class Version20260410000000 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->abortIf(
-            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
             'Migration can only be executed safely on mysql.'
         );
 
@@ -34,7 +35,7 @@ final class Version20260410000000 extends AbstractMigration
     public function down(Schema $schema): void
     {
         $this->abortIf(
-            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
             'Migration can only be executed safely on mysql.'
         );
 

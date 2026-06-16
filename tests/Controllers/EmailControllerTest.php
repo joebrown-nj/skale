@@ -5,6 +5,8 @@ namespace Tests\Controllers;
 use App\Controllers\EmailController;
 use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ViewInterface;
+use App\Core\Services\RequestBlocklistService;
+use App\Models\Entities\RequestBlockRuleEntity;
 use PHPUnit\Framework\TestCase;
 
 final class EmailControllerTest extends TestCase
@@ -12,6 +14,8 @@ final class EmailControllerTest extends TestCase
     protected function tearDown(): void
     {
         $_POST = [];
+        $_SERVER = [];
+        http_response_code(200);
     }
 
     public function testSignUpReturnsErrorForInvalidEmail(): void
@@ -24,11 +28,17 @@ final class EmailControllerTest extends TestCase
             ->with('not-an-email')
             ->willReturn(false);
 
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($_POST, $_SERVER)
+            ->willReturn(null);
+
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->never())
             ->method('getUser');
 
-        $controller = new EmailController($emailModel, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
 
         $this->assertSame(
             '{"error":["A valid email is required"]}',
@@ -52,11 +62,17 @@ final class EmailControllerTest extends TestCase
         $emailModel->expects($this->never())
             ->method('emailListSignup');
 
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($_POST, $_SERVER)
+            ->willReturn(null);
+
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->never())
             ->method('getUser');
 
-        $controller = new EmailController($emailModel, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
 
         $this->assertSame(
             '{"error":"You are already on the list"}',
@@ -83,12 +99,18 @@ final class EmailControllerTest extends TestCase
             ->with($_POST, $user)
             ->willReturn(true);
 
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($_POST, $_SERVER)
+            ->willReturn(null);
+
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('getUser')
             ->willReturn($user);
 
-        $controller = new EmailController($emailModel, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
 
         $this->assertSame(
             '{"success":"Thanks for joining the mailing list!"}',
@@ -115,16 +137,49 @@ final class EmailControllerTest extends TestCase
             ->with($input, $user)
             ->willReturn(false);
 
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($input, $_SERVER)
+            ->willReturn(null);
+
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('getUser')
             ->willReturn($user);
 
-        $controller = new EmailController($emailModel, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
 
         $this->assertSame(
             '{"error":"Unable to process email signup"}',
             $controller->signUp($input)
         );
+    }
+
+    public function testSignUpReturnsBlockedResponseWhenSubmissionMatchesBlacklist(): void
+    {
+        $input = ['email' => 'blocked@example.com'];
+
+        $emailModel = $this->createMock(EmailServiceInterface::class);
+        $emailModel->expects($this->never())->method('validateEmail');
+
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($input, $_SERVER)
+            ->willReturn(
+                (new RequestBlockRuleEntity())
+                    ->setAttribute('email')
+                    ->setMatchType('exact')
+                    ->setRuleValue('blocked@example.com')
+            );
+
+        $view = $this->createMock(ViewInterface::class);
+        $view->expects($this->never())->method('getUser');
+
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+
+        $this->assertSame('{"error":"Unable to process request."}', $controller->signUp($input));
+        $this->assertSame(403, http_response_code());
     }
 }

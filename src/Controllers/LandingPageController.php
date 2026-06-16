@@ -7,17 +7,20 @@ use App\Models\ContactModel;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\FormSubmissionService;
+use App\Core\Services\RequestBlocklistService;
 
 class LandingPageController
 {
     private ContactModel $contactModel;
     private ViewInterface $view;
     private FormSubmissionService $formSubmissionService;
+    private RequestBlocklistService $requestBlocklistService;
 
-    public function __construct(ViewInterface $view, ContactModel $contactModel, FormSubmissionService $formSubmissionService) {
+    public function __construct(ViewInterface $view, ContactModel $contactModel, FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService) {
         $this->view = $view;
         $this->contactModel = $contactModel;
         $this->formSubmissionService = $formSubmissionService;
+        $this->requestBlocklistService = $requestBlocklistService;
     }
 
     public function index()
@@ -90,6 +93,12 @@ class LandingPageController
     {
         $input ??= $_POST;
         $input['comment'] = 'Landing Page Lead Form Submission - '. $input['comment'];
+
+        if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
+            http_response_code(403);
+            return JsonResponse::error('Unable to process request.');
+        }
+
         $user = $this->view->getUser();
         $validationErrors = $this->contactModel->checkContactForm($input);
 

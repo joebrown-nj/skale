@@ -5,6 +5,7 @@ namespace Tests\Controllers;
 use App\Controllers\GetStartedController;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Services\FormSubmissionService;
+use App\Core\Services\RequestBlocklistService;
 use App\Models\ContactModel;
 use App\Models\GetStartedModel;
 use PHPUnit\Framework\TestCase;
@@ -30,6 +31,12 @@ final class GetStartedControllerTest extends TestCase
         $formSubmissionService->expects($this->never())
             ->method('handleContactSubmission');
 
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($expectedInput, $_SERVER)
+            ->willReturn(null);
+
         $getStartedModel = $this->createMock(GetStartedModel::class);
         $getStartedModel->expects($this->once())
             ->method('checkForm')
@@ -47,7 +54,7 @@ final class GetStartedControllerTest extends TestCase
             ->method('getUser')
             ->willReturn($user);
 
-        $controller = new GetStartedController($formSubmissionService, $getStartedModel, $contactModel, $view);
+        $controller = new GetStartedController($formSubmissionService, $requestBlocklistService, $getStartedModel, $contactModel, $view);
 
         $this->assertSame('{"success":{"redirect":"\/thank-you"}}', $controller->postGetStarted($input));
     }

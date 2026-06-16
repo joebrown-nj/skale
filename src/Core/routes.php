@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Http\JsonResponse;
+use App\Core\Services\RequestBlocklistService;
 use App\Core\Contracts\ViewInterface;
 use App\Core\DI\Container;
 use App\Middleware\AuthMiddleware;
@@ -75,6 +77,27 @@ class Routes
     public function dispatch(): void
     {
         $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+        $requestBlocklistService = $this->container->get(RequestBlocklistService::class);
+
+        $matchedRule = $requestBlocklistService->findMatchingRequestRule($_SERVER, $requestPath);
+
+        if ($matchedRule !== null) {
+            http_response_code(403);
+
+            if ($this->expectsJsonResponse()) {
+                echo JsonResponse::error($requestBlocklistService->getPublicMessage($matchedRule));
+                return;
+            }
+
+            $this->container->get(ViewInterface::class)->render('error/403', [
+                'errorMessage' => $requestBlocklistService->getPublicMessage(
+                    $matchedRule,
+                    'This request has been blocked for security reasons.'
+                ),
+            ]);
+
+            return;
+        }
 
         if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
             $normalizedPath = rtrim($requestPath, '/');
@@ -144,5 +167,15 @@ class Routes
         echo $e->getMessage();
         http_response_code(500);
         $this->container->get(ViewInterface::class)->render('error/500');
+    }
+
+    private function expectsJsonResponse(): bool
+    {
+        $acceptHeader = strtolower((string) ($_SERVER['HTTP_ACCEPT'] ?? ''));
+        $requestedWith = strtolower((string) ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? ''));
+
+        return ($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET'
+            || str_contains($acceptHeader, 'application/json')
+            || $requestedWith === 'xmlhttprequest';
     }
 }
