@@ -15,5 +15,6 @@ export const cssAssets = [
 ];
 
 export const jsAssets = [
+    [`${jsSourceRoot}/google.js`, `${publicJsRoot}/google.min.js`],
     [`${jsSourceRoot}/main.js`, `${publicJsRoot}/main.min.js`],
 ];

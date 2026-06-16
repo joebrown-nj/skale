@@ -24,6 +24,7 @@ These minified files are the files loaded by the site at runtime.
 
 ## Current mapping
 
+- `assets/js/google.js` → `public_html/js/google.min.js`
 - `assets/js/main.js` → `public_html/js/main.min.js`
 - `assets/css/style.css` → `public_html/css/style.min.css`
 - `assets/css/blog.css` → `public_html/css/blog.min.css`
