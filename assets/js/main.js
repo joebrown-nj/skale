@@ -216,8 +216,8 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     updateHeaderBackground(slug);
     syncMetaTrackingContext(slug);
-    trackGooglePageView(slug);
     ajaxGetPageMetaData(slug, () => {
+        trackGooglePageView(slug);
         trackMetaPageView(slug, true);
     });
     refreshAos(150);
@@ -741,7 +741,6 @@ $(document).ready(function() {
     initializeStatsCounter();
     logLandingPage();
     trackMetaPageView(window.location.pathname, true);
-    trackGooglePageView(window.location.pathname);
 });
 
 var currentStep = 1;

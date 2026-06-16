@@ -1,5 +1,6 @@
 (function initGoogleTracking() {
-    const TRACKING_ID = 'AW-1029303333';
+    const ANALYTICS_TRACKING_ID = 'G-5HMT5HBM1Y';
+    const ADS_TRACKING_ID = 'AW-1029303333';
     const CONVERSION_DESTINATION = 'AW-1029303333/pQwbCNuxmcAcEKXY5-oD';
     const THANK_YOU_PATH = '/thank-you';
     const PENDING_CONVERSION_STORAGE_KEY = 'skale_google_pending_conversion';
@@ -38,7 +39,8 @@
     };
 
     window.gtag('js', new Date());
-    window.gtag('config', TRACKING_ID);
+    window.gtag('config', ANALYTICS_TRACKING_ID);
+    window.gtag('config', ADS_TRACKING_ID);
 
     window.skaleGoogleTracking = {
         markPendingContactConversion() {
@@ -50,12 +52,17 @@
         },
         trackPage(pathname = window.location.pathname || '/') {
             const normalizedPath = normalizePath(pathname);
-
-            window.gtag('config', TRACKING_ID, {
+            const pageData = {
                 page_path: normalizedPath,
                 page_location: window.location.href,
                 page_title: document.title,
+            };
+
+            window.gtag('event', 'page_view', {
+                send_to: ANALYTICS_TRACKING_ID,
+                ...pageData,
             });
+            window.gtag('config', ADS_TRACKING_ID, pageData);
 
             if (normalizedPath !== THANK_YOU_PATH || readPendingConversion() !== 'contact-form') {
                 return;

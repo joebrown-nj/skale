@@ -47,7 +47,7 @@
                 <img height="1" width="1" class="hidden-tracking-pixel" src="https://www.facebook.com/tr?id=341250316314045&ev=PageView&noscript=1"/>
             </noscript>
             <!-- End Meta Pixel Code -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1029303333"></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script>
             <script src="{$smarty.ENV.WEB_ROOT}js/google.min.js"></script>
         </head>
 
