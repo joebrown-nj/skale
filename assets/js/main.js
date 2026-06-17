@@ -4,6 +4,8 @@ const bsOffcanvas = offcanvasElement ? new bootstrap.Offcanvas(offcanvasElement)
 const OVERLAY_FADE_MS = 300;
 const OVERLAY_HIDE_DELAY_MS = 250;
 const MENU_BAR_BG_CLASS = 'menu-bar-bg';
+let overlayRequestCount = 0;
+let overlayHideTimeoutId = null;
 
 function buildUrl(path, params = {}) {
     const query = new URLSearchParams(params).toString();
@@ -78,15 +80,32 @@ function setActiveNavItem(url) {
 }
 
 function showOverlay() {
-    $('#overlay').fadeIn(OVERLAY_FADE_MS);
+    overlayRequestCount += 1;
+
+    if (overlayHideTimeoutId) {
+        window.clearTimeout(overlayHideTimeoutId);
+        overlayHideTimeoutId = null;
+    }
+
+    if (overlayRequestCount === 1) {
+        $('#overlay').stop(true, true).fadeIn(OVERLAY_FADE_MS);
+    }
+
     $('body').css({ overflow: 'hidden', 'padding-right': '17px' });
 }
 
 function hideOverlay() {
-    setTimeout(() => {
-        $('#overlay').fadeOut(OVERLAY_FADE_MS);
+    overlayRequestCount = Math.max(overlayRequestCount - 1, 0);
+
+    if (overlayRequestCount > 0) {
+        return;
+    }
+
+    overlayHideTimeoutId = window.setTimeout(() => {
+        $('#overlay').stop(true, true).fadeOut(OVERLAY_FADE_MS);
         $('body').css({ overflow: 'auto', 'padding-right': '' });
         $('.modal-backdrop').hide();
+        overlayHideTimeoutId = null;
     }, OVERLAY_HIDE_DELAY_MS);
 }
 
@@ -830,6 +849,8 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
         logButtonClick(sourceElement);
     }
 
+    showOverlay();
+
     $.ajax({
         type: 'GET',
         url: buildUrl(slug, {
@@ -840,6 +861,8 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
         success(data) {
             renderAjaxPageContent(slug, data, queryString, addToHistory);
         },
+    }).always(() => {
+        hideOverlay();
     });
 
     return false;
@@ -1008,14 +1031,6 @@ $(document).on('scroll', function handleScroll() {
     const scrollTop = $(window).scrollTop();
 
     $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, scrollTop >= heightThreshold);
-});
-
-$(document).ajaxSend(() => {
-    showOverlay();
-});
-
-$(document).ajaxStop(() => {
-    hideOverlay();
 });
 
 window.onpopstate = handlePopState;

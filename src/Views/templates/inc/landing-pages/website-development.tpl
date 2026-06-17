@@ -1,47 +1,52 @@
-<section class="hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7 mb-4" data-aos="fade-up">
-                <div class="brand mb-2 logo-text BricolageGrotesque-ExtraBold logo fw-bold">
-                    <a href="{$smarty.ENV.WEB_ROOT}" class="fs-1 mbtn" aria-describedby="thank you page logo link">
-                        skale<span class="brand-color">.</span>
-                    </a>
-                </div>
+<section class="website-development-hero py-5">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                {include file="inc/landing-pages/inc/logo.tpl" linkDescribedBy="website development landing page logo"}
 
-                <h1 class="display-5 fw-bold mb-3">
+                <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">Website Development</span>
+
+                <h1 class="display-4 fw-bold mb-4">
                     Websites Built To Generate Leads, Not Just Look Good
                 </h1>
 
-                <h3 class="mb-3">
-                    Your website should be your best salesperson. We design and develop high-performing websites focused on speed, user experience, search visibility, and converting visitors into customers.
-                </h3>
+                <p class="lead mb-4">Your website should be your best salesperson. We design and develop high-performing websites focused on speed, user experience, search visibility, and converting visitors into customers.</p>
 
-                <p class="fs-5 text-tertiary mb-3">Whether you're starting from scratch or rebuilding an outdated site, we create websites that help businesses attract more traffic, build trust faster, and turn clicks into real opportunities.</p>
+                <p class="mb-4">Whether you're starting from scratch or rebuilding an outdated site, we create websites that help businesses attract more traffic, build trust faster, and turn clicks into real opportunities.</p>
 
-                <div class="row">
+                {* <div class="row">
                     <div class="trust-list">
-                        <div class="trust-item">&check; Custom Website Design and Development</div>
+                        <div class="trust-item">&check; Custom Website Design and Development</div> *}
                         {* <div class="trust-item">&check; Mobile-first responsive experiences</div> *}
                         {* <div class="trust-item">&check; SEO-ready architecture</div> *}
                         {* <div class="trust-item">&check; Fast page speed optimization</div> *}
-                        <div class="trust-item">&check; Conversion Focused layouts</div>
+                        {* <div class="trust-item">&check; Conversion Focused layouts</div> *}
                         {* <div class="trust-item">&check; Analytics and lead tracking setup</div> *}
-                        <div class="trust-item">&check; More Qualified Leads</div>
+                        {* <div class="trust-item">&check; More Qualified Leads</div>
                         <div class="trust-item">&check; Faster Website Performance</div>
                         <div class="trust-item">&check; Better Google Visibility</div>
                         <div class="trust-item">&check; Mobile Optimized Experience</div>
                         <div class="trust-item">&check; Analytics &amp; Lead Tracking</div>
                         <div class="trust-item">&check; Built to Scale</div>
                     </div>
+                </div> *}
+
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">&check; Custom Websites</div>
+                    <div class="col-sm-6">&check; CRM & Lead Routing</div>
+                    <div class="col-sm-6">&check; Custom Internal Tools</div>
+                    <div class="col-sm-6">&check; Reporting Automation</div>
+                    <div class="col-sm-6">&check; App & System Integrations</div>
+                    <div class="col-sm-6">&check; Built to Scale</div>
                 </div>
             </div>
 
-            <div class="col-lg-4 offset-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <div class="lead-card">
+            <div class="col-lg-5">
+                <div id="strategy-session" class="form-panel p-4 p-lg-5 lead-card">
                     <h3 class="fw-bold mb-3">Get Your Free Growth Strategy Session</h3>
-                    <p class="text-tertiary mb-4">We'll review your current setup and identify opportunities to generate more leads and improve efficiency.</p>
+                    <p class="text-secondary mb-4">We'll review your current setup and identify opportunities to generate more leads and improve efficiency.</p>
 
-                    {include file="inc/landing-pages/inc/lead-contact-form.tpl"}
+                    {include file="inc/landing-pages/inc/lead-contact-form.tpl" buttonText="Get My Free Strategy Session" userMessageLabel="What do you want to improve with your website?"}
                 </div>
             </div>
         </div>

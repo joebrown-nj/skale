@@ -4,7 +4,4 @@
 
 <script defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script>
-<script src="{$smarty.ENV.WEB_ROOT}js/google.min.js"></script>
-
 <script defer src="{$smarty.ENV.WEB_ROOT}js/main.min.js"></script>

@@ -61,9 +61,9 @@ class Routes
 
         $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
 
-        $this->router->get('/website-development', [LandingPageController::class, 'index']);
-        $this->router->get('/marketing', [LandingPageController::class, 'index']);
-        $this->router->get('/automation', [LandingPageController::class, 'index']);
+        $this->router->get('/website-development', [LandingPageController::class, 'websiteDevelopment']);
+        $this->router->get('/marketing', [LandingPageController::class, 'marketing']);
+        $this->router->get('/automation', [LandingPageController::class, 'automation']);
         $this->router->post('/post-lead-form', [LandingPageController::class, 'postLeadForm']);
 
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);

@@ -23,68 +23,90 @@ class LandingPageController
         $this->requestBlocklistService = $requestBlocklistService;
     }
 
-    public function index()
+    // public function index()
+    // {
+    //     // echo 'index';die;
+    //     // $this->view->render('landing', $this->websiteDevelopment());
+    //     // $this->websiteDevelopment();
+    // }
+
+    public function automation()
     {
-        $this->view->render('landing', $this->websiteDevelopment());
+        $this->view->render('landing', 
+            array(
+                'template' => 'inc/landing-pages/automation.tpl',
+            )
+        );
+    }
+
+    public function marketing()
+    {
+        $this->view->render('landing', 
+            array(
+                'template' => 'inc/landing-pages/marketing.tpl',
+            )
+        );
     }
 
     public function websiteDevelopment()
     {
-        return array(
-            'template' => 'inc/landing-pages/website-development.tpl',
-            'comparisonCards' => array(
-                array(
-                    'title' => 'Primary Focus',
-                    'typical' => 'Design & aesthetics',
-                    'skale' => 'Business growth & lead generation'
+        $this->view->render('landing', 
+            array(
+                'template' => 'inc/landing-pages/website-development.tpl',
+                'comparisonCards' => array(
+                    array(
+                        'title' => 'Primary Focus',
+                        'typical' => 'Design & aesthetics',
+                        'skale' => 'Business growth & lead generation'
+                    ),
+                    array(
+                        'title' => 'Website Strategy',
+                        'typical' => 'Build a website and launch',
+                        'skale' => 'Create a website that supports marketing, sales, and growth goals'
+                    ),
+                    array(
+                        'title' => 'Development Approach',
+                        'typical' => 'Templates and page builders',
+                        'skale' => 'Custom development and scalable solutions'
+                    ),
+                    array(
+                        'title' => 'SEO Optimization',
+                        'typical' => 'Basic setup',
+                        'skale' => 'Built-in SEO best practices and performance optimization'
+                    ),
+                    array(
+                        'title' => 'Marketing Integration',
+                        'typical' => 'Limited or outsourced',
+                        'skale' => 'Integrated with CRM, email marketing, analytics, and automation'
+                    ),
+                    array(
+                        'title' => 'Analytics & Tracking',
+                        'typical' => 'Google Analytics only',
+                        'skale' => 'Lead tracking, conversion tracking, and reporting'
+                    ),
+                    array(
+                        'title' => 'Technical Expertise',
+                        'typical' => 'Design-focused team',
+                        'skale' => '20+ years of engineering and software development experience'
+                    ),
+                    array(
+                        'title' => 'After Launch Support',
+                        'typical' => 'Maintenance only',
+                        'skale' => 'Ongoing optimization and growth strategy'
+                    ),
+                    array(
+                        'title' => 'Long-Term Value',
+                        'typical' => 'Website project completed',
+                        'skale' => 'Continuous improvement and business growth partnership'
+                    )
                 ),
-                array(
-                    'title' => 'Website Strategy',
-                    'typical' => 'Build a website and launch',
-                    'skale' => 'Create a website that supports marketing, sales, and growth goals'
-                ),
-                array(
-                    'title' => 'Development Approach',
-                    'typical' => 'Templates and page builders',
-                    'skale' => 'Custom development and scalable solutions'
-                ),
-                array(
-                    'title' => 'SEO Optimization',
-                    'typical' => 'Basic setup',
-                    'skale' => 'Built-in SEO best practices and performance optimization'
-                ),
-                array(
-                    'title' => 'Marketing Integration',
-                    'typical' => 'Limited or outsourced',
-                    'skale' => 'Integrated with CRM, email marketing, analytics, and automation'
-                ),
-                array(
-                    'title' => 'Analytics & Tracking',
-                    'typical' => 'Google Analytics only',
-                    'skale' => 'Lead tracking, conversion tracking, and reporting'
-                ),
-                array(
-                    'title' => 'Technical Expertise',
-                    'typical' => 'Design-focused team',
-                    'skale' => '20+ years of engineering and software development experience'
-                ),
-                array(
-                    'title' => 'After Launch Support',
-                    'typical' => 'Maintenance only',
-                    'skale' => 'Ongoing optimization and growth strategy'
-                ),
-                array(
-                    'title' => 'Long-Term Value',
-                    'typical' => 'Website project completed',
-                    'skale' => 'Continuous improvement and business growth partnership'
+                'something' => array(
+                    array(
+                        'title' => '',
+                        'typical' => 'Typical Agency',
+                        'skale' => 'Skale'
+                    ),
                 )
-            ),
-            'something' => array(
-                array(
-                    'title' => '',
-                    'typical' => 'Typical Agency',
-                    'skale' => 'Skale'
-                ),
             )
         );
     }

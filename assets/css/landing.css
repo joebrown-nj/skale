@@ -1,3 +1,5 @@
+/***************** WEBSITE DEVELOPMENT PAGE *****************/
+
 .menu-bar-bg {
     background:transparent !important;
     backdrop-filter: none !important;
@@ -85,8 +87,8 @@
     background-color:#020617;
 }
 
-.hero {
-    padding: 6rem 1rem;
+.website-development-hero {
+    /* padding: 6rem 1rem; */
     background: radial-gradient(circle at top right, #1e3a8a, #020617);
 }
 
@@ -146,3 +148,74 @@
 .accordion-body {
     background-color: #ffffff;
 }
+
+/***************** AUTOMATION PAGE *****************/
+
+:root {
+    --skale-dark: #07111f;
+    --skale-ink: #102033;
+    --skale-blue: #0d6efd;
+    --skale-cyan: #16c7d9;
+    --skale-mint: #2ee6a6;
+    --skale-soft: #f3fbfb;
+    --skale-card: #ffffff;
+}
+
+.automation-hero {
+    background:
+        radial-gradient(circle at top right, rgba(46, 230, 166, .22), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(22, 199, 217, .22), transparent 36%),
+        linear-gradient(135deg, #07111f 0%, #102033 58%, #083344 100%);
+    color: #fff;
+}
+
+.automation-badge {
+    background: rgba(46, 230, 166, .14);
+    color: var(--skale-mint);
+    border: 1px solid rgba(46, 230, 166, .35);
+}
+
+.automation-card {
+    border: 1px solid rgba(13, 110, 253, .08);
+    box-shadow: 0 20px 50px rgba(7, 17, 31, .08);
+    border-radius: 1.25rem;
+}
+
+.automation-accent {
+    color: var(--skale-cyan);
+}
+
+.bg-automation-soft {
+    background: var(--skale-soft);
+}
+
+.icon-pill {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--skale-cyan), var(--skale-mint));
+    color: var(--skale-dark);
+    font-weight: 800;
+}
+
+.comparison-row {
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    padding: 1rem 0;
+}
+
+.comparison-row:last-child {
+    border-bottom: 0;
+}
+
+.form-panel {
+    background: #ffffff;
+    color: var(--skale-ink);
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+/***************** MARKETING PAGE *****************/
+
