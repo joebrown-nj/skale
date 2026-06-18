@@ -63,4 +63,44 @@ class ContactModel
 
         return $contact;
     }
+
+    public function checkLeadForm(array $data): array
+    {
+        $error = array();
+
+        if (empty($data['name'])) {
+            $error[] = 'Name is required';
+        }
+
+        if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $error[] = 'Email is required';
+        }
+
+        return $error;
+    }
+
+    public function processLeadForm(array $data): bool
+    {
+        try {
+            $contact = $this->buildLeadEntity($data);
+            $this->entityManager->persist($contact);
+            $this->entityManager->flush();
+            return true;
+        } catch (Throwable $e) {
+            error_log($e->getMessage());
+            return false;
+        }
+    }
+
+    private function buildLeadEntity(array $data): ContactEntity
+    {
+        $contact = new ContactEntity();
+        $contact->setname($data['name']);
+        $contact->setemail($data['email']);
+        $contact->setphone($data['phone'] ?? '');
+        $contact->setmessage($data['comment'] ?? '');
+        $contact->setinterestedIn(json_encode($data['interests'] ?? []));
+
+        return $contact;
+    }
 }

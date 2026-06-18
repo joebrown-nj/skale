@@ -3,8 +3,7 @@ public_html/images/
 public_html/videos/
 vendor/
 src/Views/templates_c/
-var/cache/
-var/sessions/
+var/
 .phpunit.cache/
 public_html/.well-known/
 docs/

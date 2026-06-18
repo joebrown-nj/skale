@@ -41,7 +41,7 @@ class SiteDataCache
             'serviceList' => $this->getServiceList(),
             'allServiceList' => $this->getAllServiceList(),
             'contactContent' => $this->getContactContent(),
-            'faq' => $this->getFAQ(),
+            'faq' => $this->getWebsiteFAQ(),
         ];
 
         return $this->sharedData;
@@ -127,7 +127,7 @@ class SiteDataCache
         return $this->contactContent;
     }
 
-    public function getFAQ(): array
+    public function getWebsiteFAQ(): array
     {
         return array(
             [

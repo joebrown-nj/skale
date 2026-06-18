@@ -193,29 +193,29 @@
 </section>
 
 {* <section class="py-5">
-    <div class="container py-5">
-        <div class="row text-center g-4">
-            <div class="col-6 col-lg-3">
-                <h3 class="display-6 fw-bold automation-accent">100%</h3>
-                <p class="text-secondary mb-0">Custom Solutions</p>
-            </div>
+<div class="container py-5">
+<div class="row text-center g-4">
+<div class="col-6 col-lg-3">
+<h3 class="display-6 fw-bold automation-accent">100%</h3>
+<p class="text-secondary mb-0">Custom Solutions</p>
+</div>
 
-            <div class="col-6 col-lg-3">
-                <h3 class="display-6 fw-bold automation-accent">20+</h3>
-                <p class="text-secondary mb-0">Years of Experience</p>
-            </div>
+<div class="col-6 col-lg-3">
+<h3 class="display-6 fw-bold automation-accent">20+</h3>
+<p class="text-secondary mb-0">Years of Experience</p>
+</div>
 
-            <div class="col-6 col-lg-3">
-                <h3 class="display-6 fw-bold automation-accent">24/7</h3>
-                <p class="text-secondary mb-0">Systems Working</p>
-            </div>
+<div class="col-6 col-lg-3">
+<h3 class="display-6 fw-bold automation-accent">24/7</h3>
+<p class="text-secondary mb-0">Systems Working</p>
+</div>
 
-            <div class="col-6 col-lg-3">
-                <h3 class="display-6 fw-bold automation-accent">1</h3>
-                <p class="text-secondary mb-0">Growth Partner</p>
-            </div>
-        </div>
-    </div>
+<div class="col-6 col-lg-3">
+<h3 class="display-6 fw-bold automation-accent">1</h3>
+<p class="text-secondary mb-0">Growth Partner</p>
+</div>
+</div>
+</div>
 </section> *}
 
 {include file="inc/landing-pages/inc/stats.tpl"}
