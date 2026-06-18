@@ -15,20 +15,20 @@
                 <p class="mb-4">Whether you're starting from scratch or rebuilding an outdated site, we create websites that help businesses attract more traffic, build trust faster, and turn clicks into real opportunities.</p>
 
                 {* <div class="row">
-                    <div class="trust-list">
-                        <div class="trust-item">&check; Custom Website Design and Development</div> *}
-                        {* <div class="trust-item">&check; Mobile-first responsive experiences</div> *}
-                        {* <div class="trust-item">&check; SEO-ready architecture</div> *}
-                        {* <div class="trust-item">&check; Fast page speed optimization</div> *}
-                        {* <div class="trust-item">&check; Conversion Focused layouts</div> *}
-                        {* <div class="trust-item">&check; Analytics and lead tracking setup</div> *}
-                        {* <div class="trust-item">&check; More Qualified Leads</div>
-                        <div class="trust-item">&check; Faster Website Performance</div>
-                        <div class="trust-item">&check; Better Google Visibility</div>
-                        <div class="trust-item">&check; Mobile Optimized Experience</div>
-                        <div class="trust-item">&check; Analytics &amp; Lead Tracking</div>
-                        <div class="trust-item">&check; Built to Scale</div>
-                    </div>
+                <div class="trust-list">
+                <div class="trust-item">&check; Custom Website Design and Development</div> *}
+                {* <div class="trust-item">&check; Mobile-first responsive experiences</div> *}
+                {* <div class="trust-item">&check; SEO-ready architecture</div> *}
+                {* <div class="trust-item">&check; Fast page speed optimization</div> *}
+                {* <div class="trust-item">&check; Conversion Focused layouts</div> *}
+                {* <div class="trust-item">&check; Analytics and lead tracking setup</div> *}
+                {* <div class="trust-item">&check; More Qualified Leads</div>
+                <div class="trust-item">&check; Faster Website Performance</div>
+                <div class="trust-item">&check; Better Google Visibility</div>
+                <div class="trust-item">&check; Mobile Optimized Experience</div>
+                <div class="trust-item">&check; Analytics &amp; Lead Tracking</div>
+                <div class="trust-item">&check; Built to Scale</div>
+                </div>
                 </div> *}
 
                 <div class="row g-3 mb-4">

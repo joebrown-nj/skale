@@ -35,9 +35,18 @@ class LogController
             'detail' => $input['detail'] ?? '',
             'userIP' => $server['REMOTE_ADDR'] ?? '',
             'userInfo' => json_encode($this->user),
-            'serverInfo' => json_encode($server),
+            'serverInfo' => json_encode($this->sanitizeServerInfo($server)),
         ];
 
         return $this->logModel->logButtonClick($data);
+    }
+
+    private function sanitizeServerInfo(array $server): array
+    {
+        foreach (array_keys($_ENV) as $envKey) {
+            unset($server[$envKey]);
+        }
+
+        return $server;
     }
 }
