@@ -72,37 +72,20 @@
 
         <!-- Desktop Comparison Table -->
         <div class="d-none d-lg-block">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-10">
-                    <div class="text-left table-responsive shadow-xl overflow-hidden rounded-4">
-                        <table class="table table-bordered align-middle mb-0 table-hover">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>
-                                        <h5 class="fw-bold mb-0">Typical Agency</h5>
-                                    </th>
-                                    <th class="bg-primary text-white">
-                                        <h5 class="fw-bold mb-0">Skale</h5>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$data.sections.sectionComparison.comparisonCards item=card key=key}
-                                    <tr data-aos="fade-up" data-aos-delay="{$key*100}">
-                                        <td class="fw-semibold">{$card.title}</td>
-                                        <td>{$card.typical}</td>
-                                        <td><strong>{$card.skale}</strong></td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-
-                        <div class="border-top mt-4 pt-4 text-secondary text-center">
-                            <p>Based on common offerings from freelance designers and traditional web agencies.</p>
-                        </div>
-                    </div>
+            <div class="automation-card p-4 p-lg-5">
+                <div class="row fw-bold text-secondary d-none d-md-flex mb-3">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">Typical Agency</div>
+                    <div class="col-md-4">Skale</div>
                 </div>
+
+                {foreach from=$data.sections.sectionComparison.comparisonCards item=card key=k}
+                    <div class="comparison-row row" data-aos="fade-up" data-aos-delay="{$k*50}">
+                        <div class="col-md-4 fw-bold">{$card.title}</div>
+                        <div class="col-md-4 text-secondary">{$card.typical}</div>
+                        <div class="col-md-4">{$card.skale}</div>
+                    </div>
+                {/foreach}
             </div>
         </div>
     </div>
@@ -140,7 +123,7 @@
                 <div class="glass-card shadow-xl" data-aos="fade-up">
                     <h3 class="h2 fw-bold mb-3">{$data.sections.sectionBuiltForGrowth.headline}</h3>
                     <p class="mb-4 text-secondary">{$data.sections.sectionBuiltForGrowth.subheadline}</p>
-                    <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
+                    <button class="btn btn-primary btn-lg px-4 stretched-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
                         {$data.sections.sectionBuiltForGrowth.ctaButtonText}
                     </button>
                 </div>

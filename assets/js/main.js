@@ -1149,7 +1149,7 @@ function animateStatsSection(statsSection) {
 
         element.dataset.countAnimated = 'true';
         element.textContent = '0';
-        animateValue(element, 0, endValue, 2000);
+        animateValue(element, 0, endValue, 1000);
     });
 
     statsSection.dataset.statsAnimated = 'true';

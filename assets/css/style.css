@@ -1,6 +1,7 @@
  :root {
 	--card: rgba(17, 24, 39, .82);
 	--border: rgba(255, 255, 255, .08);
+	--borderHover: rgba(255, 255, 255, .12);
 	--muted: #cbd5e1;
 }
 
@@ -587,6 +588,13 @@ a:hover {
 	border-radius: 24px;
 	padding: 40px;
 	box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+    transition:.3s;
+}
+
+.glass-card:hover {
+	box-shadow: 0 30px 70px rgba(0, 0, 0, .35);
+	border: 1px solid var(--borderHover);
+    transform:translateY(-5px) !important;
 }
 
 @media(max-width:768px) {
