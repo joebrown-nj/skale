@@ -192,7 +192,7 @@
     </div>
 </section>
 
-<section class="py-5">
+{* <section class="py-5">
     <div class="container py-5">
         <div class="row text-center g-4">
             <div class="col-6 col-lg-3">
@@ -216,7 +216,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> *}
+
+{include file="inc/landing-pages/inc/stats.tpl"}
 
 <section class="py-5 bg-automation-soft">
     <div class="container py-5">
@@ -277,10 +279,4 @@
     </div>
 </section>
 
-<section class="py-5 bg-dark text-white">
-    <div class="container py-5 text-center">
-        <h2 class="display-6 fw-bold mb-3">Ready to Automate the Work Holding You Back?</h2>
-        <p class="lead text-white-50 mb-4">Get a free strategy session and discover where smarter systems can save time, reduce errors, and help your business grow.</p>
-        <a href="#strategy-session" class="btn btn-info btn-lg rounded-pill px-5 fw-semibold">Get My Automation Plan</a>
-    </div>
-</section>
+{include file="inc/landing-pages/inc/footer.tpl" headline="Ready to Automate the Work Holding You Back?" subheadline="Get a free strategy session and discover where smarter systems can save time, reduce errors, and help your business grow." ctaText="Get My Automation Plan"}

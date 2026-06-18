@@ -1,7 +1,7 @@
 <section class="website-development-hero py-5">
     <div class="container py-5">
         <div class="row align-items-center g-5">
-            <div class="col-lg-7">
+            <div class="col-lg-7" data-aos="fade-up">
                 {include file="inc/landing-pages/inc/logo.tpl" linkDescribedBy="website development landing page logo"}
 
                 <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">Website Development</span>
@@ -14,23 +14,6 @@
 
                 <p class="mb-4">Whether you're starting from scratch or rebuilding an outdated site, we create websites that help businesses attract more traffic, build trust faster, and turn clicks into real opportunities.</p>
 
-                {* <div class="row">
-                <div class="trust-list">
-                <div class="trust-item">&check; Custom Website Design and Development</div> *}
-                {* <div class="trust-item">&check; Mobile-first responsive experiences</div> *}
-                {* <div class="trust-item">&check; SEO-ready architecture</div> *}
-                {* <div class="trust-item">&check; Fast page speed optimization</div> *}
-                {* <div class="trust-item">&check; Conversion Focused layouts</div> *}
-                {* <div class="trust-item">&check; Analytics and lead tracking setup</div> *}
-                {* <div class="trust-item">&check; More Qualified Leads</div>
-                <div class="trust-item">&check; Faster Website Performance</div>
-                <div class="trust-item">&check; Better Google Visibility</div>
-                <div class="trust-item">&check; Mobile Optimized Experience</div>
-                <div class="trust-item">&check; Analytics &amp; Lead Tracking</div>
-                <div class="trust-item">&check; Built to Scale</div>
-                </div>
-                </div> *}
-
                 <div class="row g-3 mb-4">
                     <div class="col-sm-6">&check; Custom Websites</div>
                     <div class="col-sm-6">&check; CRM & Lead Routing</div>
@@ -41,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
                 <div id="strategy-session" class="form-panel p-4 p-lg-5 lead-card">
                     <h3 class="fw-bold mb-3">Get Your Free Growth Strategy Session</h3>
                     <p class="text-secondary mb-4">We'll review your current setup and identify opportunities to generate more leads and improve efficiency.</p>
@@ -66,11 +49,6 @@
                 <p class="secondary">We'll review your current setup and identify opportunities to generate more leads and improve efficiency.</p>
                 {include file="inc/landing-pages/inc/lead-contact-form.tpl"}
             </div>
-
-            {* <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-            </div> *}
         </div>
     </div>
 </div>
@@ -125,8 +103,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach from=$data.comparisonCards item=card}
-                                    <tr>
+                                {foreach from=$data.comparisonCards item=card key=key}
+                                    <tr data-aos="fade-up" data-aos-delay="{$key*100}">
                                         <td class="fw-semibold">{$card.title}</td>
                                         <td>{$card.typical}</td>
                                         <td><strong>{$card.skale}</strong></td>
@@ -235,31 +213,6 @@
     </div>
 </section>
 
-<section class="stats py-5">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-3">
-                <div class="stat-number"><span data-value="100">0</span>%</div>
-                <p class="fs-5">Custom Solutions</p>
-            </div>
-
-            <div class="col-md-3">
-                <div class="stat-number"><span data-value="20">0</span>+</div>
-                <p class="fs-5">Years of Experience</p>
-            </div>
-
-            <div class="col-md-3">
-                <div class="stat-number"><span data-value="24">0</span>/7</div>
-                <p class="fs-5">Support & Optimization</p>
-            </div>
-
-            <div class="col-md-3">
-                <div class="stat-number"><span data-value="1">0</span></div>
-                <p class="fs-5">Growth Partner</p>
-            </div>
-        </div>
-    </div>
-</section>
-
+{include file="inc/landing-pages/inc/stats.tpl"}
 {include file="inc/landing-pages/inc/faq.tpl"}
-{include file="inc/landing-pages/inc/footer.tpl"}
+{include file="inc/landing-pages/inc/footer.tpl" headline="Ready For A Website That Works Harder?" subheadline="Get a free strategy session and discover opportunities to improve your online presence." ctaText="Get My Website Plan" class="cta"}
