@@ -51,8 +51,8 @@
 
         <!-- Mobile Comparison Cards -->
         <div class="d-lg-none">
-            {foreach from=$data.sections.sectionComparison.comparisonCards item=card}
-                <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden">
+            {foreach from=$data.sections.sectionComparison.comparisonCards item=card key=k}
+                <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="{$k*100}">
                     <div class="card-header bg-primary text-white py-3">
                         <h3 class="h6 fw-bold mb-0">{$card.title}</h3>
                     </div>
