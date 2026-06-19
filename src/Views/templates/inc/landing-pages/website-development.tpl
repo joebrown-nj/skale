@@ -152,6 +152,6 @@
 </section>
 
 {include file="inc/landing-pages/inc/stats.tpl"}
-{include file="inc/landing-pages/inc/faq.tpl"}
+{include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
 {include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Website Growth Strategy Session" ctaText="Get My Website Plan" modalDescription="We'll review your current setup and identify opportunities to generate more leads and improve efficiency."}
 {include file="inc/landing-pages/inc/footer.tpl" headline="Ready For A Website That Works Harder?" subheadline="Get a free strategy session and discover opportunities to improve your online presence." ctaText="Get My Website Plan" class="cta"}

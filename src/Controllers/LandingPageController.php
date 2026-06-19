@@ -28,7 +28,43 @@ class LandingPageController
         $this->view->render('landing', 
             array(
                 'template' => 'inc/landing-pages/automation.tpl',
+                'sections' => $this->getAutomationSections()
             )
+        );
+    }
+
+    private function getAutomationSections(): array
+    {
+        $sections = array(
+            'sectionFAQ' => $this->getAutomationFAQ()
+        );
+
+        return $sections;
+    }
+
+    private function getAutomationFAQ(): array
+    {
+        return array(
+            [
+                'question' => 'What types of automation can you build?',
+                'answer' => 'We can help with CRM automation, lead routing, reporting workflows, email automation, internal tools, integrations, data cleanup, and custom software workflows.'
+            ],
+            [
+                'question' => 'Do I need custom software?',
+                'answer' => 'Not always. Sometimes the best solution is connecting the tools you already use. Other times, custom software is the right fit when your process is unique or limited by off-the-shelf platforms.'
+            ],
+            [
+                'question' => 'Can you connect my website to my CRM?',
+                'answer' => 'Yes. We can connect forms, landing pages, lead sources, email platforms, CRMs, analytics tools, and reporting dashboards.'
+            ],
+            [
+                'question' => 'How long does automation work take?',
+                'answer' => 'Timelines depend on complexity. Small workflow improvements may be completed quickly, while larger integrations or custom tools require more planning and development.'
+            ],
+            [
+                'question' => 'Can you improve an existing process?',
+                'answer' => 'Yes. We can review your current systems, identify bottlenecks, and improve or rebuild workflows to make them more efficient and scalable.'
+            ]
         );
     }
 
@@ -76,7 +112,8 @@ class LandingPageController
             'sectionComparison' => $this->getWebsiteDevelopmentComparison(),
             'sectionWhySkale' => $this->getWebsiteDevelopmentWhySkale(),
             'sectionBuiltForGrowth' => $this->getWebsiteDevelopmentBuiltForGrowth(),
-            'sectionProcess' => $this->getWebsiteDevelopmentProcess()
+            'sectionProcess' => $this->getWebsiteDevelopmentProcess(),
+            'sectionFAQ' => $this->getWebsiteFAQ()
         );
 
         $sections[] = array(
@@ -100,10 +137,69 @@ class LandingPageController
             'sectionComparison' => $this->getWebsiteDevelopmentComparison(),
             'sectionWhySkale' => $this->getWebsiteDevelopmentWhySkale(),
             'sectionBuiltForGrowth' => $this->getWebsiteDevelopmentBuiltForGrowth(),
-            'sectionProcess' => $this->getWebsiteDevelopmentProcess()
+            'sectionProcess' => $this->getWebsiteDevelopmentProcess(),
+            'sectionFAQ' => $this->getWebsiteFAQ()
         );
 
         return $sections[array_rand($sections)];
+    }
+
+    private function getWebsiteFAQ(): array
+    {
+        return array(
+            [
+                'question' => 'How much does a website cost?',
+                'answer' => 'Every project is different depending on functionality and scope.'
+            ],
+            [
+                'question' => 'How long does development take?',
+                'answer' => 'Most projects range from 2-6 weeks.'
+            ],
+            [
+                'question' => 'Can you redesign an existing website?',
+                'answer' => 'Yes.'
+            ],
+            [
+                'question' => 'Will my website work on mobile devices?',
+                'answer' => 'Yes, every website is built for mobile and desktop users.'
+            ],
+            [
+                'question' => 'Can you help with SEO and marketing?',
+                'answer' => 'Yes, websites can be paired with SEO and marketing services.'
+            ],
+            [
+                'question' => 'What industries do you specialize in?',
+                'answer' => 'We have experience across a wide range of industries, including technology, healthcare, finance, e-commerce, and more. Our team is adaptable and can tailor our solutions to meet the unique needs of your industry.'
+            ],
+            [
+                'question' => 'How do you approach project management?',
+                'answer' => 'We use agile methodologies to ensure flexibility and transparency throughout the project lifecycle. This allows us to adapt to changing requirements and deliver high-quality results on time.'
+            ],
+            [
+                'question' => 'What is your pricing model?',
+                'answer' => 'Our pricing model is flexible and based on the specific needs of each project. We offer both fixed-price and time-and-materials options, depending on the scope and complexity of the work.'
+            ],
+            [
+                'question' => 'How do you ensure the security of my data?',
+                'answer' => 'We take data security very seriously. We implement industry best practices for data protection, including encryption, secure access controls, and regular security audits to safeguard your information.'
+            ],
+            [
+                'question' => 'How long does development take?',
+                'answer' => 'Most projects range from 2-6 weeks.'
+            ],
+            [
+                'question' => 'Can you redesign an existing site?',
+                'answer' => 'Yes, we can redesign existing websites to improve functionality, user experience, and visual appeal.'
+            ],
+            [
+                'question' => 'Do you provide maintenance?',
+                'answer' => 'Yes, we offer ongoing maintenance packages to ensure your website remains up-to-date, secure, and functioning optimally.'
+            ],
+            [
+                'question' => 'Will I be able to edit the website myself?',
+                'answer' => 'Yes, we provide training and documentation to help you manage and update your website content independently.'
+            ]
+        );
     }
 
     private function getWebsiteDevelopmentWhySkale(): array
