@@ -1,26 +1,17 @@
 <?php
 declare(strict_types=1);
 
+use App\Core\Environment;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
 use Doctrine\Migrations\Configuration\Migration\PhpFile;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
-use Symfony\Component\Dotenv\Dotenv;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/.env');
-
-$appEnv = $_ENV['APP_ENV'] ?? null;
-if ($appEnv !== null) {
-    $envFile = __DIR__ . '/' . strtoupper($appEnv) . '.env';
-    if (is_file($envFile)) {
-        $dotenv->load($envFile);
-    }
-}
+Environment::boot(__DIR__);
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: [__DIR__ . '/src/Models/Entities'],

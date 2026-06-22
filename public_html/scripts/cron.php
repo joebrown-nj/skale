@@ -5,15 +5,13 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-use Symfony\Component\Dotenv\Dotenv;
+use App\Core\Environment;
 
 require_once dirname(__DIR__, 2).'/vendor/autoload.php';
 
 $projectRoot = dirname(__DIR__, 2);
 
-$dotenv = new Dotenv();
-$dotenv->load($projectRoot.'/.env');
-$dotenv->load($projectRoot.'/'.strtoupper($_ENV['APP_ENV']).'.env');
+Environment::boot($projectRoot);
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

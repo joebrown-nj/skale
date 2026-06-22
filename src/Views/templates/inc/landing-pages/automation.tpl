@@ -50,47 +50,149 @@
             </div>
         </div>
 
-        <div class="automation-card bg-white p-4 p-lg-5">
-            <div class="row fw-bold text-secondary d-none d-md-flex mb-3">
-                <div class="col-md-4">Category</div>
-                <div class="col-md-4">Typical Approach</div>
-                <div class="col-md-4">Skale Approach</div>
+        <!-- Mobile Comparison Cards -->
+        <div class="d-lg-none">
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Primary Focus</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Patch one problem at a time</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Build connected systems that support growth</strong>
+                    </div>
+                </div>
             </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="50">
-                <div class="col-md-4 fw-bold text-secondary">Primary Focus</div>
-                <div class="col-md-4 text-secondary">Patch one problem at a time</div>
-                <div class="col-md-4 fw-bold text-secondary">Build connected systems that support growth</div>
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Workflow Strategy</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Automate isolated tasks</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Map the full process and remove friction</strong>
+                    </div>
+                </div>
             </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-md-4 fw-bold text-secondary">Workflow Strategy</div>
-                <div class="col-md-4 text-secondary">Automate isolated tasks</div>
-                <div class="col-md-4 fw-bold text-secondary">Map the full process and remove friction</div>
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Technical Approach</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Use generic templates or plugins</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Create custom workflows, integrations, and software when needed</strong>
+                    </div>
+                </div>
             </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="150">
-                <div class="col-md-4 fw-bold text-secondary">Technical Approach</div>
-                <div class="col-md-4 text-secondary">Use generic templates or plugins</div>
-                <div class="col-md-4 fw-bold text-secondary">Create custom workflows, integrations, and software when needed</div>
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Sales & Marketing</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Basic forms and notifications</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Lead routing, CRM updates, follow-ups, and conversion tracking</strong>
+                    </div>
+                </div>
             </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="200">
-                <div class="col-md-4 fw-bold text-secondary">Sales & Marketing</div>
-                <div class="col-md-4 text-secondary">Basic forms and notifications</div>
-                <div class="col-md-4 fw-bold text-secondary">Lead routing, CRM updates, follow-ups, and conversion tracking</div>
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Reporting</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Manual spreadsheets and disconnected dashboards</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Automated reporting that gives clearer visibility</strong>
+                    </div>
+                </div>
             </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="250">
-                <div class="col-md-4 fw-bold text-secondary">Reporting</div>
-                <div class="col-md-4 text-secondary">Manual spreadsheets and disconnected dashboards</div>
-                <div class="col-md-4 fw-bold text-secondary">Automated reporting that gives clearer visibility</div>
+            <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="h6 fw-bold mb-0">Long-Term Value</h3>
+                </div>
+                <div class="card-body">
+                    <div class="border rounded-3 p-3 mb-3">
+                        <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                        <span class="text-secondary">Short-term task fixes</span>
+                    </div>
+                    <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                        <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                        <strong>Scalable infrastructure that improves over time</strong>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="comparison-row row" data-aos="fade-up" data-aos-delay="300">
-                <div class="col-md-4 fw-bold text-secondary">Long-Term Value</div>
-                <div class="col-md-4 text-secondary">Short-term task fixes</div>
-                <div class="col-md-4 fw-bold text-secondary">Scalable infrastructure that improves over time</div>
+        <!-- Desktop Comparison Table -->
+        <div class="d-none d-lg-block">
+            <div class="automation-card bg-white p-4 p-lg-5">
+                <div class="row fw-bold text-secondary d-none d-md-flex mb-3">
+                    <div class="col-md-4">Category</div>
+                    <div class="col-md-4">Typical Approach</div>
+                    <div class="col-md-4">Skale Approach</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="50">
+                    <div class="col-md-4 fw-bold text-secondary">Primary Focus</div>
+                    <div class="col-md-4 text-secondary">Patch one problem at a time</div>
+                    <div class="col-md-4 fw-bold text-secondary">Build connected systems that support growth</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-md-4 fw-bold text-secondary">Workflow Strategy</div>
+                    <div class="col-md-4 text-secondary">Automate isolated tasks</div>
+                    <div class="col-md-4 fw-bold text-secondary">Map the full process and remove friction</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="col-md-4 fw-bold text-secondary">Technical Approach</div>
+                    <div class="col-md-4 text-secondary">Use generic templates or plugins</div>
+                    <div class="col-md-4 fw-bold text-secondary">Create custom workflows, integrations, and software when needed</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-md-4 fw-bold text-secondary">Sales & Marketing</div>
+                    <div class="col-md-4 text-secondary">Basic forms and notifications</div>
+                    <div class="col-md-4 fw-bold text-secondary">Lead routing, CRM updates, follow-ups, and conversion tracking</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="250">
+                    <div class="col-md-4 fw-bold text-secondary">Reporting</div>
+                    <div class="col-md-4 text-secondary">Manual spreadsheets and disconnected dashboards</div>
+                    <div class="col-md-4 fw-bold text-secondary">Automated reporting that gives clearer visibility</div>
+                </div>
+
+                <div class="comparison-row row" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-md-4 fw-bold text-secondary">Long-Term Value</div>
+                    <div class="col-md-4 text-secondary">Short-term task fixes</div>
+                    <div class="col-md-4 fw-bold text-secondary">Scalable infrastructure that improves over time</div>
+                </div>
             </div>
         </div>
     </div>
@@ -200,62 +302,62 @@
 </section>
 
 {* <section class="py-5 bg-automation-soft">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-9">
-                <div class="text-center mb-5">
-                    <h2 class="display-6 fw-bold">Frequently Asked Questions</h2>
-                </div>
+<div class="container py-5">
+<div class="row justify-content-center">
+<div class="col-lg-9">
+<div class="text-center mb-5">
+<h2 class="display-6 fw-bold">Frequently Asked Questions</h2>
+</div>
 
-                <div class="accordion" id="automationFaq">
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">What types of automation can you build?</button>
-                        </h3>
-                        <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#automationFaq">
-                            <div class="accordion-body">We can help with CRM automation, lead routing, reporting workflows, email automation, internal tools, integrations, data cleanup, and custom software workflows.</div>
-                        </div>
-                    </div>
+<div class="accordion" id="automationFaq">
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">What types of automation can you build?</button>
+</h3>
+<div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#automationFaq">
+<div class="accordion-body">We can help with CRM automation, lead routing, reporting workflows, email automation, internal tools, integrations, data cleanup, and custom software workflows.</div>
+</div>
+</div>
 
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Do I need custom software?</button>
-                        </h3>
-                        <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-                            <div class="accordion-body">Not always. Sometimes the best solution is connecting the tools you already use. Other times, custom software is the right fit when your process is unique or limited by off-the-shelf platforms.</div>
-                        </div>
-                    </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Do I need custom software?</button>
+</h3>
+<div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
+<div class="accordion-body">Not always. Sometimes the best solution is connecting the tools you already use. Other times, custom software is the right fit when your process is unique or limited by off-the-shelf platforms.</div>
+</div>
+</div>
 
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">Can you connect my website to my CRM?</button>
-                        </h3>
-                        <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-                            <div class="accordion-body">Yes. We can connect forms, landing pages, lead sources, email platforms, CRMs, analytics tools, and reporting dashboards.</div>
-                        </div>
-                    </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">Can you connect my website to my CRM?</button>
+</h3>
+<div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
+<div class="accordion-body">Yes. We can connect forms, landing pages, lead sources, email platforms, CRMs, analytics tools, and reporting dashboards.</div>
+</div>
+</div>
 
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">How long does automation work take?</button>
-                        </h3>
-                        <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-                            <div class="accordion-body">Timelines depend on complexity. Small workflow improvements may be completed quickly, while larger integrations or custom tools require more planning and development.</div>
-                        </div>
-                    </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">How long does automation work take?</button>
+</h3>
+<div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
+<div class="accordion-body">Timelines depend on complexity. Small workflow improvements may be completed quickly, while larger integrations or custom tools require more planning and development.</div>
+</div>
+</div>
 
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">Can you improve an existing process?</button>
-                        </h3>
-                        <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-                            <div class="accordion-body">Yes. We can review your current systems, identify bottlenecks, and improve or rebuild workflows to make them more efficient and scalable.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">Can you improve an existing process?</button>
+</h3>
+<div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
+<div class="accordion-body">Yes. We can review your current systems, identify bottlenecks, and improve or rebuild workflows to make them more efficient and scalable.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section> *}
 
 {include file="inc/landing-pages/inc/stats.tpl"}

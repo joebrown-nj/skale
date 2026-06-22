@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace App\Core\Db;
 
+use App\Core\Environment;
 use App\Core\ErrorHandler;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Exception\ConnectionException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\ORMSetup;
-use Dotenv\Exception\InvalidPathException;
+use Symfony\Component\Dotenv\Exception\PathException;
 
 class DatabaseORM
 {
@@ -21,69 +22,60 @@ class DatabaseORM
         private readonly string $user,
         private readonly string $password,
         private readonly string $driver,
-
-    ){
+    ) {
         $this->initialize();
     }
 
     public function initialize(): EntityManager
     {
         if (self::$entityManager === null) {
+            $config = ORMSetup::createAttributeMetadataConfiguration(
+                paths: [dirname(__DIR__, 3).'/app/Models/Entities'],
+                isDevMode: true
+            );
+
+            $dbParams = [
+                'dbname' => $this->dbname,
+                'user' => $this->user,
+                'password' => $this->password,
+                'host' => $this->host,
+                'driver' => $this->driver,
+            ];
+
             try {
-                $config = ORMSetup::createAttributeMetadataConfiguration(
-                    paths: [dirname(__DIR__, 3) . '/app/Models/Entities'],
-                    isDevMode: true
-                );
-
-                $dbParams = [
-                    'dbname' => $this->dbname,
-                    'user' => $this->user,
-                    'password' => $this->password,
-                    'host' => $this->host,
-                    'driver' => $this->driver
-                ];
-
-                try {
-                    $connection = DriverManager::getConnection($dbParams, $config);
-                    self::$entityManager = new EntityManager($connection, $config);
-                } catch (ConnectionException $e) {
-                    ErrorHandler::getInstance()->handleError($e);
-                    throw new \RuntimeException('Failed to connect to the database. Please check your database configuration.');
-                }
-
-            } catch (InvalidPathException $e) {
+                $connection = DriverManager::getConnection($dbParams, $config);
+                self::$entityManager = new EntityManager($connection, $config);
+            } catch (ConnectionException $e) {
                 ErrorHandler::getInstance()->handleError($e);
-                throw new \RuntimeException('Environment file (.env) not found or invalid.');
+                throw new \RuntimeException('Failed to connect to the database. Please check your database configuration.');
             }
         }
 
         return self::$entityManager;
     }
 
-  public static function getInstance(): EntityManager{
+    public static function getInstance(): EntityManager
+    {
         if (self::$entityManager === null) {
             try {
-                // Load environment variables
-                $dotenv = Dotenv::createImmutable(dirname(__DIR__, 3));
-                $dotenv->safeLoad();
+                Environment::boot(dirname(__DIR__, 3));
 
                 $config = ORMSetup::createAttributeMetadataConfiguration(
-                    paths: [dirname(__DIR__, 3) . '/app/models/entities'],
+                    paths: [dirname(__DIR__, 3).'/app/models/entities'],
                     isDevMode: true
                 );
 
                 $dbParams = [
-                    'dbname'   => $_ENV['DB_NAME'],
-                    'user'     => $_ENV['DB_USER'],
+                    'dbname' => $_ENV['DB_NAME'],
+                    'user' => $_ENV['DB_USER'],
                     'password' => $_ENV['DB_PASS'],
-                    'host'     => $_ENV['DB_HOST'],
-                    'driver'   => $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
+                    'host' => $_ENV['DB_HOST'],
+                    'driver' => $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
                 ];
 
                 $connection = DriverManager::getConnection($dbParams, $config);
                 self::$entityManager = new EntityManager($connection, $config);
-
-            } catch (InvalidPathException $e) {
+            } catch (PathException $e) {
                 ErrorHandler::handle($e);
                 throw new \RuntimeException('Environment file (.env) not found or invalid.');
             } catch (ORMException $e) {
@@ -91,6 +83,7 @@ class DatabaseORM
                 throw new \RuntimeException('Failed to initialize ORM configuration.');
             }
         }
+
         return self::$entityManager;
     }
 }

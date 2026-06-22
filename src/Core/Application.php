@@ -14,7 +14,6 @@ use Doctrine\ORM\EntityManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use Smarty\Smarty;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Contracts\Cache\CacheInterface;
 
 class Application
@@ -55,9 +54,7 @@ class Application
 
     private function loadEnvironment(): void
     {
-        $dotenv = new Dotenv();
-        $dotenv->load('../.env');
-        $dotenv->load('../'.strtoupper($_ENV['APP_ENV']).'.env');
+        Environment::boot(dirname(__DIR__, 2));
     }
 
     private function registerEntityManager(): void

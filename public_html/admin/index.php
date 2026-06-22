@@ -8,11 +8,9 @@ session_start();
 
 require '../../vendor/autoload.php';
 
-use Symfony\Component\Dotenv\Dotenv;
+use App\Core\Environment;
 
-$dotenv = new Dotenv();
-$dotenv->load('../../.env');
-$dotenv->load('../../'.strtoupper($_ENV['APP_ENV']).'.env');
+Environment::boot(dirname(__DIR__, 2));
 
 $db = new MysqliDb ($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
 
