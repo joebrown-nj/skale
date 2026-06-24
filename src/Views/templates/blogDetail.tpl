@@ -15,22 +15,30 @@
                 <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}" class="img-fluid rounded-4 shadow-lg w-100 mb-4" alt="{$data.blogDetail->title}">
                 <h1 class="display-4 fw-bold mb-4">{$data.blogDetail->title}</h1>
                 <p class="lead mb-4">{$data.blogDetail->shortText}</p>
-                {* Build Your Championship Foundation *}
                 <a aria-describedby='{$data.blogDetail->title}' href="/contact" class="mbtn btn btn-warning btn-lg fw-semibold">Get Started Today</a>
             </div>
         </div>
     </div>
 </section>
 
-<article class="py-5">
+<section class="article py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                {$data.blogDetail->content}
+                <div class="article-content">
+                    <p class="text-uppercase fw-semibold text-info mb-3">{$data.blogDetail->category}</p>
+                    {$data.blogDetail->content}
+                </div>
             </div>
         </div>
     </div>
-</article>
+
+    <div class="article-progress-wrapper">
+        <div class="progress article-progress" role="progressbar" aria-label="Article reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" id="article-progress-bar">0% completed</div>
+        </div>
+    </div>
+</section>
 
 {include file="inc/layout/footerContactForm.tpl"}
 {include file="inc/layout/footer.tpl"}

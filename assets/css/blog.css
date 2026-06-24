@@ -2,6 +2,10 @@ table.xdebug-error {
     color:#000 !important;
 }
 
+section p:last-child {
+    margin-bottom: 0;
+}
+
 .blog-card {
     transition: all .3s ease;
 }
@@ -88,10 +92,10 @@ table.xdebug-error {
         }
 }
 
-.article-content {
+/* .article-content {
         max-width: 760px;
         margin: auto;
-}
+} */
 
 .article-content p {
         font-size: 1.15rem;
@@ -100,12 +104,12 @@ table.xdebug-error {
         margin-bottom: 2rem;
 }
 
-.article-content h2 {
+/* .article-content h2 {
         font-size: 2rem;
         margin-top: 4rem;
         margin-bottom: 1.5rem;
-}
+} */
 
-.article-content ul li {
+/* .article-content ul li {
         margin-bottom: 1rem;
-}
+} */

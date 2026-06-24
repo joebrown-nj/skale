@@ -24,7 +24,9 @@ final class Environment
             return;
         }
 
-        (new Dotenv())->bootEnv($projectRoot.'/.env', defaultEnv: 'local');
+        // Shared hosting browser requests and cron jobs often can't inject APP_ENV,
+        // so we default to production and let .env.local opt local machines into local mode.
+        (new Dotenv())->bootEnv($projectRoot.'/.env', defaultEnv: 'prod');
 
         self::$bootedRoots[$projectRoot] = true;
     }
