@@ -79,53 +79,58 @@ class Routes
         $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
         $requestBlocklistService = $this->container->get(RequestBlocklistService::class);
 
-        $matchedRule = $requestBlocklistService->findMatchingRequestRule($_SERVER, $requestPath);
+        $this->respond(function () use ($requestPath, $requestBlocklistService): void {
+            $matchedRule = $requestBlocklistService->findMatchingRequestRule($_SERVER, $requestPath);
 
-        if ($matchedRule !== null) {
-            http_response_code(403);
+            if ($matchedRule !== null) {
+                http_response_code(403);
 
-            if ($this->expectsJsonResponse()) {
-                echo JsonResponse::error($requestBlocklistService->getPublicMessage($matchedRule));
+                if ($this->expectsJsonResponse()) {
+                    echo JsonResponse::error($requestBlocklistService->getPublicMessage($matchedRule));
+                    return;
+                }
+
+                $this->container->get(ViewInterface::class)->render('error/403', [
+                    'errorMessage' => $requestBlocklistService->getPublicMessage(
+                        $matchedRule,
+                        'This request has been blocked for security reasons.'
+                    ),
+                ]);
+
                 return;
             }
 
-            $this->container->get(ViewInterface::class)->render('error/403', [
-                'errorMessage' => $requestBlocklistService->getPublicMessage(
-                    $matchedRule,
-                    'This request has been blocked for security reasons.'
-                ),
-            ]);
+            if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
+                $normalizedPath = rtrim($requestPath, '/');
+                $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
+                    ? '?' . $_SERVER['QUERY_STRING']
+                    : '';
 
-            return;
-        }
+                http_response_code(301);
+                header('Location: ' . $normalizedPath . $queryString, true, 301);
+                return;
+            }
 
-        if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
-            $normalizedPath = rtrim($requestPath, '/');
-            $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
-                ? '?' . $_SERVER['QUERY_STRING']
-                : '';
+            try {
+                $response = $this->dispatcher->dispatch(
+                    $this->getDispatchMethod(),
+                    $requestPath
+                );
 
-            http_response_code(301);
-            header('Location: ' . $normalizedPath . $queryString, true, 301);
-            return;
-        }
-
-        try {
-            $response = $this->dispatcher->dispatch(
-                $_SERVER['REQUEST_METHOD'],
-                $requestPath
-            );
-            echo $response;
-        } catch (HttpRouteNotFoundException $e) {
-            $this->handleDynamicPageOrNotFound($requestPath);
-        } catch (\Exception $e) {
-            $this->handleError($e);
-        }
+                if ($response !== null) {
+                    echo $response;
+                }
+            } catch (HttpRouteNotFoundException $e) {
+                $this->handleDynamicPageOrNotFound($requestPath);
+            } catch (\Exception $e) {
+                $this->handleError($e);
+            }
+        });
     }
 
     private function handleDynamicPageOrNotFound(string $requestPath): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET' && $this->isDynamicPage($requestPath)) {
+        if ($this->isPageRequestMethod() && $this->isDynamicPage($requestPath)) {
             $this->container->get(SubPageController::class)->index();
             return;
         }
@@ -160,6 +165,43 @@ class Routes
             $segments[] = '{p'.$depth.'}';
             $this->router->get($basePath.'/'.implode('/', $segments), $handler);
         }
+    }
+
+    private function respond(callable $callback): void
+    {
+        if (! $this->isHeadRequest()) {
+            $callback();
+            return;
+        }
+
+        ob_start();
+
+        try {
+            $callback();
+        } finally {
+            ob_end_clean();
+        }
+    }
+
+    private function getDispatchMethod(): string
+    {
+        return $this->isHeadRequest()
+            ? 'GET'
+            : strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+    }
+
+    private function isPageRequestMethod(): bool
+    {
+        return in_array(
+            strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET')),
+            ['GET', 'HEAD'],
+            true
+        );
+    }
+
+    private function isHeadRequest(): bool
+    {
+        return strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET')) === 'HEAD';
     }
 
     private function handleError(\Exception $e): void
