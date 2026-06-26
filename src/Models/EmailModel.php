@@ -17,15 +17,7 @@ class EmailModel implements EmailServiceInterface
     {
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
-        // Configure SMTP settings here if needed
-        // $this->mailer->SMTPDebug = SMTP::DEBUG_SERVER;                     //Enable verbose debug output
-        // $this->mailer->isSMTP();                                            //Send using SMTP
-        $this->mailer->Host       = $_ENV['SMTP_SERVER'];                   //Set the SMTP server to send through
-        // $this->mailer->SMTPAuth   = $_ENV['SMTP_AUTH'];                     //Enable SMTP authentication
-        // $this->mailer->Username   = $_ENV['SMTP_USERNAME'];                 //SMTP username
-        // $this->mailer->Password   = $_ENV['SMTP_PASSWORD'];                 //SMTP password
-        // $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        // $this->mailer->Port       = $_ENV['SMTP_PORT'];                     //TCP port to connect to; use 587 if you have set `SMTP_Secure = PHPMailer::ENCRYPTION_STARTTLS`
+        $this->configureTransport();
 
         //Recipients
         $this->mailer->setFrom($_ENV['CONTACT_FORM_FROM_EMAIL'], $_ENV['SITE_NAME']);
@@ -203,6 +195,64 @@ class EmailModel implements EmailServiceInterface
     private function emailHeader()
     {
         return '<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Simple Transactional Email</title><style media="all" type="text/css">body{font-family:Helvetica,sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.3;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}table{border-collapse:separate;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%}table td{font-family:Helvetica,sans-serif;font-size:16px;vertical-align:top}body{background-color:#1b1f22;margin:0;padding:0}.body{background-color:#1b1f22;width:100%}.header{background-color:#1b1f22;padding:14px}.footer-content-block{padding:14px;font-size:12px}.footer-content-block a{font-size:12px;text-decoration:underline}.container{margin:0 auto!important;max-width:600px;padding:0;padding-top:24px;width:600px}.content{box-sizing:border-box;display:block;margin:0 auto;max-width:600px;padding:0}.main{background:#fff;border:1px solid #eaebed;border-radius:6px;width:100%}.wrapper{box-sizing:border-box;padding:24px}.footer{clear:both;padding-top:24px;text-align:center;width:100%}.footer td,.footer p,.footer span,.footer a{color:#9a9ea6;font-size:16px;text-align:center}p{font-family:Helvetica,sans-serif;font-size:18px;font-weight:400;margin:0;margin-bottom:20px;line-height:1.45}a{color:#fe8519;text-decoration:underline;cursor:pointer}.btn{box-sizing:border-box;min-width:100%!important;width:100%}.btn>tbody>tr>td{padding-bottom:16px}.btn table{width:auto}.btn table td{background-color:#fff;border-radius:4px;text-align:center}.btn a{background-color:#fff;border:solid 2px #0867ec;border-radius:4px;box-sizing:border-box;color:#0867ec;cursor:pointer;display:inline-block;font-size:16px;font-weight:700;margin:0;padding:12px 24px;text-decoration:none;text-transform:capitalize}.btn-primary table td{background-color:#0867ec}.btn-primary a{background-color:#0867ec;border-color:#0867ec;color:#fff}@media all{.btn-primary table td:hover{background-color:#ec0867!important}.btn-primary a:hover{background-color:#ec0867!important;border-color:#ec0867!important}}.last{margin-bottom:0}.first{margin-top:0}.align-center{text-align:center}.align-right{text-align:right}.align-left{text-align:left}.text-link{color:#0867ec!important;text-decoration:underline!important}.clear{clear:both}.mt0{margin-top:0}.mb0{margin-bottom:0}.preheader{color:#fff0;display:none;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;visibility:hidden;width:0}.powered-by a{text-decoration:none}@media only screen and (max-width:640px){.main p,.main td,.main span{font-size:16px!important}.wrapper{padding:8px!important}.content{padding:0!important}.container{padding:0!important;padding-top:8px!important;width:100%!important}.main{border-left-width:0!important;border-radius:0!important;border-right-width:0!important}.btn table{max-width:100%!important;width:100%!important}.btn a{font-size:16px!important;max-width:100%!important;width:100%!important}}@media all{.ExternalClass{width:100%}.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{line-height:100%}.apple-link a{color:inherit!important;font-family:inherit!important;font-size:inherit!important;font-weight:inherit!important;line-height:inherit!important;text-decoration:none!important}#MessageViewBody a{color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit}}</style></head><body>';
+    }
+
+    private function configureTransport(): void
+    {
+        $host = $this->envString('SMTP_SERVER');
+        if ($host === '') {
+            return;
+        }
+
+        $this->mailer->isSMTP();
+        $this->mailer->Host = $host;
+        $this->mailer->SMTPAuth = $this->envBool('SMTP_AUTH', true);
+        $this->mailer->Username = $this->envString('SMTP_USERNAME', $_ENV['CONTACT_FORM_FROM_EMAIL'] ?? '');
+        $this->mailer->Password = $this->envString('SMTP_PASSWORD');
+        $this->mailer->Port = $this->envInt('SMTP_PORT', 465);
+        $this->mailer->CharSet = 'UTF-8';
+
+        $secure = strtolower($this->envString('SMTP_SECURE', 'ssl'));
+        if ($secure === 'tls' || $secure === 'starttls') {
+            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            return;
+        }
+
+        if ($secure === 'ssl' || $secure === 'smtps') {
+            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        }
+    }
+
+    private function envString(string $key, string $default = ''): string
+    {
+        $value = $_ENV[$key] ?? $default;
+        return is_string($value) ? trim($value) : $default;
+    }
+
+    private function envBool(string $key, bool $default = false): bool
+    {
+        $value = $_ENV[$key] ?? null;
+        if ($value === null || $value === '') {
+            return $default;
+        }
+
+        if (is_bool($value)) {
+            return $value;
+        }
+
+        $parsed = filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
+        return $parsed ?? $default;
+    }
+
+    private function envInt(string $key, int $default): int
+    {
+        $value = $_ENV[$key] ?? null;
+        if ($value === null || $value === '') {
+            return $default;
+        }
+
+        $parsed = filter_var($value, FILTER_VALIDATE_INT);
+        return $parsed === false ? $default : $parsed;
     }
 
 }

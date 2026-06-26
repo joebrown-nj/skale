@@ -107,6 +107,10 @@ class Application
 
     private function startSession(): void
     {
+        if (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg') {
+            return;
+        }
+
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }

@@ -99,12 +99,49 @@ function formatSection(string $table, string $timestampColumn, array $rows): str
             $output[] = sprintf(
                 '  %s: %s',
                 $field,
-                normalizeValue($value)
+                formatFieldValue($field, $value)
             );
         }
     }
 
     return implode(PHP_EOL, $output);
+}
+
+function formatFieldValue(string $field, mixed $value): string
+{
+    if ($field !== 'serverInfo') {
+        return normalizeValue($value);
+    }
+
+    $decoded = is_string($value) ? json_decode($value, true) : $value;
+
+    if (!is_array($decoded)) {
+        return normalizeValue($value);
+    }
+
+    $keysToKeep = [
+        'REMOTE_ADDR',
+        'SERVER_NAME',
+        'SERVER_PORT',
+        'REQUEST_METHOD',
+        'REQUEST_URI',
+        'HTTP_REFERER',
+        'HTTP_USER_AGENT',
+    ];
+
+    $summary = [];
+
+    foreach ($keysToKeep as $key) {
+        if (isset($decoded[$key]) && $decoded[$key] !== '') {
+            $summary[$key] = $decoded[$key];
+        }
+    }
+
+    if (isset($decoded['HTTP_COOKIE'])) {
+        $summary['HTTP_COOKIE'] = '[redacted]';
+    }
+
+    return normalizeValue($summary);
 }
 
 function normalizeValue(mixed $value): string
