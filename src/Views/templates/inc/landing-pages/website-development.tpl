@@ -1,4 +1,4 @@
-<section class="website-development-hero py-5">
+<section class="website-development-hero py-5 curve-style">
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7" data-aos="fade-up">
@@ -25,6 +25,7 @@
                 <a class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development hero page cta">
                     Get My Free Website Growth Review
                 </a>
+                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Website Growth Review" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Hero CTA Button"}
             </div>
 
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -40,7 +41,7 @@
 </section>
 
 <section class="py-5 comparison-section">
-    <div class="container">
+    <div class="container py-5">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center">
                 <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">{$data.sections.sectionComparison.category}</span>
@@ -123,9 +124,10 @@
                 <div class="glass-card shadow-xl" data-aos="fade-up">
                     <h3 class="h2 fw-bold mb-3">{$data.sections.sectionBuiltForGrowth.headline}</h3>
                     <p class="mb-4 text-secondary">{$data.sections.sectionBuiltForGrowth.subheadline}</p>
-                    <button class="btn btn-primary btn-lg px-4 stretched-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
+                    {* <button class="btn btn-primary btn-lg px-4 stretched-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
                         {$data.sections.sectionBuiltForGrowth.ctaButtonText}
-                    </button>
+                    </button> *}
+                    {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4 stretched-link" text="{$data.sections.sectionBuiltForGrowth.ctaButtonText}" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Mid Page CTA Button"}
                 </div>
             </div>
         </div>

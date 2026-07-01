@@ -1,4 +1,4 @@
-<section class="automation-hero py-5">
+<section class="automation-hero py-5 curve-style">
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7" data-aos="fade-up">
@@ -23,9 +23,10 @@
                     <div class="col-sm-6">&check; Built to Scale</div>
                 </div>
 
-                <button class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
+                {* <button class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
                     Get My Free Automation Review
-                </button>
+                </button> *}
+                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Automation Review" describedBy="automation landing page" metaEvent="Automation" metaLabel="Hero CTA Button"}
             </div>
 
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -34,6 +35,54 @@
                     <p class="text-secondary mb-4">We'll review your current process and identify automation opportunities to save time and improve efficiency.</p>
 
                     {include file="inc/landing-pages/inc/lead-contact-form.tpl" buttonText="Get My Free Automation Review" userMessageLabel="What process feels too manual right now?"}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-up">
+                <span class="text-uppercase fw-bold automation-accent small">Why Businesses Work With Skale</span>
+                <h2 class="display-6 fw-bold mt-2">Manual Work Is Expensive, Even When It Looks Small</h2>
+                <p class="fs-5 text-secondary">A few minutes wasted here and there can turn into hours of lost productivity every week. Skale helps you identify the repetitive tasks, broken handoffs, and disconnected systems that quietly slow your business down.</p>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="row g-4">
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-card h-100 p-4">
+                            <div class="icon-pill mb-3">1</div>
+                            <h4 class="fw-bold">Save Time</h4>
+                            <p class="text-secondary mb-0">Reduce repetitive admin work, manual updates, and unnecessary back-and-forth.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-card h-100 p-4">
+                            <div class="icon-pill mb-3">2</div>
+                            <h4 class="fw-bold">Reduce Errors</h4>
+                            <p class="text-secondary mb-0">Create cleaner processes with fewer missed leads, duplicate entries, and manual mistakes.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-card h-100 p-4">
+                            <div class="icon-pill mb-3">3</div>
+                            <h4 class="fw-bold">Improve Visibility</h4>
+                            <p class="text-secondary mb-0">Connect reporting, analytics, and CRM data so you can make better decisions faster.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-card h-100 p-4">
+                            <div class="icon-pill mb-3">4</div>
+                            <h4 class="fw-bold">Scale Smarter</h4>
+                            <p class="text-secondary mb-0">Build systems that support more leads, more customers, and more complexity without more chaos.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,54 +247,6 @@
     </div>
 </section>
 
-<section class="py-5">
-    <div class="container py-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-5" data-aos="fade-up">
-                <span class="text-uppercase fw-bold automation-accent small">Why Businesses Work With Skale</span>
-                <h2 class="display-6 fw-bold mt-2">Manual Work Is Expensive, Even When It Looks Small</h2>
-                <p class="fs-5 text-secondary">A few minutes wasted here and there can turn into hours of lost productivity every week. Skale helps you identify the repetitive tasks, broken handoffs, and disconnected systems that quietly slow your business down.</p>
-            </div>
-
-            <div class="col-lg-7">
-                <div class="row g-4">
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">1</div>
-                            <h4 class="fw-bold">Save Time</h4>
-                            <p class="text-secondary mb-0">Reduce repetitive admin work, manual updates, and unnecessary back-and-forth.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">2</div>
-                            <h4 class="fw-bold">Reduce Errors</h4>
-                            <p class="text-secondary mb-0">Create cleaner processes with fewer missed leads, duplicate entries, and manual mistakes.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">3</div>
-                            <h4 class="fw-bold">Improve Visibility</h4>
-                            <p class="text-secondary mb-0">Connect reporting, analytics, and CRM data so you can make better decisions faster.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">4</div>
-                            <h4 class="fw-bold">Scale Smarter</h4>
-                            <p class="text-secondary mb-0">Build systems that support more leads, more customers, and more complexity without more chaos.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="py-5 bg-dark text-white">
     <div class="container py-5">
         <div class="row align-items-center g-5" data-aos="fade-up">
@@ -255,9 +256,10 @@
             </div>
 
             <div class="col-lg-5 text-lg-end" data-aos="fade-up">
-                <button class="btn btn-info btn-lg px-4 stretched-link rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
+                {* <button class="btn btn-info btn-lg px-4 stretched-link rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
                     Get Your Free Automation Plan
-                </button>
+                </button> *}
+                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-info btn-lg px-4 stretched-link rounded-pill" text="Get Your Free Automation Plan" describedBy="automation landing page" metaEvent="Automation LandingLeadCtaClick" metaLabel="Automation Hero CTA Button"}
             </div>
         </div>
     </div>
@@ -362,5 +364,5 @@
 
 {include file="inc/landing-pages/inc/stats.tpl"}
 {include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
-{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Website Growth Strategy Session" ctaText="Get My Website Plan" modalDescription="We'll review your current setup and identify opportunities to generate more leads and improve efficiency."}
+{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Automation Strategy Session" ctaText="Get My Automation Plan" modalDescription="We'll review your current setup and identify opportunities to generate more leads and improve efficiency."}
 {include file="inc/landing-pages/inc/footer.tpl" headline="Ready to Automate the Work Holding You Back?" subheadline="Get a free strategy session and discover where smarter systems can save time, reduce errors, and help your business grow." ctaText="Get My Automation Plan"}

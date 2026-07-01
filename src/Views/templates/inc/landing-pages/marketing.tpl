@@ -1,4 +1,4 @@
-<section class="marketing-hero py-5">
+<section class="marketing-hero py-5 curve-style">
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">

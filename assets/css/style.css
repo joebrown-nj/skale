@@ -249,6 +249,10 @@ a:hover {
 	}
 }
 
+.page-content {
+	overflow: hidden;
+}
+
 .parallax,
 .parallax-mobile {
 	min-height: 100vh;

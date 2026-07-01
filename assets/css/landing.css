@@ -1,3 +1,13 @@
+.curve-style {
+    /* border-bottom-left-radius: 50% 200px;
+    border-bottom-right-radius: 50% 200px;
+    width: 160%;
+    margin-bottom: -50px;
+    position: relative;
+    left:-30%; */
+    border-radius: 0 0 60% 60% / 10%;
+}
+
 /***************** WEBSITE DEVELOPMENT PAGE *****************/
 
 .menu-bar-bg {
@@ -286,4 +296,24 @@
 
 .comparison-row:last-child {
 	border-bottom: 0;
+}
+
+/***************** TASK MANAGEMENT PAGE *****************/
+
+.task-management-hero {
+    background:
+        radial-gradient(circle at top right, rgba(14,165,233,.22), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(34,197,94,.18), transparent 38%),
+        linear-gradient(
+            145deg,
+            #020617 0%,
+            #0f172a 40%,
+            #1e293b 100%
+        );
+}
+
+.task-management-badge {
+    background: rgba(46, 230, 166, .14);
+    color: var(--skale-mint);
+    border: 1px solid rgba(46, 230, 166, .35);
 }

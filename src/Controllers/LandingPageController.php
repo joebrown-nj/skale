@@ -113,7 +113,8 @@ class LandingPageController
             'sectionWhySkale' => $this->getWebsiteDevelopmentWhySkale(),
             'sectionBuiltForGrowth' => $this->getWebsiteDevelopmentBuiltForGrowth(),
             'sectionProcess' => $this->getWebsiteDevelopmentProcess(),
-            'sectionFAQ' => $this->getWebsiteFAQ()
+            'sectionFAQ' => $this->getWebsiteFAQ(),
+            'sectionStats' => $this->getWebsiteDevelopmentStats()
         );
 
         $sections[] = array(
@@ -138,10 +139,37 @@ class LandingPageController
             'sectionWhySkale' => $this->getWebsiteDevelopmentWhySkale(),
             'sectionBuiltForGrowth' => $this->getWebsiteDevelopmentBuiltForGrowth(),
             'sectionProcess' => $this->getWebsiteDevelopmentProcess(),
-            'sectionFAQ' => $this->getWebsiteFAQ()
+            'sectionFAQ' => $this->getWebsiteFAQ(),
+            'sectionStats' => $this->getWebsiteDevelopmentStats()
         );
 
         return $sections[array_rand($sections)];
+    }
+
+    private function getWebsiteDevelopmentStats(): array
+    {
+        return array(
+            [
+                'number' =>100,
+                'suffix' => '%',
+                'label' => 'Custom Solutions'
+            ],
+            [
+                'number' =>20,
+                'suffix' => '+',
+                'label' => 'Years of Experience'
+            ],
+            [
+                'number' =>24,
+                'suffix' => '/7',
+                'label' => 'Support & Optimization'
+            ],
+            [
+                'number' =>1,
+                'suffix' => '',
+                'label' => 'Growth Partner'
+            ]
+        );
     }
 
     private function getWebsiteFAQ(): array
@@ -339,5 +367,100 @@ class LandingPageController
         return JsonResponse::success([
             'redirect' => '/thank-you',
         ]);
+    }
+
+    public function taskManagement()
+    {
+        $this->view->render('landing', 
+            array(
+                'template' => 'inc/landing-pages/task-management.tpl',
+                'sections' => $this->getTaskManagementSections()
+            )
+        );
+    }
+
+    private function getTaskManagementSections(): array
+    {
+        $sections = array(
+            'sectionFAQ' => $this->getTaskManagementFAQ(),
+            'sectionStats' => $this->getTaskManagementStats()
+        );
+
+        return $sections;
+    }
+
+    private function getTaskManagementStats(): array
+    {
+        return array(
+            [
+                'number' => '1',
+                'suffix' => '',
+                'label' => 'Central Place For Work'
+            ],
+            [
+                'number' => '100',
+                'suffix' => '%',
+                'label' => 'Clearer Task Ownership'
+            ],
+            [
+                'number' => '24',
+                'suffix' => '/7',
+                'label' => 'Project Visibility'
+            ],
+            [
+                'number' => 'Better',
+                'suffix' => '',
+                'label' => 'Workflow Insights'
+            ]
+        );
+    }
+
+    private function getTaskManagementFAQ(): array
+    {
+        // return array(
+        //     [
+        //         'question' => 'What types of task management solutions can you build?',
+        //         'answer' => 'We can help with project management tools, workflow automation, team collaboration platforms, and custom task tracking systems.'
+        //     ],
+        //     [
+        //         'question' => 'Do I need custom software for task management?',
+        //         'answer' => 'Not always. Sometimes the best solution is using existing tools and integrating them. Other times, custom software is the right fit when your process is unique or limited by off-the-shelf platforms.'
+        //     ],
+        //     [
+        //         'question' => 'Can you integrate task management with other systems?',
+        //         'answer' => 'Yes. We can connect task management tools with CRMs, email platforms, reporting dashboards, and other business systems.'
+        //     ],
+        //     [
+        //         'question' => 'How long does task management work take?',
+        //         'answer' => 'Timelines depend on complexity. Small workflow improvements may be completed quickly, while larger integrations or custom tools require more planning and development.'
+        //     ],
+        //     [
+        //         'question' => 'Can you improve an existing task management process?',
+        //         'answer' => 'Yes. We can review your current systems, identify bottlenecks, and improve or rebuild workflows to make them more efficient and scalable.'
+        //     ]
+        // );
+
+        return array(
+            [
+                'question' => 'Do I need a paid task management system?',
+                'answer' => 'Not always. Free tools can work well for small teams with simple workflows. Paid tools are usually better when you need dashboards, advanced reporting, time tracking, permissions, automation, or integrations.'
+            ],
+            [
+                'question' => 'Can you help us move from spreadsheets?',
+                'answer' => 'Yes. We can review your current spreadsheets, organize your workflow, migrate important information, and set up a task management system that is easier for your team to use.'
+            ],
+            [
+                'question' => 'Can we track how long tasks take?',
+                'answer' => 'Yes. Many systems support time tracking directly or through integrations. This helps you understand average task times, find bottlenecks, improve estimates, and identify work that takes longer than expected.'
+            ],
+            [
+                'question' => 'Can tasks be assigned to different users?',
+                'answer' => 'Yes. Assigning tasks to users is one of the biggest advantages over spreadsheets. Each task can have an owner, due date, priority, status, notes, files, and activity history.'
+            ],
+            [
+                'question' => 'Can this connect with our other business tools?',
+                'answer' => 'Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.'
+            ]
+        );
     }
 }

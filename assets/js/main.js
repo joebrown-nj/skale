@@ -227,6 +227,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     setActiveNavItem(slug);
     $('.page-content').html(pageMarkup.html);
+    logLandingPage(slug);
     syncManagedStylesheets(pageMarkup.stylesheets);
     initializeHomePageForm();
     initializeStatsCounter();
@@ -650,9 +651,10 @@ function logButtonClick(element) {
     });
 }
 
-function logLandingPage() {
+function logLandingPage(pathname = window.location.pathname) {
     logInteraction({
-        target: window.location.pathname,
+        target: pathname,
+        url: pathname,
         detail: 'Landing page',
     });
 }
