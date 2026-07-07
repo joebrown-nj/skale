@@ -173,47 +173,47 @@
         </div>
 
         {* <div class="table-responsive d-none d-md-block">
-            <table class="table table-bordered align-middle bg-white">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Feature</th>
-                        <th>Spreadsheets</th>
-                        <th>Task Management System</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Task Ownership</td>
-                        <td>Manual notes and inconsistent updates</td>
-                        <td>Tasks assigned directly to users</td>
-                    </tr>
-                    <tr>
-                        <td>Project Progress</td>
-                        <td>Hard to see what is done, late, or blocked</td>
-                        <td>Clear status views, boards, lists, and dashboards</td>
-                    </tr>
-                    <tr>
-                        <td>Accountability</td>
-                        <td>Easy for work to get lost</td>
-                        <td>Owners, due dates, reminders, and activity history</td>
-                    </tr>
-                    <tr>
-                        <td>Time Tracking</td>
-                        <td>Manual and often inaccurate</td>
-                        <td>Track task duration and average completion times</td>
-                    </tr>
-                    <tr>
-                        <td>Process Improvement</td>
-                        <td>Difficult to identify bottlenecks</td>
-                        <td>Reports reveal slow tasks, overloaded users, and repeat issues</td>
-                    </tr>
-                    <tr>
-                        <td>Scalability</td>
-                        <td>Gets messy as the team grows</td>
-                        <td>Built for repeatable workflows and growing teams</td>
-                    </tr>
-                </tbody>
-            </table>
+        <table class="table table-bordered align-middle bg-white">
+        <thead class="table-dark">
+        <tr>
+        <th>Feature</th>
+        <th>Spreadsheets</th>
+        <th>Task Management System</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Task Ownership</td>
+        <td>Manual notes and inconsistent updates</td>
+        <td>Tasks assigned directly to users</td>
+        </tr>
+        <tr>
+        <td>Project Progress</td>
+        <td>Hard to see what is done, late, or blocked</td>
+        <td>Clear status views, boards, lists, and dashboards</td>
+        </tr>
+        <tr>
+        <td>Accountability</td>
+        <td>Easy for work to get lost</td>
+        <td>Owners, due dates, reminders, and activity history</td>
+        </tr>
+        <tr>
+        <td>Time Tracking</td>
+        <td>Manual and often inaccurate</td>
+        <td>Track task duration and average completion times</td>
+        </tr>
+        <tr>
+        <td>Process Improvement</td>
+        <td>Difficult to identify bottlenecks</td>
+        <td>Reports reveal slow tasks, overloaded users, and repeat issues</td>
+        </tr>
+        <tr>
+        <td>Scalability</td>
+        <td>Gets messy as the team grows</td>
+        <td>Built for repeatable workflows and growing teams</td>
+        </tr>
+        </tbody>
+        </table>
         </div> *}
 
         <div class="d-md-none">

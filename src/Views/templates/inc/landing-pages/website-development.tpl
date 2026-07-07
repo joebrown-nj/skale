@@ -23,7 +23,7 @@
                 </div>
 
                 {* <a class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development hero page cta">
-                    Get My Free Website Growth Review
+                Get My Free Website Growth Review
                 </a> *}
                 {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Website Growth Review" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Hero CTA Button"}
             </div>
