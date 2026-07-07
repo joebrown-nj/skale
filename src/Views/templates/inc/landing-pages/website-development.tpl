@@ -22,9 +22,9 @@
                     {/foreach}
                 </div>
 
-                <a class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development hero page cta">
+                {* <a class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development hero page cta">
                     Get My Free Website Growth Review
-                </a>
+                </a> *}
                 {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Website Growth Review" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Hero CTA Button"}
             </div>
 
@@ -125,7 +125,7 @@
                     <h3 class="h2 fw-bold mb-3">{$data.sections.sectionBuiltForGrowth.headline}</h3>
                     <p class="mb-4 text-secondary">{$data.sections.sectionBuiltForGrowth.subheadline}</p>
                     {* <button class="btn btn-primary btn-lg px-4 stretched-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
-                        {$data.sections.sectionBuiltForGrowth.ctaButtonText}
+                    {$data.sections.sectionBuiltForGrowth.ctaButtonText}
                     </button> *}
                     {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4 stretched-link" text="{$data.sections.sectionBuiltForGrowth.ctaButtonText}" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Mid Page CTA Button"}
                 </div>

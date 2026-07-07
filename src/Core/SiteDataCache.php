@@ -20,6 +20,7 @@ class SiteDataCache
     private ?array $allServiceList = null;
     private bool $contactContentResolved = false;
     private ?array $contactContent = null;
+    private ?array $hiddenLinks = null;
 
     public function __construct(
         private CacheInterface $cache,
@@ -40,7 +41,8 @@ class SiteDataCache
             'footerNav' => $this->getFooterNav(),
             'serviceList' => $this->getServiceList(),
             'allServiceList' => $this->getAllServiceList(),
-            'contactContent' => $this->getContactContent()
+            'contactContent' => $this->getContactContent(),
+            'hiddenLinks' => $this->getHiddenLinks()
         ];
 
         return $this->sharedData;
@@ -124,5 +126,20 @@ class SiteDataCache
         $this->contactContentResolved = true;
 
         return $this->contactContent;
+    }
+
+    public function getHiddenLinks(): array
+    {
+        if ($this->hiddenLinks !== null) {
+            return $this->hiddenLinks;
+        }
+
+        $this->hiddenLinks = $this->cache->get('site_data.nav.hidden', function (ItemInterface $item): array {
+            $item->expiresAfter(self::DEFAULT_TTL);
+
+            return $this->navModel->getAllNav();
+        });
+
+        return $this->hiddenLinks;
     }
 }

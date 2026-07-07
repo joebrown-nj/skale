@@ -134,6 +134,8 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+{include file="inc/layout/hiddenLinks.tpl"}
+
 {include file="inc/layout/scripts.tpl"}
 
 </body>

@@ -24,7 +24,7 @@
                 </div>
 
                 {* <button class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
-                    Get My Free Automation Review
+                Get My Free Automation Review
                 </button> *}
                 {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Automation Review" describedBy="automation landing page" metaEvent="Automation" metaLabel="Hero CTA Button"}
             </div>
@@ -257,7 +257,7 @@
 
             <div class="col-lg-5 text-lg-end" data-aos="fade-up">
                 {* <button class="btn btn-info btn-lg px-4 stretched-link rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
-                    Get Your Free Automation Plan
+                Get Your Free Automation Plan
                 </button> *}
                 {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-info btn-lg px-4 stretched-link rounded-pill" text="Get Your Free Automation Plan" describedBy="automation landing page" metaEvent="Automation LandingLeadCtaClick" metaLabel="Automation Hero CTA Button"}
             </div>
@@ -274,7 +274,7 @@
 
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="100">
-                <div class="automation-card bg-white h-100 p-4">
+                <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
                         <span class="icon-pill mb-3 fs-5">1</span> Discover
                     </h4>
@@ -283,7 +283,7 @@
             </div>
 
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
-                <div class="automation-card bg-white h-100 p-4">
+                <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
                         <span class="icon-pill mb-3 fs-5">2</span> Build
                     </h4>
@@ -292,7 +292,7 @@
             </div>
 
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
-                <div class="automation-card bg-white h-100 p-4">
+                <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
                         <span class="icon-pill mb-3 fs-5">3</span> Optimize
                     </h4>

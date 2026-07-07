@@ -128,11 +128,51 @@
 <section class="py-5">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <span class="badge task-management-badge rounded-pill px-3 py-2 mb-3">Spreadsheet vs Task System</span>
-            <h2 class="display-6 fw-bold text-light">A Better Way To Manage Work</h2>
+            <span class="badge task-management-badge rounded-pill px-3 py-2 mb-3">{$data.sections.sectionComparison.category}</span>
+            <h2 class="display-6 fw-bold text-light">{$data.sections.sectionComparison.headline}</h2>
         </div>
 
-        <div class="table-responsive d-none d-md-block">
+        <!-- Mobile Comparison Cards -->
+        <div class="d-lg-none">
+            {foreach from=$data.sections.sectionComparison.comparisonCards item=card key=k}
+                <div class="card border-0 shadow-sm rounded-4 mb-3 overflow-hidden" data-aos="fade-up" data-aos-delay="{$k*100}">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h3 class="h6 fw-bold mb-0">{$card.title}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="border rounded-3 p-3 mb-3">
+                            <small class="text-uppercase fw-semibold d-block mb-2">Typical Agency</small>
+                            <span class="text-secondary">{$card.typical}</span>
+                        </div>
+                        <div class="border border-primary rounded-3 p-3 bg-primary-subtle">
+                            <small class="text-uppercase fw-semibold text-primary d-block mb-2">Skale</small>
+                            <strong>{$card.skale}</strong>
+                        </div>
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+
+        <!-- Desktop Comparison Table -->
+        <div class="d-none d-lg-block">
+            <div class="automation-card p-4 p-lg-5">
+                <div class="row fw-bold text-secondary d-none d-md-flex mb-3">
+                    <div class="col-md-4">Feature</div>
+                    <div class="col-md-4">Spreadsheets</div>
+                    <div class="col-md-4">Task Management System</div>
+                </div>
+
+                {foreach from=$data.sections.sectionComparison.comparisonCards item=card key=k}
+                    <div class="comparison-row row" data-aos="fade-up" data-aos-delay="{$k*50}">
+                        <div class="col-md-4 fw-bold">{$card.title}</div>
+                        <div class="col-md-4 text-secondary">{$card.typical}</div>
+                        <div class="col-md-4">{$card.skale}</div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+
+        {* <div class="table-responsive d-none d-md-block">
             <table class="table table-bordered align-middle bg-white">
                 <thead class="table-dark">
                     <tr>
@@ -174,7 +214,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> *}
 
         <div class="d-md-none">
             <div class="card mb-3">
@@ -221,8 +261,9 @@
                 <p class="lead text-tertiary">Choosing a task management tool is only part of the solution. The real value comes from setting up the right workflow, permissions, reporting, automations, and team habits.</p>
                 <p>Skale helps you move from spreadsheet chaos to a system your team will actually use. We can help you evaluate free and paid tools, structure your projects, define task stages, build dashboards, and create reporting that shows where work is moving smoothly and where improvements are needed.</p>
 
-                {* <a href="#strategy-session" class="btn btn-primary btn-lg">Start Improving Your Workflow</a> *}
-                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg" text="Start Improving Your Workflow" describedBy="task management landing page" metaEvent="TaskManagement" metaLabel="Hero CTA Button"}
+                <div data-aos="fade-up" data-aos-delay="100">
+                    {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4" text="Get My Task Management Plan" describedBy="task management landing page" metaEvent="TaskManagement" metaLabel="Hero CTA Button"}
+                </div>
             </div>
 
             <div class="col-lg-6">
@@ -301,91 +342,91 @@
 {include file="inc/landing-pages/inc/footer.tpl" class="bg-primary" btnClass="btn btn-light btn-lg px-5" headline="Ready To Replace Spreadsheet Chaos?" subheadline="Get a free strategy session and discover how your team can manage projects, assign tasks, track progress, and improve workflows with the right task management system." ctaText="Get My Free Workflow Plan"}
 
 {* <section class="py-5 bg-primary text-white">
-    <div class="container py-5 text-center">
-        <h2 class="display-6 fw-bold mb-3">Ready To Replace Spreadsheet Chaos?</h2>
-        <p class="lead mb-4 mx-auto" style="max-width: 760px;">Get a free strategy session and discover how your team can manage projects, assign tasks, track progress, and improve workflows with the right task management system.</p>
-        <a href="#strategy-session" class="btn btn-light btn-lg px-5">Get My Free Workflow Plan</a>
-    </div>
+<div class="container py-5 text-center">
+<h2 class="display-6 fw-bold mb-3">Ready To Replace Spreadsheet Chaos?</h2>
+<p class="lead mb-4 mx-auto" style="max-width: 760px;">Get a free strategy session and discover how your team can manage projects, assign tasks, track progress, and improve workflows with the right task management system.</p>
+<a href="#strategy-session" class="btn btn-light btn-lg px-5">Get My Free Workflow Plan</a>
+</div>
 </section> *}
 
 {* <section class="py-5 bg-dark text-white">
-    <div class="container py-5">
-        <div class="row text-center g-4">
-            <div class="col-md-3">
-                <div class="display-5 fw-bold">1</div>
-                <p class="mb-0">Central Place For Work</p>
-            </div>
+<div class="container py-5">
+<div class="row text-center g-4">
+<div class="col-md-3">
+<div class="display-5 fw-bold">1</div>
+<p class="mb-0">Central Place For Work</p>
+</div>
 
-            <div class="col-md-3">
-                <div class="display-5 fw-bold">100%</div>
-                <p class="mb-0">Clearer Task Ownership</p>
-            </div>
+<div class="col-md-3">
+<div class="display-5 fw-bold">100%</div>
+<p class="mb-0">Clearer Task Ownership</p>
+</div>
 
-            <div class="col-md-3">
-                <div class="display-5 fw-bold">24/7</div>
-                <p class="mb-0">Project Visibility</p>
-            </div>
+<div class="col-md-3">
+<div class="display-5 fw-bold">24/7</div>
+<p class="mb-0">Project Visibility</p>
+</div>
 
-            <div class="col-md-3">
-                <div class="display-5 fw-bold">Better</div>
-                <p class="mb-0">Workflow Insights</p>
-            </div>
-        </div>
-    </div>
+<div class="col-md-3">
+<div class="display-5 fw-bold">Better</div>
+<p class="mb-0">Workflow Insights</p>
+</div>
+</div>
+</div>
 </section> *}
 
 {* <section class="py-5">
-    <div class="container py-5">
-        <div class="text-center mb-5">
-            <span class="badge task-management-badge rounded-pill px-3 py-2 mb-3">Frequently Asked Questions</span>
-            <h2 class="display-6 fw-bold text-dark">Task Management System FAQs</h2>
-        </div>
+<div class="container py-5">
+<div class="text-center mb-5">
+<span class="badge task-management-badge rounded-pill px-3 py-2 mb-3">Frequently Asked Questions</span>
+<h2 class="display-6 fw-bold text-dark">Task Management System FAQs</h2>
+</div>
 
-        <div class="accordion" id="taskFaq">
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">Do I need a paid task management system?</button>
-                </h3>
-                <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#taskFaq">
-                    <div class="accordion-body">Not always. Free tools can work well for small teams with simple workflows. Paid tools are usually better when you need dashboards, advanced reporting, time tracking, permissions, automation, or integrations.</div>
-                </div>
-            </div>
+<div class="accordion" id="taskFaq">
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">Do I need a paid task management system?</button>
+</h3>
+<div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#taskFaq">
+<div class="accordion-body">Not always. Free tools can work well for small teams with simple workflows. Paid tools are usually better when you need dashboards, advanced reporting, time tracking, permissions, automation, or integrations.</div>
+</div>
+</div>
 
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Can you help us move from spreadsheets?</button>
-                </h3>
-                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
-                    <div class="accordion-body">Yes. We can review your current spreadsheets, organize your workflow, migrate important information, and set up a task management system that is easier for your team to use.</div>
-                </div>
-            </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Can you help us move from spreadsheets?</button>
+</h3>
+<div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
+<div class="accordion-body">Yes. We can review your current spreadsheets, organize your workflow, migrate important information, and set up a task management system that is easier for your team to use.</div>
+</div>
+</div>
 
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">Can we track how long tasks take?</button>
-                </h3>
-                <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
-                    <div class="accordion-body">Yes. Many systems support time tracking directly or through integrations. This helps you understand average task times, find bottlenecks, improve estimates, and identify work that takes longer than expected.</div>
-                </div>
-            </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">Can we track how long tasks take?</button>
+</h3>
+<div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
+<div class="accordion-body">Yes. Many systems support time tracking directly or through integrations. This helps you understand average task times, find bottlenecks, improve estimates, and identify work that takes longer than expected.</div>
+</div>
+</div>
 
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">Can tasks be assigned to different users?</button>
-                </h3>
-                <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
-                    <div class="accordion-body">Yes. Assigning tasks to users is one of the biggest advantages over spreadsheets. Each task can have an owner, due date, priority, status, notes, files, and activity history.</div>
-                </div>
-            </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">Can tasks be assigned to different users?</button>
+</h3>
+<div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
+<div class="accordion-body">Yes. Assigning tasks to users is one of the biggest advantages over spreadsheets. Each task can have an owner, due date, priority, status, notes, files, and activity history.</div>
+</div>
+</div>
 
-            <div class="accordion-item">
-                <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">Can this connect with our other business tools?</button>
-                </h3>
-                <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
-                    <div class="accordion-body">Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.</div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="accordion-item">
+<h3 class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">Can this connect with our other business tools?</button>
+</h3>
+<div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#taskFaq">
+<div class="accordion-body">Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.</div>
+</div>
+</div>
+</div>
+</div>
 </section> *}

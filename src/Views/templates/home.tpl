@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true">
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true">
 
-<section class="parallax cta-section home-hero py-5 bg-gradient border-bottom">
+<section class="parallax cta-section home-hero py-5 curve-style">
     <div class="container home-hero-inner pt-5 pb-5 d-flex align-items-center justify-content-center">
         <div class="row align-items-center home-hero-grid">
             <div class="col-lg-6 mb-4 mb-lg-0">

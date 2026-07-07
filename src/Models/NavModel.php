@@ -34,6 +34,12 @@ class NavModel
         return $this->buildNavTree((int) $parent, $itemsByParent);
     }
 
+    public function getAllNav(): array {
+        $repository = $this->entityManager->getRepository(MenuEntity::class);
+        $navItems = $repository->createQueryBuilder('m')->getQuery()->getArrayResult();
+        return $navItems;
+    }
+
     private function buildNavTree(int $parentId, array $itemsByParent): array
     {
         $navItems = $itemsByParent[$parentId] ?? [];

@@ -383,7 +383,8 @@ class LandingPageController
     {
         $sections = array(
             'sectionFAQ' => $this->getTaskManagementFAQ(),
-            'sectionStats' => $this->getTaskManagementStats()
+            'sectionStats' => $this->getTaskManagementStats(),
+            'sectionComparison' => $this->getTaskManagementComparison()
         );
 
         return $sections;
@@ -461,6 +462,48 @@ class LandingPageController
                 'question' => 'Can this connect with our other business tools?',
                 'answer' => 'Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.'
             ]
+        );
+    }
+
+    public function getTaskManagementComparison(): array
+    {
+        return array(
+            'category' => 'Spreadsheet vs Task System',
+            'headline' => 'A Better Way To Manage Work',
+            'subheadline' => '',
+            'text' => '',
+            'comparisonCards' => array(
+                array(
+                    'title' => 'Task Ownership',
+                    'typical' => 'Manual notes and inconsistent updates',
+                    'skale' => 'Tasks assigned directly to users'
+                ),
+                array(
+                    'title' => 'Project Progress',
+                    'typical' => 'Hard to see what is done, late, or blocked',
+                    'skale' => 'Clear status views, boards, lists, and dashboards'
+                ),
+                array(
+                    'title' => 'Accountability',
+                    'typical' => 'Easy for work to get lost',
+                    'skale' => 'Owners, due dates, reminders, and activity history'
+                ),
+                array(
+                    'title' => 'Time Tracking',
+                    'typical' => 'Manual and often inaccurate',
+                    'skale' => 'Track task duration and average completion times'
+                ),
+                array(
+                    'title' => 'Process Improvement',
+                    'typical' => 'Difficult to identify bottlenecks',
+                    'skale' => 'Reports reveal slow tasks, overloaded users, and repeat issues'
+                ),
+                array(
+                    'title' => 'Scalability',
+                    'typical' => 'Gets messy as the team grows',
+                    'skale' => 'Built for repeatable workflows and growing teams'
+                )
+            )
         );
     }
 }

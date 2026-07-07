@@ -1,7 +1,7 @@
 .home-callout-bg {
     min-height: auto;
     height: auto;
-    background-color: #04010f;
+    /* background-color: #04010f; */
     background-image: url(/images/circle-skale-up-logo-bg.png);
     background-repeat: no-repeat;
     background-position: center;
