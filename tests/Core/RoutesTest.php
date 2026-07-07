@@ -13,6 +13,9 @@ final class RoutesTest extends TestCase
     protected function tearDown(): void
     {
         unset($_SERVER['REQUEST_METHOD']);
+        unset($_SERVER['REQUEST_URI']);
+        unset($_SERVER['HTTP_ACCEPT']);
+        unset($_SERVER['HTTP_X_REQUESTED_WITH']);
     }
 
     public function testGetDispatchMethodMapsHeadRequestsToGet(): void
@@ -64,6 +67,38 @@ final class RoutesTest extends TestCase
         $output = ob_get_clean();
 
         $this->assertSame('', $output);
+    }
+
+    public function testHandleErrorDoesNotExposeExceptionMessages(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_SERVER['REQUEST_URI'] = '/broken-page';
+
+        $routes = $this->newRoutesInstance();
+
+        ob_start();
+        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $output = (string) ob_get_clean();
+
+        $this->assertStringContainsString('500 error', $output);
+        $this->assertStringNotContainsString('Sensitive failure details', $output);
+    }
+
+    public function testHandleErrorReturnsJsonForNonGetRequests(): void
+    {
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+
+        $routes = $this->newRoutesInstance();
+
+        ob_start();
+        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $output = (string) ob_get_clean();
+
+        $this->assertJson($output);
+        $this->assertSame(
+            ['error' => 'Something went wrong. Please try again later.'],
+            json_decode($output, true)
+        );
     }
 
     private function newRoutesInstance(): Routes

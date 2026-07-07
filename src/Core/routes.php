@@ -123,7 +123,7 @@ class Routes
                 }
             } catch (HttpRouteNotFoundException $e) {
                 $this->handleDynamicPageOrNotFound($requestPath);
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 $this->handleError($e);
             }
         });
@@ -205,11 +205,17 @@ class Routes
         return strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET')) === 'HEAD';
     }
 
-    private function handleError(\Exception $e): void
+    private function handleError(\Throwable $e): void
     {
-        echo $e->getMessage();
+        ErrorHandler::report($e);
         http_response_code(500);
-        $this->container->get(ViewInterface::class)->render('error/500');
+
+        if ($this->expectsJsonResponse()) {
+            echo JsonResponse::error('Something went wrong. Please try again later.');
+            return;
+        }
+
+        echo ErrorHandler::render500Page();
     }
 
     private function expectsJsonResponse(): bool

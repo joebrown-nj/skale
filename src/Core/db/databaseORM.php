@@ -46,7 +46,7 @@ class DatabaseORM
                 $connection = DriverManager::getConnection($dbParams, $config);
                 self::$entityManager = new EntityManager($connection, $config);
             } catch (ConnectionException $e) {
-                ErrorHandler::getInstance()->handleError($e);
+                ErrorHandler::report($e);
                 throw new \RuntimeException('Failed to connect to the database. Please check your database configuration.');
             }
         }
@@ -76,10 +76,10 @@ class DatabaseORM
                 $connection = DriverManager::getConnection($dbParams, $config);
                 self::$entityManager = new EntityManager($connection, $config);
             } catch (PathException $e) {
-                ErrorHandler::handle($e);
+                ErrorHandler::report($e);
                 throw new \RuntimeException('Environment file (.env) not found or invalid.');
             } catch (ORMException $e) {
-                ErrorHandler::handle($e);
+                ErrorHandler::report($e);
                 throw new \RuntimeException('Failed to initialize ORM configuration.');
             }
         }
