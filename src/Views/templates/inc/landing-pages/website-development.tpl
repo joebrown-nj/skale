@@ -2,12 +2,7 @@
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7" data-aos="fade-up">
-                {* <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">
-                {$data.sections.sectionHero.category}
-                </span> *}
-
                 <span class="eyebrow mb-4">
-                    {* <i class="fa-solid fa-arrow-right-arrow-left"></i> *}
                     <i class="fa-solid fa-code"></i>
                     {$data.sections.sectionHero.category}
                 </span>

@@ -2,7 +2,7 @@
     <section class="hero">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-7">
+                <div class="col-lg-7" data-aos="fade-up">
                     <span class="eyebrow mb-4">
                         <i class="fa-solid fa-arrow-right-arrow-left"></i>
                         Done-for-you task management implementation
@@ -30,7 +30,7 @@
                     <p class="small text-muted-skale mb-0"><i class="fa-solid fa-shield-halved me-2"></i>Free 30-minute consultation · No platform purchase required · No obligation</p>
                 </div>
 
-                <div class="col-lg-5">
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
                     <div id="migration-plan" class="form-panel p-4 p-xl-5">
                         <span class="eyebrow mb-3">Free consultation</span>
                         <h2 class="h3 fw-bold mb-2">Get Your Free Spreadsheet Migration Plan</h2>

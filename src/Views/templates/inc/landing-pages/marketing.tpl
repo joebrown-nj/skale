@@ -7,19 +7,20 @@
                 <p class="lead mb-4">Skale helps businesses turn email marketing, PPC, and social media into connected campaigns that attract the right audience, capture more leads, and create measurable growth.</p>
                 <p class="mb-4">From paid ads and landing pages to email follow-ups and social content, we build marketing systems designed to move people from interest to action.</p>
                 <div class="row g-3 mb-4">
-                    <div class="col-sm-6">✓ Email Marketing</div>
-                    <div class="col-sm-6">✓ PPC Campaigns</div>
-                    <div class="col-sm-6">✓ Social Media Marketing</div>
-                    <div class="col-sm-6">✓ Landing Page Strategy</div>
-                    <div class="col-sm-6">✓ Lead Generation Funnels</div>
-                    <div class="col-sm-6">✓ Reporting & Optimization</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Email Marketing</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>PPC Campaigns</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Social Media Marketing</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Landing Page Strategy</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Lead Generation Funnels</div>
+                    <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Reporting & Optimization</div>
                 </div>
                 <a href="#strategy-session" class="btn btn-lg btn-warning rounded-pill px-4 fw-semibold">Get My Free Marketing Review</a>
             </div>
+
             <div class="col-lg-5">
                 <div id="strategy-session" class="form-panel p-4 p-lg-5">
                     <h3 class="fw-bold mb-2">Get Your Free Growth Strategy Session</h3>
-                    <p class="text-secondary mb-4">We’ll review your current marketing and identify opportunities to generate more leads.</p>
+                    <p class="text-secondary mb-4">We'll review your current marketing and identify opportunities to generate more leads.</p>
                     <form>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Name</label>
@@ -61,6 +62,7 @@
                 <p class="text-secondary fs-5">Your ads, emails, social content, website, CRM, and reporting should all support the same goal: turning attention into leads and leads into customers.</p>
             </div>
         </div>
+
         <div class="marketing-card bg-white p-4 p-lg-5">
             <div class="row fw-bold text-secondary d-none d-md-flex mb-3">
                 <div class="col-md-4">Category</div>
@@ -104,6 +106,7 @@
                 <h2 class="display-6 fw-bold mt-2">More Visibility Is Not Enough</h2>
                 <p class="fs-5 text-secondary">Traffic, impressions, and clicks only matter when they create real business opportunities. Skale helps you build campaigns that attract the right people, communicate clear value, and make it easy for prospects to take the next step.</p>
             </div>
+
             <div class="col-lg-7">
                 <div class="row g-4">
                     <div class="col-md-6">
@@ -147,6 +150,7 @@
                 <h2 class="display-6 fw-bold">Built for Campaigns, Funnels, and Follow-Through</h2>
                 <p class="lead text-white-50">Skale connects your marketing channels with your website, CRM, automation, and analytics so every campaign has a clearer path from first click to qualified lead.</p>
             </div>
+
             <div class="col-lg-5 text-lg-end">
                 <a href="#strategy-session" class="btn btn-warning btn-lg rounded-pill px-4 fw-semibold">Get Your Free Marketing Plan</a>
             </div>
@@ -160,6 +164,7 @@
             <span class="text-uppercase fw-bold marketing-accent small">How It Works</span>
             <h2 class="display-6 fw-bold mt-2">A Smarter Marketing System in 3 Steps</h2>
         </div>
+
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="marketing-card bg-white h-100 p-4">
