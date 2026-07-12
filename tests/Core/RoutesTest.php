@@ -16,6 +16,7 @@ final class RoutesTest extends TestCase
         unset($_SERVER['REQUEST_URI']);
         unset($_SERVER['HTTP_ACCEPT']);
         unset($_SERVER['HTTP_X_REQUESTED_WITH']);
+        unset($_ENV['APP_ENV']);
     }
 
     public function testGetDispatchMethodMapsHeadRequestsToGet(): void
@@ -71,6 +72,7 @@ final class RoutesTest extends TestCase
 
     public function testHandleErrorDoesNotExposeExceptionMessages(): void
     {
+        $_ENV['APP_ENV'] = 'prod';
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $_SERVER['REQUEST_URI'] = '/broken-page';
 
@@ -80,8 +82,24 @@ final class RoutesTest extends TestCase
         $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
         $output = (string) ob_get_clean();
 
-        $this->assertStringContainsString('500 error', $output);
+        $this->assertStringContainsString('Something went wrong', $output);
         $this->assertStringNotContainsString('Sensitive failure details', $output);
+    }
+
+    public function testHandleErrorShowsExceptionMessagesOutsideProduction(): void
+    {
+        $_ENV['APP_ENV'] = 'local';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_SERVER['REQUEST_URI'] = '/broken-page';
+
+        $routes = $this->newRoutesInstance();
+
+        ob_start();
+        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $output = (string) ob_get_clean();
+
+        $this->assertStringContainsString('Sensitive failure details', $output);
+        $this->assertStringContainsString('RuntimeException', $output);
     }
 
     public function testHandleErrorReturnsJsonForNonGetRequests(): void

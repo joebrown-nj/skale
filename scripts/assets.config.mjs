@@ -12,6 +12,7 @@ export const cssAssets = [
     [`${cssSourceRoot}/thank-you.css`, `${publicCssRoot}/thank-you.min.css`],
     [`${cssSourceRoot}/headerFooterShow.css`, `${publicCssRoot}/headerFooterShow.min.css`],
     [`${cssSourceRoot}/headerFooterHide.css`, `${publicCssRoot}/headerFooterHide.min.css`],
+    [`${cssSourceRoot}/task-management.css`, `${publicCssRoot}/task-management.min.css`],
 ];
 
 export const jsAssets = [

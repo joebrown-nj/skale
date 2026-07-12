@@ -215,7 +215,7 @@ class Routes
             return;
         }
 
-        echo ErrorHandler::render500Page();
+        echo ErrorHandler::render500Page($e);
     }
 
     private function expectsJsonResponse(): bool
