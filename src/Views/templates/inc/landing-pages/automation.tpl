@@ -2,8 +2,6 @@
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7" data-aos="fade-up">
-                {include file="inc/landing-pages/inc/logo.tpl" linkDescribedBy="automation landing page logo link"}
-
                 <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">Automation & Software</span>
 
                 <h1 class="display-4 fw-bold mb-4">

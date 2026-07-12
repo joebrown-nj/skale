@@ -1,14 +1,18 @@
-<section class="website-development-hero py-5 curve-style">
+<section class="hero website-development-hero py-5 curve-style">
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-7" data-aos="fade-up">
-                {include file="inc/landing-pages/inc/logo.tpl" linkDescribedBy="website development landing page logo"}
+                {* <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">
+                {$data.sections.sectionHero.category}
+                </span> *}
 
-                <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">
+                <span class="eyebrow mb-4">
+                    {* <i class="fa-solid fa-arrow-right-arrow-left"></i> *}
+                    <i class="fa-solid fa-code"></i>
                     {$data.sections.sectionHero.category}
                 </span>
 
-                <h1 class="display-4 fw-bold mb-4">
+                <h1 class="fw-bold mb-4">
                     {$data.sections.sectionHero.headline}
                 </h1>
 
@@ -30,6 +34,7 @@
 
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
                 <div id="strategy-session" class="form-panel p-4 p-lg-5 lead-card">
+                    <span class="eyebrow mb-3">Free consultation</span>
                     <h3 class="fw-bold mb-3">{$data.sections.sectionHero.formHeadline}</h3>
                     <p class="text-secondary mb-4">{$data.sections.sectionHero.formText}</p>
 

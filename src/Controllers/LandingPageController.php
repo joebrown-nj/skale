@@ -344,7 +344,7 @@ class LandingPageController
     public function postLeadForm()
     {
         $input ??= $_POST;
-        $input['comment'] = 'Landing Page Lead Form Submission - '. $input['comment'];
+        $input['comment'] = 'Landing Page Lead Form Submission -  Team Size: '. $input['team_size'].' - '. $input['comment'];
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
             http_response_code(403);
@@ -443,25 +443,53 @@ class LandingPageController
 
         return array(
             [
-                'question' => 'Do I need a paid task management system?',
-                'answer' => 'Not always. Free tools can work well for small teams with simple workflows. Paid tools are usually better when you need dashboards, advanced reporting, time tracking, permissions, automation, or integrations.'
+                'question' => 'Can you migrate our existing spreadsheet data?',
+                'answer' => 'Yes. Skale can review, clean, organize, map, and migrate usable projects, tasks, owners, dates, statuses, notes, and related fields.',
             ],
             [
-                'question' => 'Can you help us move from spreadsheets?',
-                'answer' => 'Yes. We can review your current spreadsheets, organize your workflow, migrate important information, and set up a task management system that is easier for your team to use.'
+                'question' => 'Which task management platforms do you support?',
+                'answer' => 'The recommendation depends on workflow, team size, reporting, integrations, and budget. Skale can compare free and paid platforms and implement the best fit.',
             ],
             [
-                'question' => 'Can we track how long tasks take?',
-                'answer' => 'Yes. Many systems support time tracking directly or through integrations. This helps you understand average task times, find bottlenecks, improve estimates, and identify work that takes longer than expected.'
+                'question' => 'Will our team receive training?',
+                'answer' => 'Yes. Training is based on the configured system and the responsibilities of your users.',
             ],
             [
-                'question' => 'Can tasks be assigned to different users?',
-                'answer' => 'Yes. Assigning tasks to users is one of the biggest advantages over spreadsheets. Each task can have an owner, due date, priority, status, notes, files, and activity history.'
+                'question' => 'Will our team receive training?',
+                'answer' => 'Yes. Training is based on the configured system and the responsibilities of your users.',
             ],
             [
-                'question' => 'Can this connect with our other business tools?',
-                'answer' => 'Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.'
-            ]
+                'question' => 'What happens after launch?',
+                'answer' => 'Launch support is included. Ongoing support can also cover questions, new users, workflow changes, reporting, and automation.',
+            ],
+            [
+                'question' => 'How disruptive is the transition?',
+                'answer' => 'The transition can be phased. We can configure and test before launch, train smaller groups, and keep the spreadsheet available temporarily for verification.',
+            ],
+            [
+                'question' => 'How much does implementation cost?',
+                'answer' => 'Cost depends on data volume, workflow complexity, number of users, training, and integrations. The initial consultation is free and helps define scope.',
+            ],
+            // [
+            //     'question' => 'Do I need a paid task management system?',
+            //     'answer' => 'Not always. Free tools can work well for small teams with simple workflows. Paid tools are usually better when you need dashboards, advanced reporting, time tracking, permissions, automation, or integrations.'
+            // ],
+            // [
+            //     'question' => 'Can you help us move from spreadsheets?',
+            //     'answer' => 'Yes. We can review your current spreadsheets, organize your workflow, migrate important information, and set up a task management system that is easier for your team to use.'
+            // ],
+            // [
+            //     'question' => 'Can we track how long tasks take?',
+            //     'answer' => 'Yes. Many systems support time tracking directly or through integrations. This helps you understand average task times, find bottlenecks, improve estimates, and identify work that takes longer than expected.'
+            // ],
+            // [
+            //     'question' => 'Can tasks be assigned to different users?',
+            //     'answer' => 'Yes. Assigning tasks to users is one of the biggest advantages over spreadsheets. Each task can have an owner, due date, priority, status, notes, files, and activity history.'
+            // ],
+            // [
+            //     'question' => 'Can this connect with our other business tools?',
+            //     'answer' => 'Yes. Depending on the platform, task systems can connect with email, calendars, CRM platforms, forms, Slack, Google Workspace, Microsoft 365, reporting dashboards, and custom software.'
+            // ]
         );
     }
 

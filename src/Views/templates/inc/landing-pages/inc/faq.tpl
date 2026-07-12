@@ -1,8 +1,12 @@
-<section class="py-5 bg-light px-5">
+<section class="py-5 bg-light px-5 light-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h2 class="text-center fw-bold mb-5 text-secondary">Frequently Asked Questions</h2>
+                <div class="text-center mb-5">
+                    <span class="eyebrow mb-3">Common questions</span>
+                    <h2 class="display-5 fw-bold">Frequently Asked Questions</h2>
+                </div>
+                <!-- <h2 class="text-center fw-bold mb-5 text-secondary">Frequently Asked Questions</h2> -->
 
                 <div class="accordion accordion-flush" id="faqAccordion">
                     {foreach from=$faq key=k item=faq}
