@@ -177,56 +177,80 @@ class LandingPageController
         return array(
             [
                 'question' => 'How much does a website cost?',
-                'answer' => 'Every project is different depending on functionality and scope.'
+                'answer' => 'Cost depends on page count, design requirements, content, custom functionality, integrations, migration needs, and support. The initial consultation helps define a realistic scope before a proposal is prepared.'
             ],
             [
-                'question' => 'How long does development take?',
-                'answer' => 'Most projects range from 2-6 weeks.'
+                'question' => 'Do you build new websites and redesign existing websites?',
+                'answer' => 'Yes. Skale can build a new website from the ground up, redesign an existing site, rebuild only the most important pages, or add new sections and functionality'
             ],
             [
-                'question' => 'Can you redesign an existing website?',
-                'answer' => 'Yes.'
+                'question' => 'How long does a website project take?',
+                'answer' => 'A focused landing page can be completed faster than a full website. Most schedules depend on scope, content readiness, feedback, integrations, and testing. A clear timeline is established before work begins.'
             ],
             [
-                'question' => 'Will my website work on mobile devices?',
-                'answer' => 'Yes, every website is built for mobile and desktop users.'
+                'question' => 'Can you work with our existing brand and content?',
+                'answer' => 'Yes. Existing branding, photography, copy, and content can be reused where they still support the business. Skale can also help reorganize, rewrite, or replace materials that no longer fit.'
             ],
             [
-                'question' => 'Can you help with SEO and marketing?',
-                'answer' => 'Yes, websites can be paired with SEO and marketing services.'
+                'question' => 'Will we be able to update the website ourselves?',
+                'answer' => 'Yes. The editing experience can be designed around the content your team needs to manage. Training and documentation can be included.'
             ],
             [
-                'question' => 'What industries do you specialize in?',
-                'answer' => 'We have experience across a wide range of industries, including technology, healthcare, finance, e-commerce, and more. Our team is adaptable and can tailor our solutions to meet the unique needs of your industry.'
+                'question' => 'Do you provide support after launch?',
+                'answer' => 'Yes. Ongoing maintenance, troubleshooting, content updates, new pages, performance improvements, integrations, and feature development are available.'
             ],
-            [
-                'question' => 'How do you approach project management?',
-                'answer' => 'We use agile methodologies to ensure flexibility and transparency throughout the project lifecycle. This allows us to adapt to changing requirements and deliver high-quality results on time.'
-            ],
-            [
-                'question' => 'What is your pricing model?',
-                'answer' => 'Our pricing model is flexible and based on the specific needs of each project. We offer both fixed-price and time-and-materials options, depending on the scope and complexity of the work.'
-            ],
-            [
-                'question' => 'How do you ensure the security of my data?',
-                'answer' => 'We take data security very seriously. We implement industry best practices for data protection, including encryption, secure access controls, and regular security audits to safeguard your information.'
-            ],
-            [
-                'question' => 'How long does development take?',
-                'answer' => 'Most projects range from 2-6 weeks.'
-            ],
-            [
-                'question' => 'Can you redesign an existing site?',
-                'answer' => 'Yes, we can redesign existing websites to improve functionality, user experience, and visual appeal.'
-            ],
-            [
-                'question' => 'Do you provide maintenance?',
-                'answer' => 'Yes, we offer ongoing maintenance packages to ensure your website remains up-to-date, secure, and functioning optimally.'
-            ],
-            [
-                'question' => 'Will I be able to edit the website myself?',
-                'answer' => 'Yes, we provide training and documentation to help you manage and update your website content independently.'
-            ]
+            // [
+            //     'question' => 'How much does a website cost?',
+            //     'answer' => 'Every project is different depending on functionality and scope.'
+            // ],
+            // [
+            //     'question' => 'How long does development take?',
+            //     'answer' => 'Most projects range from 2-6 weeks.'
+            // ],
+            // [
+            //     'question' => 'Can you redesign an existing website?',
+            //     'answer' => 'Yes.'
+            // ],
+            // [
+            //     'question' => 'Will my website work on mobile devices?',
+            //     'answer' => 'Yes, every website is built for mobile and desktop users.'
+            // ],
+            // [
+            //     'question' => 'Can you help with SEO and marketing?',
+            //     'answer' => 'Yes, websites can be paired with SEO and marketing services.'
+            // ],
+            // [
+            //     'question' => 'What industries do you specialize in?',
+            //     'answer' => 'We have experience across a wide range of industries, including technology, healthcare, finance, e-commerce, and more. Our team is adaptable and can tailor our solutions to meet the unique needs of your industry.'
+            // ],
+            // [
+            //     'question' => 'How do you approach project management?',
+            //     'answer' => 'We use agile methodologies to ensure flexibility and transparency throughout the project lifecycle. This allows us to adapt to changing requirements and deliver high-quality results on time.'
+            // ],
+            // [
+            //     'question' => 'What is your pricing model?',
+            //     'answer' => 'Our pricing model is flexible and based on the specific needs of each project. We offer both fixed-price and time-and-materials options, depending on the scope and complexity of the work.'
+            // ],
+            // [
+            //     'question' => 'How do you ensure the security of my data?',
+            //     'answer' => 'We take data security very seriously. We implement industry best practices for data protection, including encryption, secure access controls, and regular security audits to safeguard your information.'
+            // ],
+            // [
+            //     'question' => 'How long does development take?',
+            //     'answer' => 'Most projects range from 2-6 weeks.'
+            // ],
+            // [
+            //     'question' => 'Can you redesign an existing site?',
+            //     'answer' => 'Yes, we can redesign existing websites to improve functionality, user experience, and visual appeal.'
+            // ],
+            // [
+            //     'question' => 'Do you provide maintenance?',
+            //     'answer' => 'Yes, we offer ongoing maintenance packages to ensure your website remains up-to-date, secure, and functioning optimally.'
+            // ],
+            // [
+            //     'question' => 'Will I be able to edit the website myself?',
+            //     'answer' => 'Yes, we provide training and documentation to help you manage and update your website content independently.'
+            // ]
         );
     }
 

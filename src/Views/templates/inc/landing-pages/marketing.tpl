@@ -111,28 +111,28 @@
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="marketing-card h-100 p-4">
-                            <div class="icon-pill mb-3">1</div>
+                            <div class="icon-pill marketing-icon-pill mb-3">1</div>
                             <h4 class="fw-bold">Email Marketing</h4>
                             <p class="text-secondary mb-0">Campaigns, nurture sequences, customer follow-ups, promotions, and automated email flows.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="marketing-card h-100 p-4">
-                            <div class="icon-pill mb-3">2</div>
+                            <div class="icon-pill marketing-icon-pill mb-3">2</div>
                             <h4 class="fw-bold">PPC Campaigns</h4>
                             <p class="text-secondary mb-0">Google and social ad campaigns built around offers, landing pages, tracking, and lead generation.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="marketing-card h-100 p-4">
-                            <div class="icon-pill mb-3">3</div>
+                            <div class="icon-pill marketing-icon-pill mb-3">3</div>
                             <h4 class="fw-bold">Social Media Marketing</h4>
                             <p class="text-secondary mb-0">Content strategies that build trust, increase visibility, and support your sales funnel.</p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="marketing-card h-100 p-4">
-                            <div class="icon-pill mb-3">4</div>
+                            <div class="icon-pill marketing-icon-pill mb-3">4</div>
                             <h4 class="fw-bold">Optimization</h4>
                             <p class="text-secondary mb-0">Improve messaging, offers, landing pages, forms, follow-ups, and campaign performance over time.</p>
                         </div>
@@ -168,21 +168,21 @@
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="marketing-card bg-white h-100 p-4">
-                    <div class="icon-pill mb-3">1</div>
+                    <div class="icon-pill marketing-icon-pill mb-3">1</div>
                     <h4 class="fw-bold">Review</h4>
                     <p class="text-secondary mb-0">We evaluate your current campaigns, website, offer, tracking, and lead capture process.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="marketing-card bg-white h-100 p-4">
-                    <div class="icon-pill mb-3">2</div>
+                    <div class="icon-pill marketing-icon-pill mb-3">2</div>
                     <h4 class="fw-bold">Launch</h4>
                     <p class="text-secondary mb-0">We build or improve campaigns across email, PPC, and social media with clear conversion goals.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="marketing-card bg-white h-100 p-4">
-                    <div class="icon-pill mb-3">3</div>
+                    <div class="icon-pill marketing-icon-pill mb-3">3</div>
                     <h4 class="fw-bold">Optimize</h4>
                     <p class="text-secondary mb-0">We use performance data to improve messaging, targeting, landing pages, and follow-up.</p>
                 </div>

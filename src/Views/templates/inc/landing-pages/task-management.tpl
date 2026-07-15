@@ -23,8 +23,8 @@
                     </ul>
 
                     <div class="d-flex flex-column flex-sm-row gap-3 mb-3">
-                        {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4 stretched-link" text="Get My Free Migration Plan" describedBy="task management landing page" metaEvent="TaskManagement" metaLabel="Mid Page CTA Button"}
-                        <a href="tel:+17329254044" class="btn btn-outline-light btn-lg px-4"><i class="fa-solid fa-phone me-2"></i>Call 732-925-4044</a>
+                        {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4" text="Get My Free Migration Plan" describedBy="task management landing page" metaEvent="TaskManagement" metaLabel="Mid Page CTA Button"}
+                        {include file="inc/landing-pages/inc/call-button.tpl" class="btn btn-outline-light btn-lg px-4" iconClass="fa-solid fa-phone me-2" text="Call {$smarty.ENV.SITE_PHONE}"}
                     </div>
 
                     <p class="small text-muted-skale mb-0"><i class="fa-solid fa-shield-halved me-2"></i>Free 30-minute consultation · No platform purchase required · No obligation</p>
@@ -42,27 +42,14 @@
         </div>
     </section>
 
-    <section class="pb-5">
+    <section class="pb-5 py-5">
         <div class="container">
-            <!-- Mobile -->
-            <div class="d-lg-none">
-                <div class="trust-panel">
-                    <div class="row g-0">
-                        <div class="col-lg-3 trust-item" data-aos="fade-up"><strong>20+ Years of Experience</strong><span class="text-muted-skale d-block">Building and improving business systems</span></div>
-                        <div class="col-lg-3 trust-item" data-aos="fade-up"><strong>Data Migration Included</strong><span class="text-muted-skale d-block">Your existing spreadsheet work comes with you</span></div>
-                        <div class="col-lg-3 trust-item" data-aos="fade-up"><strong>Team Training Included</strong><span class="text-muted-skale d-block">Your users are prepared before launch</span></div>
-                        <div class="col-lg-3 trust-item" data-aos="fade-up"><strong>Ongoing Support Available</strong><span class="text-muted-skale d-block">You are not left alone after setup</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Desktop -->
-            <div class="d-none d-lg-block">
-                <div class="row my-5 glass-card py-5" data-aos="fade-up">
-                    <div class="col-md-3 border-end px-4"><strong class="mb-2 d-block">20+ Years of Experience</strong><span class="text-muted-skale d-block">Building and improving business systems</span></div>
-                    <div class="col-md-3 border-end px-4"><strong class="mb-2 d-block">Data Migration Included</strong><span class="text-muted-skale d-block">Your existing spreadsheet work comes with you</span></div>
-                    <div class="col-md-3 border-end px-4"><strong class="mb-2 d-block">Team Training Included</strong><span class="text-muted-skale d-block">Your users are prepared before launch</span></div>
-                    <div class="col-md-3 px-4"><strong class="mb-2 d-block">Ongoing Support Available</strong><span class="text-muted-skale d-block">You are not left alone after setup</span></div>
+            <div class="trust-panel" data-aos="fade-up">
+                <div class="row g-0">
+                    <div class="col-lg-3 trust-item"><strong>20+ Years of Experience</strong><span class="text-muted-skale d-block">Building and improving business systems</span></div>
+                    <div class="col-lg-3 trust-item"><strong>Data Migration Included</strong><span class="text-muted-skale d-block">Your existing spreadsheet work comes with you</span></div>
+                    <div class="col-lg-3 trust-item"><strong>Team Training Included</strong><span class="text-muted-skale d-block">Your users are prepared before launch</span></div>
+                    <div class="col-lg-3 trust-item"><strong>Ongoing Support Available</strong><span class="text-muted-skale d-block">You are not left alone after setup</span></div>
                 </div>
             </div>
         </div>
@@ -78,7 +65,7 @@
 
             <div class="row g-4">
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="100">
-                    <article class="card-dark card">
+                    <article class="card-dark">
                         <div class="icon"><i class="fa-solid fa-copy"></i></div>
                         <h3 class="h5 fw-bold">Version Confusion</h3>
                         <p class="text-muted-skale mb-0">Copies get emailed, renamed, and edited by different people.</p>
@@ -86,7 +73,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="200">
-                    <article class="card-dark card">
+                    <article class="card-dark">
                         <div class="icon"><i class="fa-solid fa-user-tag"></i></div>
                         <h3 class="h5 fw-bold">Unclear Ownership</h3>
                         <p class="text-muted-skale mb-0">A name in a cell is not an assigned task with a due date and reminder.</p>
@@ -94,7 +81,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="300">
-                    <article class="card-dark card">
+                    <article class="card-dark">
                         <div class="icon"><i class="fa-solid fa-bell"></i></div>
                         <h3 class="h5 fw-bold">Constant Follow-Up</h3>
                         <p class="text-muted-skale mb-0">Managers chase updates and build status reports manually.</p>
@@ -102,7 +89,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="400">
-                    <article class="card-dark card">
+                    <article class="card-dark">
                         <div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                         <h3 class="h5 fw-bold">Growth Creates Chaos</h3>
                         <p class="text-muted-skale mb-0">More work means more tabs, files, and missed details.</p>
@@ -126,15 +113,15 @@
 
             <div class="row g-4">
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="100">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="50">
                         <div class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                        <h3 class="h4 fw-bold">Workflow Review</h3>
+                        <h3 class="h4 fw-bold text-dark">Workflow Review</h3>
                         <p class="text-muted-skale mb-0">Review spreadsheets, processes, reporting needs, recurring work, and team responsibilities.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="200">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
                         <h3 class="h4 fw-bold">Platform Selection</h3>
                         <p class="text-muted-skale mb-0">Compare practical free and paid options around your workflow and budget.</p>
@@ -142,7 +129,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="300">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="150">
                         <div class="icon"><i class="fa-solid fa-file-import"></i></div>
                         <h3 class="h4 fw-bold">Spreadsheet Data Migration</h3>
                         <p class="text-muted-skale mb-0">Clean, organize, map, and import usable project and task data.</p>
@@ -150,7 +137,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="400">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon"><i class="fa-solid fa-sliders"></i></div>
                         <h3 class="h4 fw-bold">System Configuration</h3>
                         <p class="text-muted-skale mb-0">Build projects, templates, statuses, permissions, dashboards, and automation.</p>
@@ -158,7 +145,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="500">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="250">
                         <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
                         <h3 class="h4 fw-bold">Team Training</h3>
                         <p class="text-muted-skale mb-0">Train users around their real responsibilities and daily work.</p>
@@ -166,7 +153,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-4">
-                    <article class="card-dark" data-aos="fade-up" data-aos-delay="600">
+                    <article class="card-light" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon"><i class="fa-solid fa-headset"></i></div>
                         <h3 class="h4 fw-bold">Launch and Support</h3>
                         <p class="text-muted-skale mb-0">Resolve launch issues, answer questions, and refine workflows over time.</p>
@@ -196,27 +183,33 @@
                             <th>Managing Work in a Task System</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         <tr data-aos="fade-up" data-aos-delay="50">
                             <td class="before">Multiple files and versions</td>
                             <td class="after">One source of truth</td>
                         </tr>
+
                         <tr data-aos="fade-up" data-aos-delay="100">
                             <td class="before">Ownership entered as text</td>
                             <td class="after">Tasks assigned to responsible users</td>
                         </tr>
+
                         <tr data-aos="fade-up" data-aos-delay="150">
                             <td class="before">Manual deadline follow-up</td>
                             <td class="after">Due dates, reminders, and notifications</td>
                         </tr>
+
                         <tr data-aos="fade-up" data-aos-delay="200">
                             <td class="before">Status reports created by hand</td>
                             <td class="after">Live boards, lists, and dashboards</td>
                         </tr>
+
                         <tr data-aos="fade-up" data-aos-delay="250">
                             <td class="before">Repetitive work recreated each time</td>
                             <td class="after">Templates and recurring tasks</td>
                         </tr>
+
                         <tr data-aos="fade-up" data-aos-delay="300">
                             <td class="before">Limited visibility into delays</td>
                             <td class="after">Clear blockers, overdue work, and workload</td>
@@ -240,7 +233,7 @@
 
             <div class="row g-4">
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="100">
-                    <article class="process-card card">
+                    <article class="process-card">
                         <span class="number">1</span>
                         <h3 class="h5 fw-bold text-dark">Review</h3>
                         <p class="text-muted-skale mb-0">Examine what your spreadsheets track and where work gets lost.</p>
@@ -250,7 +243,7 @@
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="200">
                     <article class="process-card">
                         <span class="number">2</span>
-                        <h3 class="h5 fw-bold">Design</h3>
+                        <h3 class="h5 fw-bold text-dark">Design</h3>
                         <p class="text-muted-skale mb-0">Define projects, tasks, owners, stages, approvals, and reporting.</p>
                     </article>
                 </div>
@@ -258,7 +251,7 @@
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="300">
                     <article class="process-card">
                         <span class="number">3</span>
-                        <h3 class="h5 fw-bold">Configure & Migrate</h3>
+                        <h3 class="h5 fw-bold text-dark">Configure & Migrate</h3>
                         <p class="text-muted-skale mb-0">Build the workspace and move usable spreadsheet data.</p>
                     </article>
                 </div>
@@ -266,7 +259,7 @@
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="400">
                     <article class="process-card">
                         <span class="number">4</span>
-                        <h3 class="h5 fw-bold">Test & Train</h3>
+                        <h3 class="h5 fw-bold text-dark">Test & Train</h3>
                         <p class="text-muted-skale mb-0">Test real workflows and train your team around daily work.</p>
                     </article>
                 </div>
@@ -274,7 +267,7 @@
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="500">
                     <article class="process-card">
                         <span class="number">5</span>
-                        <h3 class="h5 fw-bold">Launch & Improve</h3>
+                        <h3 class="h5 fw-bold text-dark">Launch & Improve</h3>
                         <p class="text-muted-skale mb-0">Support rollout, resolve issues, and refine the system.</p>
                     </article>
                 </div>
@@ -294,7 +287,7 @@
 
             <div class="row g-4">
                 <div class="col-lg-6" data-aos="fade-up">
-                    <article class="platform-card card">
+                    <article class="platform-card">
                         <h3 class="h3 fw-bold">A Free Platform May Be Enough When:</h3>
                         <ul class="check-list mt-4">
                             <li><i class="fa-solid fa-circle-check"></i><span>You have a small team</span></li>
@@ -306,7 +299,7 @@
                 </div>
 
                 <div class="col-lg-6" data-aos="fade-up">
-                    <article class="platform-card card">
+                    <article class="platform-card">
                         <h3 class="h3 fw-bold">A Paid Platform May Be Better When:</h3>
                         <ul class="check-list mt-4">
                             <li><i class="fa-solid fa-circle-check"></i><span>Multiple teams or clients share the system</span></li>
@@ -329,7 +322,7 @@
 
             <div class="row g-4">
                 <div class="col-lg-8">
-                    <article class="card-dark">
+                    <article class="card-light">
                         <div class="row g-3">
                             <div class="col-md-6"><i class="fa-solid fa-check text-success me-2"></i>Your team manages active work in spreadsheets</div>
                             <div class="col-md-6"><i class="fa-solid fa-check text-success me-2"></i>Deadlines or follow-ups are missed</div>
@@ -340,8 +333,9 @@
                         </div>
                     </article>
                 </div>
+
                 <div class="col-lg-4">
-                    <article class="card-dark">
+                    <article class="card-light">
                         <h3 class="h4 fw-bold">Probably Not the Right Fit</h3>
                         <p class="text-muted-skale mb-0">This service may not fit if you only need a personal to-do list or software licenses without implementation help.</p>
                     </article>
@@ -350,23 +344,13 @@
         </div>
     </section>
 
-    <section class="py-5">
-        <div class="container">
-            <div class="founder-panel">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-3">
-                        <div class="founder-mark">JB</div>
-                    </div>
-                    <div class="col-lg-9">
-                        <span class="eyebrow mb-3">Experienced, hands-on guidance</span>
-                        <h2 class="display-6 fw-bold">Your Implementation Is Led by Someone Who Understands Technology and Business Operations</h2>
-                        <p class="lead text-muted-skale">I'm Joe Brown, founder of Skale. For more than 20 years, I've helped businesses replace manual processes, organize complex information, connect systems, automate repetitive work, and create technology teams can realistically use.</p>
-                        <p class="text-muted-skale mb-0">I work with you through planning, migration, setup, training, launch, and ongoing improvement.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {include
+    file="inc/landing-pages/inc/founder-panel.tpl"
+    eyebrow="Experienced, hands-on guidance"
+    h2="Your Implementation Is Led by Someone Who Understands Technology and Business Operations"
+    p1="I'm Joe Brown, founder of Skale. For more than 20 years, I've helped businesses replace manual processes, organize complex information, connect systems, automate repetitive work, and create technology teams can realistically use."
+    p2="I work with you through planning, migration, setup, training, launch, and ongoing improvement."
+    }
 
     {include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
 
@@ -379,7 +363,7 @@
                     <p class="lead text-muted-skale">Review your current process, discuss your spreadsheet data, and determine the best way to migrate your team.</p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg" text="Get My Free Migration Plan" describedBy="task management landing page" metaEvent="TaskManagement" metaLabel="Mid Page CTA Button"}
-                        <a href="tel:+17329254044" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-phone me-2"></i>Call 732-925-4044</a>
+                        {include file="inc/landing-pages/inc/call-button.tpl" class="btn btn-outline-light btn-lg" iconClass="fa-solid fa-phone me-2" text="Call {$smarty.ENV.SITE_PHONE}"}
                     </div>
                 </div>
 
@@ -398,7 +382,7 @@
     <div class="container">
         <div class="row g-2">
             <div class="col-5">
-                <a href="tel:+17329254044" class="btn btn-outline-light w-100"><i class="fa-solid fa-phone me-1"></i>Call</a>
+                {include file="inc/landing-pages/inc/call-button.tpl" class="btn btn-outline-light w-100" iconClass="fa-solid fa-phone me-1" text="Call"}
             </div>
 
             <div class="col-7">
@@ -408,4 +392,4 @@
     </div>
 </div>
 
-{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Migration Plan" ctaText="Get My Free Migration Plan" modalDescription="We'll review your current setup and identify opportunities to generate more leads and improve efficiency."}
+{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Migration Plan" ctaText="Get My Free Migration Plan" modalDescription="Tell us how your team currently manages projects. I'll help identify the right platform, what should be migrated, and the simplest path to launch."}

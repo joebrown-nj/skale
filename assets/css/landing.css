@@ -1,26 +1,9 @@
-/***************** WEBSITE DEVELOPMENT PAGE *****************/
+/***************** LANDING PAGE SHARED/LEGACY *****************/
 
 .menu-bar-bg {
     background:transparent !important;
     backdrop-filter: none !important;
     box-shadow: none !important;
-}
-
-.brand a {
-    color:#FFF;
-    text-decoration:none;
-}
-
-.highlight {
-    color:#4dabff;
-}
-
-.lead-card {
-    background:#fff;
-    color:#000;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 .feature-card {
@@ -47,21 +30,6 @@
     color:#4dabff;
 }
 
-.btn-primary {
-    background:#4dabff;
-    border:none;
-    padding:14px 30px;
-    font-weight:600;
-}
-
-.btn-primary:hover {
-    background:#2585e8;
-}
-
-.cta {
-    background:linear-gradient(135deg,#4dabff,#2563eb);
-}
-
 .sticky-mobile {
     position:fixed;
     bottom:0;
@@ -81,27 +49,6 @@
     .hero {
         padding:60px 0;
     }
-}
-
-.blue-bg {
-    background-color:#020617;
-}
-
-.website-development-hero {
-    /* padding: 6rem 1rem; */
-    background: radial-gradient(circle at top right, #1e3a8a, #020617);
-}
-
-.card {
-    background-color: #020617;
-    border: 1px solid #1e293b;
-    color: #e5e7eb;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .accordion-item {
@@ -189,32 +136,9 @@
     background: var(--skale-soft);
 }
 
-.icon-pill {
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+.automation-icon-pill {
     background: linear-gradient(135deg, var(--skale-cyan), var(--skale-mint));
     color: var(--skale-dark);
-    font-weight: 800;
-}
-
-.comparison-row {
-    border-bottom: 1px solid rgba(0,0,0,.08);
-    padding: 1rem 0;
-}
-
-.comparison-row:last-child {
-    border-bottom: 0;
-}
-
-.form-panel {
-    background: #ffffff;
-    color: var(--skale-ink);
-    border-radius: 1.25rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,.18);
 }
 
 /***************** MARKETING PAGE *****************/
@@ -260,53 +184,12 @@
 	background: var(--marketing-soft);
 }
 
-.icon-pill {
-	width: 48px;
-	height: 48px;
-	border-radius: 999px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+.marketing-icon-pill {
 	background: linear-gradient(135deg, var(--marketing-pink), var(--marketing-orange));
 	color: #fff;
-	font-weight: 800;
-}
-
-.form-panel {
-	background: #fff;
-	color: var(--marketing-ink);
-	border-radius: 1.25rem;
-	box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
-}
-
-.comparison-row {
-	border-bottom: 1px solid rgba(0, 0, 0, .08);
-	padding: 1rem 0;
-}
-
-.comparison-row:last-child {
-	border-bottom: 0;
 }
 
 /***************** TASK MANAGEMENT PAGE *****************/
-
-.task-management-hero {
-    background:
-        radial-gradient(circle at top right, rgba(14,165,233,.22), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(34,197,94,.18), transparent 38%),
-        linear-gradient(
-            145deg,
-            #020617 0%,
-            #0f172a 40%,
-            #1e293b 100%
-        );
-}
-
-.task-management-badge {
-    background: rgba(46, 230, 166, .14);
-    color: var(--skale-mint);
-    border: 1px solid rgba(46, 230, 166, .35);
-}
 
 :root {
 	--bg: #07111f;
@@ -329,9 +212,28 @@ body {
 	font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif
 }
 
-/* .section-pad {
+.section-pad {
 	padding: 6rem 0
-} */
+}
+
+.icon-pill {
+	width: 48px;
+	height: 48px;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 800
+}
+
+.comparison-row {
+	border-bottom: 1px solid rgba(0, 0, 0, .08);
+	padding: 1rem 0
+}
+
+.comparison-row:last-child {
+	border-bottom: 0
+}
 
 .text-muted-skale {
 	color: var(--muted) !important
@@ -399,6 +301,10 @@ a.brand {
 	background: radial-gradient(circle at 92% 10%, rgba(46, 230, 166, .2), transparent 30%), radial-gradient(circle at 5% 80%, rgba(22, 199, 217, .18), transparent 33%), linear-gradient(135deg, #07111f 0%, #102033 58%, #083344 100%)
 }
 
+.website-development-hero {
+	background: radial-gradient(circle at top right, #1e3a8a, #020617)
+}
+
 .hero h1 {
 	font-size: clamp(2.55rem, 5vw, 4.75rem);
 	line-height: 1.02;
@@ -448,7 +354,6 @@ a.brand {
 }
 
 .trust-panel,
-.card-dark,
 .process-card,
 .platform-card,
 .founder-panel {
@@ -457,19 +362,44 @@ a.brand {
 	border-radius: 1.2rem
 }
 
+.card-dark,
+.card-light,
+.process-card,
+.platform-card {
+	height: 100%;
+	padding: 1.75rem;
+	transition: transform 0.3s ease, box-shadow 0.3s ease
+}
+
+.card-dark {
+	background-color: #020617;
+	border: 1px solid #1e293b;
+	border-radius: 1.2rem;
+	color: #e5e7eb
+}
+
+.card-light {
+	background: #fff;
+	border: 1px solid #dbe4eb;
+	border-radius: 1.2rem;
+	box-shadow: 0 12px 34px rgba(33, 55, 78, .07);
+	color: var(--dark)
+}
+
+.card-dark:hover,
+.card-light:hover,
+.process-card:hover,
+.platform-card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, .18)
+}
+
 .trust-item {
 	padding: 1.4rem
 }
 
 .trust-item+.trust-item {
 	border-left: 1px solid var(--border)
-}
-
-.card-dark,
-.process-card,
-.platform-card {
-	height: 100%;
-	padding: 1.75rem
 }
 
 .icon {
@@ -494,7 +424,6 @@ a.brand {
 	color: #5d6e7c !important
 }
 
-.light-section .card-dark,
 .light-section .process-card {
 	background: #fff;
 	border-color: #dbe4eb;
@@ -581,11 +510,6 @@ a.brand {
 	background: radial-gradient(circle at 10% 20%, rgba(22, 199, 217, .18), transparent 32%), radial-gradient(circle at 90% 70%, rgba(46, 230, 166, .17), transparent 32%), var(--panel)
 }
 
-.minimal-footer {
-	border-top: 1px solid var(--border);
-	color: var(--muted)
-}
-
 .mobile-action-bar {
 	z-index: 1080;
 	background: rgba(7, 17, 31, .96);
@@ -602,9 +526,9 @@ a.brand {
 		padding: 7.5rem 0 5rem
 	}
 
-	/* .section-pad {
+	.section-pad {
 		padding: 4.5rem 0
-	} */
+	}
 
 	.trust-item+.trust-item {
 		border-left: 0;

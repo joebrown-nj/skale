@@ -21,10 +21,7 @@
                     <div class="col-sm-6">&check; Built to Scale</div>
                 </div>
 
-                {* <button class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
-                Get My Free Automation Review
-                </button> *}
-                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Automation Review" describedBy="automation landing page" metaEvent="Automation" metaLabel="Hero CTA Button"}
+                {include file="inc/landing-pages/inc/modal-button.tpl" class="text-light btn btn-lg btn-info rounded-pill px-4 fw-semibold" text="Get My Free Automation Review" describedBy="automation landing page" metaEvent="Automation" metaLabel="Hero CTA Button"}
             </div>
 
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -52,7 +49,7 @@
                 <div class="row g-4">
                     <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">1</div>
+                            <div class="icon-pill automation-icon-pill mb-3">1</div>
                             <h4 class="fw-bold">Save Time</h4>
                             <p class="text-secondary mb-0">Reduce repetitive admin work, manual updates, and unnecessary back-and-forth.</p>
                         </div>
@@ -60,7 +57,7 @@
 
                     <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">2</div>
+                            <div class="icon-pill automation-icon-pill mb-3">2</div>
                             <h4 class="fw-bold">Reduce Errors</h4>
                             <p class="text-secondary mb-0">Create cleaner processes with fewer missed leads, duplicate entries, and manual mistakes.</p>
                         </div>
@@ -68,7 +65,7 @@
 
                     <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">3</div>
+                            <div class="icon-pill automation-icon-pill mb-3">3</div>
                             <h4 class="fw-bold">Improve Visibility</h4>
                             <p class="text-secondary mb-0">Connect reporting, analytics, and CRM data so you can make better decisions faster.</p>
                         </div>
@@ -76,7 +73,7 @@
 
                     <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="feature-card h-100 p-4">
-                            <div class="icon-pill mb-3">4</div>
+                            <div class="icon-pill automation-icon-pill mb-3">4</div>
                             <h4 class="fw-bold">Scale Smarter</h4>
                             <p class="text-secondary mb-0">Build systems that support more leads, more customers, and more complexity without more chaos.</p>
                         </div>
@@ -254,10 +251,7 @@
             </div>
 
             <div class="col-lg-5 text-lg-end" data-aos="fade-up">
-                {* <button class="btn btn-info btn-lg px-4 stretched-link rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-meta-custom-event="LandingLeadCtaClick" data-meta-label="website development mid page cta">
-                Get Your Free Automation Plan
-                </button> *}
-                {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-info btn-lg px-4 stretched-link rounded-pill" text="Get Your Free Automation Plan" describedBy="automation landing page" metaEvent="Automation LandingLeadCtaClick" metaLabel="Automation Hero CTA Button"}
+                {include file="inc/landing-pages/inc/modal-button.tpl" class="text-light btn btn-info btn-lg px-4 stretched-link rounded-pill" text="Get Your Free Automation Plan" describedBy="automation landing page" metaEvent="Automation LandingLeadCtaClick" metaLabel="Automation Hero CTA Button"}
             </div>
         </div>
     </div>
@@ -274,7 +268,7 @@
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="100">
                 <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
-                        <span class="icon-pill mb-3 fs-5">1</span> Discover
+                        <span class="icon-pill automation-icon-pill mb-3 fs-5">1</span> Discover
                     </h4>
                     <p class="text-secondary mb-0">We review your current tools, workflows, bottlenecks, and business goals.</p>
                 </div>
@@ -283,7 +277,7 @@
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="200">
                 <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
-                        <span class="icon-pill mb-3 fs-5">2</span> Build
+                        <span class="icon-pill automation-icon-pill mb-3 fs-5">2</span> Build
                     </h4>
                     <p class="text-secondary mb-0">We create the automations, integrations, dashboards, or internal tools your process needs.</p>
                 </div>
@@ -292,7 +286,7 @@
             <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
                 <div class="card automation-card bg-white h-100 p-4">
                     <h4 class="fw-bold text-secondary">
-                        <span class="icon-pill mb-3 fs-5">3</span> Optimize
+                        <span class="icon-pill automation-icon-pill mb-3 fs-5">3</span> Optimize
                     </h4>
                     <p class="text-secondary mb-0">We monitor performance, improve workflows, and help your systems evolve as you grow.</p>
                 </div>
@@ -300,65 +294,6 @@
         </div>
     </div>
 </section>
-
-{* <section class="py-5 bg-automation-soft">
-<div class="container py-5">
-<div class="row justify-content-center">
-<div class="col-lg-9">
-<div class="text-center mb-5">
-<h2 class="display-6 fw-bold">Frequently Asked Questions</h2>
-</div>
-
-<div class="accordion" id="automationFaq">
-<div class="accordion-item">
-<h3 class="accordion-header">
-<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">What types of automation can you build?</button>
-</h3>
-<div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#automationFaq">
-<div class="accordion-body">We can help with CRM automation, lead routing, reporting workflows, email automation, internal tools, integrations, data cleanup, and custom software workflows.</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h3 class="accordion-header">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">Do I need custom software?</button>
-</h3>
-<div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-<div class="accordion-body">Not always. Sometimes the best solution is connecting the tools you already use. Other times, custom software is the right fit when your process is unique or limited by off-the-shelf platforms.</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h3 class="accordion-header">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">Can you connect my website to my CRM?</button>
-</h3>
-<div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-<div class="accordion-body">Yes. We can connect forms, landing pages, lead sources, email platforms, CRMs, analytics tools, and reporting dashboards.</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h3 class="accordion-header">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">How long does automation work take?</button>
-</h3>
-<div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-<div class="accordion-body">Timelines depend on complexity. Small workflow improvements may be completed quickly, while larger integrations or custom tools require more planning and development.</div>
-</div>
-</div>
-
-<div class="accordion-item">
-<h3 class="accordion-header">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive">Can you improve an existing process?</button>
-</h3>
-<div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#automationFaq">
-<div class="accordion-body">Yes. We can review your current systems, identify bottlenecks, and improve or rebuild workflows to make them more efficient and scalable.</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section> *}
 
 {include file="inc/landing-pages/inc/stats.tpl"}
 {include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
