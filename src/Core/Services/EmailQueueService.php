@@ -10,6 +10,7 @@ use Throwable;
 class EmailQueueService
 {
     private const DEFAULT_MAX_ATTEMPTS = 5;
+    private const DEFAULT_PROCESSING_TIMEOUT = 900;
 
     private EmailServiceInterface $emailService;
     private string $queueRoot;
@@ -65,6 +66,7 @@ class EmailQueueService
     public function processPending(int $limit = 25): array
     {
         $this->ensureDirectoriesExist();
+        $this->recoverStaleProcessingJobs();
 
         $summary = [
             'claimed' => 0,
@@ -128,6 +130,7 @@ class EmailQueueService
         );
 
         if ($sent) {
+            unset($job['last_error']);
             $this->moveToDirectory($processingPath, 'sent');
 
             return 'sent';
@@ -137,6 +140,16 @@ class EmailQueueService
         $job['attempts'] = $attempts;
         $job['available_at'] = time() + $this->retryDelayInSeconds($attempts);
         $job['last_attempt_at'] = gmdate(DATE_ATOM);
+        $job['last_error'] = $this->emailService->getLastSendError()
+            ?? 'Email service returned false without an error message.';
+
+        error_log(sprintf(
+            '[email-queue] Job %s failed on attempt %d/%d: %s',
+            (string) ($job['id'] ?? basename($processingPath, '.json')),
+            $attempts,
+            $this->maxAttempts(),
+            $job['last_error']
+        ));
 
         $this->writeJobFile($processingPath, $job);
 
@@ -162,6 +175,26 @@ class EmailQueueService
 
             if (!@mkdir($path, 0777, true) && !is_dir($path)) {
                 throw new RuntimeException('Unable to create queue directory: '.$path);
+            }
+        }
+    }
+
+    private function recoverStaleProcessingJobs(): void
+    {
+        $cutoff = time() - $this->processingTimeout();
+        $processingFiles = glob($this->directoryFor('processing').'/*.json') ?: [];
+
+        foreach ($processingFiles as $processingPath) {
+            $modifiedAt = @filemtime($processingPath);
+            if ($modifiedAt === false || $modifiedAt > $cutoff) {
+                continue;
+            }
+
+            try {
+                $this->moveToDirectory($processingPath, 'pending');
+                error_log('[email-queue] Recovered stale processing job '.basename($processingPath));
+            } catch (Throwable $exception) {
+                error_log('[email-queue] Unable to recover stale job: '.$exception->getMessage());
             }
         }
     }
@@ -236,5 +269,10 @@ class EmailQueueService
     private function maxAttempts(): int
     {
         return max(1, (int) ($_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? self::DEFAULT_MAX_ATTEMPTS));
+    }
+
+    private function processingTimeout(): int
+    {
+        return max(60, (int) ($_ENV['EMAIL_QUEUE_PROCESSING_TIMEOUT'] ?? self::DEFAULT_PROCESSING_TIMEOUT));
     }
 }

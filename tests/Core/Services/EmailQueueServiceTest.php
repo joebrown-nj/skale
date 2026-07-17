@@ -64,6 +64,8 @@ final class EmailQueueServiceTest extends TestCase
             ->method('sendEmail')
             ->with('lead@example.com', 'New lead', '<p>Hello</p>', null)
             ->willReturn(false);
+        $emailService->method('getLastSendError')
+            ->willReturn('SMTP authentication failed.');
 
         $queue = new EmailQueueService($emailService);
 
@@ -83,6 +85,7 @@ final class EmailQueueServiceTest extends TestCase
 
         $this->assertSame(1, $payload['attempts']);
         $this->assertGreaterThan(time(), $payload['available_at']);
+        $this->assertSame('SMTP authentication failed.', $payload['last_error']);
     }
 
     private function restoreEnv(string $key, ?string $value): void

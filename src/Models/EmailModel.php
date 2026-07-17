@@ -12,6 +12,7 @@ class EmailModel implements EmailServiceInterface
 {
     protected PHPMailer $mailer;
     private EntityManager $entityManager;
+    private ?string $lastSendError = null;
 
     public function __construct(EntityManager $entityManager, PHPMailer $mailer)
     {
@@ -40,6 +41,8 @@ class EmailModel implements EmailServiceInterface
      */
     public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool
     {
+        $this->lastSendError = null;
+
         try {
             $this->mailer->clearAllRecipients();
             $this->mailer->clearAttachments();
@@ -48,12 +51,40 @@ class EmailModel implements EmailServiceInterface
             $this->mailer->Subject = $subject;
             $this->mailer->Body = $body;
 
-            return $this->mailer->send();
+            if ($this->mailer->send()) {
+                return true;
+            }
+
+            $this->lastSendError = $this->mailer->ErrorInfo !== ''
+                ? $this->mailer->ErrorInfo
+                : 'PHPMailer returned false without an error message.';
+            error_log('[email] Send failed for '.$this->redactEmail($to).': '.$this->lastSendError);
+
+            return false;
         } catch (Throwable $e) {
-            // Log error or handle as needed
-            error_log($e->getMessage());
+            $mailerError = trim($this->mailer->ErrorInfo);
+            $this->lastSendError = $e->getMessage();
+            if ($mailerError !== '' && !str_contains($this->lastSendError, $mailerError)) {
+                $this->lastSendError .= ' (PHPMailer: '.$mailerError.')';
+            }
+            error_log('[email] Send failed for '.$this->redactEmail($to).': '.$this->lastSendError);
             return false;
         }
+    }
+
+    public function getLastSendError(): ?string
+    {
+        return $this->lastSendError;
+    }
+
+    private function redactEmail(string $email): string
+    {
+        $at = strrpos($email, '@');
+        if ($at === false) {
+            return '[invalid address]';
+        }
+
+        return substr($email, 0, 1).'***'.substr($email, $at);
     }
 
     public function emailListUnsubscribe(string $email): bool
