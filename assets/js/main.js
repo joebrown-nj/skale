@@ -1069,23 +1069,23 @@ function updateArticleProgress() {
         return;
     }
 
-    const articleSectionRect = articleSection.getBoundingClientRect();
-    const isArticleInView = articleSectionRect.top < window.innerHeight && articleSectionRect.bottom >= 0;
-    progressWrapper.classList.toggle('is-visible', isArticleInView);
-
     const articleTop = article.getBoundingClientRect().top + window.scrollY;
-    const articleHeight = article.offsetHeight;
+    const articleSectionBottom = articleSection.getBoundingClientRect().bottom + window.scrollY;
     const viewportHeight = window.innerHeight;
     const progressStart = articleTop - viewportHeight;
-    const progressEnd = articleTop + articleHeight - viewportHeight;
+    const progressEnd = articleSectionBottom - viewportHeight;
     const scrollableDistance = Math.max(progressEnd - progressStart, 1);
     const scrollPosition = window.scrollY - progressStart;
     const progressValue = Math.max(0, Math.min((scrollPosition / scrollableDistance) * 100, 100));
     const roundedProgress = Math.round(progressValue);
+    const hasStarted = progressValue > 0;
+    const isComplete = progressValue >= 100;
     const progressLabel = window.innerWidth < 768
         ? `${roundedProgress}%`
         : `${roundedProgress}% completed`;
 
+    progressWrapper.classList.toggle('is-visible', hasStarted);
+    progressWrapper.classList.toggle('is-complete', isComplete);
     progressBar.style.width = `${progressValue}%`;
     progressBar.setAttribute('aria-valuenow', roundedProgress);
     progress.setAttribute('aria-valuenow', roundedProgress);

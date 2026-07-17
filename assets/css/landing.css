@@ -457,10 +457,6 @@ a.brand {
 .number {
 	width: 46px;
 	height: 46px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
 	background: var(--green);
 	color: #052116;
 	font-weight: 900;

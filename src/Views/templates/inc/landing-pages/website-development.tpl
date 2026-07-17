@@ -271,11 +271,11 @@
     </section>
 
     {include
-        file="inc/landing-pages/inc/founder-panel.tpl"
-        eyebrow="Experienced, hands-on development"
-        h2="Work Directly With Someone Who Understands Design, Development, and Business Systems"
-        p1="I'm Joe Brown, founder of Skale. For more than 20 years, I've designed and developed websites, software, data platforms, integrations, and digital tools for businesses at different stages of growth."
-        p2="I stay involved from the first conversation through launch. You are not handed from salesperson to project manager to an unknown development team."
+    file="inc/landing-pages/inc/founder-panel.tpl"
+    eyebrow="Experienced, hands-on development"
+    h2="Work Directly With Someone Who Understands Design, Development, and Business Systems"
+    p1="I'm Joe Brown, founder of Skale. For more than 20 years, I've designed and developed websites, software, data platforms, integrations, and digital tools for businesses at different stages of growth."
+    p2="I stay involved from the first conversation through launch. You are not handed from salesperson to project manager to an unknown development team."
     }
 
     {include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
@@ -310,7 +310,7 @@
             <div class="col-5">
                 {include file="inc/landing-pages/inc/call-button.tpl" class="btn btn-outline-light w-100" iconClass="fa-solid fa-phone me-1" text="Call"}
             </div>
-            
+
             <div class="col-7">
                 {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary w-100" text="Discuss My Project" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Mid Page CTA Button"}
             </div>

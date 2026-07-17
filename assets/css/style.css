@@ -617,3 +617,10 @@ a:hover {
 		padding: 30px 24px;
 	}
 }
+
+.round-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
