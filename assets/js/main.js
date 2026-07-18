@@ -227,7 +227,6 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     setActiveNavItem(slug);
     $('.page-content').html(pageMarkup.html);
-    logLandingPage(slug);
     syncManagedStylesheets(pageMarkup.stylesheets);
     initializeHomePageForm();
     initializeStatsCounter();
