@@ -1,10 +1,8 @@
 {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
     {if $type == 'link'}
-        <p>
-            <i class="fa-solid fa-phone"></i>
-            <a class="d-none d-lg-inline {$class}" href="tel:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}" data-meta-event="Contact" data-meta-label="phone link">{$smarty.ENV.SITE_PHONE}</a>
-            <a class="d-lg-none {$class}" href="sms:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}" data-meta-event="Contact" data-meta-label="sms link">{$smarty.ENV.SITE_PHONE}</a>
-        </p>
+        {* <i class="fa-solid fa-phone"></i> *}
+        <a class="d-none d-lg-inline {$class}" href="tel:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}" data-meta-event="Contact" data-meta-label="phone link">{$smarty.ENV.SITE_PHONE}</a>
+        <a class="d-lg-none {$class}" href="sms:{$smarty.ENV.SITE_PHONE}" title="Call {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_PHONE}" data-meta-event="Contact" data-meta-label="sms link">{$smarty.ENV.SITE_PHONE}</a>
     {/if}
 
     {if $type == 'button'}

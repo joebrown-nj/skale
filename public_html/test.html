@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Growth Infrastructure Services | Skale</title>
+    <meta name="description" content="Connect your website, CRM, automation, marketing, and reporting into one growth system built to generate leads and support your business.">
+    <link rel="canonical" href="https://skaleup.it.com/solutions/growth-infrastructure">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --skale-navy: #07111f;
+            --skale-navy-soft: #102033;
+            --skale-blue: #2563eb;
+            --skale-cyan: #16c7d9;
+            --skale-green: #2ee6a6;
+            --skale-ink: #142033;
+            --skale-muted: #607086;
+            --skale-bg: #f6f8fb;
+            --skale-border: #dfe6ee;
+            --skale-white: #ffffff;
+            --skale-radius: 1.25rem;
+            --skale-shadow: 0 1rem 3rem rgba(7, 17, 31, .10);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--skale-ink);
+            background: var(--skale-white);
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        .navbar-brand {
+            color: var(--skale-navy);
+            font-weight: 750;
+            letter-spacing: -.025em;
+        }
+
+        h1 {
+            font-size: clamp(2.65rem, 6vw, 5.25rem);
+            line-height: .98;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.08;
+        }
+
+        h3 {
+            line-height: 1.2;
+        }
+
+        p {
+            color: var(--skale-muted);
+        }
+
+        a {
+            text-underline-offset: .2rem;
+        }
+
+        .section-space {
+            padding: 6rem 0;
+        }
+
+        .section-space-sm {
+            padding: 4rem 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            margin-bottom: 1rem;
+            color: #0e7490;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 1.8rem;
+            height: 2px;
+            background: var(--skale-green);
+            content: "";
+        }
+
+        .section-intro {
+            max-width: 46rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-intro p {
+            margin-bottom: 0;
+            font-size: 1.125rem;
+        }
+
+        .text-highlight {
+            color: var(--skale-blue);
+        }
+
+        .bg-soft {
+            background: var(--skale-bg);
+        }
+
+        .navbar {
+            --bs-navbar-padding-y: 1rem;
+            background: rgba(255, 255, 255, .93);
+            border-bottom: 1px solid rgba(223, 230, 238, .85);
+            backdrop-filter: blur(14px);
+        }
+
+        .navbar-brand {
+            font-size: 1.65rem;
+        }
+
+        .navbar-brand span {
+            color: var(--skale-green);
+        }
+
+        .nav-link {
+            color: var(--skale-ink);
+            font-weight: 650;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            color: var(--skale-blue);
+        }
+
+        .btn {
+            border-radius: .75rem;
+            font-weight: 750;
+            padding: .85rem 1.25rem;
+        }
+
+        .btn-lg {
+            padding: 1rem 1.4rem;
+        }
+
+        .btn-primary {
+            --bs-btn-bg: var(--skale-blue);
+            --bs-btn-border-color: var(--skale-blue);
+            --bs-btn-hover-bg: #1d4ed8;
+            --bs-btn-hover-border-color: #1d4ed8;
+            box-shadow: 0 .65rem 1.5rem rgba(37, 99, 235, .22);
+        }
+
+        .btn-outline-dark {
+            --bs-btn-border-color: #aeb9c7;
+            --bs-btn-hover-bg: var(--skale-navy);
+            --bs-btn-hover-border-color: var(--skale-navy);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5.5rem 0 4.5rem;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(46, 230, 166, .20), transparent 27%),
+                radial-gradient(circle at 90% 18%, rgba(22, 199, 217, .17), transparent 30%),
+                linear-gradient(145deg, #f9fcff 0%, #eff6ff 55%, #f6fffb 100%);
+        }
+
+        .hero::after {
+            position: absolute;
+            right: -10rem;
+            bottom: -12rem;
+            width: 32rem;
+            height: 32rem;
+            border: 1px solid rgba(37, 99, 235, .11);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 4rem rgba(37, 99, 235, .03),
+                0 0 0 8rem rgba(37, 99, 235, .025);
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero-copy,
+        .hero-form-wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-lead {
+            max-width: 43rem;
+            font-size: clamp(1.12rem, 2vw, 1.35rem);
+        }
+
+        .hero-checks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem 1.25rem;
+            margin: 1.75rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .hero-checks li {
+            display: flex;
+            align-items: center;
+            gap: .45rem;
+            color: #334155;
+            font-size: .95rem;
+            font-weight: 650;
+        }
+
+        .hero-checks i {
+            color: #059669;
+        }
+
+        .hero-note {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            margin-top: 1.2rem;
+            color: #64748b;
+            font-size: .88rem;
+        }
+
+        .lead-form-card {
+            padding: clamp(1.35rem, 4vw, 2.2rem);
+            background: rgba(255, 255, 255, .96);
+            border: 1px solid rgba(255, 255, 255, .9);
+            border-radius: var(--skale-radius);
+            box-shadow: var(--skale-shadow);
+        }
+
+        .lead-form-card .form-label {
+            color: #334155;
+            font-size: .9rem;
+            font-weight: 700;
+        }
+
+        .lead-form-card .form-control,
+        .lead-form-card .form-select {
+            min-height: 3.15rem;
+            border-color: #d5dde7;
+            border-radius: .75rem;
+        }
+
+        .lead-form-card .form-control:focus,
+        .lead-form-card .form-select:focus {
+            border-color: rgba(37, 99, 235, .7);
+            box-shadow: 0 0 0 .25rem rgba(37, 99, 235, .10);
+        }
+
+        .privacy-copy {
+            margin: .8rem 0 0;
+            color: #7b8797;
+            font-size: .78rem;
+            line-height: 1.45;
+        }
+
+        .trust-strip {
+            border-top: 1px solid var(--skale-border);
+            border-bottom: 1px solid var(--skale-border);
+            background: var(--skale-white);
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            height: 100%;
+            padding: 1.5rem 0;
+        }
+
+        .trust-item i {
+            color: var(--skale-blue);
+            font-size: 1.35rem;
+        }
+
+        .trust-item strong {
+            display: block;
+            color: var(--skale-navy);
+            font-size: .96rem;
+        }
+
+        .trust-item span {
+            color: var(--skale-muted);
+            font-size: .84rem;
+        }
+
+        .problem-card,
+        .service-card,
+        .proof-card,
+        .process-card,
+        .faq-card {
+            height: 100%;
+            background: var(--skale-white);
+            border: 1px solid var(--skale-border);
+            border-radius: var(--skale-radius);
+        }
+
+        .problem-card {
+            padding: 1.75rem;
+        }
+
+        .icon-box {
+            display: inline-grid;
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1.25rem;
+            place-items: center;
+            color: var(--skale-blue);
+            background: #edf4ff;
+            border-radius: .85rem;
+            font-size: 1.25rem;
+        }
+
+        .outcome-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2rem, 5vw, 4rem);
+            color: var(--skale-white);
+            background:
+                radial-gradient(circle at top right, rgba(46, 230, 166, .20), transparent 32%),
+                linear-gradient(135deg, var(--skale-navy), var(--skale-navy-soft));
+            border-radius: calc(var(--skale-radius) + .25rem);
+        }
+
+        .outcome-panel h2,
+        .outcome-panel h3,
+        .outcome-panel p {
+            color: var(--skale-white);
+        }
+
+        .outcome-list {
+            display: grid;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .outcome-list li {
+            display: flex;
+            gap: .85rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: .9rem;
+        }
+
+        .outcome-list i {
+            flex: 0 0 auto;
+            color: var(--skale-green);
+            font-size: 1.1rem;
+        }
+
+        .outcome-list strong {
+            display: block;
+            margin-bottom: .1rem;
+        }
+
+        .outcome-list span {
+            color: rgba(255, 255, 255, .72);
+            font-size: .9rem;
+        }
+
+        .service-card {
+            position: relative;
+            padding: 1.75rem;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+
+        .service-card:hover {
+            border-color: #bfd0e5;
+            box-shadow: 0 1.25rem 2.5rem rgba(7, 17, 31, .08);
+            transform: translateY(-4px);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            color: #d8e1eb;
+            font-size: 2.5rem;
+            font-weight: 850;
+            line-height: 1;
+        }
+
+        .service-card ul {
+            margin: 1rem 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .service-card li {
+            display: flex;
+            gap: .55rem;
+            margin-top: .6rem;
+            color: var(--skale-muted);
+            font-size: .9rem;
+        }
+
+        .service-card li i {
+            color: #059669;
+        }
+
+        .case-study {
+            padding: clamp(2rem, 5vw, 4rem);
+            background: var(--skale-white);
+            border: 1px solid var(--skale-border);
+            border-radius: calc(var(--skale-radius) + .25rem);
+            box-shadow: 0 1rem 2.5rem rgba(7, 17, 31, .06);
+        }
+
+        .metric {
+            padding: 1.25rem;
+            background: var(--skale-bg);
+            border-radius: 1rem;
+        }
+
+        .metric strong {
+            display: block;
+            color: var(--skale-blue);
+            font-size: clamp(1.55rem, 4vw, 2.25rem);
+            line-height: 1.05;
+        }
+
+        .metric span {
+            color: var(--skale-muted);
+            font-size: .86rem;
+        }
+
+        .case-label {
+            color: #0f766e;
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .process-card {
+            padding: 1.75rem;
+        }
+
+        .process-step {
+            display: inline-grid;
+            width: 2.8rem;
+            height: 2.8rem;
+            margin-bottom: 1.25rem;
+            place-items: center;
+            color: var(--skale-white);
+            background: var(--skale-navy);
+            border-radius: 50%;
+            font-weight: 800;
+        }
+
+        .founder-panel {
+            padding: clamp(2rem, 5vw, 3.5rem);
+            background:
+                linear-gradient(135deg, rgba(37, 99, 235, .04), rgba(46, 230, 166, .08));
+            border: 1px solid var(--skale-border);
+            border-radius: var(--skale-radius);
+        }
+
+        .founder-avatar {
+            display: grid;
+            width: 5.5rem;
+            height: 5.5rem;
+            place-items: center;
+            color: var(--skale-white);
+            background: var(--skale-navy);
+            border-radius: 1.25rem;
+            font-size: 1.6rem;
+            font-weight: 850;
+        }
+
+        .quote-mark {
+            color: var(--skale-green);
+            font-size: 3rem;
+            line-height: .75;
+        }
+
+        .accordion-item {
+            margin-bottom: .75rem;
+            overflow: hidden;
+            border: 1px solid var(--skale-border) !important;
+            border-radius: .9rem !important;
+        }
+
+        .accordion-button {
+            color: var(--skale-navy);
+            font-weight: 750;
+            padding: 1.25rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--skale-navy);
+            background: #f2f7ff;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .final-cta {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(2.5rem, 6vw, 5rem);
+            background:
+                radial-gradient(circle at 15% 20%, rgba(46, 230, 166, .22), transparent 25%),
+                linear-gradient(135deg, #07111f, #102849);
+            border-radius: calc(var(--skale-radius) + .3rem);
+        }
+
+        .final-cta h2,
+        .final-cta p {
+            color: var(--skale-white);
+        }
+
+        .final-cta p {
+            color: rgba(255, 255, 255, .75);
+        }
+
+        footer {
+            color: #a8b4c4;
+            background: var(--skale-navy);
+        }
+
+        footer a {
+            color: #d8e2ed;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--skale-green);
+        }
+
+        .sticky-mobile-cta {
+            display: none;
+        }
+
+        @media (max-width: 991.98px) {
+            .section-space {
+                padding: 4.5rem 0;
+            }
+
+            .hero {
+                padding-top: 4rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            body {
+                padding-bottom: 4.5rem;
+            }
+
+            .section-space {
+                padding: 3.75rem 0;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero-checks {
+                display: grid;
+            }
+
+            .sticky-mobile-cta {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1040;
+                display: block;
+                padding: .7rem;
+                background: rgba(255, 255, 255, .96);
+                border-top: 1px solid var(--skale-border);
+                backdrop-filter: blur(12px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Replace this navigation with your existing site header if needed. -->
+    <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand" href="/">skale<span>.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="/solutions">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog">Insights</a></li>
+                    <li class="nav-item ms-lg-2"><a class="btn btn-primary" href="#consultation">Book a Free Consultation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO: Outcome-focused message plus an above-the-fold conversion form. -->
+        <section class="hero">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7">
+                        <div class="hero-copy">
+                            <span class="eyebrow">Growth Infrastructure</span>
+                            <h1>Turn disconnected tools into a system that <span class="text-highlight">drives growth.</span></h1>
+                            <p class="hero-lead mt-4 mb-0">Skale connects your website, lead funnels, CRM, automation, and reporting so your business can attract better prospects, follow up faster, and convert more opportunities.</p>
+
+                            <ul class="hero-checks" aria-label="Key benefits">
+                                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Built around your business</li>
+                                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Clear strategy before execution</li>
+                                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>One accountable growth partner</li>
+                            </ul>
+
+                            <div class="d-flex flex-column flex-sm-row gap-3">
+                                <a class="btn btn-primary btn-lg" href="#consultation">Get Your Free Growth Review</a>
+                                <a class="btn btn-outline-dark btn-lg" href="#how-it-works">See How It Works</a>
+                            </div>
+
+                            <div class="hero-note">
+                                <i class="bi bi-shield-check" aria-hidden="true"></i>
+                                <span>No pressure. No generic sales pitch. Just a practical conversation about what is holding your business back.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5" id="consultation">
+                        <div class="hero-form-wrap">
+                            <form class="lead-form-card" action="/contact" method="post">
+                                <div class="mb-4">
+                                    <span class="badge text-bg-light border mb-3">Free 30-minute consultation</span>
+                                    <h2 class="h3 mb-2">Find your biggest growth gap</h2>
+                                    <p class="mb-0">Tell us a little about your business. We will help you identify where leads, time, or revenue may be slipping through the cracks.</p>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label class="form-label" for="name">Your name</label>
+                                        <input class="form-control" id="name" name="name" type="text" autocomplete="name" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="email">Work email</label>
+                                        <input class="form-control" id="email" name="email" type="email" autocomplete="email" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="company">Company</label>
+                                        <input class="form-control" id="company" name="company" type="text" autocomplete="organization">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="challenge">What is your biggest challenge?</label>
+                                        <select class="form-select" id="challenge" name="challenge" required>
+                                            <option value="" selected disabled>Select one</option>
+                                            <option>We need more qualified leads</option>
+                                            <option>Our website is not converting</option>
+                                            <option>Our tools and data are disconnected</option>
+                                            <option>Too much work is manual</option>
+                                            <option>We cannot clearly measure results</option>
+                                            <option>We are not sure where to start</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 d-grid">
+                                        <button class="btn btn-primary btn-lg" type="submit">Request My Free Review</button>
+                                    </div>
+                                </div>
+                                <p class="privacy-copy"><i class="bi bi-lock me-1" aria-hidden="true"></i>Your information stays private. Skale will only use it to respond to your request.</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST STRIP: Replace or expand with verified certifications, client logos, review ratings, and real proof. -->
+        <section class="trust-strip" aria-label="Why businesses trust Skale">
+            <div class="container">
+                <div class="row row-cols-2 row-cols-lg-4 g-3">
+                    <div class="col">
+                        <div class="trust-item">
+                            <i class="bi bi-person-check" aria-hidden="true"></i>
+                            <div><strong>Senior Expertise</strong><span>Direct access to an experienced partner</span></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="trust-item">
+                            <i class="bi bi-diagram-3" aria-hidden="true"></i>
+                            <div><strong>Systems Thinking</strong><span>Every tool supports a larger strategy</span></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="trust-item">
+                            <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
+                            <div><strong>Outcome Focused</strong><span>Decisions tied to measurable progress</span></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="trust-item">
+                            <i class="bi bi-headset" aria-hidden="true"></i>
+                            <div><strong>Ongoing Support</strong><span>A long-term partner after launch</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM RECOGNITION -->
+        <section class="section-space">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="eyebrow">The Real Problem</span>
+                    <h2>Your business may not need another tool. It may need its tools to work together.</h2>
+                    <p class="mt-3">Growth becomes harder when your website, marketing, sales process, customer data, and reporting operate separately. Small gaps create missed follow-ups, unclear performance, duplicated work, and lost opportunities.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-xl-3">
+                        <article class="problem-card">
+                            <span class="icon-box"><i class="bi bi-funnel" aria-hidden="true"></i></span>
+                            <h3 class="h5">Leads go nowhere</h3>
+                            <p class="mb-0">Visitors arrive, but weak calls to action and disconnected follow-up leave good prospects behind.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="problem-card">
+                            <span class="icon-box"><i class="bi bi-arrows-angle-contract" aria-hidden="true"></i></span>
+                            <h3 class="h5">Teams work manually</h3>
+                            <p class="mb-0">Employees copy data, chase updates, and repeat tasks that should happen automatically.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="problem-card">
+                            <span class="icon-box"><i class="bi bi-plug" aria-hidden="true"></i></span>
+                            <h3 class="h5">Systems are disconnected</h3>
+                            <p class="mb-0">Customer information is spread across spreadsheets, inboxes, apps, and isolated platforms.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="problem-card">
+                            <span class="icon-box"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
+                            <h3 class="h5">Results are unclear</h3>
+                            <p class="mb-0">Reporting shows activity, but not which efforts are creating revenue or where improvement is needed.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUTCOMES -->
+        <section class="section-space pt-0">
+            <div class="container">
+                <div class="outcome-panel">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-5">
+                            <span class="eyebrow text-white">The Outcome</span>
+                            <h2>A connected growth system built around how your business actually works.</h2>
+                            <p class="mt-3 mb-0">Skale looks beyond isolated projects. We align strategy, technology, marketing, data, and operations so each part of your business supports the next.</p>
+                        </div>
+                        <div class="col-lg-7">
+                            <ul class="outcome-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                                    <div><strong>Generate and capture better opportunities</strong><span>Clear messaging, stronger conversion paths, and lead-focused experiences.</span></div>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                                    <div><strong>Respond faster and nurture consistently</strong><span>CRM workflows and automation keep prospects moving without constant manual effort.</span></div>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                                    <div><strong>Make decisions with reliable data</strong><span>Reporting connects marketing activity and operational performance to business outcomes.</span></div>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                                    <div><strong>Build a foundation that can scale</strong><span>Flexible systems support growth without creating unnecessary complexity or rework.</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICE COMPONENTS -->
+        <section class="section-space bg-soft">
+            <div class="container">
+                <div class="row align-items-end mb-5 g-3">
+                    <div class="col-lg-8">
+                        <span class="eyebrow">What We Connect</span>
+                        <h2 class="mb-0">The essential parts of your growth engine.</h2>
+                    </div>
+                    <div class="col-lg-4">
+                        <p class="mb-0">Your engagement can include one area or a complete connected system, depending on your goals and current infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">01</span>
+                            <span class="icon-box"><i class="bi bi-window" aria-hidden="true"></i></span>
+                            <h3 class="h4">Website & Conversion</h3>
+                            <p>Your website should clearly explain your value, establish credibility, and guide visitors toward action.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>Website strategy and development</li>
+                                <li><i class="bi bi-check2"></i>Landing pages and conversion paths</li>
+                                <li><i class="bi bi-check2"></i>Messaging and calls to action</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">02</span>
+                            <span class="icon-box"><i class="bi bi-megaphone" aria-hidden="true"></i></span>
+                            <h3 class="h4">Demand Generation</h3>
+                            <p>Reach the right audience with focused campaigns designed around qualified traffic and measurable action.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>SEO and content strategy</li>
+                                <li><i class="bi bi-check2"></i>PPC and paid social campaigns</li>
+                                <li><i class="bi bi-check2"></i>Email marketing and nurturing</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">03</span>
+                            <span class="icon-box"><i class="bi bi-people" aria-hidden="true"></i></span>
+                            <h3 class="h4">CRM & Lead Management</h3>
+                            <p>Create a dependable process for capturing, organizing, assigning, and following up with every opportunity.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>CRM setup and optimization</li>
+                                <li><i class="bi bi-check2"></i>Lead routing and pipeline design</li>
+                                <li><i class="bi bi-check2"></i>Sales and marketing alignment</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">04</span>
+                            <span class="icon-box"><i class="bi bi-lightning-charge" aria-hidden="true"></i></span>
+                            <h3 class="h4">Automation</h3>
+                            <p>Remove repetitive work and make important actions happen reliably at the right time.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>Marketing and sales automation</li>
+                                <li><i class="bi bi-check2"></i>Internal workflow automation</li>
+                                <li><i class="bi bi-check2"></i>Notifications and follow-up sequences</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">05</span>
+                            <span class="icon-box"><i class="bi bi-link-45deg" aria-hidden="true"></i></span>
+                            <h3 class="h4">System Integrations</h3>
+                            <p>Connect the platforms your business already depends on so information moves without unnecessary handoffs.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>API and platform integrations</li>
+                                <li><i class="bi bi-check2"></i>Data synchronization</li>
+                                <li><i class="bi bi-check2"></i>Custom integration workflows</li>
+                            </ul>
+                        </article>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4">
+                        <article class="service-card">
+                            <span class="service-number">06</span>
+                            <span class="icon-box"><i class="bi bi-clipboard-data" aria-hidden="true"></i></span>
+                            <h3 class="h4">Analytics & Optimization</h3>
+                            <p>Understand what is working, what is not, and where your next best opportunity may be.</p>
+                            <ul>
+                                <li><i class="bi bi-check2"></i>Analytics implementation</li>
+                                <li><i class="bi bi-check2"></i>Dashboards and reporting</li>
+                                <li><i class="bi bi-check2"></i>Continuous conversion optimization</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a class="btn btn-primary btn-lg" href="#consultation">Talk Through Your Growth Gaps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROOF / CASE STUDY: Replace placeholders with a verified, relevant client story before publishing. -->
+        <section class="section-space">
+            <div class="container">
+                <div class="case-study">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <span class="case-label">Client Transformation</span>
+                            <h2 class="mt-2">From fragmented processes to a scalable business platform.</h2>
+                            <p class="mt-3">A growing organization relied on disconnected tools, manual data handling, and a platform that could not support its expanding operation. Skale modernized the underlying systems, simplified workflows, and created a more dependable foundation for growth.</p>
+                            <p class="mb-0"><strong class="text-dark">The lesson:</strong> sustainable growth rarely comes from one isolated improvement. It comes from solving the system behind the problem.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="metric"><strong>50%+</strong><span>Reduction in operating costs</span></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric"><strong>1M+</strong><span>Records supported at scale</span></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric"><strong>Faster</strong><span>Publishing and delivery workflows</span></div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="metric"><strong>Unified</strong><span>Data, systems, and processes</span></div>
+                                </div>
+                            </div>
+                            <p class="small mt-3 mb-0">Use only metrics and claims you can verify. Add the client name, testimonial, or logo when permission is available.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="section-space bg-soft" id="how-it-works">
+            <div class="container">
+                <div class="section-intro">
+                    <span class="eyebrow">How It Works</span>
+                    <h2>A practical process with clarity at every step.</h2>
+                    <p class="mt-3">You will know what we are solving, why it matters, what happens next, and how success will be measured.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6 col-xl-3">
+                        <article class="process-card">
+                            <span class="process-step">1</span>
+                            <h3 class="h5">Discover</h3>
+                            <p class="mb-0">We learn how your business generates revenue, where work slows down, and what growth means to you.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="process-card">
+                            <span class="process-step">2</span>
+                            <h3 class="h5">Prioritize</h3>
+                            <p class="mb-0">We identify the highest-impact gaps and create a focused roadmap instead of trying to change everything at once.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="process-card">
+                            <span class="process-step">3</span>
+                            <h3 class="h5">Build & Connect</h3>
+                            <p class="mb-0">We improve the right experiences, workflows, integrations, campaigns, and reporting systems.</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <article class="process-card">
+                            <span class="process-step">4</span>
+                            <h3 class="h5">Measure & Improve</h3>
+                            <p class="mb-0">We monitor performance, learn from real behavior, and continuously improve what drives results.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUNDER / TRUST -->
+        <section class="section-space">
+            <div class="container">
+                <div class="founder-panel">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-auto">
+                            <!-- Replace initials with a professional founder photo for stronger trust. -->
+                            <div class="founder-avatar" aria-label="Joe Brown">JB</div>
+                        </div>
+                        <div class="col-lg">
+                            <span class="quote-mark" aria-hidden="true">“</span>
+                            <h2 class="h3">You are not handed off to a junior team after the sale.</h2>
+                            <p class="mb-2">Skale is led by Joe Brown, a technology and growth partner with more than 20 years of experience helping businesses modernize systems, improve operations, and turn complex challenges into practical solutions.</p>
+                            <p class="mb-0"><strong class="text-dark">You receive senior-level thinking, direct communication, and recommendations based on what your business actually needs.</strong></p>
+                        </div>
+                        <div class="col-lg-auto">
+                            <a class="btn btn-outline-dark" href="/about">Learn About Skale</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUALIFICATION -->
+        <section class="section-space pt-0">
+            <div class="container">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6">
+                        <span class="eyebrow">Who This Is For</span>
+                        <h2>A strong fit for businesses ready to improve the system, not just patch the symptoms.</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="d-flex gap-3 p-3 border rounded-4">
+                                    <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
+                                    <div><strong class="d-block">You are generating activity, but not enough qualified opportunities.</strong><span class="text-secondary">Traffic, campaigns, and referrals are not consistently becoming customers.</span></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex gap-3 p-3 border rounded-4">
+                                    <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
+                                    <div><strong class="d-block">Your team relies on too many manual steps and disconnected tools.</strong><span class="text-secondary">Growth is creating more work instead of greater efficiency.</span></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex gap-3 p-3 border rounded-4">
+                                    <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
+                                    <div><strong class="d-block">You want a long-term partner who can connect strategy and execution.</strong><span class="text-secondary">You need more than a vendor completing isolated tasks.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-space bg-soft">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-5">
+                        <span class="eyebrow">Common Questions</span>
+                        <h2>What businesses usually want to know before getting started.</h2>
+                        <p class="mt-3">The first conversation is designed to determine fit and uncover opportunities. You do not need to have the solution figured out beforehand.</p>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="accordion" id="growthFaq">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">What exactly is growth infrastructure?</button>
+                                </h3>
+                                <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#growthFaq">
+                                    <div class="accordion-body">Growth infrastructure is the connected system behind how your business attracts prospects, captures leads, follows up, delivers information, measures results, and improves performance. It can include your website, CRM, automation, integrations, marketing, analytics, and operational workflows.</div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">Do we need to replace our current tools?</button>
+                                </h3>
+                                <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
+                                    <div class="accordion-body">Not necessarily. Skale first evaluates what is already working. In many cases, the better answer is to improve, connect, or simplify the tools you already use rather than replace everything.</div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">Can we start with one priority?</button>
+                                </h3>
+                                <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
+                                    <div class="accordion-body">Yes. Many engagements begin with the highest-impact issue, such as a website conversion problem, CRM setup, reporting gap, or manual workflow. The work can then expand based on results and business priorities.</div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">How will we know the work is successful?</button>
+                                </h3>
+                                <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
+                                    <div class="accordion-body">Success measures are defined before implementation. Depending on the engagement, they may include stronger conversion rates, faster response time, fewer manual steps, improved data accuracy, better lead quality, lower acquisition costs, or clearer reporting.</div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">What happens during the free consultation?</button>
+                                </h3>
+                                <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
+                                    <div class="accordion-body">We discuss your goals, current systems, biggest obstacles, and where you believe opportunities are being lost. You will leave with a clearer view of the problem and the most practical next step, whether or not we work together.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="section-space">
+            <div class="container">
+                <div class="final-cta text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9">
+                            <span class="badge rounded-pill text-bg-light mb-3">Start with clarity</span>
+                            <h2>Find out where your business is losing leads, time, or momentum.</h2>
+                            <p class="lead mt-3 mb-4">Schedule a free consultation to talk through your current systems, your growth goals, and the most valuable place to begin.</p>
+                            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                                <a class="btn btn-primary btn-lg" href="#consultation">Book My Free Consultation</a>
+                                <a class="btn btn-outline-light btn-lg" href="tel:+17329254044"><i class="bi bi-telephone me-2" aria-hidden="true"></i>732-925-4044</a>
+                            </div>
+                            <p class="small mt-3 mb-0">No obligation. No generic package. A practical conversation focused on your business.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="section-space-sm">
+        <div class="container">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <a class="navbar-brand text-white" href="/">skale<span>.</span></a>
+                    <p class="mt-3 mb-0">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h2 class="h6 text-white">Solutions</h2>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="/solutions/growth-infrastructure">Growth Infrastructure</a></li>
+                        <li class="mb-2"><a href="/solutions/automation-and-software">Automation & Software</a></li>
+                        <li class="mb-2"><a href="/solutions/demand-generation">Demand Generation</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h2 class="h6 text-white">Company</h2>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="/about">About</a></li>
+                        <li class="mb-2"><a href="/blog">Insights</a></li>
+                        <li class="mb-2"><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h2 class="h6 text-white">Contact</h2>
+                    <p class="mb-1"><a href="tel:+17329254044">732-925-4044</a></p>
+                    <p class="mb-0"><a href="mailto:info@skaleup.it.com">info@skaleup.it.com</a></p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small">
+                <span>&copy; 2026 Skale. All rights reserved.</span>
+                <span><a href="/privacy-policy">Privacy Policy</a> &nbsp; <a href="/terms-of-service">Terms of Service</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Persistent CTA only appears on mobile. -->
+    <div class="sticky-mobile-cta">
+        <a class="btn btn-primary w-100" href="#consultation">Get My Free Growth Review</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

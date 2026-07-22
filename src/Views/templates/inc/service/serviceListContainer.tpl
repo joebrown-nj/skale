@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center mb-5">
             <div class="col-md-8 mb-4 mb-lg-0 text-center">
-                <h2 class="display-4 fw-bold text-white mb-4">We Build the Infrastructure Behind Scalable Businesses</h2>
+                <h2 class="display-4 fw-bold text-dark mb-4">We Build the Infrastructure Behind Scalable Businesses</h2>
                 <p class="lead text-white-100 mb-4">Not one-off services. Not disconnected solutions.<br>Everything we do is engineered to support long-term growth.</p>
             </div>
         </div>
@@ -16,7 +16,7 @@
 
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title px-0 mb-2 ubuntu-regular">{$service->title}</h2>
+                            <h3 class="card-title px-0 mb-2 ubuntu-regular">{$service->title}</h3>
                             <p>{$service->shortText}</p>
                             <a aria-describedby="home solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="stretched-link logo-bg-small mbtn btn btn-primary btn">Learn more about {$service->title}</a>
                         </div>

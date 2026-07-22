@@ -1,8 +1,6 @@
 {if $type == 'link'}
-    <p>
-        <i class="fa-solid fa-envelope"></i>
-        <a class="{$class}" href="mailto:{$smarty.ENV.SITE_EMAIL}" title="Email {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_EMAIL}" data-meta-event="Contact" data-meta-label="email link">{$smarty.ENV.SITE_EMAIL}</a>
-    </p>
+    {* <i class="fa-solid fa-envelope"></i> *}
+    <a class="{$class}" href="mailto:{$smarty.ENV.SITE_EMAIL}" title="Email {$smarty.ENV.SITE_NAME} {$smarty.ENV.SITE_EMAIL}" data-meta-event="Contact" data-meta-label="email link">{$smarty.ENV.SITE_EMAIL}</a>
 {/if}
 
 {if $type == 'button'}

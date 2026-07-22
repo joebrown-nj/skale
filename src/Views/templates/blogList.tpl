@@ -25,7 +25,7 @@
 
 {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogContent=$page.content blogFeatured=$data.blogFeatured limit=6 blogCategories=$data.blogCategories activeCategory=$data.activeCategory filterPath=$data.filterPath}
 
-{include file="inc/layout/footerContactForm.tpl"}
+
 {include file="inc/layout/footer.tpl"}
 
 

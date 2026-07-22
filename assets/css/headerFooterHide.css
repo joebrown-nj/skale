@@ -1,5 +1,6 @@
 header.menu-bar, 
-footer.logo-bg, 
-.breadcrumb-container { 
+footer.logo-bg
+/* .breadcrumb-container */
+{ 
     display:none;
 }

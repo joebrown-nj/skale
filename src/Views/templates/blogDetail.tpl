@@ -2,11 +2,11 @@
 
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true">
 
-<div class="share-sidebar">
-    <a href="#"><i class="bi bi-twitter-x"></i></a>
-    <a href="#"><i class="bi bi-linkedin"></i></a>
-    <a href="#"><i class="bi bi-facebook"></i></a>
-</div>
+{* <div class="share-sidebar">
+<a href="#"><i class="bi bi-twitter-x"></i></a>
+<a href="#"><i class="bi bi-linkedin"></i></a>
+<a href="#"><i class="bi bi-facebook"></i></a>
+</div> *}
 
 <section class="bg-dark text-white py-5" style="background: linear-gradient(135deg, #020617 0%, #0f172a 55%, #f97316 100%);">
     <div class="container">
@@ -932,5 +932,5 @@ Digital Marketing
 </div>
 </section>
 
-{include file="inc/layout/footerContactForm.tpl"}
+
 {include file="inc/layout/footer.tpl"}

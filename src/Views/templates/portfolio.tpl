@@ -25,7 +25,7 @@
     </div>
 </div>
 
-{include file="inc/layout/footerContactForm.tpl"}
+
 {include file="inc/layout/footer.tpl"}
 
 

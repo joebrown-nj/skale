@@ -1,6 +1,6 @@
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true">
+{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true"> *}
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/contact.min.css" data-ajax-managed-stylesheet="true">
 
 {* <div class="container-fluid py-4">

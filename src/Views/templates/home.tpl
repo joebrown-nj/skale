@@ -24,7 +24,7 @@
     </div>
 </section>
 
-<div class="home-callout home-callout-bg parallax container-fluid py-5" data-aos="fade-in-up">
+<div class="home-callout home-callout-bg parallax container-fluid py-5" data-aos="fade-in-up" style="position:relative; top:-70px;">
     <div class="row justify-content-center py-5">
         <div class="col-md-8">
             <h2 class="pb-4 BricolageGrotesque-ExtraBold lh-base">
@@ -34,7 +34,7 @@
             <p class="lead"><strong>Disconnected tools. Manual workflows. Inconsistent lead flow.</strong> These aren't isolated issues they're symptoms of a broken system.</p>
             <p class="mb-4"><strong><span class="brand-color">Skale</span> fixes that.</strong> We design and build integrated systems that align your marketing, technology, and operations so everything works together to drive growth.</p>
 
-            <a aria-describedby="home call out contact button" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn btn btn-outline-warning btn-lg logo-bg-small brand-color-bg-button" type="button">
+            <a aria-describedby="home call out contact button" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn btn btn-outline-warning btn-lg brand-color-bg-button" type="button">
                 Schedule A Free Call Today
             </a>
         </div>
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 px-5 py-5">
+        <div class="col-md-6 px-5 py-5 text-bg-dark">
             <div class="row">
                 <div class="col-md-8">
                     <h2 class="fs-1 fw-bold text-white">The Results</h2>

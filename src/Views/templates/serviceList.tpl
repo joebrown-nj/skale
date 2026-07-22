@@ -1,6 +1,6 @@
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true">
+{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true"> *}
 
 {if isset($page.content)}
     <div data-aos="fade-up" class="container-fluid">
@@ -15,7 +15,7 @@
 
 {include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
 
-{include file="inc/layout/footerContactForm.tpl"}
+
 {include file="inc/layout/footer.tpl"}
 
 
