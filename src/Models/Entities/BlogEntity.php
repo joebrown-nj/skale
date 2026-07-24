@@ -27,6 +27,9 @@ class BlogEntity
     #[ORM\Column(type: 'text')]
     public string $shortText;
 
+    #[ORM\Column(type: 'string', length: 250)]
+    public string $heroStyle;
+
     #[ORM\Column(type: 'string', length: 100)]
     public string $image;
 
@@ -97,6 +100,18 @@ class BlogEntity
     public function setShortText(string $shortText): self
     {
         $this->shortText = $shortText;
+
+        return $this;
+    }
+
+    public function getHeroStyle(): string
+    {
+        return $this->heroStyle;
+    }
+
+    public function setHeroStyle(string $heroStyle): self
+    {
+        $this->heroStyle = $heroStyle;
 
         return $this;
     }

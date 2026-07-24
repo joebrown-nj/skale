@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Core\ErrorHandler;
-use App\Core\Db\DatabaseORM;
 use Doctrine\ORM\EntityManager;
 use App\Models\Entities\SolutionsEntity;
+use App\Models\Entities\ServicePageEntity;
 
 class SolutionModel
 {

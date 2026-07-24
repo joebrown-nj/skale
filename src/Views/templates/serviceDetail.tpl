@@ -54,518 +54,67 @@
 </div>
 </nav> *}
 
-<main>
-    <!-- HERO: Outcome-focused message plus an above-the-fold conversion form. -->
-    <section class="hero">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-7">
-                    <div class="hero-copy">
-                        <span class="eyebrow">Growth Infrastructure</span>
-                        <h1>Turn disconnected tools into a system that <span class="text-highlight">drives growth.</span></h1>
-                        <p class="hero-lead mt-4 mb-0">Skale connects your website, lead funnels, CRM, automation, and reporting so your business can attract better prospects, follow up faster, and convert more opportunities.</p>
+{* <main>
+{foreach from=$data.serviceSections item=section}
+{if $section->isEnabled}
+{include file="inc/service/serviceSection.tpl" section=$section}
+{/if}
+{/foreach}
+</main> *}
 
-                        <ul class="hero-checks" aria-label="Key benefits">
-                            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Built around your business</li>
-                            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Clear strategy before execution</li>
-                            <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>One accountable growth partner</li>
-                        </ul>
 
-                        <div class="d-flex flex-column flex-sm-row gap-3">
-                            <a class="btn btn-primary btn-lg" href="#consultation">Get Your Free Growth Review</a>
-                            <a class="btn btn-outline-dark btn-lg" href="#how-it-works">See How It Works</a>
-                        </div>
+{if $data.serviceContent|empty}
+    {$data.serviceDetail->content}
+{else}
+    <main class="service-detail-page {$p2}">
+        {if $data.serviceContent.sections.hero && $data.serviceContent.sections.hero.enabled}
+            {include file="inc/service/hero.tpl" data=$data.serviceContent.sections.hero}
+        {/if}
 
-                        <div class="hero-note">
-                            <i class="bi bi-shield-check" aria-hidden="true"></i>
-                            <span>No pressure. No generic sales pitch. Just a practical conversation about what is holding your business back.</span>
-                        </div>
-                    </div>
-                </div>
+        {if $data.serviceContent.sections.trustStrip && $data.serviceContent.sections.trustStrip.enabled}
+            {include file="inc/service/trustStrip.tpl" data=$data.serviceContent.sections.trustStrip}
+        {/if}
 
-                <div class="col-lg-5" id="consultation">
-                    <div class="hero-form-wrap">
+        {if $data.serviceContent.sections.problems && $data.serviceContent.sections.problems.enabled}
+            {include file="inc/service/problems.tpl" data=$data.serviceContent.sections.problems}
+        {/if}
 
-                        <div class="lead-form-card">
-                            <div class="mb-4">
-                                <span class="badge text-bg-light border mb-3">Free 30-minute consultation</span>
-                                <h2 class="h3 mb-2">Find your biggest growth gap</h2>
-                                <p class="mb-0">Tell us a little about your business. We will help you identify where leads, time, or revenue may be slipping through the cracks.</p>
-                            </div>
+        {if $data.serviceContent.sections.outcomes && $data.serviceContent.sections.outcomes.enabled}
+            {include file="inc/service/outcomes.tpl" data=$data.serviceContent.sections.outcomes}
+        {/if}
 
-                            {include file="inc/landing-pages/inc/lead-contact-form.tpl" buttonText="Request My Free Review" userMessageLabel="What is your biggest challenge?" textAreaPlaceholder=""}
-                        </div>
+        {* {if $data.serviceContent.sections.components}
+        {include file="inc/service/components.tpl" data=$data.serviceContent.sections.components}
+        {/if} *}
 
-                        {* <form class="lead-form-card" action="/contact" method="post">
-                        <div class="mb-4">
-                        <span class="badge text-bg-light border mb-3">Free 30-minute consultation</span>
-                        <h2 class="h3 mb-2">Find your biggest growth gap</h2>
-                        <p class="mb-0">Tell us a little about your business. We will help you identify where leads, time, or revenue may be slipping through the cracks.</p>
-                        </div>
+        {if $data.serviceContent.sections.serviceComponents && $data.serviceContent.sections.serviceComponents.enabled}
+            {include file="inc/service/serviceComponents.tpl" data=$data.serviceContent.sections.serviceComponents}
+        {/if}
 
-                        <div class="row g-3">
-                        <div class="col-12">
-                        <label class="form-label" for="name">Your name</label>
-                        <input class="form-control" id="name" name="name" type="text" autocomplete="name" required>
-                        </div>
-                        <div class="col-12">
-                        <label class="form-label" for="email">Work email</label>
-                        <input class="form-control" id="email" name="email" type="email" autocomplete="email" required>
-                        </div>
-                        <div class="col-12">
-                        <label class="form-label" for="company">Company</label>
-                        <input class="form-control" id="company" name="company" type="text" autocomplete="organization">
-                        </div>
-                        <div class="col-12">
-                        <label class="form-label" for="challenge">What is your biggest challenge?</label>
-                        <select class="form-select" id="challenge" name="challenge" required>
-                        <option value="" selected disabled>Select one</option>
-                        <option>We need more qualified leads</option>
-                        <option>Our website is not converting</option>
-                        <option>Our tools and data are disconnected</option>
-                        <option>Too much work is manual</option>
-                        <option>We cannot clearly measure results</option>
-                        <option>We are not sure where to start</option>
-                        </select>
-                        </div>
-                        <div class="col-12 d-grid">
-                        <button class="btn btn-primary btn-lg" type="submit">Request My Free Review</button>
-                        </div>
-                        </div>
-                        <p class="privacy-copy"><i class="bi bi-lock me-1" aria-hidden="true"></i>Your information stays private. Skale will only use it to respond to your request.</p>
-                        </form> *}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        {if $data.serviceContent.sections.caseStudy && $data.serviceContent.sections.caseStudy.enabled}
+            {include file="inc/service/caseStudy.tpl" data=$data.serviceContent.sections.caseStudy}
+        {/if}
 
-    <!-- TRUST STRIP: Replace or expand with verified certifications, client logos, review ratings, and real proof. -->
-    <section class="trust-strip" aria-label="Why businesses trust Skale">
-        <div class="container">
-            <div class="row row-cols-2 row-cols-lg-4 g-3">
-                <div class="col">
-                    <div class="trust-item">
-                        <i class="bi bi-person-check" aria-hidden="true"></i>
-                        <div><strong>Senior Expertise</strong><span>Direct access to an experienced partner</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="trust-item">
-                        <i class="bi bi-diagram-3" aria-hidden="true"></i>
-                        <div><strong>Systems Thinking</strong><span>Every tool supports a larger strategy</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="trust-item">
-                        <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
-                        <div><strong>Outcome Focused</strong><span>Decisions tied to measurable progress</span></div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="trust-item">
-                        <i class="bi bi-headset" aria-hidden="true"></i>
-                        <div><strong>Ongoing Support</strong><span>A long-term partner after launch</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        {if $data.serviceContent.sections.process && $data.serviceContent.sections.process.enabled}
+            {include file="inc/service/process.tpl" data=$data.serviceContent.sections.process}
+        {/if}
 
-    <!-- PROBLEM RECOGNITION -->
-    <section class="section-space">
-        <div class="container">
-            <div class="section-intro">
-                <span class="eyebrow">The Real Problem</span>
-                <h2>Your business may not need another tool. It may need its tools to work together.</h2>
-                <p class="mt-3">Growth becomes harder when your website, marketing, sales process, customer data, and reporting operate separately. Small gaps create missed follow-ups, unclear performance, duplicated work, and lost opportunities.</p>
-            </div>
+        {if $data.serviceContent.sections.founder && $data.serviceContent.sections.founder.enabled}
+            {include file="inc/service/founder.tpl" data=$data.serviceContent.sections.founder}
+        {/if}
 
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-3">
-                    <article class="problem-card">
-                        <span class="icon-box"><i class="bi bi-funnel" aria-hidden="true"></i></span>
-                        <h3 class="h5">Leads go nowhere</h3>
-                        <p class="mb-0">Visitors arrive, but weak calls to action and disconnected follow-up leave good prospects behind.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="problem-card">
-                        <span class="icon-box"><i class="bi bi-arrows-angle-contract" aria-hidden="true"></i></span>
-                        <h3 class="h5">Teams work manually</h3>
-                        <p class="mb-0">Employees copy data, chase updates, and repeat tasks that should happen automatically.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="problem-card">
-                        <span class="icon-box"><i class="bi bi-plug" aria-hidden="true"></i></span>
-                        <h3 class="h5">Systems are disconnected</h3>
-                        <p class="mb-0">Customer information is spread across spreadsheets, inboxes, apps, and isolated platforms.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="problem-card">
-                        <span class="icon-box"><i class="bi bi-bar-chart-line" aria-hidden="true"></i></span>
-                        <h3 class="h5">Results are unclear</h3>
-                        <p class="mb-0">Reporting shows activity, but not which efforts are creating revenue or where improvement is needed.</p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
+        {if $data.serviceContent.sections.qualification && $data.serviceContent.sections.qualification.enabled}
+            {include file="inc/service/qualification.tpl" data=$data.serviceContent.sections.qualification}
+        {/if}
 
-    <!-- OUTCOMES -->
-    <section class="section-space pt-0">
-        <div class="container">
-            <div class="outcome-panel">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-5">
-                        <span class="eyebrow text-white">The Outcome</span>
-                        <h2>A connected growth system built around how your business actually works.</h2>
-                        <p class="mt-3 mb-0">Skale looks beyond isolated projects. We align strategy, technology, marketing, data, and operations so each part of your business supports the next.</p>
-                    </div>
-                    <div class="col-lg-7">
-                        <ul class="outcome-list">
-                            <li>
-                                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                                <div><strong>Generate and capture better opportunities</strong><span>Clear messaging, stronger conversion paths, and lead-focused experiences.</span></div>
-                            </li>
-                            <li>
-                                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                                <div><strong>Respond faster and nurture consistently</strong><span>CRM workflows and automation keep prospects moving without constant manual effort.</span></div>
-                            </li>
-                            <li>
-                                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                                <div><strong>Make decisions with reliable data</strong><span>Reporting connects marketing activity and operational performance to business outcomes.</span></div>
-                            </li>
-                            <li>
-                                <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                                <div><strong>Build a foundation that can scale</strong><span>Flexible systems support growth without creating unnecessary complexity or rework.</span></div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        {if $data.serviceContent.sections.faq && $data.serviceContent.sections.faq.enabled}
+            {include file="inc/service/faq.tpl" data=$data.serviceContent.sections.faq}
+        {/if}
 
-    <!-- SERVICE COMPONENTS -->
-    <section class="section-space bg-soft">
-        <div class="container">
-            <div class="row align-items-end mb-5 g-3">
-                <div class="col-lg-8">
-                    <span class="eyebrow">What We Connect</span>
-                    <h2 class="mb-0">The essential parts of your growth engine.</h2>
-                </div>
-                <div class="col-lg-4">
-                    <p class="mb-0">Your engagement can include one area or a complete connected system, depending on your goals and current infrastructure.</p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">01</span>
-                        <span class="icon-box"><i class="bi bi-window" aria-hidden="true"></i></span>
-                        <h3 class="h4">Website & Conversion</h3>
-                        <p>Your website should clearly explain your value, establish credibility, and guide visitors toward action.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>Website strategy and development</li>
-                            <li><i class="bi bi-check2"></i>Landing pages and conversion paths</li>
-                            <li><i class="bi bi-check2"></i>Messaging and calls to action</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">02</span>
-                        <span class="icon-box"><i class="bi bi-megaphone" aria-hidden="true"></i></span>
-                        <h3 class="h4">Demand Generation</h3>
-                        <p>Reach the right audience with focused campaigns designed around qualified traffic and measurable action.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>SEO and content strategy</li>
-                            <li><i class="bi bi-check2"></i>PPC and paid social campaigns</li>
-                            <li><i class="bi bi-check2"></i>Email marketing and nurturing</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">03</span>
-                        <span class="icon-box"><i class="bi bi-people" aria-hidden="true"></i></span>
-                        <h3 class="h4">CRM & Lead Management</h3>
-                        <p>Create a dependable process for capturing, organizing, assigning, and following up with every opportunity.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>CRM setup and optimization</li>
-                            <li><i class="bi bi-check2"></i>Lead routing and pipeline design</li>
-                            <li><i class="bi bi-check2"></i>Sales and marketing alignment</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">04</span>
-                        <span class="icon-box"><i class="bi bi-lightning-charge" aria-hidden="true"></i></span>
-                        <h3 class="h4">Automation</h3>
-                        <p>Remove repetitive work and make important actions happen reliably at the right time.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>Marketing and sales automation</li>
-                            <li><i class="bi bi-check2"></i>Internal workflow automation</li>
-                            <li><i class="bi bi-check2"></i>Notifications and follow-up sequences</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">05</span>
-                        <span class="icon-box"><i class="bi bi-link-45deg" aria-hidden="true"></i></span>
-                        <h3 class="h4">System Integrations</h3>
-                        <p>Connect the platforms your business already depends on so information moves without unnecessary handoffs.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>API and platform integrations</li>
-                            <li><i class="bi bi-check2"></i>Data synchronization</li>
-                            <li><i class="bi bi-check2"></i>Custom integration workflows</li>
-                        </ul>
-                    </article>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <article class="service-card">
-                        <span class="service-number">06</span>
-                        <span class="icon-box"><i class="bi bi-clipboard-data" aria-hidden="true"></i></span>
-                        <h3 class="h4">Analytics & Optimization</h3>
-                        <p>Understand what is working, what is not, and where your next best opportunity may be.</p>
-                        <ul>
-                            <li><i class="bi bi-check2"></i>Analytics implementation</li>
-                            <li><i class="bi bi-check2"></i>Dashboards and reporting</li>
-                            <li><i class="bi bi-check2"></i>Continuous conversion optimization</li>
-                        </ul>
-                    </article>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a class="btn btn-primary btn-lg" href="#consultation">Talk Through Your Growth Gaps</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROOF / CASE STUDY: Replace placeholders with a verified, relevant client story before publishing. -->
-    <section class="section-space">
-        <div class="container">
-            <div class="case-study">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6">
-                        <span class="case-label">Client Transformation</span>
-                        <h2 class="mt-2">From fragmented processes to a scalable business platform.</h2>
-                        <p class="mt-3">A growing organization relied on disconnected tools, manual data handling, and a platform that could not support its expanding operation. Skale modernized the underlying systems, simplified workflows, and created a more dependable foundation for growth.</p>
-                        <p class="mb-0"><strong class="text-dark">The lesson:</strong> sustainable growth rarely comes from one isolated improvement. It comes from solving the system behind the problem.</p>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="metric"><strong>50%+</strong><span>Reduction in operating costs</span></div>
-                            </div>
-                            <div class="col-6">
-                                <div class="metric"><strong>1M+</strong><span>Records supported at scale</span></div>
-                            </div>
-                            <div class="col-6">
-                                <div class="metric"><strong>Faster</strong><span>Publishing and delivery workflows</span></div>
-                            </div>
-                            <div class="col-6">
-                                <div class="metric"><strong>Unified</strong><span>Data, systems, and processes</span></div>
-                            </div>
-                        </div>
-                        <p class="small mt-3 mb-0">Use only metrics and claims you can verify. Add the client name, testimonial, or logo when permission is available.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section-space bg-soft" id="how-it-works">
-        <div class="container">
-            <div class="section-intro">
-                <span class="eyebrow">How It Works</span>
-                <h2>A practical process with clarity at every step.</h2>
-                <p class="mt-3">You will know what we are solving, why it matters, what happens next, and how success will be measured.</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-3">
-                    <article class="process-card">
-                        <span class="process-step">1</span>
-                        <h3 class="h5">Discover</h3>
-                        <p class="mb-0">We learn how your business generates revenue, where work slows down, and what growth means to you.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="process-card">
-                        <span class="process-step">2</span>
-                        <h3 class="h5">Prioritize</h3>
-                        <p class="mb-0">We identify the highest-impact gaps and create a focused roadmap instead of trying to change everything at once.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="process-card">
-                        <span class="process-step">3</span>
-                        <h3 class="h5">Build & Connect</h3>
-                        <p class="mb-0">We improve the right experiences, workflows, integrations, campaigns, and reporting systems.</p>
-                    </article>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <article class="process-card">
-                        <span class="process-step">4</span>
-                        <h3 class="h5">Measure & Improve</h3>
-                        <p class="mb-0">We monitor performance, learn from real behavior, and continuously improve what drives results.</p>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOUNDER / TRUST -->
-    <section class="section-space">
-        <div class="container">
-            <div class="founder-panel">
-                <div class="row align-items-center g-4">
-                    <div class="col-lg-auto">
-                        <!-- Replace initials with a professional founder photo for stronger trust. -->
-                        <div class="founder-avatar" aria-label="Joe Brown">JB</div>
-                    </div>
-                    <div class="col-lg">
-                        <span class="quote-mark" aria-hidden="true">“</span>
-                        <h2 class="h3">You are not handed off to a junior team after the sale.</h2>
-                        <p class="mb-2">Skale is led by Joe Brown, a technology and growth partner with more than 20 years of experience helping businesses modernize systems, improve operations, and turn complex challenges into practical solutions.</p>
-                        <p class="mb-0"><strong class="text-dark">You receive senior-level thinking, direct communication, and recommendations based on what your business actually needs.</strong></p>
-                    </div>
-                    <div class="col-lg-auto">
-                        <a class="btn btn-outline-dark" href="/about">Learn About Skale</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUALIFICATION -->
-    <section class="section-space pt-0">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <span class="eyebrow">Who This Is For</span>
-                    <h2>A strong fit for businesses ready to improve the system, not just patch the symptoms.</h2>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="d-flex gap-3 p-3 border rounded-4">
-                                <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
-                                <div><strong class="d-block">You are generating activity, but not enough qualified opportunities.</strong><span class="text-secondary">Traffic, campaigns, and referrals are not consistently becoming customers.</span></div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-flex gap-3 p-3 border rounded-4">
-                                <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
-                                <div><strong class="d-block">Your team relies on too many manual steps and disconnected tools.</strong><span class="text-secondary">Growth is creating more work instead of greater efficiency.</span></div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-flex gap-3 p-3 border rounded-4">
-                                <i class="bi bi-check-circle-fill text-success fs-5" aria-hidden="true"></i>
-                                <div><strong class="d-block">You want a long-term partner who can connect strategy and execution.</strong><span class="text-secondary">You need more than a vendor completing isolated tasks.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section-space bg-soft">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-5">
-                    <span class="eyebrow">Common Questions</span>
-                    <h2>What businesses usually want to know before getting started.</h2>
-                    <p class="mt-3">The first conversation is designed to determine fit and uncover opportunities. You do not need to have the solution figured out beforehand.</p>
-                </div>
-                <div class="col-lg-7">
-                    <div class="accordion" id="growthFaq">
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">What exactly is growth infrastructure?</button>
-                            </h3>
-                            <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#growthFaq">
-                                <div class="accordion-body">Growth infrastructure is the connected system behind how your business attracts prospects, captures leads, follows up, delivers information, measures results, and improves performance. It can include your website, CRM, automation, integrations, marketing, analytics, and operational workflows.</div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">Do we need to replace our current tools?</button>
-                            </h3>
-                            <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
-                                <div class="accordion-body">Not necessarily. Skale first evaluates what is already working. In many cases, the better answer is to improve, connect, or simplify the tools you already use rather than replace everything.</div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">Can we start with one priority?</button>
-                            </h3>
-                            <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
-                                <div class="accordion-body">Yes. Many engagements begin with the highest-impact issue, such as a website conversion problem, CRM setup, reporting gap, or manual workflow. The work can then expand based on results and business priorities.</div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">How will we know the work is successful?</button>
-                            </h3>
-                            <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
-                                <div class="accordion-body">Success measures are defined before implementation. Depending on the engagement, they may include stronger conversion rates, faster response time, fewer manual steps, improved data accuracy, better lead quality, lower acquisition costs, or clearer reporting.</div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFive" aria-expanded="false" aria-controls="faqFive">What happens during the free consultation?</button>
-                            </h3>
-                            <div id="faqFive" class="accordion-collapse collapse" data-bs-parent="#growthFaq">
-                                <div class="accordion-body">We discuss your goals, current systems, biggest obstacles, and where you believe opportunities are being lost. You will leave with a clearer view of the problem and the most practical next step, whether or not we work together.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="section-space">
-        <div class="container">
-            <div class="final-cta text-center">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9">
-                        <span class="badge rounded-pill text-bg-light mb-3">Start with clarity</span>
-                        <h2>Find out where your business is losing leads, time, or momentum.</h2>
-                        <p class="lead mt-3 mb-4">Schedule a free consultation to talk through your current systems, your growth goals, and the most valuable place to begin.</p>
-                        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-                            <a class="btn btn-primary btn-lg" href="#consultation">Book My Free Consultation</a>
-                            <a class="btn btn-outline-light btn-lg" href="tel:+17329254044"><i class="bi bi-telephone me-2" aria-hidden="true"></i>732-925-4044</a>
-                        </div>
-                        <p class="small mt-3 mb-0">No obligation. No generic package. A practical conversation focused on your business.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+        {if $data.serviceContent.sections.finalCta && $data.serviceContent.sections.finalCta.enabled}
+            {include file="inc/service/finalCta.tpl" data=$data.serviceContent.sections.finalCta}
+        {/if}
+    </main>
+{/if}
 
 {include file="inc/layout/footer.tpl"}

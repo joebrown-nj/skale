@@ -29,7 +29,7 @@
                     <div class="d-flex flex-wrap gap-2">
                         <a href="{$filterPath}" class="mbtn btn btn-sm {if !$activeCategory}btn-primary{else}btn-outline-light{/if} rounded-pill" aria-describedby="All Blog Categories">All</a>
                         {foreach from=$blogCategories item=category}
-                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory == $category}btn-primary{else}btn-outline-light{/if} rounded-pill" aria-describedby="Blog Category {$category}">{$category}</a>
+                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory == $category}btn-primary{else}btn-outline-dark{/if} rounded-pill text-dark" aria-describedby="Blog Category {$category}">{$category}</a>
                         {/foreach}
                     </div>
                 </div>

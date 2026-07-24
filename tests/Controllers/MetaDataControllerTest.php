@@ -40,7 +40,7 @@ final class MetaDataControllerTest extends TestCase
         $output = ob_get_clean();
 
         $this->assertSame(
-            '{"keywords":"marketing, seo","description":"Page description","title":"Skaleup | About Us"}',
+            '{"keywords":"marketing, seo","description":"Page description","title":"About Us | Skaleup"}',
             $output
         );
     }
@@ -70,7 +70,7 @@ final class MetaDataControllerTest extends TestCase
         $output = ob_get_clean();
 
         $this->assertSame(
-            '{"keywords":"privacy, policy","description":"Privacy details","title":"Skaleup | Privacy Policy"}',
+            '{"keywords":"privacy, policy","description":"Privacy details","title":"Privacy Policy | Skaleup"}',
             $output
         );
     }
@@ -99,7 +99,7 @@ final class MetaDataControllerTest extends TestCase
         $output = ob_get_clean();
 
         $this->assertSame(
-            '{"keywords":"growth, strategy","description":"Blog description","title":"Skaleup blog | How to Scale"}',
+            '{"keywords":"growth, strategy","description":"Blog description","title":"How to Scale | Skaleup blog"}',
             $output
         );
     }

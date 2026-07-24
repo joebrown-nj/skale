@@ -28,6 +28,15 @@ class SiteDataCache
         private SolutionModel $SolutionModel,
         private PageContentModel $pageContentModel,
     ) {
+        $this->sharedData = null;
+        $this->mainNav = null;
+        $this->footerNav = null;
+        $this->serviceList = null;
+        $this->allServiceList = null;
+        $this->contactContentResolved = false;
+        $this->contactContent = null;
+        $this->hiddenLinks = null;
+        $this->cache->delete('site_data');
     }
 
     public function getSharedData(): array
@@ -51,6 +60,7 @@ class SiteDataCache
 
     public function getMainNav(): array
     {
+        $this->cache->delete('site_data.nav.main');
         if ($this->mainNav !== null) {
             return $this->mainNav;
         }
@@ -66,6 +76,7 @@ class SiteDataCache
 
     public function getFooterNav(): array
     {
+        $this->cache->delete('site_data.nav.footer');
         if ($this->footerNav !== null) {
             return $this->footerNav;
         }
@@ -130,6 +141,7 @@ class SiteDataCache
 
     public function getHiddenLinks(): array
     {
+        $this->cache->delete('site_data.nav.hidden');
         if ($this->hiddenLinks !== null) {
             return $this->hiddenLinks;
         }

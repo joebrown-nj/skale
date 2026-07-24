@@ -6,6 +6,7 @@ export const publicJsRoot = 'public_html/js';
 export const cssAssets = [
     [`${cssSourceRoot}/style.css`, `${publicCssRoot}/style.min.css`],
     [`${cssSourceRoot}/blog.css`, `${publicCssRoot}/blog.min.css`],
+    [`${cssSourceRoot}/home.css`, `${publicCssRoot}/home.min.css`],
     [`${cssSourceRoot}/contact.css`, `${publicCssRoot}/contact.min.css`],
     [`${cssSourceRoot}/templates.css`, `${publicCssRoot}/templates.min.css`],
     [`${cssSourceRoot}/landing.css`, `${publicCssRoot}/landing.min.css`],

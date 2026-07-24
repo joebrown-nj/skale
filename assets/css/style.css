@@ -148,7 +148,7 @@ a:hover {
 	position: relative
 } */
 
-.navbar-nav a.nav-link,
+/* .navbar-nav a.nav-link,
 .navbar-nav .nav-item.active a.nav-link.dropdown-item {
 	font-size: 18px;
 	transition: color 0.3s ease-in-out;
@@ -164,14 +164,14 @@ a:hover {
 .navbar-nav a.nav-link:hover,
 .navbar-nav .nav-item.active a.nav-link.dropdown-item:hover {
 	background-position: 0%
-}
+} */
 
-.navbar-nav .nav-item.active a.nav-link,
+/* .navbar-nav .nav-item.active a.nav-link,
 .navbar-nav .dropdown li.active a.nav-link.dropdown-item {
 	color: #c4fcf1;
 	-webkit-text-fill-color: #c4fcf1;
 	background-image: none
-}
+} */
 
 .main-logo {
 	color: #FFF;
@@ -764,15 +764,15 @@ a {
 	color: var(--skale-green);
 } */
 
-.nav-link {
+/* .nav-link {
 	color: var(--skale-ink);
 	font-weight: 650;
-}
+} */
 
-.nav-link:hover,
+/* .nav-link:hover,
 .nav-link:focus {
 	color: var(--skale-blue);
-}
+} */
 
 /* .btn {
 	border-radius: .75rem;
@@ -798,14 +798,67 @@ a {
 	--bs-btn-hover-border-color: var(--skale-navy);
 }
 
-.hero {
-	position: relative;
-	overflow: hidden;
-	padding: 5.5rem 0 4.5rem;
+.growth-infrastructure .hero {
 	background:
 		radial-gradient(circle at 10% 10%, rgba(46, 230, 166, .20), transparent 27%),
 		radial-gradient(circle at 90% 18%, rgba(22, 199, 217, .17), transparent 30%),
 		linear-gradient(145deg, #f9fcff 0%, #eff6ff 55%, #f6fffb 100%);
+}
+
+.demand-generation .hero {
+	--s: 23px; /* control the size*/
+	--c1: #bbbed4;
+	--c2: #c9caf8;
+
+	--_l: #0000 46%,var(--c1) 47% 53%,#0000 54%;
+	background:
+	radial-gradient(100% 100% at 100% 100%,var(--_l)) var(--s) var(--s),
+	radial-gradient(100% 100% at 0    0   ,var(--_l)) var(--s) var(--s),
+	radial-gradient(100% 100%,#0000 22%,var(--c1) 23% 29%, #0000 30% 34%,var(--c1) 35% 41%,#0000 42%),
+	var(--c2);
+	background-size: calc(var(--s)*2) calc(var(--s)*2);
+}
+
+.strategy-and-optimization .hero {
+	--s: 66px; /* control the size*/
+	--c1: #e1f5c4;
+	--c2: #a7e5e7;
+
+	--_g:#0000, #0004 5%,
+		var(--c2) 6%  14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%,
+		var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,
+		var(--c2) 86% 94%,#0004 95%,#0000;
+	background:
+	radial-gradient(100% 50% at 100% 0   ,var(--_g)),
+	radial-gradient(100% 50% at 0    50% ,var(--_g)),
+	radial-gradient(100% 50% at 100% 100%,var(--_g));
+	background-size: var(--s) calc(2*var(--s));
+}
+
+.automation-and-software .hero {
+	--s: 25px; /* control the size*/
+	--c1: #fff0e5;
+	--c2: #d8f0fe;
+	--c3: #f8dbcd;
+
+	--_g: 50%,#0000 37%,var(--c1) 39% 70%,#0000 72%;
+	--_t: 50%,var(--c2) 40deg,var(--c3) 0 140deg,var(--c2) 0 180deg,#0000 0; 
+	--_s: 47% 50% at;
+	background: 
+	radial-gradient(var(--_s) -10% var(--_g)) 0 calc(var(--s)/2),
+	radial-gradient(var(--_s) -10% var(--_g)) calc(var(--s)/2) 0,
+	radial-gradient(var(--_s) 110% var(--_g)),
+	radial-gradient(var(--_s) 110% var(--_g)) calc(var(--s)/2) calc(var(--s)/2),
+	conic-gradient(from   0deg at 55% var(--_t)) calc(var(--s)/4) 0,
+	conic-gradient(from 180deg at 45% var(--_t)) calc(var(--s)/4) 0,
+	var(--c2);
+	background-size: var(--s) var(--s);
+}
+
+.hero {
+	position: relative;
+	overflow: hidden;
+	padding: 5.5rem 0 4.5rem;
 }
 
 .hero::after {
@@ -1339,10 +1392,12 @@ a {
 .nav-link {
 	color: var(--skale-ink);
 	font-weight: 650;
+	transition: color 0.3s ease-in-out;
 }
 
 .nav-link:hover,
-.nav-link:focus {
+.nav-link:focus,
+.navbar-nav .nav-link.active {
 	color: var(--skale-blue);
 }
 
@@ -1350,6 +1405,7 @@ a {
 	border-radius: .75rem;
 	font-weight: 750;
 	padding: .85rem 1.25rem;
+	transition: all 0.2s ease-in-out;
 }
 
 /* .btn-lg {
@@ -1370,7 +1426,7 @@ a {
 	--bs-btn-hover-border-color: var(--skale-navy);
 } */
 
-.hero {
+/* .hero {
 	position: relative;
 	overflow: hidden;
 	padding: 5.5rem 0 4.5rem;
@@ -1378,7 +1434,7 @@ a {
 		radial-gradient(circle at 10% 10%, rgba(46, 230, 166, .20), transparent 27%),
 		radial-gradient(circle at 90% 18%, rgba(22, 199, 217, .17), transparent 30%),
 		linear-gradient(145deg, #f9fcff 0%, #eff6ff 55%, #f6fffb 100%);
-}
+} */
 
 .hero::after {
 	position: absolute;

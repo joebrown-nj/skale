@@ -66,6 +66,7 @@ function updateHeaderBackground(slug) {
 
 function setActiveNavItem(url) {
     $('#oCNav .active').removeClass('active');
+    $('#mainNav .active').removeClass('active');
 
     const adjustedUrl = url === '/' || url === ''
         ? url
@@ -999,6 +1000,8 @@ $(document).on('click', '.mbtn', function handleMenuClick(event) {
 
     ajaxGetPageContent(slug, queryString, event);
     bsOffcanvas?.hide();
+    // $('.navbar .navbar-toggler').addClass('collapsed');
+    $('#mainNav').removeClass('show');
 
     return false;
 });

@@ -1,6 +1,7 @@
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true">
+{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true"> *}
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true">
 
 <section class="parallax cta-section home-hero py-5 curve-style">

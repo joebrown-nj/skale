@@ -30,7 +30,7 @@ class MetaDataController
                 $metaData = json_encode(array(
                     'keywords' => $blog->metaKeywords,
                     'description' => $blog->metaDescription,
-                    'title' => $_ENV['SITE_NAME'].' blog | '.$blog->metaTitle,
+                    'title' => $blog->metaTitle.' | '.$_ENV['SITE_NAME'].' blog',
                 ));
             }
         } else {
@@ -40,7 +40,7 @@ class MetaDataController
                 $metaData = json_encode(array(
                     'keywords' => $page['content']->metaKeywords,
                     'description' => $page['content']->metaDescription,
-                    'title' => $_ENV['SITE_NAME'].' | '.$page['content']->metaTitle,
+                    'title' => $page['content']->metaTitle.' | '.$_ENV['SITE_NAME'],
                 ));
             }
         }

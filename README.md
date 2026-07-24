@@ -47,9 +47,17 @@ Database class
 
 composer install
 
-./vendor/bin/phpunit tests
-./vendor/bin/phpunit tests --display-phpunit-deprecations
-./vendor/bin/phpunit --display-phpunit-deprecations tests
+PHPUnit tests
+
+# Run the entire suite
+.\vendor\bin\phpunit
+
+# Run the RoutesTest class
+.\vendor\bin\phpunit tests\Core\RoutesTest.php
+
+# Run only the specified test method
+.\vendor\bin\phpunit --filter testHandleErrorDoesNotExposeExceptionMessages tests\Core\RoutesTest.php
+
 
 cd public_html
 php -S localhost:8080
