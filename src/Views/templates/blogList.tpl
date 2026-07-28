@@ -7,7 +7,7 @@
         <div class="row align-items-center py-5">
             <div class="col-lg-7">
                 <span class="badge bg-primary-subtle text-primary mb-3">Insights & Growth Strategies</span>
-                <h1 class="display-4 fw-bold mb-3">The Skale Growth Journal</h1>
+                <h1 class="display-4 fw-bold mb-3 text-white">The Skale Growth Journal</h1>
                 <p class="lead text-secondary">Actionable insights on websites, automation, software, IT infrastructure, marketing, and business growth.</p>
 
                 <div class="d-flex gap-2 flex-wrap mt-4">

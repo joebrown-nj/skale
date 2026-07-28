@@ -8,7 +8,7 @@
                         Website design & development
                     </span>
 
-                    <h1 class="fw-bold mb-4">
+                    <h1 class="fw-bold mb-4 text-light">
                         A Better Website for the Business You Are Building
                     </h1>
 
@@ -46,10 +46,10 @@
         <div class="container">
             <div class="trust-panel" data-aos="fade-up">
                 <div class="row g-0">
-                    <div class="col-lg-3 trust-item"><strong>20+ Years of Experience</strong><span class="text-muted-skale d-block">Websites, software, systems, and digital products</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Custom to Your Business</strong><span class="text-muted-skale d-block">Not a generic template with your logo added</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Built for Every Screen</strong><span class="text-muted-skale d-block">Responsive, accessible, and mobile friendly</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Support After Launch</strong><span class="text-muted-skale d-block">Maintenance and improvements are available</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">20+ Years of Experience</strong><span class="text-muted-skale d-block">Websites, software, systems, and digital products</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Custom to Your Business</strong><span class="text-muted-skale d-block">Not a generic template with your logo added</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Built for Every Screen</strong><span class="text-muted-skale d-block">Responsive, accessible, and mobile friendly</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Support After Launch</strong><span class="text-muted-skale d-block">Maintenance and improvements are available</span></div>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width:860px">
                 <span class="eyebrow mb-3">When your website no longer fits</span>
-                <h2 class="display-5 fw-bold mb-3">Your Website Should Reflect the Business You Have Today</h2>
+                <h2 class="display-5 fw-bold mb-3 text-light">Your Website Should Reflect the Business You Have Today</h2>
                 <p class="lead text-muted-skale">An outdated, difficult, or inflexible website can make a strong business look smaller, less credible, and harder to work with than it really is.</p>
             </div>
 
@@ -167,7 +167,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width:860px">
                 <span class="eyebrow mb-3">What your project includes</span>
-                <h2 class="display-5 fw-bold">A Website That Is Professional on the Surface and Solid Underneath</h2>
+                <h2 class="display-5 fw-bold text-light">A Website That Is Professional on the Surface and Solid Underneath</h2>
             </div>
 
             <div class="comparison">
@@ -285,7 +285,7 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <span class="eyebrow mb-3">Start with a conversation</span>
-                    <h2 class="display-4 fw-bold mb-3">Let's Build a Website That Fits Your Business</h2>
+                    <h2 class="display-4 fw-bold mb-3 text-light">Let's Build a Website That Fits Your Business</h2>
                     <p class="lead text-muted-skale">Tell me what is not working, what you want to improve, and what your business needs next. I'll help you define the right website project and a practical path forward.</p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4" text="Request My Free Consultation" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Mid Page CTA Button"}

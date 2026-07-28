@@ -18,7 +18,9 @@ class FormSubmissionService
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
     {
-        $successMessage = $this->buildContactSuccessMessage();
+        $successMessage = ($input['form_type'] ?? '') === 'newsletter'
+            ? '<p>Thanks for subscribing. We are glad to have you with us.</p>'
+            : $this->buildContactSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
             '<p>Hi '.$input['name'].',</p>'.$successMessage,
@@ -26,7 +28,9 @@ class FormSubmissionService
         );
         $this->deliverEmail(
             $input['email'],
-            'Thanks for filling out the contact form',
+            ($input['form_type'] ?? '') === 'newsletter'
+                ? 'Thanks for subscribing'
+                : 'Thanks for contacting '.$_ENV['SITE_NAME'],
             $emailMessage,
             $input['name']
         );
@@ -44,7 +48,7 @@ class FormSubmissionService
         );
         $this->deliverEmail(
             $_ENV['CONTACT_FORM_MY_EMAIL'],
-            'Someone filled out the contact form',
+            'New '.str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')).' form submission',
             $adminEmailMessage
         );
     }

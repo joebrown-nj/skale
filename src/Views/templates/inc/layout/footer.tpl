@@ -51,17 +51,18 @@
     id="newsletterForm"
     class="mb-4 ajaxForm"
     method="POST"
-    action="{$smarty.ENV.WEB_ROOT}email-list-signup"
+    action="{$smarty.ENV.WEB_ROOT}contact-form"
     data-meta-form-name="newsletter-form"
     data-meta-success-event="CompleteRegistration"
     data-meta-success-custom-event="NewsletterSubscribed"
     data-meta-start-custom-event="NewsletterSignupStarted"
     >
+    <input type="hidden" name="form_type" value="newsletter">
     <p>Monthly digest of what's new and exciting from us.</p>
     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
     <label for="email" class="visually-hidden">Email address</label>
     <input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
-    <button class="btn btn-primary" type="button" data-meta-custom-event="NewsletterSubscribeClick" data-meta-label="newsletter subscribe button">Subscribe</button>
+    <button class="btn btn-primary" type="submit" data-meta-custom-event="NewsletterSubscribeClick" data-meta-label="newsletter subscribe button">Subscribe</button>
     </div>
     </form>
     </div>
@@ -154,20 +155,21 @@
                     <h2 class="h6 text-white">Company</h2>
                     <ul class="list-unstyled mb-0">
                         <li class="mb-2">
-                            <a href="/about" class="mbtn" aria-describedby="footer about">About</a>
+                            <a href="{$smarty.ENV.SITE_URL}about" class="mbtn" aria-describedby="footer about">About</a>
                         </li>
 
                         <li class="mb-2">
-                            <a href="/contact" class="mbtn" aria-describedby="footer contact">Contact</a>
+                            <a href="{$smarty.ENV.SITE_URL}blog" class="mbtn" aria-describedby="footer blog">Blog</a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact">Contact</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2">
                     <h2 class="h6 text-white">Contact</h2>
-                    {* <p class="mb-1"><a href="tel:+17329254044">732-925-4044</a></p>
-                    <p class="mb-0"><a href="mailto:info@skaleup.it.com">info@skaleup.it.com</a></p> *}
-
                     {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
                         <p class="mb-1">{include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}</p>
                     {/if}
@@ -211,4 +213,3 @@
 </body>
 </html>
 {/if}
-

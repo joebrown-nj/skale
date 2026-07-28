@@ -66,14 +66,14 @@ class Routes
         $this->router->get('/marketing', [LandingPageController::class, 'marketing']);
         $this->router->get('/automation', [LandingPageController::class, 'automation']);
         $this->router->get('/task-management', [LandingPageController::class, 'taskManagement']);
-        $this->router->post('/post-lead-form', [LandingPageController::class, 'postLeadForm']);
+        $this->router->post('/post-lead-form', [ContactController::class, 'submit']);
 
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
-        $this->router->post('/', [GetStartedController::class, 'postGetStarted']);
+        $this->router->post('/', [ContactController::class, 'submit']);
         $this->router->post('/contact-form', [ContactController::class, 'submit']);
         $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
-        $this->router->post('/email-list-signup', [EmailController::class, 'signUp']);
+        $this->router->post('/email-list-signup', [ContactController::class, 'submit']);
     }
 
     public function dispatch(): void

@@ -21,18 +21,19 @@
                 <div id="strategy-session" class="form-panel p-4 p-lg-5">
                     <h3 class="fw-bold mb-2">Get Your Free Growth Strategy Session</h3>
                     <p class="text-secondary mb-4">We'll review your current marketing and identify opportunities to generate more leads.</p>
-                    <form>
+                    <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
+                        <input type="hidden" name="form_type" value="marketing-strategy">
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Name</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="Your name">
+                            <input name="name" type="text" class="form-control form-control-lg required" placeholder="Your name" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Email</label>
-                            <input type="email" class="form-control form-control-lg" placeholder="you@example.com">
+                            <input name="email" type="email" class="form-control form-control-lg required" placeholder="you@example.com" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">What do you need help with?</label>
-                            <select class="form-select form-select-lg">
+                            <select name="interest" class="form-select form-select-lg">
                                 <option>Marketing Services</option>
                                 <option>Email Marketing</option>
                                 <option>PPC Advertising</option>
@@ -43,7 +44,7 @@
                         </div>
                         <div class="mb-4">
                             <label class="form-label fw-semibold">What is your biggest marketing challenge?</label>
-                            <textarea class="form-control" rows="4" placeholder="Tell us what you want to improve..."></textarea>
+                            <textarea name="comment" class="form-control" rows="4" placeholder="Tell us what you want to improve..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-dark btn-lg w-100 rounded-pill">Get My Free Strategy Session</button>
                     </form>

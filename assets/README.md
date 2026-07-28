@@ -29,6 +29,7 @@ These minified files are the files loaded by the site at runtime.
 - `assets/css/style.css` → `public_html/css/style.min.css`
 - `assets/css/blog.css` → `public_html/css/blog.min.css`
 - `assets/css/contact.css` → `public_html/css/contact.min.css`
+- `assets/css/service-list.css` → `public_html/css/service-list.min.css`
 - `assets/css/templates.css` → `public_html/css/templates.min.css`
 - `assets/css/landing.css` → `public_html/css/landing.min.css`
 - `assets/css/thank-you.css` → `public_html/css/thank-you.min.css`
@@ -38,4 +39,4 @@ These minified files are the files loaded by the site at runtime.
 ## Notes
 
 - Page templates and AJAX-loaded page content should reference the built minified assets in `public_html/`
-- If a new source file is added, also add it to `scripts/build-assets.mjs`
+- If a new source file is added, also add its mapping to `scripts/assets.config.mjs`

@@ -36,11 +36,11 @@ class SiteDataCache
         $this->contactContentResolved = false;
         $this->contactContent = null;
         $this->hiddenLinks = null;
-        $this->cache->delete('site_data');
     }
 
     public function getSharedData(): array
     {
+        // $this->sharedData = null;
         if ($this->sharedData !== null) {
             return $this->sharedData;
         }
@@ -60,7 +60,7 @@ class SiteDataCache
 
     public function getMainNav(): array
     {
-        $this->cache->delete('site_data.nav.main');
+        // $this->cache->delete('site_data.nav.main');
         if ($this->mainNav !== null) {
             return $this->mainNav;
         }
@@ -76,7 +76,7 @@ class SiteDataCache
 
     public function getFooterNav(): array
     {
-        $this->cache->delete('site_data.nav.footer');
+        // $this->cache->delete('site_data.nav.footer');
         if ($this->footerNav !== null) {
             return $this->footerNav;
         }
@@ -92,6 +92,7 @@ class SiteDataCache
 
     public function getServiceList(): array
     {
+        // $this->cache->delete('site_data.solutions');
         if ($this->serviceList !== null) {
             return $this->serviceList;
         }
@@ -107,6 +108,7 @@ class SiteDataCache
 
     public function getAllServiceList(): array
     {
+        // $this->cache->delete('site_data.solutions.all');
         if ($this->allServiceList !== null) {
             return $this->allServiceList;
         }
@@ -122,6 +124,7 @@ class SiteDataCache
 
     public function getContactContent(): ?array
     {
+        // $this->cache->delete('site_data.contact_content');
         if ($this->contactContentResolved) {
             return $this->contactContent;
         }
@@ -141,7 +144,7 @@ class SiteDataCache
 
     public function getHiddenLinks(): array
     {
-        $this->cache->delete('site_data.nav.hidden');
+        // $this->cache->delete('site_data.nav.hidden');
         if ($this->hiddenLinks !== null) {
             return $this->hiddenLinks;
         }

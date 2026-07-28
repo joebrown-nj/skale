@@ -17,12 +17,12 @@ class BlogModel
         $this->entityManager = $entityManager;
     }
 
-    public function getAllBlogs(?string $category = null) : Array | NULL  {
+    public function getAllBlogs(?string $category = null, ?int $limit = 10) : Array | NULL  {
         try {
             $repository = $this->entityManager->getRepository(BlogEntity::class);
             $queryBuilder = $repository->createQueryBuilder('b')
                 ->orderBy('b.datePosted', 'DESC')
-                ->setMaxResults(10);
+                ->setMaxResults($limit);
 
             if ($category !== null && $category !== '') {
                 $queryBuilder

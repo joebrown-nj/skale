@@ -14,7 +14,8 @@
         <button type="button" class="p-0 position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill goals-step-pill">3</button>
     </div>
 
-    <form method="post" action="{$smarty.ENV.SITE_URL}" id="goals-form" class="ajaxForm" data-meta-form-name="home-growth-plan-form" data-meta-success-event="Lead" data-meta-success-custom-event="GrowthPlanSubmitted" data-meta-start-custom-event="GrowthPlanStarted">
+    <form method="post" action="{$smarty.ENV.SITE_URL}contact-form" id="goals-form" class="ajaxForm" data-meta-form-name="home-growth-plan-form" data-meta-success-event="Lead" data-meta-success-custom-event="GrowthPlanSubmitted" data-meta-start-custom-event="GrowthPlanStarted">
+        <input type="hidden" name="form_type" value="growth-plan">
         <div class="step step-1" data-aos="fade-in-right">
             <!-- Step 1 form fields here -->
             <h3 class="mb-4 text-white">What do you need help with?</h3>
@@ -67,4 +68,3 @@
         <p>Prefer to talk? <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="">Book a Free Strategy Call →</a></p>
     </div>
 </div>
-

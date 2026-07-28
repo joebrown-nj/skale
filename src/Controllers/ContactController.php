@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Core\Contracts\ContactFormInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\FormSubmissionService;
 use App\Core\Services\RequestBlocklistService;
-use App\Models\ContactModel;
 use App\Models\PageContentModel;
 
 class ContactController
 {
-    private ContactModel $contactModel;
+    private ContactFormInterface $contactModel;
     private FormSubmissionService $formSubmissionService;
     private RequestBlocklistService $requestBlocklistService;
     private ViewInterface $view;
 
-    public function __construct(ContactModel $contactModel, FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService, ViewInterface $view)
+    public function __construct(ContactFormInterface $contactModel, FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService, ViewInterface $view)
     {
         $this->contactModel = $contactModel;
         $this->formSubmissionService = $formSubmissionService;
@@ -39,14 +39,15 @@ class ContactController
             return JsonResponse::error('Unable to process request.');
         }
 
+        $input = $this->normalizeInput($input);
         $user = $this->view->getUser();
-        $validationErrors = $this->contactModel->checkContactForm($input);
+        $validationErrors = $this->contactModel->validate($input);
 
         if (!empty($validationErrors)) {
             return JsonResponse::error($validationErrors);
         }
 
-        if (!$this->contactModel->processContactForm($input)) {
+        if (!$this->contactModel->save($input)) {
             return JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
@@ -55,5 +56,23 @@ class ContactController
         return JsonResponse::success([
             'redirect' => '/thank-you',
         ]);
+    }
+
+    private function normalizeInput(array $input): array
+    {
+        $input['form_type'] = trim((string) ($input['form_type'] ?? 'contact'));
+        $input['name'] = trim((string) ($input['name'] ?? ''));
+        $input['email'] = trim((string) ($input['email'] ?? ''));
+
+        if ($input['form_type'] === 'newsletter' && $input['name'] === '') {
+            $input['name'] = 'Newsletter Subscriber';
+            $input['subscribe'] = 1;
+        }
+
+        if (isset($input['interest']) && !isset($input['interests'])) {
+            $input['interests'] = [$input['interest']];
+        }
+
+        return $input;
     }
 }

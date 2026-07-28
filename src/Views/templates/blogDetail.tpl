@@ -15,7 +15,6 @@
                 <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}" class="img-fluid rounded-4 shadow-lg w-100 mb-4" alt="{$data.blogDetail->title}">
                 <h1 class="display-4 fw-bold mb-4">{$data.blogDetail->title}</h1>
                 <p class="lead mb-4">{$data.blogDetail->shortText}</p>
-                {* <a aria-describedby='{$data.blogDetail->title}' href="/contact" class="mbtn btn btn-warning btn-lg fw-semibold">Get Started Today</a> *}
             </div>
         </div>
     </div>

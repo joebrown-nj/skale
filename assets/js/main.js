@@ -676,14 +676,22 @@ function shouldHandleAjaxLink(href) {
         return false;
     }
 
-    const trimmedHref = href.trim().toLowerCase();
-
+    const trimmedHref = href.trim();
+    const normalizedHref = trimmedHref.toLowerCase();
+console.log('href:', href, 'normalizedHref:', normalizedHref);
     if (
-        trimmedHref === '#'
-        || trimmedHref.startsWith('#')
-        || trimmedHref.startsWith('mailto:')
-        || trimmedHref.startsWith('tel:')
+        normalizedHref.startsWith('#')
+        || normalizedHref.startsWith('mailto:')
+        || normalizedHref.startsWith('tel:')
     ) {
+        return false;
+    }
+
+    try {
+        if (new URL(trimmedHref, window.location.href).hash) {
+            return false;
+        }
+    } catch {
         return false;
     }
 

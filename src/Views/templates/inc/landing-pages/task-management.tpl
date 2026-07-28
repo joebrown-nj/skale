@@ -8,7 +8,7 @@
                         Done-for-you task management implementation
                     </span>
 
-                    <h1 class="fw-bold mb-4">
+                    <h1 class="fw-bold mb-4 text-light">
                         Move Your Projects Out of Spreadsheets - Without Managing the Migration Yourself
                     </h1>
 
@@ -46,10 +46,10 @@
         <div class="container">
             <div class="trust-panel" data-aos="fade-up">
                 <div class="row g-0">
-                    <div class="col-lg-3 trust-item"><strong>20+ Years of Experience</strong><span class="text-muted-skale d-block">Building and improving business systems</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Data Migration Included</strong><span class="text-muted-skale d-block">Your existing spreadsheet work comes with you</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Team Training Included</strong><span class="text-muted-skale d-block">Your users are prepared before launch</span></div>
-                    <div class="col-lg-3 trust-item"><strong>Ongoing Support Available</strong><span class="text-muted-skale d-block">You are not left alone after setup</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">20+ Years of Experience</strong><span class="text-muted-skale d-block">Building and improving business systems</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Data Migration Included</strong><span class="text-muted-skale d-block">Your existing spreadsheet work comes with you</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Team Training Included</strong><span class="text-muted-skale d-block">Your users are prepared before launch</span></div>
+                    <div class="col-lg-3 trust-item"><strong class="text-light">Ongoing Support Available</strong><span class="text-muted-skale d-block">You are not left alone after setup</span></div>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width:900px">
                 <span class="eyebrow mb-3">When spreadsheets stop working</span>
-                <h2 class="display-5 fw-bold">Your Spreadsheet May Be Tracking the Work - But It Is Not Managing It</h2>
+                <h2 class="display-5 fw-bold text-light">Your Spreadsheet May Be Tracking the Work - But It Is Not Managing It</h2>
                 <p class="lead text-muted-skale">As teams and workloads grow, spreadsheets become harder to update, harder to trust, and harder to use for accountability.</p>
             </div>
 
@@ -172,7 +172,7 @@
         <div class="container">
             <div class="text-center mb-5">
                 <span class="eyebrow mb-3">Before and after</span>
-                <h2 class="display-5 fw-bold">From Spreadsheet Follow-Up to a System That Keeps Work Moving</h2>
+                <h2 class="display-5 fw-bold text-light">From Spreadsheet Follow-Up to a System That Keeps Work Moving</h2>
             </div>
 
             <div class="comparison">
@@ -281,7 +281,7 @@
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width:850px">
                 <span class="eyebrow mb-3">Platform guidance</span>
-                <h2 class="display-5 fw-bold">The Right Platform Is the One Your Team Will Actually Use</h2>
+                <h2 class="display-5 fw-bold text-light">The Right Platform Is the One Your Team Will Actually Use</h2>
                 <p class="lead text-muted-skale">The goal is not expensive software. It is the simplest system that supports your work now and as you grow.</p>
             </div>
 

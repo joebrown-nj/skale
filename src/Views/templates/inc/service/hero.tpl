@@ -42,7 +42,8 @@
                             <p class="mb-0">{$data.form.description}</p>
                         </div>
 
-                        <form action="{$data.form.action}" method="{$data.form.method}" class="{$data.form.class}" id="{$data.form.id}" data-meta-form-name="{$data.attributes.dataMetaFormName}" data-meta-success-event="{$data.attributes.dataMetaSuccessEvent}">
+                        <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="{$data.form.class} ajaxForm" id="{$data.form.id}" data-meta-form-name="{$data.attributes.dataMetaFormName}" data-meta-success-event="{$data.attributes.dataMetaSuccessEvent}">
+                            <input type="hidden" name="form_type" value="service-detail">
                             <div class="row g-3">
                                 {foreach from=$data.form.fields item=field}
                                     <div class="{$field.wrapperClass}">

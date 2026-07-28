@@ -16,6 +16,7 @@ data-meta-success-event="Contact"
 data-meta-success-custom-event="ContactFormSubmitted"
 data-meta-start-custom-event="ContactFormStarted"
 >
+<input type="hidden" name="form_type" value="contact">
 <div class="form-group mt-0">
     <label class="fs-5 mb-2" for="formName">Name</label>
     <input name="name" type="text" class="fs-5 required form-control" id="formName" required>

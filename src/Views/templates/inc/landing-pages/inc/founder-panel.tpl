@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-lg-9">
                     <span class="eyebrow mb-3">{$eyebrow}</span>
-                    <h2 class="display-6 fw-bold">{$h2}</h2>
+                    <h2 class="display-6 fw-bold text-light">{$h2}</h2>
                     <p class="lead text-muted-skale">{$p1}</p>
                     <p class="text-muted-skale mb-0">{$p2}</p>
                 </div>

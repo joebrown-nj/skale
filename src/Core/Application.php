@@ -7,9 +7,11 @@ use App\Controllers\UserController;
 use App\Core\Contracts\UserLocationProviderInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Contracts\ContactFormInterface;
 use App\Core\db\DatabaseORM;
 use App\Core\DI\Container;
 use App\Models\EmailModel;
+use App\Models\ContactModel;
 use Doctrine\ORM\EntityManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use Smarty\Smarty;
@@ -102,6 +104,10 @@ class Application
 
         $this->container->set(EmailServiceInterface::class, function () {
             return $this->container->get(EmailModel::class);
+        });
+
+        $this->container->set(ContactFormInterface::class, function () {
+            return $this->container->get(ContactModel::class);
         });
     }
 

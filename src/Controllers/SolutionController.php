@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\SolutionModel;
 use App\Models\PageContentModel;
+use App\Models\BlogModel;
 use App\Core\Contracts\ViewInterface;
 use App\Models\Entities\ServicePageEntity;
 
@@ -11,16 +12,20 @@ class SolutionController
 {
     private SolutionModel $SolutionModel;
     private PageContentModel $pageContentModel;
+    private BlogModel $blogModel;
     private ViewInterface $view;
 
-    public function __construct(SolutionModel $SolutionModel, PageContentModel $pageContentModel, ViewInterface $view) {
+    public function __construct(SolutionModel $SolutionModel, PageContentModel $pageContentModel, BlogModel $blogModel, ViewInterface $view) {
         $this->SolutionModel = $SolutionModel;
         $this->pageContentModel = $pageContentModel;
+        $this->blogModel = $blogModel;
         $this->view = $view;
     }
  
     public function index() {
-        $this->view->render('serviceList');
+        $this->view->render('serviceList', array(
+            'blogList' => $this->blogModel->getAllBlogs(null, 3),
+        ));
     }
 
     public function redirectLegacyServicesIndex(): string

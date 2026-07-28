@@ -3,6 +3,7 @@
 namespace Tests\Controllers;
 
 use App\Controllers\ContactController;
+use App\Core\Contracts\ContactFormInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Services\FormSubmissionService;
 use App\Core\Services\RequestBlocklistService;
@@ -53,5 +54,87 @@ final class ContactControllerTest extends TestCase
 
         $this->assertSame('{"error":"Unable to process request."}', $controller->submit($input));
         $this->assertSame(403, http_response_code());
+    }
+
+    public function testSubmitValidatesSavesEmailsAndRedirectsThroughSharedFlow(): void
+    {
+        $input = [
+            'form_type' => 'landing-page',
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'comment' => 'I need a new website.',
+        ];
+        $user = ['ipAddress' => '127.0.0.1'];
+
+        $contactModel = $this->createMock(ContactFormInterface::class);
+        $contactModel->expects($this->once())->method('validate')->with($input)->willReturn([]);
+        $contactModel->expects($this->once())->method('save')->with($input)->willReturn(true);
+
+        $formSubmissionService = $this->createMock(FormSubmissionService::class);
+        $formSubmissionService->expects($this->once())
+            ->method('handleContactSubmission')
+            ->with($input, $user, $_SERVER);
+
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->expects($this->once())
+            ->method('findMatchingSubmissionRule')
+            ->with($input, $_SERVER)
+            ->willReturn(null);
+
+        $view = $this->createMock(ViewInterface::class);
+        $view->expects($this->once())->method('getUser')->willReturn($user);
+
+        $controller = new ContactController(
+            $contactModel,
+            $formSubmissionService,
+            $requestBlocklistService,
+            $view
+        );
+
+        $this->assertSame(
+            '{"success":{"redirect":"\/thank-you"}}',
+            $controller->submit($input)
+        );
+    }
+
+    public function testNewsletterSubmissionIsNormalizedForTheSharedContactRecord(): void
+    {
+        $rawInput = [
+            'form_type' => 'newsletter',
+            'email' => 'reader@example.com',
+        ];
+        $normalizedInput = [
+            'form_type' => 'newsletter',
+            'email' => 'reader@example.com',
+            'name' => 'Newsletter Subscriber',
+            'subscribe' => 1,
+        ];
+
+        $contactModel = $this->createMock(ContactFormInterface::class);
+        $contactModel->expects($this->once())->method('validate')->with($normalizedInput)->willReturn([]);
+        $contactModel->expects($this->once())->method('save')->with($normalizedInput)->willReturn(true);
+
+        $formSubmissionService = $this->createMock(FormSubmissionService::class);
+        $formSubmissionService->expects($this->once())
+            ->method('handleContactSubmission')
+            ->with($normalizedInput, null, $_SERVER);
+
+        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService->method('findMatchingSubmissionRule')->willReturn(null);
+
+        $view = $this->createMock(ViewInterface::class);
+        $view->method('getUser')->willReturn(null);
+
+        $controller = new ContactController(
+            $contactModel,
+            $formSubmissionService,
+            $requestBlocklistService,
+            $view
+        );
+
+        $this->assertSame(
+            '{"success":{"redirect":"\/thank-you"}}',
+            $controller->submit($rawInput)
+        );
     }
 }

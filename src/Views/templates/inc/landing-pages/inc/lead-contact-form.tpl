@@ -18,7 +18,8 @@
 <button class="btn btn-primary w-100" data-meta-custom-event="LandingLeadSubmitClick" data-meta-label="landing lead submit button">{$buttonText}</button>
 </form> *}
 
-<form action="{$smarty.ENV.SITE_URL}post-lead-form" method="POST" class="ajaxForm" id="lead-form" data-meta-form-name="task-management-migration-form" data-meta-success-event="Lead">
+<form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm" id="lead-form" data-meta-form-name="task-management-migration-form" data-meta-success-event="Lead">
+    <input type="hidden" name="form_type" value="landing-page">
     <div class="mb-3"><label for="name" class="form-label fw-semibold">Name</label><input id="name" name="name" class="form-control" autocomplete="name" required></div>
 
     <div class="mb-3"><label for="email" class="form-label fw-semibold">Email</label><input id="email" name="email" type="email" class="form-control" autocomplete="email" required></div>
