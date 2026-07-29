@@ -94,7 +94,7 @@ return [
                 'cardClass' => 'lead-form-card lead-form-card-dark-accent',
                 'headerClass' => 'mb-4',
                 'badge' => 'Free 30-minute demand review',
-                'badgeClass' => 'badge rounded-pill bg-accent-subtle text-accent-emphasis border border-accent-subtle mb-3',
+                'badgeClass' => 'badge text-bg-light border mb-3',
                 'heading' => 'Find the biggest gap in your lead flow',
                 'headingTag' => 'h2',
                 'headingClass' => 'h3 mb-2',
@@ -205,7 +205,7 @@ return [
                 ],
                 'submit' => [
                     'label' => 'Request My Free Demand Review',
-                    'class' => 'btn btn-accent btn-lg w-100',
+                    'class' => 'btn btn-skale btn-lg w-100',
                 ],
                 'privacy' => [
                     'text' => 'No sales pressure. Your information stays private.',

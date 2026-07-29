@@ -61,11 +61,12 @@
         >
 
         <div id="overlay">
-            <div class="cv-spinner">
-                <span class="spinner">
-                    <img class="skale-up" src="{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo.png" alt="{$smarty.ENV.SITE_NAME}">
-                </span>
-            </div>
+            {* <div class="cv-spinner">
+            <span class="spinner">
+            <img class="skale-up" src="{$smarty.ENV.WEB_ROOT}images/circle-skale-up-logo.png" alt="{$smarty.ENV.SITE_NAME}">
+            </span>
+            </div> *}
+            <div class="loader"></div>
         </div>
 
         {include file="inc/layout/nav.tpl"}

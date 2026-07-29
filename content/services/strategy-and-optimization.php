@@ -85,7 +85,7 @@ return [
                 'cardClass' => 'lead-form-card lead-form-card-strategy',
                 'headerClass' => 'mb-4',
                 'badge' => 'Free 30-minute consultation',
-                'badgeClass' => 'badge rounded-pill bg-amber-subtle text-amber-emphasis border border-amber-subtle mb-3',
+                'badgeClass' => 'badge text-bg-light border mb-3',
                 'heading' => 'Find the biggest constraint on your growth',
                 'headingTag' => 'h2',
                 'headingClass' => 'h3 mb-2',
@@ -178,7 +178,7 @@ return [
                 ],
                 'submit' => [
                     'label' => 'Request My Free Growth Audit',
-                    'class' => 'btn btn-amber btn-lg w-100',
+                    'class' => 'btn btn-skale btn-lg w-100',
                 ],
                 'privacy' => [
                     'text' => 'No sales pressure. Your information stays private.',

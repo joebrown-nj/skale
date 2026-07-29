@@ -227,40 +227,40 @@
             <div class="row g-4">
                 <div class="col-md-6 col-xl">
                     <article class="process-card" data-aos="fade-left" data-aos-delay="100">
-                        <span class="number">1</span>
-                        <h3 class="h5 fw-bold text-dark">Discovery</h3>
+                        <span class="number py-1 px-2">1</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Discovery</h3>
                         <p class="text-muted-skale mb-0">Discuss your business, audience, current website, priorities, content, technical needs, and budget.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl">
                     <article class="process-card" data-aos="fade-left" data-aos-delay="150">
-                        <span class="number">2</span>
-                        <h3 class="h5 fw-bold text-dark">Project Planning</h3>
+                        <span class="number py-1 px-2">2</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Project Planning</h3>
                         <p class="text-muted-skale mb-0">Define scope, sitemap, features, content responsibilities, platform, schedule, and launch requirements.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl">
                     <article class="process-card" data-aos="fade-left" data-aos-delay="200">
-                        <span class="number">3</span>
-                        <h3 class="h5 fw-bold text-dark">Design</h3>
+                        <span class="number py-1 px-2">3</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Design</h3>
                         <p class="text-muted-skale mb-0">Create the page structure, visual direction, responsive layouts, and reusable interface patterns.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl">
                     <article class="process-card" data-aos="fade-left" data-aos-delay="250">
-                        <span class="number">4</span>
-                        <h3 class="h5 fw-bold text-dark">Development and Testing</h3>
+                        <span class="number py-1 px-2">4</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Development and Testing</h3>
                         <p class="text-muted-skale mb-0">Build the site, add content and functionality, connect integrations, and test across devices and browsers.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl">
                     <article class="process-card" data-aos="fade-left" data-aos-delay="300">
-                        <span class="number">5</span>
-                        <h3 class="h5 fw-bold text-dark">Launch and Support</h3>
+                        <span class="number py-1 px-2">5</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Launch and Support</h3>
                         <p class="text-muted-skale mb-0">Prepare the production environment, launch the website, resolve issues, and provide support or training.</p>
                     </article>
                 </div>

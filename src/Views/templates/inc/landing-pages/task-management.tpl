@@ -234,40 +234,40 @@
             <div class="row g-4">
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="100">
                     <article class="process-card">
-                        <span class="number">1</span>
-                        <h3 class="h5 fw-bold text-dark">Review</h3>
+                        <span class="number py-1 px-2">1</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Review</h3>
                         <p class="text-muted-skale mb-0">Examine what your spreadsheets track and where work gets lost.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="200">
                     <article class="process-card">
-                        <span class="number">2</span>
-                        <h3 class="h5 fw-bold text-dark">Design</h3>
+                        <span class="number py-1 px-2">2</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Design</h3>
                         <p class="text-muted-skale mb-0">Define projects, tasks, owners, stages, approvals, and reporting.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="300">
                     <article class="process-card">
-                        <span class="number">3</span>
-                        <h3 class="h5 fw-bold text-dark">Configure & Migrate</h3>
+                        <span class="number py-1 px-2">3</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Configure & Migrate</h3>
                         <p class="text-muted-skale mb-0">Build the workspace and move usable spreadsheet data.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="400">
                     <article class="process-card">
-                        <span class="number">4</span>
-                        <h3 class="h5 fw-bold text-dark">Test & Train</h3>
+                        <span class="number py-1 px-2">4</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Test & Train</h3>
                         <p class="text-muted-skale mb-0">Test real workflows and train your team around daily work.</p>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="500">
                     <article class="process-card">
-                        <span class="number">5</span>
-                        <h3 class="h5 fw-bold text-dark">Launch & Improve</h3>
+                        <span class="number py-1 px-2">5</span>
+                        <h3 class="h5 fw-bold text-dark mt-2">Launch & Improve</h3>
                         <p class="text-muted-skale mb-0">Support rollout, resolve issues, and refine the system.</p>
                     </article>
                 </div>

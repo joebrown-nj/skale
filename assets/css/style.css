@@ -3,6 +3,9 @@
 	--border: rgba(255, 255, 255, .08);
 	--borderHover: rgba(255, 255, 255, .12);
 	--muted: #cbd5e1;
+	--skale-orange: #fe8519;
+	--skale-dark: #07111f;
+	--skale-green: #2ee6a6;
 }
 
 @font-face {
@@ -112,12 +115,12 @@ body {
 }
 
 a {
-	color: #fe8519;
+	color: var(--skale-orange);
 	transition: 0.3s
 }
 
 a:hover {
-	color: #e67717
+	color: var(--skale-orange);
 }
 
 .cursor-pointer {
@@ -125,18 +128,18 @@ a:hover {
 }
 
 .brand-color {
-	color: #fe8519
+	color: var(--skale-orange);
 }
 
 .brand-color-bg-button {
-	background-color: #fe8519;
+	background-color: var(--skale-orange);;
 	color: #fff;
 	border-color: #dd7417
 }
 
 .brand-color-bg-button:hover {
 	background-color: #dd7417;
-	border-color: #fe8519;
+	border-color: var(--skale-orange);;
 	color: #fff
 }
 
@@ -297,10 +300,71 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	display: none;
-	background: rgb(0 0 0 / .6)
+	background: rgb(0 0 0 / .7)
 }
 
-.cv-spinner {
+/********************************************/
+
+/* HTML: <div class="loader"></div> */
+/* .loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50px;
+	margin: -20px 0 0 -30px;
+	aspect-ratio: 1;
+	--_c:no-repeat radial-gradient(farthest-side, var(--skale-orange) 92%, #0000);
+	background: 
+		var(--_c) top,
+		var(--_c) left,
+		var(--_c) right,
+		var(--_c) bottom;
+	background-size: 14px 14px;
+	animation: l7 1s infinite;
+}
+
+@keyframes l7 {to{transform: rotate(.5turn)}} */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+	width: 50px;
+	aspect-ratio: 1;
+	display: grid;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -20px 0 0 -30px;
+}
+
+.loader::before,
+.loader::after {    
+	content:"";
+	grid-area: 1/1;
+	--c:no-repeat radial-gradient(farthest-side, var(--skale-orange) 92%,#0000);
+	background: 
+		var(--c) 50%  0, 
+		var(--c) 50%  100%, 
+		var(--c) 100% 50%, 
+		var(--c) 0    50%;
+	background-size: 14px 14px;
+	animation: l12 1s infinite;
+}
+
+.loader::before {
+	margin: 4px;
+	filter: hue-rotate(145deg);
+	background-size: 8px 8px;
+	animation-timing-function: linear
+}
+
+@keyframes l12 { 
+  100%{transform: rotate(.5turn)}
+}
+
+/********************************************/
+
+
+/* .cv-spinner {
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -336,7 +400,7 @@ a:hover {
 		-webkit-transform: rotate(-360deg);
 		transform: rotate(-360deg)
 	}
-}
+} */
 
 .logo-bg {
 	background: url(/images/circle-skale-up-logo-bg.png);
@@ -483,7 +547,7 @@ a:hover {
 }
 
 .brand-color-bg {
-	background-color: #fe8519
+	background-color: var(--skale-orange);
 }
 
 .brand-color-bg .steps-vertical .step-vertical:hover {
@@ -806,8 +870,42 @@ a {
 }
 
 .demand-generation .hero {
+	background:
+		radial-gradient(circle at 10% 10%, rgba(156, 46, 230, 0.2), transparent 27%),
+		radial-gradient(circle at 90% 18%, rgba(145, 22, 217, 0.17), transparent 30%),
+		linear-gradient(145deg, #fdf9ff 0%, #faefff 55%, #fef6ff 100%);
+}
+
+.strategy-and-optimization .hero {
+	background:
+		radial-gradient(circle at 10% 10%, rgba(120, 230, 46, 0.2), transparent 27%),
+		radial-gradient(circle at 90% 18%, rgba(61, 217, 22, 0.17), transparent 30%),
+		linear-gradient(145deg, #fafff9 0%, #f0ffef 55%, #f6fff6 100%);
+}
+
+.automation-and-software .hero {
+	background:
+		radial-gradient(circle at 10% 10%, rgba(230, 187, 46, 0.2), transparent 27%),
+		radial-gradient(circle at 90% 18%, rgba(217, 165, 22, 0.17), transparent 30%),
+		linear-gradient(145deg, #fffdf9 0%, #fffbef 55%, #fffdf6 100%);
+}
+
+.btn-skale {
+	color: var(--skale-dark);
+	background: var(--skale-green);
+	border-color: var(--skale-green);
+}
+
+.btn-skale:hover, .btn-skale:focus {
+	color: var(--skale-dark);
+	background: #62efbd;
+	border-color: #62efbd;
+	transform: translateY(-1px);
+}
+
+/* .demand-generation .hero {
 	--s: 23px; /* control the size*/
-	--c1: #bbbed4;
+/*	--c1: #bbbed4;
 	--c2: #c9caf8;
 
 	--_l: #0000 46%,var(--c1) 47% 53%,#0000 54%;
@@ -821,7 +919,7 @@ a {
 
 .strategy-and-optimization .hero {
 	--s: 66px; /* control the size*/
-	--c1: #e1f5c4;
+/*	--c1: #e1f5c4;
 	--c2: #a7e5e7;
 
 	--_g:#0000, #0004 5%,
@@ -837,7 +935,7 @@ a {
 
 .automation-and-software .hero {
 	--s: 25px; /* control the size*/
-	--c1: #fff0e5;
+/*	--c1: #fff0e5;
 	--c2: #d8f0fe;
 	--c3: #f8dbcd;
 
@@ -853,7 +951,7 @@ a {
 	conic-gradient(from 180deg at 45% var(--_t)) calc(var(--s)/4) 0,
 	var(--c2);
 	background-size: var(--s) var(--s);
-}
+} */
 
 .hero {
 	position: relative;

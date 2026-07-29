@@ -1,8 +1,8 @@
 const offcanvasElement = document.getElementById('oCNav');
 const bsOffcanvas = offcanvasElement ? new bootstrap.Offcanvas(offcanvasElement) : null;
 
-const OVERLAY_FADE_MS = 300;
-const OVERLAY_HIDE_DELAY_MS = 250;
+const OVERLAY_FADE_MS = 350;
+const OVERLAY_HIDE_DELAY_MS = 350;
 const MENU_BAR_BG_CLASS = 'menu-bar-bg';
 let overlayRequestCount = 0;
 let overlayHideTimeoutId = null;
@@ -678,7 +678,7 @@ function shouldHandleAjaxLink(href) {
 
     const trimmedHref = href.trim();
     const normalizedHref = trimmedHref.toLowerCase();
-console.log('href:', href, 'normalizedHref:', normalizedHref);
+
     if (
         normalizedHref.startsWith('#')
         || normalizedHref.startsWith('mailto:')

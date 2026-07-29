@@ -4,7 +4,7 @@
             <div class="col-lg-7" data-aos="fade-up">
                 <span class="badge automation-badge rounded-pill px-3 py-2 mb-3">Automation & Software</span>
 
-                <h1 class="display-4 fw-bold mb-4">
+                <h1 class="display-4 fw-bold mb-4 text-white">
                     Automate the Work That Slows Your Business Down
                 </h1>
 
@@ -41,7 +41,7 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-5" data-aos="fade-up">
                 <span class="text-uppercase fw-bold automation-accent small">Why Businesses Work With Skale</span>
-                <h2 class="display-6 fw-bold mt-2">Manual Work Is Expensive, Even When It Looks Small</h2>
+                <h2 class="display-6 fw-bold mt-2 text-white">Manual Work Is Expensive, Even When It Looks Small</h2>
                 <p class="fs-5 text-secondary">A few minutes wasted here and there can turn into hours of lost productivity every week. Skale helps you identify the repetitive tasks, broken handoffs, and disconnected systems that quietly slow your business down.</p>
             </div>
 
@@ -246,7 +246,7 @@
     <div class="container py-5">
         <div class="row align-items-center g-5" data-aos="fade-up">
             <div class="col-lg-7">
-                <h2 class="display-6 fw-bold">Built for More Than One-Off Automation</h2>
+                <h2 class="display-6 fw-bold text-white">Built for More Than One-Off Automation</h2>
                 <p class="lead text-white-50">At Skale, automation is part of a bigger growth infrastructure strategy. We connect your website, CRM, marketing, reporting, and internal operations so your business can run more efficiently and generate better results.</p>
             </div>
 

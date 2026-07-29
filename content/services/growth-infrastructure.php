@@ -169,7 +169,7 @@ return [
                 ],
                 'submit' => [
                     'label' => 'Request My Free Review',
-                    'class' => 'btn btn-primary btn-lg w-100',
+                    'class' => 'btn btn-skale btn-lg w-100',
                 ],
                 'privacy' => [
                     'text' => 'No sales pressure. Your information stays private.',
