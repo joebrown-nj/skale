@@ -1045,11 +1045,6 @@ $(document).on('scroll', function handleScroll() {
     $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, scrollTop >= heightThreshold);
 });
 
-// addEventListener('popstate', (event) => {
-//     if (document.location.hash !== "") return;
-//     else handlePopState(); //doWhatEverYouWant();
-// });
-
 function scrollToEl(target) {
     console.log(target);
     const scrollToEl = $(target);
