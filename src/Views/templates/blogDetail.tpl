@@ -2,12 +2,6 @@
 
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true">
 
-{* <div class="share-sidebar">
-<a href="#"><i class="bi bi-twitter-x"></i></a>
-<a href="#"><i class="bi bi-linkedin"></i></a>
-<a href="#"><i class="bi bi-facebook"></i></a>
-</div> *}
-
 <section class="bg-dark text-white py-5" style="{$data.blogDetail->heroStyle}">
     <div class="container">
         <div class="row justify-content-center">

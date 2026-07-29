@@ -7,12 +7,49 @@ footer {
     display: none;
 }
 
+/* *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+} */
+
+body{
+    /* font-family:'Inter',sans-serif; */
+    background:#081120;
+    color:#fff;
+    /* min-height:100vh; */
+    /* overflow:hidden; */
+    position:relative;
+}
+
+/* Background glow effects */
+
+.thank-you-page::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#2563eb33,transparent 70%);
+    top:-200px;
+    left:-100px;
+}
+
+.thank-you-page::after{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#3b82f633,transparent 70%);
+    bottom:-250px;
+    right:-100px;
+}
+
 .thank-you-page {
     position: relative;
     overflow: hidden;
 }
 
-.thank-you-page::before {
+/* .thank-you-page::before {
     content: '';
     position: absolute;
     width: 500px;
@@ -30,7 +67,7 @@ footer {
     background: radial-gradient(circle, #3b82f633, transparent 70%);
     bottom: -250px;
     right: -100px;
-}
+} */
 
 .thank-you-page .card {
     position: relative;

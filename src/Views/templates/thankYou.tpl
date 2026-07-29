@@ -17,7 +17,7 @@
                     &check;
                 </div>
 
-                <h1>Thank You.<br> <span class="gradient">Let's Scale Together.</span></h1>
+                <h1 class="text-white">Thank You.<br> <span class="gradient">Let's Scale Together.</span></h1>
                 <p>We've received your request and our team will review your information shortly. We're excited to learn more about your goals and explore how Skale can help grow your business.</p>
 
                 <div class="actions">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="next">
-                    <h3>What happens next?</h3>
+                    <h3 class="text-white">What happens next?</h3>
 
                     <div class="trust-list">
                         <div class="trust-item">&check; We review your request</div>

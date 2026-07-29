@@ -12,7 +12,6 @@
 
                 <div class="d-flex gap-2 flex-wrap mt-4">
                     <a href="{$smarty.ENV.SITE_URL}blog/archive" class="mbtn btn btn-primary rounded-pill px-4">Latest Articles</a>
-                    {* <a href="#subscribe" class="btn btn-outline-light rounded-pill px-4">Subscribe</a> *}
                 </div>
             </div>
 

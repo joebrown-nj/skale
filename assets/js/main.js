@@ -858,7 +858,7 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
     if (sourceElement) {
         logButtonClick(sourceElement);
     }
-
+console.log('Fetching page content for slug:', slug, 'with query string:', queryString);
     showOverlay();
 
     $.ajax({
@@ -881,7 +881,7 @@ function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory =
 function handlePopState(event) {
     const page = event.state?.page ?? window.location.pathname ?? '/';
     const queryString = event.state?.queryString ?? window.location.search.replace(/^\?/, '');
-
+console.log('Handling popstate for page:', page, 'with query string:', queryString);
     ajaxGetPageContent(page, queryString, event, false);
 }
 
@@ -1005,7 +1005,7 @@ $(document).on('click', '.mbtn', function handleMenuClick(event) {
     }
 
     const { slug, queryString } = parseLinkUrl(href);
-
+console.log('Menu button clicked. Slug:', slug, 'Query String:', queryString);
     ajaxGetPageContent(slug, queryString, event);
     bsOffcanvas?.hide();
     // $('.navbar .navbar-toggler').addClass('collapsed');
@@ -1044,6 +1044,17 @@ $(document).on('scroll', function handleScroll() {
 
     $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, scrollTop >= heightThreshold);
 });
+
+// addEventListener('popstate', (event) => {
+//     if (document.location.hash !== "") return;
+//     else handlePopState(); //doWhatEverYouWant();
+// });
+
+function scrollToEl(target) {
+    console.log(target);
+    const scrollToEl = $(target);
+    $('html').animate({ scrollTop: scrollToEl.offset().top }, 800);
+}
 
 window.onpopstate = handlePopState;
 initializeHistoryState();

@@ -125,7 +125,7 @@
 
 <div class="bg-gradient container-fluid home-callout home-callout-bg parallax">
     <div class="row justify-content-center px-4 py-4">
-        {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogFeatured=$data.blogFeatured blogContent=$data.blogContent limit=6}
+        {include file="inc/blog/blogListContainer.tpl" blogCategories=$data.blogCategories blogList=$data.blogList blogFeatured=$data.blogFeatured blogContent=$data.blogContent limit=6}
     </div>
 </div>
 

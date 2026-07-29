@@ -33,7 +33,7 @@
                     <p class="hero-copy mb-4">Skale connects websites, marketing, software, automation, analytics, and strategy into a growth system built around how your business actually works.</p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         <a class="mbtn btn btn-skale btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Growth Strategy Session</a>
-                        <a class="btn btn-outline-skale btn-lg" href="#explore">Explore Solutions <i class="bi bi-arrow-down ms-1"></i></a>
+                        <button class="btn btn-outline-skale btn-lg" onclick="scrollToEl('#explore')">Explore Solutions <i class="bi bi-arrow-down ms-1"></i></button>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
         </div>
     </header>
 
-    <section id="problems" class="section-padding">
+    <section id="explore" class="section-padding">
         <div class="container">
             <div class="row justify-content-between align-items-end mb-5 g-4">
                 <div class="col-lg-7">
@@ -57,7 +57,9 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <p class="text-secondary mb-0">Start with the problem you recognize. We will help you find the right path forward.</p>
+                    <div class="service-card">
+                        <p class="text-secondary mb-0">Start with the problem you recognize. We will help you find the right path forward.</p>
+                    </div>
                 </div>
             </div>
 
