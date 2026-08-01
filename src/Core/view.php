@@ -66,6 +66,7 @@ class View implements ViewInterface
     {
         $page = $this->pageContextProvider->resolve($this->uri);
 
+        $this->smarty->clearAllCache();
         $this->smarty->assign($this->siteDataCache->getSharedData());
         $this->smarty->assign('page', $page);
         $this->smarty->assign('data', $data);

@@ -10,7 +10,7 @@
 
                     <div class="{$data.buttons.wrapperClass}">
                         {foreach from=$data.buttons.items item=button}
-                            <a class="{$button.class}" href="{$button.href}">{$button.label}</a>
+                            <a class="{$button.class}" href="{$button.url}">{$button.label}</a>
                         {/foreach}
                     </div>
 

@@ -58,7 +58,7 @@ return [
                 'ariaLabel' => 'Demand generation benefits',
                 'iconClass' => 'bi bi-check-circle-fill text-accent',
                 'items' => [
-                    'Strategy built around revenue—not vanity metrics',
+                    'Strategy built around revenue - not vanity metrics',
                     'Channels that reinforce one another',
                     'Clear reporting from first click to qualified lead',
                 ],
@@ -457,7 +457,7 @@ return [
             'description' => 'A service business was driving traffic through paid ads while managing follow-up manually and evaluating success through platform-level metrics. The opportunity was not simply to spend more. It was to connect the campaign message, landing page, lead capture, response process, and reporting.',
             'descriptionClass' => 'mt-3',
             'lessonLabel' => 'The lesson:',
-            'lesson' => 'Demand generation improves when every step—from first impression to sales follow-up—is designed as one system.',
+            'lesson' => 'Demand generation improves when every step - from first impression to sales follow-up - is designed as one system.',
             'lessonClass' => 'mb-0',
             'metricsRowClass' => 'row g-3',
             'metricColumnClass' => 'col-6',
@@ -676,7 +676,7 @@ return [
             'columnClass' => 'col-lg-9',
             'badge' => 'Build demand with clarity',
             'badgeClass' => 'badge rounded-pill bg-accent-subtle text-accent-emphasis mb-3',
-            'heading' => 'Find out why your marketing is creating activity—but not enough pipeline.',
+            'heading' => 'Find out why your marketing is creating activity but not enough pipeline.',
             'headingTag' => 'h2',
             'description' => 'Schedule a free demand review to talk through your audience, channels, conversion path, follow-up, and the most valuable place to improve first.',
             'descriptionClass' => 'lead mt-3 mb-4',
@@ -685,7 +685,7 @@ return [
                 'items' => [
                     [
                         'label' => 'Book My Free Demand Review',
-                        'url' => '#consultation',
+                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
                         'class' => 'btn btn-accent btn-lg',
                         'iconClass' => null,
                     ],

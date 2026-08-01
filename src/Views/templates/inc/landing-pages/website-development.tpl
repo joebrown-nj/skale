@@ -225,40 +225,40 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-xl">
-                    <article class="process-card" data-aos="fade-left" data-aos-delay="100">
+                <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="100">
+                    <article class="process-card service-card">
                         <span class="number py-1 px-2">1</span>
                         <h3 class="h5 fw-bold text-dark mt-2">Discovery</h3>
                         <p class="text-muted-skale mb-0">Discuss your business, audience, current website, priorities, content, technical needs, and budget.</p>
                     </article>
                 </div>
 
-                <div class="col-md-6 col-xl">
-                    <article class="process-card" data-aos="fade-left" data-aos-delay="150">
+                <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="150">
+                    <article class="process-card service-card">
                         <span class="number py-1 px-2">2</span>
                         <h3 class="h5 fw-bold text-dark mt-2">Project Planning</h3>
                         <p class="text-muted-skale mb-0">Define scope, sitemap, features, content responsibilities, platform, schedule, and launch requirements.</p>
                     </article>
                 </div>
 
-                <div class="col-md-6 col-xl">
-                    <article class="process-card" data-aos="fade-left" data-aos-delay="200">
+                <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="200">
+                    <article class="process-card service-card">
                         <span class="number py-1 px-2">3</span>
                         <h3 class="h5 fw-bold text-dark mt-2">Design</h3>
                         <p class="text-muted-skale mb-0">Create the page structure, visual direction, responsive layouts, and reusable interface patterns.</p>
                     </article>
                 </div>
 
-                <div class="col-md-6 col-xl">
-                    <article class="process-card" data-aos="fade-left" data-aos-delay="250">
+                <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="250">
+                    <article class="process-card service-card">
                         <span class="number py-1 px-2">4</span>
                         <h3 class="h5 fw-bold text-dark mt-2">Development and Testing</h3>
                         <p class="text-muted-skale mb-0">Build the site, add content and functionality, connect integrations, and test across devices and browsers.</p>
                     </article>
                 </div>
 
-                <div class="col-md-6 col-xl">
-                    <article class="process-card" data-aos="fade-left" data-aos-delay="300">
+                <div class="col-md-6 col-xl" data-aos="fade-left" data-aos-delay="300">
+                    <article class="process-card service-card">
                         <span class="number py-1 px-2">5</span>
                         <h3 class="h5 fw-bold text-dark mt-2">Launch and Support</h3>
                         <p class="text-muted-skale mb-0">Prepare the production environment, launch the website, resolve issues, and provide support or training.</p>

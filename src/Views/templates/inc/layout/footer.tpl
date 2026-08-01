@@ -4,143 +4,17 @@
 {if (isset($footer) && $footer === 'false')}
 
 {else}
-    {*
-    <footer class="logo-bg text-center text-lg-start bg-body-tertiary text-muted">
-    <section class="footer-social-strip d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <div class="me-5 d-none d-lg-block">
-    <span>Get connected:</span>
-    </div>
-
-    <div>
-    {if isset($smarty.ENV.FACEBOOK_PAGE_URL) && $smarty.ENV.FACEBOOK_PAGE_URL != ''}
-    <a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on Facebook" target="_blank" href="{$smarty.ENV.FACEBOOK_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.TWITTER_PAGE_URL) && $smarty.ENV.TWITTER_PAGE_URL != ''}
-    <a target="_blank" href="{$smarty.ENV.TWITTER_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-twitter"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.GOOGLE_PAGE_URL) && $smarty.ENV.GOOGLE_PAGE_URL != ''}
-    <a target="_blank" href="{$smarty.ENV.GOOGLE_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-google"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.INSTAGRAM_PAGE_URL) && $smarty.ENV.INSTAGRAM_PAGE_URL != ''}
-    <a target="_blank" href="{$smarty.ENV.INSTAGRAM_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-instagram"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.LINKEDIN_PAGE_URL) && $smarty.ENV.LINKEDIN_PAGE_URL != ''}
-    <a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on LinkedIn" target="_blank" target="_blank" href="{$smarty.ENV.LINKEDIN_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-linkedin"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.GITHUB_PAGE_URL) && $smarty.ENV.GITHUB_PAGE_URL != ''}
-    <a target="_blank" href="{$smarty.ENV.GITHUB_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-github"></i></a>
-    {/if}
-
-    {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
-    <a aria-label="Call Skale" target="_blank" href="tel:{$smarty.ENV.SITE_PHONE}" class="me-4 text-reset"><i class="fa-solid fa-phone"></i></a>
-    {/if}
-    </div>
-    </section>
-
-    <section class="border-top">
-    <div class="container-fluid text-center text-md-start mt-5">
-    <div class="row mt-3">
-    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id="subscribe">
-    <h6 class="text-uppercase fw-bold mb-4"></i>Subscribe to our newsletter</h6>
-    <form
-    id="newsletterForm"
-    class="mb-4 ajaxForm"
-    method="POST"
-    action="{$smarty.ENV.WEB_ROOT}contact-form"
-    data-meta-form-name="newsletter-form"
-    data-meta-success-event="CompleteRegistration"
-    data-meta-success-custom-event="NewsletterSubscribed"
-    data-meta-start-custom-event="NewsletterSignupStarted"
-    >
-    <input type="hidden" name="form_type" value="newsletter">
-    <p>Monthly digest of what's new and exciting from us.</p>
-    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-    <label for="email" class="visually-hidden">Email address</label>
-    <input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
-    <button class="btn btn-primary" type="submit" data-meta-custom-event="NewsletterSubscribeClick" data-meta-label="newsletter subscribe button">Subscribe</button>
-    </div>
-    </form>
-    </div>
-
-    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
-    <h6 class="text-uppercase fw-bold mb-4">Solutions</h6>
-    <div class="row">
-    {foreach from=$serviceList key=key item=service}
-    <div class="col-md-6">
-    <p>
-    <a aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn text-reset">
-    {$service->title}
-    </a>
-    </p>
-    </div>
-    {/foreach}
-    </div>
-    </div>
-
-    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-    {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
-    {include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}
-    {/if}
-
-    {include file="inc/buttons/emailLink.tpl" email=$smarty.ENV.SITE_EMAIL type="link"}
-
-    <p>
-    <i class="fa-solid fa-location-dot"></i>
-    <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact link">Contact Us</a>
-    </p>
-    </div>
-    </div>
-    </div>
-    </section>
-
-    <div class="footer-legal-strip p-4">
-    <div class="row">
-    <div class="col-md-4 mb-0 text-body-secondary">
-    <p class="p-3 m-0">
-    &copy; {$smarty.now|date_format:"Y"}
-    <a class="text-reset fw-bold" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>
-    </p>
-    </div>
-
-    <div class="col-md-4 mb-0 text-body-secondary text-center">
-    {include file="inc/layout/mainLogo.tpl" class="footer-logo"}
-    </div>
-
-    <div class="col-md-4">
-    <ul class="nav justify-content-end">
-    {foreach from=$footerNav item=item key=key name=name}
-    <li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
-    <a
-    aria-describedby="footer nav {$item.title}"
-    href="{$smarty.ENV.SITE_URL}{$item.url}"
-    class="text-body-secondary mbtn {$item.class} {if $p1 == $item.url}active{/if}"
-    >
-    {$item.title}
-    </a>
-    </li>
-    {/foreach}
-    </ul>
-    </div>
-    </div>
-    </div>
-    </footer>
-    *}
-
     <footer class="section-space-sm">
         <div class="container">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
-                    <a class="navbar-brand text-white" href="/">skale<span>.</span></a>
-                    <p class="mt-3 mb-0">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
+                    {* <a class="navbar-brand text-white" href="/">skale<span>.</span></a> *}
+                    <a class="footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
+                    <p class="mt-3 mb-4">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
+                    <a aria-describedby="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
                 </div>
 
-                <div class="col-6 col-lg-3">
+                <div class="col-6 col-lg-2 ms-lg-auto">
                     <h2 class="h6 text-white">Solutions</h2>
                     <ul class="list-unstyled mb-0">
                         {foreach from=$serviceList key=key item=service}
@@ -159,7 +33,7 @@
                         </li>
 
                         <li class="mb-2">
-                            <a href="{$smarty.ENV.SITE_URL}blog" class="mbtn" aria-describedby="footer blog">Blog</a>
+                            <a href="{$smarty.ENV.SITE_URL}blog" class="mbtn" aria-describedby="footer blog">Insights</a>
                         </li>
 
                         <li class="mb-2">
@@ -168,13 +42,14 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <h2 class="h6 text-white">Contact</h2>
                     {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
-                        <p class="mb-1">{include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}</p>
+                        <p class="mb-2">{include file="inc/buttons/phoneLink.tpl" type="link"}</p>
                     {/if}
 
-                    <p class="mb-0">{include file="inc/buttons/emailLink.tpl" email=$smarty.ENV.SITE_EMAIL type="link"}</p>
+                    <p class="mb-3">{include file="inc/buttons/emailLink.tpl" type="link"}</p>
+                    <p class="small mb-0">Serving growing businesses in New Jersey and across the United States.</p>
 
                     <!-- p class="mb-0">
                     {* <i class="fa-solid fa-location-dot"></i> *}
@@ -201,6 +76,11 @@
         </div>
     </footer>
 
+    <!-- Mobile sticky CTA -->
+    <div class="d-lg-none sticky-mobile-cta">
+        <a aria-describedby="footer mobile contact button" class="mbtn btn btn-primary w-100" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Strategy Session</a>
+    </div>
+
     <!-- Back to top button -->
     <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
         <i class="fas fa-arrow-up"></i>
@@ -213,3 +93,217 @@
 </body>
 </html>
 {/if}
+
+{*
+<footer class="logo-bg text-center text-lg-start bg-body-tertiary text-muted">
+<section class="footer-social-strip d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+<div class="me-5 d-none d-lg-block">
+<span>Get connected:</span>
+</div>
+
+<div>
+{if isset($smarty.ENV.FACEBOOK_PAGE_URL) && $smarty.ENV.FACEBOOK_PAGE_URL != ''}
+<a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on Facebook" target="_blank" href="{$smarty.ENV.FACEBOOK_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
+{/if}
+
+{if isset($smarty.ENV.TWITTER_PAGE_URL) && $smarty.ENV.TWITTER_PAGE_URL != ''}
+<a target="_blank" href="{$smarty.ENV.TWITTER_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-twitter"></i></a>
+{/if}
+
+{if isset($smarty.ENV.GOOGLE_PAGE_URL) && $smarty.ENV.GOOGLE_PAGE_URL != ''}
+<a target="_blank" href="{$smarty.ENV.GOOGLE_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-google"></i></a>
+{/if}
+
+{if isset($smarty.ENV.INSTAGRAM_PAGE_URL) && $smarty.ENV.INSTAGRAM_PAGE_URL != ''}
+<a target="_blank" href="{$smarty.ENV.INSTAGRAM_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-instagram"></i></a>
+{/if}
+
+{if isset($smarty.ENV.LINKEDIN_PAGE_URL) && $smarty.ENV.LINKEDIN_PAGE_URL != ''}
+<a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on LinkedIn" target="_blank" target="_blank" href="{$smarty.ENV.LINKEDIN_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-linkedin"></i></a>
+{/if}
+
+{if isset($smarty.ENV.GITHUB_PAGE_URL) && $smarty.ENV.GITHUB_PAGE_URL != ''}
+<a target="_blank" href="{$smarty.ENV.GITHUB_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-github"></i></a>
+{/if}
+
+{if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
+<a aria-label="Call Skale" target="_blank" href="tel:{$smarty.ENV.SITE_PHONE}" class="me-4 text-reset"><i class="fa-solid fa-phone"></i></a>
+{/if}
+</div>
+</section>
+
+<section class="border-top">
+<div class="container-fluid text-center text-md-start mt-5">
+<div class="row mt-3">
+<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" id="subscribe">
+<h6 class="text-uppercase fw-bold mb-4"></i>Subscribe to our newsletter</h6>
+<form
+id="newsletterForm"
+class="mb-4 ajaxForm"
+method="POST"
+action="{$smarty.ENV.WEB_ROOT}contact-form"
+data-meta-form-name="newsletter-form"
+data-meta-success-event="CompleteRegistration"
+data-meta-success-custom-event="NewsletterSubscribed"
+data-meta-start-custom-event="NewsletterSignupStarted"
+>
+<input type="hidden" name="form_type" value="newsletter">
+<p>Monthly digest of what's new and exciting from us.</p>
+<div class="d-flex flex-column flex-sm-row w-100 gap-2">
+<label for="email" class="visually-hidden">Email address</label>
+<input id="email" name="email" type="email" class="required form-control" placeholder="Email address">
+<button class="btn btn-primary" type="submit" data-meta-custom-event="NewsletterSubscribeClick" data-meta-label="newsletter subscribe button">Subscribe</button>
+</div>
+</form>
+</div>
+
+<div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+<h6 class="text-uppercase fw-bold mb-4">Solutions</h6>
+<div class="row">
+{foreach from=$serviceList key=key item=service}
+<div class="col-md-6">
+<p>
+<a aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}" class="link-underline link-underline-opacity-0 mbtn text-reset">
+{$service->title}
+</a>
+</p>
+</div>
+{/foreach}
+</div>
+</div>
+
+<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+<h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+{if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
+{include file="inc/buttons/phoneLink.tpl" phone=$smarty.ENV.SITE_PHONE type="link"}
+{/if}
+
+{include file="inc/buttons/emailLink.tpl" email=$smarty.ENV.SITE_EMAIL type="link"}
+
+<p>
+<i class="fa-solid fa-location-dot"></i>
+<a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact link">Contact Us</a>
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="footer-legal-strip p-4">
+<div class="row">
+<div class="col-md-4 mb-0 text-body-secondary">
+<p class="p-3 m-0">
+&copy; {$smarty.now|date_format:"Y"}
+<a class="text-reset fw-bold" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>
+</p>
+</div>
+
+<div class="col-md-4 mb-0 text-body-secondary text-center">
+{include file="inc/layout/mainLogo.tpl" class="footer-logo"}
+</div>
+
+<div class="col-md-4">
+<ul class="nav justify-content-end">
+{foreach from=$footerNav item=item key=key name=name}
+<li class="{$item.url|replace:'/':'-'} nav-link px-2 text-body-secondary {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
+<a
+aria-describedby="footer nav {$item.title}"
+href="{$smarty.ENV.SITE_URL}{$item.url}"
+class="text-body-secondary mbtn {$item.class} {if $p1 == $item.url}active{/if}"
+>
+{$item.title}
+</a>
+</li>
+{/foreach}
+</ul>
+</div>
+</div>
+</div>
+</footer>
+*}
+
+<!-- Footer -->
+{* <footer class="pt-5 pb-4">
+<div class="container">
+<div class="row g-4 pb-4">
+<div class="col-lg-5">
+<a class="footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
+<p class="mt-3 mb-4" style="max-width: 480px;">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
+<a class="btn btn-outline-light" href="#contact">Start a Conversation</a>
+</div>
+<div class="col-6 col-lg-2 ms-lg-auto">
+<h5>Solutions</h5>
+<ul class="list-unstyled">
+<li class="mb-2"><a href="/solutions/growth-infrastructure">Growth Infrastructure</a></li>
+<li class="mb-2"><a href="/solutions/automation-and-software">Automation &amp; Software</a></li>
+<li class="mb-2"><a href="/solutions/demand-generation">Demand Generation</a></li>
+<li class="mb-2"><a href="/solutions/strategy-and-optimization">Strategy &amp; Optimization</a></li>
+</ul>
+</div>
+<div class="col-6 col-lg-2">
+<h5>Company</h5>
+<ul class="list-unstyled">
+<li class="mb-2"><a href="/about">About</a></li>
+<li class="mb-2"><a href="/blog">Insights</a></li>
+<li class="mb-2"><a href="/contact">Contact</a></li>
+<li class="mb-2"><a href="/privacy-policy">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-lg-3">
+<h5>Contact</h5>
+<p class="mb-2"><a href="tel:+17329254044"><i class="bi bi-telephone me-2"></i>732-925-4044</a></p>
+<p class="mb-3"><a href="mailto:info@skaleup.it.com"><i class="bi bi-envelope me-2"></i>info@skaleup.it.com</a></p>
+<p class="small mb-0">Serving growing businesses in New Jersey and across the United States.</p>
+</div>
+</div>
+<hr class="border-secondary" />
+<div class="d-md-flex justify-content-between align-items-center pt-2">
+<p class="small mb-2 mb-md-0">© <span id="currentYear"></span> skaleup.it.com. All rights reserved.</p>
+<p class="small mb-0">Where engineering meets growth.</p>
+</div>
+</div>
+</footer> *}
+
+{* <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({
+duration: 700,
+easing: "ease-out-cubic",
+once: true,
+offset: 80,
+disable: function() {
+return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+});
+
+const navbar = document.getElementById("mainNav");
+
+function updateNavbar() {
+navbar.classList.toggle("scrolled", window.scrollY > 24);
+}
+
+updateNavbar();
+window.addEventListener("scroll", updateNavbar, {
+passive: true
+});
+
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+// Close mobile navigation after clicking an in-page link.
+document.querySelectorAll("#navbarContent a[href^='#']").forEach(function(link) {
+link.addEventListener("click", function() {
+const navCollapse = document.getElementById("navbarContent");
+const collapse = bootstrap.Collapse.getInstance(navCollapse);
+
+if (collapse) {
+collapse.hide();
+}
+});
+});
+</script>
+</body>
+
+</html> *}

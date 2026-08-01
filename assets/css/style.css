@@ -196,14 +196,23 @@ a:hover {
 	}
 }
 
+.menu-bar .navbar-nav {
+	display: none !important;
+}
+
+.menu-bar-bg .navbar-nav {
+	display: flex !important;
+}
+
 .menu-bar-bg {
 	/* background: rgb(27 31 34 / .85);
 	backdrop-filter: blur(2px);
 	box-shadow: 0 2px 4px rgb(0 0 0 / .1) */
-	background: rgba(255, 255, 255, .92);
+	background: rgba(255, 255, 255, .90);
 	border-bottom: 1px solid rgba(223, 230, 238, .85);
 	backdrop-filter: blur(14px);
 	--bs-navbar-padding-y: 1rem;
+	transition: all 0.3s ease-in-out;
 
 	.main-logo,
 	.main-logo:hover {
@@ -237,7 +246,7 @@ a:hover {
 }
 
 .form-control {
-	max-width: 500px
+	/* max-width: 500px */
 }
 
 .custom-btn:hover {
@@ -1329,6 +1338,16 @@ footer a:hover {
 	color: var(--skale-green);
 }
 
+footer .footer-brand {
+	color: white;
+	font: 800 2rem/1 "Manrope", sans-serif;
+	letter-spacing: -.08em;
+}
+
+footer .brand-dot {
+	color: var(--skale-green);
+}
+
 .sticky-mobile-cta {
 	display: none;
 }
@@ -1485,6 +1504,25 @@ a {
 
 .navbar-brand span {
 	color: var(--skale-green);
+}
+
+.dropdown-menu {
+	min-width: 18rem;
+	padding: .75rem;
+	border: 1px solid var(--skale-border);
+	border-radius: 1rem;
+	box-shadow: var(--skale-shadow);
+}
+
+.dropdown-item {
+	padding: .75rem .85rem;
+	border-radius: .65rem;
+	font-weight: 600;
+}
+
+.dropdown-item:hover {
+	background: var(--skale-light);
+	color: var(--skale-blue);
 }
 
 .nav-link {

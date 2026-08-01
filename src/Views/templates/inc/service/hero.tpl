@@ -52,20 +52,25 @@
                                         <div class="{$field.wrapperClass}">
                                             <label class="{$field.labelClass}" for="{$field.id}">{$field.label}</label>
                                             {if $field.type == 'select'}
-                                                <select class="{$field.inputClass}" id="{$field.id}" name="{$field.name}" {$field.attributes}>
+                                                {* {$field.attributes} *}
+                                                {* {$option.selected} *}
+                                                <select class="{$field.inputClass}" id="{$field.id}" name="{$field.name}">
                                                     {foreach from=$field.options item=option}
-                                                        <option value="{$option.value}" {$option.selected}>{$option.label}</option>
+                                                        <option value="{$option.value}">{$option.label}</option>
                                                     {/foreach}
                                                 </select>
                                                 {elseif $field.type == 'textarea'}
-                                                <textarea placeholder="{$field.placeholder}" class="{$field.inputClass}" id="{$field.id}" name="{$field.name}" rows="{$field.rows}" {$field.attributes}>{$field.value}</textarea>
+                                                {* {$field.attributes} *}
+                                                <textarea placeholder="{$field.placeholder}" class="{$field.inputClass}" id="{$field.id}" name="{$field.name}" rows="{$field.rows}"></textarea>
+                                                {* {$field.value} *}
                                                 {* {elseif $field.type == 'checkbox'}
                                                 <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="{$field.id}" name="{$field.name}" {$field.attributes}>
                                                 <label class="form-check-label" for="{$field.id}">{$field.label}</label>
                                                 </div> *}
                                             {else}
-                                                <input class="{$field.inputClass}" id="{$field.id}" name="{$field.name}" type="{$field.type}" autocomplete="{$field.autocomplete}" {$field.attributes}>
+                                                {* {$field.attributes} *}
+                                                <input class="{$field.inputClass}" id="{$field.id}" name="{$field.name}" type="{$field.type}" autocomplete="{$field.autocomplete}">
                                             {/if}
                                         </div>
                                     {/if}
@@ -73,7 +78,7 @@
                             </div>
 
                             <div class="col-12 d-grid">
-                                <button class="{$data.form.submit.class} {$data.form.submit.sizeClass}" type="submit">{$data.form.submit.label}</button>
+                                <button class="{$data.form.submit.class}" type="submit">{$data.form.submit.label}</button>
                             </div>
 
                             <p class="{$data.form.privacy.class}">

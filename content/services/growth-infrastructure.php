@@ -632,7 +632,7 @@ return [
                 'items' => [
                     [
                         'label' => 'Book My Free Consultation',
-                        'url' => '#consultation',
+                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
                         'class' => 'btn btn-primary btn-lg',
                         'iconClass' => null,
                     ],

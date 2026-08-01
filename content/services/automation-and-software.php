@@ -359,7 +359,7 @@ return [
             'headingClass' => 'h3',
             'description' => 'Skale is led by Joe Brown, a technology and growth partner with more than 20 years of experience building software, modernizing platforms, automating workflows, integrating systems, and leading complex technical initiatives.',
             'descriptionClass' => 'mb-2',
-            'emphasis' => 'You receive direct senior-level guidance focused on the business result first—and the appropriate technology second.',
+            'emphasis' => 'You receive direct senior-level guidance focused on the business result first and the appropriate technology second.',
             'emphasisClass' => 'mb-0 text-dark',
             'cta' => ['label' => 'Learn About Skale', 'url' => '/about', 'class' => 'btn btn-outline-dark'],
         ],
@@ -387,7 +387,7 @@ return [
                 ['title' => 'Your team spends too much time on repeatable administrative work.', 'description' => 'Employees are copying data, preparing routine reports, sending updates, or managing predictable processes manually.'],
                 ['title' => 'Important information is spread across disconnected systems.', 'description' => 'Your business relies on spreadsheets, email, software platforms, and databases that do not share information reliably.'],
                 ['title' => 'Existing software no longer fits the way the business operates.', 'description' => 'Workarounds and platform limitations are slowing employees down or preventing the company from offering something new.'],
-                ['title' => 'You want a technical partner who can understand the business behind the request.', 'description' => 'You need strategy, architecture, implementation, training, and ongoing improvement—not simply a developer completing a ticket.'],
+                ['title' => 'You want a technical partner who can understand the business behind the request.', 'description' => 'You need strategy, architecture, implementation, training, and ongoing improvement, not simply a developer completing a ticket.'],
             ],
         ],
 
@@ -445,7 +445,11 @@ return [
             'buttons' => [
                 'wrapperClass' => 'd-flex flex-column flex-sm-row justify-content-center gap-3',
                 'items' => [
-                    ['label' => 'Book My Free Workflow Review', 'url' => '#consultation', 'class' => 'btn btn-cyan btn-lg', 'iconClass' => null],
+                    [
+                        'label' => 'Book My Free Workflow Review', 
+                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
+                        'class' => 'btn btn-cyan btn-lg', 
+                        'iconClass' => null],
                     ['label' => '732-925-4044', 'url' => 'tel:+17329254044', 'class' => 'btn btn-outline-light btn-lg', 'iconClass' => 'bi bi-telephone me-2'],
                 ],
             ],

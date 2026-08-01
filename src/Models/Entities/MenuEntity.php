@@ -23,6 +23,9 @@ class MenuEntity
     #[ORM\Column(type: 'string', length: 60)]
     public string $class;
 
+    #[ORM\Column(type: 'string', length: 25)]
+    public string $icon;
+
     #[ORM\Column(type: 'integer')]
     public int $pageContentId;
 
@@ -79,6 +82,18 @@ class MenuEntity
     public function setClass(string $class): self
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }

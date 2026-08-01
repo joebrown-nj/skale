@@ -68,12 +68,18 @@
         {/foreach}
     </div>
 
-    <div class="row">
-        <div class="col-12 text-center">
-            <a href="{$smarty.ENV.SITE_URL}blog/archive{if $activeCategory}?category={$activeCategory|escape:'url'}{/if}" class="mbtn btn btn-outline-light rounded-pill px-4" aria-describedby="View All Articles">
-                View All Articles
-            </a>
+    {if $p2 == 'archive'}
+        {include file="inc/blog/pagination.tpl"}
+    {/if}
+
+    {if $p2 !== 'archive'}
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{$smarty.ENV.SITE_URL}blog/archive" class="mbtn btn btn-outline-light text-secondary rounded-pill px-4" aria-describedby="View All Articles">
+                    View All Insights
+                </a>
+            </div>
         </div>
-    </div>
+    {/if}
 </div>
 </section>

@@ -24,6 +24,8 @@ use App\Controllers\GetStartedController;
 use App\Controllers\PortfolioController;
 use App\Controllers\LandingPageController;
 
+use App\Controllers\TestController;
+
 class Routes
 {
     private RouteCollector $router;
@@ -49,6 +51,7 @@ class Routes
 
         // Public routes
         $this->router->get('/', [HomeController::class, 'index']);
+        // $this->router->get('/test', [TestController::class, 'index']);
         $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
         $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
         $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
@@ -159,7 +162,7 @@ class Routes
 
     private function registerSegmentedGetRoutes(string $basePath, int $maxDepth, array $handler): void
     {
-        $this->router->get($basePath.'/', $handler);
+        $this->router->get($basePath, $handler);
 
         $segments = [];
 

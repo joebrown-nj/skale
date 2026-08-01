@@ -346,7 +346,7 @@ a.brand {
 	min-height: 52px;
 	border-color: #cbd5df;
 	color: var(--dark);
-	background: #fff
+	/* background: #fff */
 }
 
 .form-panel textarea.form-control {
