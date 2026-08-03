@@ -66,7 +66,7 @@
 
         {include file="inc/layout/nav.tpl"}
 
-        <div class="page-content {if $p1 == ''}my-0{/if}">
+        <div class="page-content">
         {/if}
 
         {if $p1 && $p1 != ''}
