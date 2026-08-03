@@ -204,7 +204,7 @@
                         <span class="problem-number">03 / VISIBILITY</span>
                         <h3>Systems that do not connect</h3>
                         <p>Information is scattered across tools, creating delays, mistakes, duplicated work, and unclear reporting.</p>
-                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Connect your systems <i class="bi bi-arrow-right"></i></a>
+                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">Connect your systems <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
