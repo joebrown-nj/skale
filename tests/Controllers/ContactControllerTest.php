@@ -119,10 +119,10 @@ final class ContactControllerTest extends TestCase
             ->method('handleContactSubmission')
             ->with($normalizedInput, null, $_SERVER);
 
-        $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
+        $requestBlocklistService = $this->createStub(RequestBlocklistService::class);
         $requestBlocklistService->method('findMatchingSubmissionRule')->willReturn(null);
 
-        $view = $this->createMock(ViewInterface::class);
+        $view = $this->createStub(ViewInterface::class);
         $view->method('getUser')->willReturn(null);
 
         $controller = new ContactController(

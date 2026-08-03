@@ -82,6 +82,7 @@ class Routes
     public function dispatch(): void
     {
         $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+        $requestPath = rtrim($requestPath, '/') ?: '/';
         $requestBlocklistService = $this->container->get(RequestBlocklistService::class);
 
         $this->respond(function () use ($requestPath, $requestBlocklistService): void {
@@ -102,17 +103,6 @@ class Routes
                     ),
                 ]);
 
-                return;
-            }
-
-            if ($requestPath !== '/' && str_ends_with($requestPath, '/')) {
-                $normalizedPath = rtrim($requestPath, '/');
-                $queryString = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== ''
-                    ? '?' . $_SERVER['QUERY_STRING']
-                    : '';
-
-                http_response_code(301);
-                header('Location: ' . $normalizedPath . $queryString, true, 301);
                 return;
             }
 

@@ -10,6 +10,22 @@ use PHPUnit\Framework\TestCase;
 
 final class RoutesTest extends TestCase
 {
+    private const TEMPLATE_ENV = [
+        'WEB_ROOT' => '',
+        'SITE_URL' => 'https://example.test',
+        'SITE_URL_DISPLAY' => 'example.test',
+        'SITE_EMAIL' => 'hello@example.test',
+        'URL_CONTACT' => 'contact',
+        'URL_SERVICES_SOLUTIONS' => 'solutions',
+    ];
+
+    protected function setUp(): void
+    {
+        foreach (self::TEMPLATE_ENV as $name => $value) {
+            $_ENV[$name] = $value;
+        }
+    }
+
     protected function tearDown(): void
     {
         unset($_SERVER['REQUEST_METHOD']);
@@ -17,6 +33,10 @@ final class RoutesTest extends TestCase
         unset($_SERVER['HTTP_ACCEPT']);
         unset($_SERVER['HTTP_X_REQUESTED_WITH']);
         unset($_ENV['APP_ENV']);
+
+        foreach (array_keys(self::TEMPLATE_ENV) as $name) {
+            unset($_ENV[$name]);
+        }
     }
 
     public function testGetDispatchMethodMapsHeadRequestsToGet(): void

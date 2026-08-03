@@ -93,12 +93,12 @@ final class HomeControllerTest extends TestCase
 
     public function testIndexRendersNullBlogContentWhenBlogPageIsMissing(): void
     {
-        $homePageModel = $this->createMock(HomePageModel::class);
+        $homePageModel = $this->createStub(HomePageModel::class);
         $homePageModel->method('getHeroContent')->willReturn(null);
         $homePageModel->method('getHowItWorksContent')->willReturn([]);
         $homePageModel->method('getTheResultsContent')->willReturn([]);
 
-        $homeCardsModel = $this->createMock(HomeCardsModel::class);
+        $homeCardsModel = $this->createStub(HomeCardsModel::class);
         $homeCardsModel->method('getHomeCards')->willReturn([]);
 
         $pageContentModel = $this->createMock(PageContentModel::class);
@@ -107,7 +107,7 @@ final class HomeControllerTest extends TestCase
             ->with('blog')
             ->willReturn(false);
 
-        $blogModel = $this->createMock(BlogModel::class);
+        $blogModel = $this->createStub(BlogModel::class);
         $blogModel->method('getFeaturedBlog')->willReturn(null);
         $blogModel->method('getAllBlogs')->willReturn([]);
 

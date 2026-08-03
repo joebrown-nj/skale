@@ -31,17 +31,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Block access to the dev hostname and send everything to production
-    RewriteCond %{HTTP_HOST} ^dev\.skaleup\.it\.com$ [NC]
+    # Send every non-canonical request directly to the final URL in one hop.
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} !^skaleup\.it\.com$ [NC]
     RewriteRule ^ https://skaleup.it.com%{REQUEST_URI} [L,R=301]
-
-    # Redirect www to non-www
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ %{REQUEST_SCHEME}://%1%{REQUEST_URI} [L,R=301]
-
-    # Redirect HTTP to HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # Redirect legacy services URLs before the front controller handles them
     RewriteRule ^services/?$ /solutions [R=301,L,NC]

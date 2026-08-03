@@ -84,7 +84,7 @@ final class RequestBlocklistServiceTest extends TestCase
      */
     private function buildServiceWithRules(array $rules): RequestBlocklistService
     {
-        $model = $this->createMock(RequestBlockRuleModel::class);
+        $model = $this->createStub(RequestBlockRuleModel::class);
         $model->method('getActiveRules')->willReturn($rules);
 
         return new RequestBlocklistService($model);
