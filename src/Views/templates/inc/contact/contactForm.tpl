@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-12">
-            <select name="service" class="form-select">
+            <select name="interest" class="form-select">
                 <option selected>
                     What do you need help with?
                 </option>
