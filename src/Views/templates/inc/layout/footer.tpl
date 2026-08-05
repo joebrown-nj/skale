@@ -48,7 +48,13 @@
                         <p class="mb-2">{include file="inc/buttons/phoneLink.tpl" type="link"}</p>
                     {/if}
 
-                    <p class="mb-3">{include file="inc/buttons/emailLink.tpl" type="link"}</p>
+                    <p class="mb-2">{include file="inc/buttons/emailLink.tpl" type="link"}</p>
+
+                    <p class="mb-2">
+                        <a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on Facebook" target="_blank" href="{$smarty.ENV.FACEBOOK_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
+                        <a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on LinkedIn" target="_blank" target="_blank" href="{$smarty.ENV.LINKEDIN_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-linkedin"></i></a>
+                    </p>
+
                     <p class="small mb-0">Serving growing businesses in New Jersey and across the United States.</p>
 
                     <!-- p class="mb-0">
