@@ -25,8 +25,7 @@
 
 {include file="inc/layout/header.tpl"}
 
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" media="print" onload="this.onload=null;this.media='all'" data-ajax-managed-stylesheet="true">
-<noscript><link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css"></noscript>
+<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
 {* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true"> *}
 {* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/service-list.min.css" data-ajax-managed-stylesheet="true"> *}
 
@@ -875,4 +874,5 @@ Schedule A Free Call Today
 </div>
 
 {include file="inc/layout/footer.tpl"} *}
+
 

@@ -11,24 +11,15 @@
             <meta name="keywords" content="{if isset($page.content) && isset($page.content->metaKeywords)}{$page.content->metaKeywords}{/if}{if isset($data.blogDetail->metaKeywords)}{$data.blogDetail->metaKeywords}{/if}">
             <meta name="author" content="{$smarty.ENV.SITE_NAME}">
 
-            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-            <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+            {* <link href="{$smarty.ENV.WEB_ROOT}css/bootstrap.min.css" rel="stylesheet"> *}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-            {* Load CSS without holding up first paint. Document order still preserves the cascade. *}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" media="print" onload="this.onload=null;this.media='all'">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" media="print" onload="this.onload=null;this.media='all'">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" media="print" onload="this.onload=null;this.media='all'">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.onload=null;this.media='all'">
-            <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/style.min.css" media="print" onload="this.onload=null;this.media='all'">
-            <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/templates.min.css" media="print" onload="this.onload=null;this.media='all'">
-            <noscript>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-                <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/style.min.css">
-                <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/templates.min.css">
-            </noscript>
+            <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link href="{$smarty.ENV.WEB_ROOT}css/style.min.css" rel="stylesheet">
+            <link href="{$smarty.ENV.WEB_ROOT}css/templates.min.css" rel="stylesheet">
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
 
             <!-- Open Graph -->
@@ -60,7 +51,7 @@
             <!-- End Meta Pixel Code -->
 
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-5HMT5HBM1Y"></script>
-            <script defer src="{$smarty.ENV.WEB_ROOT}js/google.min.js"></script>
+            <script src="{$smarty.ENV.WEB_ROOT}js/google.min.js"></script>
         </head>
 
         <body
