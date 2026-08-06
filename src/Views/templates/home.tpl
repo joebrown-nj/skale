@@ -1,64 +1,6 @@
-{* <!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-<meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1" name="viewport" />
-<title>Skale | Connected Websites, Automation, Software &amp; Marketing Systems</title>
-<meta content="Skale connects websites, marketing, automation, software, analytics, and strategy into practical growth systems built around your business." name="description" />
-<meta content="index, follow" name="robots" />
-<link href="https://skaleup.it.com/" rel="canonical" />
-<!-- Bootstrap 5.3 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-<!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
-<!-- AOS Animation -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-<!-- Optional Google Font -->
-<link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet" />
-</head>
-
-<body> *}
-
 {include file="inc/layout/header.tpl"}
 
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
-{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true"> *}
-{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/service-list.min.css" data-ajax-managed-stylesheet="true"> *}
-
-<!-- Navigation -->
-{* <nav aria-label="Main navigation" class="navbar navbar-expand-lg navbar-light bg-white fixed-top" id="mainNav">
-<div class="container">
-<a aria-label="Skale home" class="navbar-brand" href="/">skale<span class="brand-dot">.</span></a>
-<button aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler border-0 shadow-none" data-bs-target="#navbarContent" data-bs-toggle="collapse" type="button">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarContent">
-<ul class="navbar-nav ms-auto align-items-lg-center">
-<li class="nav-item dropdown">
-<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}" role="button">Solutions</a>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure"><i class="bi bi-window me-2"></i>Growth Infrastructure</a></li>
-<li><a class="dropdown-item" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software"><i class="bi bi-diagram-3 me-2"></i>Automation &amp; Software</a></li>
-<li><a class="dropdown-item" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation"><i class="bi bi-graph-up-arrow me-2"></i>Demand Generation</a></li>
-<li><a class="dropdown-item" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization"><i class="bi bi-compass me-2"></i>Strategy &amp; Optimization</a></li>
-<li>
-<hr class="dropdown-divider" />
-</li>
-<li><a class="dropdown-item" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}"><i class="bi bi-grid me-2"></i>View All Solutions</a></li>
-</ul>
-</li>
-<li class="nav-item"><a class="nav-link" href="/blog">Insights</a></li>
-<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-<a class="btn btn-primary ms-lg-3" href="#contact">Free Strategy Session</a>
-</div>
-</div>
-</nav> *}
 
 <main class="home">
     <!-- Hero -->
@@ -94,7 +36,6 @@
                             <p class="mb-0">Share a few details and get a practical recommendation for your next step.</p>
                         </div>
 
-                        {* <form action="/contact/submit" class="hero-lead-form mt-4" method="post"> *}
                         <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
                             <input type="hidden" name="comment" value="home hero">
                             <input type="hidden" name="form_type" value="home-hero">
@@ -465,7 +406,7 @@
                     <div class="founder-panel d-flex flex-column justify-content-end">
                         <span class="badge bg-light text-dark align-self-start mb-3">Founder-led consulting</span>
                         <h3 class="h2">Experience you can speak with directly.</h3>
-                        {* <p class="mb-0">Replace the background image with a professional photo, working session, or client collaboration image.</p> *}
+                        <!-- Replace the background image with a professional photo, working session, or client collaboration image. -->
                     </div>
                 </div>
 
@@ -656,15 +597,12 @@
                         <hr class="border-secondary my-4" />
                         <p class="small text-uppercase fw-bold mb-2">Prefer to contact us directly?</p>
                         {include file="inc/buttons/phoneLink.tpl" type="link"}
-                        {* <a class="d-block text-white text-decoration-none fs-5 mb-2" href="tel:+17329254044"><i class="bi bi-telephone me-2 text-success"></i>732-925-4044</a> *}
                         {include file="inc/buttons/emailLink.tpl" type="link"}
-                        {* <a class="d-block text-white text-decoration-none fs-5" href="mailto:info@skaleup.it.com"><i class="bi bi-envelope me-2 text-success"></i>info@skaleup.it.com</a> *}
                     </div>
                 </div>
 
                 <div class="col-lg-7" data-aos="fade-left">
                     <!-- Replace action, field names, and hidden values with your production form handler -->
-                    {* <form action="/contact/submit" class="contact-form" method="post"> *}
                     <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
                         <input type="hidden" name="comment" value="home footer form">
                         <input type="hidden" name="form_type" value="home-footer">
@@ -736,143 +674,3 @@
 </main>
 
 {include file="inc/layout/footer.tpl"}
-
-
-
-
-
-
-
-{* {include file="inc/layout/header.tpl"}
-
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/blog.min.css" data-ajax-managed-stylesheet="true">
-<link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/service-list.min.css" data-ajax-managed-stylesheet="true">
-
-<section class="parallax cta-section home-hero py-5 curve-style">
-<div class="container home-hero-inner pt-5 pb-5 d-flex align-items-center justify-content-center">
-<div class="row align-items-center home-hero-grid">
-<div class="col-lg-6 mb-4 mb-lg-0">
-<h2 class="display-4 fw-bold text-white mb-4">{$data.hero->headline}</h2>
-<p class="lead text-white-100 mb-4">{$data.hero->subHeading}</p>
-<div class="d-flex flex-wrap" data-aos="fade-up">
-<a href="{$smarty.ENV.SITE_URL}{$data.hero->buttonUrl}" class="mbtn btn btn-light btn-lg font-weight-bold me-3 mb-3" aria-describedby="home hero {$data.hero->buttonText}">{$data.hero->buttonText}</a>
-{if $data.hero->secondaryButtonText}
-<a href="{$smarty.ENV.SITE_URL}{$data.hero->secondaryButtonUrl}" class="mbtn btn btn-outline-light btn-lg mb-3" aria-describedby="home hero {$data.hero->secondaryButtonText}">{$data.hero->secondaryButtonText}</a>
-{/if}
-</div>
-</div>
-
-<div class="col-lg-6 home-hero-form">
-{include file="inc/home/hero-contact-form.tpl"}
-</div>
-</div>
-</div>
-</section>
-
-<div class="home-callout home-callout-bg parallax container-fluid py-5" data-aos="fade-in-up" style="position:relative; top:-70px;">
-<div class="row justify-content-center py-5">
-<div class="col-md-8">
-<h2 class="pb-4 BricolageGrotesque-ExtraBold lh-base">
-Most Businesses Don't Have a <mark>Growth Problem</mark><br>
-They Have a <mark>Systems Problem</mark>
-</h2>
-<p class="lead"><strong>Disconnected tools. Manual workflows. Inconsistent lead flow.</strong> These aren't isolated issues they're symptoms of a broken system.</p>
-<p class="mb-4"><strong><span class="brand-color">Skale</span> fixes that.</strong> We design and build integrated systems that align your marketing, technology, and operations so everything works together to drive growth.</p>
-
-<a aria-describedby="home call out contact button" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn btn btn-outline-warning btn-lg brand-color-bg-button" type="button">
-Schedule A Free Call Today
-</a>
-</div>
-</div>
-</div>
-
-{include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList}
-
-<div class="container-fluid why-choose logo-bg-small-light overflow-hidden">
-<div class="row">
-<div class="col-md-6 px-5 py-5 brand-color-bg">
-<div class="row">
-<div class="col-md-8">
-<h2 class="fs-1 fw-bold text-white">How It Works</h2>
-</div>
-</div>
-
-<div class="row">
-<h3 class="fs-4 text-white mb-4">{$data.howItWorks.title}</h3>
-
-<div class="steps-vertical">
-{foreach from=$data.howItWorks.steps item=step key=key name=steps}
-<div class="step-vertical align-items-center shadow-lg" data-aos="fade-up">
-<div class="step-vertical-icon text-center fs-3 fw-bold text-white">
-<i class="{$step.icon}"></i>
-</div>
-
-<div class="step-vertical-content">
-<h4 class="mb-0 text-white">{$step.title}</h4>
-<p class="mb-0 text-white">{$step.description}</p>
-</div>
-</div>
-{/foreach}
-</div>
-</div>
-</div>
-
-<div class="col-md-6 px-5 py-5 text-bg-dark">
-<div class="row">
-<div class="col-md-8">
-<h2 class="fs-1 fw-bold text-white">The Results</h2>
-</div>
-</div>
-
-<div class="row">
-<h3 class="fs-4 text-white mb-4">{$data.theResults.title}</h3>
-
-<div class="steps-vertical">
-{foreach from=$data.theResults.results item=item key=key name=name}
-<div class="step-vertical align-items-center shadow-lg" data-aos="fade-up">
-<div class="step-vertical-icon text-center fs-3 fw-bold text-white">
-<i class="{$item.icon}"></i>
-</div>
-
-<div class="step-vertical-content">
-<h4 class="mb-0 text-white">{$item.title}</h4>
-<p class="mb-0 text-white">{$item.description}</p>
-</div>
-</div>
-{/foreach}
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="container-fluid text-bg-light why-choose logo-bg-small-light pb-5 overflow-hidden">
-<div class="row row-cols-1 row-cols-md-2 g-4 card-group px-5 py-5">
-{foreach from=$data.homeCards item=item key=key name=name}
-<div class="col" data-aos="fade-up">
-<div class="card h-100">
-<div class="bd-placeholder-img card-img-top">
-<img src="{$smarty.ENV.IMG_ROOT}{$item->image}" class="img-fluid" alt="{$item->title}">
-</div>
-
-<div class="card-body">
-<h5 class="card-title mb-0">{$item->title}</h5>
-<h2>{$item->subTitle}</h2>
-{$item->content}
-</div>
-</div>
-</div>
-{/foreach}
-</div>
-</div>
-
-<div class="bg-gradient container-fluid home-callout home-callout-bg parallax">
-<div class="row justify-content-center px-4 py-4">
-{include file="inc/blog/blogListContainer.tpl" blogCategories=$data.blogCategories blogList=$data.blogList blogFeatured=$data.blogFeatured blogContent=$data.blogContent limit=6}
-</div>
-</div>
-
-{include file="inc/layout/footer.tpl"} *}
-
-

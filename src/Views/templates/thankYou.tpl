@@ -1,6 +1,5 @@
 {include file="inc/layout/header.tpl" hideMenu=true hideBreadcrumb=true}
 
-{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterHide.min.css" data-ajax-managed-stylesheet="true"> *}
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/thank-you.min.css" data-ajax-managed-stylesheet="true">
 
 <div class="thank-you-page container-fluid py-5">

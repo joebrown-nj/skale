@@ -68,20 +68,3 @@
 
         <div class="page-content">
         {/if}
-
-        {if $p1 && $p1 != ''}
-            {* <div data-aos="fade-up" class="page-title-block bg-light text-dark text-center">
-            <div class="logo-bg logo-bg-overlay"></div>
-            <h1 class="display-3 BricolageGrotesque-ExtraBold">
-            {if $p1 == 'blog' && $p3 != '' && isset($data.blogDetail) && isset($data.blogDetail->title)}
-            {$data.blogDetail->title}
-            {/if}
-
-            {if isset($page.content) && isset($page.content->title)}
-            {$page.content->title}
-            {/if}
-            </h1>
-            </div> *}
-
-            {* {include file="inc/layout/breadcrumb.tpl"} *}
-        {/if}

@@ -1,26 +1,5 @@
 {include file="inc/layout/header.tpl"}
 
-{* <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/headerFooterShow.min.css" data-ajax-managed-stylesheet="true"> *}
-
-{* {if isset($page.content)}
-<div data-aos="fade-up" class="container-fluid">
-<div class="row justify-content-center align-items-center border-bottom py-4 text-bg-dark">
-<div class="col-md-7">
-<h2 class="display-4 fw-bold Bahnschrift logo-bg-small">{$page.content->title}</h2>
-{$page.content->content}
-</div>
-</div>
-</div>
-{/if} *}
-
-{* {include file="inc/service/serviceListContainer.tpl" serviceList=$serviceList} *}
-
-
-
-
-{* <title>Business Growth Solutions | Skale</title> *}
-{* <meta name="description" content="Explore Skale's website, automation, software, marketing, analytics, and growth strategy solutions built to help your business generate leads, work smarter, and scale."> *}
-
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/service-list.min.css" data-ajax-managed-stylesheet="true">
 
 <main>

@@ -32,8 +32,3 @@
         </div>
     </div>
 </section>
-
-{* Increased lead volume by 35%
-Reduced manual processes by 60%
-Improved website performance by 40%
-Built systems supporting over 1 million products *}
