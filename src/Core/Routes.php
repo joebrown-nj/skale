@@ -6,7 +6,7 @@ namespace App\Core;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\RequestBlocklistService;
 use App\Core\Contracts\ViewInterface;
-use App\Core\DI\Container;
+use Psr\Container\ContainerInterface;
 use App\Middleware\AuthMiddleware;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
@@ -30,7 +30,7 @@ class Routes
 {
     private RouteCollector $router;
     private Dispatcher $dispatcher;
-    private Container $container;
+    private ContainerInterface $container;
     private PageContextProvider $pageContextProvider;
 
     public function __construct()

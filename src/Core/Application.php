@@ -8,13 +8,15 @@ use App\Core\Contracts\UserLocationProviderInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ContactFormInterface;
-use App\Core\db\DatabaseORM;
-use App\Core\DI\Container;
+use App\Core\Db\DatabaseConfiguration;
+use App\Core\Db\DatabaseORM;
+use DI\ContainerBuilder;
 use App\Models\EmailModel;
 use App\Models\ContactModel;
 use Doctrine\ORM\EntityManager;
 use PHPMailer\PHPMailer\PHPMailer;
 use Smarty\Smarty;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Contracts\Cache\CacheInterface;
 
@@ -22,12 +24,11 @@ class Application
 {
     private static ?Application $instance = null;
     private Routes $routes;
-    private Container $container;
+    private ContainerInterface $container;
 
     private function __construct()
     {
         self::$instance = $this;
-        $this->container = Container::getInstance();
         $this->initialize();
     }
 
@@ -47,8 +48,7 @@ class Application
         // Load environment variables
         $this->loadEnvironment();
 
-        $this->registerEntityManager();
-        $this->registerSharedDependencies();
+        $this->container = $this->buildContainer();
 
         // Initialize routes
         $this->routes = new Routes();
@@ -59,56 +59,50 @@ class Application
         Environment::boot(dirname(__DIR__, 2));
     }
 
-    private function registerEntityManager(): void
+    private function buildContainer(): ContainerInterface
     {
-        $this->container->set(DatabaseORM::class, function (){
-            return new DatabaseORM(
-                $_ENV['DB_NAME'],
-                $_ENV['DB_HOST'],
-                $_ENV['DB_USER'],
-                $_ENV['DB_PASS'],
-                $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
+        $environment = strtolower(trim((string) ($_ENV['APP_ENV'] ?? 'prod')));
+        $databaseConfiguration = new DatabaseConfiguration(
+            dbname: (string) $_ENV['DB_NAME'],
+            host: (string) $_ENV['DB_HOST'],
+            user: (string) $_ENV['DB_USER'],
+            password: (string) $_ENV['DB_PASS'],
+            driver: (string) ($_ENV['DB_DRIVER'] ?? 'pdo_mysql'),
+            isDevMode: in_array($environment, ['dev', 'development', 'local'], true),
+            proxyDirectory: dirname(__DIR__, 2).'/var/cache/doctrine/proxies',
+        );
+
+        $productionCache = $databaseConfiguration->isDevMode
+            ? null
+            : new FilesystemAdapter(
+                namespace: 'doctrine_orm',
+                defaultLifetime: 0,
+                directory: dirname(__DIR__, 2).'/var/cache/doctrine',
             );
-        });
-        // Register EntityManager
-        $this->container->set(EntityManager::class, function () {
-            return $this->container->get(DatabaseORM::class)->initialize();
-        });
-    }
 
-    private function registerSharedDependencies(): void
-    {
-        $this->container->set(UserLocationProviderInterface::class, function () {
-            return $this->container->get(UserController::class);
-        });
-
-        $this->container->set(ViewInterface::class, function () {
-            return $this->container->get(View::class);
-        });
-
-        $this->container->set(PHPMailer::class, function () {
-            return new PHPMailer(true);
-        });
-
-        $this->container->set(Smarty::class, function () {
-            return new Smarty();
-        });
-
-        $this->container->set(CacheInterface::class, function () {
-            return new FilesystemAdapter(
+        $entityManagerFactory = new DatabaseORM($databaseConfiguration, $productionCache);
+        $builder = new ContainerBuilder();
+        $builder->useAutowiring(true);
+        $builder->addDefinitions([
+            EntityManager::class => static fn () => $entityManagerFactory->createEntityManager(),
+            UserLocationProviderInterface::class => static fn (ContainerInterface $container) =>
+                $container->get(UserController::class),
+            ViewInterface::class => static fn (ContainerInterface $container) =>
+                $container->get(View::class),
+            PHPMailer::class => static fn () => new PHPMailer(true),
+            Smarty::class => static fn () => new Smarty(),
+            CacheInterface::class => static fn () => new FilesystemAdapter(
                 namespace: 'site_data',
                 defaultLifetime: 86400,
                 directory: dirname(__DIR__, 2).'/var/cache'
-            );
-        });
+            ),
+            EmailServiceInterface::class => static fn (ContainerInterface $container) =>
+                $container->get(EmailModel::class),
+            ContactFormInterface::class => static fn (ContainerInterface $container) =>
+                $container->get(ContactModel::class),
+        ]);
 
-        $this->container->set(EmailServiceInterface::class, function () {
-            return $this->container->get(EmailModel::class);
-        });
-
-        $this->container->set(ContactFormInterface::class, function () {
-            return $this->container->get(ContactModel::class);
-        });
+        return $builder->build();
     }
 
     private function startSession(): void
@@ -122,7 +116,7 @@ class Application
         }
     }
 
-    public function getContainer(): Container
+    public function getContainer(): ContainerInterface
     {
         return $this->container;
     }

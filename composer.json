@@ -19,7 +19,8 @@
         "phroute/phroute": "^2.2",
         "doctrine/orm": "^3.6",
         "doctrine/migrations": "^3.9",
-        "symfony/cache": "^8.0"
+        "symfony/cache": "^8.0",
+        "php-di/php-di": "^7.0"
     },
     "config": {
     },

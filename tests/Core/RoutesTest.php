@@ -3,10 +3,10 @@
 namespace Tests\Core;
 
 use App\Controllers\SubPageController;
-use App\Core\DI\Container;
 use App\Core\PageContextProvider;
 use App\Core\Routes;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 
 final class RoutesTest extends TestCase
 {
@@ -56,7 +56,7 @@ final class RoutesTest extends TestCase
         $subPageController->expects($this->once())
             ->method('index');
 
-        $container = $this->createMock(Container::class);
+        $container = $this->createMock(ContainerInterface::class);
         $container->expects($this->once())
             ->method('get')
             ->with(SubPageController::class)

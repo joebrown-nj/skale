@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-use App\Core\DI\Container;
+use Psr\Container\ContainerInterface;
 use Phroute\Phroute\HandlerResolverInterface;
 
 class PhrouteHandlerResolver implements HandlerResolverInterface
 {
-    private Container $container;
+    private ContainerInterface $container;
 
-    public function __construct(Container $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
