@@ -2,24 +2,28 @@
 
 namespace App\Controllers;
 
+use App\Content\ServicePageContentProvider;
 use App\Models\SolutionModel;
-use App\Models\PageContentModel;
 use App\Models\BlogModel;
 use App\Core\Contracts\ViewInterface;
-use App\Models\Entities\ServicePageEntity;
 
 class SolutionController
 {
     private SolutionModel $SolutionModel;
-    private PageContentModel $pageContentModel;
     private BlogModel $blogModel;
     private ViewInterface $view;
+    private ServicePageContentProvider $content;
 
-    public function __construct(SolutionModel $SolutionModel, PageContentModel $pageContentModel, BlogModel $blogModel, ViewInterface $view) {
+    public function __construct(
+        SolutionModel $SolutionModel,
+        BlogModel $blogModel,
+        ViewInterface $view,
+        ServicePageContentProvider $content,
+    ) {
         $this->SolutionModel = $SolutionModel;
-        $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
         $this->view = $view;
+        $this->content = $content;
     }
  
     public function index() {
@@ -54,31 +58,7 @@ class SolutionController
         //     return;
         // }
 
-        // Only allow a file name generated from a valid solution slug.
-        if (!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $slug)) {
-            // http_response_code(404);
-            // $this->view->render('error/404');
-            // return;
-        }
-
-        $contentFile = dirname(__DIR__, 2)
-            . DIRECTORY_SEPARATOR . 'content'
-            . DIRECTORY_SEPARATOR . 'services'
-            . DIRECTORY_SEPARATOR . $slug . '.php';
-
-        if (!is_file($contentFile) || !is_readable($contentFile)) {
-            // http_response_code(404);
-            // $this->view->render('error/404');
-            // return;
-        } else {
-            $sections = require $contentFile;
-
-            if (!is_array($sections)) {
-                throw new \UnexpectedValueException(
-                    sprintf('Solution content file "%s" must return an array.', $contentFile)
-                );
-            }
-        }
+        $sections = $this->content->getBySlug($slug);
 
         $this->view->render('serviceDetail', array(
             'serviceDetail' => $solution,
