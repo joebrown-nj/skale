@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Core\Config\SiteConfig;
+
 use App\Models\BlogModel;
 use App\Models\PageContentModel;
 
@@ -9,10 +11,12 @@ class MetaDataController
 {
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
+    private string $siteName;
 
-    public function __construct(PageContentModel $pageContentModel, BlogModel $blogModel) {
+    public function __construct(PageContentModel $pageContentModel, BlogModel $blogModel, ?SiteConfig $siteConfig = null) {
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
+        $this->siteName = $siteConfig?->name ?? trim((string) ($_ENV['SITE_NAME'] ?? 'Skaleup'));
     }
 
     public function index($p1 = '', $p2 = '', $p3 = ''): void
@@ -30,7 +34,7 @@ class MetaDataController
                 $metaData = json_encode(array(
                     'keywords' => $blog->metaKeywords,
                     'description' => $blog->metaDescription,
-                    'title' => $blog->metaTitle.' | '.$_ENV['SITE_NAME'].' blog',
+                    'title' => $blog->metaTitle.' | '.$this->siteName.' blog',
                 ));
             }
         } else {
@@ -40,7 +44,7 @@ class MetaDataController
                 $metaData = json_encode(array(
                     'keywords' => $page['content']->metaKeywords,
                     'description' => $page['content']->metaDescription,
-                    'title' => $page['content']->metaTitle.' | '.$_ENV['SITE_NAME'],
+                    'title' => $page['content']->metaTitle.' | '.$this->siteName,
                 ));
             }
         }

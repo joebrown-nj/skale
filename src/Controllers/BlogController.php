@@ -8,6 +8,7 @@ use App\Core\Traits\RedirectTrait;
 use App\Core\Traits\ValidateMethodTrait;
 use App\Models\PageContentModel;
 use App\Models\BlogModel;
+use App\Core\Config\SiteConfig;
 
 class BlogController
 {
@@ -18,7 +19,7 @@ class BlogController
     private PageContentModel $pageContentModel;
     private ViewInterface $view;
 
-    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, ViewInterface $view) {
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, ViewInterface $view, private readonly SiteConfig $siteConfig) {
         $this->blogModel = $blogModel;
         $this->pageContentModel = $pageContentModel;
         $this->view = $view;
@@ -44,21 +45,21 @@ class BlogController
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
-            'filterPath' => $_ENV['SITE_URL'] . 'blog',
+            'filterPath' => $this->siteConfig->url . 'blog',
         ));
     }
 
     public function archive() {
         $selectedCategory = $this->getSelectedCategory();
         $totalCount = $this->blogModel->getBlogTotalCount($selectedCategory);
-        $numberOfpages = $totalCount > 0 ? (int) ceil($totalCount / (int) $_ENV['BLOG_ITEMS_PER_PAGE']) : 0;
+        $numberOfpages = $totalCount > 0 ? (int) ceil($totalCount / $this->siteConfig->blogItemsPerPage) : 0;
         $pagesArray = $numberOfpages > 0 ? range(1, $numberOfpages) : [];
         $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
         $currentPage = max(1, $currentPage);
-        $start = ($currentPage - 1) * $_ENV['BLOG_ITEMS_PER_PAGE'];
+        $start = ($currentPage - 1) * $this->siteConfig->blogItemsPerPage;
 
         $this->view->render('blogArchive', array(
-            'blogList' => $this->blogModel->getBlogArchive($start, $_ENV['BLOG_ITEMS_PER_PAGE'], $selectedCategory),
+            'blogList' => $this->blogModel->getBlogArchive($start, $this->siteConfig->blogItemsPerPage, $selectedCategory),
             'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
             'numberOfpages' => $numberOfpages,
@@ -66,7 +67,7 @@ class BlogController
             'pagesArray' => $pagesArray,
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
-            'filterPath' => $_ENV['SITE_URL'] . 'blog/archive',
+            'filterPath' => $this->siteConfig->url . 'blog/archive',
         ));
     }
 

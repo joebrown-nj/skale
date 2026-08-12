@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Core\Services;
 
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Config\EmailQueueConfig;
 use RuntimeException;
 use Throwable;
 
@@ -14,18 +15,24 @@ class EmailQueueService
 
     private EmailServiceInterface $emailService;
     private string $queueRoot;
+    private EmailQueueConfig $config;
 
-    public function __construct(EmailServiceInterface $emailService)
+    public function __construct(EmailServiceInterface $emailService, ?EmailQueueConfig $config = null)
     {
         $this->emailService = $emailService;
-        $this->queueRoot = $_ENV['EMAIL_QUEUE_DIR'] ?? dirname(__DIR__, 3).'/var/email-queue';
+        $config ??= new EmailQueueConfig(
+            enabled: filter_var($_ENV['EMAIL_QUEUE_ENABLED'] ?? false, FILTER_VALIDATE_BOOL),
+            directory: (string) ($_ENV['EMAIL_QUEUE_DIR'] ?? dirname(__DIR__, 3).'/var/email-queue'),
+            maxAttempts: max(1, (int) ($_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? self::DEFAULT_MAX_ATTEMPTS)),
+            processingTimeout: max(60, (int) ($_ENV['EMAIL_QUEUE_PROCESSING_TIMEOUT'] ?? self::DEFAULT_PROCESSING_TIMEOUT)),
+        );
+        $this->config = $config;
+        $this->queueRoot = $config->directory;
     }
 
     public function isEnabled(): bool
     {
-        $value = strtolower((string) ($_ENV['EMAIL_QUEUE_ENABLED'] ?? '0'));
-
-        return in_array($value, ['1', 'true', 'yes', 'on'], true);
+        return $this->config->enabled;
     }
 
     public function enqueueEmail(string $to, string $subject, string $body, ?string $toName = null): bool
@@ -268,11 +275,11 @@ class EmailQueueService
 
     private function maxAttempts(): int
     {
-        return max(1, (int) ($_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? self::DEFAULT_MAX_ATTEMPTS));
+        return $this->config->maxAttempts;
     }
 
     private function processingTimeout(): int
     {
-        return max(60, (int) ($_ENV['EMAIL_QUEUE_PROCESSING_TIMEOUT'] ?? self::DEFAULT_PROCESSING_TIMEOUT));
+        return $this->config->processingTimeout;
     }
 }

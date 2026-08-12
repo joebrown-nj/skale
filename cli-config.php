@@ -12,6 +12,7 @@ use Doctrine\ORM\ORMSetup;
 require_once __DIR__ . '/vendor/autoload.php';
 
 Environment::boot(__DIR__);
+$database = Environment::configuration(__DIR__)->database;
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: [__DIR__ . '/src/Models/Entities'],
@@ -19,11 +20,11 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
 );
 
 $connection = DriverManager::getConnection([
-    'dbname' => $_ENV['DB_NAME'],
-    'user' => $_ENV['DB_USER'],
-    'password' => $_ENV['DB_PASS'],
-    'host' => $_ENV['DB_HOST'],
-    'driver' => $_ENV['DB_DRIVER'] ?? 'pdo_mysql',
+    'dbname' => $database->name,
+    'user' => $database->user,
+    'password' => $database->password,
+    'host' => $database->host,
+    'driver' => $database->driver,
 ], $config);
 
 $entityManager = new EntityManager($connection, $config);

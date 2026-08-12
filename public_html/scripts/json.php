@@ -12,14 +12,15 @@ require_once dirname(__DIR__, 2).'/vendor/autoload.php';
 $projectRoot = dirname(__DIR__, 2);
 
 Environment::boot($projectRoot);
+$database = Environment::configuration($projectRoot)->database;
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $connection = new mysqli(
-    $_ENV['DB_HOST'],
-    $_ENV['DB_USER'],
-    $_ENV['DB_PASS'],
-    $_ENV['DB_NAME']
+    $database->host,
+    $database->user,
+    $database->password,
+    $database->name
 );
 $connection->set_charset('utf8mb4');
 

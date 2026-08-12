@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Config\MailConfig;
+use App\Core\Config\SiteConfig;
 use App\Models\Entities\EmailListSignupsEntity;
 use Doctrine\ORM\EntityManager;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -13,18 +15,22 @@ class EmailModel implements EmailServiceInterface
     protected PHPMailer $mailer;
     private EntityManager $entityManager;
     private ?string $lastSendError = null;
+    private MailConfig $mailConfig;
+    private SiteConfig $siteConfig;
 
-    public function __construct(EntityManager $entityManager, PHPMailer $mailer)
+    public function __construct(EntityManager $entityManager, PHPMailer $mailer, MailConfig $mailConfig, SiteConfig $siteConfig)
     {
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
+        $this->mailConfig = $mailConfig;
+        $this->siteConfig = $siteConfig;
         $this->configureTransport();
 
         //Recipients
-        $this->mailer->setFrom($_ENV['CONTACT_FORM_FROM_EMAIL'], $_ENV['SITE_NAME']);
+        $this->mailer->setFrom($mailConfig->fromAddress, $siteConfig->name);
         // $this->mailer->addAddress($recipient, $recipientName);           //Add a recipient
         // $this->mailer->addAddress('ellen@example.com');               //Name is optional
-        $this->mailer->addReplyTo($_ENV['CONTACT_FORM_REPLY_EMAIL'], $_ENV['SITE_NAME']);
+        $this->mailer->addReplyTo($mailConfig->replyToAddress, $siteConfig->name);
         // $this->mailer->addCC('cc@example.com');
         // $this->mailer->addBCC('bcc@example.com');
     }
@@ -169,13 +175,13 @@ class EmailModel implements EmailServiceInterface
               <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="header" valign="middle" style="vertical-align: middle;">
-                    <a href="'.$_ENV['SITE_URL'].'">
-                        <img style="max-width:150px;" src="'.$_ENV['SITE_URL'].'images/logo-email.png" alt="'.$_ENV['SITE_NAME'].'">
+                    <a href="'.$this->siteConfig->url.'">
+                        <img style="max-width:150px;" src="'.$this->siteConfig->url.'images/logo-email.png" alt="'.$this->siteConfig->name.'">
                     </a>
                 </td>
                 <td class="header" valign="middle" style="vertical-align: middle;">
-                    <a href="'.$_ENV['SITE_URL'].'" style="display:inline-block;">
-                        <img style="max-height:20px;" src="'.$_ENV['SITE_URL'].'images/home-icon.gif" alt="'.$_ENV['SITE_NAME'].'">
+                    <a href="'.$this->siteConfig->url.'" style="display:inline-block;">
+                        <img style="max-height:20px;" src="'.$this->siteConfig->url.'images/home-icon.gif" alt="'.$this->siteConfig->name.'">
                     </a>
                 </td>
               </tr>
@@ -183,16 +189,16 @@ class EmailModel implements EmailServiceInterface
                 <td class="wrapper">
                   '.$content.'
                   <p>
-                    <a href="tel:'.$_ENV['SITE_PHONE'].'" title="Call '.$_ENV['SITE_NAME'].' '.$_ENV['SITE_PHONE'].'">
-                        <img style="max-height:15px;" src="'.$_ENV['SITE_URL'].'images/phone-icon.gif" alt="Phone icon">
-                        '.$_ENV['SITE_PHONE'].'
+                    <a href="tel:'.$this->siteConfig->phone.'" title="Call '.$this->siteConfig->name.' '.$this->siteConfig->phone.'">
+                        <img style="max-height:15px;" src="'.$this->siteConfig->url.'images/phone-icon.gif" alt="Phone icon">
+                        '.$this->siteConfig->phone.'
                     </a>
 
                     <br>
 
-                    <a href="mailto:'.$_ENV['SITE_EMAIL'].'" title="Email '.$_ENV['SITE_NAME'].' '.$_ENV['SITE_EMAIL'].'">
-                        <img style="max-height:10px;" src="'.$_ENV['SITE_URL'].'images/email-icon.gif" alt="Email icon">
-                        '.$_ENV['SITE_EMAIL'].'
+                    <a href="mailto:'.$this->siteConfig->email.'" title="Email '.$this->siteConfig->name.' '.$this->siteConfig->email.'">
+                        <img style="max-height:10px;" src="'.$this->siteConfig->url.'images/email-icon.gif" alt="Email icon">
+                        '.$this->siteConfig->email.'
                     </a>
                   </p>
                 </td>
@@ -205,7 +211,7 @@ class EmailModel implements EmailServiceInterface
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="footer-content-block">
-                    <a href="'.$_ENV['SITE_URL'].'unsubscribe?email='.$email.'">Unsubscribe</a>
+                    <a href="'.$this->siteConfig->url.'unsubscribe?email='.$email.'">Unsubscribe</a>
                   </td>
                 </tr>
               </table>
@@ -230,20 +236,20 @@ class EmailModel implements EmailServiceInterface
 
     private function configureTransport(): void
     {
-        $host = $this->envString('SMTP_SERVER');
+        $host = $this->mailConfig->host;
         if ($host === '') {
             return;
         }
 
         $this->mailer->isSMTP();
         $this->mailer->Host = $host;
-        $this->mailer->SMTPAuth = $this->envBool('SMTP_AUTH', true);
-        $this->mailer->Username = $this->envString('SMTP_USERNAME', $_ENV['CONTACT_FORM_FROM_EMAIL'] ?? '');
-        $this->mailer->Password = $this->envString('SMTP_PASSWORD');
-        $this->mailer->Port = $this->envInt('SMTP_PORT', 465);
+        $this->mailer->SMTPAuth = $this->mailConfig->authentication;
+        $this->mailer->Username = $this->mailConfig->username;
+        $this->mailer->Password = $this->mailConfig->password;
+        $this->mailer->Port = $this->mailConfig->port;
         $this->mailer->CharSet = 'UTF-8';
 
-        $secure = strtolower($this->envString('SMTP_SECURE', 'ssl'));
+        $secure = $this->mailConfig->encryption;
         if ($secure === 'tls' || $secure === 'starttls') {
             $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             return;
@@ -252,38 +258,6 @@ class EmailModel implements EmailServiceInterface
         if ($secure === 'ssl' || $secure === 'smtps') {
             $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         }
-    }
-
-    private function envString(string $key, string $default = ''): string
-    {
-        $value = $_ENV[$key] ?? $default;
-        return is_string($value) ? trim($value) : $default;
-    }
-
-    private function envBool(string $key, bool $default = false): bool
-    {
-        $value = $_ENV[$key] ?? null;
-        if ($value === null || $value === '') {
-            return $default;
-        }
-
-        if (is_bool($value)) {
-            return $value;
-        }
-
-        $parsed = filter_var($value, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
-        return $parsed ?? $default;
-    }
-
-    private function envInt(string $key, int $default): int
-    {
-        $value = $_ENV[$key] ?? null;
-        if ($value === null || $value === '') {
-            return $default;
-        }
-
-        $parsed = filter_var($value, FILTER_VALIDATE_INT);
-        return $parsed === false ? $default : $parsed;
     }
 
 }

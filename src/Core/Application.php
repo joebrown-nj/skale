@@ -10,6 +10,11 @@ use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Contracts\ContactFormInterface;
 use App\Core\Db\DatabaseConfiguration;
 use App\Core\Db\DatabaseORM;
+use App\Core\Config\ApplicationConfig;
+use App\Core\Config\DatabaseConfig;
+use App\Core\Config\EmailQueueConfig;
+use App\Core\Config\MailConfig;
+use App\Core\Config\SiteConfig;
 use DI\ContainerBuilder;
 use App\Models\EmailModel;
 use App\Models\ContactModel;
@@ -61,15 +66,16 @@ class Application
 
     private function buildContainer(): ContainerInterface
     {
-        $environment = strtolower(trim((string) ($_ENV['APP_ENV'] ?? 'prod')));
+        $configuration = Environment::configuration(dirname(__DIR__, 2));
+        $database = $configuration->database;
         $databaseConfiguration = new DatabaseConfiguration(
-            dbname: (string) $_ENV['DB_NAME'],
-            host: (string) $_ENV['DB_HOST'],
-            user: (string) $_ENV['DB_USER'],
-            password: (string) $_ENV['DB_PASS'],
-            driver: (string) ($_ENV['DB_DRIVER'] ?? 'pdo_mysql'),
-            isDevMode: in_array($environment, ['dev', 'development', 'local'], true),
-            proxyDirectory: dirname(__DIR__, 2).'/var/cache/doctrine/proxies',
+            dbname: $database->name,
+            host: $database->host,
+            user: $database->user,
+            password: $database->password,
+            driver: $database->driver,
+            isDevMode: $database->developmentMode,
+            proxyDirectory: $database->proxyDirectory,
         );
 
         $productionCache = $databaseConfiguration->isDevMode
@@ -84,6 +90,11 @@ class Application
         $builder = new ContainerBuilder();
         $builder->useAutowiring(true);
         $builder->addDefinitions([
+            ApplicationConfig::class => $configuration,
+            DatabaseConfig::class => $configuration->database,
+            MailConfig::class => $configuration->mail,
+            SiteConfig::class => $configuration->site,
+            EmailQueueConfig::class => $configuration->emailQueue,
             EntityManager::class => static fn () => $entityManagerFactory->createEntityManager(),
             UserLocationProviderInterface::class => static fn (ContainerInterface $container) =>
                 $container->get(UserController::class),

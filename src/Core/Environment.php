@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Config\ApplicationConfig;
+use App\Core\Config\ConfigurationFactory;
 use Symfony\Component\Dotenv\Dotenv;
 
 final class Environment
@@ -11,6 +13,8 @@ final class Environment
      * @var array<string, true>
      */
     private static array $bootedRoots = [];
+    /** @var array<string, ApplicationConfig> */
+    private static array $configurations = [];
 
     private function __construct()
     {
@@ -28,6 +32,14 @@ final class Environment
         // so we default to production and let .env.local opt local machines into local mode.
         (new Dotenv())->bootEnv($projectRoot.'/.env', defaultEnv: 'prod');
 
+        self::$configurations[$projectRoot] = ConfigurationFactory::fromEnvironment($_ENV, $projectRoot);
         self::$bootedRoots[$projectRoot] = true;
+    }
+
+    public static function configuration(string $projectRoot): ApplicationConfig
+    {
+        $projectRoot = rtrim($projectRoot, DIRECTORY_SEPARATOR);
+        self::boot($projectRoot);
+        return self::$configurations[$projectRoot];
     }
 }
