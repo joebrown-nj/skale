@@ -28,21 +28,21 @@ class EmailController
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
             http_response_code(403);
-            return JsonResponse::error('Unable to process request.');
+            return (string) JsonResponse::error('Unable to process request.', 403);
         }
 
         if (!$this->emailModel->validateEmail($email)) {
-            return JsonResponse::error(['A valid email is required']);
+            return (string) JsonResponse::error(['A valid email is required']);
         }
 
         if ($this->emailModel->checkIfEmailIsOnList($email)) {
-            return JsonResponse::error('You are already on the list');
+            return (string) JsonResponse::error('You are already on the list');
         }
 
         if ($this->emailModel->emailListSignup($input, $this->view->getUser())) {
-            return JsonResponse::success('Thanks for joining the mailing list!');
+            return (string) JsonResponse::success('Thanks for joining the mailing list!');
         }
 
-        return JsonResponse::error('Unable to process email signup');
+        return (string) JsonResponse::error('Unable to process email signup');
     }
 }

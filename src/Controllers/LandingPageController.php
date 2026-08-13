@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\Content\LandingPageContentProvider;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
+use App\Core\Http\Form\LeadFormRequest;
 use App\Core\Services\FormSubmissionService;
 use App\Core\Services\RequestBlocklistService;
 use App\Models\ContactModel;
@@ -41,17 +42,17 @@ final class LandingPageController
         $this->render('task-management', $this->content->taskManagement());
     }
 
-    public function postLeadForm(array $input): string
+    public function postLeadForm(LeadFormRequest $request): JsonResponse
     {
+        $input = $request->validated();
         $input['comment'] = 'Landing Page Lead Form Submission -  Team Size: '
             . ($input['team_size'] ?? '') . ' - ' . ($input['comment'] ?? '');
 
-        if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
-            http_response_code(403);
-            return JsonResponse::error('Unable to process request.');
+        if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $request->server()) !== null) {
+            return JsonResponse::error('Unable to process request.', 403);
         }
 
-        $validationErrors = $this->contactModel->checkLeadForm($input);
+        $validationErrors = array_merge($request->errors(), $this->contactModel->checkLeadForm($input));
 
         if ($validationErrors !== []) {
             return JsonResponse::error($validationErrors);
@@ -61,7 +62,7 @@ final class LandingPageController
             return JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
-        $this->formSubmissionService->handleContactSubmission($input, $this->view->getUser(), $_SERVER);
+        $this->formSubmissionService->handleContactSubmission($input, $this->view->getUser(), $request->server());
 
         return JsonResponse::success(['redirect' => '/thank-you']);
     }

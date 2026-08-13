@@ -3,15 +3,25 @@ declare(strict_types=1);
 
 namespace App\Core\Http;
 
-final class JsonResponse
+final class JsonResponse extends Response
 {
-    public static function success(string|array $message): string
+    /** @param array<string, mixed> $data */
+    public function __construct(array $data, int $status = 200)
     {
-        return json_encode(['success' => $message]);
+        parent::__construct(
+            json_encode($data, JSON_THROW_ON_ERROR),
+            $status,
+            ['Content-Type' => 'application/json; charset=UTF-8'],
+        );
     }
 
-    public static function error(string|array $message): string
+    public static function success(string|array $message, int $status = 200): self
     {
-        return json_encode(['error' => $message]);
+        return new self(['success' => $message], $status);
+    }
+
+    public static function error(string|array $message, int $status = 422): self
+    {
+        return new self(['error' => $message], $status);
     }
 }

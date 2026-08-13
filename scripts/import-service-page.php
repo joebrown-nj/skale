@@ -625,7 +625,7 @@ final class ServicePageImporter
             $privacy = $this->textWithoutIcons($p);
         }
 
-        $formKey = $form->getAttribute('data-meta-form-name') ?: ($form->getAttribute('id') ?: $this->slug . '-form');
+        $formKey = $form->getAttribute('dataMetaFormName') ?: ($form->getAttribute('id') ?: $this->slug . '-form');
         $fields = [];
         $fieldOrder = 10;
 
@@ -705,8 +705,8 @@ final class ServicePageImporter
                 'success_message' => null,
                 'privacy_text' => $privacy,
                 'css_class' => $form->getAttribute('class') ?: null,
-                'tracking_form_name' => $form->getAttribute('data-meta-form-name') ?: null,
-                'tracking_success_event' => $form->getAttribute('data-meta-success-event') ?: null,
+                'tracking_form_name' => $form->getAttribute('dataMetaFormName') ?: null,
+                'tracking_success_event' => $form->getAttribute('dataMetaSuccessEvent') ?: null,
                 'is_enabled' => 1,
             ],
             'fields' => $fields,

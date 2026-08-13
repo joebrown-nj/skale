@@ -36,7 +36,7 @@ class ContactController
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
             http_response_code(403);
-            return JsonResponse::error('Unable to process request.');
+            return (string) JsonResponse::error('Unable to process request.', 403);
         }
 
         $input = $this->normalizeInput($input);
@@ -44,16 +44,16 @@ class ContactController
         $validationErrors = $this->contactModel->validate($input);
 
         if (!empty($validationErrors)) {
-            return JsonResponse::error($validationErrors);
+            return (string) JsonResponse::error($validationErrors);
         }
 
         if (!$this->contactModel->save($input)) {
-            return JsonResponse::error('There was a problem submitting the form. Please try again.');
+            return (string) JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
         $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
 
-        return JsonResponse::success([
+        return (string) JsonResponse::success([
             'redirect' => '/thank-you',
         ]);
     }

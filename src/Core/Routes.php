@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace App\Core;
 
 use App\Core\Http\JsonResponse;
+use App\Core\Http\Request;
+use App\Core\Http\Response;
+use App\Core\Http\Form\LeadFormRequest;
 use App\Core\Services\RequestBlocklistService;
 use App\Core\Contracts\ViewInterface;
 use Psr\Container\ContainerInterface;
@@ -69,7 +72,10 @@ class Routes
         $this->router->get('/marketing', [LandingPageController::class, 'marketing']);
         $this->router->get('/automation', [LandingPageController::class, 'automation']);
         $this->router->get('/task-management', [LandingPageController::class, 'taskManagement']);
-        $this->router->post('/post-lead-form', [ContactController::class, 'submit']);
+        $this->router->post('/post-lead-form', function (): JsonResponse {
+            return $this->container->get(LandingPageController::class)
+                ->postLeadForm(new LeadFormRequest(Request::fromGlobals()));
+        });
 
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
@@ -112,7 +118,9 @@ class Routes
                     $requestPath
                 );
 
-                if ($response !== null) {
+                if ($response instanceof Response) {
+                    $response->send();
+                } elseif ($response !== null) {
                     echo $response;
                 }
             } catch (HttpRouteNotFoundException $e) {

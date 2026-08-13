@@ -90,8 +90,8 @@ return [
                 'id' => 'automation-software-lead-form',
                 'class' => 'ajaxForm',
                 'attributes' => [
-                    'data-meta-form-name' => 'automation-and-software-form',
-                    'data-meta-success-event' => 'Lead',
+                    'dataMetaFormName' => 'automation-and-software-form',
+                    'dataMetaSuccessEvent' => 'Lead',
                 ],
                 'fieldGroups' => ['business-details' => 'row g-3 mb-3'],
                 'fields' => [

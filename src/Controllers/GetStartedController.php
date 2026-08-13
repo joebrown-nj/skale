@@ -33,23 +33,23 @@ class GetStartedController
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
             http_response_code(403);
-            return JsonResponse::error('Unable to process request.');
+            return (string) JsonResponse::error('Unable to process request.', 403);
         }
 
         $user = $this->view->getUser();
         $validationErrors = $this->getStartedModel->checkForm($input);
 
         if (!empty($validationErrors)) {
-            return JsonResponse::error($validationErrors);
+            return (string) JsonResponse::error($validationErrors);
         }
 
         if (!$this->contactModel->processContactForm($input)) {
-            return JsonResponse::error('There was a problem submitting the form. Please try again.');
+            return (string) JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
         $this->formSubmissionService->handleGetStartedSubmission($input, $user, $_SERVER);
 
-        return JsonResponse::success([
+        return (string) JsonResponse::success([
             'redirect' => '/thank-you',
         ]);
     }

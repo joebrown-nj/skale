@@ -105,8 +105,8 @@ return [
                 'id' => 'demand-generation-lead-form',
                 'class' => 'ajaxForm',
                 'attributes' => [
-                    'data-meta-form-name' => 'demand-generation-form',
-                    'data-meta-success-event' => 'Lead',
+                    'dataMetaFormName' => 'demand-generation-form',
+                    'dataMetaSuccessEvent' => 'Lead',
                 ],
                 'fields' => [
                     [
