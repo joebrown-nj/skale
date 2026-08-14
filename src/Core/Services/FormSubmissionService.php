@@ -97,12 +97,13 @@ class FormSubmissionService
 
     private function buildContactSuccessMessage(): string
     {
-        $message = '<p>Thanks for being awesome!</p>';
-        $message .= '<p>We have received your message and would like to thank you for writing to us. If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members.</p>';
-        $message .= '<p>Otherwise, we will reply by email as soon as possible.</p>';
-        $message .= '<p>Talk to you soon, '.$this->siteConfig->name.'</p>';
+        // $message = '<p>Thanks for being awesome!</p>';
+        // $message .= '<p>We have received your message and would like to thank you for writing to us. If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members.</p>';
+        // $message .= '<p>Otherwise, we will reply by email as soon as possible.</p>';
+        // $message .= '<p>Talk to you soon, '.$this->siteConfig->name.'</p>';
 
-        return $message;
+        // return $message;
+        return '';
     }
 
     private function buildGetStartedSuccessMessage(): string

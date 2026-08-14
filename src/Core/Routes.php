@@ -77,6 +77,8 @@ class Routes
                 ->postLeadForm(new LeadFormRequest(Request::fromGlobals()));
         });
 
+        $this->router->get('/email-template', [EmailController::class, 'emailTemplate']);
+
         $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
 
         $this->router->post('/', [ContactController::class, 'submit']);

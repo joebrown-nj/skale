@@ -21,6 +21,13 @@ class EmailController
         $this->view = $view;
     }
 
+    public function emailTemplate(): null
+    {
+        $message = $this->emailModel->emailTemplate('', 'joe@joe.com');
+        $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
+        return null;
+    }
+
     public function signUp(?array $input = null): string
     {
         $input ??= $_POST;
