@@ -52,6 +52,10 @@ final class LandingPageController
             return JsonResponse::error('Unable to process request.', 403);
         }
 
+        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+            return JsonResponse::error('Unable to process request.', 403);
+        }
+
         $validationErrors = array_merge($request->errors(), $this->contactModel->checkLeadForm($input));
 
         if ($validationErrors !== []) {

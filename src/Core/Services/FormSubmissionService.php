@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace App\Core\Services;
 
-use App\Core\Contracts\EmailServiceInterface;
 use App\Core\Config\MailConfig;
 use App\Core\Config\SiteConfig;
+use App\Core\Contracts\EmailServiceInterface;
 
 class FormSubmissionService
 {
@@ -17,14 +17,17 @@ class FormSubmissionService
         EmailQueueService $emailQueueService,
         private readonly SiteConfig $siteConfig,
         private readonly MailConfig $mailConfig,
-    )
-    {
+    ) {
         $this->emailService = $emailService;
         $this->emailQueueService = $emailQueueService;
     }
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
     {
+        if ($this->containsMaliciousInput($input)) {
+            return;
+        }
+
         $successMessage = ($input['form_type'] ?? '') === 'newsletter'
             ? '<p>Thanks for subscribing. We are glad to have you with us.</p>'
             : $this->buildContactSuccessMessage();
@@ -33,6 +36,7 @@ class FormSubmissionService
             '<p>Hi '.$input['name'].',</p>'.$successMessage,
             $input['email']
         );
+
         $this->deliverEmail(
             $input['email'],
             ($input['form_type'] ?? '') === 'newsletter'
@@ -53,6 +57,7 @@ class FormSubmissionService
             $this->buildAdminEmailBody($input, $user),
             $input['email']
         );
+
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
             'New '.str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')).' form submission',
@@ -62,12 +67,17 @@ class FormSubmissionService
 
     public function handleGetStartedSubmission(array $input, ?array $user, ?array $server = null): void
     {
+        if ($this->containsMaliciousInput($input)) {
+            return;
+        }
+
         $successMessage = $this->buildGetStartedSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
             '<p>Hi '.$input['name'].',</p>'.$successMessage,
             $input['email']
         );
+
         $this->deliverEmail(
             $input['email'],
             'Thanks for filling out the contact form',
@@ -79,11 +89,23 @@ class FormSubmissionService
             $this->buildAdminEmailBody($input, $user),
             $input['email']
         );
+
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
             'Someone filled out the contact form',
             $adminEmailMessage
         );
+    }
+
+    public static function containsMaliciousInput(array $input): bool
+    {
+        foreach (self::flattenValues($input) as $value) {
+            if (self::looksMalicious($value)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function deliverEmail(string $to, string $subject, string $body, ?string $toName = null): void
@@ -95,14 +117,62 @@ class FormSubmissionService
         $this->emailService->sendEmail($to, $subject, $body, $toName);
     }
 
+    /**
+     * @return list<string>
+     */
+    private static function flattenValues(array $input): array
+    {
+        $values = [];
+
+        foreach ($input as $value) {
+            if (is_array($value)) {
+                $values = [...$values, ...self::flattenValues($value)];
+                continue;
+            }
+
+            if (is_string($value) || is_int($value) || is_float($value) || is_bool($value) || $value === null) {
+                $values[] = trim((string) $value);
+            }
+        }
+
+        return $values;
+    }
+
+    private static function looksMalicious(string $value): bool
+    {
+        $value = trim($value);
+
+        if ($value === '') {
+            return false;
+        }
+
+        $normalized = strtolower($value);
+
+        if (preg_match('/<\s*(?:script|iframe|object|embed|svg|img|style|link|meta|base|form|input|button|textarea|select|option|video|audio|source|body|html)\b/i', $value) === 1) {
+            return true;
+        }
+
+        if (preg_match('/(?:on[a-z]+\s*=|javascript\s*:|vbscript\s*:|data\s*:\s*(?:text\/html|image\/svg\+xml)|<\?php|<\?=|<\?\s*\w+)/i', $value) === 1) {
+            return true;
+        }
+
+        if (preg_match('/(?:&lt;|&gt;)\s*(?:script|iframe|svg|img|object|embed|style|form)/i', $value) === 1) {
+            return true;
+        }
+
+        if (preg_match('/(?:alert\s*\(|confirm\s*\(|prompt\s*\(|eval\s*\(|document\.cookie|localStorage|sessionStorage|window\.location|document\.write)/i', $value) === 1) {
+            return true;
+        }
+
+        if (preg_match('/<\s*\/??\s*[a-z][a-z0-9-_]*\s*[^>]*>/i', $value) === 1 && preg_match('/(?:\b(?:script|iframe|svg|img|object|embed|style|form)\b|\b(?:on[a-z]+)\b)/i', $normalized) === 1) {
+            return true;
+        }
+
+        return false;
+    }
+
     private function buildContactSuccessMessage(): string
     {
-        // $message = '<p>Thanks for being awesome!</p>';
-        // $message .= '<p>We have received your message and would like to thank you for writing to us. If your inquiry is urgent, please use the telephone number listed below to talk to one of our staff members.</p>';
-        // $message .= '<p>Otherwise, we will reply by email as soon as possible.</p>';
-        // $message .= '<p>Talk to you soon, '.$this->siteConfig->name.'</p>';
-
-        // return $message;
         return '';
     }
 

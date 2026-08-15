@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
+use App\Core\Services\FormSubmissionService;
 use App\Models\ContactModel;
 
 final class ContactTest extends TestCase
@@ -45,6 +46,29 @@ final class ContactTest extends TestCase
         ]);
 
         $this->assertSame([], $errors);
+    }
+
+    public function testDetectsHtmlAndCodePayloadsAsMalicious(): void
+    {
+        $service = (new \ReflectionClass(FormSubmissionService::class))->newInstanceWithoutConstructor();
+
+        $this->assertTrue($service->containsMaliciousInput([
+            'name' => '<script>alert("xss")</script>',
+            'email' => 'jane@example.com',
+            'comment' => 'normal text',
+        ]));
+
+        $this->assertTrue($service->containsMaliciousInput([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'comment' => '<?php echo "code"; ?>',
+        ]));
+
+        $this->assertFalse($service->containsMaliciousInput([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'comment' => 'This is a normal message with < and > symbols for pricing.',
+        ]));
     }
 }
 

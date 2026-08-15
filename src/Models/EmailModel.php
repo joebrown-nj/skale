@@ -770,7 +770,11 @@ return '<!doctype html>
         $this->mailer->Password = $this->mailConfig->password;
         $this->mailer->Port = $this->mailConfig->port;
         $this->mailer->Timeout = self::SMTP_TIMEOUT_SECONDS;
-        $this->mailer->Timelimit = self::SMTP_CONNECTION_TIMEOUT_SECONDS;
+
+        $smtp = $this->mailer->getSMTPInstance();
+        $smtp->Timeout = self::SMTP_TIMEOUT_SECONDS;
+        $smtp->Timelimit = self::SMTP_CONNECTION_TIMEOUT_SECONDS;
+
         $this->mailer->SMTPKeepAlive = true;
         $this->mailer->CharSet = 'UTF-8';
 

@@ -36,6 +36,11 @@ class GetStartedController
             return (string) JsonResponse::error('Unable to process request.', 403);
         }
 
+        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+            http_response_code(403);
+            return (string) JsonResponse::error('Unable to process request.', 403);
+        }
+
         $user = $this->view->getUser();
         $validationErrors = $this->getStartedModel->checkForm($input);
 

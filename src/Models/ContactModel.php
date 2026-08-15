@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Core\Contracts\ContactFormInterface;
+use App\Core\Services\FormSubmissionService;
 use App\Models\Entities\ContactEntity;
 use Doctrine\ORM\EntityManager;
 use Throwable;
@@ -19,6 +20,10 @@ class ContactModel implements ContactFormInterface
 
     public function validate(array $data): array
     {
+        if (FormSubmissionService::containsMaliciousInput($data)) {
+            return ['Invalid or unsafe content detected'];
+        }
+
         $errors = [];
         $formType = trim((string) ($data['form_type'] ?? 'contact'));
 
@@ -55,6 +60,10 @@ class ContactModel implements ContactFormInterface
 
     public function save(array $data): bool
     {
+        if (FormSubmissionService::containsMaliciousInput($data)) {
+            return false;
+        }
+
         try {
             $contact = $this->buildContactEntity($data);
             $this->entityManager->persist($contact);

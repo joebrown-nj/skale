@@ -40,6 +40,11 @@ class ContactController
         }
 
         $input = $this->normalizeInput($input);
+
+        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+            http_response_code(403);
+            return (string) JsonResponse::error('Unable to process request.', 403);
+        }
         $user = $this->view->getUser();
         $validationErrors = $this->contactModel->validate($input);
 
