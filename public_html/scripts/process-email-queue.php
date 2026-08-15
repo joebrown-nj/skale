@@ -20,6 +20,7 @@ function parseCliOptions(array $argv): array
 {
 	$retryFailed = false;
 	$retryId = null;
+	$limit = 5;
 
 	foreach ($argv as $argument) {
 		if ($argument === '--retry-failed') {
@@ -30,12 +31,19 @@ function parseCliOptions(array $argv): array
 		if (str_starts_with($argument, '--retry-id=')) {
 			$value = trim(substr($argument, strlen('--retry-id=')));
 			$retryId = preg_match('/^[a-f0-9]{32}$/i', $value) === 1 ? strtolower($value) : null;
+			continue;
+		}
+
+		if (str_starts_with($argument, '--limit=')) {
+			$value = trim(substr($argument, strlen('--limit=')));
+			$limit = max(1, (int) $value);
 		}
 	}
 
 	return [
 		'retryFailed' => $retryFailed,
 		'retryId' => $retryId,
+		'limit' => $limit,
 	];
 }
 
@@ -74,9 +82,12 @@ if ($options['retryFailed'] || $options['retryId'] !== null) {
 	$retryCount = requeueFailedJobs($projectRoot, $options['retryId']);
 }
 
+set_time_limit(60);
+ignore_user_abort(true);
+
 $application = Application::getInstance();
 $queue = $application->getContainer()->get(EmailQueueService::class);
-$summary = $queue->processPending();
+$summary = $queue->processPending($options['limit']);
 
 echo 'Email queue processed'.PHP_EOL;
 if ($options['retryFailed'] || $options['retryId'] !== null) {

@@ -50,5 +50,6 @@ final class EmailModelTest extends TestCase
         $this->assertSame([], $deprecations);
         $this->assertSame(20, $mailer->Timeout);
         $this->assertSame(30, $mailer->getSMTPInstance()->Timelimit);
+        $this->assertFalse($mailer->SMTPKeepAlive);
     }
 }

@@ -101,7 +101,17 @@ class EmailModel implements EmailServiceInterface
       $this->mailer->Subject = $subject;
       $this->mailer->Body = $body;
 
-      return $this->mailer->send();
+      try {
+        return $this->mailer->send();
+      } finally {
+        if ($this->mailer->isSMTP()) {
+          try {
+            $this->mailer->smtpClose();
+          } catch (Throwable $exception) {
+            error_log('[email] SMTP close failed: '.$exception->getMessage());
+          }
+        }
+      }
     }
 
     private function shouldRetryWithStartTls(?string $errorMessage): bool
@@ -775,7 +785,7 @@ return '<!doctype html>
         $smtp->Timeout = self::SMTP_TIMEOUT_SECONDS;
         $smtp->Timelimit = self::SMTP_CONNECTION_TIMEOUT_SECONDS;
 
-        $this->mailer->SMTPKeepAlive = true;
+        $this->mailer->SMTPKeepAlive = false;
         $this->mailer->CharSet = 'UTF-8';
 
         $secure = $this->mailConfig->encryption;

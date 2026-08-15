@@ -70,46 +70,61 @@ class EmailQueueService
         }
     }
 
-    public function processPending(int $limit = 25): array
+    public function processPending(int $limit = 10): array
     {
-        $this->ensureDirectoriesExist();
-        $this->recoverStaleProcessingJobs();
-
-        $summary = [
-            'claimed' => 0,
-            'sent' => 0,
-            'retried' => 0,
-            'failed' => 0,
-            'deferred' => 0,
-        ];
-
-        $pendingFiles = glob($this->directoryFor('pending').'/*.json') ?: [];
-        sort($pendingFiles, SORT_STRING);
-
-        foreach ($pendingFiles as $pendingPath) {
-            if ($summary['claimed'] >= $limit) {
-                break;
-            }
-
-            $processingPath = $this->pathFor('processing', basename($pendingPath, '.json'));
-
-            if (!@rename($pendingPath, $processingPath)) {
-                continue;
-            }
-
-            $summary['claimed']++;
-            try {
-                $result = $this->processClaimedJob($processingPath);
-            } catch (Throwable $exception) {
-                error_log('[email-queue] '.$exception->getMessage());
-                $this->attemptMoveToFailed($processingPath);
-                $result = 'failed';
-            }
-
-            $summary[$result]++;
+        $lockHandle = $this->acquireProcessingLock();
+        if ($lockHandle === null) {
+            return [
+                'claimed' => 0,
+                'sent' => 0,
+                'retried' => 0,
+                'failed' => 0,
+                'deferred' => 0,
+            ];
         }
 
-        return $summary;
+        try {
+            $this->ensureDirectoriesExist();
+            $this->recoverStaleProcessingJobs();
+
+            $summary = [
+                'claimed' => 0,
+                'sent' => 0,
+                'retried' => 0,
+                'failed' => 0,
+                'deferred' => 0,
+            ];
+
+            $pendingFiles = glob($this->directoryFor('pending').'/*.json') ?: [];
+            sort($pendingFiles, SORT_STRING);
+
+            foreach ($pendingFiles as $pendingPath) {
+                if ($summary['claimed'] >= $limit) {
+                    break;
+                }
+
+                $processingPath = $this->pathFor('processing', basename($pendingPath, '.json'));
+
+                if (!@rename($pendingPath, $processingPath)) {
+                    continue;
+                }
+
+                $summary['claimed']++;
+                try {
+                    $result = $this->processClaimedJob($processingPath);
+                } catch (Throwable $exception) {
+                    error_log('[email-queue] '.$exception->getMessage());
+                    $this->attemptMoveToFailed($processingPath);
+                    $result = 'failed';
+                }
+
+                $summary[$result]++;
+            }
+
+            return $summary;
+        } finally {
+            $this->releaseProcessingLock($lockHandle);
+        }
     }
 
     private function processClaimedJob(string $processingPath): string
@@ -214,6 +229,33 @@ class EmailQueueService
     private function pathFor(string $state, string $jobId): string
     {
         return $this->directoryFor($state).'/'.$jobId.'.json';
+    }
+
+    private function acquireProcessingLock(): mixed
+    {
+        $lockPath = $this->queueRoot.'/.lock';
+        $handle = @fopen($lockPath, 'c+');
+
+        if ($handle === false) {
+            return null;
+        }
+
+        if (!@flock($handle, LOCK_EX | LOCK_NB)) {
+            @fclose($handle);
+            return null;
+        }
+
+        return $handle;
+    }
+
+    private function releaseProcessingLock(mixed $handle): void
+    {
+        if (!is_resource($handle)) {
+            return;
+        }
+
+        @flock($handle, LOCK_UN);
+        @fclose($handle);
     }
 
     private function readJobFile(string $path): array
