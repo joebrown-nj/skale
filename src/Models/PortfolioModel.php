@@ -11,7 +11,8 @@ class PortfolioModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 

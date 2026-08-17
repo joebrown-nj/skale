@@ -61,7 +61,7 @@ final class ServicePageImporter
         libxml_use_internal_errors(true);
         $loaded = $this->dom->loadHTML(
             '<?xml encoding="UTF-8">' . $html,
-            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD,
         );
         $errors = libxml_get_errors();
         libxml_clear_errors();
@@ -98,7 +98,7 @@ final class ServicePageImporter
 
             if ($existingId !== null && !$this->replace) {
                 throw new RuntimeException(
-                    "A service page with slug '{$this->slug}' already exists. Run again with --replace to overwrite it."
+                    "A service page with slug '{$this->slug}' already exists. Run again with --replace to overwrite it.",
                 );
             }
 
@@ -681,7 +681,7 @@ final class ServicePageImporter
                     'minlength' => $field->getAttribute('minlength') ?: null,
                     'maxlength' => $field->getAttribute('maxlength') ?: null,
                     'pattern' => $field->getAttribute('pattern') ?: null,
-                ], static fn ($value) => $value !== null),
+                ], static fn($value) => $value !== null),
                 'options' => $options,
             ];
             $fieldOrder += 10;
@@ -752,7 +752,7 @@ final class ServicePageImporter
         string $key,
         string $type,
         int $sortOrder,
-        array $settings = []
+        array $settings = [],
     ): array {
         return [
             'section_key' => $key,
@@ -773,7 +773,7 @@ final class ServicePageImporter
             'INSERT INTO service_pages
                 (name, slug, status, page_template, published_at)
              VALUES
-                (:name, :slug, :status, :template, :published_at)'
+                (:name, :slug, :status, :template, :published_at)',
         );
         $stmt->execute([
             'name' => $this->name,
@@ -793,7 +793,7 @@ final class ServicePageImporter
                  image_url, image_alt, background_style, css_class, html_id, is_enabled, settings)
              VALUES
                 (:page_id, :section_key, :section_type, :sort_order, :eyebrow, :heading, :subheading, :body,
-                 :image_url, :image_alt, :background_style, :css_class, :html_id, :is_enabled, :settings)'
+                 :image_url, :image_alt, :background_style, :css_class, :html_id, :is_enabled, :settings)',
         );
         $stmt->execute([
             'page_id' => $this->pageId,
@@ -826,7 +826,7 @@ final class ServicePageImporter
              VALUES
                 (:section_id, :parent_item_id, :item_type, :sort_order, :label, :title, :subtitle, :body,
                  :icon_class, :number_label, :image_url, :image_alt, :link_text, :link_url, :metric_value,
-                 :metric_label, :is_enabled, :settings)'
+                 :metric_label, :is_enabled, :settings)',
         );
         $stmt->execute([
             'section_id' => $sectionId,
@@ -859,7 +859,7 @@ final class ServicePageImporter
                  tracking_event, is_enabled)
              VALUES
                 (:section_id, :button_key, :label, :url, :style, :icon_class, :sort_order,
-                 :opens_new_window, :tracking_event, :is_enabled)'
+                 :opens_new_window, :tracking_event, :is_enabled)',
         );
         $stmt->execute(['section_id' => $sectionId] + $data);
     }
@@ -872,7 +872,7 @@ final class ServicePageImporter
                  success_message, privacy_text, css_class, tracking_form_name, tracking_success_event, is_enabled)
              VALUES
                 (:name, :form_key, :action_url, :method, :heading, :description, :badge_text, :submit_label,
-                 :success_message, :privacy_text, :css_class, :tracking_form_name, :tracking_success_event, :is_enabled)'
+                 :success_message, :privacy_text, :css_class, :tracking_form_name, :tracking_success_event, :is_enabled)',
         );
         $stmt->execute($data);
         return (int) $this->pdo->lastInsertId();
@@ -887,7 +887,7 @@ final class ServicePageImporter
              VALUES
                 (:form_id, :field_type, :field_name, :field_id, :label, :placeholder, :default_value,
                  :autocomplete, :help_text, :grid_class, :css_class, :is_required, :is_enabled,
-                 :sort_order, :validation_rules)'
+                 :sort_order, :validation_rules)',
         );
         $data['form_id'] = $formId;
         $data['validation_rules'] = $this->json($data['validation_rules'] ?? []);
@@ -901,7 +901,7 @@ final class ServicePageImporter
             'INSERT INTO form_field_options
                 (form_field_id, option_label, option_value, sort_order, is_default, is_enabled)
              VALUES
-                (:form_field_id, :option_label, :option_value, :sort_order, :is_default, :is_enabled)'
+                (:form_field_id, :option_label, :option_value, :sort_order, :is_default, :is_enabled)',
         );
         $stmt->execute(['form_field_id' => $fieldId] + $data);
     }
@@ -909,7 +909,7 @@ final class ServicePageImporter
     private function linkFormToSection(int $sectionId, int $formId): void
     {
         $stmt = $this->pdo->prepare(
-            'INSERT INTO service_section_forms (section_id, form_id) VALUES (:section_id, :form_id)'
+            'INSERT INTO service_section_forms (section_id, form_id) VALUES (:section_id, :form_id)',
         );
         $stmt->execute(['section_id' => $sectionId, 'form_id' => $formId]);
     }
@@ -933,7 +933,7 @@ final class ServicePageImporter
             'SELECT ssf.form_id
              FROM service_section_forms ssf
              INNER JOIN service_page_sections s ON s.id = ssf.section_id
-             WHERE s.service_page_id = :page_id'
+             WHERE s.service_page_id = :page_id',
         );
         $stmt->execute(['page_id' => $pageId]);
         $formIds = array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
@@ -988,7 +988,7 @@ final class ServicePageImporter
                 $classes = preg_split('/\s+/', trim($node->getAttribute('class'))) ?: [];
                 $columnClasses = array_values(array_filter(
                     $classes,
-                    static fn (string $class): bool => preg_match('/^col(?:-|$)/', $class) === 1
+                    static fn(string $class): bool => preg_match('/^col(?:-|$)/', $class) === 1,
                 ));
                 if ($columnClasses !== []) {
                     return implode(' ', $columnClasses);
@@ -1055,7 +1055,7 @@ final class ServicePageImporter
             return '"' . $value . '"';
         }
         $parts = explode("'", $value);
-        return 'concat(' . implode(', "\'", ', array_map(static fn ($part) => "'{$part}'", $parts)) . ')';
+        return 'concat(' . implode(', "\'", ', array_map(static fn($part) => "'{$part}'", $parts)) . ')';
     }
 
     private function json(array $data): string
@@ -1153,7 +1153,7 @@ try {
 
     $summary = $importer->import();
 
-    echo ($dryRun ? "Dry run complete.\n" : "Import complete.\n");
+    echo($dryRun ? "Dry run complete.\n" : "Import complete.\n");
     echo "Page ID: " . ($summary['page_id'] ?? 'n/a') . "\n";
     echo "Sections: {$summary['sections']}\n";
     echo "Items: {$summary['items']}\n";

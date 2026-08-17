@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Services;
@@ -33,35 +34,35 @@ class FormSubmissionService
             : $this->buildContactSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
-            '<p>Hi '.$input['name'].',</p>'.$successMessage,
-            $input['email']
+            '<p>Hi ' . $input['name'] . ',</p>' . $successMessage,
+            $input['email'],
         );
 
         $this->deliverEmail(
             $input['email'],
             ($input['form_type'] ?? '') === 'newsletter'
                 ? 'Thanks for subscribing'
-                : 'Thanks for contacting '.$this->siteConfig->name,
+                : 'Thanks for contacting ' . $this->siteConfig->name,
             $emailMessage,
-            $input['name']
+            $input['name'],
         );
 
         if (($input['subscribe'] ?? null) == 1) {
             $this->emailService->emailListSignup(
                 ['email' => $input['email'], 'userInfo' => json_encode($user)],
-                $user
+                $user,
             );
         }
 
         $adminEmailMessage = $this->emailService->emailTemplate(
             $this->buildAdminEmailBody($input, $user),
-            $input['email']
+            $input['email'],
         );
 
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
-            'New '.str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')).' form submission',
-            $adminEmailMessage
+            'New ' . str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')) . ' form submission',
+            $adminEmailMessage,
         );
     }
 
@@ -74,26 +75,26 @@ class FormSubmissionService
         $successMessage = $this->buildGetStartedSuccessMessage();
 
         $emailMessage = $this->emailService->emailTemplate(
-            '<p>Hi '.$input['name'].',</p>'.$successMessage,
-            $input['email']
+            '<p>Hi ' . $input['name'] . ',</p>' . $successMessage,
+            $input['email'],
         );
 
         $this->deliverEmail(
             $input['email'],
             'Thanks for filling out the contact form',
             $emailMessage,
-            $input['name']
+            $input['name'],
         );
 
         $adminEmailMessage = $this->emailService->emailTemplate(
             $this->buildAdminEmailBody($input, $user),
-            $input['email']
+            $input['email'],
         );
 
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
             'Someone filled out the contact form',
-            $adminEmailMessage
+            $adminEmailMessage,
         );
     }
 
@@ -178,7 +179,7 @@ class FormSubmissionService
 
     private function buildGetStartedSuccessMessage(): string
     {
-        return '<p class="mb-0">Thanks we will be in touch soon, '.$this->siteConfig->name.'</p>';
+        return '<p class="mb-0">Thanks we will be in touch soon, ' . $this->siteConfig->name . '</p>';
     }
 
     private function buildAdminEmailBody(array $input, ?array $user): string
@@ -243,10 +244,10 @@ class FormSubmissionService
         $items = '';
 
         foreach ($details as $label => $value) {
-            $items .= '<li style="margin-bottom:8px;"><strong>'.$this->escapeHtml($label).':</strong> '.$this->escapeHtml($value).'</li>';
+            $items .= '<li style="margin-bottom:8px;"><strong>' . $this->escapeHtml($label) . ':</strong> ' . $this->escapeHtml($value) . '</li>';
         }
 
-        return '<ul style="padding-left:20px; margin:0;">'.$items.'</ul>';
+        return '<ul style="padding-left:20px; margin:0;">' . $items . '</ul>';
     }
 
     private function formatLabel(string $key): string
@@ -257,9 +258,9 @@ class FormSubmissionService
     private function stringifyValue(mixed $value): string
     {
         if (is_array($value)) {
-            $parts = array_map(fn (mixed $item): string => $this->stringifyValue($item), $value);
+            $parts = array_map(fn(mixed $item): string => $this->stringifyValue($item), $value);
 
-            return implode(', ', array_filter($parts, static fn (string $item): bool => $item !== ''));
+            return implode(', ', array_filter($parts, static fn(string $item): bool => $item !== ''));
         }
 
         if (is_bool($value)) {

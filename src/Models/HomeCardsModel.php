@@ -9,11 +9,12 @@ class HomeCardsModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function getHomeCards(): array | NULL
+    public function getHomeCards(): ?array
     {
         $repository = $this->entityManager->getRepository(HomeCardEntity::class);
         $query = $repository->createQueryBuilder('hc')

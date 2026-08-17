@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Controllers;
 
@@ -21,7 +23,7 @@ final class GetStartedControllerTest extends TestCase
             'comment' => 'Need a better lead flow.',
         ];
         $expectedInput = $input;
-        $expectedInput['comment'] = 'Get Started Form Submission - '.$input['comment'];
+        $expectedInput['comment'] = 'Get Started Form Submission - ' . $input['comment'];
         $user = ['country_name' => 'United States'];
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);

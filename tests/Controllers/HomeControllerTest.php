@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Controllers;
 
@@ -85,7 +87,7 @@ final class HomeControllerTest extends TestCase
             $pageContentModel,
             $blogModel,
             $emailModel,
-            $view
+            $view,
         );
 
         $controller->index();
@@ -126,7 +128,7 @@ final class HomeControllerTest extends TestCase
             $pageContentModel,
             $blogModel,
             $emailModel,
-            $view
+            $view,
         );
 
         $controller->index();
@@ -163,7 +165,7 @@ final class HomeControllerTest extends TestCase
             $pageContentModel,
             $blogModel,
             $emailModel,
-            $view
+            $view,
         );
 
         $controller->unsubscribe();
@@ -202,7 +204,7 @@ final class HomeControllerTest extends TestCase
             $pageContentModel,
             $blogModel,
             $emailModel,
-            $view
+            $view,
         );
 
         $controller->unsubscribe();
@@ -241,7 +243,7 @@ final class HomeControllerTest extends TestCase
             $pageContentModel,
             $blogModel,
             $emailModel,
-            $view
+            $view,
         );
 
         $controller->unsubscribe();

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models\Entities;
@@ -38,7 +39,7 @@ class RequestBlockRuleEntity
         insertable: false,
         updatable: false,
         generated: 'INSERT',
-        options: ['default' => new CurrentTimestamp()]
+        options: ['default' => new CurrentTimestamp()],
     )]
     private ?\DateTimeInterface $createdAt = null;
 

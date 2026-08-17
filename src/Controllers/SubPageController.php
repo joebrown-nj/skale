@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controllers;
@@ -9,7 +10,8 @@ class SubPageController
 {
     private ViewInterface $view;
 
-    public function __construct(ViewInterface $view) {
+    public function __construct(ViewInterface $view)
+    {
         $this->view = $view;
     }
 

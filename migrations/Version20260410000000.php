@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DoctrineMigrations;
@@ -18,7 +19,7 @@ final class Version20260410000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql('CREATE TABLE blog (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(50) NOT NULL, url VARCHAR(100) NOT NULL, content LONGTEXT NOT NULL, shortText LONGTEXT NOT NULL, image VARCHAR(100) NOT NULL, datePosted DATETIME NOT NULL, featured TINYINT(1) NOT NULL, metaTitle VARCHAR(100) NOT NULL, metaDescription VARCHAR(100) NOT NULL, metaKeywords VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -36,7 +37,7 @@ final class Version20260410000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql('DROP TABLE services');

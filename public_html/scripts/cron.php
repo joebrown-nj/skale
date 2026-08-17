@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 ini_set('display_errors', '1');
@@ -7,7 +8,7 @@ error_reporting(E_ALL);
 
 use App\Core\Environment;
 
-require_once dirname(__DIR__, 2).'/vendor/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 $projectRoot = dirname(__DIR__, 2);
 
@@ -20,7 +21,7 @@ $connection = new mysqli(
     $database->host,
     $database->user,
     $database->password,
-    $database->name
+    $database->name,
 );
 $connection->set_charset('utf8mb4');
 
@@ -40,10 +41,10 @@ try {
         $buttonClicksRows,
         $contactsTable,
         $contactsTimestampColumn,
-        $contactRows
+        $contactRows,
     );
 } catch (Throwable $exception) {
-    fwrite(STDERR, '[cron-report] '.$exception->getMessage().PHP_EOL);
+    fwrite(STDERR, '[cron-report] ' . $exception->getMessage() . PHP_EOL);
     exit(1);
 } finally {
     $connection->close();
@@ -55,37 +56,37 @@ function buildReport(
     array $buttonClicksRows,
     string $contactsTable,
     string $contactsTimestampColumn,
-    array $contactRows
+    array $contactRows,
 ): string {
     $generatedAt = new DateTimeImmutable('now');
     $windowStart = $generatedAt->sub(new DateInterval('P1D'));
 
     $output = [];
     $output[] = 'Daily activity report';
-    $output[] = 'Generated: '.$generatedAt->format('Y-m-d H:i:s');
-    $output[] = 'Window: '.$windowStart->format('Y-m-d H:i:s').' to '.$generatedAt->format('Y-m-d H:i:s');
+    $output[] = 'Generated: ' . $generatedAt->format('Y-m-d H:i:s');
+    $output[] = 'Window: ' . $windowStart->format('Y-m-d H:i:s') . ' to ' . $generatedAt->format('Y-m-d H:i:s');
     $output[] = '';
     $output[] = formatSection(
         $buttonClicksTable,
         $buttonClicksTimestampColumn,
-        $buttonClicksRows
+        $buttonClicksRows,
     );
     $output[] = '';
     $output[] = formatSection(
         $contactsTable,
         $contactsTimestampColumn,
-        $contactRows
+        $contactRows,
     );
 
-    return implode(PHP_EOL, $output).PHP_EOL;
+    return implode(PHP_EOL, $output) . PHP_EOL;
 }
 
 function formatSection(string $table, string $timestampColumn, array $rows): string
 {
     $output = [];
     $output[] = strtoupper($table);
-    $output[] = 'Timestamp column: '.$timestampColumn;
-    $output[] = 'Records found: '.count($rows);
+    $output[] = 'Timestamp column: ' . $timestampColumn;
+    $output[] = 'Records found: ' . count($rows);
 
     if ($rows === []) {
         $output[] = 'No records found in the last 24 hours.';
@@ -100,7 +101,7 @@ function formatSection(string $table, string $timestampColumn, array $rows): str
             $output[] = sprintf(
                 '  %s: %s',
                 $field,
-                formatFieldValue($field, $value)
+                formatFieldValue($field, $value),
             );
         }
     }
@@ -166,7 +167,7 @@ function fetchLast24Hours(mysqli $connection, string $table, string $timestampCo
         'SELECT * FROM `%s` WHERE `%s` >= DATE_SUB(NOW(), INTERVAL 1 DAY) ORDER BY `%s` DESC, `id` DESC',
         $connection->real_escape_string($table),
         $connection->real_escape_string($timestampColumn),
-        $connection->real_escape_string($timestampColumn)
+        $connection->real_escape_string($timestampColumn),
     );
 
     $result = $connection->query($sql);
@@ -178,7 +179,7 @@ function resolveTableName(mysqli $connection, array $candidates): string
 {
     foreach ($candidates as $candidate) {
         $result = $connection->query(
-            "SHOW TABLES LIKE '".$connection->real_escape_string($candidate)."'"
+            "SHOW TABLES LIKE '" . $connection->real_escape_string($candidate) . "'",
         );
 
         if ($result->num_rows > 0) {
@@ -187,7 +188,7 @@ function resolveTableName(mysqli $connection, array $candidates): string
     }
 
     throw new RuntimeException(
-        'None of the expected tables were found: '.implode(', ', $candidates)
+        'None of the expected tables were found: ' . implode(', ', $candidates),
     );
 }
 
@@ -210,7 +211,7 @@ function resolveTimestampColumn(mysqli $connection, string $table): string
     ];
 
     $columns = [];
-    $result = $connection->query('SHOW COLUMNS FROM `'.$connection->real_escape_string($table).'`');
+    $result = $connection->query('SHOW COLUMNS FROM `' . $connection->real_escape_string($table) . '`');
 
     while ($row = $result->fetch_assoc()) {
         $columns[] = $row['Field'];
@@ -226,7 +227,7 @@ function resolveTimestampColumn(mysqli $connection, string $table): string
         sprintf(
             'Table "%s" does not have a supported timestamp column. Available columns: %s',
             $table,
-            implode(', ', $columns)
-        )
+            implode(', ', $columns),
+        ),
     );
 }

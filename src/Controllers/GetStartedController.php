@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controllers;
@@ -18,7 +19,8 @@ class GetStartedController
     private ContactModel $contactModel;
     private ViewInterface $view;
 
-    public function __construct(FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService, GetStartedModel $getStartedModel, ContactModel $contactModel, ViewInterface $view) {
+    public function __construct(FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService, GetStartedModel $getStartedModel, ContactModel $contactModel, ViewInterface $view)
+    {
         $this->formSubmissionService = $formSubmissionService;
         $this->requestBlocklistService = $requestBlocklistService;
         $this->getStartedModel = $getStartedModel;
@@ -29,7 +31,7 @@ class GetStartedController
     public function postGetStarted(?array $input = null): string
     {
         $input ??= $_POST;
-        $input['comment'] = 'Get Started Form Submission - '. $input['comment'];
+        $input['comment'] = 'Get Started Form Submission - ' . $input['comment'];
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
             http_response_code(403);

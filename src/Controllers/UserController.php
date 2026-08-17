@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controllers;
@@ -36,9 +37,9 @@ class UserController implements UserLocationProviderInterface
         $ipAddress = $this->getIPAddress();
 
         if (
-            isset($_SESSION['userLocation']) &&
-            isset($_SESSION['userLocation']['ipAddress']) &&
-            $_SESSION['userLocation']['ipAddress'] == $ipAddress
+            isset($_SESSION['userLocation'])
+            && isset($_SESSION['userLocation']['ipAddress'])
+            && $_SESSION['userLocation']['ipAddress'] == $ipAddress
         ) {
             return $_SESSION['userLocation'];
         }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DoctrineMigrations;
@@ -18,7 +19,7 @@ final class Version20260616000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql(
@@ -34,7 +35,7 @@ final class Version20260616000000 extends AbstractMigration
                 expiresAt DATETIME DEFAULT NULL,
                 INDEX IDX_REQUEST_BLOCK_RULES_ACTIVE_ATTRIBUTE (active, attribute),
                 PRIMARY KEY(id)
-            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB',
         );
     }
 
@@ -42,7 +43,7 @@ final class Version20260616000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql('DROP TABLE request_block_rules');

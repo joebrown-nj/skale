@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Services;
@@ -36,8 +37,7 @@ class RequestBlocklistService
 
     public function __construct(
         private readonly RequestBlockRuleModel $requestBlockRuleModel,
-    ) {
-    }
+    ) {}
 
     public function findMatchingRequestRule(?array $server = null, ?string $requestPath = null): ?RequestBlockRuleEntity
     {

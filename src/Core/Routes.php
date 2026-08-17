@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -14,7 +15,6 @@ use App\Middleware\AuthMiddleware;
 use Phroute\Phroute\RouteCollector;
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\Exception\HttpRouteNotFoundException;
-
 use App\Controllers\HomeController;
 use App\Controllers\SolutionController;
 use App\Controllers\BlogController;
@@ -26,7 +26,6 @@ use App\Controllers\EmailController;
 use App\Controllers\GetStartedController;
 use App\Controllers\PortfolioController;
 use App\Controllers\LandingPageController;
-
 use App\Controllers\TestController;
 
 class Routes
@@ -48,7 +47,7 @@ class Routes
 
     private function registerRoutes(): void
     {
-        $this->router->filter('auth', function() {
+        $this->router->filter('auth', function () {
             return $this->container->get(AuthMiddleware::class)->handle();
         });
 
@@ -57,8 +56,8 @@ class Routes
         // $this->router->get('/test', [TestController::class, 'index']);
         $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
         $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
-        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
-        $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionDetail']);
+        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
+        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'] . '/{slug}', [SolutionController::class, 'getSolutionDetail']);
         // $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionPage']);
         $this->router->get('/blog', [BlogController::class, 'index']);
         $this->router->get('/blog/archive', [BlogController::class, 'archive']);
@@ -107,7 +106,7 @@ class Routes
                 $this->container->get(ViewInterface::class)->render('error/403', [
                     'errorMessage' => $requestBlocklistService->getPublicMessage(
                         $matchedRule,
-                        'This request has been blocked for security reasons.'
+                        'This request has been blocked for security reasons.',
                     ),
                 ]);
 
@@ -117,7 +116,7 @@ class Routes
             try {
                 $response = $this->dispatcher->dispatch(
                     $this->getDispatchMethod(),
-                    $requestPath
+                    $requestPath,
                 );
 
                 if ($response instanceof Response) {
@@ -167,8 +166,8 @@ class Routes
         $segments = [];
 
         for ($depth = 1; $depth <= $maxDepth; $depth++) {
-            $segments[] = '{p'.$depth.'}';
-            $this->router->get($basePath.'/'.implode('/', $segments), $handler);
+            $segments[] = '{p' . $depth . '}';
+            $this->router->get($basePath . '/' . implode('/', $segments), $handler);
         }
     }
 
@@ -200,7 +199,7 @@ class Routes
         return in_array(
             strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET')),
             ['GET', 'HEAD'],
-            true
+            true,
         );
     }
 

@@ -12,8 +12,8 @@ use Throwable;
 
 class EmailModel implements EmailServiceInterface
 {
-  private const SMTP_TIMEOUT_SECONDS = 20;
-  private const SMTP_CONNECTION_TIMEOUT_SECONDS = 30;
+    private const SMTP_TIMEOUT_SECONDS = 20;
+    private const SMTP_CONNECTION_TIMEOUT_SECONDS = 30;
 
     protected PHPMailer $mailer;
     private EntityManager $entityManager;
@@ -53,7 +53,7 @@ class EmailModel implements EmailServiceInterface
         $this->lastSendError = null;
 
         try {
-        if ($this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
+            if ($this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
                 return true;
             }
 
@@ -61,160 +61,160 @@ class EmailModel implements EmailServiceInterface
                 ? $this->mailer->ErrorInfo
                 : 'PHPMailer returned false without an error message.';
 
-        if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
-          return true;
-        }
+            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
+                return true;
+            }
 
-        if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
-          return true;
-        }
+            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
+                return true;
+            }
 
-            error_log('[email] Send failed for '.$this->redactEmail($to).': '.$this->lastSendError);
+            error_log('[email] Send failed for ' . $this->redactEmail($to) . ': ' . $this->lastSendError);
 
             return false;
         } catch (Throwable $e) {
             $mailerError = trim($this->mailer->ErrorInfo);
             $this->lastSendError = $e->getMessage();
             if ($mailerError !== '' && !str_contains($this->lastSendError, $mailerError)) {
-                $this->lastSendError .= ' (PHPMailer: '.$mailerError.')';
+                $this->lastSendError .= ' (PHPMailer: ' . $mailerError . ')';
             }
 
-        if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
-          return true;
-        }
+            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
+                return true;
+            }
 
-        if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
-          return true;
-        }
+            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
+                return true;
+            }
 
-            error_log('[email] Send failed for '.$this->redactEmail($to).': '.$this->lastSendError);
+            error_log('[email] Send failed for ' . $this->redactEmail($to) . ': ' . $this->lastSendError);
             return false;
         }
     }
 
     private function sendWithCurrentTransport(string $to, string $subject, string $body, ?string $toName): bool
     {
-      $this->mailer->clearAllRecipients();
-      $this->mailer->clearAttachments();
-      $this->mailer->isHTML(true);
-      $this->mailer->addAddress($to, $toName);
-      $this->mailer->Subject = $subject;
-      $this->mailer->Body = $body;
+        $this->mailer->clearAllRecipients();
+        $this->mailer->clearAttachments();
+        $this->mailer->isHTML(true);
+        $this->mailer->addAddress($to, $toName);
+        $this->mailer->Subject = $subject;
+        $this->mailer->Body = $body;
 
-      try {
-        return $this->mailer->send();
-      } finally {
-        if ($this->mailer->isSMTP()) {
-          try {
-            $this->mailer->smtpClose();
-          } catch (Throwable $exception) {
-            error_log('[email] SMTP close failed: '.$exception->getMessage());
-          }
+        try {
+            return $this->mailer->send();
+        } finally {
+            if ($this->mailer->isSMTP()) {
+                try {
+                    $this->mailer->smtpClose();
+                } catch (Throwable $exception) {
+                    error_log('[email] SMTP close failed: ' . $exception->getMessage());
+                }
+            }
         }
-      }
     }
 
     private function shouldRetryWithStartTls(?string $errorMessage): bool
     {
-      if ($errorMessage === null || $errorMessage === '') {
-        return false;
-      }
+        if ($errorMessage === null || $errorMessage === '') {
+            return false;
+        }
 
-      $message = strtolower($errorMessage);
-      $timedOut = str_contains($message, 'connection timed out') || str_contains($message, 'smtp code: 110');
-      $connectFailure = str_contains($message, 'could not connect to smtp host') || str_contains($message, 'failed to connect to server');
+        $message = strtolower($errorMessage);
+        $timedOut = str_contains($message, 'connection timed out') || str_contains($message, 'smtp code: 110');
+        $connectFailure = str_contains($message, 'could not connect to smtp host') || str_contains($message, 'failed to connect to server');
 
-      return $timedOut && $connectFailure;
+        return $timedOut && $connectFailure;
     }
 
     private function sendUsingStartTlsFallback(string $to, string $subject, string $body, ?string $toName): bool
     {
-      if ($this->mailConfig->host === '') {
-        return false;
-      }
-
-      if (strtolower($this->mailConfig->encryption) === 'tls' || strtolower($this->mailConfig->encryption) === 'starttls') {
-        return false;
-      }
-
-      if ($this->mailConfig->port === 587 && strtolower($this->mailConfig->encryption) !== 'ssl' && strtolower($this->mailConfig->encryption) !== 'smtps') {
-        return false;
-      }
-
-      $this->mailer->Port = 587;
-      $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-
-      try {
-        if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
-          $fallbackError = $this->mailer->ErrorInfo !== ''
-            ? $this->mailer->ErrorInfo
-            : 'PHPMailer returned false without an error message during STARTTLS fallback.';
-          $this->lastSendError .= ' | STARTTLS fallback failed: '.$fallbackError;
-          return false;
+        if ($this->mailConfig->host === '') {
+            return false;
         }
 
-        error_log('[email] STARTTLS fallback succeeded after SMTP timeout on '.$this->mailConfig->host.'.');
-        return true;
-      } catch (Throwable $e) {
-        $fallbackError = trim($this->mailer->ErrorInfo);
-        $errorMessage = $e->getMessage();
-        if ($fallbackError !== '' && !str_contains($errorMessage, $fallbackError)) {
-          $errorMessage .= ' (PHPMailer: '.$fallbackError.')';
+        if (strtolower($this->mailConfig->encryption) === 'tls' || strtolower($this->mailConfig->encryption) === 'starttls') {
+            return false;
         }
 
-        $this->lastSendError .= ' | STARTTLS fallback exception: '.$errorMessage;
-        return false;
-      }
+        if ($this->mailConfig->port === 587 && strtolower($this->mailConfig->encryption) !== 'ssl' && strtolower($this->mailConfig->encryption) !== 'smtps') {
+            return false;
+        }
+
+        $this->mailer->Port = 587;
+        $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+
+        try {
+            if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
+                $fallbackError = $this->mailer->ErrorInfo !== ''
+                  ? $this->mailer->ErrorInfo
+                  : 'PHPMailer returned false without an error message during STARTTLS fallback.';
+                $this->lastSendError .= ' | STARTTLS fallback failed: ' . $fallbackError;
+                return false;
+            }
+
+            error_log('[email] STARTTLS fallback succeeded after SMTP timeout on ' . $this->mailConfig->host . '.');
+            return true;
+        } catch (Throwable $e) {
+            $fallbackError = trim($this->mailer->ErrorInfo);
+            $errorMessage = $e->getMessage();
+            if ($fallbackError !== '' && !str_contains($errorMessage, $fallbackError)) {
+                $errorMessage .= ' (PHPMailer: ' . $fallbackError . ')';
+            }
+
+            $this->lastSendError .= ' | STARTTLS fallback exception: ' . $errorMessage;
+            return false;
+        }
     }
 
     private function sendUsingIpv4Fallback(string $to, string $subject, string $body, ?string $toName): bool
     {
-      if ($this->mailConfig->host === '') {
-        return false;
-      }
-
-      $originalHost = $this->mailConfig->host;
-      $resolvedHost = gethostbyname($originalHost);
-
-      if ($resolvedHost === '' || $resolvedHost === $originalHost) {
-        return false;
-      }
-
-      $this->mailer->Host = $resolvedHost;
-      $this->mailer->Port = 587;
-      $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-      $this->mailer->SMTPOptions = [
-        'ssl' => [
-          'peer_name' => $originalHost,
-          'verify_peer' => true,
-          'verify_peer_name' => true,
-          'allow_self_signed' => false,
-        ],
-      ];
-
-      try {
-        if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
-          $fallbackError = $this->mailer->ErrorInfo !== ''
-            ? $this->mailer->ErrorInfo
-            : 'PHPMailer returned false without an error message during IPv4 fallback.';
-          $this->lastSendError .= ' | IPv4 fallback failed: '.$fallbackError;
-          return false;
+        if ($this->mailConfig->host === '') {
+            return false;
         }
 
-        error_log('[email] IPv4 STARTTLS fallback succeeded using '.$resolvedHost.' for '.$originalHost.'.');
-        return true;
-      } catch (Throwable $e) {
-        $fallbackError = trim($this->mailer->ErrorInfo);
-        $errorMessage = $e->getMessage();
-        if ($fallbackError !== '' && !str_contains($errorMessage, $fallbackError)) {
-          $errorMessage .= ' (PHPMailer: '.$fallbackError.')';
+        $originalHost = $this->mailConfig->host;
+        $resolvedHost = gethostbyname($originalHost);
+
+        if ($resolvedHost === '' || $resolvedHost === $originalHost) {
+            return false;
         }
 
-        $this->lastSendError .= ' | IPv4 fallback exception: '.$errorMessage;
-        return false;
-      } finally {
-        $this->mailer->Host = $originalHost;
-      }
+        $this->mailer->Host = $resolvedHost;
+        $this->mailer->Port = 587;
+        $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $this->mailer->SMTPOptions = [
+            'ssl' => [
+                'peer_name' => $originalHost,
+                'verify_peer' => true,
+                'verify_peer_name' => true,
+                'allow_self_signed' => false,
+            ],
+        ];
+
+        try {
+            if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
+                $fallbackError = $this->mailer->ErrorInfo !== ''
+                  ? $this->mailer->ErrorInfo
+                  : 'PHPMailer returned false without an error message during IPv4 fallback.';
+                $this->lastSendError .= ' | IPv4 fallback failed: ' . $fallbackError;
+                return false;
+            }
+
+            error_log('[email] IPv4 STARTTLS fallback succeeded using ' . $resolvedHost . ' for ' . $originalHost . '.');
+            return true;
+        } catch (Throwable $e) {
+            $fallbackError = trim($this->mailer->ErrorInfo);
+            $errorMessage = $e->getMessage();
+            if ($fallbackError !== '' && !str_contains($errorMessage, $fallbackError)) {
+                $errorMessage .= ' (PHPMailer: ' . $fallbackError . ')';
+            }
+
+            $this->lastSendError .= ' | IPv4 fallback exception: ' . $errorMessage;
+            return false;
+        } finally {
+            $this->mailer->Host = $originalHost;
+        }
     }
 
     public function getLastSendError(): ?string
@@ -229,7 +229,7 @@ class EmailModel implements EmailServiceInterface
             return '[invalid address]';
         }
 
-        return substr($email, 0, 1).'***'.substr($email, $at);
+        return substr($email, 0, 1) . '***' . substr($email, $at);
     }
 
     public function emailListUnsubscribe(string $email): bool
@@ -252,7 +252,7 @@ class EmailModel implements EmailServiceInterface
             return false;
         }
     }
- 
+
     public function processEmailListSignup(array $data): bool
     {
         try {
@@ -269,13 +269,17 @@ class EmailModel implements EmailServiceInterface
         }
     }
 
-    public function checkIfEmailIsOnList(string $email): bool {
+    public function checkIfEmailIsOnList(string $email): bool
+    {
         $exists = $this->entityManager->getRepository(EmailListSignupsEntity::class)->findOneBy(['email' => $email]);
-        if($exists) return true;
+        if ($exists) {
+            return true;
+        }
         return false;
     }
- 
-    public function validateEmail(string $email): bool {
+
+    public function validateEmail(string $email): bool
+    {
         return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
@@ -301,80 +305,80 @@ class EmailModel implements EmailServiceInterface
 
     public function emailTemplate(string $content = '', string $email = ''): string
     {
-//         return $this->emailHeader().'<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
-//       <tr>
-//         <td>&nbsp;</td>
-//         <td class="container">
-//           <div class="content">
+        //         return $this->emailHeader().'<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+        //       <tr>
+        //         <td>&nbsp;</td>
+        //         <td class="container">
+        //           <div class="content">
 
-//             <!-- START CENTERED WHITE CONTAINER -->
-//             <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
-//             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main">
+        //             <!-- START CENTERED WHITE CONTAINER -->
+        //             <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+        //             <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main">
 
-//               <!-- START MAIN CONTENT AREA -->
-//               <tr>
-//                 <td class="header" valign="middle" style="vertical-align: middle;">
-//                     <a href="'.$this->siteConfig->url.'">
-//                         <img style="max-width:150px;" src="'.$this->siteConfig->url.'images/logo-email.png" alt="'.$this->siteConfig->name.'">
-//                     </a>
-//                 </td>
-//                 <td class="header" valign="middle" style="vertical-align: middle;">
-//                     <a href="'.$this->siteConfig->url.'" style="display:inline-block;">
-//                         <img style="max-height:20px;" src="'.$this->siteConfig->url.'images/home-icon.gif" alt="'.$this->siteConfig->name.'">
-//                     </a>
-//                 </td>
-//               </tr>
-//               <tr>
-//                 <td class="wrapper">
-//                   '.$content.'
-//                   <p>
-//                     <a href="tel:'.$this->siteConfig->phone.'" title="Call '.$this->siteConfig->name.' '.$this->siteConfig->phone.'">
-//                         <img style="max-height:15px;" src="'.$this->siteConfig->url.'images/phone-icon.gif" alt="Phone icon">
-//                         '.$this->siteConfig->phone.'
-//                     </a>
+        //               <!-- START MAIN CONTENT AREA -->
+        //               <tr>
+        //                 <td class="header" valign="middle" style="vertical-align: middle;">
+        //                     <a href="'.$this->siteConfig->url.'">
+        //                         <img style="max-width:150px;" src="'.$this->siteConfig->url.'images/logo-email.png" alt="'.$this->siteConfig->name.'">
+        //                     </a>
+        //                 </td>
+        //                 <td class="header" valign="middle" style="vertical-align: middle;">
+        //                     <a href="'.$this->siteConfig->url.'" style="display:inline-block;">
+        //                         <img style="max-height:20px;" src="'.$this->siteConfig->url.'images/home-icon.gif" alt="'.$this->siteConfig->name.'">
+        //                     </a>
+        //                 </td>
+        //               </tr>
+        //               <tr>
+        //                 <td class="wrapper">
+        //                   '.$content.'
+        //                   <p>
+        //                     <a href="tel:'.$this->siteConfig->phone.'" title="Call '.$this->siteConfig->name.' '.$this->siteConfig->phone.'">
+        //                         <img style="max-height:15px;" src="'.$this->siteConfig->url.'images/phone-icon.gif" alt="Phone icon">
+        //                         '.$this->siteConfig->phone.'
+        //                     </a>
 
-//                     <br>
+        //                     <br>
 
-//                     <a href="mailto:'.$this->siteConfig->email.'" title="Email '.$this->siteConfig->name.' '.$this->siteConfig->email.'">
-//                         <img style="max-height:10px;" src="'.$this->siteConfig->url.'images/email-icon.gif" alt="Email icon">
-//                         '.$this->siteConfig->email.'
-//                     </a>
-//                   </p>
-//                 </td>
-//               </tr>
-//               <!-- END MAIN CONTENT AREA -->
-//               </table>
+        //                     <a href="mailto:'.$this->siteConfig->email.'" title="Email '.$this->siteConfig->name.' '.$this->siteConfig->email.'">
+        //                         <img style="max-height:10px;" src="'.$this->siteConfig->url.'images/email-icon.gif" alt="Email icon">
+        //                         '.$this->siteConfig->email.'
+        //                     </a>
+        //                   </p>
+        //                 </td>
+        //               </tr>
+        //               <!-- END MAIN CONTENT AREA -->
+        //               </table>
 
-//             <!-- START FOOTER -->
-//             <div class="footer">
-//               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-//                 <tr>
-//                   <td class="footer-content-block">
-//                     <a href="'.$this->siteConfig->url.'unsubscribe?email='.$email.'">Unsubscribe</a>
-//                   </td>
-//                 </tr>
-//               </table>
-//             </div>
+        //             <!-- START FOOTER -->
+        //             <div class="footer">
+        //               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+        //                 <tr>
+        //                   <td class="footer-content-block">
+        //                     <a href="'.$this->siteConfig->url.'unsubscribe?email='.$email.'">Unsubscribe</a>
+        //                   </td>
+        //                 </tr>
+        //               </table>
+        //             </div>
 
-//             <!-- END FOOTER -->
-            
-// <!-- END CENTERED WHITE CONTAINER --></div>
-//         </td>
-//         <td>&nbsp;</td>
-//       </tr>
-//     </table>
-//   </body>
-// </html>';
+        //             <!-- END FOOTER -->
 
-$formattedContent = $content != '' ? '<div style="
+        // <!-- END CENTERED WHITE CONTAINER --></div>
+        //         </td>
+        //         <td>&nbsp;</td>
+        //       </tr>
+        //     </table>
+        //   </body>
+        // </html>';
+
+        $formattedContent = $content != '' ? '<div style="
                                 padding-top:18px;
                                 color:#4b5563;
                                 font-family:Arial, Helvetica, sans-serif;
                                 font-size:17px;
                                 line-height:27px;
-                            ">'.$content.'</div>' : '';
+                            ">' . $content . '</div>' : '';
 
-return '<!doctype html>
+        return '<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -486,7 +490,7 @@ return '<!doctype html>
                                 font-weight:bold;
                                 margin:0;
                             "> Thanks for reaching out. </div>
-                '.$formattedContent.'
+                ' . $formattedContent . '
                 <div style="
                                 padding-top:18px;
                                 color:#4b5563;

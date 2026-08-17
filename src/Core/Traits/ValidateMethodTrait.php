@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Traits;
@@ -14,9 +15,9 @@ trait ValidateMethodTrait
         if ($_SERVER['REQUEST_METHOD'] !== $method) {
             http_response_code(405);
             return $this->getView()->render($view, [
-                'errors' => ['Method not allowed']
+                'errors' => ['Method not allowed'],
             ]);
         }
         return null;
     }
-} 
+}

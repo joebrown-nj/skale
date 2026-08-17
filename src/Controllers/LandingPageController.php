@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controllers;
@@ -19,8 +20,7 @@ final class LandingPageController
         private FormSubmissionService $formSubmissionService,
         private RequestBlocklistService $requestBlocklistService,
         private LandingPageContentProvider $content,
-    ) {
-    }
+    ) {}
 
     public function automation(): void
     {

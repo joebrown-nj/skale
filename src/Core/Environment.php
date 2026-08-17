@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -16,9 +17,7 @@ final class Environment
     /** @var array<string, ApplicationConfig> */
     private static array $configurations = [];
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function boot(string $projectRoot): void
     {
@@ -30,7 +29,7 @@ final class Environment
 
         // Shared hosting browser requests and cron jobs often can't inject APP_ENV,
         // so we default to production and let .env.local opt local machines into local mode.
-        (new Dotenv())->bootEnv($projectRoot.'/.env', defaultEnv: 'prod');
+        (new Dotenv())->bootEnv($projectRoot . '/.env', defaultEnv: 'prod');
 
         self::$configurations[$projectRoot] = ConfigurationFactory::fromEnvironment($_ENV, $projectRoot);
         self::$bootedRoots[$projectRoot] = true;

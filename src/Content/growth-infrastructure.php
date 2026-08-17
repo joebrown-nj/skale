@@ -322,7 +322,7 @@ return [
                     'iconClass' => 'bi bi-window',
                     'title' => 'Website & Conversion',
                     'description' => 'Your website should clearly explain your value, establish credibility, and guide visitors toward action.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/websites',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/websites',
                     'bullets' => [
                         'Website strategy and development',
                         'Landing pages and conversion paths',
@@ -333,7 +333,7 @@ return [
                     'iconClass' => 'bi bi-megaphone',
                     'title' => 'Marketing',
                     'description' => 'Reach the right audience with focused campaigns designed around qualified traffic and measurable action.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/marketing',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing',
                     'bullets' => [
                         'SEO and content strategy',
                         'PPC and paid social campaigns',
@@ -344,7 +344,7 @@ return [
                     'iconClass' => 'bi bi-people',
                     'title' => 'CRM Solutions',
                     'description' => 'Create a dependable process for capturing, organizing, assigning, and following up with every opportunity.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/crm-solutions',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/crm-solutions',
                     'bullets' => [
                         'CRM setup and optimization',
                         'Lead routing and pipeline design',
@@ -355,7 +355,7 @@ return [
                     'iconClass' => 'bi bi-lightning-charge',
                     'title' => 'Marketing Automation',
                     'description' => 'Remove repetitive work and make important actions happen reliably at the right time.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/marketing-automation',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-automation',
                     'bullets' => [
                         'Marketing and sales automation',
                         'Internal workflow automation',
@@ -366,7 +366,7 @@ return [
                     'iconClass' => 'bi bi-link-45deg',
                     'title' => 'System Integrations',
                     'description' => 'Connect the platforms your business already depends on so information moves without unnecessary handoffs.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/system-integrations',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/system-integrations',
                     'bullets' => [
                         'API and platform integrations',
                         'Data synchronization',
@@ -377,7 +377,7 @@ return [
                     'iconClass' => 'bi bi-clipboard-data',
                     'title' => 'Marketing Analytics',
                     'description' => 'Understand what is working, what is not, and where your next best opportunity may be.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/marketing-analytics',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
                     'bullets' => [
                         'Analytics implementation',
                         'Dashboards and reporting',
@@ -632,7 +632,7 @@ return [
                 'items' => [
                     [
                         'label' => 'Book My Free Consultation',
-                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
+                        'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-primary btn-lg',
                         'iconClass' => null,
                     ],

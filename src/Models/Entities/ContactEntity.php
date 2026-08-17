@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models\Entities;
@@ -35,7 +36,7 @@ class ContactEntity
         insertable: false,
         updatable: false,
         generated: 'INSERT',
-        options: ['default' => new CurrentTimestamp()]
+        options: ['default' => new CurrentTimestamp()],
     )]
     public ?\DateTimeInterface $date = null;
 

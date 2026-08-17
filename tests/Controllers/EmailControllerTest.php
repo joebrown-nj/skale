@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Controllers;
 
@@ -42,7 +44,7 @@ final class EmailControllerTest extends TestCase
 
         $this->assertSame(
             '{"error":["A valid email is required"]}',
-            $controller->signUp()
+            $controller->signUp(),
         );
     }
 
@@ -76,7 +78,7 @@ final class EmailControllerTest extends TestCase
 
         $this->assertSame(
             '{"error":"You are already on the list"}',
-            $controller->signUp()
+            $controller->signUp(),
         );
     }
 
@@ -114,7 +116,7 @@ final class EmailControllerTest extends TestCase
 
         $this->assertSame(
             '{"success":"Thanks for joining the mailing list!"}',
-            $controller->signUp()
+            $controller->signUp(),
         );
     }
 
@@ -152,7 +154,7 @@ final class EmailControllerTest extends TestCase
 
         $this->assertSame(
             '{"error":"Unable to process email signup"}',
-            $controller->signUp($input)
+            $controller->signUp($input),
         );
     }
 
@@ -171,7 +173,7 @@ final class EmailControllerTest extends TestCase
                 (new RequestBlockRuleEntity())
                     ->setAttribute('email')
                     ->setMatchType('exact')
-                    ->setRuleValue('blocked@example.com')
+                    ->setRuleValue('blocked@example.com'),
             );
 
         $view = $this->createMock(ViewInterface::class);

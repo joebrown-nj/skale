@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -51,7 +52,7 @@ class SiteDataCache
             'serviceList' => $this->getServiceList(),
             'allServiceList' => $this->getAllServiceList(),
             'contactContent' => $this->getContactContent(),
-            'hiddenLinks' => $this->getHiddenLinks()
+            'hiddenLinks' => $this->getHiddenLinks(),
         ];
 
         return $this->sharedData;

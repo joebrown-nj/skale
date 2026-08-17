@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -19,7 +20,8 @@ class View implements ViewInterface
     private PageContextProvider $pageContextProvider;
     private array $user;
 
-    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider) {
+    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider)
+    {
         $this->smarty = $smarty;
         $this->smarty->caching = Smarty::CACHING_OFF;
         $this->smarty->setTemplateDir($_ENV['SMARTY_TEMPLATE_DIR']);
@@ -42,26 +44,31 @@ class View implements ViewInterface
         $this->user = $this->userController->getUserLocation();
     }
 
-    public function getP1(): ?string {
+    public function getP1(): ?string
+    {
         return $this->p1;
     }
 
-    public function getP2(): ?string {
+    public function getP2(): ?string
+    {
         return $this->p2;
     }
 
-    public function getP3(): ?string {
+    public function getP3(): ?string
+    {
         return $this->p3;
     }
 
-    public function getUri(): ?string {
+    public function getUri(): ?string
+    {
         return $this->uri;
     }
 
-    public function getUser(): ?array {
+    public function getUser(): ?array
+    {
         return $this->user;
     }
-    
+
     public function render(string $view, array $data = []): void
     {
         $page = $this->pageContextProvider->resolve($this->uri);
@@ -78,7 +85,7 @@ class View implements ViewInterface
         $this->smarty->assign('p2', $this->p2);
         $this->smarty->assign('p3', $this->p3);
 
-        if(isset($_GET['interests'])){
+        if (isset($_GET['interests'])) {
             $this->smarty->assign('interests', explode(',', $_GET['interests']));
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -16,7 +17,7 @@ class GetStartedModel
 
     public function checkForm(array $data): array
     {
-        $error = array();
+        $error = [];
 
         if (empty($data['name'])) {
             $error[] = 'Name is required';

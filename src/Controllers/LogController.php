@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controllers;
@@ -69,11 +70,11 @@ class LogController
         $normalizedTarget = $path;
 
         if (is_string($query) && $query !== '') {
-            $normalizedTarget .= '?'.$query;
+            $normalizedTarget .= '?' . $query;
         }
 
         if (is_string($fragment) && $fragment !== '') {
-            $normalizedTarget .= '#'.$fragment;
+            $normalizedTarget .= '#' . $fragment;
         }
 
         return $normalizedTarget;

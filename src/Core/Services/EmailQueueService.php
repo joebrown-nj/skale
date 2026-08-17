@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Services;
@@ -22,7 +23,7 @@ class EmailQueueService
         $this->emailService = $emailService;
         $config ??= new EmailQueueConfig(
             enabled: filter_var($_ENV['EMAIL_QUEUE_ENABLED'] ?? false, FILTER_VALIDATE_BOOL),
-            directory: (string) ($_ENV['EMAIL_QUEUE_DIR'] ?? dirname(__DIR__, 3).'/var/email-queue'),
+            directory: (string) ($_ENV['EMAIL_QUEUE_DIR'] ?? dirname(__DIR__, 3) . '/var/email-queue'),
             maxAttempts: max(1, (int) ($_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? self::DEFAULT_MAX_ATTEMPTS)),
             processingTimeout: max(60, (int) ($_ENV['EMAIL_QUEUE_PROCESSING_TIMEOUT'] ?? self::DEFAULT_PROCESSING_TIMEOUT)),
         );
@@ -42,7 +43,7 @@ class EmailQueueService
 
             $jobId = bin2hex(random_bytes(16));
             $pendingPath = $this->pathFor('pending', $jobId);
-            $tempPath = $pendingPath.'.tmp';
+            $tempPath = $pendingPath . '.tmp';
 
             $job = [
                 'id' => $jobId,
@@ -64,7 +65,7 @@ class EmailQueueService
 
             return true;
         } catch (Throwable $exception) {
-            error_log('[email-queue] '.$exception->getMessage());
+            error_log('[email-queue] ' . $exception->getMessage());
 
             return false;
         }
@@ -95,7 +96,7 @@ class EmailQueueService
                 'deferred' => 0,
             ];
 
-            $pendingFiles = glob($this->directoryFor('pending').'/*.json') ?: [];
+            $pendingFiles = glob($this->directoryFor('pending') . '/*.json') ?: [];
             sort($pendingFiles, SORT_STRING);
 
             foreach ($pendingFiles as $pendingPath) {
@@ -113,7 +114,7 @@ class EmailQueueService
                 try {
                     $result = $this->processClaimedJob($processingPath);
                 } catch (Throwable $exception) {
-                    error_log('[email-queue] '.$exception->getMessage());
+                    error_log('[email-queue] ' . $exception->getMessage());
                     $this->attemptMoveToFailed($processingPath);
                     $result = 'failed';
                 }
@@ -132,7 +133,7 @@ class EmailQueueService
         try {
             $job = $this->readJobFile($processingPath);
         } catch (Throwable $exception) {
-            error_log('[email-queue] '.$exception->getMessage());
+            error_log('[email-queue] ' . $exception->getMessage());
             $this->moveToDirectory($processingPath, 'failed');
 
             return 'failed';
@@ -148,7 +149,7 @@ class EmailQueueService
             (string) $job['to'],
             (string) $job['subject'],
             (string) $job['body'],
-            $job['to_name'] !== null ? (string) $job['to_name'] : null
+            $job['to_name'] !== null ? (string) $job['to_name'] : null,
         );
 
         if ($sent) {
@@ -170,7 +171,7 @@ class EmailQueueService
             (string) ($job['id'] ?? basename($processingPath, '.json')),
             $attempts,
             $this->maxAttempts(),
-            $job['last_error']
+            $job['last_error'],
         ));
 
         $this->writeJobFile($processingPath, $job);
@@ -196,7 +197,7 @@ class EmailQueueService
             }
 
             if (!@mkdir($path, 0777, true) && !is_dir($path)) {
-                throw new RuntimeException('Unable to create queue directory: '.$path);
+                throw new RuntimeException('Unable to create queue directory: ' . $path);
             }
         }
     }
@@ -204,7 +205,7 @@ class EmailQueueService
     private function recoverStaleProcessingJobs(): void
     {
         $cutoff = time() - $this->processingTimeout();
-        $processingFiles = glob($this->directoryFor('processing').'/*.json') ?: [];
+        $processingFiles = glob($this->directoryFor('processing') . '/*.json') ?: [];
 
         foreach ($processingFiles as $processingPath) {
             $modifiedAt = @filemtime($processingPath);
@@ -214,26 +215,26 @@ class EmailQueueService
 
             try {
                 $this->moveToDirectory($processingPath, 'pending');
-                error_log('[email-queue] Recovered stale processing job '.basename($processingPath));
+                error_log('[email-queue] Recovered stale processing job ' . basename($processingPath));
             } catch (Throwable $exception) {
-                error_log('[email-queue] Unable to recover stale job: '.$exception->getMessage());
+                error_log('[email-queue] Unable to recover stale job: ' . $exception->getMessage());
             }
         }
     }
 
     private function directoryFor(string $state): string
     {
-        return $this->queueRoot.'/'.$state;
+        return $this->queueRoot . '/' . $state;
     }
 
     private function pathFor(string $state, string $jobId): string
     {
-        return $this->directoryFor($state).'/'.$jobId.'.json';
+        return $this->directoryFor($state) . '/' . $jobId . '.json';
     }
 
     private function acquireProcessingLock(): mixed
     {
-        $lockPath = $this->queueRoot.'/.lock';
+        $lockPath = $this->queueRoot . '/.lock';
         $handle = @fopen($lockPath, 'c+');
 
         if ($handle === false) {
@@ -263,13 +264,13 @@ class EmailQueueService
         $contents = @file_get_contents($path);
 
         if ($contents === false) {
-            throw new RuntimeException('Unable to read email queue job: '.$path);
+            throw new RuntimeException('Unable to read email queue job: ' . $path);
         }
 
         $job = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 
         if (!is_array($job)) {
-            throw new RuntimeException('Email queue job payload is invalid: '.$path);
+            throw new RuntimeException('Email queue job payload is invalid: ' . $path);
         }
 
         return $job;
@@ -280,20 +281,20 @@ class EmailQueueService
         $encoded = json_encode($job, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
 
         if (@file_put_contents($path, $encoded, LOCK_EX) === false) {
-            throw new RuntimeException('Unable to write email queue job: '.$path);
+            throw new RuntimeException('Unable to write email queue job: ' . $path);
         }
     }
 
     private function moveToDirectory(string $fromPath, string $state): void
     {
-        $destination = $this->directoryFor($state).'/'.basename($fromPath);
+        $destination = $this->directoryFor($state) . '/' . basename($fromPath);
 
         if (@rename($fromPath, $destination)) {
             return;
         }
 
         throw new RuntimeException(
-            sprintf('Unable to move email queue job from "%s" to "%s".', $fromPath, $destination)
+            sprintf('Unable to move email queue job from "%s" to "%s".', $fromPath, $destination),
         );
     }
 
@@ -306,7 +307,7 @@ class EmailQueueService
         try {
             $this->moveToDirectory($processingPath, 'failed');
         } catch (Throwable $exception) {
-            error_log('[email-queue] '.$exception->getMessage());
+            error_log('[email-queue] ' . $exception->getMessage());
         }
     }
 

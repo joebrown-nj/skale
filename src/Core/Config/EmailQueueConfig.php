@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Config;
@@ -10,6 +11,5 @@ final readonly class EmailQueueConfig
         public string $directory,
         public int $maxAttempts,
         public int $processingTimeout,
-    ) {
-    }
+    ) {}
 }

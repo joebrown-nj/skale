@@ -214,7 +214,7 @@ return [
                 ],
             ],
         ],
-        
+
         'trustStrip' => [
             'enabled' => true,
             'id' => 'trust-strip',
@@ -359,7 +359,7 @@ return [
                     'iconClass' => 'bi bi-search',
                     'title' => 'SEO & Content Strategy',
                     'description' => 'Build durable visibility around the questions, problems, and services your ideal customers are actively searching for.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/search-engine-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/search-engine-optimization',
                     'bullets' => [
                         'Keyword and opportunity research',
                         'Technical and on-page SEO',
@@ -370,7 +370,7 @@ return [
                     'iconClass' => 'bi bi-google',
                     'title' => 'Paid Search',
                     'description' => 'Capture high-intent demand with focused Google Ads campaigns built around qualified actions rather than cheap clicks.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/ppc-solutions',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/ppc-solutions',
                     'bullets' => [
                         'Campaign and account structure',
                         'Keyword, audience, and negative targeting',
@@ -381,7 +381,7 @@ return [
                     'iconClass' => 'bi bi-meta',
                     'title' => 'Paid Social',
                     'description' => 'Create demand and retarget engaged prospects with Meta campaigns that connect audience, creative, offer, and landing experience.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/ppc-solutions',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/ppc-solutions',
                     'bullets' => [
                         'Audience and campaign strategy',
                         'Creative and message testing',
@@ -392,7 +392,7 @@ return [
                     'iconClass' => 'bi bi-envelope-paper',
                     'title' => 'Email Marketing & Nurturing',
                     'description' => 'Stay relevant after the first interaction with campaigns and automated sequences that educate, qualify, and re-engage.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/email-marketing',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/email-marketing',
                     'bullets' => [
                         'Lead nurture sequences',
                         'Newsletter and campaign strategy',
@@ -403,7 +403,7 @@ return [
                     'iconClass' => 'bi bi-window',
                     'title' => 'Landing Pages & Conversion',
                     'description' => 'Turn campaign traffic into action with focused pages that make the next step clear, credible, and easy to complete.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/conversion-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/conversion-optimization',
                     'bullets' => [
                         'Campaign landing pages',
                         'Messaging and offer refinement',
@@ -414,7 +414,7 @@ return [
                     'iconClass' => 'bi bi-clipboard-data',
                     'title' => 'Analytics & Attribution',
                     'description' => 'Create a reliable view of what happens after the click and which efforts are contributing to qualified pipeline.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/marketing-analytics',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
                     'bullets' => [
                         'Analytics and event tracking',
                         'Campaign dashboards and reporting',
@@ -685,7 +685,7 @@ return [
                 'items' => [
                     [
                         'label' => 'Book My Free Demand Review',
-                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
+                        'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-accent btn-lg',
                         'iconClass' => null,
                     ],

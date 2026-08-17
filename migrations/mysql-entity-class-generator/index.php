@@ -50,12 +50,12 @@ $tableslist = $db->rawQuery('SHOW TABLES');
 
 <?php
 
-if (!is_writable(dirname(__FILE__))){
-    echo ('This Directory does not have write permissions, It may cause permission denial, Please give write permissions.');
+if (!is_writable(dirname(__FILE__))) {
+    echo('This Directory does not have write permissions, It may cause permission denial, Please give write permissions.');
 }
 
-if (@$_REQUEST["f"] == "") { } 
-else {
+if (@$_REQUEST["f"] == "") {
+} else {
 
     foreach ($_POST['tablename'] as $key => $val) {
         // fill parameters from form
@@ -79,7 +79,7 @@ else {
         } else {
             if (!is_dir($dir . "/entities/")) {
                 if (!mkdir($dir . "/entities/", 0777, true)) {
-                    echo ('Failed to create folders...');
+                    echo('Failed to create folders...');
                 }
             }
         }
@@ -90,11 +90,11 @@ else {
 
         // Exclude Fields
         //Fields name : created_on,created,created_at
-        $exFields = array("created_on", "created", "created_at");
+        $exFields = ["created_on", "created", "created_at"];
 
         $c = "";
         $c = "<?php
-   
+
 /*
 *
 * -------------------------------------------------------
@@ -110,7 +110,7 @@ else {
 namespace App\Models\Entities;
 
 class $class
-{ 
+{
 ";
 
         $sql = "SHOW COLUMNS FROM $table;";
@@ -124,7 +124,7 @@ class $class
                 $c .= "
 
     ";
-            }            
+            }
         }
 
         $cdb = "$" . "database";
@@ -137,7 +137,7 @@ class $class
     ";
 
         $c .= "
-    
+
 
 ";
 
@@ -174,11 +174,11 @@ public function __construct($key_row=NULL)
             if (!in_array($col, $exFields)) {
                 if ($row['Field'] == "org_id") {
                     $cthis = "$" . "this->" . $col . " =  !isset($" . "val->" . $col . ") ? " . " get_instance()->getOrgId()" . " : " . "$" . "val->" . $col;
-                } else if (is_null($row['Default'])) {
+                } elseif (is_null($row['Default'])) {
                     $cthis = "$" . "this->" . $col . " =  !isset($" . "val->" . $col . ") ? NULL : " . "$" . "val->" . $col;
-                } else if ($row['Default'] != "" && $row['Default'] != "CURRENT_TIMESTAMP") {
+                } elseif ($row['Default'] != "" && $row['Default'] != "CURRENT_TIMESTAMP") {
                     $cthis = "$" . "this->" . $col . " =  !isset($" . "val->" . $col . ") ? '" . $row['Default'] . "' : " . "$" . "val->" . $col;
-                } else if ($row['Default'] == "CURRENT_TIMESTAMP") {
+                } elseif ($row['Default'] == "CURRENT_TIMESTAMP") {
                     $cthis = "$" . "this->" . $col . " =  !isset($" . "val->" . $col . ") ? date('Y-m-d H:i:s') : " . "$" . "val->" . $col;
                 } else {
                     $cthis = "$" . "this->" . $col . " = $" . "val->" . $col;
@@ -200,8 +200,7 @@ public function __construct($key_row=NULL)
             $col = $row['Field'];
             $mname = "get" . $col . "()";
             $mthis = "$" . "this->" . $col;
-            if (!in_array($col, $exFields))
-            {
+            if (!in_array($col, $exFields)) {
                 $c .= "
 public function $mname
 {
@@ -223,7 +222,7 @@ public function $mname
             $col = $row['Field'];
             if (is_null($row['Default'])) {
                 $val = "!isset($" . "val->" . $col . ") ? NULL : " . "$" . "val->" . $col;
-            } else if ($row['Default'] != "") {
+            } elseif ($row['Default'] != "") {
                 $val = "!isset($" . "val->" . $col . ") ? '" . $row['Default'] . "' : " . "$" . "val->" . $col;
             } else {
                 $val = "$" . "val->" . $col;
@@ -244,20 +243,20 @@ public function $mname
 
         $c .= "
 
-} 
+}
 
 ?>
 
 ";
         fwrite($file, $c);
 
-?>
+        ?>
 <p><b>PHP MYSQL Class Generator</b></p>
 <p><b>Class '<?php echo $class; ?>' successfully generated as file '<?php echo $filename; ?>'!</b></p>
 <p><a href="javascript:history.back();">back</a></p>
 <?php
 
-    } // End loop    
+    } // End loop
 } // endif
 
 ?>

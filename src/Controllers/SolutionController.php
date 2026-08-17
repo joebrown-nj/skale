@@ -25,11 +25,12 @@ class SolutionController
         $this->view = $view;
         $this->content = $content;
     }
- 
-    public function index() {
-        $this->view->render('serviceList', array(
+
+    public function index()
+    {
+        $this->view->render('serviceList', [
             'blogList' => $this->blogModel->getAllBlogs(null, 3),
-        ));
+        ]);
     }
 
     public function redirectLegacyServicesIndex(): string
@@ -42,10 +43,11 @@ class SolutionController
         return $this->redirectToSolutions($slug);
     }
 
-    public function getSolutionDetail(string $slug) {
+    public function getSolutionDetail(string $slug)
+    {
         $sections = [];
         $solution = $this->SolutionModel->getSolutionByUrl($slug);
-        if(empty($solution)) {
+        if (empty($solution)) {
             http_response_code(404);
             $this->view->render('error/404');
             return;
@@ -60,11 +62,11 @@ class SolutionController
 
         $sections = $this->content->getBySlug($slug);
 
-        $this->view->render('serviceDetail', array(
+        $this->view->render('serviceDetail', [
             'serviceDetail' => $solution,
             'serviceContent' => $sections,
             // 'p1Page' => $this->pageContentModel->getPageContentByUrl($_ENV['URL_SERVICES_SOLUTIONS']),
-        ));
+        ]);
     }
 
     private function redirectToSolutions(?string $slug = null): string

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Config;
@@ -20,12 +21,12 @@ final class ConfigurationFactory
             self::required($environment, 'DB_PASS', allowEmpty: true),
             self::string($environment, 'DB_DRIVER', 'pdo_mysql'),
             $developmentMode,
-            $projectRoot.'/var/cache/doctrine/proxies',
+            $projectRoot . '/var/cache/doctrine/proxies',
         );
 
         $site = new SiteConfig(
             self::required($environment, 'SITE_NAME'),
-            rtrim(self::required($environment, 'SITE_URL'), '/').'/',
+            rtrim(self::required($environment, 'SITE_URL'), '/') . '/',
             self::email($environment, 'SITE_EMAIL'),
             self::string($environment, 'SITE_PHONE'),
             self::positiveInt($environment, 'BLOG_ITEMS_PER_PAGE', 9),
@@ -50,7 +51,7 @@ final class ConfigurationFactory
             $site,
             new EmailQueueConfig(
                 self::bool($environment, 'EMAIL_QUEUE_ENABLED', false),
-                self::string($environment, 'EMAIL_QUEUE_DIR', $projectRoot.'/var/email-queue'),
+                self::string($environment, 'EMAIL_QUEUE_DIR', $projectRoot . '/var/email-queue'),
                 self::positiveInt($environment, 'EMAIL_QUEUE_MAX_ATTEMPTS', 5),
                 self::positiveInt($environment, 'EMAIL_QUEUE_PROCESSING_TIMEOUT', 900, 60),
             ),
@@ -61,11 +62,11 @@ final class ConfigurationFactory
     private static function required(array $env, string $key, bool $allowEmpty = false): string
     {
         if (!array_key_exists($key, $env)) {
-            throw new InvalidArgumentException('Missing required environment variable '.$key.'.');
+            throw new InvalidArgumentException('Missing required environment variable ' . $key . '.');
         }
         $value = is_scalar($env[$key]) ? trim((string) $env[$key]) : '';
         if (!$allowEmpty && $value === '') {
-            throw new InvalidArgumentException('Environment variable '.$key.' cannot be empty.');
+            throw new InvalidArgumentException('Environment variable ' . $key . ' cannot be empty.');
         }
         return $value;
     }
@@ -80,9 +81,13 @@ final class ConfigurationFactory
     /** @param array<string, mixed> $env */
     private static function bool(array $env, string $key, bool $default): bool
     {
-        if (!isset($env[$key]) || $env[$key] === '') return $default;
+        if (!isset($env[$key]) || $env[$key] === '') {
+            return $default;
+        }
         $value = filter_var($env[$key], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE);
-        if ($value === null) throw new InvalidArgumentException('Environment variable '.$key.' must be a boolean.');
+        if ($value === null) {
+            throw new InvalidArgumentException('Environment variable ' . $key . ' must be a boolean.');
+        }
         return $value;
     }
 
@@ -101,7 +106,9 @@ final class ConfigurationFactory
     private static function port(array $env, string $key, int $default): int
     {
         $port = self::positiveInt($env, $key, $default);
-        if ($port > 65535) throw new InvalidArgumentException('Environment variable '.$key.' must be a valid TCP port.');
+        if ($port > 65535) {
+            throw new InvalidArgumentException('Environment variable ' . $key . ' must be a valid TCP port.');
+        }
         return $port;
     }
 
@@ -110,7 +117,7 @@ final class ConfigurationFactory
     {
         $email = self::required($env, $key);
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new InvalidArgumentException('Environment variable '.$key.' must be a valid email address.');
+            throw new InvalidArgumentException('Environment variable ' . $key . ' must be a valid email address.');
         }
         return $email;
     }

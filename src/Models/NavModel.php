@@ -9,11 +9,13 @@ class NavModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function getNav(string $menuLocation, int $parent = 0): array {
+    public function getNav(string $menuLocation, int $parent = 0): array
+    {
         $repository = $this->entityManager->getRepository(MenuEntity::class);
 
         $navItems = $repository->createQueryBuilder('m')
@@ -34,7 +36,8 @@ class NavModel
         return $this->buildNavTree((int) $parent, $itemsByParent);
     }
 
-    public function getAllNav(): array {
+    public function getAllNav(): array
+    {
         $repository = $this->entityManager->getRepository(MenuEntity::class);
         $navItems = $repository->createQueryBuilder('m')->getQuery()->getArrayResult();
         return $navItems;

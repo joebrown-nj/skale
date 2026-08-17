@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Db;
@@ -16,13 +17,12 @@ final readonly class DatabaseORM
     public function __construct(
         private DatabaseConfiguration $databaseConfiguration,
         private ?CacheItemPoolInterface $productionCache = null,
-    ) {
-    }
+    ) {}
 
     public function createEntityManager(): EntityManager
     {
         $config = ORMSetup::createAttributeMetadataConfig(
-            paths: [dirname(__DIR__, 3).'/src/Models/Entities'],
+            paths: [dirname(__DIR__, 3) . '/src/Models/Entities'],
             isDevMode: $this->databaseConfiguration->isDevMode,
             cache: $this->databaseConfiguration->isDevMode ? null : $this->productionCache,
         );

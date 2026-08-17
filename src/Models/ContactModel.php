@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -101,14 +102,14 @@ class ContactModel implements ContactFormInterface
 
         foreach (['company', 'team_size', 'goal'] as $field) {
             if (trim((string) ($data[$field] ?? '')) !== '') {
-                $context[] = ucwords(str_replace('_', ' ', $field)).': '.trim((string) $data[$field]);
+                $context[] = ucwords(str_replace('_', ' ', $field)) . ': ' . trim((string) $data[$field]);
             }
         }
 
         return trim(
-            ucwords(str_replace(['-', '_'], ' ', $formType))." form submission\n"
-            .implode("\n", $context)
-            .($message !== '' ? "\n".$message : '')
+            ucwords(str_replace(['-', '_'], ' ', $formType)) . " form submission\n"
+            . implode("\n", $context)
+            . ($message !== '' ? "\n" . $message : ''),
         );
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Core\Services;
 
@@ -18,7 +20,7 @@ final class EmailQueueServiceTest extends TestCase
         $this->originalQueueDir = $_ENV['EMAIL_QUEUE_DIR'] ?? null;
         $this->originalQueueEnabled = $_ENV['EMAIL_QUEUE_ENABLED'] ?? null;
         $this->originalMaxAttempts = $_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? null;
-        $this->queueDir = sys_get_temp_dir().'/skaleup-email-queue-'.bin2hex(random_bytes(8));
+        $this->queueDir = sys_get_temp_dir() . '/skaleup-email-queue-' . bin2hex(random_bytes(8));
 
         $_ENV['EMAIL_QUEUE_DIR'] = $this->queueDir;
         $_ENV['EMAIL_QUEUE_ENABLED'] = '1';
@@ -44,15 +46,15 @@ final class EmailQueueServiceTest extends TestCase
         $queue = new EmailQueueService($emailService);
 
         $this->assertTrue(
-            $queue->enqueueEmail('lead@example.com', 'New lead', '<p>Hello</p>', 'Lead User')
+            $queue->enqueueEmail('lead@example.com', 'New lead', '<p>Hello</p>', 'Lead User'),
         );
 
         $summary = $queue->processPending();
 
         $this->assertSame(1, $summary['claimed']);
         $this->assertSame(1, $summary['sent']);
-        $this->assertSame([], glob($this->queueDir.'/pending/*.json') ?: []);
-        $this->assertCount(1, glob($this->queueDir.'/sent/*.json') ?: []);
+        $this->assertSame([], glob($this->queueDir . '/pending/*.json') ?: []);
+        $this->assertCount(1, glob($this->queueDir . '/sent/*.json') ?: []);
     }
 
     public function testProcessPendingRetriesFailedEmail(): void
@@ -70,14 +72,14 @@ final class EmailQueueServiceTest extends TestCase
         $queue = new EmailQueueService($emailService);
 
         $this->assertTrue(
-            $queue->enqueueEmail('lead@example.com', 'New lead', '<p>Hello</p>')
+            $queue->enqueueEmail('lead@example.com', 'New lead', '<p>Hello</p>'),
         );
 
         $summary = $queue->processPending();
 
         $this->assertSame(1, $summary['claimed']);
         $this->assertSame(1, $summary['retried']);
-        $pendingFiles = glob($this->queueDir.'/pending/*.json') ?: [];
+        $pendingFiles = glob($this->queueDir . '/pending/*.json') ?: [];
 
         $this->assertCount(1, $pendingFiles);
 
@@ -115,7 +117,7 @@ final class EmailQueueServiceTest extends TestCase
                 continue;
             }
 
-            $itemPath = $path.'/'.$item;
+            $itemPath = $path . '/' . $item;
 
             if (is_dir($itemPath)) {
                 $this->removeDirectory($itemPath);

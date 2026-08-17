@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Http;
@@ -19,9 +20,15 @@ final class Request
     }
 
     /** @return array<string, mixed> */
-    public function query(): array { return $this->query; }
+    public function query(): array
+    {
+        return $this->query;
+    }
     /** @return array<string, mixed> */
-    public function post(): array { return $this->post; }
+    public function post(): array
+    {
+        return $this->post;
+    }
     /** @return array<string, mixed> */
     public function server(): array
     {
@@ -30,8 +37,14 @@ final class Request
         unset($server['HTTP_X_FORWARDED_FOR'], $server['HTTP_CLIENT_IP']);
         return $server;
     }
-    public function method(): string { return strtoupper((string) ($this->server['REQUEST_METHOD'] ?? 'GET')); }
-    public function path(): string { return parse_url((string) ($this->server['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/'; }
+    public function method(): string
+    {
+        return strtoupper((string) ($this->server['REQUEST_METHOD'] ?? 'GET'));
+    }
+    public function path(): string
+    {
+        return parse_url((string) ($this->server['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/';
+    }
 
     public function clientIp(): string
     {

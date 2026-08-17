@@ -15,7 +15,7 @@
         <script>
             tinymce.init({
                 selector: 'textarea.editor',
-                forced_root_block: false, 
+                forced_root_block: false,
                 plugins: [
                     // Core editing features
                     'anchor', 'autolink', 'charmap', 'code', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
@@ -49,7 +49,7 @@
                 <div class="sidebar border-end col-md-3 col-lg-2 p-0 bg-body-tertiary">
                     <div class="d-flex flex-column flex-shrink-0 p-3">
                         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                            <span class="fs-4">Tables</span> 
+                            <span class="fs-4">Tables</span>
                         </a>
 
                         <hr>
@@ -61,7 +61,7 @@
                                     <li class="nav-item">
                                         <a href="?t=<?= $t ?>" class="nav-link text-white <?= $class ?>" aria-current="page">
                                             <?= ucwords(str_replace('_', ' ', $t)) ?>
-                                            
+
                                         </a>
                                     </li>
                                 <?php
@@ -74,46 +74,46 @@
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">
                             <?= ucwords(str_replace('_', ' ', $table)) ?>
-                            <?php if($getId > 0): ?>
+                            <?php if ($getId > 0): ?>
                                 (ID: <?= $getId ?>)
                                 <a href="?t=<?= $table ?>" class="btn btn-sm btn-outline-secondary">&laquo; back</a>
                             <?php endif; ?>
                         </h1>
                     </div>
 
-                    <?php if(count($success) > 0): ?>
+                    <?php if (count($success) > 0): ?>
                         <div class="alert alert-success" role="alert">
-                            <?php foreach($success as $s): ?>
+                            <?php foreach ($success as $s): ?>
                                 <?= $s ?><br>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
-                    <?php if(count($error) > 0): ?>
+                    <?php if (count($error) > 0): ?>
                         <div class="alert alert-success" role="alert">
-                            <?php foreach($error as $s): ?>
+                            <?php foreach ($error as $s): ?>
                                 <?= $s ?><br>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
 
-                    <?php if($table != '' && $getId == 0): ?>
+                    <?php if ($table != '' && $getId == 0): ?>
                         <div class="table-responsive small dt-container dt-bootstrap5">
                             <table id="dataTable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <?php foreach($fields as $t): ?>
-                                            <?php if($t['Type'] !== 'text' && $t['Type'] !== 'longtext' && $t['Field'] !== 'shortText'): ?>
+                                        <?php foreach ($fields as $t): ?>
+                                            <?php if ($t['Type'] !== 'text' && $t['Type'] !== 'longtext' && $t['Field'] !== 'shortText'): ?>
                                                 <th scope="col"><?= $t['Field'] ?></th>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($tableData as $d): ?>
+                                    <?php foreach ($tableData as $d): ?>
                                         <tr class="clickable-row" data-href="?t=<?= $table ?>&id=<?= $d['id'] ?>">
-                                            <?php foreach($fields as $col): ?>
-                                                <?php if($col['Type'] !== 'text' && $col['Type'] !== 'longtext' && $col['Field'] !== 'shortText'): ?>
+                                            <?php foreach ($fields as $col): ?>
+                                                <?php if ($col['Type'] !== 'text' && $col['Type'] !== 'longtext' && $col['Field'] !== 'shortText'): ?>
                                                     <td><?= $d[$col['Field']] ? substr(strip_tags($d[$col['Field']]), 0, 150) : '' ?></td>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
@@ -125,13 +125,13 @@
                     <?php endif; ?>
 
 
-                    <?php if($table != '' && $getId > 0): ?>
+                    <?php if ($table != '' && $getId > 0): ?>
                         <form method="post" action="/admin/?t=<?= $table ?>" enctype="multipart/form-data">
                             <table class="table">
-                                <?php foreach($data as $key => $data):
+                                <?php foreach ($data as $key => $data):
                                     $type = '';
-                                    foreach($fields as $field):
-                                        if($key == $field['Field']) {
+                                    foreach ($fields as $field):
+                                        if ($key == $field['Field']) {
                                             $type = $field['Type'];
                                             break;
                                         }
@@ -140,12 +140,12 @@
                                     <tr>
                                         <td><?= $key ?></td>
                                         <td>
-                                            <?php if($key == 'id'): ?> 
+                                            <?php if ($key == 'id'): ?>
                                                 <input type="text" value="<?= $data ?>" disabled/>
                                                 <input type="hidden" name="<?= $key ?>" value="<?= $data ?>"/>
-                                            <?php elseif($type == 'text' || $type == 'longtext' || $key == 'shortText'): ?>
-                                                <textarea <?php if(!str_contains($key, 'meta')): ?>class="editor"<?php else: ?>rows="6" cols="60"<?php endif; ?> name="<?= $key ?>"><?= $data ?></textarea>
-                                            <?php elseif($type == 'timestamp'): ?>
+                                            <?php elseif ($type == 'text' || $type == 'longtext' || $key == 'shortText'): ?>
+                                                <textarea <?php if (!str_contains($key, 'meta')): ?>class="editor"<?php else: ?>rows="6" cols="60"<?php endif; ?> name="<?= $key ?>"><?= $data ?></textarea>
+                                            <?php elseif ($type == 'timestamp'): ?>
                                                 <?= $data ?>
                                             <?php else: ?>
                                                 <input class="form-control <?= $key ?>" id="<?= $key ?>" type="text" name="<?= $key ?>" value="<?= $data ?>" />
@@ -168,7 +168,7 @@
             </div>
         </div>
     </body>
-    
+
     <script>
         $('#dataTable').DataTable();
 
@@ -185,7 +185,7 @@
         function string_to_slug (str) {
             str = str.replace(/^\s+|\s+$/g, ''); // trim
             str = str.toLowerCase();
-        
+
             // remove accents, swap ñ for n, etc
             var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
             var to   = "aaaaeeeeiiiioooouuuunc------";

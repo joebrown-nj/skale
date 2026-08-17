@@ -331,7 +331,7 @@ return [
                     'iconClass' => 'bi bi-window',
                     'title' => 'Growth Audits',
                     'description' => 'Evaluate where your business is losing leads, time, visibility, efficiency, or momentum.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/growth-infrastructure',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/growth-infrastructure',
                     'bullets' => [
                         'Customer journey and conversion review',
                         'Operational and workflow assessment',
@@ -342,7 +342,7 @@ return [
                     'iconClass' => 'bi bi-megaphone',
                     'title' => 'System Mapping & Roadmaps',
                     'description' => 'Create a shared view of the systems, data, teams, and dependencies behind an important business process.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/strategy-and-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/strategy-and-optimization',
                     'bullets' => [
                         'Current-state system mapping',
                         'Future-state architecture and workflows',
@@ -353,7 +353,7 @@ return [
                     'iconClass' => 'bi bi-people',
                     'title' => 'Technology Stack Optimization',
                     'description' => 'Simplify the tools your business uses and ensure each platform supports a clear operational purpose.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/it-solutions',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/it-solutions',
                     'bullets' => [
                         'Platform and subscription evaluation',
                         'Integration and data-flow review',
@@ -364,7 +364,7 @@ return [
                     'iconClass' => 'bi bi-lightning-charge',
                     'title' => 'System Mapping & Roadmaps Automation',
                     'description' => 'Build a reliable measurement system that helps leaders understand performance and make better decisions.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/strategy-and-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/strategy-and-optimization',
                     'bullets' => [
                         'System Mapping & Roadmaps and sales automation',
                         'Monthly or quarterly performance reviews and validation',
@@ -375,7 +375,7 @@ return [
                     'iconClass' => 'bi bi-link-45deg',
                     'title' => 'Conversion Optimization',
                     'description' => 'Identify where prospects abandon the journey and improve the experiences responsible for generating action.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/conversion-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/conversion-optimization',
                     'bullets' => [
                         'Funnel and landing-page analysis',
                         'Messaging, offer, and CTA review',
@@ -386,7 +386,7 @@ return [
                     'iconClass' => 'bi bi-clipboard-data',
                     'title' => 'System Mapping & Roadmaps Analytics',
                     'description' => 'Create a disciplined cadence for reviewing performance, prioritizing improvements, and adapting the system.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'].'/strategy-and-optimization',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/strategy-and-optimization',
                     'bullets' => [
                         'Monthly or quarterly performance reviews',
                         'Experiment and improvement planning',
@@ -641,7 +641,7 @@ return [
                 'items' => [
                     [
                         'label' => 'Book My Free Growth Audit',
-                        'url' => $_ENV['SITE_URL'].$_ENV['URL_CONTACT'],
+                        'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-amber btn-lg',
                         'iconClass' => null,
                     ],

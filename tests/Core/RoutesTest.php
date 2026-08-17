@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Core;
 
@@ -135,7 +137,7 @@ final class RoutesTest extends TestCase
         $this->assertJson($output);
         $this->assertSame(
             ['error' => 'Something went wrong. Please try again later.'],
-            json_decode($output, true)
+            json_decode($output, true),
         );
     }
 

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Controllers;
 
@@ -44,7 +46,7 @@ final class ContactControllerTest extends TestCase
                 (new RequestBlockRuleEntity())
                     ->setAttribute('email')
                     ->setMatchType('exact')
-                    ->setRuleValue('blocked@example.com')
+                    ->setRuleValue('blocked@example.com'),
             );
 
         $view = $this->createMock(ViewInterface::class);
@@ -88,12 +90,12 @@ final class ContactControllerTest extends TestCase
             $contactModel,
             $formSubmissionService,
             $requestBlocklistService,
-            $view
+            $view,
         );
 
         $this->assertSame(
             '{"success":{"redirect":"\/thank-you"}}',
-            $controller->submit($input)
+            $controller->submit($input),
         );
     }
 
@@ -129,12 +131,12 @@ final class ContactControllerTest extends TestCase
             $contactModel,
             $formSubmissionService,
             $requestBlocklistService,
-            $view
+            $view,
         );
 
         $this->assertSame(
             '{"success":{"redirect":"\/thank-you"}}',
-            $controller->submit($rawInput)
+            $controller->submit($rawInput),
         );
     }
 }

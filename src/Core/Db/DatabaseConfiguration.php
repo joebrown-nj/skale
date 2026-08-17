@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Db;
@@ -13,6 +14,5 @@ final readonly class DatabaseConfiguration
         public string $driver,
         public bool $isDevMode,
         public string $proxyDirectory,
-    ) {
-    }
+    ) {}
 }

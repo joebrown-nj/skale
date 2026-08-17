@@ -19,7 +19,8 @@ class BlogController
     private PageContentModel $pageContentModel;
     private ViewInterface $view;
 
-    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, ViewInterface $view, private readonly SiteConfig $siteConfig) {
+    public function __construct(BlogModel $blogModel, PageContentModel $pageContentModel, ViewInterface $view, private readonly SiteConfig $siteConfig)
+    {
         $this->blogModel = $blogModel;
         $this->pageContentModel = $pageContentModel;
         $this->view = $view;
@@ -37,19 +38,21 @@ class BlogController
         return $category === '' ? null : $category;
     }
 
-    public function index() {
+    public function index()
+    {
         $selectedCategory = $this->getSelectedCategory();
 
-        $this->view->render('blogList', array(
+        $this->view->render('blogList', [
             'blogList' => $this->blogModel->getAllBlogs($selectedCategory),
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
             'filterPath' => $this->siteConfig->url . 'blog',
-        ));
+        ]);
     }
 
-    public function archive() {
+    public function archive()
+    {
         $selectedCategory = $this->getSelectedCategory();
         $totalCount = $this->blogModel->getBlogTotalCount($selectedCategory);
         $numberOfpages = $totalCount > 0 ? (int) ceil($totalCount / $this->siteConfig->blogItemsPerPage) : 0;
@@ -58,7 +61,7 @@ class BlogController
         $currentPage = max(1, $currentPage);
         $start = ($currentPage - 1) * $this->siteConfig->blogItemsPerPage;
 
-        $this->view->render('blogArchive', array(
+        $this->view->render('blogArchive', [
             'blogList' => $this->blogModel->getBlogArchive($start, $this->siteConfig->blogItemsPerPage, $selectedCategory),
             'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
@@ -68,14 +71,15 @@ class BlogController
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
             'filterPath' => $this->siteConfig->url . 'blog/archive',
-        ));
+        ]);
     }
 
-    public function getBlogDetail($date, $slug) {
+    public function getBlogDetail($date, $slug)
+    {
         $blog = $this->blogModel->getBlogByUrl('blog/' . $date . '/' . $slug);
-        $this->view->render('blogDetail', array(
+        $this->view->render('blogDetail', [
             'blogList' => $this->blogModel->getAllBlogs(),
-            'blogDetail' => $blog
-        ));
+            'blogDetail' => $blog,
+        ]);
     }
 }

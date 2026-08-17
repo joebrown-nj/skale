@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Core\Http;
@@ -8,7 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 final class RequestTest extends TestCase
 {
-    protected function tearDown(): void { unset($_ENV['TRUSTED_PROXIES']); }
+    protected function tearDown(): void
+    {
+        unset($_ENV['TRUSTED_PROXIES']);
+    }
 
     public function testItDoesNotTrustForwardedAddressesByDefault(): void
     {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 ini_set('display_errors', '1');
@@ -7,7 +8,7 @@ error_reporting(E_ALL);
 
 use App\Core\Environment;
 
-require_once dirname(__DIR__, 2).'/vendor/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 $projectRoot = dirname(__DIR__, 2);
 
@@ -20,7 +21,7 @@ $connection = new mysqli(
     $database->host,
     $database->user,
     $database->password,
-    $database->name
+    $database->name,
 );
 $connection->set_charset('utf8mb4');
 
@@ -33,7 +34,7 @@ try {
 
     echo buildSummary($buttonClicksTable, $summary);
 } catch (Throwable $exception) {
-    fwrite(STDERR, '[json-cleanup] '.$exception->getMessage().PHP_EOL);
+    fwrite(STDERR, '[json-cleanup] ' . $exception->getMessage() . PHP_EOL);
     exit(1);
 } finally {
     $connection->close();
@@ -43,14 +44,14 @@ function buildSummary(string $table, array $summary): string
 {
     $output = [];
     $output[] = 'Server info cleanup complete';
-    $output[] = 'Table: '.$table;
-    $output[] = 'Rows scanned: '.$summary['scanned'];
-    $output[] = 'Rows updated: '.$summary['updated'];
-    $output[] = 'Rows unchanged: '.$summary['unchanged'];
-    $output[] = 'Rows skipped (invalid JSON): '.$summary['skipped'];
-    $output[] = 'Environment keys removed: '.$summary['removedKeys'];
+    $output[] = 'Table: ' . $table;
+    $output[] = 'Rows scanned: ' . $summary['scanned'];
+    $output[] = 'Rows updated: ' . $summary['updated'];
+    $output[] = 'Rows unchanged: ' . $summary['unchanged'];
+    $output[] = 'Rows skipped (invalid JSON): ' . $summary['skipped'];
+    $output[] = 'Environment keys removed: ' . $summary['removedKeys'];
 
-    return implode(PHP_EOL, $output).PHP_EOL;
+    return implode(PHP_EOL, $output) . PHP_EOL;
 }
 
 function removeEnvironmentData(mysqli $connection, string $table, array $rows, array $envKeys): array
@@ -127,16 +128,16 @@ function updateServerInfo(mysqli $connection, string $table, int $id, array $ser
 {
     $encodedServerInfo = json_encode(
         $serverInfo,
-        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
     );
 
     if ($encodedServerInfo === false) {
-        throw new RuntimeException('Unable to encode sanitized server info for row '.$id.'.');
+        throw new RuntimeException('Unable to encode sanitized server info for row ' . $id . '.');
     }
 
     $sql = sprintf(
         'UPDATE `%s` SET `serverInfo` = ? WHERE `id` = ?',
-        $connection->real_escape_string($table)
+        $connection->real_escape_string($table),
     );
 
     $statement = $connection->prepare($sql);
@@ -149,7 +150,7 @@ function fetchAll(mysqli $connection, string $table, string $orderByColumn = 'id
     $sql = sprintf(
         'SELECT id, serverInfo FROM `%s` ORDER BY `%s` DESC',
         $connection->real_escape_string($table),
-        $connection->real_escape_string($orderByColumn)
+        $connection->real_escape_string($orderByColumn),
     );
 
     $result = $connection->query($sql);
@@ -161,7 +162,7 @@ function resolveTableName(mysqli $connection, array $candidates): string
 {
     foreach ($candidates as $candidate) {
         $result = $connection->query(
-            "SHOW TABLES LIKE '".$connection->real_escape_string($candidate)."'"
+            "SHOW TABLES LIKE '" . $connection->real_escape_string($candidate) . "'",
         );
 
         if ($result->num_rows > 0) {
@@ -170,6 +171,6 @@ function resolveTableName(mysqli $connection, array $candidates): string
     }
 
     throw new RuntimeException(
-        'None of the expected tables were found: '.implode(', ', $candidates)
+        'None of the expected tables were found: ' . implode(', ', $candidates),
     );
 }

@@ -10,11 +10,13 @@ class SolutionModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function getAllSolutions(bool $activeOnly = true): Array | NULL {
+    public function getAllSolutions(bool $activeOnly = true): ?array
+    {
         $repository = $this->entityManager->getRepository(SolutionsEntity::class);
         $query = $repository->createQueryBuilder('s');
         if ($activeOnly) {
@@ -26,8 +28,9 @@ class SolutionModel
         return $results;
     }
 
-    public function getSolutionByUrl($url=''): SolutionsEntity | NULL {
-        $url = $_ENV['URL_SERVICES_SOLUTIONS'].'/'.rtrim($url, '/');
+    public function getSolutionByUrl($url = ''): ?SolutionsEntity
+    {
+        $url = $_ENV['URL_SERVICES_SOLUTIONS'] . '/' . rtrim($url, '/');
         $returnVal = $this->entityManager->getRepository(SolutionsEntity::class)->findOneBy(['url' => $url]);
         return $returnVal;
     }

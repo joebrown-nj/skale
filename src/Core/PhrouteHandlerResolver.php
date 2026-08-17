@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -18,8 +19,7 @@ class PhrouteHandlerResolver implements HandlerResolverInterface
     public function resolve($handler)
     {
         // If handler is an array [Controller::class, 'method']
-        if(is_array($handler) and is_string($handler[0]))
-        {
+        if (is_array($handler) and is_string($handler[0])) {
             $handler[0] = $this->container->get($handler[0]);
         }
         return $handler;

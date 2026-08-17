@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -10,8 +11,7 @@ class RequestBlockRuleModel
 {
     public function __construct(
         private readonly EntityManager $entityManager,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<int, RequestBlockRuleEntity>

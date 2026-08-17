@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core\Config;
@@ -15,6 +16,5 @@ final readonly class MailConfig
         public string $fromAddress,
         public string $replyToAddress,
         public string $adminAddress,
-    ) {
-    }
+    ) {}
 }

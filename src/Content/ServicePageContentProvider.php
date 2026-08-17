@@ -25,7 +25,7 @@ final class ServicePageContentProvider
 
         if (!is_array($sections)) {
             throw new \UnexpectedValueException(
-                sprintf('Solution content file "%s" must return an array.', $file)
+                sprintf('Solution content file "%s" must return an array.', $file),
             );
         }
 

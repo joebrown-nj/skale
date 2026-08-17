@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Core\Http;
@@ -9,7 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 final class LeadFormRequestTest extends TestCase
 {
-    protected function tearDown(): void { unset($_SESSION['csrf_token']); }
+    protected function tearDown(): void
+    {
+        unset($_SESSION['csrf_token']);
+    }
 
     public function testItNormalizesAndLimitsInput(): void
     {

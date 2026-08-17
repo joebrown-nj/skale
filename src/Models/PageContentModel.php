@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -10,11 +11,12 @@ class PageContentModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function getPageContentByUrl(string $url=''): array | bool
+    public function getPageContentByUrl(string $url = ''): array|bool
     {
         $url = trim($url, '/');
 

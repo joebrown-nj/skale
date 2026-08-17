@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models\Entities;
@@ -32,7 +33,7 @@ class PageContentEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $dateUpdated;
 
-    // one page content can be linked to multiple menu items, 
+    // one page content can be linked to multiple menu items,
     // but each menu item can only link to one page content
     #[ORM\OneToMany(mappedBy: 'pageContent', targetEntity: MenuEntity::class)]
     private $menus;

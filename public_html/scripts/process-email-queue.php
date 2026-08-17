@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-require_once dirname(__DIR__, 2).'/vendor/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use App\Core\Application;
 use App\Core\Services\EmailQueueService;
@@ -18,68 +19,68 @@ chdir($projectRoot);
  */
 function parseCliOptions(array $argv): array
 {
-	$retryFailed = false;
-	$retryId = null;
-	$limit = 5;
+    $retryFailed = false;
+    $retryId = null;
+    $limit = 5;
 
-	foreach ($argv as $argument) {
-		if ($argument === '--retry-failed') {
-			$retryFailed = true;
-			continue;
-		}
+    foreach ($argv as $argument) {
+        if ($argument === '--retry-failed') {
+            $retryFailed = true;
+            continue;
+        }
 
-		if (str_starts_with($argument, '--retry-id=')) {
-			$value = trim(substr($argument, strlen('--retry-id=')));
-			$retryId = preg_match('/^[a-f0-9]{32}$/i', $value) === 1 ? strtolower($value) : null;
-			continue;
-		}
+        if (str_starts_with($argument, '--retry-id=')) {
+            $value = trim(substr($argument, strlen('--retry-id=')));
+            $retryId = preg_match('/^[a-f0-9]{32}$/i', $value) === 1 ? strtolower($value) : null;
+            continue;
+        }
 
-		if (str_starts_with($argument, '--limit=')) {
-			$value = trim(substr($argument, strlen('--limit=')));
-			$limit = max(1, (int) $value);
-		}
-	}
+        if (str_starts_with($argument, '--limit=')) {
+            $value = trim(substr($argument, strlen('--limit=')));
+            $limit = max(1, (int) $value);
+        }
+    }
 
-	return [
-		'retryFailed' => $retryFailed,
-		'retryId' => $retryId,
-		'limit' => $limit,
-	];
+    return [
+        'retryFailed' => $retryFailed,
+        'retryId' => $retryId,
+        'limit' => $limit,
+    ];
 }
 
 function requeueFailedJobs(string $projectRoot, ?string $jobId = null): int
 {
-	$failedDir = $projectRoot.'/var/email-queue/failed';
-	$pendingDir = $projectRoot.'/var/email-queue/pending';
+    $failedDir = $projectRoot . '/var/email-queue/failed';
+    $pendingDir = $projectRoot . '/var/email-queue/pending';
 
-	if (!is_dir($failedDir)) {
-		return 0;
-	}
+    if (!is_dir($failedDir)) {
+        return 0;
+    }
 
-	if (!is_dir($pendingDir) && !@mkdir($pendingDir, 0777, true) && !is_dir($pendingDir)) {
-		return 0;
-	}
+    if (!is_dir($pendingDir) && !@mkdir($pendingDir, 0777, true) && !is_dir($pendingDir)) {
+        return 0;
+    }
 
-	$pattern = $jobId !== null
-		? $failedDir.'/'.$jobId.'.json'
-		: $failedDir.'/*.json';
+    $pattern = $jobId !== null
+        ? $failedDir . '/' . $jobId . '.json'
+        : $failedDir . '/*.json';
 
-	$moved = 0;
-	$failedFiles = glob($pattern) ?: [];
-	foreach ($failedFiles as $failedPath) {
-		$targetPath = $pendingDir.'/'.basename($failedPath);
-		if (@copy($failedPath, $targetPath)) {
-			$moved++;
-		}
-	}
+    $moved = 0;
+    $failedFiles = glob($pattern) ?: [];
+    foreach ($failedFiles as $failedPath) {
+        $targetPath = $pendingDir . '/' . basename($failedPath);
+        if (@copy($failedPath, $targetPath)) {
+            $moved++;
+        }
+    }
 
-	return $moved;
+    return $moved;
 }
 
 $options = parseCliOptions($argv ?? []);
 $retryCount = 0;
 if ($options['retryFailed'] || $options['retryId'] !== null) {
-	$retryCount = requeueFailedJobs($projectRoot, $options['retryId']);
+    $retryCount = requeueFailedJobs($projectRoot, $options['retryId']);
 }
 
 set_time_limit(60);
@@ -89,12 +90,12 @@ $application = Application::getInstance();
 $queue = $application->getContainer()->get(EmailQueueService::class);
 $summary = $queue->processPending($options['limit']);
 
-echo 'Email queue processed'.PHP_EOL;
+echo 'Email queue processed' . PHP_EOL;
 if ($options['retryFailed'] || $options['retryId'] !== null) {
-	echo 'Requeued from failed: '.$retryCount.PHP_EOL;
+    echo 'Requeued from failed: ' . $retryCount . PHP_EOL;
 }
-echo 'Claimed: '.$summary['claimed'].PHP_EOL;
-echo 'Sent: '.$summary['sent'].PHP_EOL;
-echo 'Retried: '.$summary['retried'].PHP_EOL;
-echo 'Failed: '.$summary['failed'].PHP_EOL;
-echo 'Deferred: '.$summary['deferred'].PHP_EOL;
+echo 'Claimed: ' . $summary['claimed'] . PHP_EOL;
+echo 'Sent: ' . $summary['sent'] . PHP_EOL;
+echo 'Retried: ' . $summary['retried'] . PHP_EOL;
+echo 'Failed: ' . $summary['failed'] . PHP_EOL;
+echo 'Deferred: ' . $summary['deferred'] . PHP_EOL;

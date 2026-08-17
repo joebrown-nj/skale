@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Controllers;
 
@@ -41,7 +43,7 @@ final class MetaDataControllerTest extends TestCase
 
         $this->assertSame(
             '{"keywords":"marketing, seo","description":"Page description","title":"About Us | Skaleup"}',
-            $output
+            $output,
         );
     }
 
@@ -71,7 +73,7 @@ final class MetaDataControllerTest extends TestCase
 
         $this->assertSame(
             '{"keywords":"privacy, policy","description":"Privacy details","title":"Privacy Policy | Skaleup"}',
-            $output
+            $output,
         );
     }
 
@@ -100,7 +102,7 @@ final class MetaDataControllerTest extends TestCase
 
         $this->assertSame(
             '{"keywords":"growth, strategy","description":"Blog description","title":"How to Scale | Skaleup blog"}',
-            $output
+            $output,
         );
     }
 

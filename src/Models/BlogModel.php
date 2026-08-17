@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -13,11 +14,13 @@ class BlogModel
 {
     private EntityManager $entityManager;
 
-    public function __construct(EntityManager $entityManager) {
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function getAllBlogs(?string $category = null, ?int $limit = 10) : Array | NULL  {
+    public function getAllBlogs(?string $category = null, ?int $limit = 10): ?array
+    {
         try {
             $repository = $this->entityManager->getRepository(BlogEntity::class);
             $queryBuilder = $repository->createQueryBuilder('b')
@@ -39,7 +42,8 @@ class BlogModel
         return $returnVal;
     }
 
-    public function getBlogArchive(int $start = 0, int $limit = 10, ?string $category = null) : Array | NULL  {
+    public function getBlogArchive(int $start = 0, int $limit = 10, ?string $category = null): ?array
+    {
         $repository = $this->entityManager->getRepository(BlogEntity::class);
         $queryBuilder = $repository->createQueryBuilder('b')
             ->orderBy('b.datePosted', 'DESC')
@@ -57,8 +61,9 @@ class BlogModel
 
         return $returnVal;
     }
- 
-    public function getBlogTotalCount(?string $category = null) : int {
+
+    public function getBlogTotalCount(?string $category = null): int
+    {
         $repository = $this->entityManager->getRepository(BlogEntity::class)->createQueryBuilder('b')
             ->select('count(b.id)');
 
@@ -72,13 +77,15 @@ class BlogModel
         return $count;
     }
 
-    public function getBlogByUrl($url='') : BlogEntity | NULL {
+    public function getBlogByUrl($url = ''): ?BlogEntity
+    {
         $url = explode('/', rtrim($url, '/'));
         $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findOneBy(['url' => $url]);
         return $returnVal;
     }
 
-    public function getFeaturedBlog() : BlogEntity | NULL {
+    public function getFeaturedBlog(): ?BlogEntity
+    {
         $repository = $this->entityManager->getRepository(BlogEntity::class);
         $query = $repository->createQueryBuilder('b')->where('b.featured = 1')
             ->orderBy('b.datePosted', 'DESC')->setMaxResults(1)->getQuery();
@@ -87,7 +94,8 @@ class BlogModel
         return $returnVal;
     }
 
-    public function getBlogCategories() : Array {
+    public function getBlogCategories(): array
+    {
         $repository = $this->entityManager->getRepository(BlogEntity::class);
         $query = $repository->createQueryBuilder('b')
             ->select('DISTINCT b.category')
@@ -98,7 +106,7 @@ class BlogModel
             ->getQuery();
         $returnVal = $query->getResult();
 
-        return array_map(function($item) {
+        return array_map(function ($item) {
             return $item['category'];
         }, $returnVal);
     }

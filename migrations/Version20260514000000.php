@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DoctrineMigrations;
@@ -18,7 +19,7 @@ final class Version20260514000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql('ALTER TABLE blog CHANGE text content LONGTEXT NOT NULL');
@@ -32,7 +33,7 @@ final class Version20260514000000 extends AbstractMigration
     {
         $this->abortIf(
             !($this->connection->getDatabasePlatform() instanceof AbstractMySQLPlatform),
-            'Migration can only be executed safely on mysql.'
+            'Migration can only be executed safely on mysql.',
         );
 
         $this->addSql('ALTER TABLE home_cards CHANGE content text LONGTEXT NOT NULL');

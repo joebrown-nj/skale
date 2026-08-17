@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -21,9 +22,7 @@ final class ErrorHandler
     private static bool $registered = false;
     private static bool $isRendering = false;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function register(): void
     {
@@ -56,7 +55,7 @@ final class ErrorHandler
             'Fatal error: %s in %s on line %d',
             $error['message'],
             $error['file'],
-            $error['line']
+            $error['line'],
         ));
 
         self::sendHttp500Response();
@@ -70,7 +69,7 @@ final class ErrorHandler
             $e->getMessage(),
             $e->getFile(),
             $e->getLine(),
-            $e->getTraceAsString()
+            $e->getTraceAsString(),
         ));
     }
 
@@ -187,7 +186,7 @@ final class ErrorHandler
             return $configuredPath;
         }
 
-        return dirname(__DIR__, 2).DIRECTORY_SEPARATOR.str_replace('/', DIRECTORY_SEPARATOR, $relativePath);
+        return dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relativePath);
     }
 
     private static function isProduction(): bool
@@ -209,7 +208,7 @@ final class ErrorHandler
             $exception->getMessage(),
             $exception->getFile(),
             $exception->getLine(),
-            $exception->getTraceAsString()
+            $exception->getTraceAsString(),
         );
     }
 
@@ -222,7 +221,7 @@ final class ErrorHandler
             ? htmlspecialchars(self::formatExceptionDetails($exception), ENT_QUOTES, 'UTF-8')
             : '';
         $detailsBlock = $errorDetails !== ''
-            ? '<pre style="margin:24px 0 0;padding:18px;border-radius:18px;background:#f8fafc;border:1px solid #d5dce7;color:#18212f;text-align:left;white-space:pre-wrap;word-break:break-word;">'.$errorDetails.'</pre>'
+            ? '<pre style="margin:24px 0 0;padding:18px;border-radius:18px;background:#f8fafc;border:1px solid #d5dce7;color:#18212f;text-align:left;white-space:pre-wrap;word-break:break-word;">' . $errorDetails . '</pre>'
             : '';
 
         return <<<HTML

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Core;
@@ -39,7 +40,7 @@ class Application
 
     public static function getInstance(): Application
     {
-        if(self::$instance === null){
+        if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -83,7 +84,7 @@ class Application
             : new FilesystemAdapter(
                 namespace: 'doctrine_orm',
                 defaultLifetime: 0,
-                directory: dirname(__DIR__, 2).'/var/cache/doctrine',
+                directory: dirname(__DIR__, 2) . '/var/cache/doctrine',
             );
 
         $entityManagerFactory = new DatabaseORM($databaseConfiguration, $productionCache);
@@ -95,22 +96,22 @@ class Application
             MailConfig::class => $configuration->mail,
             SiteConfig::class => $configuration->site,
             EmailQueueConfig::class => $configuration->emailQueue,
-            EntityManager::class => static fn () => $entityManagerFactory->createEntityManager(),
-            UserLocationProviderInterface::class => static fn (ContainerInterface $container) =>
-                $container->get(UserController::class),
-            ViewInterface::class => static fn (ContainerInterface $container) =>
-                $container->get(View::class),
-            PHPMailer::class => static fn () => new PHPMailer(true),
-            Smarty::class => static fn () => new Smarty(),
-            CacheInterface::class => static fn () => new FilesystemAdapter(
+            EntityManager::class => static fn() => $entityManagerFactory->createEntityManager(),
+            UserLocationProviderInterface::class => static fn(ContainerInterface $container)
+                => $container->get(UserController::class),
+            ViewInterface::class => static fn(ContainerInterface $container)
+                => $container->get(View::class),
+            PHPMailer::class => static fn() => new PHPMailer(true),
+            Smarty::class => static fn() => new Smarty(),
+            CacheInterface::class => static fn() => new FilesystemAdapter(
                 namespace: 'site_data',
                 defaultLifetime: 86400,
-                directory: dirname(__DIR__, 2).'/var/cache'
+                directory: dirname(__DIR__, 2) . '/var/cache',
             ),
-            EmailServiceInterface::class => static fn (ContainerInterface $container) =>
-                $container->get(EmailModel::class),
-            ContactFormInterface::class => static fn (ContainerInterface $container) =>
-                $container->get(ContactModel::class),
+            EmailServiceInterface::class => static fn(ContainerInterface $container)
+                => $container->get(EmailModel::class),
+            ContactFormInterface::class => static fn(ContainerInterface $container)
+                => $container->get(ContactModel::class),
         ]);
 
         return $builder->build();
@@ -136,4 +137,4 @@ class Application
     {
         $this->routes->dispatch();
     }
-} 
+}
