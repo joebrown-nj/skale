@@ -8,7 +8,6 @@ interface EmailServiceInterface
 {
     public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool;
     public function getLastSendError(): ?string;
-    public function emailTemplate(string $content = '', string $email = ''): string;
     public function validateEmail(string $email): bool;
     public function checkIfEmailIsOnList(string $email): bool;
     public function processEmailListSignup(array $data): bool;

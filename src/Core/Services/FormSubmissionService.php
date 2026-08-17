@@ -7,6 +7,7 @@ namespace App\Core\Services;
 use App\Core\Config\MailConfig;
 use App\Core\Config\SiteConfig;
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Contracts\EmailTemplateRendererInterface;
 
 class FormSubmissionService
 {
@@ -16,6 +17,7 @@ class FormSubmissionService
     public function __construct(
         EmailServiceInterface $emailService,
         EmailQueueService $emailQueueService,
+        private readonly EmailTemplateRendererInterface $emailRenderer,
         private readonly SiteConfig $siteConfig,
         private readonly MailConfig $mailConfig,
     ) {
@@ -33,7 +35,7 @@ class FormSubmissionService
             ? '<p>Thanks for subscribing. We are glad to have you with us.</p>'
             : $this->buildContactSuccessMessage();
 
-        $emailMessage = $this->emailService->emailTemplate(
+        $emailMessage = $this->emailRenderer->render(
             '<p>Hi ' . $input['name'] . ',</p>' . $successMessage,
             $input['email'],
         );
@@ -54,7 +56,7 @@ class FormSubmissionService
             );
         }
 
-        $adminEmailMessage = $this->emailService->emailTemplate(
+        $adminEmailMessage = $this->emailRenderer->render(
             $this->buildAdminEmailBody($input, $user),
             $input['email'],
         );
@@ -74,7 +76,7 @@ class FormSubmissionService
 
         $successMessage = $this->buildGetStartedSuccessMessage();
 
-        $emailMessage = $this->emailService->emailTemplate(
+        $emailMessage = $this->emailRenderer->render(
             '<p>Hi ' . $input['name'] . ',</p>' . $successMessage,
             $input['email'],
         );
@@ -86,7 +88,7 @@ class FormSubmissionService
             $input['name'],
         );
 
-        $adminEmailMessage = $this->emailService->emailTemplate(
+        $adminEmailMessage = $this->emailRenderer->render(
             $this->buildAdminEmailBody($input, $user),
             $input['email'],
         );

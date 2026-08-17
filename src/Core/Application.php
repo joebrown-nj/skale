@@ -8,6 +8,7 @@ use App\Controllers\UserController;
 use App\Core\Contracts\UserLocationProviderInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Contracts\EmailTemplateRendererInterface;
 use App\Core\Contracts\ContactFormInterface;
 use App\Core\Db\DatabaseConfiguration;
 use App\Core\Db\DatabaseORM;
@@ -110,6 +111,8 @@ class Application
             ),
             EmailServiceInterface::class => static fn(ContainerInterface $container)
                 => $container->get(EmailModel::class),
+            EmailTemplateRendererInterface::class => static fn(ContainerInterface $container)
+                => new EmailTemplateRenderer(new Smarty(), $container->get(SiteConfig::class)),
             ContactFormInterface::class => static fn(ContainerInterface $container)
                 => $container->get(ContactModel::class),
         ]);

@@ -6,6 +6,7 @@ namespace Tests\Controllers;
 
 use App\Controllers\EmailController;
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Contracts\EmailTemplateRendererInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Services\RequestBlocklistService;
 use App\Models\Entities\RequestBlockRuleEntity;
@@ -40,7 +41,7 @@ final class EmailControllerTest extends TestCase
         $view->expects($this->never())
             ->method('getUser');
 
-        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view, $this->createStub(EmailTemplateRendererInterface::class));
 
         $this->assertSame(
             '{"error":["A valid email is required"]}',
@@ -74,7 +75,7 @@ final class EmailControllerTest extends TestCase
         $view->expects($this->never())
             ->method('getUser');
 
-        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view, $this->createStub(EmailTemplateRendererInterface::class));
 
         $this->assertSame(
             '{"error":"You are already on the list"}',
@@ -112,7 +113,7 @@ final class EmailControllerTest extends TestCase
             ->method('getUser')
             ->willReturn($user);
 
-        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view, $this->createStub(EmailTemplateRendererInterface::class));
 
         $this->assertSame(
             '{"success":"Thanks for joining the mailing list!"}',
@@ -150,7 +151,7 @@ final class EmailControllerTest extends TestCase
             ->method('getUser')
             ->willReturn($user);
 
-        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view, $this->createStub(EmailTemplateRendererInterface::class));
 
         $this->assertSame(
             '{"error":"Unable to process email signup"}',
@@ -179,7 +180,7 @@ final class EmailControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->never())->method('getUser');
 
-        $controller = new EmailController($emailModel, $requestBlocklistService, $view);
+        $controller = new EmailController($emailModel, $requestBlocklistService, $view, $this->createStub(EmailTemplateRendererInterface::class));
 
         $this->assertSame('{"error":"Unable to process request."}', $controller->signUp($input));
         $this->assertSame(403, http_response_code());

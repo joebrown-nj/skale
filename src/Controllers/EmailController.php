@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\Contracts\EmailServiceInterface;
+use App\Core\Contracts\EmailTemplateRendererInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Http\JsonResponse;
 use App\Core\Services\RequestBlocklistService;
@@ -15,7 +16,7 @@ class EmailController
     private RequestBlocklistService $requestBlocklistService;
     private ViewInterface $view;
 
-    public function __construct(EmailServiceInterface $emailModel, RequestBlocklistService $requestBlocklistService, ViewInterface $view)
+    public function __construct(EmailServiceInterface $emailModel, RequestBlocklistService $requestBlocklistService, ViewInterface $view, private readonly EmailTemplateRendererInterface $emailRenderer)
     {
         $this->emailModel = $emailModel;
         $this->requestBlocklistService = $requestBlocklistService;
@@ -24,8 +25,9 @@ class EmailController
 
     public function emailTemplate(): null
     {
-        $message = $this->emailModel->emailTemplate('', 'joe@joe.com');
-        $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
+        $message = $this->emailRenderer->render('', 'joe@joe.com');
+        echo $message;
+        // $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
         return null;
     }
 
