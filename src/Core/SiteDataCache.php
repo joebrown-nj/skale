@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\Contracts\UserLocationProviderInterface;
 use App\Models\NavModel;
 use App\Models\PageContentModel;
 use App\Models\SolutionModel;
@@ -22,12 +23,14 @@ class SiteDataCache
     private bool $contactContentResolved = false;
     private ?array $contactContent = null;
     private ?array $hiddenLinks = null;
+    private ?array $userLocation = null;
 
     public function __construct(
         private CacheInterface $cache,
         private NavModel $navModel,
         private SolutionModel $SolutionModel,
         private PageContentModel $pageContentModel,
+        private UserLocationProviderInterface $userLocationProvider,
     ) {
         $this->sharedData = null;
         $this->mainNav = null;
@@ -37,6 +40,7 @@ class SiteDataCache
         $this->contactContentResolved = false;
         $this->contactContent = null;
         $this->hiddenLinks = null;
+        $this->userLocation = null;
     }
 
     public function getSharedData(): array
@@ -56,6 +60,24 @@ class SiteDataCache
         ];
 
         return $this->sharedData;
+    }
+
+    public function getUserLocation(): array
+    {
+        if ($this->userLocation !== null) {
+            return $this->userLocation;
+        }
+
+        $ipAddress = $this->userLocationProvider->getIPAddress();
+        $cacheKey = 'site_data.user_location.' . hash('sha256', $ipAddress);
+
+        $this->userLocation = $this->cache->get($cacheKey, function (ItemInterface $item): array {
+            $item->expiresAfter(self::DEFAULT_TTL);
+
+            return $this->userLocationProvider->getUserLocation();
+        });
+
+        return $this->userLocation;
     }
 
 

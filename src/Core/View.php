@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core;
 
-use App\Core\Contracts\UserLocationProviderInterface;
 use App\Core\Contracts\ViewInterface;
 use Smarty\Smarty;
 
@@ -15,12 +14,11 @@ class View implements ViewInterface
     private ?string $p1 = null;
     private ?string $p2 = null;
     private ?string $p3 = null;
-    private UserLocationProviderInterface $userController;
     private SiteDataCache $siteDataCache;
     private PageContextProvider $pageContextProvider;
     private array $user;
 
-    public function __construct(Smarty $smarty, UserLocationProviderInterface $userController, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider)
+    public function __construct(Smarty $smarty, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider)
     {
         $this->smarty = $smarty;
         $this->smarty->caching = Smarty::CACHING_OFF;
@@ -30,6 +28,11 @@ class View implements ViewInterface
         $this->smarty->setCacheDir($_ENV['SMARTY_CACHE']);
         $this->smarty->assign('app_name', 'Skaleup');
 
+        if ($_ENV['APP_ENV'] === 'prod') {
+            $this->smarty->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+            $this->smarty->setCompileCheck(false);
+        }
+
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
         $this->uri = trim((string) $uri, '/');
 
@@ -38,10 +41,9 @@ class View implements ViewInterface
         $this->p2 = isset($pages[1]) ? $pages[1] : '';
         $this->p3 = isset($pages[2]) ? $pages[2] : '';
 
-        $this->userController = $userController;
         $this->siteDataCache = $siteDataCache;
         $this->pageContextProvider = $pageContextProvider;
-        $this->user = $this->userController->getUserLocation();
+        $this->user = $this->siteDataCache->getUserLocation();
     }
 
     public function getP1(): ?string

@@ -91,6 +91,11 @@ class Application
         $entityManagerFactory = new DatabaseORM($databaseConfiguration, $productionCache);
         $builder = new ContainerBuilder();
         $builder->useAutowiring(true);
+
+        if ($_ENV['APP_ENV'] === 'prod') {
+            $builder->enableCompilation(__DIR__ . '/var/cache/container');
+        }
+
         $builder->addDefinitions([
             ApplicationConfig::class => $configuration,
             DatabaseConfig::class => $configuration->database,

@@ -6,5 +6,7 @@ namespace App\Core\Contracts;
 
 interface UserLocationProviderInterface
 {
+    public function getIPAddress(?array $server = null): string;
+
     public function getUserLocation();
 }

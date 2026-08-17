@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Core\Contracts\UserLocationProviderInterface;
+use App\Core\SiteDataCache;
 use App\Models\LogModel;
 
 class LogController
 {
-    private UserLocationProviderInterface $userController;
+    private SiteDataCache $siteDataCache;
     private LogModel $logModel;
     private array $user;
 
-    public function __construct(UserLocationProviderInterface $userController, LogModel $logModel)
+    public function __construct(SiteDataCache $siteDataCache, LogModel $logModel)
     {
-        $this->userController = $userController;
+        $this->siteDataCache = $siteDataCache;
         $this->logModel = $logModel;
-        $this->user = $this->userController->getUserLocation();
+        $this->user = $this->siteDataCache->getUserLocation();
     }
 
     public function getUser(): array
