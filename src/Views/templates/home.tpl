@@ -557,7 +557,7 @@
             </div>
 
             <div class="row g-4">
-                {include file="inc/blog/blogListContainer.tpl" blogCategories=$data.blogCategories blogList=$data.blogList blogContent=$data.blogContent limit=6}
+                {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogContent=$data.blogContent limit=6}
             </div>
         </div>
     </section>

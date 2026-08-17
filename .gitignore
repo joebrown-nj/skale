@@ -11,3 +11,4 @@ docs/
 .env.*
 !.env.example
 !.env.dist
+.php-cs-fixer.cache
