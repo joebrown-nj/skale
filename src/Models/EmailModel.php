@@ -60,6 +60,7 @@ class EmailModel implements EmailServiceInterface
             $this->lastSendError = $this->mailer->ErrorInfo !== ''
                 ? $this->mailer->ErrorInfo
                 : 'PHPMailer returned false without an error message.';
+            $this->lastSendError = $this->transportLabel() . ': ' . $this->lastSendError;
 
             if ($this->isConnectionFailure($this->lastSendError) && $this->sendUsingFallbackTransport($to, $subject, $body, $toName)) {
                 return true;
@@ -74,6 +75,7 @@ class EmailModel implements EmailServiceInterface
             if ($mailerError !== '' && !str_contains($this->lastSendError, $mailerError)) {
                 $this->lastSendError .= ' (PHPMailer: ' . $mailerError . ')';
             }
+            $this->lastSendError = $this->transportLabel() . ': ' . $this->lastSendError;
 
             if ($this->isConnectionFailure($this->lastSendError) && $this->sendUsingFallbackTransport($to, $subject, $body, $toName)) {
                 return true;
@@ -280,6 +282,11 @@ class EmailModel implements EmailServiceInterface
         $this->mailer->Port = $port;
         $this->mailer->SMTPSecure = $encryption;
         $this->mailer->SMTPAutoTLS = false;
+    }
+
+    private function transportLabel(): string
+    {
+        return sprintf('SMTP %s:%d', $this->mailer->Host, $this->mailer->Port);
     }
 
 }

@@ -23,12 +23,15 @@ class EmailController
         $this->view = $view;
     }
 
-    public function emailTemplate(): null
+    public function emailTemplate(): string
     {
         $message = $this->emailRenderer->render('', 'joe@joe.com');
-        // echo $message;
-        echo $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
-        return null;
+        if ($this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe')) {
+            return 'Test email sent successfully.';
+        }
+
+        http_response_code(502);
+        return 'Test email failed: ' . ($this->emailModel->getLastSendError() ?? 'Unknown email error.');
     }
 
     public function signUp(?array $input = null): string
