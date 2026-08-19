@@ -21,6 +21,7 @@ final class EmailTemplateRenderer implements EmailTemplateRendererInterface
         $this->smarty->setCacheDir($_ENV['SMARTY_CACHE'] ?? dirname($root) . '/var/cache');
     }
 
+    #[\Override]
     public function render(string $content = '', string $email = ''): string
     {
         return $this->smarty->fetch('contact-response.tpl', [

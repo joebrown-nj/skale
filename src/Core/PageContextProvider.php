@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -13,11 +13,10 @@ class PageContextProvider
      */
     private array $resolvedPages = [];
 
-    public function __construct(
-        private PageContentModel $pageContentModel,
-    ) {}
-
-    public function resolve(?string $uri): ?array
+    /**
+     * @return array|null|true
+     */
+    public function resolve(?string $uri): array|bool|null
     {
         $cacheKey = (string) ($uri ?? '');
 

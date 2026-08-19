@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -9,9 +9,7 @@ use Doctrine\ORM\EntityManager;
 
 class RequestBlockRuleModel
 {
-    public function __construct(
-        private readonly EntityManager $entityManager,
-    ) {}
+
 
     /**
      * @return array<int, RequestBlockRuleEntity>

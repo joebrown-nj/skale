@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -24,24 +24,6 @@ class SiteDataCache
     private ?array $contactContent = null;
     private ?array $hiddenLinks = null;
     private ?array $userLocation = null;
-
-    public function __construct(
-        private CacheInterface $cache,
-        private NavModel $navModel,
-        private SolutionModel $SolutionModel,
-        private PageContentModel $pageContentModel,
-        private UserLocationProviderInterface $userLocationProvider,
-    ) {
-        $this->sharedData = null;
-        $this->mainNav = null;
-        $this->footerNav = null;
-        $this->serviceList = null;
-        $this->allServiceList = null;
-        $this->contactContentResolved = false;
-        $this->contactContent = null;
-        $this->hiddenLinks = null;
-        $this->userLocation = null;
-    }
 
     public function getSharedData(): array
     {
@@ -152,7 +134,10 @@ class SiteDataCache
             return $this->contactContent;
         }
 
-        $this->contactContent = $this->cache->get('site_data.contact_content', function (ItemInterface $item): ?array {
+        $this->contactContent = $this->cache->get('site_data.contact_content', /**
+         * @return array|null|true
+         */
+        function (ItemInterface $item): array|bool|null {
             $item->expiresAfter(self::DEFAULT_TTL);
 
             $page = $this->pageContentModel->getPageContentByUrl($_ENV['URL_CONTACT']);

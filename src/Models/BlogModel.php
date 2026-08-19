@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -13,11 +13,6 @@ use App\Models\Entities\BlogEntity;
 class BlogModel
 {
     private EntityManager $entityManager;
-
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
 
     public function getAllBlogs(?string $category = null, ?int $limit = 10): ?array
     {
@@ -62,7 +57,10 @@ class BlogModel
         return $returnVal;
     }
 
-    public function getBlogTotalCount(?string $category = null): int
+    /**
+     * @return null|scalar
+     */
+    public function getBlogTotalCount(?string $category = null)
     {
         $repository = $this->entityManager->getRepository(BlogEntity::class)->createQueryBuilder('b')
             ->select('count(b.id)');
@@ -77,7 +75,7 @@ class BlogModel
         return $count;
     }
 
-    public function getBlogByUrl($url = ''): ?BlogEntity
+    public function getBlogByUrl(string $url = ''): ?BlogEntity
     {
         $url = explode('/', rtrim($url, '/'));
         $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findOneBy(['url' => $url]);

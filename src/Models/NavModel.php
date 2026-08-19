@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Models;
 
@@ -8,11 +8,6 @@ use App\Models\Entities\MenuEntity;
 class NavModel
 {
     private EntityManager $entityManager;
-
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
 
     public function getNav(string $menuLocation, int $parent = 0): array
     {

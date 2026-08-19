@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -15,47 +15,4 @@ class EmailController
     private EmailServiceInterface $emailModel;
     private RequestBlocklistService $requestBlocklistService;
     private ViewInterface $view;
-
-    public function __construct(EmailServiceInterface $emailModel, RequestBlocklistService $requestBlocklistService, ViewInterface $view, private readonly EmailTemplateRendererInterface $emailRenderer)
-    {
-        $this->emailModel = $emailModel;
-        $this->requestBlocklistService = $requestBlocklistService;
-        $this->view = $view;
-    }
-
-    public function emailTemplate(): string
-    {
-        $message = $this->emailRenderer->render('', 'joe@joe.com');
-        if ($this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe')) {
-            return 'Test email sent successfully.';
-        }
-
-        http_response_code(502);
-        return 'Test email failed: ' . ($this->emailModel->getLastSendError() ?? 'Unknown email error.');
-    }
-
-    public function signUp(?array $input = null): string
-    {
-        $input ??= $_POST;
-        $email = $input['email'] ?? '';
-
-        if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
-            http_response_code(403);
-            return (string) JsonResponse::error('Unable to process request.', 403);
-        }
-
-        if (!$this->emailModel->validateEmail($email)) {
-            return (string) JsonResponse::error(['A valid email is required']);
-        }
-
-        if ($this->emailModel->checkIfEmailIsOnList($email)) {
-            return (string) JsonResponse::error('You are already on the list');
-        }
-
-        if ($this->emailModel->emailListSignup($input, $this->view->getUser())) {
-            return (string) JsonResponse::success('Thanks for joining the mailing list!');
-        }
-
-        return (string) JsonResponse::error('Unable to process email signup');
-    }
 }

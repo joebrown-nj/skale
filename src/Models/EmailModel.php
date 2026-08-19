@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 namespace App\Models;
 
@@ -21,23 +21,6 @@ class EmailModel implements EmailServiceInterface
     private MailConfig $mailConfig;
     private SiteConfig $siteConfig;
 
-    public function __construct(EntityManager $entityManager, PHPMailer $mailer, MailConfig $mailConfig, SiteConfig $siteConfig)
-    {
-        $this->entityManager = $entityManager;
-        $this->mailer = $mailer;
-        $this->mailConfig = $mailConfig;
-        $this->siteConfig = $siteConfig;
-        $this->configureTransport();
-
-        //Recipients
-        $this->mailer->setFrom($mailConfig->fromAddress, $siteConfig->name);
-        // $this->mailer->addAddress($recipient, $recipientName);           //Add a recipient
-        // $this->mailer->addAddress('ellen@example.com');               //Name is optional
-        $this->mailer->addReplyTo($mailConfig->replyToAddress, $siteConfig->name);
-        // $this->mailer->addCC('cc@example.com');
-        // $this->mailer->addBCC('bcc@example.com');
-    }
-
     /**
      * Send an email.
      *
@@ -48,6 +31,7 @@ class EmailModel implements EmailServiceInterface
      * @param string|null $fromName Sender name
      * @return bool
      */
+    #[\Override]
     public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool
     {
         $this->lastSendError = null;
@@ -158,6 +142,7 @@ class EmailModel implements EmailServiceInterface
         }
     }
 
+    #[\Override]
     public function getLastSendError(): ?string
     {
         return $this->lastSendError;
@@ -173,6 +158,7 @@ class EmailModel implements EmailServiceInterface
         return substr($email, 0, 1) . '***' . substr($email, $at);
     }
 
+    #[\Override]
     public function emailListUnsubscribe(string $email): bool
     {
         try {
@@ -194,6 +180,7 @@ class EmailModel implements EmailServiceInterface
         }
     }
 
+    #[\Override]
     public function processEmailListSignup(array $data): bool
     {
         try {
@@ -210,6 +197,7 @@ class EmailModel implements EmailServiceInterface
         }
     }
 
+    #[\Override]
     public function checkIfEmailIsOnList(string $email): bool
     {
         $exists = $this->entityManager->getRepository(EmailListSignupsEntity::class)->findOneBy(['email' => $email]);
@@ -219,11 +207,13 @@ class EmailModel implements EmailServiceInterface
         return false;
     }
 
+    #[\Override]
     public function validateEmail(string $email): bool
     {
         return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    #[\Override]
     public function emailListSignup(array $data, ?array $user): bool
     {
         $email = $data['email'] ?? '';

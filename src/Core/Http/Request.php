@@ -18,12 +18,6 @@ final class Request
     {
         return new self($_GET, $_POST, $_SERVER, $_COOKIE);
     }
-
-    /** @return array<string, mixed> */
-    public function query(): array
-    {
-        return $this->query;
-    }
     /** @return array<string, mixed> */
     public function post(): array
     {
@@ -37,14 +31,8 @@ final class Request
         unset($server['HTTP_X_FORWARDED_FOR'], $server['HTTP_CLIENT_IP']);
         return $server;
     }
-    public function method(): string
-    {
-        return strtoupper((string) ($this->server['REQUEST_METHOD'] ?? 'GET'));
-    }
-    public function path(): string
-    {
-        return parse_url((string) ($this->server['REQUEST_URI'] ?? '/'), PHP_URL_PATH) ?: '/';
-    }
+
+
 
     public function clientIp(): string
     {

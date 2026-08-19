@@ -24,18 +24,6 @@ final class ErrorHandler
 
     private function __construct() {}
 
-    public static function register(): void
-    {
-        if (self::$registered) {
-            return;
-        }
-
-        set_exception_handler([self::class, 'handleException']);
-        register_shutdown_function([self::class, 'handleShutdown']);
-
-        self::$registered = true;
-    }
-
     public static function handleException(\Throwable $e): void
     {
         self::report($e);

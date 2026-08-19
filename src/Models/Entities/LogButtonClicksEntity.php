@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Entities;
+namespace App\Models\final Entities;
 
 use Doctrine\DBAL\Schema\DefaultExpression\CurrentTimestamp;
 use Doctrine\ORM\Mapping as ORM;
@@ -43,26 +43,11 @@ class LogButtonClicksEntity
     )]
     public ?\DateTimeInterface $date = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getTarget(): string
-    {
-        return $this->target;
-    }
-
     public function setTarget(string $target): self
     {
         $this->target = $target;
 
         return $this;
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 
     public function setUrl(string $url): self
@@ -72,21 +57,11 @@ class LogButtonClicksEntity
         return $this;
     }
 
-    public function getDetail(): string
-    {
-        return $this->detail;
-    }
-
     public function setDetail(string $detail): self
     {
         $this->detail = $detail;
 
         return $this;
-    }
-
-    public function getUserIP(): string
-    {
-        return $this->userIP;
     }
 
     public function setUserIP(string $userIP): self
@@ -96,11 +71,6 @@ class LogButtonClicksEntity
         return $this;
     }
 
-    public function getUserInfo(): string
-    {
-        return $this->userInfo;
-    }
-
     public function setUserInfo(string $userInfo): self
     {
         $this->userInfo = $userInfo;
@@ -108,26 +78,9 @@ class LogButtonClicksEntity
         return $this;
     }
 
-    public function getServerInfo(): string
-    {
-        return $this->serverInfo;
-    }
-
     public function setServerInfo(string $serverInfo): self
     {
         $this->serverInfo = $serverInfo;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }

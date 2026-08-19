@@ -17,19 +17,7 @@ class Response
         }
     }
 
-    public function body(): string
-    {
-        return $this->body;
-    }
-    public function status(): int
-    {
-        return $this->status;
-    }
-    /** @return array<string, string> */
-    public function headers(): array
-    {
-        return $this->headers;
-    }
+
 
     public function send(): void
     {

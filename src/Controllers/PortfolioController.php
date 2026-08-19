@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -12,13 +12,7 @@ class PortfolioController
     private ViewInterface $view;
     private PortfolioModel $portfolioModel;
 
-    public function __construct(PortfolioModel $portfolioModel, ViewInterface $view)
-    {
-        $this->view = $view;
-        $this->portfolioModel = $portfolioModel;
-    }
-
-    public function index()
+    public function index(): void
     {
         $data = [
             'portfolioItems' => $this->portfolioModel->getPortfolioItems(),

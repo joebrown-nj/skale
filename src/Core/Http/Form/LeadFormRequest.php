@@ -33,10 +33,7 @@ final class LeadFormRequest
     {
         return $this->request->server();
     }
-    public function clientIp(): string
-    {
-        return $this->request->clientIp();
-    }
+
 
     /** @return list<string> */
     public function errors(): array

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Models\Entities;
+namespace App\Models\Enfinal tities;
 
 use Doctrine\DBAL\Schema\DefaultExpression\CurrentTimestamp;
 use Doctrine\ORM\Mapping as ORM;
@@ -46,21 +46,9 @@ class RequestBlockRuleEntity
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $expiresAt = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getAttribute(): string
     {
         return $this->attribute;
-    }
-
-    public function setAttribute(string $attribute): self
-    {
-        $this->attribute = $attribute;
-
-        return $this;
     }
 
     public function getMatchType(): string
@@ -68,75 +56,13 @@ class RequestBlockRuleEntity
         return $this->matchType;
     }
 
-    public function setMatchType(string $matchType): self
-    {
-        $this->matchType = $matchType;
-
-        return $this;
-    }
-
     public function getRuleValue(): string
     {
         return $this->ruleValue;
     }
 
-    public function setRuleValue(string $ruleValue): self
-    {
-        $this->ruleValue = $ruleValue;
-
-        return $this;
-    }
-
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
     public function getBlockMessage(): ?string
     {
         return $this->blockMessage;
-    }
-
-    public function setBlockMessage(?string $blockMessage): self
-    {
-        $this->blockMessage = $blockMessage;
-
-        return $this;
-    }
-
-    public function getNotes(): ?string
-    {
-        return $this->notes;
-    }
-
-    public function setNotes(?string $notes): self
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function getExpiresAt(): ?\DateTimeInterface
-    {
-        return $this->expiresAt;
-    }
-
-    public function setExpiresAt(?\DateTimeInterface $expiresAt): self
-    {
-        $this->expiresAt = $expiresAt;
-
-        return $this;
     }
 }

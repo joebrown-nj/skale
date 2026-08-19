@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -11,12 +11,7 @@ class UserController implements UserLocationProviderInterface
     private string $apiKey;
     private string $urlTemplate;
 
-    public function __construct()
-    {
-        $this->apiKey = $_ENV['IP2LOCATION_API_KEY'];
-        $this->urlTemplate = 'https://api.ip2location.io/?ip=%s&key=' . $this->apiKey . '&format=json';
-    }
-
+    #[\Override]
     public function getIPAddress(?array $server = null): string
     {
         $server ??= $_SERVER;
@@ -32,7 +27,8 @@ class UserController implements UserLocationProviderInterface
         return $server['REMOTE_ADDR'] ?? '127.0.0.1';
     }
 
-    public function getUserLocation(): array
+    #[\Override]
+    public function getUserLocation(): array|\ArrayAccess
     {
         $ipAddress = $this->getIPAddress();
 

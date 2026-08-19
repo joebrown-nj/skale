@@ -14,33 +14,7 @@ use App\Models\ContactModel;
 
 final class LandingPageController
 {
-    public function __construct(
-        private ViewInterface $view,
-        private ContactModel $contactModel,
-        private FormSubmissionService $formSubmissionService,
-        private RequestBlocklistService $requestBlocklistService,
-        private LandingPageContentProvider $content,
-    ) {}
 
-    public function automation(): void
-    {
-        $this->render('automation', $this->content->automation());
-    }
-
-    public function marketing(): void
-    {
-        $this->render('marketing', $this->content->marketing());
-    }
-
-    public function websiteDevelopment(): void
-    {
-        $this->render('website-development', $this->content->websiteDevelopment());
-    }
-
-    public function taskManagement(): void
-    {
-        $this->render('task-management', $this->content->taskManagement());
-    }
 
     public function postLeadForm(LeadFormRequest $request): JsonResponse
     {

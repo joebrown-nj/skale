@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -9,11 +9,6 @@ use Doctrine\ORM\EntityManager;
 class GetStartedModel
 {
     private EntityManager $entityManager;
-
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
 
     public function checkForm(array $data): array
     {

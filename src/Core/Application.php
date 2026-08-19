@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -139,10 +139,5 @@ class Application
     public function getContainer(): ContainerInterface
     {
         return $this->container;
-    }
-
-    public function run(): void
-    {
-        $this->routes->dispatch();
     }
 }
