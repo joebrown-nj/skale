@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -10,6 +10,11 @@ use App\Models\Entities\MenuEntity;
 class PageContentModel
 {
     private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     public function getPageContentByUrl(string $url = ''): array|bool
     {

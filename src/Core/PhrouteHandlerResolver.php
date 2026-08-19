@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -16,7 +16,6 @@ class PhrouteHandlerResolver implements HandlerResolverInterface
         $this->container = $container;
     }
 
-    #[\Override]
     public function resolve($handler)
     {
         // If handler is an array [Controller::class, 'method']

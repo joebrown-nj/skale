@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Models;
 
@@ -8,6 +8,11 @@ use App\Models\Entities\HomeCardEntity;
 class HomeCardsModel
 {
     private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     public function getHomeCards(): ?array
     {

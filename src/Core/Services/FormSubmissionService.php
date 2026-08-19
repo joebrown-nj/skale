@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -13,6 +13,17 @@ class FormSubmissionService
 {
     private EmailServiceInterface $emailService;
     private EmailQueueService $emailQueueService;
+
+    public function __construct(
+        EmailServiceInterface $emailService,
+        EmailQueueService $emailQueueService,
+        private readonly EmailTemplateRendererInterface $emailRenderer,
+        private readonly SiteConfig $siteConfig,
+        private readonly MailConfig $mailConfig,
+    ) {
+        $this->emailService = $emailService;
+        $this->emailQueueService = $emailQueueService;
+    }
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
     {

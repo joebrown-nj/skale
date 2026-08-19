@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -12,6 +12,35 @@ class LogController
     private SiteDataCache $siteDataCache;
     private LogModel $logModel;
     private array $user;
+
+    public function __construct(SiteDataCache $siteDataCache, LogModel $logModel)
+    {
+        $this->siteDataCache = $siteDataCache;
+        $this->logModel = $logModel;
+        $this->user = $this->siteDataCache->getUserLocation();
+    }
+
+    public function getUser(): array
+    {
+        return $this->user;
+    }
+
+    public function logButtonClick(?array $input = null, ?array $server = null): bool
+    {
+        $input ??= $_POST;
+        $server ??= $_SERVER;
+
+        $data = [
+            'target' => $this->normalizeTarget($input['target'] ?? ''),
+            'url' => $input['url'] ?? '',
+            'detail' => $input['detail'] ?? '',
+            'userIP' => $server['REMOTE_ADDR'] ?? '',
+            'userInfo' => json_encode($this->user),
+            'serverInfo' => json_encode($this->sanitizeServerInfo($server)),
+        ];
+
+        return $this->logModel->logButtonClick($data);
+    }
 
     private function sanitizeServerInfo(array $server): array
     {

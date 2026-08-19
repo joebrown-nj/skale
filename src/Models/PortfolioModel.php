@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Models;
 
@@ -10,6 +10,11 @@ use App\Models\Entities\PortfolioEntity;
 class PortfolioModel
 {
     private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     public function getPortfolioItems(): array
     {

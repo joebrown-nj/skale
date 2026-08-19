@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -10,8 +10,18 @@ class SubPageController
 {
     private ViewInterface $view;
 
-    public function index(): void
+    public function __construct(ViewInterface $view)
+    {
+        $this->view = $view;
+    }
+
+    public function index()
     {
         $this->view->render('subpage');
+    }
+
+    public function thankYou()
+    {
+        $this->view->render('thankYou');
     }
 }

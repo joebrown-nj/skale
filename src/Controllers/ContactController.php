@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -18,9 +18,50 @@ class ContactController
     private RequestBlocklistService $requestBlocklistService;
     private ViewInterface $view;
 
+    public function __construct(ContactFormInterface $contactModel, FormSubmissionService $formSubmissionService, RequestBlocklistService $requestBlocklistService, ViewInterface $view)
+    {
+        $this->contactModel = $contactModel;
+        $this->formSubmissionService = $formSubmissionService;
+        $this->requestBlocklistService = $requestBlocklistService;
+        $this->view = $view;
+    }
+
     public function index(): void
     {
         $this->view->render('contact');
+    }
+
+    public function submit(?array $input = null): string
+    {
+        $input ??= $_POST;
+
+        if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $_SERVER) !== null) {
+            http_response_code(403);
+            return (string) JsonResponse::error('Unable to process request.', 403);
+        }
+
+        $input = $this->normalizeInput($input);
+
+        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+            http_response_code(403);
+            return (string) JsonResponse::error('Unable to process request.', 403);
+        }
+        $user = $this->view->getUser();
+        $validationErrors = $this->contactModel->validate($input);
+
+        if (!empty($validationErrors)) {
+            return (string) JsonResponse::error($validationErrors);
+        }
+
+        if (!$this->contactModel->save($input)) {
+            return (string) JsonResponse::error('There was a problem submitting the form. Please try again.');
+        }
+
+        $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
+
+        return (string) JsonResponse::success([
+            'redirect' => '/thank-you',
+        ]);
     }
 
     private function normalizeInput(array $input): array

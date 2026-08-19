@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Models;
 
@@ -9,6 +9,11 @@ use App\Models\Entities\ServicePageEntity;
 class SolutionModel
 {
     private EntityManager $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     public function getAllSolutions(bool $activeOnly = true): ?array
     {
@@ -23,7 +28,7 @@ class SolutionModel
         return $results;
     }
 
-    public function getSolutionByUrl(string $url = ''): ?SolutionsEntity
+    public function getSolutionByUrl($url = ''): ?SolutionsEntity
     {
         $url = $_ENV['URL_SERVICES_SOLUTIONS'] . '/' . rtrim($url, '/');
         $returnVal = $this->entityManager->getRepository(SolutionsEntity::class)->findOneBy(['url' => $url]);

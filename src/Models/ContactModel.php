@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -14,7 +14,11 @@ class ContactModel implements ContactFormInterface
 {
     private EntityManager $entityManager;
 
-    #[\Override]
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function validate(array $data): array
     {
         if (FormSubmissionService::containsMaliciousInput($data)) {
@@ -55,7 +59,6 @@ class ContactModel implements ContactFormInterface
         return $errors;
     }
 
-    #[\Override]
     public function save(array $data): bool
     {
         if (FormSubmissionService::containsMaliciousInput($data)) {
@@ -108,6 +111,11 @@ class ContactModel implements ContactFormInterface
             . implode("\n", $context)
             . ($message !== '' ? "\n" . $message : ''),
         );
+    }
+
+    public function checkContactForm(array $data): array
+    {
+        return $this->validate($data);
     }
 
     public function processContactForm(array $data): bool

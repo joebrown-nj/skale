@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 declare(strict_types=1);
 
@@ -17,6 +17,19 @@ class EmailQueueService
     private EmailServiceInterface $emailService;
     private string $queueRoot;
     private EmailQueueConfig $config;
+
+    public function __construct(EmailServiceInterface $emailService, ?EmailQueueConfig $config = null)
+    {
+        $this->emailService = $emailService;
+        $config ??= new EmailQueueConfig(
+            enabled: filter_var($_ENV['EMAIL_QUEUE_ENABLED'] ?? false, FILTER_VALIDATE_BOOL),
+            directory: (string) ($_ENV['EMAIL_QUEUE_DIR'] ?? dirname(__DIR__, 3) . '/var/email-queue'),
+            maxAttempts: max(1, (int) ($_ENV['EMAIL_QUEUE_MAX_ATTEMPTS'] ?? self::DEFAULT_MAX_ATTEMPTS)),
+            processingTimeout: max(60, (int) ($_ENV['EMAIL_QUEUE_PROCESSING_TIMEOUT'] ?? self::DEFAULT_PROCESSING_TIMEOUT)),
+        );
+        $this->config = $config;
+        $this->queueRoot = $config->directory;
+    }
 
     public function isEnabled(): bool
     {
@@ -55,6 +68,63 @@ class EmailQueueService
             error_log('[email-queue] ' . $exception->getMessage());
 
             return false;
+        }
+    }
+
+    public function processPending(int $limit = 10): array
+    {
+        $lockHandle = $this->acquireProcessingLock();
+        if ($lockHandle === null) {
+            return [
+                'claimed' => 0,
+                'sent' => 0,
+                'retried' => 0,
+                'failed' => 0,
+                'deferred' => 0,
+            ];
+        }
+
+        try {
+            $this->ensureDirectoriesExist();
+            $this->recoverStaleProcessingJobs();
+
+            $summary = [
+                'claimed' => 0,
+                'sent' => 0,
+                'retried' => 0,
+                'failed' => 0,
+                'deferred' => 0,
+            ];
+
+            $pendingFiles = glob($this->directoryFor('pending') . '/*.json') ?: [];
+            sort($pendingFiles, SORT_STRING);
+
+            foreach ($pendingFiles as $pendingPath) {
+                if ($summary['claimed'] >= $limit) {
+                    break;
+                }
+
+                $processingPath = $this->pathFor('processing', basename($pendingPath, '.json'));
+
+                if (!@rename($pendingPath, $processingPath)) {
+                    continue;
+                }
+
+                $summary['claimed']++;
+                try {
+                    $result = $this->processClaimedJob($processingPath);
+                } catch (Throwable $exception) {
+                    error_log('[email-queue] ' . $exception->getMessage());
+                    $this->attemptMoveToFailed($processingPath);
+                    $result = 'failed';
+                }
+
+                $summary[$result]++;
+            }
+
+            return $summary;
+        } finally {
+            $this->releaseProcessingLock($lockHandle);
         }
     }
 

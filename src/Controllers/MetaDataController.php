@@ -1,4 +1,4 @@
-final <?php
+<?php
 
 namespace App\Controllers;
 
@@ -11,6 +11,13 @@ class MetaDataController
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
     private string $siteName;
+
+    public function __construct(PageContentModel $pageContentModel, BlogModel $blogModel, ?SiteConfig $siteConfig = null)
+    {
+        $this->pageContentModel = $pageContentModel;
+        $this->blogModel = $blogModel;
+        $this->siteName = $siteConfig?->name ?? trim((string) ($_ENV['SITE_NAME'] ?? 'Skaleup'));
+    }
 
     public function index($p1 = '', $p2 = '', $p3 = ''): void
     {
