@@ -61,11 +61,7 @@ class EmailModel implements EmailServiceInterface
                 ? $this->mailer->ErrorInfo
                 : 'PHPMailer returned false without an error message.';
 
-            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
-                return true;
-            }
-
-            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
+            if ($this->isConnectionFailure($this->lastSendError) && $this->sendUsingFallbackTransport($to, $subject, $body, $toName)) {
                 return true;
             }
 
@@ -79,11 +75,7 @@ class EmailModel implements EmailServiceInterface
                 $this->lastSendError .= ' (PHPMailer: ' . $mailerError . ')';
             }
 
-            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingStartTlsFallback($to, $subject, $body, $toName)) {
-                return true;
-            }
-
-            if ($this->shouldRetryWithStartTls($this->lastSendError) && $this->sendUsingIpv4Fallback($to, $subject, $body, $toName)) {
+            if ($this->isConnectionFailure($this->lastSendError) && $this->sendUsingFallbackTransport($to, $subject, $body, $toName)) {
                 return true;
             }
 
@@ -114,46 +106,43 @@ class EmailModel implements EmailServiceInterface
         }
     }
 
-    private function shouldRetryWithStartTls(?string $errorMessage): bool
+    private function isConnectionFailure(?string $errorMessage): bool
     {
         if ($errorMessage === null || $errorMessage === '') {
             return false;
         }
 
         $message = strtolower($errorMessage);
-        $timedOut = str_contains($message, 'connection timed out') || str_contains($message, 'smtp code: 110');
-        $connectFailure = str_contains($message, 'could not connect to smtp host') || str_contains($message, 'failed to connect to server');
-
-        return $timedOut && $connectFailure;
+        return str_contains($message, 'could not connect to smtp host')
+            || str_contains($message, 'failed to connect to server')
+            || str_contains($message, 'connection timed out')
+            || str_contains($message, 'smtp code: 110');
     }
 
-    private function sendUsingStartTlsFallback(string $to, string $subject, string $body, ?string $toName): bool
+    private function sendUsingFallbackTransport(string $to, string $subject, string $body, ?string $toName): bool
     {
         if ($this->mailConfig->host === '') {
             return false;
         }
 
-        if (strtolower($this->mailConfig->encryption) === 'tls' || strtolower($this->mailConfig->encryption) === 'starttls') {
-            return false;
-        }
-
-        if ($this->mailConfig->port === 587 && strtolower($this->mailConfig->encryption) !== 'ssl' && strtolower($this->mailConfig->encryption) !== 'smtps') {
-            return false;
-        }
-
-        $this->mailer->Port = 587;
-        $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $useStartTls = $this->mailConfig->port !== 587
+            || !in_array(strtolower($this->mailConfig->encryption), ['tls', 'starttls'], true);
+        $this->configureSmtpEndpoint(
+            $useStartTls ? 587 : 465,
+            $useStartTls ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS,
+        );
+        $fallbackName = $useStartTls ? 'TLS/587' : 'SSL/465';
 
         try {
             if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
                 $fallbackError = $this->mailer->ErrorInfo !== ''
                   ? $this->mailer->ErrorInfo
-                  : 'PHPMailer returned false without an error message during STARTTLS fallback.';
-                $this->lastSendError .= ' | STARTTLS fallback failed: ' . $fallbackError;
+                  : 'PHPMailer returned false without an error message.';
+                $this->lastSendError .= ' | ' . $fallbackName . ' fallback failed: ' . $fallbackError;
                 return false;
             }
 
-            error_log('[email] STARTTLS fallback succeeded after SMTP timeout on ' . $this->mailConfig->host . '.');
+            error_log('[email] ' . $fallbackName . ' fallback succeeded on ' . $this->mailConfig->host . '.');
             return true;
         } catch (Throwable $e) {
             $fallbackError = trim($this->mailer->ErrorInfo);
@@ -162,58 +151,8 @@ class EmailModel implements EmailServiceInterface
                 $errorMessage .= ' (PHPMailer: ' . $fallbackError . ')';
             }
 
-            $this->lastSendError .= ' | STARTTLS fallback exception: ' . $errorMessage;
+            $this->lastSendError .= ' | ' . $fallbackName . ' fallback failed: ' . $errorMessage;
             return false;
-        }
-    }
-
-    private function sendUsingIpv4Fallback(string $to, string $subject, string $body, ?string $toName): bool
-    {
-        if ($this->mailConfig->host === '') {
-            return false;
-        }
-
-        $originalHost = $this->mailConfig->host;
-        $resolvedHost = gethostbyname($originalHost);
-
-        if ($resolvedHost === '' || $resolvedHost === $originalHost) {
-            return false;
-        }
-
-        $this->mailer->Host = $resolvedHost;
-        $this->mailer->Port = 587;
-        $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mailer->SMTPOptions = [
-            'ssl' => [
-                'peer_name' => $originalHost,
-                'verify_peer' => true,
-                'verify_peer_name' => true,
-                'allow_self_signed' => false,
-            ],
-        ];
-
-        try {
-            if (!$this->sendWithCurrentTransport($to, $subject, $body, $toName)) {
-                $fallbackError = $this->mailer->ErrorInfo !== ''
-                  ? $this->mailer->ErrorInfo
-                  : 'PHPMailer returned false without an error message during IPv4 fallback.';
-                $this->lastSendError .= ' | IPv4 fallback failed: ' . $fallbackError;
-                return false;
-            }
-
-            error_log('[email] IPv4 STARTTLS fallback succeeded using ' . $resolvedHost . ' for ' . $originalHost . '.');
-            return true;
-        } catch (Throwable $e) {
-            $fallbackError = trim($this->mailer->ErrorInfo);
-            $errorMessage = $e->getMessage();
-            if ($fallbackError !== '' && !str_contains($errorMessage, $fallbackError)) {
-                $errorMessage .= ' (PHPMailer: ' . $fallbackError . ')';
-            }
-
-            $this->lastSendError .= ' | IPv4 fallback exception: ' . $errorMessage;
-            return false;
-        } finally {
-            $this->mailer->Host = $originalHost;
         }
     }
 
@@ -325,15 +264,22 @@ class EmailModel implements EmailServiceInterface
         $this->mailer->SMTPKeepAlive = false;
         $this->mailer->CharSet = 'UTF-8';
 
-        $secure = $this->mailConfig->encryption;
+        $secure = strtolower($this->mailConfig->encryption);
         if ($secure === 'tls' || $secure === 'starttls') {
-            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $this->configureSmtpEndpoint($this->mailConfig->port, PHPMailer::ENCRYPTION_STARTTLS);
             return;
         }
 
         if ($secure === 'ssl' || $secure === 'smtps') {
-            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $this->configureSmtpEndpoint($this->mailConfig->port, PHPMailer::ENCRYPTION_SMTPS);
         }
+    }
+
+    private function configureSmtpEndpoint(int $port, string $encryption): void
+    {
+        $this->mailer->Port = $port;
+        $this->mailer->SMTPSecure = $encryption;
+        $this->mailer->SMTPAutoTLS = false;
     }
 
 }

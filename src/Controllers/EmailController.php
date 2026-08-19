@@ -26,8 +26,8 @@ class EmailController
     public function emailTemplate(): null
     {
         $message = $this->emailRenderer->render('', 'joe@joe.com');
-        echo $message;
-        // $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
+        // echo $message;
+        echo $this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe');
         return null;
     }
 
