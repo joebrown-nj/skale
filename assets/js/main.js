@@ -61,7 +61,13 @@ function removeAllAlerts() {
 }
 
 function updateHeaderBackground(slug) {
-    $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, Boolean(slug && slug !== '/'));
+    const pageType = document.body?.dataset.pageType;
+    const startsHidden = pageType === 'home' || pageType === 'landing';
+
+    $('header.menu-bar').toggleClass(
+        MENU_BAR_BG_CLASS,
+        Boolean(slug && slug !== '/' && !startsHidden),
+    );
 }
 
 function setActiveNavItem(url) {
@@ -234,8 +240,8 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
     $(window).scrollTop(getAjaxContentScrollTop(slug, queryString));
     refreshAos(50);
 
-    updateHeaderBackground(slug);
     syncMetaTrackingContext(slug);
+    updateHeaderBackground(slug);
     ajaxGetPageMetaData(slug, () => {
         dispatchRoutePageView(slug);
         trackMetaPageView(slug, true);
@@ -377,7 +383,7 @@ function inferMetaPageType(pathname = window.location.pathname || '/') {
         return 'home';
     }
 
-    if (['/landing', '/website-development', '/marketing', '/automation'].includes(normalizedPath)) {
+    if (['/landing', '/website-development', '/marketing', '/automation', '/task-management'].includes(normalizedPath)) {
         return 'landing';
     }
 
@@ -1032,12 +1038,16 @@ $(document).on('focusin', '.ajaxForm input, .ajaxForm select, .ajaxForm textarea
 
 $(document).on('scroll', function handleScroll() {
     const $callout = $('.trust-bar');
+    const isLandingPage = document.body?.dataset.pageType === 'landing';
+    const $landingHero = $('.page-content .hero').first();
 
-    if (!$callout.length) {
+    if (!$callout.length && (!isLandingPage || !$landingHero.length)) {
         return;
     }
 
-    const heightThreshold = $callout.offset().top - 150;
+    const heightThreshold = $callout.length
+        ? $callout.offset().top - 150
+        : $landingHero.offset().top + $landingHero.outerHeight() - 150;
     const scrollTop = $(window).scrollTop();
 
     $('header.menu-bar').toggleClass(MENU_BAR_BG_CLASS, scrollTop >= heightThreshold);

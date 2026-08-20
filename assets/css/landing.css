@@ -6,6 +6,10 @@
     box-shadow: none !important;
 } */
 
+.page-content {
+	margin-top:0px;
+}
+
 .feature-card {
     background:#151f35;
     padding:30px;
