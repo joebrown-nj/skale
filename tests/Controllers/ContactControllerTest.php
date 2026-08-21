@@ -36,7 +36,7 @@ final class ContactControllerTest extends TestCase
         $contactModel->expects($this->never())->method('processContactForm');
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);
-        $formSubmissionService->expects($this->never())->method('handleContactSubmission');
+        $formSubmissionService->expects($this->never())->method('deferContactSubmission');
 
         $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
         $requestBlocklistService->expects($this->once())
@@ -74,7 +74,7 @@ final class ContactControllerTest extends TestCase
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);
         $formSubmissionService->expects($this->once())
-            ->method('handleContactSubmission')
+            ->method('deferContactSubmission')
             ->with($input, $user, $_SERVER);
 
         $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
@@ -118,7 +118,7 @@ final class ContactControllerTest extends TestCase
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);
         $formSubmissionService->expects($this->once())
-            ->method('handleContactSubmission')
+            ->method('deferContactSubmission')
             ->with($normalizedInput, null, $_SERVER);
 
         $requestBlocklistService = $this->createStub(RequestBlocklistService::class);

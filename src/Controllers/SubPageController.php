@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\Contracts\ViewInterface;
+use App\Core\Services\FormSubmissionService;
 
 class SubPageController
 {
     private ViewInterface $view;
 
-    public function __construct(ViewInterface $view)
+    public function __construct(ViewInterface $view, private readonly FormSubmissionService $formSubmissionService)
     {
         $this->view = $view;
     }
@@ -23,5 +24,6 @@ class SubPageController
     public function thankYou()
     {
         $this->view->render('thankYou');
+        $this->formSubmissionService->sendDeferredSubmissions();
     }
 }

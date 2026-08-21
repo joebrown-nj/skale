@@ -52,7 +52,7 @@ final class LandingPageController
             return JsonResponse::error('Unable to process request.', 403);
         }
 
-        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+        if (FormSubmissionService::containsMaliciousInput($input)) {
             return JsonResponse::error('Unable to process request.', 403);
         }
 
@@ -66,7 +66,7 @@ final class LandingPageController
             return JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
-        $this->formSubmissionService->handleContactSubmission($input, $this->view->getUser(), $request->server());
+        $this->formSubmissionService->deferContactSubmission($input, $this->view->getUser(), $request->server());
 
         return JsonResponse::success(['redirect' => '/thank-you']);
     }

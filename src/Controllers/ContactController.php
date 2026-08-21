@@ -42,7 +42,7 @@ class ContactController
 
         $input = $this->normalizeInput($input);
 
-        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+        if (FormSubmissionService::containsMaliciousInput($input)) {
             http_response_code(403);
             return (string) JsonResponse::error('Unable to process request.', 403);
         }
@@ -57,7 +57,7 @@ class ContactController
             return (string) JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
-        $this->formSubmissionService->handleContactSubmission($input, $user, $_SERVER);
+        $this->formSubmissionService->deferContactSubmission($input, $user, $_SERVER);
 
         return (string) JsonResponse::success([
             'redirect' => '/thank-you',

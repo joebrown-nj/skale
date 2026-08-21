@@ -12,3 +12,6 @@ docs/
 !.env.example
 !.env.dist
 .php-cs-fixer.cache
+email-queue-cron.log
+error_log
+email-queue-worker.log

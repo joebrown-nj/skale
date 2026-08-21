@@ -38,7 +38,7 @@ class GetStartedController
             return (string) JsonResponse::error('Unable to process request.', 403);
         }
 
-        if ($this->formSubmissionService->containsMaliciousInput($input)) {
+        if (FormSubmissionService::containsMaliciousInput($input)) {
             http_response_code(403);
             return (string) JsonResponse::error('Unable to process request.', 403);
         }
@@ -54,7 +54,7 @@ class GetStartedController
             return (string) JsonResponse::error('There was a problem submitting the form. Please try again.');
         }
 
-        $this->formSubmissionService->handleGetStartedSubmission($input, $user, $_SERVER);
+        $this->formSubmissionService->deferGetStartedSubmission($input, $user, $_SERVER);
 
         return (string) JsonResponse::success([
             'redirect' => '/thank-you',

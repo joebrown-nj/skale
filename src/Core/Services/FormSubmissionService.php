@@ -11,18 +11,75 @@ use App\Core\Contracts\EmailTemplateRendererInterface;
 
 class FormSubmissionService
 {
+    private const DEFERRED_SUBMISSIONS_SESSION_KEY = 'deferred_form_submissions';
+
     private EmailServiceInterface $emailService;
-    private EmailQueueService $emailQueueService;
 
     public function __construct(
         EmailServiceInterface $emailService,
-        EmailQueueService $emailQueueService,
         private readonly EmailTemplateRendererInterface $emailRenderer,
         private readonly SiteConfig $siteConfig,
         private readonly MailConfig $mailConfig,
     ) {
         $this->emailService = $emailService;
-        $this->emailQueueService = $emailQueueService;
+    }
+
+    public function deferContactSubmission(array $input, ?array $user, ?array $server = null): void
+    {
+        $this->deferSubmission('contact', $input, $user);
+    }
+
+    public function deferGetStartedSubmission(array $input, ?array $user, ?array $server = null): void
+    {
+        $this->deferSubmission('get-started', $input, $user);
+    }
+
+    /**
+     * Sends submissions once, after the thank-you response has been rendered.
+     */
+    public function sendDeferredSubmissions(): void
+    {
+        $submissions = $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ?? [];
+        unset($_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY]);
+
+        // Release the session before SMTP work so this request cannot block another page load.
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+
+        if ($submissions === [] || !is_array($submissions)) {
+            return;
+        }
+
+        // Under PHP-FPM this sends the complete thank-you response to the browser now.
+        if (function_exists('fastcgi_finish_request')) {
+            fastcgi_finish_request();
+        } else {
+            @ob_flush();
+            flush();
+        }
+
+        ignore_user_abort(true);
+        @set_time_limit(0);
+
+        foreach ($submissions as $submission) {
+            if (!is_array($submission) || !is_array($submission['input'] ?? null)) {
+                continue;
+            }
+
+            $user = is_array($submission['user'] ?? null) ? $submission['user'] : null;
+
+            try {
+                if (($submission['type'] ?? null) === 'get-started') {
+                    $this->handleGetStartedSubmission($submission['input'], $user);
+                    continue;
+                }
+
+                $this->handleContactSubmission($submission['input'], $user);
+            } catch (\Throwable $exception) {
+                error_log('[deferred-email] ' . $exception->getMessage());
+            }
+        }
     }
 
     public function handleContactSubmission(array $input, ?array $user, ?array $server = null): void
@@ -113,11 +170,17 @@ class FormSubmissionService
 
     private function deliverEmail(string $to, string $subject, string $body, ?string $toName = null): void
     {
-        if ($this->emailQueueService->isEnabled() && $this->emailQueueService->enqueueEmail($to, $subject, $body, $toName)) {
-            return;
-        }
-
         $this->emailService->sendEmail($to, $subject, $body, $toName);
+    }
+
+    private function deferSubmission(string $type, array $input, ?array $user): void
+    {
+        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ??= [];
+        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY][] = [
+            'type' => $type,
+            'input' => $input,
+            'user' => $user,
+        ];
     }
 
     /**

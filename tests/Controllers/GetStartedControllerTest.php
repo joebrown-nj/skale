@@ -28,10 +28,10 @@ final class GetStartedControllerTest extends TestCase
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);
         $formSubmissionService->expects($this->once())
-            ->method('handleGetStartedSubmission')
+            ->method('deferGetStartedSubmission')
             ->with($expectedInput, $user, $_SERVER);
         $formSubmissionService->expects($this->never())
-            ->method('handleContactSubmission');
+            ->method('deferContactSubmission');
 
         $requestBlocklistService = $this->createMock(RequestBlocklistService::class);
         $requestBlocklistService->expects($this->once())
