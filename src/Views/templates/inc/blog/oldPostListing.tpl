@@ -10,7 +10,7 @@
                 <li>
                     <a href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}"
                         class="mbtn d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis text-decoration-none border-top"
-                        aria-describedby="blog more posts {$blog->title}"
+                        aria-label="blog more posts {$blog->title}"
                         >
                         <svg aria-hidden="true" class="bd-placeholder-img" height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
                             <rect width="100%" height="100%" fill="#777"></rect>
@@ -32,7 +32,7 @@
     <div class="card-footer text-body-secondary">
         <a href="{$smarty.ENV.SITE_URL}blog/archive"
         class="mbtn d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis text-decoration-none border-top"
-        aria-describedby="blog archive"
+        aria-label="blog archive"
     >Archive</a>
 </div>
 </div>

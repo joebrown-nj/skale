@@ -26,7 +26,7 @@
                                 {/foreach}
                             </ul>
                         {/if}
-                        <a href="{$smarty.ENV.SITE_URL}{$item.url}" class="mbtn stretched-link" aria-describedby="service component {$item.title}"></a>
+                        <a href="{$smarty.ENV.SITE_URL}{$item.url}" class="mbtn stretched-link" aria-label="service component {$item.title}"></a>
                     </article>
                 </div>
             {/foreach}

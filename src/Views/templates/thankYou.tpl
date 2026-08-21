@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="logo logo-text fw-bold BricolageGrotesque-ExtraBold">
-                    <a href="{$smarty.ENV.WEB_ROOT}" class="mbtn" aria-describedby="thank you page logo link">
+                    <a href="{$smarty.ENV.WEB_ROOT}" class="mbtn" aria-label="thank you page logo link">
                         skale<span class="brand-color">.</span>
                     </a>
                 </div>
@@ -20,11 +20,11 @@
                 <p>We've received your request and our team will review your information shortly. We're excited to learn more about your goals and explore how Skale can help grow your business.</p>
 
                 <div class="actions">
-                    <a href="/" class="mbtn btn btn-primary" aria-describedby="thank you page return home button">
+                    <a href="/" class="mbtn btn btn-primary" aria-label="thank you page return home button">
                         Return Home
                     </a>
 
-                    <a href="/solutions" class="mbtn btn btn-secondary" aria-describedby="thank you page explore solutions button">
+                    <a href="/solutions" class="mbtn btn btn-secondary" aria-label="thank you page explore solutions button">
                         Explore Solutions
                     </a>
                 </div>

@@ -19,7 +19,7 @@
                         Skale connects your website, marketing, software, automation, data, and strategy into practical systems that generate opportunities, reduce friction, and support long-term growth.
                     </p>
                     <div class="hero-actions d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="225">
-                        <a aria-describedby="home hero contact button" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Explore Solutions</a>
+                        <a aria-label="home hero contact button" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Explore Solutions</a>
                         <a class="btn btn-link text-white text-decoration-none px-2" onclick="scrollToEl('#problems')">See What We Solve <i class="bi bi-arrow-down ms-1"></i></a>
                     </div>
                     <div class="hero-proof" data-aos="fade-up" data-aos-delay="300">
@@ -127,7 +127,7 @@
                         <span class="problem-number">01 / CONVERSION</span>
                         <h3>Traffic, but not enough leads</h3>
                         <p>People visit your website but leave without understanding why they should choose you or what to do next.</p>
-                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Improve conversions <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Improve conversions <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -136,7 +136,7 @@
                         <span class="problem-number">02 / EFFICIENCY</span>
                         <h3>Too much repetitive work</h3>
                         <p>Your team spends valuable time copying data, updating spreadsheets, and repeating avoidable manual tasks.</p>
-                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Automate operations <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Automate operations <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -145,7 +145,7 @@
                         <span class="problem-number">03 / VISIBILITY</span>
                         <h3>Systems that do not connect</h3>
                         <p>Information is scattered across tools, creating delays, mistakes, duplicated work, and unclear reporting.</p>
-                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">Connect your systems <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">Connect your systems <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -154,14 +154,14 @@
                         <span class="problem-number">04 / SCALE</span>
                         <h3>Growth is creating friction</h3>
                         <p>Processes that once worked are becoming harder to manage as customers, demand, and complexity increase.</p>
-                        <a aria-describedby="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Build a scalable plan <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Build a scalable plan <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
                 <p class="mb-3">Recognize your business in one of these?</p>
-                <a aria-describedby="home talk through your challenge button" class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your Challenge</a>
+                <a aria-label="home talk through your challenge button" class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your Challenge</a>
             </div>
         </div>
     </section>
@@ -174,7 +174,7 @@
                     <h2 class="h3 mb-2">Let's identify what is slowing your growth.</h2>
                     <p class="mb-0">You do not need to know the solution before reaching out.</p>
                 </div>
-                <a aria-describedby="home free strategy session button" class="mbtn btn btn-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Free Strategy Session</a>
+                <a aria-label="home free strategy session button" class="mbtn btn btn-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Free Strategy Session</a>
             </div>
         </div>
     </section>
@@ -241,7 +241,7 @@
                             <li>CRM, lead tracking, and customer journeys</li>
                             <li>Analytics and performance improvements</li>
                         </ul>
-                        <a aria-describedby="home growth infrastructure" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Explore Growth Infrastructure <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home growth infrastructure" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Explore Growth Infrastructure <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -257,7 +257,7 @@
                             <li>Custom software, portals, and internal tools</li>
                             <li>AI-assisted reporting and insights</li>
                         </ul>
-                        <a aria-describedby="home automation and software" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Explore Automation &amp; Software <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home automation and software" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Explore Automation &amp; Software <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -273,7 +273,7 @@
                             <li>Email marketing and lead nurturing</li>
                             <li>Campaign analytics and optimization</li>
                         </ul>
-                        <a aria-describedby="home demand generation" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">Explore Demand Generation <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home demand generation" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">Explore Demand Generation <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -289,13 +289,13 @@
                             <li>Analytics, KPIs, and reporting</li>
                             <li>Ongoing optimization and guidance</li>
                         </ul>
-                        <a aria-describedby="home strategy optimization" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Explore Strategy &amp; Optimization <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="home strategy optimization" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Explore Strategy &amp; Optimization <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <a aria-describedby="home view all solutions" class="mbtn btn btn-outline-primary btn-lg" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}">View All Solutions</a>
+                <a aria-label="home view all solutions" class="mbtn btn btn-outline-primary btn-lg" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}">View All Solutions</a>
             </div>
         </div>
     </section>
@@ -449,7 +449,7 @@
                         </div>
                     </div>
 
-                    <a aria-describedby="home Learn more about Skale link" class="mbtn btn-link-arrow mt-4" href="/about">Learn more about Skale <i class="bi bi-arrow-right"></i></a>
+                    <a aria-label="home Learn more about Skale link" class="mbtn btn-link-arrow mt-4" href="/about">Learn more about Skale <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -464,7 +464,7 @@
                     <p class="mb-0">Start with a short conversation about what is not working and what you want to improve.</p>
                 </div>
 
-                <a aria-describedby="home Request a Consultation button" class="mbtn btn btn-light btn-lg flex-shrink-0 text-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Request a Consultation</a>
+                <a aria-label="home Request a Consultation button" class="mbtn btn btn-light btn-lg flex-shrink-0 text-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Request a Consultation</a>
             </div>
         </div>
     </section>
@@ -535,7 +535,7 @@
                     </div>
 
                     <div class="col-lg-4 text-lg-end">
-                        <a aria-describedby="home Talk Through Your Challenge button" class="text-dark mbtn btn btn-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your <br>Challenge <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a aria-label="home Talk Through Your Challenge button" class="text-dark mbtn btn btn-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your <br>Challenge <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </div>

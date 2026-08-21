@@ -10,7 +10,7 @@
                 <div class="col-lg-5">
                     <a class="footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
                     <p class="mt-3 mb-4">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
-                    <a aria-describedby="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
+                    <a aria-label="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
                 </div>
 
                 <div class="col-6 col-lg-2 ms-lg-auto">
@@ -18,7 +18,7 @@
                     <ul class="list-unstyled mb-0">
                         {foreach from=$serviceList key=key item=service}
                             <li class="mb-2">
-                                <a class="mbtn {if isset($serviceDetail) && $serviceDetail->url == $service->url}active{/if}" aria-describedby="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}">{$service->title}</a>
+                                <a class="mbtn {if isset($serviceDetail) && $serviceDetail->url == $service->url}active{/if}" aria-label="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}">{$service->title}</a>
                             </li>
                         {/foreach}
                     </ul>
@@ -28,15 +28,15 @@
                     <h2 class="h6 text-white">Company</h2>
                     <ul class="list-unstyled mb-0">
                         <li class="mb-2">
-                            <a href="{$smarty.ENV.SITE_URL}about" class="mbtn" aria-describedby="footer about">About</a>
+                            <a href="{$smarty.ENV.SITE_URL}about" class="mbtn" aria-label="footer about">About</a>
                         </li>
 
                         <li class="mb-2">
-                            <a href="{$smarty.ENV.SITE_URL}blog" class="mbtn" aria-describedby="footer blog">Insights</a>
+                            <a href="{$smarty.ENV.SITE_URL}blog" class="mbtn" aria-label="footer blog">Insights</a>
                         </li>
 
                         <li class="mb-2">
-                            <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-describedby="footer contact">Contact</a>
+                            <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}" class="mbtn" aria-label="footer contact">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -61,10 +61,10 @@
             <hr class="border-secondary my-4">
 
             <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small">
-                <span>&copy; {$smarty.now|date_format:"Y"} <a class="text-reset fw-bold mbtn" aria-describedby="" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>. All rights reserved.</span>
+                <span>&copy; {$smarty.now|date_format:"Y"} <a class="text-reset fw-bold mbtn" aria-label="" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>. All rights reserved.</span>
                 <span>
                     {foreach from=$footerNav item=item key=key name=name}
-                        <a aria-describedby="footer nav {$item.title}" href="{$smarty.ENV.SITE_URL}{$item.url}" class="mbtn {if $p1 == $item.url}active{/if}">
+                        <a aria-label="footer nav {$item.title}" href="{$smarty.ENV.SITE_URL}{$item.url}" class="mbtn {if $p1 == $item.url}active{/if}">
                             {$item.title}
                         </a>
                         {if !$smarty.foreach.name.last}
@@ -78,7 +78,7 @@
 
     <!-- Mobile sticky CTA -->
     <div class="d-lg-none sticky-mobile-cta">
-        <a aria-describedby="footer mobile contact button" class="mbtn btn btn-primary w-100" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Strategy Session</a>
+        <a aria-label="footer mobile contact button" class="mbtn btn btn-primary w-100" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Strategy Session</a>
     </div>
 
     <!-- Back to top button -->

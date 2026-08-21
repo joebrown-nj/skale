@@ -7,7 +7,7 @@
                 <h1 class="display-1 fw-bold">403</h1>
                 <p class="fs-2 fw-medium mt-4">Request blocked</p>
                 <p class="mt-4 mb-5">{if isset($errorMessage) && $errorMessage != ''}{$errorMessage}{else}This request has been blocked for security reasons.{/if}</p>
-                <a href="{$smarty.ENV.SITE_URL}" class="mbtn btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn" aria-describedby="403 home button">
+                <a href="{$smarty.ENV.SITE_URL}" class="mbtn btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn" aria-label="403 home button">
                     Go Home
                 </a>
             </div>

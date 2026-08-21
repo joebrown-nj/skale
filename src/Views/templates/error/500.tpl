@@ -11,7 +11,7 @@
                 {if $appEnv ne 'prod' && $appEnv ne 'production' && isset($data.errorMessage) && $data.errorMessage ne ''}
                     <pre class="text-start bg-light text-dark border rounded p-3 mb-4 mx-auto" style="max-width: 860px; white-space: pre-wrap; word-break: break-word;">{$data.errorMessage|escape}</pre>
                 {/if}
-                <a href="{$smarty.ENV.SITE_URL}" class="mbtn btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn" aria-describedby="500 home button">
+                <a href="{$smarty.ENV.SITE_URL}" class="mbtn btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn" aria-label="500 home button">
                     Go Home
                 </a>
             </div>

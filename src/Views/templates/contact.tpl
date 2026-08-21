@@ -381,11 +381,11 @@
                 </p>
 
                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="#" class="mbtn btn btn-primary-custom px-4 w-auto" aria-describedby="contact page schedule consultation button">
+                    <a href="#" class="mbtn btn btn-primary-custom px-4 w-auto" aria-label="contact page schedule consultation button">
                         Book a Free Consultation
                     </a>
 
-                    <a href="/solutions" class="mbtn btn btn-outline-custom" aria-describedby="contact page view solutions button">
+                    <a href="/solutions" class="mbtn btn btn-outline-custom" aria-label="contact page view solutions button">
                         View Solutions
                     </a>
                 </div>

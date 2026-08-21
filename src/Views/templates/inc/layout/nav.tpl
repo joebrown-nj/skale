@@ -11,14 +11,14 @@
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                     {foreach from=$nav item=item key=key name=name}
                         <li class="{$item.url|replace:'/':'-'} nav-item {if $p1 == $item.url}active{/if} {if $item.children}dropdown{/if}">
-                            <a {if $item.children}aria-expanded="false" data-bs-toggle="dropdown" role="button"{/if} class="{if !$item.children}mbtn{/if} {$item.class} {if $p1 == $item.url}active{/if}" href="{$smarty.ENV.SITE_URL}{$item.url}" aria-describedby="main nav {$item.title}" href="{$smarty.ENV.SITE_URL}{$item.url}">
+                            <a {if $item.children}aria-expanded="false" data-bs-toggle="dropdown" role="button"{/if} class="{if !$item.children}mbtn{/if} {$item.class} {if $p1 == $item.url}active{/if}" href="{$smarty.ENV.SITE_URL}{$item.url}" aria-label="main nav {$item.title}" href="{$smarty.ENV.SITE_URL}{$item.url}">
                                 {$item.title}
                             </a>
 
                             {if $item.children}
                                 <ul class="dropdown-menu">
                                     {foreach $item.children item=child name=name1}
-                                        <li><a aria-describedby="sub nav {$child.title}" class="mbtn dropdown-item" href="{$smarty.ENV.SITE_URL}{$child.url}"><i class="bi bi-{$child.icon} me-2"></i>{$child.title}</a></li>
+                                        <li><a aria-label="sub nav {$child.title}" class="mbtn dropdown-item" href="{$smarty.ENV.SITE_URL}{$child.url}"><i class="bi bi-{$child.icon} me-2"></i>{$child.title}</a></li>
                                     {/foreach}
 
                                     <li><hr class="dropdown-divider" /></li>

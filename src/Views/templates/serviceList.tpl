@@ -469,7 +469,7 @@
                                 <span class="small text-uppercase fw-bold text-success letter-spacing">{$blog->category}</span>
                                 <h3 class="h4 fw-bold mt-2">{$blog->title}</h3>
                                 <p class="text-secondary">{$blog->shortText|truncate:100}</p>
-                                <a aria-describedby="serviceList blog {$blog->title}" class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}">Read the article <i class="bi bi-arrow-right"></i></a>
+                                <a aria-label="serviceList blog {$blog->title}" class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}">Read the article <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </article>
                     </div>

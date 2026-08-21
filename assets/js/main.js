@@ -478,7 +478,7 @@ function getElementTrackingLabel(element) {
     }
 
     return element.dataset.metaLabel
-        || element.getAttribute('aria-describedby')
+        || element.getAttribute('aria-label')
         || element.getAttribute('aria-details')
         || element.getAttribute('title')
         || element.textContent?.trim()
@@ -649,7 +649,7 @@ function logButtonClick(element) {
     const href = $element.attr('href');
     const formAction = $element.closest('form').attr('action');
     const target = href || formAction || window.location.pathname;
-    const detail = $element.attr('aria-describedby') || $element.attr('aria-details') || $element.text().trim();
+    const detail = $element.attr('aria-label') || $element.attr('aria-details') || $element.text().trim();
 
     logInteraction({
         target,

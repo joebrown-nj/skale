@@ -12,7 +12,7 @@
                             <span class="badge bg-primary mb-2">Featured Article</span>
                             <h3 class="fw-bold mb-2 text-white">{$blogFeatured->title}</h3>
                             <p class="text-white mb-2">{$blogFeatured->shortText}</p>
-                            <a class="mbtn btn btn-primary stretched-link mb-0 px-3 py-2" aria-describedby="blog {$blogFeatured->title}" href="{$smarty.ENV.SITE_URL}blog/{$blogFeatured->datePosted|date_format:"%Y-%m-%d"}/{$blogFeatured->url}">Read Article</a>
+                            <a class="mbtn btn btn-primary stretched-link mb-0 px-3 py-2" aria-label="blog {$blogFeatured->title}" href="{$smarty.ENV.SITE_URL}blog/{$blogFeatured->datePosted|date_format:"%Y-%m-%d"}/{$blogFeatured->url}">Read Article</a>
                         </div>
                     </div>
                 </div>
@@ -27,9 +27,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="{$filterPath}" class="mbtn btn btn-sm {if !$activeCategory}btn-primary{else}btn-outline-light{/if} rounded-pill" aria-describedby="All Blog Categories">All</a>
+                        <a href="{$filterPath}" class="mbtn btn btn-sm {if !$activeCategory}btn-primary{else}btn-outline-light{/if} rounded-pill" aria-label="All Blog Categories">All</a>
                         {foreach from=$blogCategories item=category}
-                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory == $category}btn-primary{else}btn-outline-dark{/if} rounded-pill text-dark" aria-describedby="Blog Category {$category}">{$category}</a>
+                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory == $category}btn-primary{else}btn-outline-dark{/if} rounded-pill text-dark" aria-label="Blog Category {$category}">{$category}</a>
                         {/foreach}
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="card-footer bg-transparent border-0 px-4 pb-4">
-                            <a aria-describedby="blog {$blog->title}" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}" class="mbtn btn btn-link text-decoration-none p-0 stretched-link">Read More →</a>
+                            <a aria-label="blog {$blog->title}" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}" class="mbtn btn btn-link text-decoration-none p-0 stretched-link">Read More →</a>
                         </div>
                     </article>
                 </div>
@@ -75,7 +75,7 @@
     {if $p2 !== 'archive'}
         <div class="row">
             <div class="col-12 text-center">
-                <a href="{$smarty.ENV.SITE_URL}blog/archive" class="mbtn btn btn-outline-light text-secondary rounded-pill px-4" aria-describedby="View All Articles">
+                <a href="{$smarty.ENV.SITE_URL}blog/archive" class="mbtn btn btn-outline-light text-secondary rounded-pill px-4" aria-label="View All Articles">
                     View All Insights
                 </a>
             </div>
