@@ -12,8 +12,8 @@ use Throwable;
 
 class EmailModel implements EmailServiceInterface
 {
-    private const SMTP_TIMEOUT_SECONDS = 20;
-    private const SMTP_CONNECTION_TIMEOUT_SECONDS = 30;
+    private const SMTP_TIMEOUT_SECONDS = 5;
+    private const SMTP_CONNECTION_TIMEOUT_SECONDS = 8;
 
     protected PHPMailer $mailer;
     private EntityManager $entityManager;
@@ -51,6 +51,29 @@ class EmailModel implements EmailServiceInterface
     public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool
     {
         $this->lastSendError = null;
+        error_log(sprintf(
+            '[email] Delivery disabled; suppressed "%s" to %s.',
+            $subject,
+            $this->redactEmail($to),
+        ));
+
+        // Email delivery is intentionally disabled. Keep this method as the single
+        // transport boundary so form submissions and mailing-list signups can
+        // continue to be recorded without contacting an SMTP server.
+        return true;
+    }
+
+    /**
+     * Sends one diagnostic message without re-enabling application email.
+     */
+    public function sendTestEmail(string $to, string $subject, string $body, ?string $toName = null): bool
+    {
+        $this->lastSendError = null;
+        error_log(sprintf(
+            '[email-test] Starting diagnostic send to %s through %s.',
+            $this->redactEmail($to),
+            $this->transportLabel(),
+        ));
 
         try {
             if ($this->sendWithCurrentTransport($to, $subject, $body, $toName)) {

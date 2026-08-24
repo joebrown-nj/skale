@@ -7,6 +7,7 @@ namespace App\Core\Contracts;
 interface EmailServiceInterface
 {
     public function sendEmail(string $to, string $subject, string $body, ?string $toName = null): bool;
+    public function sendTestEmail(string $to, string $subject, string $body, ?string $toName = null): bool;
     public function getLastSendError(): ?string;
     public function validateEmail(string $email): bool;
     public function checkIfEmailIsOnList(string $email): bool;

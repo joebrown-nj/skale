@@ -21,14 +21,19 @@ final class EmailControllerTest extends TestCase
         http_response_code(200);
     }
 
-    public function testEmailTemplateReturnsSuccessMessage(): void
+    public function testEmailTemplateUsesIsolatedDiagnosticDelivery(): void
     {
+        $_ENV['CONTACT_FORM_MY_EMAIL'] = 'admin@example.com';
         $emailModel = $this->createMock(EmailServiceInterface::class);
-        $emailModel->expects($this->once())->method('sendEmail')->willReturn(true);
+        $emailModel->expects($this->never())->method('sendEmail');
+        $emailModel->expects($this->once())
+            ->method('sendTestEmail')
+            ->with('admin@example.com', 'SkaleUp SMTP diagnostic', '<p>Test</p>')
+            ->willReturn(true);
         $emailModel->expects($this->never())->method('getLastSendError');
 
         $renderer = $this->createMock(EmailTemplateRendererInterface::class);
-        $renderer->expects($this->once())->method('render')->with('', 'joe@joe.com')->willReturn('<p>Test</p>');
+        $renderer->expects($this->once())->method('render')->willReturn('<p>Test</p>');
 
         $controller = new EmailController(
             $emailModel,
@@ -37,26 +42,30 @@ final class EmailControllerTest extends TestCase
             $renderer,
         );
 
-        $this->assertSame('Test email sent successfully.', $controller->emailTemplate());
+        $this->assertSame(
+            'Test email sent successfully. Normal application email remains disabled.',
+            $controller->emailTemplate(),
+        );
     }
 
-    public function testEmailTemplateReturnsTransportError(): void
+    public function testEmailTemplateReturnsDiagnosticTransportError(): void
     {
+        $_ENV['CONTACT_FORM_MY_EMAIL'] = 'admin@example.com';
         $emailModel = $this->createMock(EmailServiceInterface::class);
-        $emailModel->expects($this->once())->method('sendEmail')->willReturn(false);
-        $emailModel->expects($this->once())->method('getLastSendError')->willReturn('SMTP host:465 timed out');
-
-        $renderer = $this->createStub(EmailTemplateRendererInterface::class);
-        $renderer->method('render')->willReturn('<p>Test</p>');
+        $emailModel->expects($this->never())->method('sendEmail');
+        $emailModel->expects($this->once())->method('sendTestEmail')->willReturn(false);
+        $emailModel->expects($this->once())
+            ->method('getLastSendError')
+            ->willReturn('SMTP relay:25 timed out');
 
         $controller = new EmailController(
             $emailModel,
             $this->createStub(RequestBlocklistService::class),
             $this->createStub(ViewInterface::class),
-            $renderer,
+            $this->createStub(EmailTemplateRendererInterface::class),
         );
 
-        $this->assertSame('Test email failed: SMTP host:465 timed out', $controller->emailTemplate());
+        $this->assertSame('Test email failed: SMTP relay:25 timed out', $controller->emailTemplate());
         $this->assertSame(502, http_response_code());
     }
 

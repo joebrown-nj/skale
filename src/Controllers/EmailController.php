@@ -25,9 +25,17 @@ class EmailController
 
     public function emailTemplate(): string
     {
-        $message = $this->emailRenderer->render('', 'joe@joe.com');
-        if ($this->emailModel->sendEmail('joebro84@yahoo.com', 'Test Email', $message, 'Joe')) {
-            return 'Test email sent successfully.';
+        $message = $this->emailRenderer->render(
+            '<p>This is an isolated SMTP diagnostic. Normal application email remains disabled.</p>',
+            $_ENV['CONTACT_FORM_MY_EMAIL'],
+        );
+
+        if ($this->emailModel->sendTestEmail(
+            $_ENV['CONTACT_FORM_MY_EMAIL'],
+            'SkaleUp SMTP diagnostic',
+            $message,
+        )) {
+            return 'Test email sent successfully. Normal application email remains disabled.';
         }
 
         http_response_code(502);

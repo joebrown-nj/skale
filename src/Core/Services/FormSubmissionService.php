@@ -48,16 +48,12 @@ class FormSubmissionService
         }
 
         if ($submissions === [] || !is_array($submissions)) {
+            $this->log('Thank-you page found no pending submissions.');
             return;
         }
 
-        // Under PHP-FPM this sends the complete thank-you response to the browser now.
-        if (function_exists('fastcgi_finish_request')) {
-            fastcgi_finish_request();
-        } else {
-            @ob_flush();
-            flush();
-        }
+        $this->log(sprintf('Thank-you page claimed %d pending submission(s).', count($submissions)));
+        $this->finishHttpResponse();
 
         ignore_user_abort(true);
         @set_time_limit(0);
@@ -68,16 +64,21 @@ class FormSubmissionService
             }
 
             $user = is_array($submission['user'] ?? null) ? $submission['user'] : null;
+            $submissionId = is_string($submission['id'] ?? null) ? $submission['id'] : 'unknown';
 
             try {
+                $this->log(sprintf('Submission %s email processing started.', $submissionId));
+
                 if (($submission['type'] ?? null) === 'get-started') {
                     $this->handleGetStartedSubmission($submission['input'], $user);
+                    $this->log(sprintf('Submission %s email processing finished.', $submissionId));
                     continue;
                 }
 
                 $this->handleContactSubmission($submission['input'], $user);
+                $this->log(sprintf('Submission %s email processing finished.', $submissionId));
             } catch (\Throwable $exception) {
-                error_log('[deferred-email] ' . $exception->getMessage());
+                $this->log(sprintf('Submission %s threw %s: %s', $submissionId, $exception::class, $exception->getMessage()));
             }
         }
     }
@@ -170,17 +171,70 @@ class FormSubmissionService
 
     private function deliverEmail(string $to, string $subject, string $body, ?string $toName = null): void
     {
-        $this->emailService->sendEmail($to, $subject, $body, $toName);
+        $startedAt = microtime(true);
+        $this->log(sprintf('Sending "%s" to %s.', $subject, $this->redactEmail($to)));
+        $sent = $this->emailService->sendEmail($to, $subject, $body, $toName);
+        $duration = microtime(true) - $startedAt;
+
+        $this->log(sprintf(
+            'Send %s for %s after %.2f seconds.',
+            $sent ? 'succeeded' : 'failed',
+            $this->redactEmail($to),
+            $duration,
+        ));
     }
 
     private function deferSubmission(string $type, array $input, ?array $user): void
     {
+        $submissionId = bin2hex(random_bytes(8));
         $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ??= [];
         $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY][] = [
+            'id' => $submissionId,
             'type' => $type,
             'input' => $input,
             'user' => $user,
         ];
+
+        $this->log(sprintf('Submission %s deferred until the thank-you page.', $submissionId));
+    }
+
+    private function finishHttpResponse(): void
+    {
+        if (function_exists('fastcgi_finish_request')) {
+            $this->log('Finishing response with fastcgi_finish_request().');
+            fastcgi_finish_request();
+            return;
+        }
+
+        $this->log('Finishing response with the buffered-response fallback.');
+
+        while (ob_get_level() > 1) {
+            ob_end_flush();
+        }
+
+        $contentLength = ob_get_length();
+        if (!headers_sent()) {
+            if ($contentLength !== false) {
+                header('Content-Length: ' . $contentLength);
+            }
+            header('Connection: close');
+        }
+
+        if (ob_get_level() > 0) {
+            ob_end_flush();
+        }
+        flush();
+    }
+
+    private function log(string $message): void
+    {
+        error_log('[deferred-email] ' . $message);
+    }
+
+    private function redactEmail(string $email): string
+    {
+        $at = strrpos($email, '@');
+        return $at === false ? '[invalid address]' : substr($email, 0, 1) . '***' . substr($email, $at);
     }
 
     /**

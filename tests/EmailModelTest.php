@@ -11,6 +11,30 @@ use PHPUnit\Framework\TestCase;
 
 final class EmailModelTest extends TestCase
 {
+    public function testSendEmailIsSuppressedWhileDeliveryIsDisabled(): void
+    {
+        $entityManager = $this->createStub(EntityManager::class);
+        $mailer = new class(true) extends PHPMailer {
+            public bool $sendCalled = false;
+
+            public function send(): bool
+            {
+                $this->sendCalled = true;
+
+                return parent::send();
+            }
+        };
+        $model = new EmailModel(
+            $entityManager,
+            $mailer,
+            new MailConfig('', 587, false, '', '', 'tls', 'from@example.com', 'reply@example.com', 'admin@example.com'),
+            new SiteConfig('Skale', 'https://example.com', 'admin@example.com', '555-0100', 10),
+        );
+
+        $this->assertTrue($model->sendEmail('lead@example.com', 'New lead', '<p>Hello</p>'));
+        $this->assertFalse($mailer->sendCalled);
+    }
+
     public function testConfigureTransportDoesNotCreateDeprecatedDynamicProperty(): void
     {
         $entityManager = $this->createStub(EntityManager::class);
@@ -50,8 +74,8 @@ final class EmailModelTest extends TestCase
         }
 
         $this->assertSame([], $deprecations);
-        $this->assertSame(20, $mailer->Timeout);
-        $this->assertSame(30, $mailer->getSMTPInstance()->Timelimit);
+        $this->assertSame(5, $mailer->Timeout);
+        $this->assertSame(8, $mailer->getSMTPInstance()->Timelimit);
         $this->assertFalse($mailer->SMTPKeepAlive);
     }
 }
