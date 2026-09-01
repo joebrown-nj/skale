@@ -32,23 +32,6 @@ final class ServicePageContentProvider
         return $sections;
     }
 
-    public function automationAndSoftware(): array
-    {
-        return $this->getBySlug('automation-and-software');
-    }
-
-    public function demandGeneration(): array
-    {
-        return $this->getBySlug('demand-generation');
-    }
-
-    public function growthInfrastructure(): array
-    {
-        return $this->getBySlug('growth-infrastructure');
-    }
-
-    public function strategyAndOptimization(): array
-    {
-        return $this->getBySlug('strategy-and-optimization');
-    }
+    // The former slug-specific convenience methods were unused. Call
+    // getBySlug() directly so this list cannot drift from CONTENT_FILES.
 }

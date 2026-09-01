@@ -29,11 +29,6 @@ class FormSubmissionService
         $this->deferSubmission('contact', $input, $user);
     }
 
-    public function deferGetStartedSubmission(array $input, ?array $user, ?array $server = null): void
-    {
-        $this->deferSubmission('get-started', $input, $user);
-    }
-
     /**
      * Sends submissions once, after the thank-you response has been rendered.
      */
@@ -68,12 +63,6 @@ class FormSubmissionService
 
             try {
                 $this->log(sprintf('Submission %s email processing started.', $submissionId));
-
-                if (($submission['type'] ?? null) === 'get-started') {
-                    $this->handleGetStartedSubmission($submission['input'], $user);
-                    $this->log(sprintf('Submission %s email processing finished.', $submissionId));
-                    continue;
-                }
 
                 $this->handleContactSubmission($submission['input'], $user);
                 $this->log(sprintf('Submission %s email processing finished.', $submissionId));
@@ -122,38 +111,6 @@ class FormSubmissionService
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
             'New ' . str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')) . ' form submission',
-            $adminEmailMessage,
-        );
-    }
-
-    public function handleGetStartedSubmission(array $input, ?array $user, ?array $server = null): void
-    {
-        if ($this->containsMaliciousInput($input)) {
-            return;
-        }
-
-        $successMessage = $this->buildGetStartedSuccessMessage();
-
-        $emailMessage = $this->emailRenderer->render(
-            '<p>Hi ' . $input['name'] . ',</p>' . $successMessage,
-            $input['email'],
-        );
-
-        $this->deliverEmail(
-            $input['email'],
-            'Thanks for filling out the contact form',
-            $emailMessage,
-            $input['name'],
-        );
-
-        $adminEmailMessage = $this->emailRenderer->render(
-            $this->buildAdminEmailBody($input, $user),
-            $input['email'],
-        );
-
-        $this->deliverEmail(
-            $this->mailConfig->adminAddress,
-            'Someone filled out the contact form',
             $adminEmailMessage,
         );
     }
@@ -294,11 +251,6 @@ class FormSubmissionService
     private function buildContactSuccessMessage(): string
     {
         return '';
-    }
-
-    private function buildGetStartedSuccessMessage(): string
-    {
-        return '<p class="mb-0">Thanks we will be in touch soon, ' . $this->siteConfig->name . '</p>';
     }
 
     private function buildAdminEmailBody(array $input, ?array $user): string

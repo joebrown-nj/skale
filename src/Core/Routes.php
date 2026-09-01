@@ -23,10 +23,8 @@ use App\Controllers\LogController;
 use App\Controllers\SubPageController;
 use App\Controllers\MetaDataController;
 use App\Controllers\EmailController;
-use App\Controllers\GetStartedController;
 use App\Controllers\PortfolioController;
 use App\Controllers\LandingPageController;
-use App\Controllers\TestController;
 
 class Routes
 {
@@ -53,12 +51,10 @@ class Routes
 
         // Public routes
         $this->router->get('/', [HomeController::class, 'index']);
-        // $this->router->get('/test', [TestController::class, 'index']);
         $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
         $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
         $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
         $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'] . '/{slug}', [SolutionController::class, 'getSolutionDetail']);
-        // $this->router->get('/'.$_ENV['URL_SERVICES_SOLUTIONS'].'/{slug}', [SolutionController::class, 'getSolutionPage']);
         $this->router->get('/blog', [BlogController::class, 'index']);
         $this->router->get('/blog/archive', [BlogController::class, 'archive']);
         $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
