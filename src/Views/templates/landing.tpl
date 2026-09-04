@@ -27,4 +27,4 @@
     }
 </style>
 
-{include file="inc/layout/footerLanding.tpl" hideFooter=true}
+{include file="inc/layout/footer-landing.tpl" hideFooter=true}

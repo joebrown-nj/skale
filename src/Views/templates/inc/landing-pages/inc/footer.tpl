@@ -10,4 +10,4 @@
     {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary w-100" text="{$ctaText}" describedBy="{$ctaText}" metaEvent="{$metaEvent}" metaLabel="{$metaLabel}"}
 </div>
 
-{include file="inc/layout/hiddenLinks.tpl"}
+{include file="inc/layout/hidden-links.tpl"}

@@ -42,7 +42,7 @@ class BlogController
     {
         $selectedCategory = $this->getSelectedCategory();
 
-        $this->view->render('blogList', [
+        $this->view->render('blog-list', [
             'blogList' => $this->blogModel->getAllBlogs($selectedCategory),
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogCategories' => $this->blogModel->getBlogCategories(),
@@ -61,7 +61,7 @@ class BlogController
         $currentPage = max(1, $currentPage);
         $start = ($currentPage - 1) * $this->siteConfig->blogItemsPerPage;
 
-        $this->view->render('blogArchive', [
+        $this->view->render('blog-archive', [
             'blogList' => $this->blogModel->getBlogArchive($start, $this->siteConfig->blogItemsPerPage, $selectedCategory),
             'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
@@ -77,7 +77,7 @@ class BlogController
     public function getBlogDetail($date, $slug)
     {
         $blog = $this->blogModel->getBlogByUrl('blog/' . $date . '/' . $slug);
-        $this->view->render('blogDetail', [
+        $this->view->render('blog-detail', [
             'blogList' => $this->blogModel->getAllBlogs(),
             'blogDetail' => $blog,
         ]);

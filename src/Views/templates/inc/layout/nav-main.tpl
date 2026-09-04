@@ -1,7 +1,7 @@
 <header class="fixed-top clearfix menu-bar {if $p1 != '' && $viewName != 'landing'}menu-bar-bg{/if}">
     <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
         <div class="container">
-            {include file="inc/layout/mainLogo.tpl"}
+            {include file="inc/layout/main-logo.tpl"}
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

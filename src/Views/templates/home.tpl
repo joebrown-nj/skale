@@ -557,7 +557,7 @@
             </div>
 
             <div class="row g-4">
-                {include file="inc/blog/blogListContainer.tpl" blogList=$data.blogList blogContent=$data.blogContent limit=6}
+                {include file="inc/blog/blog-list-container.tpl" blogList=$data.blogList blogContent=$data.blogContent limit=6}
             </div>
         </div>
     </section>
@@ -596,8 +596,8 @@
 
                         <hr class="border-secondary my-4" />
                         <p class="small text-uppercase fw-bold mb-2">Prefer to contact us directly?</p>
-                        {include file="inc/buttons/phoneLink.tpl" type="link"}
-                        {include file="inc/buttons/emailLink.tpl" type="link"}
+                        {include file="inc/buttons/phone-link.tpl" type="link"}
+                        {include file="inc/buttons/email-link.tpl" type="link"}
                     </div>
                 </div>
 

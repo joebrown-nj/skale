@@ -23,7 +23,7 @@ class SubPageController
 
     public function thankYou()
     {
-        $this->view->render('thankYou');
+        $this->view->render('thank-you');
         $this->formSubmissionService->sendDeferredSubmissions();
     }
 }

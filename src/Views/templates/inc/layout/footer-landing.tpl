@@ -11,7 +11,7 @@
     </div>
 </footer>
 
-{include file="inc/layout/hiddenLinks.tpl"}
+{include file="inc/layout/hidden-links.tpl"}
 
 {include file="inc/layout/scripts.tpl"}
 

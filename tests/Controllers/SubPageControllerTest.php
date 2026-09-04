@@ -28,7 +28,7 @@ final class SubPageControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('thankYou')
+            ->with('thank-you')
             ->willReturnCallback(static function () use (&$rendered): void {
                 $rendered = true;
             });

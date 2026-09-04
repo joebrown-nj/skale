@@ -28,7 +28,7 @@ class SolutionController
 
     public function index()
     {
-        $this->view->render('serviceList', [
+        $this->view->render('service-list', [
             'blogList' => $this->blogModel->getAllBlogs(null, 3),
         ]);
     }
@@ -62,7 +62,7 @@ class SolutionController
 
         $sections = $this->content->getBySlug($slug);
 
-        $this->view->render('serviceDetail', [
+        $this->view->render('service-detail', [
             'serviceDetail' => $solution,
             'serviceContent' => $sections,
             // 'p1Page' => $this->pageContentModel->getPageContentByUrl($_ENV['URL_SERVICES_SOLUTIONS']),

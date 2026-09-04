@@ -9,7 +9,7 @@
         {/if}
 
         {if $data.serviceContent.sections.trustStrip && $data.serviceContent.sections.trustStrip.enabled}
-            {include file="inc/service/trustStrip.tpl" data=$data.serviceContent.sections.trustStrip}
+            {include file="inc/service/trust-strip.tpl" data=$data.serviceContent.sections.trustStrip}
         {/if}
 
         {if $data.serviceContent.sections.problems && $data.serviceContent.sections.problems.enabled}
@@ -25,11 +25,11 @@
         {/if} *}
 
         {if $data.serviceContent.sections.serviceComponents && $data.serviceContent.sections.serviceComponents.enabled}
-            {include file="inc/service/serviceComponents.tpl" data=$data.serviceContent.sections.serviceComponents}
+            {include file="inc/service/service-components.tpl" data=$data.serviceContent.sections.serviceComponents}
         {/if}
 
         {if $data.serviceContent.sections.caseStudy && $data.serviceContent.sections.caseStudy.enabled}
-            {include file="inc/service/caseStudy.tpl" data=$data.serviceContent.sections.caseStudy}
+            {include file="inc/service/case-study.tpl" data=$data.serviceContent.sections.caseStudy}
         {/if}
 
         {if $data.serviceContent.sections.process && $data.serviceContent.sections.process.enabled}
@@ -49,7 +49,7 @@
         {/if}
 
         {if $data.serviceContent.sections.finalCta && $data.serviceContent.sections.finalCta.enabled}
-            {include file="inc/service/finalCta.tpl" data=$data.serviceContent.sections.finalCta}
+            {include file="inc/service/final-cta.tpl" data=$data.serviceContent.sections.finalCta}
         {/if}
     </main>
 {/if}

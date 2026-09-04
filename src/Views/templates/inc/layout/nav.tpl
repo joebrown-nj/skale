@@ -1,7 +1,7 @@
 {if !$hideMenu}
-    {include file="inc/layout/navMain.tpl"}
+    {include file="inc/layout/nav-main.tpl"}
 {/if}
 
 {if $hideMenu}
-    {include file="inc/layout/navLanding.tpl"}
+    {include file="inc/layout/nav-landing.tpl"}
 {/if}

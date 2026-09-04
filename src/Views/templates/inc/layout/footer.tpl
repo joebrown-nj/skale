@@ -44,10 +44,10 @@
                 <div class="col-lg-3">
                     <h2 class="h6 text-white">Contact</h2>
                     {if isset($smarty.ENV.SITE_PHONE) && $smarty.ENV.SITE_PHONE != ''}
-                        <p class="mb-2">{include file="inc/buttons/phoneLink.tpl" type="link"}</p>
+                        <p class="mb-2">{include file="inc/buttons/phone-link.tpl" type="link"}</p>
                     {/if}
 
-                    <p class="mb-2">{include file="inc/buttons/emailLink.tpl" type="link"}</p>
+                    <p class="mb-2">{include file="inc/buttons/email-link.tpl" type="link"}</p>
 
                     <p class="mb-2">
                         <a aria-label="{$smarty.ENV.SITE_URL_DISPLAY} on Facebook" target="_blank" href="{$smarty.ENV.FACEBOOK_PAGE_URL}" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
@@ -86,7 +86,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    {include file="inc/layout/hiddenLinks.tpl"}
+    {include file="inc/layout/hidden-links.tpl"}
 
     {include file="inc/layout/scripts.tpl"}
 

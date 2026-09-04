@@ -31,7 +31,7 @@
                         Tell us about your goals and we'll reach out within 1 business day.
                     </p>
 
-                    {include file="inc/contact/contactForm.tpl"}
+                    {include file="inc/contact/contact-form.tpl"}
 
                     <p class="text-secondary fs-6 mt-4 mb-0">
                         No pressure. No obligation. Just a conversation about your goals.
@@ -225,7 +225,7 @@
                             Tell us about your goals and we'll reach out within 1 business day.
                         </p>
 
-                        {include file="inc/contact/contactForm.tpl"}
+                        {include file="inc/contact/contact-form.tpl"}
 
                         <p class="small-text mt-4 mb-0">
                             No pressure. No obligation. Just a conversation about your goals.

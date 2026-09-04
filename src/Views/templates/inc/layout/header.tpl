@@ -56,7 +56,7 @@
 
         <body
         data-route-path="{if $uri}/{$uri|escape:'html'}{else}/{/if}"
-        data-page-type="{if $viewName == 'landing'}landing{elseif $viewName == 'home'}home{elseif $viewName == 'contact'}contact{elseif $viewName == 'portfolio'}portfolio{elseif $viewName == 'thankYou'}thank-you{elseif $p1 == 'blog' && $p2 && $p3}blog-article{elseif $p1 == 'blog'}blog{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS && $p2}service-detail{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS}service-list{elseif isset($page.content)}content{else}page{/if}"
+        data-page-type="{if $viewName == 'landing'}landing{elseif $viewName == 'home'}home{elseif $viewName == 'contact'}contact{elseif $viewName == 'portfolio'}portfolio{elseif $viewName == 'thank-you'}thank-you{elseif $p1 == 'blog' && $p2 && $p3}blog-article{elseif $p1 == 'blog'}blog{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS && $p2}service-detail{elseif $p1 == $smarty.ENV.URL_SERVICES_SOLUTIONS}service-list{elseif isset($page.content)}content{else}page{/if}"
         data-view-name="{$viewName|escape:'html'}"
         >
 

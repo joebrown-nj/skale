@@ -2,11 +2,11 @@
     <div class="container-fluid py-4">
         <div class="row justify-content-center py-4">
             <div class="col-md-5 d-none d-sm-block">
-                {include file="inc/contact/contactTextBlock.tpl"}
+                {include file="inc/contact/contact-text-block.tpl"}
             </div>
 
             <div class="col-md-5">
-                {include file="inc/contact/contactForm.tpl"}
+                {include file="inc/contact/contact-form.tpl"}
             </div>
         </div>
     </div>
