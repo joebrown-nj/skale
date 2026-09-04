@@ -34,7 +34,11 @@ final class LandingPageController
 
     public function websiteDevelopment(): void
     {
-        $this->render('website-development', $this->content->websiteDevelopment());
+        $template = random_int(0, 1) === 0
+            ? 'website-development'
+            : 'website-development-b';
+
+        $this->render($template, $this->content->websiteDevelopment());
     }
 
     public function taskManagement(): void

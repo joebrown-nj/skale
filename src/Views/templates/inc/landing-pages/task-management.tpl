@@ -34,7 +34,7 @@
                     <div id="migration-plan" class="form-panel p-4 p-xl-5">
                         <span class="eyebrow mb-3">Free consultation</span>
                         <h2 class="h3 fw-bold mb-2">Get Your Free Spreadsheet Migration Plan</h2>
-                        <p class="text-secondary mb-4">Tell us how your team currently manages projects. I'll help identify the right platform, what should be migrated, and the simplest path to launch.</p>
+                        <p class="text-secondary mb-4">Tell us how your team currently manages projects. We'll help identify the right platform, what should be migrated, and the simplest path to launch.</p>
                         {include file="inc/landing-pages/inc/lead-contact-form.tpl" buttonText="Build My Free Migration Plan" userMessageLabel="What are you currently managing in spreadsheets?" textAreaPlaceholder="Client projects, employee tasks, production schedules, approvals, deadlines, or recurring work"}
                     </div>
                 </div>
@@ -392,4 +392,4 @@
     </div>
 </div>
 
-{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Migration Plan" ctaText="Get My Free Migration Plan" modalDescription="Tell us how your team currently manages projects. I'll help identify the right platform, what should be migrated, and the simplest path to launch."}
+{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Get Your Free Migration Plan" ctaText="Get My Free Migration Plan" modalDescription="Tell us how your team currently manages projects. We'll help identify the right platform, what should be migrated, and the simplest path to launch."}

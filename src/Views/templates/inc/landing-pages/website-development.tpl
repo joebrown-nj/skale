@@ -33,8 +33,8 @@
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
                     <div id="project-consultation" class="form-panel p-4 p-xl-5">
                         <span class="eyebrow mb-3">Free website consultation</span>
-                        <h2 class="h3 fw-bold mb-2">Tell Me About the Website You Need</h2>
-                        <p class="text-secondary mb-4">Share a few details about your business, current website, and goals. I'll help you identify the right scope, approach, and next steps.</p>
+                        <h2 class="h3 fw-bold mb-2">Tell Us About the Website You Need</h2>
+                        <p class="text-secondary mb-4">Share a few details about your business, current website, and goals. We'll help you identify the right scope, approach, and next steps.</p>
                         {include file="inc/landing-pages/inc/lead-contact-form.tpl" buttonText="Request My Free Consultation" userMessageLabel="What do you need help with?" textAreaPlaceholder="For example: a new business website, a redesign, service landing pages, custom functionality, better mobile performance, or easier content updates."}
                     </div>
                 </div>
@@ -286,7 +286,7 @@
                 <div class="col-lg-7">
                     <span class="eyebrow mb-3">Start with a conversation</span>
                     <h2 class="display-4 fw-bold mb-3 text-light">Let's Build a Website That Fits Your Business</h2>
-                    <p class="lead text-muted-skale">Tell me what is not working, what you want to improve, and what your business needs next. I'll help you define the right website project and a practical path forward.</p>
+                    <p class="lead text-muted-skale">Tell us what is not working, what you want to improve, and what your business needs next. We'll help you define the right website project and a practical path forward.</p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
                         {include file="inc/landing-pages/inc/modal-button.tpl" class="btn btn-primary btn-lg px-4" text="Request My Free Consultation" describedBy="website development landing page" metaEvent="WebsiteDevelopment" metaLabel="Mid Page CTA Button"}
                         {include file="inc/landing-pages/inc/call-button.tpl" class="btn btn-outline-light btn-lg" iconClass="fa-solid fa-phone me-2" text="Call {$smarty.ENV.SITE_PHONE}"}
@@ -319,4 +319,4 @@
 </div>
 
 
-{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Tell Me About the Website You Need" ctaText="Request My Free Consultation" modalDescription="Share a few details about your business, current website, and goals. I'll help you identify the right scope, approach, and next steps."}
+{include file="inc/landing-pages/inc/modal.tpl" modalTitle="Tell Us About the Website You Need" ctaText="Request My Free Consultation" modalDescription="Share a few details about your business, current website, and goals. We'll help you identify the right scope, approach, and next steps."}
