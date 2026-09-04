@@ -512,6 +512,7 @@
                                 <div class="col-12"><button class="btn btn-skale btn-lg w-100" type="submit">Request My Free Consultation <i class="bi bi-arrow-right ms-1"></i></button></div>
                                 <div class="col-12"><p class="small text-secondary text-center mb-0">Your information stays private. No spam or aggressive sales follow-up.</p></div>
                             </div>
+                            {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
                     </div>
                 </div>

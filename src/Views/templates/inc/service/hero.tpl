@@ -74,6 +74,7 @@
                             <p class="{$data.form.privacy.class}">
                                 <i class="{$data.form.privacy.iconClass}"></i>{$data.form.privacy.text}
                             </p>
+                            {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
                     </div>
                 </div>

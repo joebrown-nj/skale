@@ -47,6 +47,7 @@
                             <textarea name="comment" class="form-control" rows="4" placeholder="Tell us what you want to improve..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-dark btn-lg w-100 rounded-pill">Get My Free Strategy Session</button>
+                        {include file="inc/layout/cloudflare-turnstile.tpl"}
                     </form>
                 </div>
             </div>

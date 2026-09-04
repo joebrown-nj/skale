@@ -21,6 +21,7 @@
             <link href="{$smarty.ENV.WEB_ROOT}css/style.min.css" rel="stylesheet">
             <link href="{$smarty.ENV.WEB_ROOT}css/templates.min.css" rel="stylesheet">
             <link rel="canonical" href="{$smarty.ENV.SITE_URL}{if $p1}{$p1}/{/if}{if $p2}{$p2}/{/if}{if $p3}{$p3}/{/if}{if isset($smarty.get.interests)}?interests={$smarty.get.interests}{/if}" />
+            <link rel="preconnect" href="https://challenges.cloudflare.com" />
 
             <!-- Open Graph -->
             <meta property="og:title" content="{if isset($page.content) && isset($page.content->metaTitle) && $page.content->metaTitle != ''}{$page.content->metaTitle} | {/if}{if isset($data.blogDetail->metaTitle) && $data.blogDetail->metaTitle != ''}{$data.blogDetail->metaTitle} | blog | {/if}{$smarty.ENV.SITE_NAME}">

@@ -40,6 +40,11 @@ final class LeadFormRequest
     {
         return $this->request->clientIp();
     }
+    public function turnstileToken(): string
+    {
+        $token = $this->request->post()['cf-turnstile-response'] ?? '';
+        return is_string($token) ? $token : '';
+    }
 
     /** @return list<string> */
     public function errors(): array

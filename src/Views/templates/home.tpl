@@ -76,6 +76,7 @@
 
                             <button class="btn btn-primary btn-lg w-100" type="submit">Get My Recommendation <i class="bi bi-arrow-right ms-1"></i></button>
                             <p class="hero-form-note mb-0 mt-3"><i class="bi bi-lock me-1"></i>No spam. No aggressive sales follow-up.</p>
+                            {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
                     </div>
                 </div>
@@ -666,6 +667,7 @@
                                 <p class="small text-center mb-0"><i class="bi bi-lock me-1"></i>Your information stays private. No spam or aggressive sales follow-up.</p>
                             </div>
                         </div>
+                        {include file="inc/layout/cloudflare-turnstile.tpl"}
                     </form>
                 </div>
             </div>

@@ -40,4 +40,5 @@
             </button>
         </div>
     </div>
+    {include file="inc/layout/cloudflare-turnstile.tpl"}
 </form>

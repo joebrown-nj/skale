@@ -9,17 +9,29 @@ use App\Core\Contracts\ContactFormInterface;
 use App\Core\Contracts\ViewInterface;
 use App\Core\Services\FormSubmissionService;
 use App\Core\Services\RequestBlocklistService;
+use App\Core\Services\TurnstileService;
 use App\Models\ContactModel;
 use App\Models\Entities\RequestBlockRuleEntity;
 use PHPUnit\Framework\TestCase;
 
 final class ContactControllerTest extends TestCase
 {
+    private TurnstileService $turnstileService;
+
+    protected function setUp(): void
+    {
+        $_ENV['CLOUDFLARE_SECRET_KEY'] = 'test-secret';
+        $this->turnstileService = new TurnstileService(
+            static fn(): string => '{"success":true}',
+        );
+    }
+
     protected function tearDown(): void
     {
         $_POST = [];
         $_SERVER = [];
         http_response_code(200);
+        unset($_ENV['CLOUDFLARE_SECRET_KEY']);
     }
 
     public function testSubmitReturnsBlockedResponseWhenSubmissionMatchesBlacklist(): void
@@ -30,6 +42,7 @@ final class ContactControllerTest extends TestCase
             'phone' => '5550100',
             'comment' => 'Spam message',
         ];
+        $submittedInput = $input + ['cf-turnstile-response' => 'valid-token'];
 
         $contactModel = $this->createMock(ContactModel::class);
         $contactModel->expects($this->never())->method('checkContactForm');
@@ -52,9 +65,9 @@ final class ContactControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->never())->method('getUser');
 
-        $controller = new ContactController($contactModel, $formSubmissionService, $requestBlocklistService, $view);
+        $controller = new ContactController($contactModel, $formSubmissionService, $requestBlocklistService, $view, $this->turnstileService);
 
-        $this->assertSame('{"error":"Unable to process request."}', $controller->submit($input));
+        $this->assertSame('{"error":"Unable to process request."}', $controller->submit($submittedInput));
         $this->assertSame(403, http_response_code());
     }
 
@@ -66,6 +79,7 @@ final class ContactControllerTest extends TestCase
             'email' => 'jane@example.com',
             'comment' => 'I need a new website.',
         ];
+        $submittedInput = $input + ['cf-turnstile-response' => 'valid-token'];
         $user = ['ipAddress' => '127.0.0.1'];
 
         $contactModel = $this->createMock(ContactFormInterface::class);
@@ -91,11 +105,12 @@ final class ContactControllerTest extends TestCase
             $formSubmissionService,
             $requestBlocklistService,
             $view,
+            $this->turnstileService,
         );
 
         $this->assertSame(
             '{"success":{"redirect":"\/thank-you"}}',
-            $controller->submit($input),
+            $controller->submit($submittedInput),
         );
     }
 
@@ -104,6 +119,7 @@ final class ContactControllerTest extends TestCase
         $rawInput = [
             'form_type' => 'newsletter',
             'email' => 'reader@example.com',
+            'cf-turnstile-response' => 'valid-token',
         ];
         $normalizedInput = [
             'form_type' => 'newsletter',
@@ -132,6 +148,7 @@ final class ContactControllerTest extends TestCase
             $formSubmissionService,
             $requestBlocklistService,
             $view,
+            $this->turnstileService,
         );
 
         $this->assertSame(

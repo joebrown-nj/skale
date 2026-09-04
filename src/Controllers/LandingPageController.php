@@ -10,6 +10,7 @@ use App\Core\Http\JsonResponse;
 use App\Core\Http\Form\LeadFormRequest;
 use App\Core\Services\FormSubmissionService;
 use App\Core\Services\RequestBlocklistService;
+use App\Core\Services\TurnstileService;
 use App\Models\ContactModel;
 
 final class LandingPageController
@@ -19,6 +20,7 @@ final class LandingPageController
         private ContactModel $contactModel,
         private FormSubmissionService $formSubmissionService,
         private RequestBlocklistService $requestBlocklistService,
+        private TurnstileService $turnstileService,
         private LandingPageContentProvider $content,
     ) {}
 
@@ -48,6 +50,10 @@ final class LandingPageController
 
     public function postLeadForm(LeadFormRequest $request): JsonResponse
     {
+        if (!$this->turnstileService->validate($request->turnstileToken(), $request->clientIp())) {
+            return JsonResponse::error('Verification failed. Please try again.', 403);
+        }
+
         $input = $request->validated();
         $details = ['Landing Page Lead Form Submission'];
 

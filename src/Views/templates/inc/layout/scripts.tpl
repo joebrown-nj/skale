@@ -5,4 +5,6 @@
 
 <script defer src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script defer src="{$smarty.ENV.WEB_ROOT}js/main.min.js"></script>

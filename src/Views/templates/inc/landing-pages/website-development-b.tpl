@@ -120,6 +120,7 @@
                                 <i class="bi bi-shield-check"></i>
                                 Your information stays private.
                             </div>
+                            {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
                     </div>
                 </div>

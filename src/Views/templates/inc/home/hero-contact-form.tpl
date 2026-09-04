@@ -61,6 +61,7 @@
             <a class="btn btn-primary prev-step">Back</a>
             <button type="submit" class="btn btn-success" data-meta-custom-event="GrowthPlanSubmitClick" data-meta-label="home growth plan submit button">Get My Free Growth Plan</button>
         </div>
+        {include file="inc/layout/cloudflare-turnstile.tpl"}
     </form>
 
     <div class="border-top mt-4 pt-2 text-secondary">

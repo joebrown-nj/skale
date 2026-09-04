@@ -31,4 +31,5 @@
     <p class="small text-secondary text-center mt-3 mb-0">
         <i class="fa-solid fa-lock me-1"></i>No sales pressure. Your information stays private.
     </p>
+    {include file="inc/layout/cloudflare-turnstile.tpl"}
 </form>
