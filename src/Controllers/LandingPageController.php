@@ -49,8 +49,19 @@ final class LandingPageController
     public function postLeadForm(LeadFormRequest $request): JsonResponse
     {
         $input = $request->validated();
-        $input['comment'] = 'Landing Page Lead Form Submission -  Team Size: '
-            . ($input['team_size'] ?? '') . ' - ' . ($input['comment'] ?? '');
+        $details = ['Landing Page Lead Form Submission'];
+
+        foreach (['team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'lead_source' => 'Lead Source'] as $field => $label) {
+            if ($input[$field] !== '') {
+                $details[] = $label . ': ' . $input[$field];
+            }
+        }
+
+        if ($input['comment'] !== '') {
+            $details[] = $input['comment'];
+        }
+
+        $input['comment'] = implode(' - ', $details);
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $request->server()) !== null) {
             return JsonResponse::error('Unable to process request.', 403);

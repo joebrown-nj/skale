@@ -20,10 +20,16 @@ final class LeadFormRequestTest extends TestCase
         $form = new LeadFormRequest(new Request(post: [
             'name' => '  Jane   Doe ',
             'email' => ' JANE@EXAMPLE.COM ',
+            'website' => ' https://example.com ',
+            'website_goal' => ' more-leads ',
+            'lead_source' => ' website-development-ab-version-b ',
             'comment' => str_repeat('x', 2100),
         ]));
         self::assertSame('Jane Doe', $form->validated()['name']);
         self::assertSame('jane@example.com', $form->validated()['email']);
+        self::assertSame('https://example.com', $form->validated()['website']);
+        self::assertSame('more-leads', $form->validated()['website_goal']);
+        self::assertSame('website-development-ab-version-b', $form->validated()['lead_source']);
         self::assertSame(2000, strlen($form->validated()['comment']));
         self::assertSame([], $form->errors());
     }

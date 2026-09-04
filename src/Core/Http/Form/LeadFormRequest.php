@@ -20,6 +20,9 @@ final class LeadFormRequest
             'email' => strtolower($this->text($input['email'] ?? '', 100)),
             'phone' => $this->text($input['phone'] ?? '', 20),
             'team_size' => $this->text($input['team_size'] ?? '', 50),
+            'website' => $this->text($input['website'] ?? '', 255),
+            'website_goal' => $this->text($input['website_goal'] ?? '', 100),
+            'lead_source' => $this->text($input['lead_source'] ?? '', 100),
             'comment' => $this->text($input['comment'] ?? '', 2000),
         ];
     }

@@ -72,37 +72,35 @@
                             </p>
                         </div>
 
-                        <!-- Replace action below with your existing Laravel form endpoint. -->
-                        {* <form action="/contact" method="post"> *}
-                        <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm" id="lead-form" data-meta-form-name="task-management-migration-form" data-meta-success-event="Lead">
+                        <form action="{$smarty.ENV.SITE_URL}post-lead-form" method="POST" class="ajaxForm" id="website-review-form" data-meta-form-name="website-development-review-form" data-meta-success-event="Lead" data-meta-success-custom-event="WebsiteReviewSubmitted" data-meta-start-custom-event="WebsiteReviewStarted">
                             <input type="hidden" name="form_type" value="landing-page">
                             <input type="hidden" name="lead_source" value="website-development-ab-version-b" />
 
                             <div class="mb-3">
-                                <label for="name" class="form-label"> Your name </label>
-                                <input type="text" class="form-control" id="name" name="name" autocomplete="name" required/>
+                                <label for="website-review-name" class="form-label"> Your name </label>
+                                <input type="text" class="form-control" id="website-review-name" name="name" autocomplete="name" maxlength="50" required/>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label"> Work email </label>
-                                <input type="email" class="form-control" id="email" name="email" autocomplete="email" required/>
+                                <label for="website-review-email" class="form-label"> Work email </label>
+                                <input type="email" class="form-control" id="website-review-email" name="email" autocomplete="email" maxlength="100" required/>
                             </div>
 
                             <div class="mb-3">
-                                <label for="website" class="form-label">
+                                <label for="website-review-url" class="form-label">
                                     Website
                                     <span class="fw-normal text-secondary"> (optional) </span>
                                 </label>
 
-                                <input type="url" class="form-control" id="website" name="website" placeholder="https://"/>
+                                <input type="url" class="form-control" id="website-review-url" name="website" autocomplete="url" maxlength="255" placeholder="https://"/>
                             </div>
 
                             <div class="mb-3">
-                                <label for="website_goal" class="form-label">
+                                <label for="website-review-goal" class="form-label">
                                     What would you most like to improve?
                                 </label>
 
-                                <select class="form-select" id="website_goal" name="website_goal">
+                                <select class="form-select" id="website-review-goal" name="website_goal" required>
                                     <option value="">Select one</option>
                                     <option value="more-leads">Generate more leads</option>
                                     <option value="redesign">Redesign an outdated website</option>
