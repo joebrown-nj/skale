@@ -57,7 +57,7 @@
 
     <section class="section-pad">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:860px">
+            <div class="text-center mx-auto mb-5 landing-content-width-md">
                 <span class="eyebrow mb-3">When your website no longer fits</span>
                 <h2 class="display-5 fw-bold mb-3 text-light">Your Website Should Reflect the Business You Have Today</h2>
                 <p class="lead text-muted-skale">An outdated, difficult, or inflexible website can make a strong business look smaller, less credible, and harder to work with than it really is.</p>
@@ -105,7 +105,7 @@
 
     <section class="section-pad light-section">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:900px">
+            <div class="text-center mx-auto mb-5 landing-content-width-lg">
                 <span class="eyebrow mb-3">Website services</span>
                 <h2 class="display-5 fw-bold mb-3">Everything Needed to Plan, Design, Build, and Launch Your Website</h2>
                 <p class="lead text-muted-skale">Skale can handle the complete website project or step in where your business needs the most help.</p>
@@ -165,7 +165,7 @@
 
     <section class="section-pad">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:860px">
+            <div class="text-center mx-auto mb-5 landing-content-width-md">
                 <span class="eyebrow mb-3">What your project includes</span>
                 <h2 class="display-5 fw-bold text-light">A Website That Is Professional on the Surface and Solid Underneath</h2>
             </div>
@@ -219,7 +219,7 @@
 
     <section class="section-pad light-section">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:860px">
+            <div class="text-center mx-auto mb-5 landing-content-width-md">
                 <span class="eyebrow mb-3">How it works</span>
                 <h2 class="display-5 fw-bold">A Clear Process From First Conversation to Launch</h2>
             </div>

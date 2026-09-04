@@ -57,7 +57,7 @@
 
     <section class="py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:900px">
+            <div class="text-center mx-auto mb-5 landing-content-width-lg">
                 <span class="eyebrow mb-3">When spreadsheets stop working</span>
                 <h2 class="display-5 fw-bold text-light">Your Spreadsheet May Be Tracking the Work - But It Is Not Managing It</h2>
                 <p class="lead text-muted-skale">As teams and workloads grow, spreadsheets become harder to update, harder to trust, and harder to use for accountability.</p>
@@ -105,7 +105,7 @@
 
     <section class="py-5 light-section">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:900px">
+            <div class="text-center mx-auto mb-5 landing-content-width-lg">
                 <span class="eyebrow mb-3">Everything needed to make the switch</span>
                 <h2 class="display-5 fw-bold">You Do Not Have to Figure Out the Platform, Migration, or Setup Alone</h2>
                 <p class="lead text-muted-skale">Skale handles the technical and operational work required to move your team into a system that fits how your business operates.</p>
@@ -279,7 +279,7 @@
 
     <section class="py-5">
         <div class="container">
-            <div class="text-center mx-auto mb-5" style="max-width:850px">
+            <div class="text-center mx-auto mb-5 landing-content-width-sm">
                 <span class="eyebrow mb-3">Platform guidance</span>
                 <h2 class="display-5 fw-bold text-light">The Right Platform Is the One Your Team Will Actually Use</h2>
                 <p class="lead text-muted-skale">The goal is not expensive software. It is the simplest system that supports your work now and as you grow.</p>
@@ -354,7 +354,7 @@
 
     {include file="inc/landing-pages/inc/faq.tpl" faq=$data.sections.sectionFAQ}
 
-    <section class="py-5 final-cta">
+    <section class="py-5 final-cta rounded-0">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
