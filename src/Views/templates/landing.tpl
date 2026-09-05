@@ -4,4 +4,4 @@
 
 {include file="{$data.template}"}
 
-{include file="inc/layout/footer-landing.tpl" hideFooter=true}
+{include file="inc/layout/footer.tpl"}

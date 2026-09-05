@@ -204,6 +204,14 @@ a:hover {
 	display:none;
 }
 
+.footer-main {
+	display:block;
+}
+
+.footer-landing {
+	display:none;
+}
+
 .menu-bar .navbar-nav {
 	display: none !important;
 }

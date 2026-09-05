@@ -4,11 +4,23 @@
 {if (isset($footer) && $footer === 'false')}
 
 {else}
-    <footer class="section-space-sm">
+    <footer class="footer-landing py-4 bg-dark-custom border-top border-secondary">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <a href="https://skaleup.it.com/" class="mbtn brand text-white" >
+                    skale<span class="brand-dot">.</span>
+                </a>
+
+                <div class="small text-white-50">&copy; {$smarty.now|date_format:"%Y"} Skale. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <footer class="footer-main section-space-sm">
         <div class="container">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
-                    <a class="footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
+                    <a aria-label="footer brand logo link" class="mbtn footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
                     <p class="mt-3 mb-4">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
                     <a aria-label="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
                 </div>

@@ -8,6 +8,14 @@
 	display:block;
 }
 
+.footer-main {
+	display:none;
+}
+
+.footer-landing {
+	display:block;
+}
+
 .page-content {
 	margin-top:0px;
 }
