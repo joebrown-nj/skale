@@ -1,4 +1,4 @@
-<header class="landing-header fixed-top clearfix menu-bar {if $p1 != '' && $viewName != 'landing'}menu-bar-bg{/if}">
+<header class="landing-header fixed-top clearfix menu-bar">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <a href="{$smarty.ENV.SITE_URL}" class="brand mbtn" aria-label="landing page logo"> skale<span class="brand-dot">.</span> </a>

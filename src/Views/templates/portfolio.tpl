@@ -17,7 +17,7 @@
                     <div class="card-body d-flex flex-column position-absolute top-0 start-0 w-100 h-100 p-4">
                         <h5 class="card-title">{$portfolio->title}</h5>
                         <p class="card-text">{$portfolio->content}</p>
-                        <a href="{$smarty.ENV.SITE_URL}portfolio/{$portfolio->url}" class="stretched-link mt-auto btn btn-primary">View Case Study</a>
+                        <a href="{$smarty.ENV.SITE_URL}portfolio/{$portfolio->url}" class="stretched-link mt-auto btn btn-primary">{$content.text_view_case_study}</a>
                     </div>
                 </div>
             </div>

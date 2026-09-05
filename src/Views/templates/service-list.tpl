@@ -7,19 +7,19 @@
         <div class="container py-5">
             <div class="row align-items-end g-5">
                 <div class="col-xl-9">
-                    <div class="eyebrow mb-4"><span class="eyebrow-dot"></span>Engineering systems for smarter growth</div>
-                    <h1 class="fw-bold mb-4 text-white">Your business doesn't need more software. It needs better systems.</h1>
-                    <p class="hero-copy mb-4">Skale connects websites, marketing, software, automation, analytics, and strategy into a growth system built around how your business actually works.</p>
+                    <div class="eyebrow mb-4"><span class="eyebrow-dot"></span>{$content.text_engineering_systems_for_smarter_growth}</div>
+                    <h1 class="fw-bold mb-4 text-white">{$content.text_your_business_doesn_t_need_more}</h1>
+                    <p class="hero-copy mb-4">{$content.text_skale_connects_websites_marketing_software_automation}</p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
-                        <a class="mbtn btn btn-skale btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Growth Strategy Session</a>
-                        <button class="btn btn-outline-skale btn-lg" onclick="scrollToEl('#explore')">Explore Solutions <i class="bi bi-arrow-down ms-1"></i></button>
+                        <a class="mbtn btn btn-skale btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_get_your_free_growth_strategy_session}</a>
+                        <button class="btn btn-outline-skale btn-lg" onclick="scrollToEl('#explore')">{$content.text_explore_solutions} <i class="bi bi-arrow-down ms-1"></i></button>
                     </div>
                 </div>
 
                 <div class="col-xl-3">
                     <div class="hero-proof rounded-skale p-4">
-                        <div class="small text-uppercase letter-spacing text-white-50 mb-2">Built differently</div>
-                        <p class="fw-semibold mb-0 text-white">Business-first recommendations. Senior technical experience. No disconnected deliverables.</p>
+                        <div class="small text-uppercase letter-spacing text-white-50 mb-2">{$content.text_built_differently}</div>
+                        <p class="fw-semibold mb-0 text-white">{$content.text_business_first_recommendations_senior_technical_experience}</p>
                     </div>
                 </div>
             </div>
@@ -30,14 +30,14 @@
         <div class="container">
             <div class="row justify-content-between align-items-end mb-5 g-4">
                 <div class="col-lg-7">
-                    <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>The problems we solve</div>
-                    <h2 class="display-5 fw-bold mb-3">Does any of this sound familiar?</h2>
-                    <p class="lead text-secondary mb-0">Most growth problems are not caused by a lack of effort. They happen when websites, tools, teams, and marketing fail to work together.</p>
+                    <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>{$content.text_the_problems_we_solve}</div>
+                    <h2 class="display-5 fw-bold mb-3">{$content.text_does_any_of_this_sound_familiar}</h2>
+                    <p class="lead text-secondary mb-0">{$content.text_most_growth_problems_are_not_caused}</p>
                 </div>
 
                 <div class="col-lg-4">
                     <div class="service-card">
-                        <p class="text-secondary mb-0">Start with the problem you recognize. We will help you find the right path forward.</p>
+                        <p class="text-secondary mb-0">{$content.text_start_with_the_problem_you_recognize}</p>
                     </div>
                 </div>
             </div>
@@ -48,9 +48,9 @@
                         <div class="icon-box mb-4">
                             <i class="bi bi-graph-down-arrow"></i>
                         </div>
-                        <h3 class="h5 fw-bold">Traffic, but not enough leads</h3>
-                        <p class="text-secondary">People visit your website, but they do not take the next step or contact your business.</p>
-                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Improve conversions <i class="bi bi-arrow-right"></i></a>
+                        <h3 class="h5 fw-bold">{$content.text_traffic_but_not_enough_leads}</h3>
+                        <p class="text-secondary">{$content.text_people_visit_your_website_but_they}</p>
+                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_improve_conversions} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -59,9 +59,9 @@
                         <div class="icon-box mb-4">
                             <i class="bi bi-arrow-repeat"></i>
                         </div>
-                        <h3 class="h5 fw-bold">Too much repetitive work</h3>
-                        <p class="text-secondary">Your team spends valuable time copying data, updating spreadsheets, and repeating manual processes.</p>
-                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Automate operations <i class="bi bi-arrow-right"></i></a>
+                        <h3 class="h5 fw-bold">{$content.text_too_much_repetitive_work}</h3>
+                        <p class="text-secondary">{$content.text_your_team_spends_valuable_time_copying}</p>
+                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_automate_operations} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -70,9 +70,9 @@
                         <div class="icon-box mb-4">
                             <i class="bi bi-diagram-3"></i>
                         </div>
-                        <h3 class="h5 fw-bold">Systems that do not connect</h3>
-                        <p class="text-secondary">Important information is scattered across tools, creating delays, mistakes, and limited visibility.</p>
-                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">Connect your systems <i class="bi bi-arrow-right"></i></a>
+                        <h3 class="h5 fw-bold">{$content.text_systems_that_do_not_connect}</h3>
+                        <p class="text-secondary">{$content.text_important_information_is_scattered_across_tools}</p>
+                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">{$content.text_connect_your_systems} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
@@ -81,22 +81,22 @@
                         <div class="icon-box mb-4">
                             <i class="bi bi-arrows-angle-expand"></i>
                         </div>
-                        <h3 class="h5 fw-bold">Growth is creating friction</h3>
-                        <p class="text-secondary">Processes that once worked are becoming harder to manage as demand and complexity increase.</p>
-                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Build a scalable plan <i class="bi bi-arrow-right"></i></a>
+                        <h3 class="h5 fw-bold">{$content.text_growth_is_creating_friction}</h3>
+                        <p class="text-secondary">{$content.text_processes_that_once_worked_are_becoming}</p>
+                        <a class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_build_a_scalable_plan} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
             </div>
-            <div class="text-center mt-5"><p class="h4 fw-bold mb-1">If you recognized your business in any of these, you are in the right place.</p><p class="text-secondary mb-0">Skale helps turn disconnected efforts into systems that support growth.</p></div>
+            <div class="text-center mt-5"><p class="h4 fw-bold mb-1">{$content.text_if_you_recognized_your_business_in}</p><p class="text-secondary mb-0">{$content.text_skale_helps_turn_disconnected_efforts_into}</p></div>
         </div>
     </section>
 
     <section class="goal-section section-padding-sm">
         <div class="container">
             <div class="text-center max-width-copy mx-auto mb-5">
-                <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>Choose your goal</div>
-                <h2 class="display-6 fw-bold">What are you trying to improve?</h2>
-                <p class="lead text-secondary">Choose the outcome that matters most right now. Each solution can work independently or become part of a larger growth system.</p>
+                <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>{$content.text_choose_your_goal}</div>
+                <h2 class="display-6 fw-bold">{$content.text_what_are_you_trying_to_improve}</h2>
+                <p class="lead text-secondary">{$content.text_choose_the_outcome_that_matters_most}</p>
             </div>
 
             <div class="row g-4">
@@ -106,8 +106,8 @@
                             <div class="icon-box"><i class="bi bi-person-plus"></i></div>
                             <i class="bi bi-arrow-right arrow fs-4"></i>
                         </div>
-                        <h3 class="h5 fw-bold mt-4">Generate More Leads</h3>
-                        <p class="text-secondary mb-0">Improve your website, landing pages, forms, messaging, and customer journey.</p>
+                        <h3 class="h5 fw-bold mt-4">{$content.text_generate_more_leads}</h3>
+                        <p class="text-secondary mb-0">{$content.text_improve_your_website_landing_pages_forms}</p>
                         <a class="mbtn stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure"></a>
                     </div>
                 </div>
@@ -118,8 +118,8 @@
                             <div class="icon-box"><i class="bi bi-gear-wide-connected"></i></div>
                             <i class="bi bi-arrow-right arrow fs-4"></i>
                         </div>
-                        <h3 class="h5 fw-bold mt-4">Automate Operations</h3>
-                        <p class="text-secondary mb-0">Replace repetitive work with reliable workflows, integrations, and custom tools.</p>
+                        <h3 class="h5 fw-bold mt-4">{$content.text_automate_operations_2}</h3>
+                        <p class="text-secondary mb-0">{$content.text_replace_repetitive_work_with_reliable_workflows}</p>
                         <a class="mbtn stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software"></a>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
                             <div class="icon-box"><i class="bi bi-megaphone"></i></div>
                             <i class="bi bi-arrow-right arrow fs-4"></i>
                         </div>
-                        <h3 class="h5 fw-bold mt-4">Build Demand</h3>
-                        <p class="text-secondary mb-0">Create more consistent visibility and lead flow through integrated marketing.</p>
+                        <h3 class="h5 fw-bold mt-4">{$content.text_build_demand}</h3>
+                        <p class="text-secondary mb-0">{$content.text_create_more_consistent_visibility_and_lead}</p>
                         <a class="mbtn stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation"></a>
                     </div>
                 </div>
@@ -142,8 +142,8 @@
                             <div class="icon-box"><i class="bi bi-compass"></i></div>
                             <i class="bi bi-arrow-right arrow fs-4"></i>
                         </div>
-                        <h3 class="h5 fw-bold mt-4">Scale Smarter</h3>
-                        <p class="text-secondary mb-0">Identify bottlenecks, prioritize investments, and build a practical growth roadmap.</p>
+                        <h3 class="h5 fw-bold mt-4">{$content.text_scale_smarter}</h3>
+                        <p class="text-secondary mb-0">{$content.text_identify_bottlenecks_prioritize_investments_and_build}</p>
                         <a class="mbtn stretched-link" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization"></a>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
     <section id="solutions" class="section-padding">
         <div class="container">
             <div class="max-width-copy mb-5">
-                <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>Explore our solutions</div>
-                <h2 class="display-5 fw-bold mb-3">Not isolated services. A connected path to growth.</h2>
-                <p class="lead text-secondary">Every engagement starts with the business outcome. We then bring together the right strategy, technology, and execution to move it forward.</p>
+                <div class="eyebrow text-success mb-3"><span class="eyebrow-dot"></span>{$content.text_explore_our_solutions}</div>
+                <h2 class="display-5 fw-bold mb-3">{$content.text_not_isolated_services_a_connected_path}</h2>
+                <p class="lead text-secondary">{$content.text_every_engagement_starts_with_the_business}</p>
             </div>
 
             <article id="growth" class="solution-row">
@@ -187,16 +187,16 @@
                     </div>
 
                     <div class="col-lg-6 order-lg-1">
-                        <span class="badge text-bg-light border mb-3">Growth Infrastructure</span>
-                        <h3 class="display-6 fw-bold">Turn your website into your best salesperson.</h3>
-                        <p class="lead text-secondary">A website should do more than look polished. It should clearly explain your value, earn trust, guide visitors, capture leads, and connect to the systems behind your business.</p>
+                        <span class="badge text-bg-light border mb-3">{$content.text_growth_infrastructure}</span>
+                        <h3 class="display-6 fw-bold">{$content.text_turn_your_website_into_your_best}</h3>
+                        <p class="lead text-secondary">{$content.text_a_website_should_do_more_than}</p>
                         <ul class="check-list">
-                            <li>Website design and development</li>
-                            <li>Landing pages and conversion optimization</li>
-                            <li>CRM, lead tracking, and customer journeys</li>
-                            <li>Analytics, reporting, and performance improvements</li>
+                            <li>{$content.text_website_design_and_development}</li>
+                            <li>{$content.text_landing_pages_and_conversion_optimization}</li>
+                            <li>{$content.text_crm_lead_tracking_and_customer_journeys}</li>
+                            <li>{$content.text_analytics_reporting_and_performance_improvements}</li>
                         </ul>
-                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Explore Growth Infrastructure <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_explore_growth_infrastructure} <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </article>
@@ -230,16 +230,16 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <span class="badge text-bg-light border mb-3">Automation &amp; Software</span>
-                        <h3 class="display-6 fw-bold">Stop paying people to do robot work.</h3>
-                        <p class="lead text-secondary">Repetitive tasks drain time and make growth harder. We streamline the work, connect your tools, and build practical software that helps your team focus on higher-value decisions.</p>
+                        <span class="badge text-bg-light border mb-3">{$content.text_automation_software}</span>
+                        <h3 class="display-6 fw-bold">{$content.text_stop_paying_people_to_do_robot}</h3>
+                        <p class="lead text-secondary">{$content.text_repetitive_tasks_drain_time_and_make}</p>
                         <ul class="check-list">
-                            <li>Workflow and business process automation</li>
-                            <li>System integrations and data synchronization</li>
-                            <li>Custom software, portals, and internal tools</li>
-                            <li>AI-assisted reporting and operational insights</li>
+                            <li>{$content.text_workflow_and_business_process_automation}</li>
+                            <li>{$content.text_system_integrations_and_data_synchronization}</li>
+                            <li>{$content.text_custom_software_portals_and_internal_tools}</li>
+                            <li>{$content.text_ai_assisted_reporting_and_operational_insights}</li>
                         </ul>
-                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Explore Automation &amp; Software <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_explore_automation_software} <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </article>
@@ -262,15 +262,15 @@
                     </div>
 
                     <div class="col-lg-6 order-lg-1">
-                        <span class="badge text-bg-light border mb-3">Demand Generation</span>
-                        <h3 class="display-6 fw-bold">Build a more predictable pipeline of customers.</h3><p class="lead text-secondary">Marketing works better when every channel supports the same journey. We connect traffic, messaging, conversion, follow-up, and reporting so your investment creates measurable opportunities.</p>
+                        <span class="badge text-bg-light border mb-3">{$content.text_demand_generation}</span>
+                        <h3 class="display-6 fw-bold">{$content.text_build_a_more_predictable_pipeline_of}</h3><p class="lead text-secondary">{$content.text_marketing_works_better_when_every_channel}</p>
                         <ul class="check-list">
-                            <li>SEO strategy and content improvement</li>
-                            <li>Google and Meta paid advertising</li>
-                            <li>Email marketing and lead nurturing</li>
-                            <li>Marketing analytics and campaign optimization</li>
+                            <li>{$content.text_seo_strategy_and_content_improvement}</li>
+                            <li>{$content.text_google_and_meta_paid_advertising}</li>
+                            <li>{$content.text_email_marketing_and_lead_nurturing}</li>
+                            <li>{$content.text_marketing_analytics_and_campaign_optimization}</li>
                         </ul>
-                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">Explore Demand Generation <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">{$content.text_explore_demand_generation} <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </article>
@@ -290,13 +290,13 @@
                                 <div class="row g-3">
                                     <div class="col-6">
                                         <div class="mock-block p-3">
-                                            <div class="h3 fw-bold mb-1">01</div>
+                                            <div class="h3 fw-bold mb-1">{$content.text_01}</div>
                                             <div class="mock-line w-75"></div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="mock-block p-3">
-                                            <div class="h3 fw-bold mb-1">02</div>
+                                            <div class="h3 fw-bold mb-1">{$content.text_02}</div>
                                             <div class="mock-line w-75"></div>
                                         </div>
                                     </div>
@@ -309,16 +309,16 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <span class="badge text-bg-light border mb-3">Strategy &amp; Optimization</span>
-                        <h3 class="display-6 fw-bold">Know exactly what to improve next.</h3>
-                        <p class="lead text-secondary">More activity is not always the answer. We examine how your business operates, where growth is getting stuck, and which improvements will create the greatest practical impact.</p>
+                        <span class="badge text-bg-light border mb-3">{$content.text_strategy_optimization}</span>
+                        <h3 class="display-6 fw-bold">{$content.text_know_exactly_what_to_improve_next}</h3>
+                        <p class="lead text-secondary">{$content.text_more_activity_is_not_always_the}</p>
                         <ul class="check-list">
-                            <li>Growth audits and system mapping</li>
-                            <li>Technology and marketing roadmaps</li>
-                            <li>Analytics, KPI design, and reporting</li>
-                            <li>Ongoing optimization and strategic guidance</li>
+                            <li>{$content.text_growth_audits_and_system_mapping}</li>
+                            <li>{$content.text_technology_and_marketing_roadmaps}</li>
+                            <li>{$content.text_analytics_kpi_design_and_reporting}</li>
+                            <li>{$content.text_ongoing_optimization_and_strategic_guidance}</li>
                         </ul>
-                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Explore Strategy &amp; Optimization <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a class="mbtn btn btn-dark mt-2" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_explore_strategy_optimization} <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </article>
@@ -328,26 +328,26 @@
     <section id="approach" class="system-section section-padding">
         <div class="container">
             <div class="row justify-content-between align-items-end g-4 mb-5">
-                <div class="col-lg-7"><div class="eyebrow mb-3"><span class="eyebrow-dot"></span>The Skale systems approach</div><h2 class="display-5 fw-bold text-white">The best results happen when everything works together.</h2></div>
-                <div class="col-lg-4"><p class="text-white-50 lead mb-0">Most vendors improve one part. Skale connects the complete journey from attention to conversion, delivery, and insight.</p></div>
+                <div class="col-lg-7"><div class="eyebrow mb-3"><span class="eyebrow-dot"></span>{$content.text_the_skale_systems_approach}</div><h2 class="display-5 fw-bold text-white">{$content.text_the_best_results_happen_when_everything}</h2></div>
+                <div class="col-lg-4"><p class="text-white-50 lead mb-0">{$content.text_most_vendors_improve_one_part_skale}</p></div>
             </div>
             <div class="row align-items-stretch g-3 system-flow">
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-window"></i></div><h3 class="h6 mb-0">Website</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-window"></i></div><h3 class="h6 mb-0">{$content.text_website}</h3></div></div>
                 <div class="col-auto d-none d-lg-flex align-items-center"><i class="bi bi-arrow-right flow-arrow"></i></div>
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-megaphone"></i></div><h3 class="h6 mb-0">Marketing</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-megaphone"></i></div><h3 class="h6 mb-0">{$content.text_marketing}</h3></div></div>
                 <div class="col-auto d-none d-lg-flex align-items-center"><i class="bi bi-arrow-right flow-arrow"></i></div>
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-people"></i></div><h3 class="h6 mb-0">CRM</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-people"></i></div><h3 class="h6 mb-0">{$content.text_crm}</h3></div></div>
                 <div class="col-auto d-none d-lg-flex align-items-center"><i class="bi bi-arrow-right flow-arrow"></i></div>
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-gear"></i></div><h3 class="h6 mb-0">Automation</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-gear"></i></div><h3 class="h6 mb-0">{$content.text_automation}</h3></div></div>
                 <div class="col-auto d-none d-lg-flex align-items-center"><i class="bi bi-arrow-right flow-arrow"></i></div>
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-bar-chart"></i></div><h3 class="h6 mb-0">Reporting</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-bar-chart"></i></div><h3 class="h6 mb-0">{$content.text_reporting}</h3></div></div>
                 <div class="col-auto d-none d-lg-flex align-items-center"><i class="bi bi-arrow-right flow-arrow"></i></div>
-                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-graph-up-arrow"></i></div><h3 class="h6 mb-0">Growth</h3></div></div>
+                <div class="col-6 col-lg"><div class="flow-card"><div class="icon-box mb-3"><i class="bi bi-graph-up-arrow"></i></div><h3 class="h6 mb-0">{$content.text_growth}</h3></div></div>
             </div>
             <div class="row g-4 mt-5">
-                <div class="col-lg-4"><h3 class="h4 fw-bold">1. Find the friction</h3><p class="text-white-50">We uncover the bottlenecks, missed opportunities, and disconnected systems slowing the business down.</p></div>
-                <div class="col-lg-4"><h3 class="h4 fw-bold">2. Prioritize the impact</h3><p class="text-white-50">We focus on the changes most likely to improve revenue, efficiency, visibility, or customer experience.</p></div>
-                <div class="col-lg-4"><h3 class="h4 fw-bold">3. Build for what comes next</h3><p class="text-white-50">We implement practical systems designed to work today and support the next stage of growth.</p></div>
+                <div class="col-lg-4"><h3 class="h4 fw-bold">{$content.text_1_find_the_friction}</h3><p class="text-white-50">{$content.text_we_uncover_the_bottlenecks_missed_opportunities}</p></div>
+                <div class="col-lg-4"><h3 class="h4 fw-bold">{$content.text_2_prioritize_the_impact}</h3><p class="text-white-50">{$content.text_we_focus_on_the_changes_most}</p></div>
+                <div class="col-lg-4"><h3 class="h4 fw-bold">{$content.text_3_build_for_what_comes_next}</h3><p class="text-white-50">{$content.text_we_implement_practical_systems_designed_to}</p></div>
             </div>
         </div>
     </section>
@@ -358,11 +358,11 @@
                 <div class="col-lg-5">
                     <div class="eyebrow text-success mb-3">
                         <span class="eyebrow-dot"></span>
-                        Why businesses choose Skale
+                        {$content.text_why_businesses_choose_skale}
                     </div>
-                    <h2 class="display-5 fw-bold">A partner who understands the whole business.</h2>
-                    <p class="lead text-secondary">You should not have to coordinate separate vendors for your website, marketing, software, data, and automation. Skale brings technical depth and business context together.</p>
-                    <a class="mbtn btn btn-outline-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your Challenges</a>
+                    <h2 class="display-5 fw-bold">{$content.text_a_partner_who_understands_the_whole}</h2>
+                    <p class="lead text-secondary">{$content.text_you_should_not_have_to_coordinate}</p>
+                    <a class="mbtn btn btn-outline-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_challenges}</a>
                 </div>
 
                 <div class="col-lg-7"><div class="row g-3">
@@ -371,8 +371,8 @@
                                 <div class="icon-box mb-3">
                                     <i class="bi bi-award"></i>
                                 </div>
-                                <h3 class="h5 fw-bold">20+ Years of Experience</h3>
-                                <p class="text-secondary mb-0">Senior engineering and consulting experience applied directly to your business.</p>
+                                <h3 class="h5 fw-bold">{$content.text_20_years_of_experience}</h3>
+                                <p class="text-secondary mb-0">{$content.text_senior_engineering_and_consulting_experience_applied}</p>
                             </div>
                         </div>
 
@@ -381,8 +381,8 @@
                                 <div class="icon-box mb-3">
                                     <i class="bi bi-person-check"></i>
                                 </div>
-                                <h3 class="h5 fw-bold">Founder-Led Engagements</h3>
-                                <p class="text-secondary mb-0">Direct access, thoughtful recommendations, and accountability from start to finish.</p>
+                                <h3 class="h5 fw-bold">{$content.text_founder_led_engagements}</h3>
+                                <p class="text-secondary mb-0">{$content.text_direct_access_thoughtful_recommendations_and_accountability}</p>
                             </div>
                         </div>
 
@@ -391,8 +391,8 @@
                                 <div class="icon-box mb-3">
                                     <i class="bi bi-sliders"></i>
                                 </div>
-                                <h3 class="h5 fw-bold">Built Around Your Business</h3>
-                                <p class="text-secondary mb-0">No rigid package or generic playbook forced onto a problem it does not fit.</p>
+                                <h3 class="h5 fw-bold">{$content.text_built_around_your_business}</h3>
+                                <p class="text-secondary mb-0">{$content.text_no_rigid_package_or_generic_playbook}</p>
                             </div>
                         </div>
 
@@ -401,8 +401,8 @@
                                 <div class="icon-box mb-3">
                                     <i class="bi bi-infinity"></i>
                                 </div>
-                                <h3 class="h5 fw-bold">Long-Term Thinking</h3>
-                                <p class="text-secondary mb-0">Solutions are designed to reduce future friction, not create another short-lived fix.</p>
+                                <h3 class="h5 fw-bold">{$content.text_long_term_thinking}</h3>
+                                <p class="text-secondary mb-0">{$content.text_solutions_are_designed_to_reduce_future}</p>
                             </div>
                         </div>
                     </div>
@@ -413,17 +413,17 @@
 
     <section class="section-padding-sm bg-light">
         <div class="container">
-            <div class="text-center max-width-copy mx-auto mb-5"><h2 class="display-6 fw-bold">Typical agency vs. the Skale approach</h2><p class="lead text-secondary">The difference is not only what gets delivered. It is how each decision supports the larger business.</p></div>
+            <div class="text-center max-width-copy mx-auto mb-5"><h2 class="display-6 fw-bold">{$content.text_typical_agency_vs_the_skale_approach}</h2><p class="lead text-secondary">{$content.text_the_difference_is_not_only_what}</p></div>
             <div class="comparison-table bg-white shadow-sm">
-                <div class="row g-0 comparison-head"><div class="col-4">Area</div><div class="col-4">Typical Agency</div><div class="col-4 skale-column">Skale</div></div>
+                <div class="row g-0 comparison-head"><div class="col-4">{$content.text_area}</div><div class="col-4">{$content.text_typical_agency}</div><div class="col-4 skale-column">{$content.text_skale}</div></div>
 
-                <div class="row g-0"><div class="col-4 fw-semibold">Starting point</div><div class="col-4 text-secondary">Requested deliverable</div><div class="col-4 skale-column fw-semibold">Business outcome</div></div>
+                <div class="row g-0"><div class="col-4 fw-semibold">{$content.text_starting_point}</div><div class="col-4 text-secondary">{$content.text_requested_deliverable}</div><div class="col-4 skale-column fw-semibold">{$content.text_business_outcome}</div></div>
 
-                <div class="row g-0"><div class="col-4 fw-semibold">Recommendations</div><div class="col-4 text-secondary">Limited to one service</div><div class="col-4 skale-column fw-semibold">Across systems and teams</div></div>
+                <div class="row g-0"><div class="col-4 fw-semibold">{$content.text_recommendations}</div><div class="col-4 text-secondary">{$content.text_limited_to_one_service}</div><div class="col-4 skale-column fw-semibold">{$content.text_across_systems_and_teams}</div></div>
 
-                <div class="row g-0"><div class="col-4 fw-semibold">Technology</div><div class="col-4 text-secondary">Platform-first</div><div class="col-4 skale-column fw-semibold">Fit-for-purpose</div></div>
+                <div class="row g-0"><div class="col-4 fw-semibold">{$content.text_technology}</div><div class="col-4 text-secondary">{$content.text_platform_first}</div><div class="col-4 skale-column fw-semibold">{$content.text_fit_for_purpose}</div></div>
 
-                <div class="row g-0"><div class="col-4 fw-semibold">Success</div><div class="col-4 text-secondary">Launch completed</div><div class="col-4 skale-column fw-semibold">Measurable improvement</div></div>
+                <div class="row g-0"><div class="col-4 fw-semibold">{$content.text_success}</div><div class="col-4 text-secondary">{$content.text_launch_completed}</div><div class="col-4 skale-column fw-semibold">{$content.text_measurable_improvement}</div></div>
             </div>
         </div>
     </section>
@@ -431,13 +431,13 @@
     <section class="section-padding-sm">
         <div class="container">
             <div class="row text-center rounded-skale border overflow-hidden mx-0">
-                <div class="col-lg-3 metric"><div class="metric-number">20+</div><div class="text-secondary mt-2">Years of experience</div></div>
+                <div class="col-lg-3 metric"><div class="metric-number">{$content.text_20}</div><div class="text-secondary mt-2">{$content.text_years_of_experience}</div></div>
 
-                <div class="col-lg-3 metric"><div class="metric-number">4</div><div class="text-secondary mt-2">Connected solution pillars</div></div>
+                <div class="col-lg-3 metric"><div class="metric-number">{$content.text_4}</div><div class="text-secondary mt-2">{$content.text_connected_solution_pillars}</div></div>
 
-                <div class="col-lg-3 metric"><div class="metric-number">1</div><div class="text-secondary mt-2">Partner across the journey</div></div>
+                <div class="col-lg-3 metric"><div class="metric-number">{$content.text_1}</div><div class="text-secondary mt-2">{$content.text_partner_across_the_journey}</div></div>
 
-                <div class="col-lg-3 metric"><div class="metric-number">Custom</div><div class="text-secondary mt-2">Every engagement</div></div>
+                <div class="col-lg-3 metric"><div class="metric-number">{$content.text_custom}</div><div class="text-secondary mt-2">{$content.text_every_engagement}</div></div>
             </div>
         </div>
     </section>
@@ -448,13 +448,13 @@
                 <div>
                     <div class="eyebrow text-success mb-3">
                         <span class="eyebrow-dot"></span>
-                        Keep exploring
+                        {$content.text_keep_exploring}
                     </div>
 
-                    <h2 class="display-6 fw-bold mb-0">Learn how businesses scale smarter.</h2>
+                    <h2 class="display-6 fw-bold mb-0">{$content.text_learn_how_businesses_scale_smarter}</h2>
                 </div>
 
-                <a class="mbtn text-link" href="{$smarty.ENV.SITE_URL}blog">View all insights <i class="bi bi-arrow-right"></i></a>
+                <a class="mbtn text-link" href="{$smarty.ENV.SITE_URL}blog">{$content.text_view_all_insights} <i class="bi bi-arrow-right"></i></a>
             </div>
 
             <div class="row g-4">
@@ -469,7 +469,7 @@
                                 <span class="small text-uppercase fw-bold text-success letter-spacing">{$blog->category}</span>
                                 <h3 class="h4 fw-bold mt-2">{$blog->title}</h3>
                                 <p class="text-secondary">{$blog->shortText|truncate:100}</p>
-                                <a aria-label="serviceList blog {$blog->title}" class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}">Read the article <i class="bi bi-arrow-right"></i></a>
+                                <a aria-label="{$content.aria_label_service_list_blog} {$blog->title}" class="mbtn text-link stretched-link" href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}">{$content.text_read_the_article} <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </article>
                     </div>
@@ -483,17 +483,17 @@
             <div class="cta-panel p-4 p-md-5 p-xl-6">
                 <div class="row g-5 align-items-start">
                     <div class="col-lg-6">
-                        <div class="eyebrow mb-3"><span class="eyebrow-dot"></span>Free consultation</div>
-                        <h2 class="display-5 fw-bold text-white">Ready to build systems that actually scale?</h2>
-                        <p class="lead text-white-50">Tell us what is getting in the way. We will help you identify the highest-impact opportunities across your website, marketing, processes, and technology.</p>
+                        <div class="eyebrow mb-3"><span class="eyebrow-dot"></span>{$content.text_free_consultation}</div>
+                        <h2 class="display-5 fw-bold text-white">{$content.text_ready_to_build_systems_that_actually}</h2>
+                        <p class="lead text-white-50">{$content.text_tell_us_what_is_getting_in}</p>
                         <div class="d-flex flex-column gap-3 mt-4">
-                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>No-pressure discovery conversation</div>
-                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>Clear next-step recommendations</div>
-                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>Direct conversation with an experienced technical partner</div>
+                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_no_pressure_discovery_conversation}</div>
+                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_clear_next_step_recommendations}</div>
+                            <div><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_direct_conversation_with_an_experienced_technical}</div>
                         </div>
 
                         <div class="mt-5">
-                            <div class="small text-white-50 text-uppercase letter-spacing mb-1">Prefer email?</div>
+                            <div class="small text-white-50 text-uppercase letter-spacing mb-1">{$content.text_prefer_email}</div>
                             <a class="h5 text-white text-decoration-none" href="mailto:{$smarty.ENV.SITE_EMAIL}">{$smarty.ENV.SITE_EMAIL}</a>
                         </div>
                     </div>
@@ -501,16 +501,16 @@
                     <div class="col-lg-6">
                         <form class="contact-form bg-white text-dark rounded-skale p-4 p-md-5 ajaxForm" action="{$smarty.ENV.SITE_URL}contact-form" method="post">
                             <input type="hidden" name="form_type" value="service-consultation">
-                            <h3 class="h4 fw-bold mb-1">Start the conversation</h3>
-                            <p class="text-secondary mb-4">Share a few details and we will follow up.</p>
+                            <h3 class="h4 fw-bold mb-1">{$content.text_start_the_conversation}</h3>
+                            <p class="text-secondary mb-4">{$content.text_share_a_few_details_and_we}</p>
                             <div class="row g-3">
-                                <div class="col-md-6"><label class="form-label fw-semibold" for="name">Name</label><input class="form-control" id="name" name="name" type="text" autocomplete="name" required></div>
-                                <div class="col-md-6"><label class="form-label fw-semibold" for="email">Email</label><input class="form-control" id="email" name="email" type="email" autocomplete="email" required></div>
-                                <div class="col-12"><label class="form-label fw-semibold" for="company">Company</label><input class="form-control" id="company" name="company" type="text" autocomplete="organization"></div>
-                                <div class="col-12"><label class="form-label fw-semibold" for="interest">What would you like to improve?</label><select class="form-select" id="interest" name="interest" required><option value="" selected disabled>Select the closest option</option><option>Generate more leads</option><option>Improve my website</option><option>Automate repetitive work</option><option>Connect business systems</option><option>Improve marketing performance</option><option>Create a growth strategy</option><option>Not sure yet</option></select></div>
-                                <div class="col-12"><label class="form-label fw-semibold" for="message">What is happening now?</label><textarea class="form-control" id="comment" name="comment" placeholder="Briefly describe the challenge, what you have tried, or what you want to accomplish."></textarea></div>
-                                <div class="col-12"><button class="btn btn-skale btn-lg w-100" type="submit">Request My Free Consultation <i class="bi bi-arrow-right ms-1"></i></button></div>
-                                <div class="col-12"><p class="small text-secondary text-center mb-0">Your information stays private. No spam or aggressive sales follow-up.</p></div>
+                                <div class="col-md-6"><label class="form-label fw-semibold" for="name">{$content.text_name}</label><input class="form-control" id="name" name="name" type="text" autocomplete="name" required></div>
+                                <div class="col-md-6"><label class="form-label fw-semibold" for="email">{$content.text_email}</label><input class="form-control" id="email" name="email" type="email" autocomplete="email" required></div>
+                                <div class="col-12"><label class="form-label fw-semibold" for="company">{$content.text_company}</label><input class="form-control" id="company" name="company" type="text" autocomplete="organization"></div>
+                                <div class="col-12"><label class="form-label fw-semibold" for="interest">{$content.text_what_would_you_like_to_improve}</label><select class="form-select" id="interest" name="interest" required><option value="" selected disabled>{$content.text_select_the_closest_option}</option><option>{$content.text_generate_more_leads_2}</option><option>{$content.text_improve_my_website}</option><option>{$content.text_automate_repetitive_work}</option><option>{$content.text_connect_business_systems}</option><option>{$content.text_improve_marketing_performance}</option><option>{$content.text_create_a_growth_strategy}</option><option>{$content.text_not_sure_yet}</option></select></div>
+                                <div class="col-12"><label class="form-label fw-semibold" for="message">{$content.text_what_is_happening_now}</label><textarea class="form-control" id="comment" name="comment" placeholder="{$content.placeholder_briefly_describe_the_challenge_what_you}"></textarea></div>
+                                <div class="col-12"><button class="btn btn-skale btn-lg w-100" type="submit">{$content.text_request_my_free_consultation} <i class="bi bi-arrow-right ms-1"></i></button></div>
+                                <div class="col-12"><p class="small text-secondary text-center mb-0">{$content.text_your_information_stays_private_no_spam}</p></div>
                             </div>
                             {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
@@ -521,6 +521,6 @@
     </section>
 </main>
 
-<a class="mbtn btn btn-skale sticky-cta d-lg-none" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}"><i class="bi bi-chat-dots me-2"></i>Free Consultation</a>
+<a class="mbtn btn btn-skale sticky-cta d-lg-none" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}"><i class="bi bi-chat-dots me-2"></i>{$content.text_free_consultation_2}</a>
 
 {include file="inc/layout/footer.tpl"}

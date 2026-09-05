@@ -1,4 +1,4 @@
-<header class="fixed-top clearfix menu-bar {if $p1 != '' && $viewName != 'landing'}menu-bar-bg{/if}">
+<header class="main-header fixed-top clearfix menu-bar {if $p1 != '' && $viewName != 'landing'}menu-bar-bg{/if}">
     <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
         <div class="container">
             {include file="inc/layout/main-logo.tpl"}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Content\TemplateContentProvider;
 use App\Core\Contracts\ViewInterface;
 use Smarty\Smarty;
 
@@ -18,8 +19,12 @@ class View implements ViewInterface
     private PageContextProvider $pageContextProvider;
     private array $user;
 
-    public function __construct(Smarty $smarty, SiteDataCache $siteDataCache, PageContextProvider $pageContextProvider)
-    {
+    public function __construct(
+        Smarty $smarty,
+        SiteDataCache $siteDataCache,
+        PageContextProvider $pageContextProvider,
+        private readonly TemplateContentProvider $templateContent,
+    ) {
         $this->smarty = $smarty;
         $this->smarty->caching = Smarty::CACHING_OFF;
         $this->smarty->setTemplateDir($_ENV['SMARTY_TEMPLATE_DIR']);
@@ -79,7 +84,9 @@ class View implements ViewInterface
         $this->smarty->assign($this->siteDataCache->getSharedData());
         $this->smarty->assign('page', $page);
         $this->smarty->assign('data', $data);
+        $this->smarty->assign('content', $this->templateContent->get($view));
         $this->smarty->assign('viewName', $view);
+        $this->smarty->assign('isLandingRoute', $view === 'landing');
         $this->smarty->assign('header', isset($_GET['header']) ? $_GET['header'] : true);
         $this->smarty->assign('footer', isset($_GET['footer']) ? $_GET['footer'] : true);
         $this->smarty->assign('uri', $this->uri);

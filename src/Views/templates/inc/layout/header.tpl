@@ -65,7 +65,7 @@
             <div class="loader"></div>
         </div>
 
-        {include file="inc/layout/nav.tpl" hideBreadcrumb=$hideBreadcrumb hideMenu=$hideMenu}
+        {include file="inc/layout/nav.tpl"}
 
         <div class="page-content">
         {/if}

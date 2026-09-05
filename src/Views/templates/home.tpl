@@ -3,37 +3,37 @@
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
 
 <main class="home">
-    <!-- Hero -->
+
     <section class="hero">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
                     <div class="hero-kicker" data-aos="fade-up">
                         <span></span>
-                        Where engineering meets growth
+                        {$content.text_where_engineering_meets_growth}
                     </div>
                     <h1 data-aos="fade-up" data-aos-delay="75">
-                        Build a business that works <span class="text-gradient">smarter as it grows.</span>
+                        {$content.text_build_a_business_that_works} <span class="text-gradient">{$content.text_smarter_as_it_grows}</span>
                     </h1>
                     <p class="hero-copy mt-4" data-aos="fade-up" data-aos-delay="150">
-                        Skale connects your website, marketing, software, automation, data, and strategy into practical systems that generate opportunities, reduce friction, and support long-term growth.
+                        {$content.text_skale_connects_your_website_marketing_software}
                     </p>
                     <div class="hero-actions d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="225">
-                        <a aria-label="home hero contact button" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Explore Solutions</a>
-                        <a class="btn btn-link text-white text-decoration-none px-2" onclick="scrollToEl('#problems')">See What We Solve <i class="bi bi-arrow-down ms-1"></i></a>
+                        <a aria-label="{$content.aria_label_home_hero_contact_button}" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_explore_solutions}</a>
+                        <a class="btn btn-link text-white text-decoration-none px-2" onclick="scrollToEl('#problems')">{$content.text_see_what_we_solve} <i class="bi bi-arrow-down ms-1"></i></a>
                     </div>
                     <div class="hero-proof" data-aos="fade-up" data-aos-delay="300">
-                        <span><i class="bi bi-check-circle-fill"></i>20+ years of experience</span>
-                        <span><i class="bi bi-check-circle-fill"></i>Founder-led engagements</span>
-                        <span><i class="bi bi-check-circle-fill"></i>Built around your business</span>
+                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_20_years_of_experience}</span>
+                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_founder_led_engagements}</span>
+                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_built_around_your_business}</span>
                     </div>
                 </div>
                 <div class="col-lg-5" data-aos="fade-left" data-aos-delay="175">
                     <div class="hero-form-card">
                         <div class="hero-form-header">
-                            <span class="hero-form-eyebrow">Free strategy session</span>
-                            <h2 class="fs-4 h3 mb-2">What would you like to improve?</h2>
-                            <p class="mb-0">Share a few details and get a practical recommendation for your next step.</p>
+                            <span class="hero-form-eyebrow">{$content.text_free_strategy_session}</span>
+                            <h2 class="fs-4 h3 mb-2">{$content.text_what_would_you_like_to_improve}</h2>
+                            <p class="mb-0">{$content.text_share_a_few_details_and_get}</p>
                         </div>
 
                         <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
@@ -41,41 +41,41 @@
                             <input type="hidden" name="form_type" value="home-hero">
 
                             <div class="mb-3">
-                                <label class="form-label" for="heroName">Name *</label>
+                                <label class="form-label" for="heroName">{$content.text_name}</label>
                                 <input autocomplete="name" class="form-control" id="heroName" name="name" required="" type="text" />
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="email">Email *</label>
+                                <label class="form-label" for="email">{$content.text_email}</label>
                                 <input autocomplete="email" class="form-control" id="email" name="email" required="" type="email" />
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="phone">Phone</label>
+                                <label class="form-label" for="phone">{$content.text_phone}</label>
                                 <input autocomplete="tel" class="form-control" id="phone" name="phone" type="tel" />
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="heroInterest">Biggest challenge *</label>
+                                <label class="form-label" for="heroInterest">{$content.text_biggest_challenge}</label>
                                 <select class="form-select" id="heroInterest" name="interest" required="">
-                                    <option disabled="" selected="" value="">Select one</option>
-                                    <option value="website-leads">Generate more leads</option>
-                                    <option value="new-website">Build a new website</option>
-                                    <option value="improve-website">Improve my current website</option>
-                                    <option value="automation">Automate manual work</option>
-                                    <option value="integrations">Connect systems and data</option>
-                                    <option value="marketing">Improve marketing, SEO, or PPC</option>
-                                    <option value="unsure">I am not sure yet</option>
+                                    <option disabled="" selected="" value="">{$content.text_select_one}</option>
+                                    <option value="website-leads">{$content.text_generate_more_leads}</option>
+                                    <option value="new-website">{$content.text_build_a_new_website}</option>
+                                    <option value="improve-website">{$content.text_improve_my_current_website}</option>
+                                    <option value="automation">{$content.text_automate_manual_work}</option>
+                                    <option value="integrations">{$content.text_connect_systems_and_data}</option>
+                                    <option value="marketing">{$content.text_improve_marketing_seo_or_ppc}</option>
+                                    <option value="unsure">{$content.text_i_am_not_sure_yet}</option>
                                 </select>
                             </div>
 
                             <div aria-hidden="true" class="d-none">
-                                <label for="heroWebsite">Website</label>
+                                <label for="heroWebsite">{$content.text_website}</label>
                                 <input autocomplete="off" id="heroWebsite" name="website" tabindex="-1" type="text" />
                             </div>
 
-                            <button class="btn btn-primary btn-lg w-100" type="submit">Get My Recommendation <i class="bi bi-arrow-right ms-1"></i></button>
-                            <p class="hero-form-note mb-0 mt-3"><i class="bi bi-lock me-1"></i>No spam. No aggressive sales follow-up.</p>
+                            <button class="btn btn-primary btn-lg w-100" type="submit">{$content.text_get_my_recommendation} <i class="bi bi-arrow-right ms-1"></i></button>
+                            <p class="hero-form-note mb-0 mt-3"><i class="bi bi-lock me-1"></i>{$content.text_no_spam_no_aggressive_sales_follow}</p>
                             {include file="inc/layout/cloudflare-turnstile.tpl"}
                         </form>
                     </div>
@@ -84,85 +84,85 @@
         </div>
     </section>
 
-    <!-- Trust Stats -->
-    <section aria-label="Skale trust indicators" class="trust-bar">
+
+    <section aria-label="{$content.aria_label_skale_trust_indicators}" class="trust-bar">
         <div class="container">
             <div class="trust-card">
                 <div class="row text-center">
                     <div class="col-6 col-lg-3 trust-stat">
-                        <strong>20+</strong>
-                        <span>Years of experience</span>
+                        <strong>{$content.text_20}</strong>
+                        <span>{$content.text_years_of_experience}</span>
                     </div>
                     <div class="col-6 col-lg-3 trust-stat">
-                        <strong>4</strong>
-                        <span>Connected solution pillars</span>
+                        <strong>{$content.text_4}</strong>
+                        <span>{$content.text_connected_solution_pillars}</span>
                     </div>
                     <div class="col-6 col-lg-3 trust-stat">
-                        <strong>1</strong>
-                        <span>Partner across the journey</span>
+                        <strong>{$content.text_1}</strong>
+                        <span>{$content.text_partner_across_the_journey}</span>
                     </div>
                     <div class="col-6 col-lg-3 trust-stat">
-                        <strong>Custom</strong>
-                        <span>Every engagement</span>
+                        <strong>{$content.text_custom}</strong>
+                        <span>{$content.text_every_engagement}</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problems -->
+
     <section class="section-padding" id="problems">
         <div class="container">
             <div class="row align-items-end g-4 mb-5">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">The problems we solve</span>
-                    <h2>Your business may not need another tool. It may need a better system.</h2>
+                    <span class="section-label">{$content.text_the_problems_we_solve}</span>
+                    <h2>{$content.text_your_business_may_not_need_another}</h2>
                 </div>
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">Growth gets harder when websites, marketing, tools, and teams do not work together. Start with the problem you recognize.</p>
+                    <p class="mb-0">{$content.text_growth_gets_harder_when_websites_marketing}</p>
                 </div>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-xl-3" data-aos="fade-up">
                     <article class="problem-card">
-                        <span class="problem-number">01 / CONVERSION</span>
-                        <h3>Traffic, but not enough leads</h3>
-                        <p>People visit your website but leave without understanding why they should choose you or what to do next.</p>
-                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Improve conversions <i class="bi bi-arrow-right"></i></a>
+                        <span class="problem-number">{$content.text_01_conversion}</span>
+                        <h3>{$content.text_traffic_but_not_enough_leads}</h3>
+                        <p>{$content.text_people_visit_your_website_but_leave}</p>
+                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_improve_conversions} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="100">
                     <article class="problem-card">
-                        <span class="problem-number">02 / EFFICIENCY</span>
-                        <h3>Too much repetitive work</h3>
-                        <p>Your team spends valuable time copying data, updating spreadsheets, and repeating avoidable manual tasks.</p>
-                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Automate operations <i class="bi bi-arrow-right"></i></a>
+                        <span class="problem-number">{$content.text_02_efficiency}</span>
+                        <h3>{$content.text_too_much_repetitive_work}</h3>
+                        <p>{$content.text_your_team_spends_valuable_time_copying}</p>
+                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_automate_operations} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="200">
                     <article class="problem-card">
-                        <span class="problem-number">03 / VISIBILITY</span>
-                        <h3>Systems that do not connect</h3>
-                        <p>Information is scattered across tools, creating delays, mistakes, duplicated work, and unclear reporting.</p>
-                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">Connect your systems <i class="bi bi-arrow-right"></i></a>
+                        <span class="problem-number">{$content.text_03_visibility}</span>
+                        <h3>{$content.text_systems_that_do_not_connect}</h3>
+                        <p>{$content.text_information_is_scattered_across_tools_creating}</p>
+                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">{$content.text_connect_your_systems} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="300">
                     <article class="problem-card">
-                        <span class="problem-number">04 / SCALE</span>
-                        <h3>Growth is creating friction</h3>
-                        <p>Processes that once worked are becoming harder to manage as customers, demand, and complexity increase.</p>
-                        <a aria-label="home service link" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Build a scalable plan <i class="bi bi-arrow-right"></i></a>
+                        <span class="problem-number">{$content.text_04_scale}</span>
+                        <h3>{$content.text_growth_is_creating_friction}</h3>
+                        <p>{$content.text_processes_that_once_worked_are_becoming}</p>
+                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_build_a_scalable_plan} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <p class="mb-3">Recognize your business in one of these?</p>
-                <a aria-label="home talk through your challenge button" class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your Challenge</a>
+                <p class="mb-3">{$content.text_recognize_your_business_in_one_of}</p>
+                <a aria-label="{$content.aria_label_home_talk_through_your_challenge_button}" class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_challenge}</a>
             </div>
         </div>
     </section>
@@ -171,45 +171,45 @@
         <div class="container">
             <div class="inline-cta" data-aos="fade-up">
                 <div>
-                    <span class="inline-cta-label">Recognize these problems?</span>
-                    <h2 class="h3 mb-2">Let's identify what is slowing your growth.</h2>
-                    <p class="mb-0">You do not need to know the solution before reaching out.</p>
+                    <span class="inline-cta-label">{$content.text_recognize_these_problems}</span>
+                    <h2 class="h3 mb-2">{$content.text_let_s_identify_what_is_slowing}</h2>
+                    <p class="mb-0">{$content.text_you_do_not_need_to_know}</p>
                 </div>
-                <a aria-label="home free strategy session button" class="mbtn btn btn-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Free Strategy Session</a>
+                <a aria-label="{$content.aria_label_home_free_strategy_session_button}" class="mbtn btn btn-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_free_strategy_session_2}</a>
             </div>
         </div>
     </section>
 
-    <!-- Problems to Outcomes -->
+
     <section class="section-padding outcome-section">
         <div class="container">
             <div class="text-center mx-auto mb-5" data-aos="fade-up" style="max-width: 760px;">
-                <span class="section-label justify-content-center">From friction to progress</span>
-                <h2>Focus on the outcome, not a list of deliverables.</h2>
-                <p class="section-intro mx-auto">Every engagement starts by understanding what is slowing the business down and what measurable improvement should look like.</p>
+                <span class="section-label justify-content-center">{$content.text_from_friction_to_progress}</span>
+                <h2>{$content.text_focus_on_the_outcome_not_a}</h2>
+                <p class="section-intro mx-auto">{$content.text_every_engagement_starts_by_understanding_what}</p>
             </div>
             <div class="row g-4 align-items-stretch">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="home-outcome-card">
-                        <span class="badge text-bg-light border mb-3">What may be happening now</span>
-                        <h3>Disconnected activity creates hidden costs.</h3>
+                        <span class="badge text-bg-light border mb-3">{$content.text_what_may_be_happening_now}</span>
+                        <h3>{$content.text_disconnected_activity_creates_hidden_costs}</h3>
                         <ul class="home-outcome-list">
-                            <li><i class="bi bi-x-circle"></i><span>Your website does not clearly communicate value or generate qualified inquiries.</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>Employees spend hours completing repetitive tasks that could be automated.</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>Marketing channels operate separately from sales, follow-up, and reporting.</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>Decisions are based on incomplete data or reports that arrive too late.</span></li>
+                            <li><i class="bi bi-x-circle"></i><span>{$content.text_your_website_does_not_clearly_communicate}</span></li>
+                            <li><i class="bi bi-x-circle"></i><span>{$content.text_employees_spend_hours_completing_repetitive_tasks}</span></li>
+                            <li><i class="bi bi-x-circle"></i><span>{$content.text_marketing_channels_operate_separately_from_sales}</span></li>
+                            <li><i class="bi bi-x-circle"></i><span>{$content.text_decisions_are_based_on_incomplete_data}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="home-outcome-card dark">
-                        <span class="badge bg-white text-dark mb-3">What better can look like</span>
-                        <h3 class="text-white">Connected systems create momentum.</h3>
+                        <span class="badge bg-white text-dark mb-3">{$content.text_what_better_can_look_like}</span>
+                        <h3 class="text-white">{$content.text_connected_systems_create_momentum}</h3>
                         <ul class="home-outcome-list">
-                            <li><i class="bi bi-check-circle-fill"></i><span>A clear customer journey that turns attention into qualified opportunities.</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>Automated workflows that save time and reduce avoidable mistakes.</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>Tools and data that move reliably between teams and platforms.</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>Reporting that shows what is working and what should improve next.</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_a_clear_customer_journey_that_turns}</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_automated_workflows_that_save_time_and}</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_tools_and_data_that_move_reliably}</span></li>
+                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_reporting_that_shows_what_is_working}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -217,86 +217,86 @@
         </div>
     </section>
 
-    <!-- Services -->
+
     <section class="section-padding" id="services">
         <div class="container">
             <div class="row align-items-end g-4 mb-5">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">Connected solutions</span>
-                    <h2>Everything your business needs to grow working together.</h2>
+                    <span class="section-label">{$content.text_connected_solutions}</span>
+                    <h2>{$content.text_everything_your_business_needs_to_grow}</h2>
                 </div>
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">Each solution can stand alone or connect with the others to create a more complete growth system.</p>
+                    <p class="mb-0">{$content.text_each_solution_can_stand_alone_or}</p>
                 </div>
             </div>
             <div class="row g-4">
                 <div class="col-md-6" data-aos="fade-up">
                     <article class="service-card">
                         <div class="icon-box"><i class="bi bi-window"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">Growth Infrastructure</span>
-                        <h3>Turn your website into your best salesperson.</h3>
-                        <p>Create a faster, clearer, more credible online experience that earns trust, guides visitors, captures leads, and supports follow-up.</p>
+                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_growth_infrastructure}</span>
+                        <h3>{$content.text_turn_your_website_into_your_best}</h3>
+                        <p>{$content.text_create_a_faster_clearer_more_credible}</p>
                         <ul class="service-list">
-                            <li>Website design and development</li>
-                            <li>Landing pages and conversion optimization</li>
-                            <li>CRM, lead tracking, and customer journeys</li>
-                            <li>Analytics and performance improvements</li>
+                            <li>{$content.text_website_design_and_development}</li>
+                            <li>{$content.text_landing_pages_and_conversion_optimization}</li>
+                            <li>{$content.text_crm_lead_tracking_and_customer_journeys}</li>
+                            <li>{$content.text_analytics_and_performance_improvements}</li>
                         </ul>
-                        <a aria-label="home growth infrastructure" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">Explore Growth Infrastructure <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="{$content.aria_label_home_growth_infrastructure}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_explore_growth_infrastructure} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <article class="service-card">
                         <div class="icon-box"><i class="bi bi-gear-wide-connected"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">Automation &amp; Software</span>
-                        <h3>Stop paying people to do robot work.</h3>
-                        <p>Streamline repetitive processes, connect your tools, and build practical software that helps your team focus on higher-value work.</p>
+                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_automation_software}</span>
+                        <h3>{$content.text_stop_paying_people_to_do_robot}</h3>
+                        <p>{$content.text_streamline_repetitive_processes_connect_your_tools}</p>
                         <ul class="service-list">
-                            <li>Workflow and process automation</li>
-                            <li>System integrations and data synchronization</li>
-                            <li>Custom software, portals, and internal tools</li>
-                            <li>AI-assisted reporting and insights</li>
+                            <li>{$content.text_workflow_and_process_automation}</li>
+                            <li>{$content.text_system_integrations_and_data_synchronization}</li>
+                            <li>{$content.text_custom_software_portals_and_internal_tools}</li>
+                            <li>{$content.text_ai_assisted_reporting_and_insights}</li>
                         </ul>
-                        <a aria-label="home automation and software" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">Explore Automation &amp; Software <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="{$content.aria_label_home_automation_and_software}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_explore_automation_software} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6" data-aos="fade-up">
                     <article class="service-card">
                         <div class="icon-box"><i class="bi bi-bullseye"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">Demand Generation</span>
-                        <h3>Build a more predictable pipeline of customers.</h3>
-                        <p>Connect visibility, messaging, conversion, lead nurturing, and reporting so your marketing investment creates measurable opportunities.</p>
+                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_demand_generation}</span>
+                        <h3>{$content.text_build_a_more_predictable_pipeline_of}</h3>
+                        <p>{$content.text_connect_visibility_messaging_conversion_lead_nurturing}</p>
                         <ul class="service-list">
-                            <li>SEO strategy and content improvement</li>
-                            <li>Google and Meta paid advertising</li>
-                            <li>Email marketing and lead nurturing</li>
-                            <li>Campaign analytics and optimization</li>
+                            <li>{$content.text_seo_strategy_and_content_improvement}</li>
+                            <li>{$content.text_google_and_meta_paid_advertising}</li>
+                            <li>{$content.text_email_marketing_and_lead_nurturing}</li>
+                            <li>{$content.text_campaign_analytics_and_optimization}</li>
                         </ul>
-                        <a aria-label="home demand generation" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">Explore Demand Generation <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="{$content.aria_label_home_demand_generation}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">{$content.text_explore_demand_generation} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
 
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <article class="service-card">
                         <div class="icon-box"><i class="bi bi-compass"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">Strategy &amp; Optimization</span>
-                        <h3>Know exactly what to improve next.</h3>
-                        <p>Find bottlenecks, prioritize investments, and create a practical roadmap based on business impact rather than trends or unnecessary technology.</p>
+                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_strategy_optimization}</span>
+                        <h3>{$content.text_know_exactly_what_to_improve_next}</h3>
+                        <p>{$content.text_find_bottlenecks_prioritize_investments_and_create}</p>
                         <ul class="service-list">
-                            <li>Growth audits and system mapping</li>
-                            <li>Technology and marketing roadmaps</li>
-                            <li>Analytics, KPIs, and reporting</li>
-                            <li>Ongoing optimization and guidance</li>
+                            <li>{$content.text_growth_audits_and_system_mapping}</li>
+                            <li>{$content.text_technology_and_marketing_roadmaps}</li>
+                            <li>{$content.text_analytics_kpis_and_reporting}</li>
+                            <li>{$content.text_ongoing_optimization_and_guidance}</li>
                         </ul>
-                        <a aria-label="home strategy optimization" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">Explore Strategy &amp; Optimization <i class="bi bi-arrow-right"></i></a>
+                        <a aria-label="{$content.aria_label_home_strategy_optimization}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_explore_strategy_optimization} <i class="bi bi-arrow-right"></i></a>
                     </article>
                 </div>
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <a aria-label="home view all solutions" class="mbtn btn btn-outline-primary btn-lg" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}">View All Solutions</a>
+                <a aria-label="{$content.aria_label_home_view_all_solutions}" class="mbtn btn btn-outline-primary btn-lg" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}">{$content.text_view_all_solutions}</a>
             </div>
         </div>
     </section>
@@ -305,152 +305,152 @@
         <div class="container">
             <div class="inline-cta inline-cta-light" data-aos="fade-up">
                 <div>
-                    <span class="inline-cta-label">Not sure where to start?</span>
-                    <h2 class="h3 mb-2">Tell us the outcome you need.</h2>
-                    <p class="mb-0">We will help you determine whether the right next step is your website, automation, marketing, or the systems connecting them.</p>
+                    <span class="inline-cta-label">{$content.text_not_sure_where_to_start}</span>
+                    <h2 class="h3 mb-2">{$content.text_tell_us_the_outcome_you_need}</h2>
+                    <p class="mb-0">{$content.text_we_will_help_you_determine_whether}</p>
                 </div>
-                <a class="btn btn-outline-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your Goal</a>
+                <a class="btn btn-outline-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_goal}</a>
             </div>
         </div>
     </section>
 
-    <!-- Connected Journey -->
+
     <section class="section-padding systems-section">
         <div class="container">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label text-white">The Skale systems approach</span>
-                    <h2 class="text-white">The best results happen when every step supports the next.</h2>
+                    <span class="section-label text-white">{$content.text_the_skale_systems_approach}</span>
+                    <h2 class="text-white">{$content.text_the_best_results_happen_when_every}</h2>
                 </div>
 
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">Most vendors improve one part. Skale considers the complete journey from attention and conversion to delivery, follow-up, and insight.</p>
+                    <p class="mb-0">{$content.text_most_vendors_improve_one_part_skale}</p>
                 </div>
             </div>
 
             <div class="journey-row">
                 <div class="journey-step" data-aos="zoom-in">
                     <div class="journey-icon"><i class="bi bi-megaphone"></i></div>
-                    <strong>Marketing</strong>
+                    <strong>{$content.text_marketing}</strong>
                 </div>
 
                 <div class="journey-step" data-aos="zoom-in" data-aos-delay="75">
                     <div class="journey-icon"><i class="bi bi-window"></i></div>
-                    <strong>Website</strong>
+                    <strong>{$content.text_website}</strong>
                 </div>
 
                 <div class="journey-step" data-aos="zoom-in" data-aos-delay="150">
                     <div class="journey-icon"><i class="bi bi-person-check"></i></div>
-                    <strong>CRM</strong>
+                    <strong>{$content.text_crm}</strong>
                 </div>
 
                 <div class="journey-step" data-aos="zoom-in" data-aos-delay="225">
                     <div class="journey-icon"><i class="bi bi-gear"></i></div>
-                    <strong>Automation</strong>
+                    <strong>{$content.text_automation}</strong>
                 </div>
 
                 <div class="journey-step" data-aos="zoom-in" data-aos-delay="300">
                     <div class="journey-icon"><i class="bi bi-bar-chart"></i></div>
-                    <strong>Reporting</strong>
+                    <strong>{$content.text_reporting}</strong>
                 </div>
 
                 <div class="journey-step" data-aos="zoom-in" data-aos-delay="375">
                     <div class="journey-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <strong>Growth</strong>
+                    <strong>{$content.text_growth}</strong>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process -->
+
     <section class="section-padding">
         <div class="container">
             <div class="text-center mx-auto mb-5" data-aos="fade-up" style="max-width: 760px;">
-                <span class="section-label justify-content-center">How we work</span>
-                <h2>A clear path from business challenge to measurable improvement.</h2>
-                <p class="section-intro mx-auto">No unnecessary complexity. No generic package forced onto a problem it does not fit.</p>
+                <span class="section-label justify-content-center">{$content.text_how_we_work}</span>
+                <h2>{$content.text_a_clear_path_from_business_challenge}</h2>
+                <p class="section-intro mx-auto">{$content.text_no_unnecessary_complexity_no_generic_package}</p>
             </div>
 
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up">
                     <article class="process-card">
-                        <span class="process-count">1</span>
-                        <h3 class="h4 mt-4">Find the friction</h3>
-                        <p class="mb-0">We examine your customer journey, workflows, technology, and data to uncover the real bottlenecks and missed opportunities.</p>
+                        <span class="process-count">{$content.text_1}</span>
+                        <h3 class="h4 mt-4">{$content.text_find_the_friction}</h3>
+                        <p class="mb-0">{$content.text_we_examine_your_customer_journey_workflows}</p>
                     </article>
                 </div>
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <article class="process-card">
-                        <span class="process-count">2</span>
-                        <h3 class="h4 mt-4">Prioritize the impact</h3>
-                        <p class="mb-0">We focus first on the changes most likely to improve revenue, efficiency, visibility, or customer experience.</p>
+                        <span class="process-count">{$content.text_2}</span>
+                        <h3 class="h4 mt-4">{$content.text_prioritize_the_impact}</h3>
+                        <p class="mb-0">{$content.text_we_focus_first_on_the_changes}</p>
                     </article>
                 </div>
 
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <article class="process-card">
-                        <span class="process-count">3</span>
-                        <h3 class="h4 mt-4">Build for what comes next</h3>
-                        <p class="mb-0">We implement practical systems that solve today's problem without creating new obstacles as your business grows.</p>
+                        <span class="process-count">{$content.text_3}</span>
+                        <h3 class="h4 mt-4">{$content.text_build_for_what_comes_next}</h3>
+                        <p class="mb-0">{$content.text_we_implement_practical_systems_that_solve}</p>
                     </article>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trust / Founder -->
+
     <section class="section-padding trust-section">
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-5" data-aos="fade-right">
                     <div class="founder-panel d-flex flex-column justify-content-end">
-                        <span class="badge bg-light text-dark align-self-start mb-3">Founder-led consulting</span>
-                        <h3 class="h2">Experience you can speak with directly.</h3>
-                        <!-- Replace the background image with a professional photo, working session, or client collaboration image. -->
+                        <span class="badge bg-light text-dark align-self-start mb-3">{$content.text_founder_led_consulting}</span>
+                        <h3 class="h2">{$content.text_experience_you_can_speak_with_directly}</h3>
+
                     </div>
                 </div>
 
                 <div class="col-lg-7" data-aos="fade-left">
-                    <span class="section-label">Why businesses trust Skale</span>
-                    <h2>A technical partner who understands the whole business.</h2>
-                    <p class="section-intro">You should not have to coordinate separate vendors for your website, marketing, software, automation, and analytics. Skale brings technical depth and business context together.</p>
+                    <span class="section-label">{$content.text_why_businesses_trust_skale}</span>
+                    <h2>{$content.text_a_technical_partner_who_understands_the}</h2>
+                    <p class="section-intro">{$content.text_you_should_not_have_to_coordinate}</p>
 
                     <div class="mt-4">
                         <div class="trust-point">
                             <i class="bi bi-patch-check-fill"></i>
                             <div>
-                                <h3 class="h5 mb-1">20+ years of real-world experience</h3>
-                                <p class="mb-0">Senior engineering, product, consulting, and growth experience applied directly to your project.</p>
+                                <h3 class="h5 mb-1">{$content.text_20_years_of_real_world_experience}</h3>
+                                <p class="mb-0">{$content.text_senior_engineering_product_consulting_and_growth}</p>
                             </div>
                         </div>
 
                         <div class="trust-point">
                             <i class="bi bi-person-workspace"></i>
                             <div>
-                                <h3 class="h5 mb-1">Direct access and accountability</h3>
-                                <p class="mb-0">Founder-led engagements mean thoughtful recommendations, clear communication, and ownership from start to finish.</p>
+                                <h3 class="h5 mb-1">{$content.text_direct_access_and_accountability}</h3>
+                                <p class="mb-0">{$content.text_founder_led_engagements_mean_thoughtful_recommendations}</p>
                             </div>
                         </div>
 
                         <div class="trust-point">
                             <i class="bi bi-sliders"></i>
                             <div>
-                                <h3 class="h5 mb-1">Recommendations built around your business</h3>
-                                <p class="mb-0">No rigid package, preferred platform, or generic playbook is forced onto a problem it does not fit.</p>
+                                <h3 class="h5 mb-1">{$content.text_recommendations_built_around_your_business}</h3>
+                                <p class="mb-0">{$content.text_no_rigid_package_preferred_platform_or}</p>
                             </div>
                         </div>
 
                         <div class="trust-point">
                             <i class="bi bi-infinity"></i>
                             <div>
-                                <h3 class="h5 mb-1">Long-term thinking</h3>
-                                <p class="mb-0">Every solution is designed to reduce future friction rather than create another short-lived fix.</p>
+                                <h3 class="h5 mb-1">{$content.text_long_term_thinking}</h3>
+                                <p class="mb-0">{$content.text_every_solution_is_designed_to_reduce}</p>
                             </div>
                         </div>
                     </div>
 
-                    <a aria-label="home Learn more about Skale link" class="mbtn btn-link-arrow mt-4" href="/about">Learn more about Skale <i class="bi bi-arrow-right"></i></a>
+                    <a aria-label="{$content.aria_label_home_learn_more_about_skale_link}" class="mbtn btn-link-arrow mt-4" href="/about">{$content.text_learn_more_about_skale} <i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -460,26 +460,26 @@
         <div class="container">
             <div class="inline-cta inline-cta-dark" data-aos="zoom-in">
                 <div>
-                    <span class="inline-cta-label text-success">Ready for a clearer next step?</span>
-                    <h2 class="fs-3 h3 mb-2">Get recommendations based on your business not a generic package.</h2>
-                    <p class="mb-0">Start with a short conversation about what is not working and what you want to improve.</p>
+                    <span class="inline-cta-label text-success">{$content.text_ready_for_a_clearer_next_step}</span>
+                    <h2 class="fs-3 h3 mb-2">{$content.text_get_recommendations_based_on_your_business}</h2>
+                    <p class="mb-0">{$content.text_start_with_a_short_conversation_about}</p>
                 </div>
 
-                <a aria-label="home Request a Consultation button" class="mbtn btn btn-light btn-lg flex-shrink-0 text-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Request a Consultation</a>
+                <a aria-label="{$content.aria_label_home_request_a_consultation_button}" class="mbtn btn btn-light btn-lg flex-shrink-0 text-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_request_a_consultation}</a>
             </div>
         </div>
     </section>
 
-    <!-- Comparison -->
+
     <section class="section-padding">
         <div class="container">
             <div class="row align-items-end g-4 mb-5">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">Built differently</span>
-                    <h2>The difference is not only what gets delivered. It is how every decision supports your business.</h2>
+                    <span class="section-label">{$content.text_built_differently}</span>
+                    <h2>{$content.text_the_difference_is_not_only_what}</h2>
                 </div>
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">Skale starts with the business outcome, then chooses the strategy and technology that best support it.</p>
+                    <p class="mb-0">{$content.text_skale_starts_with_the_business_outcome}</p>
                 </div>
             </div>
 
@@ -487,36 +487,36 @@
                 <table class="table comparison-table">
                     <thead>
                         <tr>
-                            <th scope="col">Area</th>
-                            <th scope="col">Typical Agency</th>
-                            <th scope="col">The Skale Approach</th>
+                            <th scope="col">{$content.text_area}</th>
+                            <th scope="col">{$content.text_typical_agency}</th>
+                            <th scope="col">{$content.text_the_skale_approach}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">Starting point</th>
-                            <td>Requested deliverable</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>Business outcome</td>
+                            <th scope="row">{$content.text_starting_point}</th>
+                            <td>{$content.text_requested_deliverable}</td>
+                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_business_outcome}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Recommendations</th>
-                            <td>Limited to one service</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>Across systems and teams</td>
+                            <th scope="row">{$content.text_recommendations}</th>
+                            <td>{$content.text_limited_to_one_service}</td>
+                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_across_systems_and_teams}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Technology</th>
-                            <td>Platform-first</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>Fit-for-purpose</td>
+                            <th scope="row">{$content.text_technology}</th>
+                            <td>{$content.text_platform_first}</td>
+                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_fit_for_purpose}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Communication</th>
-                            <td>Passed between departments</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>Direct, founder-led access</td>
+                            <th scope="row">{$content.text_communication}</th>
+                            <td>{$content.text_passed_between_departments}</td>
+                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_direct_founder_led_access}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Definition of success</th>
-                            <td>Launch completed</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>Measurable improvement</td>
+                            <th scope="row">{$content.text_definition_of_success}</th>
+                            <td>{$content.text_launch_completed}</td>
+                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_measurable_improvement}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -524,36 +524,36 @@
         </div>
     </section>
 
-    <!-- Mid-page CTA -->
+
     <section class="section-padding-sm">
         <div class="container">
             <div class="cta-band p-4 p-md-5" data-aos="zoom-in">
                 <div class="row align-items-center g-4">
                     <div class="col-lg-8">
-                        <span class="text-uppercase small fw-bold text-success">A better next step</span>
-                        <h2 class="h1 mt-2 mb-3 fs-2">Not sure which service you need?</h2>
-                        <p class="mb-0 fs-5">You do not need to diagnose the solution before reaching out. Tell us what is not working, and we will help identify the highest-impact path forward.</p>
+                        <span class="text-uppercase small fw-bold text-success">{$content.text_a_better_next_step}</span>
+                        <h2 class="h1 mt-2 mb-3 fs-2">{$content.text_not_sure_which_service_you_need}</h2>
+                        <p class="mb-0 fs-5">{$content.text_you_do_not_need_to_diagnose}</p>
                     </div>
 
                     <div class="col-lg-4 text-lg-end">
-                        <a aria-label="home Talk Through Your Challenge button" class="text-dark mbtn btn btn-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Talk Through Your <br>Challenge <i class="bi bi-arrow-right ms-1"></i></a>
+                        <a aria-label="{$content.aria_label_home_talk_through_your_challenge_button_2}" class="text-dark mbtn btn btn-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your} <br>{$content.text_challenge} <i class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Blog -->
+
     <section class="section-padding">
         <div class="container">
             <div class="row align-items-end g-4 mb-5">
                 <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">Insights for smarter growth</span>
-                    <h2>Practical ideas you can use before you ever hire us.</h2>
+                    <span class="section-label">{$content.text_insights_for_smarter_growth}</span>
+                    <h2>{$content.text_practical_ideas_you_can_use_before}</h2>
                 </div>
 
                 <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="100">
-                    <a class="btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}blog">View All Insights</a>
+                    <a class="btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}blog">{$content.text_view_all_insights}</a>
                 </div>
             </div>
 
@@ -563,108 +563,108 @@
         </div>
     </section>
 
-    <!-- Contact / Lead Form -->
+
     <section class="section-padding contact-section" id="contact">
         <div class="container">
             <div class="row g-4 g-lg-5 align-items-stretch">
                 <div class="col-lg-5" data-aos="fade-right">
                     <div class="contact-info">
-                        <span class="badge bg-light text-dark mb-4">Free consultation</span>
-                        <h2 class="fs-2 text-white">Ready to remove what is getting in the way?</h2>
-                        <p class="fs-5">Tell us what you are trying to improve. We will help you identify practical opportunities across your website, marketing, processes, and technology.</p>
+                        <span class="badge bg-light text-dark mb-4">{$content.text_free_consultation}</span>
+                        <h2 class="fs-2 text-white">{$content.text_ready_to_remove_what_is_getting}</h2>
+                        <p class="fs-5">{$content.text_tell_us_what_you_are_trying}</p>
 
                         <div class="mt-4">
                             <div class="contact-benefit">
                                 <i class="bi bi-check-circle-fill"></i>
-                                <span>No-pressure discovery conversation</span>
+                                <span>{$content.text_no_pressure_discovery_conversation}</span>
                             </div>
 
                             <div class="contact-benefit">
                                 <i class="bi bi-check-circle-fill"></i>
-                                <span>Clear, practical next-step recommendations</span>
+                                <span>{$content.text_clear_practical_next_step_recommendations}</span>
                             </div>
 
                             <div class="contact-benefit">
                                 <i class="bi bi-check-circle-fill"></i>
-                                <span>Direct conversation with an experienced technical partner</span>
+                                <span>{$content.text_direct_conversation_with_an_experienced_technical}</span>
                             </div>
 
                             <div class="contact-benefit">
                                 <i class="bi bi-check-circle-fill"></i>
-                                <span>No aggressive sales follow-up</span>
+                                <span>{$content.text_no_aggressive_sales_follow_up}</span>
                             </div>
                         </div>
 
                         <hr class="border-secondary my-4" />
-                        <p class="small text-uppercase fw-bold mb-2">Prefer to contact us directly?</p>
+                        <p class="small text-uppercase fw-bold mb-2">{$content.text_prefer_to_contact_us_directly}</p>
                         {include file="inc/buttons/phone-link.tpl" type="link"}
                         {include file="inc/buttons/email-link.tpl" type="link"}
                     </div>
                 </div>
 
                 <div class="col-lg-7" data-aos="fade-left">
-                    <!-- Replace action, field names, and hidden values with your production form handler -->
+
                     <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
                         <input type="hidden" name="comment" value="home footer form">
                         <input type="hidden" name="form_type" value="home-footer">
 
                         <div class="mb-4">
-                            <span class="section-label">Start the conversation</span>
-                            <h2 class="fs-4 h3 mb-2">What would you like to improve?</h2>
-                            <p class="mb-0">Share a few details. We will respond personally and help clarify the right next step.</p>
+                            <span class="section-label">{$content.text_start_the_conversation}</span>
+                            <h2 class="fs-4 h3 mb-2">{$content.text_what_would_you_like_to_improve}</h2>
+                            <p class="mb-0">{$content.text_share_a_few_details_we_will}</p>
                         </div>
 
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="name">Name *</label>
+                                <label class="form-label" for="name">{$content.text_name}</label>
                                 <input autocomplete="name" class="form-control" id="name" name="name" required="" type="text" />
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label" for="email">Email *</label>
+                                <label class="form-label" for="email">{$content.text_email}</label>
                                 <input autocomplete="email" class="form-control" id="email" name="email" required="" type="email" />
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label" for="company">Company</label>
+                                <label class="form-label" for="company">{$content.text_company}</label>
                                 <input autocomplete="organization" class="form-control" id="company" name="company" type="text" />
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label" for="phone">Phone <span class="text-secondary fw-normal">(optional)</span></label>
+                                <label class="form-label" for="phone">{$content.text_phone} <span class="text-secondary fw-normal">{$content.text_optional}</span></label>
                                 <input autocomplete="tel" class="form-control" id="phone" name="phone" type="tel" />
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label" for="interest">What would you like to improve? *</label>
+                                <label class="form-label" for="interest">{$content.text_what_would_you_like_to_improve_2}</label>
                                 <select class="form-select" id="interest" name="interest" required="">
-                                    <option disabled="" selected="" value="">Select the closest option</option>
-                                    <option value="website-leads">Generate more leads from my website</option>
-                                    <option value="automation">Automate repetitive work</option>
-                                    <option value="integrations">Connect systems and data</option>
-                                    <option value="marketing">Improve marketing performance</option>
-                                    <option value="strategy">Create a growth or technology roadmap</option>
-                                    <option value="unsure">I am not sure yet</option>
+                                    <option disabled="" selected="" value="">{$content.text_select_the_closest_option}</option>
+                                    <option value="website-leads">{$content.text_generate_more_leads_from_my_website}</option>
+                                    <option value="automation">{$content.text_automate_repetitive_work}</option>
+                                    <option value="integrations">{$content.text_connect_systems_and_data}</option>
+                                    <option value="marketing">{$content.text_improve_marketing_performance}</option>
+                                    <option value="strategy">{$content.text_create_a_growth_or_technology_roadmap}</option>
+                                    <option value="unsure">{$content.text_i_am_not_sure_yet}</option>
                                 </select>
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label" for="comment">What is happening now? *</label>
-                                <textarea class="form-control" id="comment" name="comment" placeholder="Briefly describe the problem, project, or goal..." required=""></textarea>
+                                <label class="form-label" for="comment">{$content.text_what_is_happening_now}</label>
+                                <textarea class="form-control" id="comment" name="comment" placeholder="{$content.placeholder_briefly_describe_the_problem_project_or}" required=""></textarea>
                             </div>
 
-                            <!-- Simple honeypot. Hide this with CSS and validate server-side. -->
+
                             <div aria-hidden="true" class="d-none">
-                                <label for="website">Website</label>
+                                <label for="website">{$content.text_website}</label>
                                 <input autocomplete="off" id="website" name="website" tabindex="-1" type="text" />
                             </div>
 
                             <div class="col-12">
-                                <button class="btn btn-primary btn-lg w-100" type="submit">Request My Free Consultation <i class="bi bi-arrow-right ms-1"></i></button>
+                                <button class="btn btn-primary btn-lg w-100" type="submit">{$content.text_request_my_free_consultation} <i class="bi bi-arrow-right ms-1"></i></button>
                             </div>
 
                             <div class="col-12">
-                                <p class="small text-center mb-0"><i class="bi bi-lock me-1"></i>Your information stays private. No spam or aggressive sales follow-up.</p>
+                                <p class="small text-center mb-0"><i class="bi bi-lock me-1"></i>{$content.text_your_information_stays_private_no_spam}</p>
                             </div>
                         </div>
                         {include file="inc/layout/cloudflare-turnstile.tpl"}

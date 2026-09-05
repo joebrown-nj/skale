@@ -1,4 +1,4 @@
-{include file="inc/layout/header.tpl" hideBreadcrumb=true hideMenu=true}
+{include file="inc/layout/header.tpl" hideBreadcrumb=true}
 
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/landing.min.css" data-ajax-managed-stylesheet="true">
 

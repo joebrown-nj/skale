@@ -196,6 +196,14 @@ a:hover {
 	}
 }
 
+.main-header {
+	display:block;
+}
+
+.landing-header {
+	display:none;
+}
+
 .menu-bar .navbar-nav {
 	display: none !important;
 }

@@ -20,9 +20,7 @@
             {include file="inc/service/outcomes.tpl" data=$data.serviceContent.sections.outcomes}
         {/if}
 
-        {* {if $data.serviceContent.sections.components}
-        {include file="inc/service/components.tpl" data=$data.serviceContent.sections.components}
-        {/if} *}
+
 
         {if $data.serviceContent.sections.serviceComponents && $data.serviceContent.sections.serviceComponents.enabled}
             {include file="inc/service/service-components.tpl" data=$data.serviceContent.sections.serviceComponents}

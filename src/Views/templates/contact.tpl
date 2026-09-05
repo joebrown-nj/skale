@@ -2,39 +2,39 @@
 
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/contact.min.css" data-ajax-managed-stylesheet="true">
 
-<!-- HERO -->
+
 <section class="hero section-padding" id="contact-form">
     <div class="container hero-content">
         <div class="row align-items-center g-5">
-            <!-- Left Content -->
+
             <div class="col-lg-6">
-                <div class="eyebrow">Contact skale.</div>
+                <div class="eyebrow">{$content.text_contact_skale}</div>
 
-                <h1>Build Faster.<br /><span class="gradient-text">Scale Smarter.</span></h1>
+                <h1>{$content.text_build_faster}<br /><span class="gradient-text">{$content.text_scale_smarter}</span></h1>
 
-                <p>Websites, software, automation, and marketing systems designed to help your business grow efficiently and generate measurable results.</p>
+                <p>{$content.text_websites_software_automation_and_marketing_systems}</p>
 
                 <div class="trust-list">
-                    <div class="trust-item">&check; Custom-built solutions</div>
-                    <div class="trust-item">&check; Fast response times</div>
-                    <div class="trust-item">&check; Strategy + execution</div>
-                    <div class="trust-item">&check; Long-term support</div>
+                    <div class="trust-item">{$content.text_custom_built_solutions}</div>
+                    <div class="trust-item">{$content.text_fast_response_times}</div>
+                    <div class="trust-item">{$content.text_strategy_execution}</div>
+                    <div class="trust-item">{$content.text_long_term_support}</div>
                 </div>
             </div>
 
-            <!-- Contact Form -->
+
             <div class="col-lg-6">
                 <div class="glass-card">
-                    <h3 class="fw-bold mb-3">Start Your Project</h3>
+                    <h3 class="fw-bold mb-3">{$content.text_start_your_project}</h3>
 
                     <p class="text-secondary mb-1">
-                        Tell us about your goals and we'll reach out within 1 business day.
+                        {$content.text_tell_us_about_your_goals_and}
                     </p>
 
                     {include file="inc/contact/contact-form.tpl"}
 
                     <p class="text-secondary fs-6 mt-4 mb-0">
-                        No pressure. No obligation. Just a conversation about your goals.
+                        {$content.text_no_pressure_no_obligation_just_a}
                     </p>
                 </div>
             </div>
@@ -42,128 +42,128 @@
     </div>
 </section>
 
-<!-- WHY WORK WITH US -->
+
 <section class="section-padding">
     <div class="container">
         <div class="text-center mb-5">
-            <div class="eyebrow">Why Businesses Choose skale.</div>
+            <div class="eyebrow">{$content.text_why_businesses_choose_skale}</div>
 
             <h2 class="fw-bold display-5">
-                Built Differently.<br />Built to Scale.
+                {$content.text_built_differently}<br />{$content.text_built_to_scale}
             </h2>
         </div>
 
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
                 <div class="feature-card">
-                    <h4>Strategy First</h4>
-                    <p>We build systems designed around growth, not templates.</p>
+                    <h4>{$content.text_strategy_first}</h4>
+                    <p>{$content.text_we_build_systems_designed_around_growth}</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3">
                 <div class="feature-card">
-                    <h4>Built to Scale</h4>
-                    <p>Every solution is designed for long-term performance and flexibility.</p>
+                    <h4>{$content.text_built_to_scale_2}</h4>
+                    <p>{$content.text_every_solution_is_designed_for_long}</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3">
                 <div class="feature-card">
-                    <h4>Fast Execution</h4>
-                    <p>Move quickly without sacrificing quality or strategic thinking.</p>
+                    <h4>{$content.text_fast_execution}</h4>
+                    <p>{$content.text_move_quickly_without_sacrificing_quality_or}</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3">
                 <div class="feature-card">
-                    <h4>Real Partnership</h4>
-                    <p>We stay involved beyond launch to optimize and support growth.</p>
+                    <h4>{$content.text_real_partnership}</h4>
+                    <p>{$content.text_we_stay_involved_beyond_launch_to}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- RESULTS -->
+
 <section class="section-padding">
     <div class="container">
         <div class="stats">
             <div class="row text-center g-4">
                 <div class="col-md-3">
-                    <div class="stat-number gradient-text">100+</div>
-                    <div class="stat-label">Projects Delivered</div>
+                    <div class="stat-number gradient-text">{$content.text_100}</div>
+                    <div class="stat-label">{$content.text_projects_delivered}</div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="stat-number gradient-text">1 Day</div>
-                    <div class="stat-label">Average Response Time</div>
+                    <div class="stat-number gradient-text">{$content.text_1_day}</div>
+                    <div class="stat-label">{$content.text_average_response_time}</div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="stat-number gradient-text">Custom</div>
-                    <div class="stat-label">Tailored Solutions</div>
+                    <div class="stat-number gradient-text">{$content.text_custom}</div>
+                    <div class="stat-label">{$content.text_tailored_solutions}</div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="stat-number gradient-text">Ongoing</div>
-                    <div class="stat-label">Long-Term Support</div>
+                    <div class="stat-number gradient-text">{$content.text_ongoing}</div>
+                    <div class="stat-label">{$content.text_long_term_support_2}</div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- PROCESS -->
+
 <section class="section-padding">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="text-center mb-5">
-                    <div class="eyebrow">What Happens Next?</div>
+                    <div class="eyebrow">{$content.text_what_happens_next}</div>
 
                     <h2 class="fw-bold display-5">
-                        Simple Process.<br />Clear Direction.
+                        {$content.text_simple_process}<br />{$content.text_clear_direction}
                     </h2>
                 </div>
 
                 <div class="contact-process-step">
-                    <div class="process-number">1</div>
-                    <h4>Discovery Call</h4>
-                    <p>We learn about your business, systems, goals, and challenges.</p>
+                    <div class="process-number">{$content.text_1}</div>
+                    <h4>{$content.text_discovery_call}</h4>
+                    <p>{$content.text_we_learn_about_your_business_systems}</p>
                 </div>
 
                 <div class="contact-process-step">
-                    <div class="process-number">2</div>
-                    <h4>Strategy & Recommendations</h4>
-                    <p>We identify opportunities and propose the best path forward.</p>
+                    <div class="process-number">{$content.text_2}</div>
+                    <h4>{$content.text_strategy_recommendations}</h4>
+                    <p>{$content.text_we_identify_opportunities_and_propose_the}</p>
                 </div>
 
                 <div class="contact-process-step">
-                    <div class="process-number">3</div>
-                    <h4>Build & Scale</h4>
-                    <p>We execute solutions designed to grow with your business long-term.</p>
+                    <div class="process-number">{$content.text_3}</div>
+                    <h4>{$content.text_build_scale}</h4>
+                    <p>{$content.text_we_execute_solutions_designed_to_grow}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FINAL CTA -->
+
 <section class="section-padding pt-0">
     <div class="container">
         <div class="cta-box">
-            <h2>Ready to Build Something Better?</h2>
+            <h2>{$content.text_ready_to_build_something_better}</h2>
 
-            <p>Let's create systems that help your business scale faster, operate smarter, and generate measurable growth.</p>
+            <p>{$content.text_let_s_create_systems_that_help}</p>
 
             <div class="d-flex flex-wrap justify-content-center gap-3">
                 <button onclick="scrollToEl('#contact-form')" class="btn btn-primary-custom px-4 w-auto">
-                    Book a Free Consultation
+                    {$content.text_book_a_free_consultation}
                 </button>
 
                 <a href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}" class="btn btn-outline-custom">
-                    View Solutions
+                    {$content.text_view_solutions}
                 </a>
             </div>
         </div>
@@ -186,49 +186,49 @@
 
 
 <div class="contact-page d-none">
-    <!-- HERO -->
+
     <section class="hero section-padding">
         <div class="container hero-content">
             <div class="row align-items-center g-5">
-                <!-- Left Content -->
+
                 <div class="col-lg-6">
-                    <div class="eyebrow">Contact skale.</div>
+                    <div class="eyebrow">{$content.text_contact_skale}</div>
 
-                    <h1 class="text-white">Build Faster.<br><span class="gradient-text">Scale Smarter.</span></h1>
+                    <h1 class="text-white">{$content.text_build_faster}<br><span class="gradient-text">{$content.text_scale_smarter}</span></h1>
 
-                    <p>Websites, software, automation, and marketing systems designed to help your business grow efficiently and generate measurable results.</p>
+                    <p>{$content.text_websites_software_automation_and_marketing_systems}</p>
 
                     <div class="trust-list">
                         <div class="trust-item">
-                            &check; Custom-built solutions
+                            {$content.text_custom_built_solutions}
                         </div>
                         <div class="trust-item">
-                            &check; Fast response times
+                            {$content.text_fast_response_times}
                         </div>
                         <div class="trust-item">
-                            &check; Strategy + execution
+                            {$content.text_strategy_execution}
                         </div>
                         <div class="trust-item">
-                            &check; Long-term support
+                            {$content.text_long_term_support}
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
+
                 <div class="col-lg-6">
                     <div class="glass-card">
                         <h3 class="fw-bold mb-3 text-white">
-                            Start Your Project
+                            {$content.text_start_your_project}
                         </h3>
 
                         <p class="small-text mb-4">
-                            Tell us about your goals and we'll reach out within 1 business day.
+                            {$content.text_tell_us_about_your_goals_and}
                         </p>
 
                         {include file="inc/contact/contact-form.tpl"}
 
                         <p class="small-text mt-4 mb-0">
-                            No pressure. No obligation. Just a conversation about your goals.
+                            {$content.text_no_pressure_no_obligation_just_a}
                         </p>
                     </div>
                 </div>
@@ -236,88 +236,88 @@
         </div>
     </section>
 
-    <!-- WHY WORK WITH US -->
+
     <section class="section-padding">
         <div class="container">
             <div class="text-center mb-5">
                 <div class="eyebrow">
-                    Why Businesses Choose skale.
+                    {$content.text_why_businesses_choose_skale}
                 </div>
                 <h2 class="fw-bold display-5 text-white">
-                    Built Differently.<br>
-                    Built to Scale.
+                    {$content.text_built_differently}<br>
+                    {$content.text_built_to_scale}
                 </h2>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="feature-card">
-                        <h4 class="text-white">Strategy First</h4>
-                        <p>We build systems designed around growth, not templates.</p>
+                        <h4 class="text-white">{$content.text_strategy_first}</h4>
+                        <p>{$content.text_we_build_systems_designed_around_growth}</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
                     <div class="feature-card">
-                        <h4 class="text-white">Built to Scale</h4>
-                        <p>Every solution is designed for long-term performance and flexibility.</p>
+                        <h4 class="text-white">{$content.text_built_to_scale_2}</h4>
+                        <p>{$content.text_every_solution_is_designed_for_long}</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
                     <div class="feature-card">
-                        <h4 class="text-white">Fast Execution</h4>
-                        <p>Move quickly without sacrificing quality or strategic thinking.</p>
+                        <h4 class="text-white">{$content.text_fast_execution}</h4>
+                        <p>{$content.text_move_quickly_without_sacrificing_quality_or}</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3">
                     <div class="feature-card">
-                        <h4 class="text-white">Real Partnership</h4>
-                        <p>We stay involved beyond launch to optimize and support growth.</p>
+                        <h4 class="text-white">{$content.text_real_partnership}</h4>
+                        <p>{$content.text_we_stay_involved_beyond_launch_to}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RESULTS -->
+
     <section class="section-padding">
         <div class="container">
             <div class="stats">
                 <div class="row text-center g-4">
                     <div class="col-md-3">
                         <div class="stat-number gradient-text">
-                            100+
+                            {$content.text_100}
                         </div>
                         <div class="stat-label">
-                            Projects Delivered
+                            {$content.text_projects_delivered}
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="stat-number gradient-text">
-                            1 Day
+                            {$content.text_1_day}
                         </div>
                         <div class="stat-label">
-                            Average Response Time
+                            {$content.text_average_response_time}
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="stat-number gradient-text">
-                            Custom
+                            {$content.text_custom}
                         </div>
                         <div class="stat-label">
-                            Tailored Solutions
+                            {$content.text_tailored_solutions}
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="stat-number gradient-text">
-                            Ongoing
+                            {$content.text_ongoing}
                         </div>
                         <div class="stat-label">
-                            Long-Term Support
+                            {$content.text_long_term_support_2}
                         </div>
                     </div>
                 </div>
@@ -325,42 +325,42 @@
         </div>
     </section>
 
-    <!-- PROCESS -->
+
     <section class="section-padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="text-center mb-5">
                         <div class="eyebrow">
-                            What Happens Next?
+                            {$content.text_what_happens_next}
                         </div>
                         <h2 class="fw-bold display-5 text-white">
-                            Simple Process.<br>
-                            Clear Direction.
+                            {$content.text_simple_process}<br>
+                            {$content.text_clear_direction}
                         </h2>
                     </div>
 
                     <div class="process-step">
-                        <div class="process-number">1</div>
-                        <h4>Discovery Call</h4>
+                        <div class="process-number">{$content.text_1}</div>
+                        <h4>{$content.text_discovery_call}</h4>
                         <p>
-                            We learn about your business, systems, goals, and challenges.
+                            {$content.text_we_learn_about_your_business_systems}
                         </p>
                     </div>
 
                     <div class="process-step">
-                        <div class="process-number">2</div>
-                        <h4>Strategy & Recommendations</h4>
+                        <div class="process-number">{$content.text_2}</div>
+                        <h4>{$content.text_strategy_recommendations}</h4>
                         <p>
-                            We identify opportunities and propose the best path forward.
+                            {$content.text_we_identify_opportunities_and_propose_the}
                         </p>
                     </div>
 
                     <div class="process-step">
-                        <div class="process-number">3</div>
-                        <h4>Build & Scale</h4>
+                        <div class="process-number">{$content.text_3}</div>
+                        <h4>{$content.text_build_scale}</h4>
                         <p>
-                            We execute solutions designed to grow with your business long-term.
+                            {$content.text_we_execute_solutions_designed_to_grow}
                         </p>
                     </div>
                 </div>
@@ -368,25 +368,25 @@
         </div>
     </section>
 
-    <!-- FINAL CTA -->
+
     <section class="section-padding pt-0">
         <div class="container">
             <div class="cta-box">
                 <h2>
-                    Ready to Build Something Better?
+                    {$content.text_ready_to_build_something_better}
                 </h2>
 
                 <p>
-                    Let's create systems that help your business scale faster, operate smarter, and generate measurable growth.
+                    {$content.text_let_s_create_systems_that_help}
                 </p>
 
                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="#" class="mbtn btn btn-primary-custom px-4 w-auto" aria-label="contact page schedule consultation button">
-                        Book a Free Consultation
+                    <a href="#" class="mbtn btn btn-primary-custom px-4 w-auto" aria-label="{$content.aria_label_contact_page_schedule_consultation_button}">
+                        {$content.text_book_a_free_consultation}
                     </a>
 
-                    <a href="/solutions" class="mbtn btn btn-outline-custom" aria-label="contact page view solutions button">
-                        View Solutions
+                    <a href="/solutions" class="mbtn btn btn-outline-custom" aria-label="{$content.aria_label_contact_page_view_solutions_button}">
+                        {$content.text_view_solutions}
                     </a>
                 </div>
             </div>

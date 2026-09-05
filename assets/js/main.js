@@ -130,8 +130,10 @@ function getManagedStylesheetSelector() {
     return 'link[rel="stylesheet"][data-ajax-managed-stylesheet]';
 }
 
+let managedStylesheetSyncId = 0;
+
 function normalizeStylesheetHref(href) {
-    return new URL(href, window.location.origin).href;
+    return new URL(href, document.baseURI).href;
 }
 
 function extractManagedStylesheetsFromMarkup(markup) {
@@ -153,31 +155,52 @@ function extractManagedStylesheetsFromMarkup(markup) {
 }
 
 function syncManagedStylesheets(stylesheets = []) {
+    managedStylesheetSyncId += 1;
+    const syncId = managedStylesheetSyncId;
     const desiredStylesheets = [...new Set(stylesheets.map(normalizeStylesheetHref))];
-    const existingManagedStylesheets = Array.from(
+    const existingStylesheets = Array.from(
         document.head.querySelectorAll(getManagedStylesheetSelector()),
     );
-
-    existingManagedStylesheets.forEach((element) => {
-        if (!desiredStylesheets.includes(normalizeStylesheetHref(element.href))) {
-            element.remove();
-        }
-    });
-
-    desiredStylesheets.forEach((href) => {
-        const alreadyLoaded = document.head.querySelector(
-            `${getManagedStylesheetSelector()}[href="${href}"]`,
+    const stylesheetsReady = desiredStylesheets.map((href) => {
+        const existingStylesheet = existingStylesheets.find(
+            (element) => normalizeStylesheetHref(element.href) === href,
         );
 
-        if (alreadyLoaded) {
-            return;
+        if (existingStylesheet?.sheet) {
+            return Promise.resolve(true);
         }
 
-        const link = document.createElement('link');
+        const link = existingStylesheet ?? document.createElement('link');
         link.rel = 'stylesheet';
         link.href = href;
         link.setAttribute('data-ajax-managed-stylesheet', 'true');
-        document.head.appendChild(link);
+
+        const loaded = new Promise((resolve) => {
+            link.addEventListener('load', () => resolve(true), { once: true });
+            link.addEventListener('error', () => resolve(false), { once: true });
+        });
+
+        if (!existingStylesheet) {
+            document.head.appendChild(link);
+        }
+
+        return loaded;
+    });
+
+    // Keep the current page styled until every stylesheet for the next page is
+    // available. Removing first can leave AJAX navigation permanently unstyled
+    // when a request is slow or a previous load event races a newer navigation.
+    Promise.all(stylesheetsReady).then((loadedSuccessfully) => {
+        if (syncId !== managedStylesheetSyncId || loadedSuccessfully.some((loaded) => !loaded)) {
+            return;
+        }
+
+        Array.from(document.head.querySelectorAll(getManagedStylesheetSelector()))
+            .forEach((element) => {
+                if (!desiredStylesheets.includes(normalizeStylesheetHref(element.href))) {
+                    element.remove();
+                }
+            });
     });
 }
 

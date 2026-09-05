@@ -1,7 +1,5 @@
-{if !$hideMenu}
-    {include file="inc/layout/nav-main.tpl"}
-{/if}
-
-{if $hideMenu}
-    {include file="inc/layout/nav-landing.tpl"}
-{/if}
+{* {if $isLandingRoute} *}
+{include file="inc/layout/landing-nav.tpl"}
+{* {else} *}
+{include file="inc/layout/nav-main.tpl"}
+{* {/if} *}

@@ -1,5 +1,13 @@
 /***************** LANDING PAGE SHARED/LEGACY *****************/
 
+.main-header {
+	display:none;
+}
+
+.landing-header {
+	display:block;
+}
+
 .page-content {
 	margin-top:0px;
 }
