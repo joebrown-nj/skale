@@ -32,6 +32,7 @@ These minified files are the files loaded by the site at runtime.
 - `assets/css/service-list.css` → `public_html/css/service-list.min.css`
 - `assets/css/templates.css` → `public_html/css/templates.min.css`
 - `assets/css/landing.css` → `public_html/css/landing.min.css`
+- `assets/css/website-rescue.css` → `public_html/css/website-rescue.min.css`
 - `assets/css/thank-you.css` → `public_html/css/thank-you.min.css`
 - `assets/css/header-footer-show.css` → `public_html/css/header-footer-show.min.css`
 - `assets/css/header-footer-hide.css` → `public_html/css/header-footer-hide.min.css`

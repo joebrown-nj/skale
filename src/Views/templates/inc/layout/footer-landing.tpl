@@ -3,7 +3,7 @@
     <footer class="py-4 bg-dark-custom border-top border-secondary">
         <div class="container">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-                <a href="https://skaleup.it.com/" class="brand text-white">
+                <a href="https://skaleup.it.com/" class="mbtn brand text-white">
                     skale<span class="brand-dot">.</span>
                 </a>
 

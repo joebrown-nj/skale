@@ -196,19 +196,11 @@ a:hover {
 	}
 }
 
-.main-header {
+.main-header, .footer-main {
 	display:block;
 }
 
-.landing-header {
-	display:none;
-}
-
-.footer-main {
-	display:block;
-}
-
-.footer-landing {
+.landing-header, .footer-landing {
 	display:none;
 }
 

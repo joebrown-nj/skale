@@ -9,10 +9,24 @@ final class LandingPageContentProvider
         return $this->getAutomationSections();
     }
 
+    public function websiteRescue(): array
+    {
+        return $this->getWebsiteRescueSections();
+    }
+
     private function getAutomationSections(): array
     {
         $sections = [
             'sectionFAQ' => $this->getAutomationFAQ(),
+        ];
+
+        return $sections;
+    }
+
+    private function getWebsiteRescueSections(): array
+    {
+        $sections = [
+            // 'sectionFAQ' => $this->getWebsiteRescueFAQ(),
         ];
 
         return $sections;

@@ -64,6 +64,7 @@ class Routes
         $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
 
         $this->router->get('/website-development', [LandingPageController::class, 'websiteDevelopment']);
+        $this->router->get('/website-rescue', [LandingPageController::class, 'websiteRescue']);
         $this->router->get('/marketing', [LandingPageController::class, 'marketing']);
         $this->router->get('/automation', [LandingPageController::class, 'automation']);
         $this->router->get('/task-management', [LandingPageController::class, 'taskManagement']);

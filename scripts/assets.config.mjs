@@ -12,6 +12,7 @@ export const cssAssets = [
     [`${cssSourceRoot}/templates.css`, `${publicCssRoot}/templates.min.css`],
     [`${cssSourceRoot}/landing.css`, `${publicCssRoot}/landing.min.css`],
     [`${cssSourceRoot}/website-development-b.css`, `${publicCssRoot}/website-development-b.min.css`],
+    [`${cssSourceRoot}/website-rescue.css`, `${publicCssRoot}/website-rescue.min.css`],
     [`${cssSourceRoot}/thank-you.css`, `${publicCssRoot}/thank-you.min.css`],
     [`${cssSourceRoot}/header-footer-show.css`, `${publicCssRoot}/header-footer-show.min.css`],
     [`${cssSourceRoot}/header-footer-hide.css`, `${publicCssRoot}/header-footer-hide.min.css`]

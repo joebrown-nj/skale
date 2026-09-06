@@ -916,7 +916,7 @@ function handlePopState(event) {
 function validateRequiredFields($form) {
     const errors = [];
 
-    $form.find('.required').each(function validateField() {
+    $form.find('.required, [required]').each(function validateField() {
         if (!$(this).val()) {
             errors.push(`${capitalizeFirstLetter(this.name)} is required`);
         }
@@ -925,14 +925,16 @@ function validateRequiredFields($form) {
     return errors;
 }
 
-function submitAjaxForm(button) {
-    const $form = $(button).closest('form');
+function submitAjaxForm(form, submitter = null) {
+    const $form = $(form);
     const action = $form.attr('action');
     const errors = validateRequiredFields($form);
 
-    trackMetaClick(button);
+    if (submitter) {
+        trackMetaClick(submitter);
+        logButtonClick(submitter);
+    }
     trackMetaFormStart($form[0]);
-    logButtonClick(button);
     showOverlay();
     $form.find('.alert').remove();
 
@@ -1050,8 +1052,9 @@ $(document).on('click', '[data-meta-event], [data-meta-custom-event]', function 
     return true;
 });
 
-$(document).on('click', '.ajaxForm button', function handleAjaxFormClick() {
-    return submitAjaxForm(this);
+$(document).on('submit', '.ajaxForm', function handleAjaxFormSubmit(event) {
+    event.preventDefault();
+    return submitAjaxForm(this, event.originalEvent?.submitter ?? null);
 });
 
 $(document).on('focusin', '.ajaxForm input, .ajaxForm select, .ajaxForm textarea', function handleTrackedFormFocus() {

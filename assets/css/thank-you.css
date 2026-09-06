@@ -2,6 +2,10 @@
     margin-top:0px;
 }
 
+.main-header, .footer-main {
+	display:none;
+}
+
 header, 
 footer {
     display: none;

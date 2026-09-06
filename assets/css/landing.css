@@ -1,19 +1,13 @@
 /***************** LANDING PAGE SHARED/LEGACY *****************/
 
-.main-header {
-	display:none;
-}
-
-.landing-header {
-	display:block;
-}
-
+.main-header,
 .footer-main {
-	display:none;
+	display: none;
 }
 
+.landing-header,
 .footer-landing {
-	display:block;
+	display: block;
 }
 
 .page-content {
@@ -256,7 +250,8 @@ body {
 	font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif
 }
 
-.section-pad {
+.section-pad,
+.section-padding {
 	padding: 6rem 0
 }
 
@@ -566,7 +561,8 @@ a.brand {
 		padding: 7.5rem 0 5rem
 	}
 
-	.section-pad {
+	.section-pad,
+	.section-padding {
 		padding: 4.5rem 0
 	}
 

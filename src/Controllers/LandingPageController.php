@@ -43,6 +43,11 @@ final class LandingPageController
         $this->render($template, $this->content->websiteDevelopment());
     }
 
+    public function websiteRescue(): void
+    {
+        $this->render('website-rescue', $this->content->websiteRescue());
+    }
+
     public function taskManagement(): void
     {
         $this->render('task-management', $this->content->taskManagement());
@@ -57,7 +62,7 @@ final class LandingPageController
         $input = $request->validated();
         $details = ['Landing Page Lead Form Submission'];
 
-        foreach (['team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'lead_source' => 'Lead Source'] as $field => $label) {
+        foreach (['team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'package' => 'Package', 'lead_source' => 'Lead Source'] as $field => $label) {
             if ($input[$field] !== '') {
                 $details[] = $label . ': ' . $input[$field];
             }
@@ -77,7 +82,10 @@ final class LandingPageController
             return JsonResponse::error('Unable to process request.', 403);
         }
 
-        $validationErrors = array_merge($request->errors(), $this->contactModel->checkLeadForm($input));
+        $validationErrors = array_values(array_unique(array_merge(
+            $request->errors(),
+            $this->contactModel->checkLeadForm($input),
+        )));
 
         if ($validationErrors !== []) {
             return JsonResponse::error($validationErrors);

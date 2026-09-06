@@ -19,7 +19,7 @@
                         {$content.text_skale_connects_your_website_marketing_software}
                     </p>
                     <div class="hero-actions d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="225">
-                        <a aria-label="{$content.aria_label_home_hero_contact_button}" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_explore_solutions}</a>
+                        <a aria-label="{$content.aria_label_home_hero_contact_button}" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}">{$content.text_explore_solutions}</a>
                         <a class="btn btn-link text-white text-decoration-none px-2" onclick="scrollToEl('#problems')">{$content.text_see_what_we_solve} <i class="bi bi-arrow-down ms-1"></i></a>
                     </div>
                     <div class="hero-proof" data-aos="fade-up" data-aos-delay="300">
