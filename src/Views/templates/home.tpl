@@ -83,49 +83,49 @@ HERO
         <div class="row align-items-center">
             <div class="col-xl-10">
                 <div class="hero-eyebrow" data-aos="fade-up">
-                {$content.text_websites_automation_software_systems}
-            </div>
+                    {$content.text_websites_automation_software_systems}
+                </div>
 
-            <h1 class="text-white" data-aos="fade-up" data-aos-delay="75">
-                {$content.text_fix_the_technology_problems_slowing_down_your}
-                <span class="text-gradient">{$content.text_fix_the_technology_problems_slowing_down_your_gradient}</span>
-            </h1>
+                <h1 class="text-white" data-aos="fade-up" data-aos-delay="75">
+                    {$content.text_fix_the_technology_problems_slowing_down_your}
+                    <span class="text-gradient">{$content.text_fix_the_technology_problems_slowing_down_your_gradient}</span>
+                </h1>
 
-        <p class="hero-copy"
+                <p class="hero-copy"
+                data-aos="fade-up"
+                data-aos-delay="150">
+                {$content.text_skale_helps_growing_businesses_fix_websites_that}
+            </p>
+
+            <div class="hero-problems"
+            data-aos="fade-up"
+            data-aos-delay="225">
+
+            <span class="hero-problem">
+                {$content.text_disconnected_systems}
+            </span>
+
+            <span class="hero-problem">
+                {$content.text_manual_processes}
+            </span>
+
+            <span class="hero-problem">
+                {$content.text_websites_that_dont_convert}
+            </span>
+        </div>
+
+        <div class="hero-actions d-flex flex-wrap gap-3 mt-4"
         data-aos="fade-up"
-        data-aos-delay="150">
-        {$content.text_skale_helps_growing_businesses_fix_websites_that}
-    </p>
+        data-aos-delay="300">
 
-    <div class="hero-problems"
-    data-aos="fade-up"
-    data-aos-delay="225">
+        <a class="btn-skale"
+        href="#assessment">
+        {$content.text_tell_me_whats_not_working}
+    </a>
 
-    <span class="hero-problem">
-        {$content.text_disconnected_systems}
-    </span>
-
-    <span class="hero-problem">
-        {$content.text_manual_processes}
-    </span>
-
-    <span class="hero-problem">
-        {$content.text_websites_that_dont_convert}
-    </span>
-</div>
-
-<div class="hero-actions d-flex flex-wrap gap-3 mt-4"
-data-aos="fade-up"
-data-aos-delay="300">
-
-<a class="btn-skale"
-href="#assessment">
-{$content.text_tell_me_whats_not_working}
-</a>
-
-<a class="btn-skale-outline"
-href="#problems">
-{$content.text_see_problems_we_solve}
+    <a class="btn-skale-outline"
+    href="#problems">
+    {$content.text_see_problems_we_solve}
 </a>
 </div>
 
