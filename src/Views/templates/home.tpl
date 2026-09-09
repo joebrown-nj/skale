@@ -1,678 +1,1435 @@
 {include file="inc/layout/header.tpl"}
 
+{* <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Websites, Automation & Business Systems That Work Better | Skale</title>
+
+<meta name="description"
+content="Skale helps growing businesses fix websites that don't convert, automate manual work, connect disconnected systems, build custom software, and improve marketing and reporting.">
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+rel="stylesheet"> *}
+
+{* <style>
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+NAVIGATION
+========================================================= -->
+<nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
+<div class="container">
+<a class="navbar-brand" href="/">skale.</a>
+
+<button
+class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#mainNavigation"
+aria-controls="mainNavigation"
+aria-expanded="false"
+aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="mainNavigation">
+<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+<li class="nav-item">
+<a class="nav-link" href="#problems">Problems We Solve</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#services">How We Help</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#experience">Our Work</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="/about">About</a>
+</li>
+
+<li class="nav-item ms-lg-2">
+<a class="btn btn-skale"
+href="#assessment">
+Tell Me What's Not Working
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav> *}
+
 <link rel="stylesheet" href="{$smarty.ENV.WEB_ROOT}css/home.min.css" data-ajax-managed-stylesheet="true">
 
-<main class="home">
-
-    <section class="hero">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-7">
-                    <div class="hero-kicker" data-aos="fade-up">
-                        <span></span>
-                        {$content.text_where_engineering_meets_growth}
-                    </div>
-                    <h1 data-aos="fade-up" data-aos-delay="75">
-                        {$content.text_build_a_business_that_works} <span class="text-gradient">{$content.text_smarter_as_it_grows}</span>
-                    </h1>
-                    <p class="hero-copy mt-4" data-aos="fade-up" data-aos-delay="150">
-                        {$content.text_skale_connects_your_website_marketing_software}
-                    </p>
-                    <div class="hero-actions d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="225">
-                        <a aria-label="{$content.aria_label_home_hero_contact_button}" class="text-white mbtn btn btn-outline-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_SERVICES_SOLUTIONS}">{$content.text_explore_solutions}</a>
-                        <a class="btn btn-link text-white text-decoration-none px-2" onclick="scrollToEl('#problems')">{$content.text_see_what_we_solve} <i class="bi bi-arrow-down ms-1"></i></a>
-                    </div>
-                    <div class="hero-proof" data-aos="fade-up" data-aos-delay="300">
-                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_20_years_of_experience}</span>
-                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_founder_led_engagements}</span>
-                        <span><i class="bi bi-check-circle-fill"></i>{$content.text_built_around_your_business}</span>
-                    </div>
-                </div>
-                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="175">
-                    <div class="hero-form-card">
-                        <div class="hero-form-header">
-                            <span class="hero-form-eyebrow">{$content.text_free_strategy_session}</span>
-                            <h2 class="fs-4 h3 mb-2">{$content.text_what_would_you_like_to_improve}</h2>
-                            <p class="mb-0">{$content.text_share_a_few_details_and_get}</p>
-                        </div>
-
-                        <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
-                            <input type="hidden" name="comment" value="home hero">
-                            <input type="hidden" name="form_type" value="home-hero">
-
-                            <div class="mb-3">
-                                <label class="form-label" for="heroName">{$content.text_name}</label>
-                                <input autocomplete="name" class="form-control" id="heroName" name="name" required="" type="text" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="email">{$content.text_email}</label>
-                                <input autocomplete="email" class="form-control" id="email" name="email" required="" type="email" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="phone">{$content.text_phone}</label>
-                                <input autocomplete="tel" class="form-control" id="phone" name="phone" type="tel" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="heroInterest">{$content.text_biggest_challenge}</label>
-                                <select class="form-select" id="heroInterest" name="interest" required="">
-                                    <option disabled="" selected="" value="">{$content.text_select_one}</option>
-                                    <option value="website-leads">{$content.text_generate_more_leads}</option>
-                                    <option value="new-website">{$content.text_build_a_new_website}</option>
-                                    <option value="improve-website">{$content.text_improve_my_current_website}</option>
-                                    <option value="automation">{$content.text_automate_manual_work}</option>
-                                    <option value="integrations">{$content.text_connect_systems_and_data}</option>
-                                    <option value="marketing">{$content.text_improve_marketing_seo_or_ppc}</option>
-                                    <option value="unsure">{$content.text_i_am_not_sure_yet}</option>
-                                </select>
-                            </div>
-
-                            <div aria-hidden="true" class="d-none">
-                                <label for="heroWebsite">{$content.text_website}</label>
-                                <input autocomplete="off" id="heroWebsite" name="website" tabindex="-1" type="text" />
-                            </div>
-
-                            <button class="btn btn-primary btn-lg w-100" type="submit">{$content.text_get_my_recommendation} <i class="bi bi-arrow-right ms-1"></i></button>
-                            <p class="hero-form-note mb-0 mt-3"><i class="bi bi-lock me-1"></i>{$content.text_no_spam_no_aggressive_sales_follow}</p>
-                            {include file="inc/layout/cloudflare-turnstile.tpl"}
-                        </form>
-                    </div>
-                </div>
+<!-- =========================================================
+HERO
+========================================================= -->
+<header class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-10">
+                <div class="hero-eyebrow" data-aos="fade-up">
+                {$content.text_websites_automation_software_systems}
             </div>
+
+            <h1 class="text-white" data-aos="fade-up" data-aos-delay="75">
+                {$content.text_fix_the_technology_problems_slowing_down_your}
+                <span class="text-gradient">{$content.text_fix_the_technology_problems_slowing_down_your_gradient}</span>
+            </h1>
+
+        <p class="hero-copy"
+        data-aos="fade-up"
+        data-aos-delay="150">
+        {$content.text_skale_helps_growing_businesses_fix_websites_that}
+    </p>
+
+    <div class="hero-problems"
+    data-aos="fade-up"
+    data-aos-delay="225">
+
+    <span class="hero-problem">
+        {$content.text_disconnected_systems}
+    </span>
+
+    <span class="hero-problem">
+        {$content.text_manual_processes}
+    </span>
+
+    <span class="hero-problem">
+        {$content.text_websites_that_dont_convert}
+    </span>
+</div>
+
+<div class="hero-actions d-flex flex-wrap gap-3 mt-4"
+data-aos="fade-up"
+data-aos-delay="300">
+
+<a class="btn-skale"
+href="#assessment">
+{$content.text_tell_me_whats_not_working}
+</a>
+
+<a class="btn-skale-outline"
+href="#problems">
+{$content.text_see_problems_we_solve}
+</a>
+</div>
+
+<div class="hero-trust row g-4"
+data-aos="fade-up"
+data-aos-delay="375">
+
+<div class="col-sm-4 hero-trust-item">
+    <strong>{$content.text_20_years}</strong>
+    <span>{$content.text_engineering_technology_experience}</span>
+</div>
+
+<div class="col-sm-4 hero-trust-item">
+    <strong>{$content.text_founder_led}</strong>
+    <span>{$content.text_work_directly_with_senior_expertise}</span>
+</div>
+
+<div class="col-sm-4 hero-trust-item">
+    <strong>{$content.text_business_first}</strong>
+    <span>{$content.text_solve_the_problem_before_choosing_the_tool}</span>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+</header>
+
+
+<main>
+
+    <!-- =========================================================
+    PROBLEMS
+    ========================================================= -->
+    <section id="problems"
+    class="problem-section section-space">
+
+    <div class="container">
+
+        <div class="section-eyebrow"
+        data-aos="fade-up">
+        {$content.text_start_with_the_problem}
+    </div>
+
+    <h2 class="section-title"
+    data-aos="fade-up">
+    {$content.text_you_dont_need_to_know_which_service}
+</h2>
+
+<p class="section-intro mt-3"
+data-aos="fade-up">
+{$content.text_most_businesses_dont_have_a_technology_problem}
+</p>
+
+<div class="row g-4 mt-4">
+
+    <!-- CONVERSION -->
+    <div class="col-md-6 col-xl-3"
+    data-aos="fade-up">
+
+    <article class="problem-card">
+        <div class="problem-number">
+            {$content.text_01_conversion}
         </div>
-    </section>
+
+        <h3>{$content.text_youre_getting_traffic_but_not_enough_leads}</h3>
+
+        <p>
+            {$content.text_visitors_reach_your_website_but_leave_without}
+        </p>
+
+        <a href="/website-development"
+        class="problem-link">
+        {$content.text_fix_website_conversion}
+    </a>
+</article>
+</div>
+
+<!-- MANUAL WORK -->
+<div class="col-md-6 col-xl-3"
+data-aos="fade-up"
+data-aos-delay="75">
+
+<article class="problem-card">
+    <div class="problem-number">
+        {$content.text_02_efficiency}
+    </div>
+
+    <h3>{$content.text_your_team_is_doing_work_that_should}</h3>
+
+    <p>
+        {$content.text_employees_copy_data_update_spreadsheets_send_routine}
+    </p>
+
+    <a href="/solutions/automation-and-software/"
+    class="problem-link">
+    {$content.text_reduce_manual_work}
+</a>
+</article>
+</div>
+
+<!-- DISCONNECTED -->
+<div class="col-md-6 col-xl-3"
+data-aos="fade-up"
+data-aos-delay="150">
+
+<article class="problem-card">
+    <div class="problem-number">
+        {$content.text_03_systems}
+    </div>
+
+    <h3>{$content.text_your_systems_dont_talk_to_each_other}</h3>
+
+    <p>
+        {$content.text_leads_customer_information_reporting_email_spreadsheets_and}
+    </p>
+
+    <a href="/solutions/automation-and-software/"
+    class="problem-link">
+    {$content.text_connect_your_systems}
+</a>
+</article>
+</div>
+
+<!-- SCALE -->
+<div class="col-md-6 col-xl-3"
+data-aos="fade-up"
+data-aos-delay="225">
+
+<article class="problem-card">
+    <div class="problem-number">
+        {$content.text_04_scale}
+    </div>
+
+    <h3>{$content.text_the_systems_that_used_to_work_are}</h3>
+
+    <p>
+        {$content.text_more_customers_employees_data_and_activity_are}
+    </p>
+
+    <a href="#assessment"
+    class="problem-link">
+    {$content.text_find_the_bottleneck}
+</a>
+</article>
+</div>
+
+</div>
+
+<div class="text-center mt-5"
+data-aos="fade-up">
+<a href="#assessment"
+class="btn-skale">
+{$content.text_tell_me_whats_not_working_2}
+</a>
+</div>
+
+</div>
+</section>
 
 
-    <section aria-label="{$content.aria_label_skale_trust_indicators}" class="trust-bar">
-        <div class="container">
-            <div class="trust-card">
-                <div class="row text-center">
-                    <div class="col-6 col-lg-3 trust-stat">
-                        <strong>{$content.text_20}</strong>
-                        <span>{$content.text_years_of_experience}</span>
-                    </div>
-                    <div class="col-6 col-lg-3 trust-stat">
-                        <strong>{$content.text_4}</strong>
-                        <span>{$content.text_connected_solution_pillars}</span>
-                    </div>
-                    <div class="col-6 col-lg-3 trust-stat">
-                        <strong>{$content.text_1}</strong>
-                        <span>{$content.text_partner_across_the_journey}</span>
-                    </div>
-                    <div class="col-6 col-lg-3 trust-stat">
-                        <strong>{$content.text_custom}</strong>
-                        <span>{$content.text_every_engagement}</span>
-                    </div>
-                </div>
-            </div>
+<!-- =========================================================
+EVIDENCE / SELECTED WORK
+========================================================= -->
+<section id="experience"
+class="proof-section section-space">
+
+<div class="container">
+
+    <div class="section-eyebrow text-info"
+    data-aos="fade-up">
+    {$content.text_selected_work_results}
+</div>
+
+<div class="row align-items-end g-4">
+
+    <div class="col-lg-8">
+        <h2 class="section-title text-white"
+        data-aos="fade-up">
+        {$content.text_experience_solving_the_kinds_of_problems_skale}
+    </h2>
+
+    <p class="section-intro mt-3"
+    data-aos="fade-up">
+    {$content.text_skale_is_a_newer_company_but_the}
+</p>
+</div>
+
+</div>
+
+<div class="row g-4 mt-4">
+
+    <!-- CASE STUDY 1 -->
+    <div class="col-lg-4"
+    data-aos="fade-up">
+
+    <article class="proof-card">
+
+        <div class="proof-stat">
+            {$content.text_weeks_hours}
         </div>
-    </section>
+
+        <h3 class="text-white">
+            {$content.text_automated_a_complex_customer_onboarding_workflow}
+        </h3>
+
+        <p>
+            {$content.text_replaced_a_multi_team_manually_coordinated_data}
+        </p>
+
+        <p class="mb-0 fw-semibold text-white">
+            {$content.text_automation_integration_data}
+        </p>
+
+    </article>
+</div>
+
+<!-- CASE STUDY 2 -->
+<div class="col-lg-4"
+data-aos="fade-up"
+data-aos-delay="100">
+
+<article class="proof-card">
+
+    <div class="proof-stat">
+        {$content.text_70k_1m}
+    </div>
+
+    <h3 class="text-white">
+        {$content.text_helped_scale_a_large_product_data_platform}
+    </h3>
+
+    <p>
+        {$content.text_modernized_the_systems_behind_a_growing_data}
+    </p>
+
+    <p class="mb-0 fw-semibold text-white">
+        {$content.text_software_architecture_scale}
+    </p>
+
+</article>
+</div>
+
+<!-- CASE STUDY 3 -->
+<div class="col-lg-4"
+data-aos="fade-up"
+data-aos-delay="200">
+
+<article class="proof-card">
+
+    <div class="proof-stat">
+        {$content.text_40_faster}
+    </div>
+
+    <h3 class="text-white">
+        {$content.text_improved_application_performance_and_efficiency}
+    </h3>
+
+    <p>
+        {$content.text_identified_application_and_workflow_bottlenecks_improved_platform}
+    </p>
+
+    <p class="mb-0 fw-semibold text-white">
+        {$content.text_performance_software_optimization}
+    </p>
+
+</article>
+</div>
+
+</div>
+
+<p class="proof-disclosure mt-4 mb-0"
+data-aos="fade-up">
+{$content.text_selected_results_reflect_work_completed_by_skale}
+</p>
+
+</div>
+</section>
 
 
-    <section class="section-padding" id="problems">
-        <div class="container">
-            <div class="row align-items-end g-4 mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">{$content.text_the_problems_we_solve}</span>
-                    <h2>{$content.text_your_business_may_not_need_another}</h2>
-                </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">{$content.text_growth_gets_harder_when_websites_marketing}</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-xl-3" data-aos="fade-up">
-                    <article class="problem-card">
-                        <span class="problem-number">{$content.text_01_conversion}</span>
-                        <h3>{$content.text_traffic_but_not_enough_leads}</h3>
-                        <p>{$content.text_people_visit_your_website_but_leave}</p>
-                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_improve_conversions} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
+<!-- =========================================================
+SERVICES
+========================================================= -->
+<section id="services"
+class="services-section section-space">
 
-                <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="100">
-                    <article class="problem-card">
-                        <span class="problem-number">{$content.text_02_efficiency}</span>
-                        <h3>{$content.text_too_much_repetitive_work}</h3>
-                        <p>{$content.text_your_team_spends_valuable_time_copying}</p>
-                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_automate_operations} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
+<div class="container">
 
-                <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="200">
-                    <article class="problem-card">
-                        <span class="problem-number">{$content.text_03_visibility}</span>
-                        <h3>{$content.text_systems_that_do_not_connect}</h3>
-                        <p>{$content.text_information_is_scattered_across_tools_creating}</p>
-                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/system-integrations">{$content.text_connect_your_systems} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
+    <div class="row align-items-end g-4">
 
-                <div class="col-md-6 col-xl-3" data-aos="fade-up" data-aos-delay="300">
-                    <article class="problem-card">
-                        <span class="problem-number">{$content.text_04_scale}</span>
-                        <h3>{$content.text_growth_is_creating_friction}</h3>
-                        <p>{$content.text_processes_that_once_worked_are_becoming}</p>
-                        <a aria-label="{$content.aria_label_home_service_link}" class="stretched-link mbtn problem-link" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_build_a_scalable_plan} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
-            </div>
+        <div class="col-lg-8">
 
-            <div class="text-center mt-5" data-aos="fade-up">
-                <p class="mb-3">{$content.text_recognize_your_business_in_one_of}</p>
-                <a aria-label="{$content.aria_label_home_talk_through_your_challenge_button}" class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_challenge}</a>
-            </div>
+            <div class="section-eyebrow"
+            data-aos="fade-up">
+            {$content.text_how_skale_can_help}
         </div>
-    </section>
 
-    <section class="section-padding-sm pt-0">
-        <div class="container">
-            <div class="inline-cta" data-aos="fade-up">
-                <div>
-                    <span class="inline-cta-label">{$content.text_recognize_these_problems}</span>
-                    <h2 class="h3 mb-2">{$content.text_let_s_identify_what_is_slowing}</h2>
-                    <p class="mb-0">{$content.text_you_do_not_need_to_know}</p>
-                </div>
-                <a aria-label="{$content.aria_label_home_free_strategy_session_button}" class="mbtn btn btn-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_free_strategy_session_2}</a>
-            </div>
+        <h2 class="section-title"
+        data-aos="fade-up">
+        {$content.text_practical_help_across_the_technology_behind_your}
+    </h2>
+
+    <p class="section-intro mt-3"
+    data-aos="fade-up">
+    {$content.text_start_with_one_problem_or_connect_several}
+</p>
+
+</div>
+
+</div>
+
+<div class="row g-4 mt-4">
+
+    <!-- WEBSITES -->
+    <div class="col-lg-6"
+    data-aos="fade-up">
+
+    <article class="service-group">
+        <div class="service-group-body">
+
+            <div class="service-icon">{$content.text_01}</div>
+
+            <h3>{$content.text_websites_conversion}</h3>
+
+            <p>
+                {$content.text_make_your_website_easier_to_understand_easier}
+            </p>
+
+            <ul class="service-list">
+
+                <li>
+                    <a href="/website-development">
+                        {$content.text_website_design_development}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/website-development">
+                        {$content.text_wordpress_development}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/website-rescue">
+                        {$content.text_website_rescue}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/website-development">
+                        {$content.text_landing_pages}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/website-development">
+                        {$content.text_conversion_optimization}
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
-    </section>
+    </article>
+</div>
 
 
-    <section class="section-padding outcome-section">
-        <div class="container">
-            <div class="text-center mx-auto mb-5" data-aos="fade-up" style="max-width: 760px;">
-                <span class="section-label justify-content-center">{$content.text_from_friction_to_progress}</span>
-                <h2>{$content.text_focus_on_the_outcome_not_a}</h2>
-                <p class="section-intro mx-auto">{$content.text_every_engagement_starts_by_understanding_what}</p>
+<!-- AUTOMATION -->
+<div class="col-lg-6"
+data-aos="fade-up"
+data-aos-delay="100">
+
+<article class="service-group">
+    <div class="service-group-body">
+
+        <div class="service-icon">{$content.text_02}</div>
+
+        <h3>{$content.text_automation_crm_integrations}</h3>
+
+        <p>
+            {$content.text_reduce_repetitive_work_and_make_information_move}
+        </p>
+
+        <ul class="service-list">
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_workflow_automation}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_system_integrations}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_crm_solutions}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_marketing_automation}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_data_synchronization}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</article>
+</div>
+
+
+<!-- SOFTWARE -->
+<div class="col-lg-6"
+data-aos="fade-up">
+
+<article class="service-group">
+    <div class="service-group-body">
+
+        <div class="service-icon">{$content.text_03}</div>
+
+        <h3>{$content.text_software_business_systems}</h3>
+
+        <p>
+            {$content.text_build_or_modernize_the_software_your_business}
+        </p>
+
+        <ul class="service-list">
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_custom_software_development}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_internal_business_tools}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_customer_partner_portals}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_software_modernization}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/automation-and-software/">
+                    {$content.text_it_technology_solutions}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</article>
+</div>
+
+
+<!-- MARKETING -->
+<div class="col-lg-6"
+data-aos="fade-up"
+data-aos-delay="100">
+
+<article class="service-group">
+    <div class="service-group-body">
+
+        <div class="service-icon">{$content.text_04}</div>
+
+        <h3>{$content.text_marketing_analytics_growth}</h3>
+
+        <p>
+            {$content.text_understand_where_opportunities_come_from_improve_the}
+        </p>
+
+        <ul class="service-list">
+
+            <li>
+                <a href="/services/marketing/">
+                    {$content.text_online_marketing}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/demand-generation/">
+                    {$content.text_seo}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/demand-generation/">
+                    {$content.text_ppc_paid_advertising}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/demand-generation/">
+                    {$content.text_email_marketing}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/demand-generation/">
+                    {$content.text_marketing_analytics}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/strategy-and-optimization/">
+                    {$content.text_analytics_reporting}
+                </a>
+            </li>
+
+            <li>
+                <a href="/solutions/strategy-and-optimization/">
+                    {$content.text_strategy_optimization}
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</article>
+</div>
+
+</div>
+
+
+<div class="mt-5 p-4 p-lg-5 bg-white border rounded-4"
+data-aos="fade-up">
+
+<div class="row align-items-center g-4">
+
+    <div class="col-lg-8">
+        <h3 class="fw-bold mb-2">
+            {$content.text_not_sure_where_your_problem_belongs}
+        </h3>
+
+        <p class="text-secondary mb-0">
+            {$content.text_thats_normal_a_lead_generation_problem_might}
+        </p>
+    </div>
+
+    <div class="col-lg-4 text-lg-end">
+        <a href="#assessment"
+        class="btn-skale">
+        {$content.text_tell_me_whats_not_working_3}
+    </a>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+CONNECTED SYSTEM APPROACH
+========================================================= -->
+<section class="section-space">
+
+    <div class="container text-center">
+
+        <div class="section-eyebrow justify-content-center"
+        data-aos="fade-up">
+        {$content.text_the_skale_approach}
+    </div>
+
+    <h2 class="section-title mx-auto"
+    data-aos="fade-up">
+    {$content.text_fix_the_whole_journey_not_just_one}
+</h2>
+
+<p class="section-intro mx-auto mt-3"
+data-aos="fade-up">
+{$content.text_a_website_can_generate_traffic_and_still}
+</p>
+
+<div class="system-flow"
+data-aos="fade-up">
+
+<div class="system-step">{$content.text_marketing}</div>
+<div class="system-step">{$content.text_website}</div>
+<div class="system-step">{$content.text_crm}</div>
+<div class="system-step">{$content.text_automation}</div>
+<div class="system-step">{$content.text_reporting}</div>
+<div class="system-step">{$content.text_growth}</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+TECHNOLOGY / COMPETENCY
+========================================================= -->
+<section class="technology-section section-space-sm">
+
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-4"
+            data-aos="fade-right">
+
+            <div class="section-eyebrow">
+                {$content.text_technical_depth}
             </div>
-            <div class="row g-4 align-items-stretch">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="home-outcome-card">
-                        <span class="badge text-bg-light border mb-3">{$content.text_what_may_be_happening_now}</span>
-                        <h3>{$content.text_disconnected_activity_creates_hidden_costs}</h3>
-                        <ul class="home-outcome-list">
-                            <li><i class="bi bi-x-circle"></i><span>{$content.text_your_website_does_not_clearly_communicate}</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>{$content.text_employees_spend_hours_completing_repetitive_tasks}</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>{$content.text_marketing_channels_operate_separately_from_sales}</span></li>
-                            <li><i class="bi bi-x-circle"></i><span>{$content.text_decisions_are_based_on_incomplete_data}</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="home-outcome-card dark">
-                        <span class="badge bg-white text-dark mb-3">{$content.text_what_better_can_look_like}</span>
-                        <h3 class="text-white">{$content.text_connected_systems_create_momentum}</h3>
-                        <ul class="home-outcome-list">
-                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_a_clear_customer_journey_that_turns}</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_automated_workflows_that_save_time_and}</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_tools_and_data_that_move_reliably}</span></li>
-                            <li><i class="bi bi-check-circle-fill"></i><span>{$content.text_reporting_that_shows_what_is_working}</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+            <h2 class="h3 fw-bold">
+                {$content.text_experienced_across_the_systems_behind_modern_businesses}
+            </h2>
+
+            <p class="text-secondary mb-lg-0">
+                {$content.text_technology_is_selected_based_on_the_problem}
+            </p>
+
         </div>
-    </section>
 
+        <div class="col-lg-8"
+        data-aos="fade-left">
 
-    <section class="section-padding" id="services">
-        <div class="container">
-            <div class="row align-items-end g-4 mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">{$content.text_connected_solutions}</span>
-                    <h2>{$content.text_everything_your_business_needs_to_grow}</h2>
-                </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">{$content.text_each_solution_can_stand_alone_or}</p>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6" data-aos="fade-up">
-                    <article class="service-card">
-                        <div class="icon-box"><i class="bi bi-window"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_growth_infrastructure}</span>
-                        <h3>{$content.text_turn_your_website_into_your_best}</h3>
-                        <p>{$content.text_create_a_faster_clearer_more_credible}</p>
-                        <ul class="service-list">
-                            <li>{$content.text_website_design_and_development}</li>
-                            <li>{$content.text_landing_pages_and_conversion_optimization}</li>
-                            <li>{$content.text_crm_lead_tracking_and_customer_journeys}</li>
-                            <li>{$content.text_analytics_and_performance_improvements}</li>
-                        </ul>
-                        <a aria-label="{$content.aria_label_home_growth_infrastructure}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/growth-infrastructure">{$content.text_explore_growth_infrastructure} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
+        <div class="d-flex flex-wrap gap-2">
 
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <article class="service-card">
-                        <div class="icon-box"><i class="bi bi-gear-wide-connected"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_automation_software}</span>
-                        <h3>{$content.text_stop_paying_people_to_do_robot}</h3>
-                        <p>{$content.text_streamline_repetitive_processes_connect_your_tools}</p>
-                        <ul class="service-list">
-                            <li>{$content.text_workflow_and_process_automation}</li>
-                            <li>{$content.text_system_integrations_and_data_synchronization}</li>
-                            <li>{$content.text_custom_software_portals_and_internal_tools}</li>
-                            <li>{$content.text_ai_assisted_reporting_and_insights}</li>
-                        </ul>
-                        <a aria-label="{$content.aria_label_home_automation_and_software}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/automation-and-software">{$content.text_explore_automation_software} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
+            <span class="tech-badge">{$content.text_wordpress}</span>
+            <span class="tech-badge">{$content.text_react}</span>
+            <span class="tech-badge">{$content.text_node_js}</span>
+            <span class="tech-badge">{$content.text_php}</span>
+            <span class="tech-badge">{$content.text_rest_apis}</span>
+            <span class="tech-badge">{$content.text_mysql}</span>
+            <span class="tech-badge">{$content.text_google_cloud}</span>
+            <span class="tech-badge">{$content.text_aws}</span>
+            <span class="tech-badge">{$content.text_azure}</span>
+            <span class="tech-badge">{$content.text_crm_integrations}</span>
+            <span class="tech-badge">{$content.text_marketing_platforms}</span>
+            <span class="tech-badge">{$content.text_analytics}</span>
 
-                <div class="col-md-6" data-aos="fade-up">
-                    <article class="service-card">
-                        <div class="icon-box"><i class="bi bi-bullseye"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_demand_generation}</span>
-                        <h3>{$content.text_build_a_more_predictable_pipeline_of}</h3>
-                        <p>{$content.text_connect_visibility_messaging_conversion_lead_nurturing}</p>
-                        <ul class="service-list">
-                            <li>{$content.text_seo_strategy_and_content_improvement}</li>
-                            <li>{$content.text_google_and_meta_paid_advertising}</li>
-                            <li>{$content.text_email_marketing_and_lead_nurturing}</li>
-                            <li>{$content.text_campaign_analytics_and_optimization}</li>
-                        </ul>
-                        <a aria-label="{$content.aria_label_home_demand_generation}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/demand-generation">{$content.text_explore_demand_generation} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
-
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <article class="service-card">
-                        <div class="icon-box"><i class="bi bi-compass"></i></div>
-                        <span class="small text-uppercase fw-bold text-secondary mt-4">{$content.text_strategy_optimization}</span>
-                        <h3>{$content.text_know_exactly_what_to_improve_next}</h3>
-                        <p>{$content.text_find_bottlenecks_prioritize_investments_and_create}</p>
-                        <ul class="service-list">
-                            <li>{$content.text_growth_audits_and_system_mapping}</li>
-                            <li>{$content.text_technology_and_marketing_roadmaps}</li>
-                            <li>{$content.text_analytics_kpis_and_reporting}</li>
-                            <li>{$content.text_ongoing_optimization_and_guidance}</li>
-                        </ul>
-                        <a aria-label="{$content.aria_label_home_strategy_optimization}" class="stretched-link mbtn btn-link-arrow mt-auto" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}/strategy-and-optimization">{$content.text_explore_strategy_optimization} <i class="bi bi-arrow-right"></i></a>
-                    </article>
-                </div>
-            </div>
-
-            <div class="text-center mt-5" data-aos="fade-up">
-                <a aria-label="{$content.aria_label_home_view_all_solutions}" class="mbtn btn btn-outline-primary btn-lg" href="{$smarty.ENV.URL_SERVICES_SOLUTIONS}">{$content.text_view_all_solutions}</a>
-            </div>
         </div>
-    </section>
 
-    <section class="section-padding-sm pt-0">
-        <div class="container">
-            <div class="inline-cta inline-cta-light" data-aos="fade-up">
-                <div>
-                    <span class="inline-cta-label">{$content.text_not_sure_where_to_start}</span>
-                    <h2 class="h3 mb-2">{$content.text_tell_us_the_outcome_you_need}</h2>
-                    <p class="mb-0">{$content.text_we_will_help_you_determine_whether}</p>
-                </div>
-                <a class="btn btn-outline-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_goal}</a>
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+WHO SKALE IS FOR
+========================================================= -->
+<section class="section-space">
+
+    <div class="container">
+
+        <div class="row g-5 align-items-start">
+
+            <div class="col-lg-5"
+            data-aos="fade-right">
+
+            <div class="section-eyebrow">
+                {$content.text_who_skale_is_for}
             </div>
+
+            <h2 class="section-title">
+                {$content.text_a_strong_fit_when_growing_starts_creating}
+            </h2>
+
+            <p class="section-intro mt-3">
+                {$content.text_skale_works_best_with_businesses_that_have}
+            </p>
+
+            <a href="#assessment"
+            class="btn-skale mt-3">
+            {$content.text_tell_me_whats_not_working_4}
+        </a>
+
+    </div>
+
+    <div class="col-lg-7">
+
+        <div class="row g-3">
+
+            <div class="col-md-6"
+            data-aos="fade-up">
+
+            <div class="fit-card">
+                <h3>{$content.text_growing_small_and_midsize_businesses}</h3>
+
+                <p>
+                    {$content.text_your_company_has_real_customers_and_momentum}
+                </p>
+            </div>
+
         </div>
-    </section>
 
+        <div class="col-md-6"
+        data-aos="fade-up"
+        data-aos-delay="75">
 
-    <section class="section-padding systems-section">
-        <div class="container">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label text-white">{$content.text_the_skale_systems_approach}</span>
-                    <h2 class="text-white">{$content.text_the_best_results_happen_when_every}</h2>
-                </div>
+        <div class="fit-card">
+            <h3>{$content.text_teams_relying_on_manual_processes}</h3>
 
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">{$content.text_most_vendors_improve_one_part_skale}</p>
-                </div>
-            </div>
-
-            <div class="journey-row">
-                <div class="journey-step" data-aos="zoom-in">
-                    <div class="journey-icon"><i class="bi bi-megaphone"></i></div>
-                    <strong>{$content.text_marketing}</strong>
-                </div>
-
-                <div class="journey-step" data-aos="zoom-in" data-aos-delay="75">
-                    <div class="journey-icon"><i class="bi bi-window"></i></div>
-                    <strong>{$content.text_website}</strong>
-                </div>
-
-                <div class="journey-step" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="journey-icon"><i class="bi bi-person-check"></i></div>
-                    <strong>{$content.text_crm}</strong>
-                </div>
-
-                <div class="journey-step" data-aos="zoom-in" data-aos-delay="225">
-                    <div class="journey-icon"><i class="bi bi-gear"></i></div>
-                    <strong>{$content.text_automation}</strong>
-                </div>
-
-                <div class="journey-step" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="journey-icon"><i class="bi bi-bar-chart"></i></div>
-                    <strong>{$content.text_reporting}</strong>
-                </div>
-
-                <div class="journey-step" data-aos="zoom-in" data-aos-delay="375">
-                    <div class="journey-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                    <strong>{$content.text_growth}</strong>
-                </div>
-            </div>
+            <p>
+                {$content.text_spreadsheets_emails_duplicate_entry_and_repetitive_administrative}
+            </p>
         </div>
-    </section>
+
+    </div>
+
+    <div class="col-md-6"
+    data-aos="fade-up"
+    data-aos-delay="150">
+
+    <div class="fit-card">
+        <h3>{$content.text_businesses_with_disconnected_tools}</h3>
+
+        <p>
+            {$content.text_your_website_crm_marketing_operations_and_reporting}
+        </p>
+    </div>
+
+</div>
+
+<div class="col-md-6"
+data-aos="fade-up"
+data-aos-delay="225">
+
+<div class="fit-card">
+    <h3>{$content.text_businesses_facing_an_unclear_technology_problem}</h3>
+
+    <p>
+        {$content.text_you_know_something_is_inefficient_or_limiting}
+    </p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
 
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="text-center mx-auto mb-5" data-aos="fade-up" style="max-width: 760px;">
-                <span class="section-label justify-content-center">{$content.text_how_we_work}</span>
-                <h2>{$content.text_a_clear_path_from_business_challenge}</h2>
-                <p class="section-intro mx-auto">{$content.text_no_unnecessary_complexity_no_generic_package}</p>
+<!-- =========================================================
+PROCESS
+========================================================= -->
+<section class="section-space services-section">
+
+    <div class="container">
+
+        <div class="section-eyebrow"
+        data-aos="fade-up">
+        {$content.text_how_it_works}
+    </div>
+
+    <h2 class="section-title"
+    data-aos="fade-up">
+    {$content.text_start_with_the_business_problem_technology_comes}
+</h2>
+
+<div class="row g-5 mt-3">
+
+    <div class="col-md-4"
+    data-aos="fade-up">
+
+    <div class="process-number">{$content.text_1}</div>
+
+    <h3 class="h5 fw-bold">
+        {$content.text_find_the_friction}
+    </h3>
+
+    <p class="text-secondary">
+        {$content.text_understand_whats_happening_today_where_time_or}
+    </p>
+
+</div>
+
+<div class="col-md-4"
+data-aos="fade-up"
+data-aos-delay="100">
+
+<div class="process-number">{$content.text_2}</div>
+
+<h3 class="h5 fw-bold">
+    {$content.text_identify_the_highest_impact_fix}
+</h3>
+
+<p class="text-secondary">
+    {$content.text_determine_what_will_create_the_most_meaningful}
+</p>
+
+</div>
+
+<div class="col-md-4"
+data-aos="fade-up"
+data-aos-delay="200">
+
+<div class="process-number">{$content.text_3}</div>
+
+<h3 class="h5 fw-bold">
+    {$content.text_build_connect_and_improve}
+</h3>
+
+<p class="text-secondary">
+    {$content.text_implement_the_solution_measure_whether_its_working}
+</p>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+FOUNDER / TRUST
+========================================================= -->
+<section class="section-space">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-7"
+            data-aos="fade-right">
+
+            <div class="section-eyebrow">
+                {$content.text_founder_led_2}
             </div>
 
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-up">
-                    <article class="process-card">
-                        <span class="process-count">{$content.text_1}</span>
-                        <h3 class="h4 mt-4">{$content.text_find_the_friction}</h3>
-                        <p class="mb-0">{$content.text_we_examine_your_customer_journey_workflows}</p>
-                    </article>
-                </div>
+            <h2 class="section-title">
+                {$content.text_skale_is_new_the_experience_behind_it}
+            </h2>
 
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <article class="process-card">
-                        <span class="process-count">{$content.text_2}</span>
-                        <h3 class="h4 mt-4">{$content.text_prioritize_the_impact}</h3>
-                        <p class="mb-0">{$content.text_we_focus_first_on_the_changes}</p>
-                    </article>
-                </div>
+            <p class="section-intro mt-3">
+                {$content.text_im_joe_brown_founder_of_skale_ive}
+            </p>
 
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <article class="process-card">
-                        <span class="process-count">{$content.text_3}</span>
-                        <h3 class="h4 mt-4">{$content.text_build_for_what_comes_next}</h3>
-                        <p class="mb-0">{$content.text_we_implement_practical_systems_that_solve}</p>
-                    </article>
-                </div>
-            </div>
+            <p class="text-secondary">
+                {$content.text_i_created_skale_to_bring_that_experience}
+            </p>
+
+            <p class="text-secondary">
+                {$content.text_youll_work_directly_with_someone_who_can}
+            </p>
+
+            <a href="/about"
+            class="fw-bold text-dark">
+            {$content.text_learn_more_about_joe_and_skale}
+        </a>
+
+    </div>
+
+    <div class="col-lg-5"
+    data-aos="fade-left">
+
+    <div class="p-4 p-lg-5 rounded-4 bg-light border">
+
+        <div class="mb-4">
+            <strong class="d-block fs-4">
+                {$content.text_senior_level_experience}
+            </strong>
+
+            <span class="text-secondary">
+                {$content.text_applied_directly_to_your_project}
+            </span>
         </div>
-    </section>
 
+        <div class="mb-4">
+            <strong class="d-block fs-4">
+                {$content.text_direct_communication}
+            </strong>
 
-    <section class="section-padding trust-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5" data-aos="fade-right">
-                    <div class="founder-panel d-flex flex-column justify-content-end">
-                        <span class="badge bg-light text-dark align-self-start mb-3">{$content.text_founder_led_consulting}</span>
-                        <h3 class="h2">{$content.text_experience_you_can_speak_with_directly}</h3>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-7" data-aos="fade-left">
-                    <span class="section-label">{$content.text_why_businesses_trust_skale}</span>
-                    <h2>{$content.text_a_technical_partner_who_understands_the}</h2>
-                    <p class="section-intro">{$content.text_you_should_not_have_to_coordinate}</p>
-
-                    <div class="mt-4">
-                        <div class="trust-point">
-                            <i class="bi bi-patch-check-fill"></i>
-                            <div>
-                                <h3 class="h5 mb-1">{$content.text_20_years_of_real_world_experience}</h3>
-                                <p class="mb-0">{$content.text_senior_engineering_product_consulting_and_growth}</p>
-                            </div>
-                        </div>
-
-                        <div class="trust-point">
-                            <i class="bi bi-person-workspace"></i>
-                            <div>
-                                <h3 class="h5 mb-1">{$content.text_direct_access_and_accountability}</h3>
-                                <p class="mb-0">{$content.text_founder_led_engagements_mean_thoughtful_recommendations}</p>
-                            </div>
-                        </div>
-
-                        <div class="trust-point">
-                            <i class="bi bi-sliders"></i>
-                            <div>
-                                <h3 class="h5 mb-1">{$content.text_recommendations_built_around_your_business}</h3>
-                                <p class="mb-0">{$content.text_no_rigid_package_preferred_platform_or}</p>
-                            </div>
-                        </div>
-
-                        <div class="trust-point">
-                            <i class="bi bi-infinity"></i>
-                            <div>
-                                <h3 class="h5 mb-1">{$content.text_long_term_thinking}</h3>
-                                <p class="mb-0">{$content.text_every_solution_is_designed_to_reduce}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a aria-label="{$content.aria_label_home_learn_more_about_skale_link}" class="mbtn btn-link-arrow mt-4" href="/about">{$content.text_learn_more_about_skale} <i class="bi bi-arrow-right"></i></a>
-                </div>
-            </div>
+            <span class="text-secondary">
+                {$content.text_no_layers_of_account_managers_between_you}
+            </span>
         </div>
-    </section>
 
-    <section class="section-padding-sm pt-0 trust-section">
-        <div class="container">
-            <div class="inline-cta inline-cta-dark" data-aos="zoom-in">
-                <div>
-                    <span class="inline-cta-label text-success">{$content.text_ready_for_a_clearer_next_step}</span>
-                    <h2 class="fs-3 h3 mb-2">{$content.text_get_recommendations_based_on_your_business}</h2>
-                    <p class="mb-0">{$content.text_start_with_a_short_conversation_about}</p>
-                </div>
+        <div>
+            <strong class="d-block fs-4">
+                {$content.text_no_predetermined_solution}
+            </strong>
 
-                <a aria-label="{$content.aria_label_home_request_a_consultation_button}" class="mbtn btn btn-light btn-lg flex-shrink-0 text-dark" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_request_a_consultation}</a>
-            </div>
+            <span class="text-secondary">
+                {$content.text_fix_whats_actually_causing_the_problem}
+            </span>
         </div>
-    </section>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</section>
 
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="row align-items-end g-4 mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">{$content.text_built_differently}</span>
-                    <h2>{$content.text_the_difference_is_not_only_what}</h2>
-                </div>
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <p class="mb-0">{$content.text_skale_starts_with_the_business_outcome}</p>
-                </div>
-            </div>
+<!-- =========================================================
+INSIGHTS / GIVE VALUE BEFORE ASK
+========================================================= -->
+<section class="section-space services-section">
 
-            <div class="comparison-wrap table-responsive" data-aos="fade-up">
-                <table class="table comparison-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">{$content.text_area}</th>
-                            <th scope="col">{$content.text_typical_agency}</th>
-                            <th scope="col">{$content.text_the_skale_approach}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">{$content.text_starting_point}</th>
-                            <td>{$content.text_requested_deliverable}</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_business_outcome}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{$content.text_recommendations}</th>
-                            <td>{$content.text_limited_to_one_service}</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_across_systems_and_teams}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{$content.text_technology}</th>
-                            <td>{$content.text_platform_first}</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_fit_for_purpose}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{$content.text_communication}</th>
-                            <td>{$content.text_passed_between_departments}</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_direct_founder_led_access}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">{$content.text_definition_of_success}</th>
-                            <td>{$content.text_launch_completed}</td>
-                            <td><i class="bi bi-check-circle-fill text-success me-2"></i>{$content.text_measurable_improvement}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="container">
+
+        <div class="section-eyebrow"
+        data-aos="fade-up">
+        {$content.text_practical_insights}
+    </div>
+
+    <h2 class="section-title"
+    data-aos="fade-up">
+    {$content.text_see_how_skale_approaches_common_business_problems}
+</h2>
+
+<p class="section-intro mt-3"
+data-aos="fade-up">
+{$content.text_not_ready_to_contact_anyone_yet_start}
+</p>
+
+<div class="row g-4 mt-4">
+
+    <div class="col-lg-4"
+    data-aos="fade-up">
+
+    <article class="insight-card">
+
+        <div class="small fw-bold text-uppercase text-secondary mb-2">
+            {$content.text_websites_conversion_2}
         </div>
-    </section>
+
+        <h3>
+            {$content.text_why_your_website_gets_traffic_but_no}
+        </h3>
+
+        <p class="text-secondary">
+            {$content.text_see_the_problems_that_can_stop_website}
+        </p>
+
+        <a href="/blog/2026-07-24/why-your-website-gets-traffic-but-no-leads"
+        class="fw-bold text-dark">
+        {$content.text_read_the_article}
+    </a>
+
+</article>
+</div>
 
 
-    <section class="section-padding-sm">
-        <div class="container">
-            <div class="cta-band p-4 p-md-5" data-aos="zoom-in">
-                <div class="row align-items-center g-4">
-                    <div class="col-lg-8">
-                        <span class="text-uppercase small fw-bold text-success">{$content.text_a_better_next_step}</span>
-                        <h2 class="h1 mt-2 mb-3 fs-2">{$content.text_not_sure_which_service_you_need}</h2>
-                        <p class="mb-0 fs-5">{$content.text_you_do_not_need_to_diagnose}</p>
-                    </div>
+<div class="col-lg-4"
+data-aos="fade-up"
+data-aos-delay="100">
 
-                    <div class="col-lg-4 text-lg-end">
-                        <a aria-label="{$content.aria_label_home_talk_through_your_challenge_button_2}" class="text-dark mbtn btn btn-light btn-lg" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your} <br>{$content.text_challenge} <i class="bi bi-arrow-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
+<article class="insight-card">
+
+    <div class="small fw-bold text-uppercase text-secondary mb-2">
+        {$content.text_systems_integration}
+    </div>
+
+    <h3>
+        {$content.text_the_hidden_cost_of_disconnected_business_systems}
+    </h3>
+
+    <p class="text-secondary">
+        {$content.text_see_how_disconnected_crms_email_platforms_websites}
+    </p>
+
+    <a href="/blog/2026-08-24/the-hidden-cost-of-disconnected-business-systems"
+    class="fw-bold text-dark">
+    {$content.text_read_the_article_2}
+</a>
+
+</article>
+</div>
+
+
+<div class="col-lg-4"
+data-aos="fade-up"
+data-aos-delay="200">
+
+<article class="insight-card">
+
+    <div class="small fw-bold text-uppercase text-secondary mb-2">
+        {$content.text_automation_2}
+    </div>
+
+    <h3>
+        {$content.text_stop_paying_employees_to_do_robot_work}
+    </h3>
+
+    <p class="text-secondary">
+        {$content.text_identify_repetitive_work_that_may_be_costing}
+    </p>
+
+    <a href="/blog/2026-06-26/stop-paying-employees-to-do-robot-work"
+    class="fw-bold text-dark">
+    {$content.text_read_the_article_3}
+</a>
+
+</article>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+LOW-FRICTION CTA
+========================================================= -->
+<section id="assessment"
+class="cta-section section-space">
+
+<div class="container">
+
+    <div class="row g-5 align-items-center">
+
+        <div class="col-lg-6"
+        data-aos="fade-right">
+
+        <div class="section-eyebrow text-info">
+            {$content.text_a_better_first_step}
         </div>
-    </section>
 
+        <h2 class="section-title text-white">
+            {$content.text_tell_me_whats_not_working_5}
+        </h2>
 
-    <section class="section-padding">
-        <div class="container">
-            <div class="row align-items-end g-4 mb-5">
-                <div class="col-lg-8" data-aos="fade-up">
-                    <span class="section-label">{$content.text_insights_for_smarter_growth}</span>
-                    <h2>{$content.text_practical_ideas_you_can_use_before}</h2>
-                </div>
+        <p class="section-intro mt-3">
+            {$content.text_you_dont_need_a_project_plan_technical}
+        </p>
 
-                <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="100">
-                    <a class="btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}blog">{$content.text_view_all_insights}</a>
-                </div>
+        <p class="text-white fs-5">
+            {$content.text_send_a_short_description_of_the_problem}
+        </p>
+
+        <div class="mt-4">
+
+            <div class="d-flex gap-3 mb-3">
+                <span class="text-info fw-bold">{$content.text_text}</span>
+                <span>{$content.text_no_obligation_to_schedule_a_call}</span>
             </div>
 
-            <div class="row g-4">
-                {include file="inc/blog/blog-list-container.tpl" blogList=$data.blogList blogContent=$data.blogContent limit=6}
+            <div class="d-flex gap-3 mb-3">
+                <span class="text-info fw-bold">{$content.text_text_2}</span>
+                <span>{$content.text_no_generic_sales_pitch}</span>
             </div>
+
+            <div class="d-flex gap-3 mb-3">
+                <span class="text-info fw-bold">{$content.text_text_3}</span>
+                <span>{$content.text_you_dont_need_to_diagnose_the_solution}</span>
+            </div>
+
+            <div class="d-flex gap-3">
+                <span class="text-info fw-bold">{$content.text_text_4}</span>
+                <span>{$content.text_direct_response_from_skales_founder}</span>
+            </div>
+
         </div>
-    </section>
+
+    </div>
 
 
-    <section class="section-padding contact-section" id="contact">
-        <div class="container">
-            <div class="row g-4 g-lg-5 align-items-stretch">
-                <div class="col-lg-5" data-aos="fade-right">
-                    <div class="contact-info">
-                        <span class="badge bg-light text-dark mb-4">{$content.text_free_consultation}</span>
-                        <h2 class="fs-2 text-white">{$content.text_ready_to_remove_what_is_getting}</h2>
-                        <p class="fs-5">{$content.text_tell_us_what_you_are_trying}</p>
+    <div class="col-lg-6"
+    data-aos="fade-left">
 
-                        <div class="mt-4">
-                            <div class="contact-benefit">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>{$content.text_no_pressure_discovery_conversation}</span>
-                            </div>
+    <div class="assessment-card">
 
-                            <div class="contact-benefit">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>{$content.text_clear_practical_next_step_recommendations}</span>
-                            </div>
-
-                            <div class="contact-benefit">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>{$content.text_direct_conversation_with_an_experienced_technical}</span>
-                            </div>
-
-                            <div class="contact-benefit">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span>{$content.text_no_aggressive_sales_follow_up}</span>
-                            </div>
-                        </div>
-
-                        <hr class="border-secondary my-4" />
-                        <p class="small text-uppercase fw-bold mb-2">{$content.text_prefer_to_contact_us_directly}</p>
-                        {include file="inc/buttons/phone-link.tpl" type="link"}
-                        {include file="inc/buttons/email-link.tpl" type="link"}
-                    </div>
-                </div>
-
-                <div class="col-lg-7" data-aos="fade-left">
-
-                    <form action="{$smarty.ENV.SITE_URL}contact-form" method="POST" class="ajaxForm">
-                        <input type="hidden" name="comment" value="home footer form">
-                        <input type="hidden" name="form_type" value="home-footer">
-
-                        <div class="mb-4">
-                            <span class="section-label">{$content.text_start_the_conversation}</span>
-                            <h2 class="fs-4 h3 mb-2">{$content.text_what_would_you_like_to_improve}</h2>
-                            <p class="mb-0">{$content.text_share_a_few_details_we_will}</p>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label" for="name">{$content.text_name}</label>
-                                <input autocomplete="name" class="form-control" id="name" name="name" required="" type="text" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label" for="email">{$content.text_email}</label>
-                                <input autocomplete="email" class="form-control" id="email" name="email" required="" type="email" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label" for="company">{$content.text_company}</label>
-                                <input autocomplete="organization" class="form-control" id="company" name="company" type="text" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label" for="phone">{$content.text_phone} <span class="text-secondary fw-normal">{$content.text_optional}</span></label>
-                                <input autocomplete="tel" class="form-control" id="phone" name="phone" type="tel" />
-                            </div>
-
-                            <div class="col-12">
-                                <label class="form-label" for="interest">{$content.text_what_would_you_like_to_improve_2}</label>
-                                <select class="form-select" id="interest" name="interest" required="">
-                                    <option disabled="" selected="" value="">{$content.text_select_the_closest_option}</option>
-                                    <option value="website-leads">{$content.text_generate_more_leads_from_my_website}</option>
-                                    <option value="automation">{$content.text_automate_repetitive_work}</option>
-                                    <option value="integrations">{$content.text_connect_systems_and_data}</option>
-                                    <option value="marketing">{$content.text_improve_marketing_performance}</option>
-                                    <option value="strategy">{$content.text_create_a_growth_or_technology_roadmap}</option>
-                                    <option value="unsure">{$content.text_i_am_not_sure_yet}</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label class="form-label" for="comment">{$content.text_what_is_happening_now}</label>
-                                <textarea class="form-control" id="comment" name="comment" placeholder="{$content.placeholder_briefly_describe_the_problem_project_or}" required=""></textarea>
-                            </div>
-
-
-                            <div aria-hidden="true" class="d-none">
-                                <label for="website">{$content.text_website}</label>
-                                <input autocomplete="off" id="website" name="website" tabindex="-1" type="text" />
-                            </div>
-
-                            <div class="col-12">
-                                <button class="btn btn-primary btn-lg w-100" type="submit">{$content.text_request_my_free_consultation} <i class="bi bi-arrow-right ms-1"></i></button>
-                            </div>
-
-                            <div class="col-12">
-                                <p class="small text-center mb-0"><i class="bi bi-lock me-1"></i>{$content.text_your_information_stays_private_no_spam}</p>
-                            </div>
-                        </div>
-                        {include file="inc/layout/cloudflare-turnstile.tpl"}
-                    </form>
-                </div>
-            </div>
+        <div class="small fw-bold text-uppercase text-secondary mb-2">
+            {$content.text_free_quick_assessment}
         </div>
-    </section>
+
+        <h3 class="fw-bold mb-2">
+            {$content.text_whats_getting_in_your_way}
+        </h3>
+
+        <p class="text-secondary">
+            {$content.text_a_few_sentences_are_enough}
+        </p>
+
+
+        <!-- Replace action with your existing form endpoint -->
+        <form action="/contact"
+        method="post">
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+
+                <label for="name"
+                class="form-label">
+                {$content.text_name}
+            </label>
+
+            <input
+            id="name"
+            name="name"
+            type="text"
+            class="form-control"
+            autocomplete="name"
+            required>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <label for="email"
+            class="form-label">
+            {$content.text_email}
+        </label>
+
+        <input
+        id="email"
+        name="email"
+        type="email"
+        class="form-control"
+        autocomplete="email"
+        required>
+
+    </div>
+
+    <div class="col-12">
+
+        <label for="website"
+        class="form-label">
+        {$content.text_website_2}
+        <span class="fw-normal text-secondary">
+            {$content.text_optional}
+        </span>
+    </label>
+
+    <input
+    id="website"
+    name="website"
+    type="url"
+    class="form-control"
+    placeholder="{$content.text_https}">
+
+</div>
+
+<div class="col-12">
+
+    <label for="problem"
+    class="form-label">
+    {$content.text_whats_not_working}
+</label>
+
+<textarea
+id="problem"
+name="problem"
+class="form-control"
+placeholder="{$content.text_example_were_getting_website_traffic_but_almost}"
+required></textarea>
+
+</div>
+
+<div class="col-12">
+
+    <button type="submit"
+    class="btn-skale border-0 w-100">
+    {$content.text_tell_me_whats_not_working_6}
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<p class="privacy-copy mt-3 mb-0">
+    {$content.text_no_spam_no_aggressive_sales_follow_up}
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
 </main>
 
 {include file="inc/layout/footer.tpl"}
+
+
+<!-- =========================================================
+FOOTER
+========================================================= -->
+{* <footer>
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-lg-5">
+
+<a href="/"
+class="navbar-brand d-inline-block mb-3">
+skale.
+</a>
+
+<p class="mb-0">
+Websites, software, automation, systems, marketing,
+and analytics built to help growing businesses work
+better.
+</p>
+
+</div>
+
+<div class="col-6 col-lg-2 offset-lg-1">
+
+<div class="fw-bold text-white mb-3">
+Explore
+</div>
+
+<div class="d-flex flex-column gap-2">
+<a href="#problems">Problems We Solve</a>
+<a href="#services">How We Help</a>
+<a href="#experience">Selected Work</a>
+<a href="/blog">Insights</a>
+</div>
+
+</div>
+
+<div class="col-6 col-lg-2">
+
+<div class="fw-bold text-white mb-3">
+Company
+</div>
+
+<div class="d-flex flex-column gap-2">
+<a href="/about">About</a>
+<a href="/contact">Contact</a>
+<a href="/website-rescue">Website Rescue</a>
+</div>
+
+</div>
+
+<div class="col-lg-2">
+
+<div class="fw-bold text-white mb-3">
+Contact
+</div>
+
+<div class="d-flex flex-column gap-2">
+<a href="tel:7329254044">
+732-925-4044
+</a>
+
+<a href="mailto:info@skaleup.it.com">
+info@skaleup.it.com
+</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</footer> *}
+
+
+{* <script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script
+src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+</script>
+
+<script>
+AOS.init({
+duration: 650,
+easing: 'ease-out-cubic',
+once: true,
+offset: 60
+});
+</script>
+
+</body>
+</html> *}

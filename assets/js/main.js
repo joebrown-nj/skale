@@ -1063,7 +1063,7 @@ $(document).on('focusin', '.ajaxForm input, .ajaxForm select, .ajaxForm textarea
 });
 
 $(document).on('scroll', function handleScroll() {
-    const $callout = $('.trust-bar');
+    const $callout = $('#problems'); //.trust-bar
     const isLandingPage = document.body?.dataset.pageType === 'landing';
     const $landingHero = $('.page-content .hero').first();
 
