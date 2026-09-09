@@ -19,13 +19,13 @@
     <footer class="footer-main section-space-sm">
         <div class="container">
             <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <a aria-label="footer brand logo link" class="mbtn footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
                     <p class="mt-3 mb-4">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
                     <a aria-label="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
                 </div>
 
-                <div class="col-6 col-lg-2 ms-lg-auto">
+                <div class="col-6 col-lg-3 ms-lg-auto">
                     <h2 class="h6 text-white">Solutions</h2>
                     <ul class="list-unstyled mb-0">
                         {foreach from=$serviceList key=key item=service}
@@ -90,7 +90,7 @@
 
     <!-- Mobile sticky CTA -->
     <div class="d-lg-none sticky-mobile-cta">
-        <a aria-label="footer mobile contact button" class="mbtn btn btn-primary w-100" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Get Your Free Strategy Session</a>
+        <a aria-label="footer mobile contact button" class="mbtn btn btn-skale w-100" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Tell Me What's Not Working</a>
     </div>
 
     <!-- Back to top button -->

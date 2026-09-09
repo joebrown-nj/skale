@@ -479,20 +479,6 @@ a {
     font-weight: 800;
 }
 
-/* INSIGHTS */
-
-.insight-card {
-    height: 100%;
-    padding: 1.6rem;
-    border: 1px solid var(--skale-border);
-    border-radius: .9rem;
-}
-
-.insight-card h3 {
-    font-size: 1.18rem;
-    font-weight: 800;
-}
-
 /* CTA */
 
 .cta-section {
