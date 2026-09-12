@@ -7,7 +7,6 @@ namespace App\Core;
 use App\Core\Contracts\UserLocationProviderInterface;
 use App\Models\NavModel;
 use App\Models\PageContentModel;
-use App\Models\SolutionModel;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -28,7 +27,6 @@ class SiteDataCache
     public function __construct(
         private CacheInterface $cache,
         private NavModel $navModel,
-        private SolutionModel $SolutionModel,
         private PageContentModel $pageContentModel,
         private UserLocationProviderInterface $userLocationProvider,
     ) {
@@ -123,7 +121,12 @@ class SiteDataCache
         $this->serviceList = $this->cache->get('site_data.solutions', function (ItemInterface $item): array {
             $item->expiresAfter(self::DEFAULT_TTL);
 
-            return $this->SolutionModel->getAllSolutions(true) ?? [];
+            return $this->pageContentModel->getPagesByUrlPrefix(
+                $_ENV['URL_SERVICES_SOLUTIONS'],
+                true,
+                $_ENV['URL_SERVICES_SOLUTIONS'],
+                4,
+            );
         });
 
         return $this->serviceList;
@@ -139,7 +142,10 @@ class SiteDataCache
         $this->allServiceList = $this->cache->get('site_data.solutions.all', function (ItemInterface $item): array {
             $item->expiresAfter(self::DEFAULT_TTL);
 
-            return $this->SolutionModel->getAllSolutions(false) ?? [];
+            return $this->pageContentModel->getPagesByUrlPrefix(
+                $_ENV['URL_SERVICES_SOLUTIONS'],
+                false,
+            );
         });
 
         return $this->allServiceList;

@@ -20,7 +20,7 @@
 
                 <div class="d-flex flex-column flex-sm-row gap-3">
                     <a
-                    href="#rescue-form"
+                    onclick="scrollToEl('#rescue-form')"
                     class="btn btn-rescue btn-lg"
                     aria-describedby="48-Hour Website Rescue hero"
                     >
@@ -28,7 +28,7 @@
                 </a>
 
                 <a
-                href="#packages"
+                onclick="scrollToEl('#packages')"
                 class="btn btn-outline-rescue btn-lg"
                 aria-describedby="48-Hour Website Rescue hero packages"
                 >
@@ -97,7 +97,7 @@
             </div>
 
             <a
-            href="#rescue-form"
+            onclick="scrollToEl('#rescue-form')"
             class="btn btn-rescue w-100 mt-4"
             aria-describedby="48-Hour Website Rescue health check"
             >
@@ -247,7 +247,7 @@
                 </p>
 
                 <a
-                href="#rescue-form"
+                onclick="scrollToEl('#rescue-form')"
                 class="btn btn-rescue"
                 aria-describedby="48-Hour Website Rescue better approach"
                 >
@@ -392,7 +392,7 @@
                     </ul>
 
                     <a
-                    href="#rescue-form"
+                    onclick="scrollToEl('#rescue-form')"
                     class="btn btn-outline-rescue w-100"
                     aria-describedby="48-Hour Website Rescue Quick Fix package"
                     >
@@ -425,7 +425,7 @@
                 </ul>
 
                 <a
-                href="#rescue-form"
+                onclick="scrollToEl('#rescue-form')"
                 class="btn btn-rescue w-100"
                 aria-describedby="48-Hour Website Rescue Website Rescue package"
                 >
@@ -456,7 +456,7 @@
             </ul>
 
             <a
-            href="#rescue-form"
+            onclick="scrollToEl('#rescue-form')"
             class="btn btn-outline-rescue w-100"
             aria-describedby="48-Hour Website Rescue Conversion Sprint package"
             >
@@ -496,7 +496,7 @@
                     </p>
 
                     <a
-                    href="#rescue-form"
+                    onclick="scrollToEl('#rescue-form')"
                     class="btn btn-rescue"
                     aria-describedby="48-Hour Website Rescue no redesign section"
                     >
@@ -716,7 +716,7 @@
             </div>
 
             <div class="col-lg-4 text-lg-end">
-                <a href="#rescue-form" class="btn btn-rescue" aria-describedby="48-Hour Website Rescue footer">
+                <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue" aria-describedby="48-Hour Website Rescue footer">
                     Fix My Website
                 </a>
             </div>

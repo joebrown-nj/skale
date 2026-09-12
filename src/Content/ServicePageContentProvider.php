@@ -6,6 +6,8 @@ namespace App\Content;
 
 final class ServicePageContentProvider
 {
+    private const TEMPLATE_DIRECTORY = __DIR__  . DIRECTORY_SEPARATOR . 'templates/service-detail/';
+
     private const CONTENT_FILES = [
         'automation-and-software' => 'automation-and-software.php',
         'demand-generation' => 'demand-generation.php',
@@ -21,7 +23,7 @@ final class ServicePageContentProvider
             return [];
         }
 
-        $sections = require __DIR__ . DIRECTORY_SEPARATOR . $file;
+        $sections = require self::TEMPLATE_DIRECTORY . DIRECTORY_SEPARATOR . $file;
 
         if (!is_array($sections)) {
             throw new \UnexpectedValueException(

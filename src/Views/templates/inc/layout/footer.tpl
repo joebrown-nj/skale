@@ -30,7 +30,7 @@
                     <ul class="list-unstyled mb-0">
                         {foreach from=$serviceList key=key item=service}
                             <li class="mb-2">
-                                <a class="mbtn {if isset($serviceDetail) && $serviceDetail->url == $service->url}active{/if}" aria-label="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}">{$service->title}</a>
+                                <a class="mbtn {if isset($serviceMenu) && $serviceMenu->url == $service->url}active{/if}" aria-label="footer solutions {$service->title}" href="{$smarty.ENV.SITE_URL}{$service->url}">{$service->title}</a>
                             </li>
                         {/foreach}
                     </ul>

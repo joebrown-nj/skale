@@ -410,17 +410,17 @@ return [
                         'Forms, calls to action, and conversion testing',
                     ],
                 ],
-                [
-                    'iconClass' => 'bi bi-clipboard-data',
-                    'title' => 'Analytics & Attribution',
-                    'description' => 'Create a reliable view of what happens after the click and which efforts are contributing to qualified pipeline.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
-                    'bullets' => [
-                        'Analytics and event tracking',
-                        'Campaign dashboards and reporting',
-                        'Lead-source and conversion analysis',
-                    ],
-                ],
+                // [
+                //     'iconClass' => 'bi bi-clipboard-data',
+                //     'title' => 'Analytics & Attribution',
+                //     'description' => 'Create a reliable view of what happens after the click and which efforts are contributing to qualified pipeline.',
+                //     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
+                //     'bullets' => [
+                //         'Analytics and event tracking',
+                //         'Campaign dashboards and reporting',
+                //         'Lead-source and conversion analysis',
+                //     ],
+                // ],
             ],
             'cta' => [
                 'label' => 'Talk Through Your Demand Gaps',

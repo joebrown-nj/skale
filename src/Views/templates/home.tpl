@@ -32,7 +32,6 @@
 
                 <div class="hero-actions d-flex flex-wrap gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
                     <a class="btn-skale" onclick="scrollToEl('#assessment')">{$content.text_tell_me_whats_not_working}</a>
-
                     <a class="btn-skale-outline" onclick="scrollToEl('#problems')">{$content.text_see_problems_we_solve}</a>
                 </div>
 
@@ -87,7 +86,7 @@
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <a href="#assessment" class="btn-skale">{$content.text_tell_me_whats_not_working_2}</a>
+                <a onclick="scrollToEl('#assessment')" class="btn-skale">{$content.text_tell_me_whats_not_working_2}</a>
             </div>
         </div>
     </section>
@@ -215,7 +214,7 @@
                     </div>
 
                     <div class="col-lg-4 text-lg-end">
-                        <a href="#assessment" class="btn-skale">
+                        <a onclick="scrollToEl('#assessment')" class="btn-skale">
                             {$content.text_tell_me_whats_not_working_3}
                         </a>
                     </div>
@@ -297,7 +296,7 @@
 
                     <p class="section-intro mt-3">{$content.text_skale_works_best_with_businesses_that_have}</p>
 
-                    <a href="#assessment" class="btn-skale mt-3">
+                    <a onclick="scrollToEl('#assessment')" class="btn-skale mt-3">
                         {$content.text_tell_me_whats_not_working_4}
                     </a>
                 </div>
@@ -448,7 +447,6 @@
 
             <div class="row g-4 mt-4">
                 {foreach from=$data.blogList item=blog key=key}
-                    {if $key < 3}
                     <div class="col-md-4" data-aos="fade-up">
                         <article class="problem-card">
                             <div class="problem-number">{$blog->category}</div>
@@ -459,107 +457,106 @@
                             </a>
                         </article>
                     </div>
-                {/if}
-            {/foreach}
-        </div>
-    </div>
-</section>
-
-<!-- ==================== LOW-FRICTION CTA ==================== -->
-<section id="assessment" class="cta-section section-space">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="section-eyebrow text-info">{$content.text_a_better_first_step}</div>
-
-                <h2 class="section-title text-white">{$content.text_tell_me_whats_not_working_5}</h2>
-
-                <p class="section-intro mt-3">{$content.text_you_dont_need_a_project_plan_technical}</p>
-
-                <p class="text-white fs-5">{$content.text_send_a_short_description_of_the_problem}</p>
-
-                <div class="mt-4">
-                    <div class="d-flex gap-3 mb-3">
-                        <span class="text-info fw-bold">{$content.text_text}</span>
-                        <span>{$content.text_no_obligation_to_schedule_a_call}</span>
-                    </div>
-
-                    <div class="d-flex gap-3 mb-3">
-                        <span class="text-info fw-bold">{$content.text_text_2}</span>
-                        <span>{$content.text_no_generic_sales_pitch}</span>
-                    </div>
-
-                    <div class="d-flex gap-3 mb-3">
-                        <span class="text-info fw-bold">{$content.text_text_3}</span>
-                        <span>{$content.text_you_dont_need_to_diagnose_the_solution}</span>
-                    </div>
-
-                    <div class="d-flex gap-3">
-                        <span class="text-info fw-bold">{$content.text_text_4}</span>
-                        <span>{$content.text_direct_response_from_skales_founder}</span>
-                    </div>
-                </div>
+                {/foreach}
             </div>
+        </div>
+    </section>
 
-            <div class="col-lg-6" data-aos="fade-left">
-                <div class="assessment-card">
-                    <div class="small fw-bold text-uppercase text-secondary mb-2">
-                        {$content.text_free_quick_assessment}
-                    </div>
+    <!-- ==================== LOW-FRICTION CTA ==================== -->
+    <section id="assessment" class="cta-section section-space">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="section-eyebrow text-info">{$content.text_a_better_first_step}</div>
 
-                    <h3 class="fw-bold mb-2">{$content.text_whats_getting_in_your_way}</h3>
+                    <h2 class="section-title text-white">{$content.text_tell_me_whats_not_working_5}</h2>
 
-                    <p class="text-secondary">{$content.text_a_few_sentences_are_enough}</p>
+                    <p class="section-intro mt-3">{$content.text_you_dont_need_a_project_plan_technical}</p>
 
-                    <!-- Replace action with your existing form endpoint -->
-                    <form action="{$smarty.ENV.SITE_URL}post-lead-form" method="post" class="ajaxForm">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="name" class="form-label">{$content.text_name}</label>
+                    <p class="text-white fs-5">{$content.text_send_a_short_description_of_the_problem}</p>
 
-                                <input id="name" name="name" type="text" class="form-control" autocomplete="name" required />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">{$content.text_email}</label>
-
-                                <input id="email" name="email" type="email" class="form-control" autocomplete="email" required />
-                            </div>
-
-                            <div class="col-12">
-                                <label for="website" class="form-label">
-                                    {$content.text_website_2}
-                                    <span class="fw-normal text-secondary">{$content.text_optional}</span>
-                                </label>
-
-                                <input id="website" name="website" type="url" class="form-control" placeholder="{$content.text_https}" />
-                            </div>
-
-                            <div class="col-12">
-                                <label for="comment" class="form-label">
-                                    {$content.text_whats_not_working}
-                                </label>
-
-                                <textarea id="comment" name="comment" class="form-control" placeholder="{$content.text_example_were_getting_website_traffic_but_almost}" required ></textarea>
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn-skale border-0 w-100">
-                                    {$content.text_tell_me_whats_not_working_6}
-                                </button>
-                            </div>
+                    <div class="mt-4">
+                        <div class="d-flex gap-3 mb-3">
+                            <span class="text-info fw-bold">{$content.text_text}</span>
+                            <span>{$content.text_no_obligation_to_schedule_a_call}</span>
                         </div>
-                        {include file="inc/layout/cloudflare-turnstile.tpl"}
-                    </form>
 
-                    <p class="privacy-copy mt-3 mb-0">
-                        {$content.text_no_spam_no_aggressive_sales_follow_up}
-                    </p>
+                        <div class="d-flex gap-3 mb-3">
+                            <span class="text-info fw-bold">{$content.text_text_2}</span>
+                            <span>{$content.text_no_generic_sales_pitch}</span>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-3">
+                            <span class="text-info fw-bold">{$content.text_text_3}</span>
+                            <span>{$content.text_you_dont_need_to_diagnose_the_solution}</span>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <span class="text-info fw-bold">{$content.text_text_4}</span>
+                            <span>{$content.text_direct_response_from_skales_founder}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="assessment-card">
+                        <div class="small fw-bold text-uppercase text-secondary mb-2">
+                            {$content.text_free_quick_assessment}
+                        </div>
+
+                        <h3 class="fw-bold mb-2">{$content.text_whats_getting_in_your_way}</h3>
+
+                        <p class="text-secondary">{$content.text_a_few_sentences_are_enough}</p>
+
+                        <!-- Replace action with your existing form endpoint -->
+                        <form action="{$smarty.ENV.SITE_URL}post-lead-form" method="post" class="ajaxForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">{$content.text_name}</label>
+
+                                    <input id="name" name="name" type="text" class="form-control" autocomplete="name" required />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">{$content.text_email}</label>
+
+                                    <input id="email" name="email" type="email" class="form-control" autocomplete="email" required />
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="website" class="form-label">
+                                        {$content.text_website_2}
+                                        <span class="fw-normal text-secondary">{$content.text_optional}</span>
+                                    </label>
+
+                                    <input id="website" name="website" type="url" class="form-control" placeholder="{$content.text_https}" />
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="comment" class="form-label">
+                                        {$content.text_whats_not_working}
+                                    </label>
+
+                                    <textarea id="comment" name="comment" class="form-control" placeholder="{$content.text_example_were_getting_website_traffic_but_almost}" required ></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn-skale border-0 w-100">
+                                        {$content.text_tell_me_whats_not_working_6}
+                                    </button>
+                                </div>
+                            </div>
+                            {include file="inc/layout/cloudflare-turnstile.tpl"}
+                        </form>
+
+                        <p class="privacy-copy mt-3 mb-0">
+                            {$content.text_no_spam_no_aggressive_sales_follow_up}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </main>
 
 {include file="inc/layout/footer.tpl"}

@@ -34,13 +34,13 @@ class HomeController
         $blogPage = $this->pageContentModel->getPageContentByUrl('blog');
 
         $data = [
-            'hero' => $this->homePageModel->getHeroContent(),
-            'homeCards' => $this->homeCardsModel->getHomeCards(),
-            'blogContent' => $blogPage !== false ? $blogPage['content'] : null,
-            'blogFeatured' => $this->blogModel->getFeaturedBlog(),
-            'blogList' => $this->blogModel->getAllBlogs(),
-            'howItWorks' => $this->homePageModel->getHowItWorksContent(),
-            'theResults' => $this->homePageModel->getTheResultsContent(),
+            // 'hero' => $this->homePageModel->getHeroContent(),
+            // 'homeCards' => $this->homeCardsModel->getHomeCards(),
+            // 'blogContent' => $blogPage !== false ? $blogPage['content'] : null,
+            // 'blogFeatured' => $this->blogModel->getFeaturedBlog(),
+            'blogList' => $this->blogModel->getAllBlogs(null, 3),
+            // 'howItWorks' => $this->homePageModel->getHowItWorksContent(),
+            // 'theResults' => $this->homePageModel->getTheResultsContent(),
         ];
 
         $this->view->render('home', $data);

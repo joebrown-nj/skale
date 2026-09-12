@@ -51,7 +51,7 @@
         --bs-btn-border-radius: .85rem;
     } */
 
-    .btn-skale {
+    /* .btn-skale {
         color: var(--skale-dark);
         background: var(--skale-green);
         border-color: var(--skale-green);
@@ -62,9 +62,9 @@
         background: #62efbd;
         border-color: #62efbd;
         transform: translateY(-1px);
-    }
+    } */
 
-    .btn-outline-skale {
+    /* .btn-outline-skale {
         color: #fff;
         border-color: rgba(255,255,255,.55);
     }
@@ -73,7 +73,7 @@
         color: var(--skale-dark);
         background: #fff;
         border-color: #fff;
-    }
+    } */
 
     .hero {
         position: relative;

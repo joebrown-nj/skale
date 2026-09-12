@@ -40,6 +40,13 @@
     RewriteRule ^services/?$ /solutions [R=301,L,NC]
     RewriteRule ^services/(.+)$ /solutions/$1 [R=301,L,NC]
 
+    # Redirect 301 /solutions/websites /solutions/website-design-and-development
+    # Redirect 301 /solutions/website-development /solutions/website-design-and-development
+    # Redirect 301 /solutions/wordpress /solutions/wordpress-development
+    RewriteRule ^solutions/websites/?$ /solutions/website-design-and-development [R=301,L,NC]
+    RewriteRule ^solutions/website-development/?$ /solutions/website-design-and-development [R=301,L,NC]
+    RewriteRule ^solutions/wordpress/?$ /solutions/wordpress-development [R=301,L,NC]
+
     # Handle front controller for all requests
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -322,7 +322,7 @@ return [
                     'iconClass' => 'bi bi-window',
                     'title' => 'Website & Conversion',
                     'description' => 'Your website should clearly explain your value, establish credibility, and guide visitors toward action.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/websites',
+                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/website-design-and-development',
                     'bullets' => [
                         'Website strategy and development',
                         'Landing pages and conversion paths',
@@ -373,17 +373,17 @@ return [
                         'Custom integration workflows',
                     ],
                 ],
-                [
-                    'iconClass' => 'bi bi-clipboard-data',
-                    'title' => 'Marketing Analytics',
-                    'description' => 'Understand what is working, what is not, and where your next best opportunity may be.',
-                    'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
-                    'bullets' => [
-                        'Analytics implementation',
-                        'Dashboards and reporting',
-                        'Continuous conversion optimization',
-                    ],
-                ],
+                // [
+                //     'iconClass' => 'bi bi-clipboard-data',
+                //     'title' => 'Marketing Analytics',
+                //     'description' => 'Understand what is working, what is not, and where your next best opportunity may be.',
+                //     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-analytics',
+                //     'bullets' => [
+                //         'Analytics implementation',
+                //         'Dashboards and reporting',
+                //         'Continuous conversion optimization',
+                //     ],
+                // ],
             ],
             'cta' => [
                 'wrapperClass' => 'text-center mt-5',

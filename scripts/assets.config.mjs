@@ -9,6 +9,8 @@ export const cssAssets = [
     [`${cssSourceRoot}/home.css`, `${publicCssRoot}/home.min.css`],
     [`${cssSourceRoot}/contact.css`, `${publicCssRoot}/contact.min.css`],
     [`${cssSourceRoot}/service-list.css`, `${publicCssRoot}/service-list.min.css`],
+    [`${cssSourceRoot}/service-category.css`, `${publicCssRoot}/service-category.min.css`],
+    [`${cssSourceRoot}/service-detail.css`, `${publicCssRoot}/service-detail.min.css`],
     [`${cssSourceRoot}/templates.css`, `${publicCssRoot}/templates.min.css`],
     [`${cssSourceRoot}/landing.css`, `${publicCssRoot}/landing.min.css`],
     [`${cssSourceRoot}/website-development-b.css`, `${publicCssRoot}/website-development-b.min.css`],

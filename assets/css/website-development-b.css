@@ -103,7 +103,7 @@ p {
 /*
 * Buttons
 */
-.btn-skale {
+/* .btn-skale {
     background: var(--skale-green);
     border: 2px solid var(--skale-green);
     color: #101310;
@@ -120,7 +120,7 @@ p {
     border-color: var(--skale-green-dark);
     color: #fff;
     transform: translateY(-1px);
-}
+} */
 
 /*
 * Hero

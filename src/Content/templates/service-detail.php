@@ -2,5 +2,6 @@
 
 declare(strict_types=1);
 
-return array (
-);
+$c = include 'service-detail/' . $slug . '.php';
+
+return (empty($c) ? array() : $c);

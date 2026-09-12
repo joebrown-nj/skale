@@ -70,7 +70,8 @@ a {
     font-size: 1.125rem;
 }
 
-.btn-skale {
+/* .btn-skale {
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -111,7 +112,7 @@ a {
     color: #fff;
     background: rgba(255,255,255,.08);
     border-color: rgba(255,255,255,.65);
-}
+} */
 
 /* NAV */
 

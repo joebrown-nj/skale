@@ -84,7 +84,7 @@ class View implements ViewInterface
         $this->smarty->assign($this->siteDataCache->getSharedData());
         $this->smarty->assign('page', $page);
         $this->smarty->assign('data', $data);
-        $this->smarty->assign('content', $this->templateContent->get($view));
+        $this->smarty->assign('content', $this->templateContent->get($view, $this->p2));
         $this->smarty->assign('viewName', $view);
         $this->smarty->assign('isLandingRoute', $view === 'landing');
         $this->smarty->assign('header', isset($_GET['header']) ? $_GET['header'] : true);

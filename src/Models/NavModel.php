@@ -36,10 +36,53 @@ class NavModel
         return $this->buildNavTree((int) $parent, $itemsByParent);
     }
 
+    public function printNavTree(): void
+    {
+        $repository = $this->entityManager->getRepository(MenuEntity::class);
+        $sub = $repository->createQueryBuilder('m')
+        ->where('m.parentId = :parentId and m.active = :active')
+        ->setParameter('parentId', 2)
+        ->setParameter('active', 1);
+
+        $r = $repository->createQueryBuilder('m')
+            ->select('m.id, m.parentId, m.title, m.url')
+            ->where('m.parentId IN (:subIds) OR m.parentId = :parentId')
+            ->andWhere('m.active = :active')
+            ->setParameter('active', 1)
+            ->setParameter('subIds', $sub->getQuery()->getResult())
+            ->setParameter('parentId', 2)
+            ->orderBy('m.parentId', 'ASC')
+            ->addOrderBy('m.listingOrder', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+
+        foreach ($r as $item) {
+            $itemsByParent[$item['parentId']][] = $item;
+            $parents[$item['id']] = $item;
+        }
+
+        foreach ($itemsByParent as $parentId => $items) {
+            if(!$parents[$parentId]) continue;
+            echo "<b>title: {$parents[$parentId]['title']} url: {$parents[$parentId]['url']}</b><br>";
+            echo "<ul>";
+            foreach ($items as $item) {
+                echo "<li>title: {$item['title']} url: {$item['url']}</li>";
+            }
+            echo "</ul>";
+            echo "<hr>";
+        }
+        die;
+    }
+
     public function getAllNav(): array
     {
         $repository = $this->entityManager->getRepository(MenuEntity::class);
-        $navItems = $repository->createQueryBuilder('m')->getQuery()->getArrayResult();
+
+        $navItems = $repository->createQueryBuilder('m')
+                ->where('m.active = :active')
+                ->setParameter('active', true)
+                ->getQuery()
+                ->getArrayResult();
         return $navItems;
     }
 

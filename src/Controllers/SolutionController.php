@@ -1,32 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Content\ServicePageContentProvider;
-use App\Models\SolutionModel;
+use App\Models\PageContentModel;
 use App\Models\BlogModel;
 use App\Core\Contracts\ViewInterface;
 
 class SolutionController
 {
-    private SolutionModel $SolutionModel;
+    private PageContentModel $pageContentModel;
     private BlogModel $blogModel;
     private ViewInterface $view;
     private ServicePageContentProvider $content;
 
     public function __construct(
-        SolutionModel $SolutionModel,
+        PageContentModel $pageContentModel,
         BlogModel $blogModel,
         ViewInterface $view,
         ServicePageContentProvider $content,
     ) {
-        $this->SolutionModel = $SolutionModel;
+        $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
         $this->view = $view;
         $this->content = $content;
     }
 
-    public function index()
+    public function index(): void
     {
         $this->view->render('service-list', [
             'blogList' => $this->blogModel->getAllBlogs(null, 3),
@@ -43,35 +45,56 @@ class SolutionController
         return $this->redirectToSolutions($slug);
     }
 
-    public function getSolutionDetail(string $slug)
+    public function getSolutionDetail(string $slug): void
     {
-        $sections = [];
-        $solution = $this->SolutionModel->getSolutionByUrl($slug);
-        if (empty($solution)) {
+        $redirects = [
+            'websites' => 'website-design-and-development',
+            'website-development' => 'website-design-and-development',
+            'wordpress' => 'wordpress-development',
+            'analytics-reporting' => 'analytics-and-reporting',
+            'marketing-analytics' => 'marketing-analytics-and-growth',
+            'it-solutions' => 'it-solutions',
+            'automation' => 'automation-crm-and-integrations',
+            'software-development' => 'software-and-business-systems',
+            'online-marketing' => 'marketing-analytics-and-growth',
+
+        ];
+
+        if (isset($redirects[$slug])) {
+            $this->redirectToSolutions($redirects[$slug]);
+            return;
+        }
+
+        $categories = [
+            'websites-and-conversion',
+            'automation-crm-and-integrations',
+            'software-and-business-systems',
+            'marketing-analytics-and-growth',
+        ];
+
+        $view = in_array($slug, $categories) ? 'service-category' : 'service-detail';
+
+        $solution = $this->pageContentModel->getPageContentByUrl(
+            trim($_ENV['URL_SERVICES_SOLUTIONS'], '/') . '/' . trim($slug, '/'),
+        );
+        if ($solution === false || $solution['content'] === null) {
             http_response_code(404);
             $this->view->render('error/404');
             return;
         }
 
-        // $pageContent = $this->pageContentModel->getPageContentByUrl($_ENV['URL_SERVICES_SOLUTIONS'].'/'.$slug);
-        // if(empty($pageContent) || $pageContent === false) {
-        //     http_response_code(404);
-        //     $this->view->render('error/404');
-        //     return;
-        // }
-
         $sections = $this->content->getBySlug($slug);
 
-        $this->view->render('service-detail', [
-            'serviceDetail' => $solution,
+        $this->view->render($view, [
+            'serviceDetail' => $solution['content'],
+            'serviceMenu' => $solution['menu'],
             'serviceContent' => $sections,
-            // 'p1Page' => $this->pageContentModel->getPageContentByUrl($_ENV['URL_SERVICES_SOLUTIONS']),
         ]);
     }
 
     private function redirectToSolutions(?string $slug = null): string
     {
-        $location = '/' . trim((string) $_ENV['URL_SERVICES_SOLUTIONS'], '/');
+        $location = '/' . trim($_ENV['URL_SERVICES_SOLUTIONS'], '/');
 
         if ($slug !== null && $slug !== '') {
             $location .= '/' . ltrim($slug, '/');
