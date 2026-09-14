@@ -60,7 +60,7 @@ final class LandingPageController
         }
 
         $input = $request->validated();
-        $details = ['Landing Page Lead Form Submission'];
+        $details = [];
 
         foreach (['team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'package' => 'Package', 'lead_source' => 'Lead Source'] as $field => $label) {
             if ($input[$field] !== '') {
@@ -73,6 +73,10 @@ final class LandingPageController
         }
 
         $input['comment'] = implode(' - ', $details);
+
+        if ($input['interest'] !== '') {
+            $input['interests'] = [$input['interest']];
+        }
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $request->server()) !== null) {
             return JsonResponse::error('Unable to process request.', 403);

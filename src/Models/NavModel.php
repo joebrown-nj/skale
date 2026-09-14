@@ -12,6 +12,7 @@ class NavModel
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
+        // $this->printNavTree();die;
     }
 
     public function getNav(string $menuLocation, int $parent = 0): array

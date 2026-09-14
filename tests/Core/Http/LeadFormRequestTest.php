@@ -24,6 +24,7 @@ final class LeadFormRequestTest extends TestCase
             'website_goal' => ' more-leads ',
             'package' => ' website-rescue ',
             'lead_source' => ' website-development-ab-version-b ',
+            'interest' => ' website-design-and-development ',
             'comment' => str_repeat('x', 2100),
         ]));
         self::assertSame('Jane Doe', $form->validated()['name']);
@@ -32,6 +33,7 @@ final class LeadFormRequestTest extends TestCase
         self::assertSame('more-leads', $form->validated()['website_goal']);
         self::assertSame('website-rescue', $form->validated()['package']);
         self::assertSame('website-development-ab-version-b', $form->validated()['lead_source']);
+        self::assertSame('website-design-and-development', $form->validated()['interest']);
         self::assertSame(2000, strlen($form->validated()['comment']));
         self::assertSame([], $form->errors());
     }

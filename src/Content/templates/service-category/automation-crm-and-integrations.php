@@ -129,7 +129,7 @@ return array(
     'help' => array(
         'eyebrow' => 'Still Deciding?',
         'title' => 'Which systems problem sounds most like yours?',
-        'text' => 'Start with the situation—not the technology.',
+        'text' => 'Start with the situation, not the technology.',
         'cards' => array(
             array(
                 'problem' => 'Our employees keep repeating the same tasks.',

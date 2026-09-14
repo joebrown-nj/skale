@@ -62,7 +62,7 @@ return array(
                 'Channel coordination',
                 'Campaign optimization'
             ),
-            'link' => $url_services_solutions . 'marketing',
+            'link' => $url_services_solutions . 'online-marketing',
             'link_text' => 'Explore Online Marketing'
         ),
         array(

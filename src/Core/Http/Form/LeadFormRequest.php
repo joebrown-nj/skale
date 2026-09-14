@@ -24,6 +24,7 @@ final class LeadFormRequest
             'website_goal' => $this->text($input['website_goal'] ?? '', 100),
             'package' => $this->text($input['package'] ?? '', 100),
             'lead_source' => $this->text($input['lead_source'] ?? '', 100),
+            'interest' => $this->text($input['interest'] ?? '', 100),
             'comment' => $this->text($input['comment'] ?? '', 2000),
         ];
     }

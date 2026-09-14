@@ -340,131 +340,81 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================ FINAL CTA / LEAD FORM  ============================ -->
-    <section id="contact" class="cta-section section-space">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <div class="section-eyebrow text-info">{$content.final_cta.eyebrow}</div>
-                    <h2 class="section-title text-white">{$content.final_cta.title}</h2>
-                    <p class="section-intro mt-3">{$content.final_cta.intro}</p>
-                    <p class="fs-5 text-white">{$content.final_cta.copy}</p>
+        <!-- ============================ FINAL CTA / LEAD FORM  ============================ -->
+        <section id="contact" class="cta-section section-space">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="section-eyebrow text-info">{$content.final_cta.eyebrow}</div>
+                        <h2 class="section-title text-white">{$content.final_cta.title}</h2>
+                        <p class="section-intro mt-3">{$content.final_cta.intro}</p>
+                        <p class="fs-5 text-white">{$content.final_cta.copy}</p>
 
-                    <div class="mt-4">
-                        {foreach from=$content.final_cta.benefits item=benefit}
-                            <div class="d-flex gap-3 mb-3">
-                                <span class="text-info fw-bold"> ✓ </span>
-                                <span> {$benefit} </span>
-                            </div>
-                        {/foreach}
+                        <div class="mt-4">
+                            {foreach from=$content.final_cta.benefits item=benefit}
+                                <div class="d-flex gap-3 mb-3">
+                                    <span class="text-info fw-bold"> ✓ </span>
+                                    <span> {$benefit} </span>
+                                </div>
+                            {/foreach}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-left">
+                        <div class="lead-form-card">
+                            <div class="small fw-bold text-uppercase text-secondary mb-2">{$content.form.heading}</div>
+                            <h3 class="fw-bold">{$content.form.subheading}</h3>
+                            <p class="text-secondary">{$content.form.intro}</p>
+
+                            <form action="/post-lead-form" method="post" class="ajaxForm" data-meta-form-name="{$p1}-form" data-meta-success-event="Lead" data-meta-success-custom-event="WebsiteReviewSubmitted" data-meta-start-custom-event="{$p1}-form-started">
+                                <div class="row g-3">
+                                    {foreach from=$content.form.fields item=field}
+                                        <div class="{$field.divClass}">
+                                            {if $field.fieldType == 'input'}
+                                                <label for="{$field.for}" class="form-label">{$field.label}</label>
+                                                <input type="{$field.type}" id="{$field.id}" name="{$field.name}" class="{$field.class}" autocomplete="{$field.autocomplete}" {if $field.required}required{/if} {if $field.placeholder}placeholder="{$field.placeholder}"{/if}>
+                                            {/if}
+
+                                            {if $field.fieldType == 'select'}
+                                                <label for="{$field.for}" class="form-label">{$field.label}</label>
+                                                <select id="{$field.id}" name="{$field.name}" class="{$field.class}">
+                                                    {foreach from=$field.options item=option}
+                                                        <option value="{$option.value}">{$option.label}</option>
+                                                    {/foreach}
+                                                </select>
+                                            {/if}
+
+
+                                            {if $field.fieldType == 'textarea'}
+                                                <label for="{$field.for}" class="form-label">{$field.label}</label>
+                                                <textarea id="{$field.id}" name="{$field.name}" class="{$field.class}" placeholder="{$field.placeholder}" {if $field.required}required{/if}></textarea>
+                                            {/if}
+
+                                            {if $field.fieldType == 'button'}
+                                                <button type="submit" id="{$field.id}" name="{$field.name}" class="{$field.class}">{$field.value}</button>
+                                            {/if}
+                                        </div>
+                                    {/foreach}
+                                    <input type="hidden" name="interest" value="{$p2}">
+                                    {include file="inc/layout/cloudflare-turnstile.tpl"}
+                                </div>
+                            </form>
+
+                            <p class="form-note mt-3 mb-0">
+                                No spam. No aggressive sales follow-up. I'll review what you send and tell you what I think the best next step is.
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="lead-form-card">
-                        <div class="small fw-bold text-uppercase text-secondary mb-2">Free Website Assessment</div>
-                        <h3 class="fw-bold">What's happening with your website?</h3>
-                        <p class="text-secondary">A few details are enough to get started.</p>
-
-                        <form action="/contact" method="post">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label"> Name </label>
-
-                                    <input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    class="form-control"
-                                    autocomplete="name"
-                                    required
-                                    />
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label"> Email </label>
-
-                                    <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    class="form-control"
-                                    autocomplete="email"
-                                    required
-                                    />
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="website" class="form-label">
-                                        Current Website
-
-                                        <span class="fw-normal text-secondary"> (optional) </span>
-                                    </label>
-
-                                    <input
-                                    id="website"
-                                    name="website"
-                                    type="url"
-                                    class="form-control"
-                                    placeholder="https://"
-                                    />
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="challenge" class="form-label"> What would you like to improve? </label>
-
-                                    <select id="challenge" name="challenge" class="form-select">
-                                        <option value="">Choose one</option>
-
-                                        <option value="new-website">I need a new website</option>
-
-                                        <option value="redesign">My current website needs a redesign</option>
-
-                                        <option value="conversion">We're getting traffic but not enough leads</option>
-
-                                        <option value="performance">The site is slow or has technical problems</option>
-
-                                        <option value="wordpress">I need WordPress help</option>
-
-                                        <option value="other">Something else</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="message" class="form-label"> Tell me what's happening </label>
-
-                                    <textarea
-                                    id="message"
-                                    name="message"
-                                    class="form-control"
-                                    placeholder="Example: We're getting traffic to the site but very few visitors fill out the contact form..."
-                                    required
-                                ></textarea>
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn-skale border-0 w-100">
-                                    Tell Me What's Not Working
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <p class="form-note mt-3 mb-0">
-                        No spam. No aggressive sales follow-up. I'll review what you send and tell you what I think the best next step is.
-                    </p>
-                </div>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
-{elseif $data.serviceDetail && $data.serviceDetail->content != ''}
+    {elseif $data.serviceDetail && $data.serviceDetail->content != ''}
 
-{$data.serviceDetail->content}
+    {$data.serviceDetail->content}
 
 {/if}
 
