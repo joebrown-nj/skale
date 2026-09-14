@@ -53,20 +53,20 @@ return array(
         'copy' => 'You don\'t need to know whether the answer is SEO, paid advertising, email, analytics, reporting, or a broader strategy. Choose the situation that sounds closest to yours and explore how Skale can help.'
     ),
     'service_cards' => array(
+        // array(
+        //     'service_number' => '01',
+        //     'title' => 'Online Marketing',
+        //     'description' => 'Create a coordinated digital marketing approach that connects your website, search, advertising, email, content, analytics, and customer journey.',
+        //     'features' => array(
+        //         'Digital marketing planning',
+        //         'Channel coordination',
+        //         'Campaign optimization'
+        //     ),
+        //     'link' => $url_services_solutions . 'online-marketing',
+        //     'link_text' => 'Explore Online Marketing'
+        // ),
         array(
             'service_number' => '01',
-            'title' => 'Online Marketing',
-            'description' => 'Create a coordinated digital marketing approach that connects your website, search, advertising, email, content, analytics, and customer journey.',
-            'features' => array(
-                'Digital marketing planning',
-                'Channel coordination',
-                'Campaign optimization'
-            ),
-            'link' => $url_services_solutions . 'online-marketing',
-            'link_text' => 'Explore Online Marketing'
-        ),
-        array(
-            'service_number' => '02',
             'title' => 'SEO',
             'description' => 'Improve your visibility in search and attract people actively looking for the products, services, and expertise your business provides.',
             'features' => array(
@@ -78,7 +78,7 @@ return array(
             'link_text' => 'Explore SEO'
         ),
         array(
-            'service_number' => '03',
+            'service_number' => '02',
             'title' => 'PPC / Paid Advertising',
             'description' => 'Use targeted paid campaigns to reach potential customers while improving landing pages, measurement, and conversion paths around that traffic.',
             'features' => array(
@@ -90,7 +90,7 @@ return array(
             'link_text' => 'Explore Paid Advertising'
         ),
         array(
-            'service_number' => '04',
+            'service_number' => '03',
             'title' => 'Email Marketing',
             'description' => 'Use email to nurture leads, stay connected with customers, promote relevant offers, and support longer customer journeys.',
             'features' => array(
@@ -114,7 +114,7 @@ return array(
         //     'link_text' => 'Explore Marketing Analytics'
         // ),
         array(
-            'service_number' => '06',
+            'service_number' => '04',
             'title' => 'Analytics & Reporting',
             'description' => 'Turn scattered data into useful reports and dashboards that make performance easier to monitor, understand, and act on.',
             'features' => array(
@@ -126,7 +126,7 @@ return array(
             'link_text' => 'Explore Analytics & Reporting'
         ),
         array(
-            'service_number' => '07',
+            'service_number' => '05',
             'title' => 'Strategy & Optimization',
             'description' => 'Identify where growth is being constrained, prioritize the highest-impact opportunities, and continuously improve the systems supporting marketing and customer acquisition.',
             'features' => array(
