@@ -228,7 +228,7 @@
                     {$content.proof.title}
                 </h2>
 
-                <p class="section-intro mt-3" data-aos="fade-up">
+                <p class="section-intro mt-3 text-secondary" data-aos="fade-up">
                     {$content.proof.copy}
                 </p>
 
@@ -238,11 +238,13 @@
                             <article class="proof-card">
                                 <div class="proof-stat">{$stat.stat}</div>
 
-                                <h3>{$stat.title}</h3>
+                                <h3 class="text-white">{$stat.title}</h3>
 
-                                <p>
-                                    {$stat.copy}
-                                </p>
+                                {if $stat.copy}
+                                    <p class="text-secondary">
+                                        {$stat.copy}
+                                    </p>
+                                {/if}
                             </article>
                         </div>
                     {/foreach}
