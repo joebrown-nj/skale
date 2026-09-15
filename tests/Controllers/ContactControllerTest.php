@@ -28,21 +28,21 @@ final class ContactControllerTest extends TestCase
 
     protected function tearDown(): void
     {
-        $_POST = [];
-        $_SERVER = [];
+        $_POST = array();
+        $_SERVER = array();
         http_response_code(200);
         unset($_ENV['CLOUDFLARE_SECRET_KEY']);
     }
 
     public function testSubmitReturnsBlockedResponseWhenSubmissionMatchesBlacklist(): void
     {
-        $input = [
+        $input = array(
             'name' => 'Blocked User',
             'email' => 'blocked@example.com',
             'phone' => '5550100',
             'comment' => 'Spam message',
-        ];
-        $submittedInput = $input + ['cf-turnstile-response' => 'valid-token'];
+        );
+        $submittedInput = $input + array('cf-turnstile-response' => 'valid-token');
 
         $contactModel = $this->createMock(ContactModel::class);
         $contactModel->expects($this->never())->method('checkContactForm');
@@ -73,17 +73,17 @@ final class ContactControllerTest extends TestCase
 
     public function testSubmitValidatesSavesEmailsAndRedirectsThroughSharedFlow(): void
     {
-        $input = [
+        $input = array(
             'form_type' => 'landing-page',
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'comment' => 'I need a new website.',
-        ];
-        $submittedInput = $input + ['cf-turnstile-response' => 'valid-token'];
-        $user = ['ipAddress' => '127.0.0.1'];
+        );
+        $submittedInput = $input + array('cf-turnstile-response' => 'valid-token');
+        $user = array('ipAddress' => '127.0.0.1');
 
         $contactModel = $this->createMock(ContactFormInterface::class);
-        $contactModel->expects($this->once())->method('validate')->with($input)->willReturn([]);
+        $contactModel->expects($this->once())->method('validate')->with($input)->willReturn(array());
         $contactModel->expects($this->once())->method('save')->with($input)->willReturn(true);
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);
@@ -116,20 +116,20 @@ final class ContactControllerTest extends TestCase
 
     public function testNewsletterSubmissionIsNormalizedForTheSharedContactRecord(): void
     {
-        $rawInput = [
+        $rawInput = array(
             'form_type' => 'newsletter',
             'email' => 'reader@example.com',
             'cf-turnstile-response' => 'valid-token',
-        ];
-        $normalizedInput = [
+        );
+        $normalizedInput = array(
             'form_type' => 'newsletter',
             'email' => 'reader@example.com',
             'name' => 'Newsletter Subscriber',
             'subscribe' => 1,
-        ];
+        );
 
         $contactModel = $this->createMock(ContactFormInterface::class);
-        $contactModel->expects($this->once())->method('validate')->with($normalizedInput)->willReturn([]);
+        $contactModel->expects($this->once())->method('validate')->with($normalizedInput)->willReturn(array());
         $contactModel->expects($this->once())->method('save')->with($normalizedInput)->willReturn(true);
 
         $formSubmissionService = $this->createMock(FormSubmissionService::class);

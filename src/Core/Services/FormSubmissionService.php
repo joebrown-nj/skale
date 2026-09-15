@@ -34,7 +34,7 @@ class FormSubmissionService
      */
     public function sendDeferredSubmissions(): void
     {
-        $submissions = $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ?? [];
+        $submissions = $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ?? array();
         unset($_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY]);
 
         // Release the session before SMTP work so this request cannot block another page load.
@@ -42,7 +42,7 @@ class FormSubmissionService
             session_write_close();
         }
 
-        if ($submissions === [] || !is_array($submissions)) {
+        if ($submissions === array() || !is_array($submissions)) {
             $this->log('Thank-you page found no pending submissions.');
             return;
         }
@@ -98,7 +98,7 @@ class FormSubmissionService
 
         if (($input['subscribe'] ?? null) == 1) {
             $this->emailService->emailListSignup(
-                ['email' => $input['email'], 'userInfo' => json_encode($user)],
+                array('email' => $input['email'], 'userInfo' => json_encode($user)),
                 $user,
             );
         }
@@ -110,7 +110,7 @@ class FormSubmissionService
 
         $this->deliverEmail(
             $this->mailConfig->adminAddress,
-            'New ' . str_replace(['-', '_'], ' ', (string) ($input['form_type'] ?? 'contact')) . ' form submission',
+            'New ' . str_replace(array('-', '_'), ' ', (string) ($input['form_type'] ?? 'contact')) . ' form submission',
             $adminEmailMessage,
         );
     }
@@ -144,13 +144,13 @@ class FormSubmissionService
     private function deferSubmission(string $type, array $input, ?array $user): void
     {
         $submissionId = bin2hex(random_bytes(8));
-        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ??= [];
-        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY][] = [
+        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY] ??= array();
+        $_SESSION[self::DEFERRED_SUBMISSIONS_SESSION_KEY][] = array(
             'id' => $submissionId,
             'type' => $type,
             'input' => $input,
             'user' => $user,
-        ];
+        );
 
         $this->log(sprintf('Submission %s deferred until the thank-you page.', $submissionId));
     }
@@ -199,11 +199,11 @@ class FormSubmissionService
      */
     private static function flattenValues(array $input): array
     {
-        $values = [];
+        $values = array();
 
         foreach ($input as $value) {
             if (is_array($value)) {
-                $values = [...$values, ...self::flattenValues($value)];
+                $values = array(...$values, ...self::flattenValues($value));
                 continue;
             }
 
@@ -261,7 +261,7 @@ class FormSubmissionService
 
         $userDetails = $this->normalizeUserDetails($user);
 
-        if ($userDetails !== []) {
+        if ($userDetails !== array()) {
             $message .= '<h2 style="font-size:18px; margin:24px 0 12px;">User Information</h2>';
             $message .= $this->buildDetailsList($userDetails);
         }
@@ -271,7 +271,7 @@ class FormSubmissionService
 
     private function normalizeFormInput(array $input): array
     {
-        $details = [];
+        $details = array();
 
         foreach ($input as $key => $value) {
             $details[$this->formatLabel((string) $key)] = $this->stringifyValue($value);
@@ -283,17 +283,17 @@ class FormSubmissionService
     private function normalizeUserDetails(?array $user): array
     {
         if ($user === null) {
-            return [];
+            return array();
         }
 
-        $userFields = [
+        $userFields = array(
             'ipAddress' => 'IP Address',
             'city_name' => 'City',
             'region_name' => 'Region',
             'country_name' => 'Country',
-        ];
+        );
 
-        $details = [];
+        $details = array();
 
         foreach ($userFields as $key => $label) {
             if (!isset($user[$key]) || $user[$key] === '' || $user[$key] === '-') {
@@ -308,7 +308,7 @@ class FormSubmissionService
 
     private function buildDetailsList(array $details): string
     {
-        if ($details === []) {
+        if ($details === array()) {
             return '<p>No additional information provided.</p>';
         }
 
@@ -323,7 +323,7 @@ class FormSubmissionService
 
     private function formatLabel(string $key): string
     {
-        return ucwords(str_replace(['_', '-'], ' ', $key));
+        return ucwords(str_replace(array('_', '-'), ' ', $key));
     }
 
     private function stringifyValue(mixed $value): string

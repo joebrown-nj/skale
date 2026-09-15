@@ -16,8 +16,8 @@ final class EmailControllerTest extends TestCase
 {
     protected function tearDown(): void
     {
-        $_POST = [];
-        $_SERVER = [];
+        $_POST = array();
+        $_SERVER = array();
         http_response_code(200);
     }
 
@@ -134,7 +134,7 @@ final class EmailControllerTest extends TestCase
     public function testSignUpUsesInjectedViewUserDataForSuccessfulSignup(): void
     {
         $_POST['email'] = 'user@example.com';
-        $user = ['country_name' => 'United States'];
+        $user = array('country_name' => 'United States');
 
         $emailModel = $this->createMock(EmailServiceInterface::class);
         $emailModel->expects($this->once())
@@ -171,8 +171,8 @@ final class EmailControllerTest extends TestCase
 
     public function testSignUpReturnsFailureWhenSignupCannotBeProcessed(): void
     {
-        $input = ['email' => 'user@example.com', 'source' => 'footer'];
-        $user = ['country_name' => 'United States'];
+        $input = array('email' => 'user@example.com', 'source' => 'footer');
+        $user = array('country_name' => 'United States');
 
         $emailModel = $this->createMock(EmailServiceInterface::class);
         $emailModel->expects($this->once())
@@ -209,7 +209,7 @@ final class EmailControllerTest extends TestCase
 
     public function testSignUpReturnsBlockedResponseWhenSubmissionMatchesBlacklist(): void
     {
-        $input = ['email' => 'blocked@example.com'];
+        $input = array('email' => 'blocked@example.com');
 
         $emailModel = $this->createMock(EmailServiceInterface::class);
         $emailModel->expects($this->never())->method('validateEmail');

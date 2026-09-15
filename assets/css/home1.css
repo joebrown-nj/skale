@@ -2,33 +2,6 @@
     margin-top: 0px;
 }
 
-:root {
-    --skale-navy: #071421;
-    --skale-navy-light: #102538;
-    --skale-blue: #176bff;
-    --skale-cyan: #16c7d9;
-    --skale-green: #2ee6a6;
-    --skale-ink: #152233;
-    --skale-muted: #637184;
-    --skale-light: #f5f8fb;
-    --skale-border: #dfe7ef;
-    --skale-white: #ffffff;
-    --skale-shadow: 0 22px 60px rgba(7, 20, 33, .10);
-    --skale-radius: 1.35rem;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    color: var(--skale-ink);
-    background: var(--skale-white);
-    /* font-family: "DM Sans", sans-serif; */
-    line-height: 1.7;
-    overflow-x: hidden;
-}
-
 .home {
 
     h1, h2, h3, h4, h5, h6,
@@ -150,39 +123,6 @@ body {
         transform: translateX(4px);
     }
 
-    /* Navigation */
-    /* .navbar {
-        padding: 1rem 0;
-        transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
-    }
-
-    .navbar.scrolled {
-        padding: .65rem 0;
-        background: rgba(255, 255, 255, .96) !important;
-        box-shadow: 0 10px 35px rgba(7, 20, 33, .08);
-        backdrop-filter: blur(12px);
-    }
-
-    .navbar-brand {
-        color: var(--skale-navy);
-        font-size: 1.8rem;
-        font-weight: 800;
-        letter-spacing: -.08em;
-    } */
-
-    /* .nav-link {
-        color: #334155;
-        font-weight: 600;
-        padding: .7rem .9rem !important;
-    }
-
-    .nav-link:hover,
-    .nav-link:focus {
-        color: var(--skale-blue);
-    }
- */
-
-    /* Hero */
     .hero {
         position: relative;
         min-height: 760px;
@@ -336,7 +276,6 @@ body {
         color: #10a779;
     }
 
-    /* Trust bar */
     .trust-bar {
         position: relative;
         z-index: 3;
@@ -370,7 +309,6 @@ body {
         font-size: .86rem;
     }
 
-    /* Problems */
     .problem-card,
     .service-card,
     .home-outcome-card,
@@ -416,7 +354,6 @@ body {
         text-decoration: none;
     }
 
-    /* Outcome split */
     .outcome-section {
         background: var(--skale-light);
     }
@@ -458,7 +395,6 @@ body {
         color: var(--skale-green);
     }
 
-    /* Services */
     .service-card {
         position: relative;
         display: flex;
@@ -504,7 +440,6 @@ body {
         border-radius: 50%;
     }
 
-    /* Connected system */
     .systems-section {
         color: white;
         background:
@@ -561,7 +496,6 @@ body {
         background: var(--skale-green);
     }
 
-    /* Process */
     .process-card {
         position: relative;
         padding: 1.75rem;
@@ -580,7 +514,6 @@ body {
         font-weight: 800;
     }
 
-    /* Founder trust */
     .trust-section {
         background:
             linear-gradient(90deg, rgba(245,248,251,.97), rgba(245,248,251,.90)),
@@ -618,7 +551,6 @@ body {
         font-size: 1.3rem;
     }
 
-    /* Comparison */
     .comparison-wrap {
         overflow: hidden;
         border: 1px solid var(--skale-border);
@@ -652,7 +584,6 @@ body {
         font-weight: 700;
     }
 
-    /* Blog */
     .blog-card {
         overflow: hidden;
     }
@@ -687,7 +618,6 @@ body {
         font-weight: 600;
     }
 
-    /* CTA */
     .cta-band {
         color: white;
         background:
@@ -701,7 +631,6 @@ body {
         color: #c8d7e2;
     }
 
-    /* Form */
     .contact-section {
         background: var(--skale-light);
     }
@@ -762,33 +691,6 @@ body {
         min-height: 135px;
     }
 
-    /* Footer */
-    /* footer {
-        color: #b8c7d4;
-        background: #04101a;
-    }
-
-    footer h5 {
-        color: white;
-        font-size: 1rem;
-    }
-
-    footer a {
-        color: #b8c7d4;
-        text-decoration: none;
-    }
-
-    footer a:hover {
-        color: var(--skale-green);
-    }
-
-    .footer-brand {
-        color: white;
-        font: 800 2rem/1 "Manrope", sans-serif;
-        letter-spacing: -.08em;
-    } */
-
-    /* Mobile CTA */
     .mobile-cta {
         display: none;
     }
@@ -900,7 +802,6 @@ body {
         }
     }
 
-    /* Hero lead form */
     .hero-form-card {
         padding: 1.7rem;
         background: rgba(255, 255, 255, .98);
@@ -927,22 +828,11 @@ body {
         margin-bottom: .65rem;
     }
 
-    /* .hero-lead-form .form-label {
-        margin-bottom: .35rem;
-    }
-
-    .hero-lead-form .form-control,
-    .hero-lead-form .form-select {
-        min-height: 3rem;
-        background: #fbfdff;
-    } */
-
     .hero-form-note {
         text-align: center;
         font-size: .78rem;
     }
 
-    /* Repeated conversion CTAs */
     .inline-cta {
         display: flex;
         align-items: center;

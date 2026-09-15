@@ -45,7 +45,7 @@ class EmailQueueService
             $pendingPath = $this->pathFor('pending', $jobId);
             $tempPath = $pendingPath . '.tmp';
 
-            $job = [
+            $job = array(
                 'id' => $jobId,
                 'to' => $to,
                 'to_name' => $toName,
@@ -54,7 +54,7 @@ class EmailQueueService
                 'attempts' => 0,
                 'available_at' => time(),
                 'created_at' => gmdate(DATE_ATOM),
-            ];
+            );
 
             $this->writeJobFile($tempPath, $job);
 
@@ -75,28 +75,28 @@ class EmailQueueService
     {
         $lockHandle = $this->acquireProcessingLock();
         if ($lockHandle === null) {
-            return [
+            return array(
                 'claimed' => 0,
                 'sent' => 0,
                 'retried' => 0,
                 'failed' => 0,
                 'deferred' => 0,
-            ];
+            );
         }
 
         try {
             $this->ensureDirectoriesExist();
             $this->recoverStaleProcessingJobs();
 
-            $summary = [
+            $summary = array(
                 'claimed' => 0,
                 'sent' => 0,
                 'retried' => 0,
                 'failed' => 0,
                 'deferred' => 0,
-            ];
+            );
 
-            $pendingFiles = glob($this->directoryFor('pending') . '/*.json') ?: [];
+            $pendingFiles = glob($this->directoryFor('pending') . '/*.json') ?: array();
             sort($pendingFiles, SORT_STRING);
 
             foreach ($pendingFiles as $pendingPath) {
@@ -189,7 +189,7 @@ class EmailQueueService
 
     private function ensureDirectoriesExist(): void
     {
-        foreach (['pending', 'processing', 'sent', 'failed'] as $directory) {
+        foreach (array('pending', 'processing', 'sent', 'failed') as $directory) {
             $path = $this->directoryFor($directory);
 
             if (is_dir($path)) {
@@ -205,7 +205,7 @@ class EmailQueueService
     private function recoverStaleProcessingJobs(): void
     {
         $cutoff = time() - $this->processingTimeout();
-        $processingFiles = glob($this->directoryFor('processing') . '/*.json') ?: [];
+        $processingFiles = glob($this->directoryFor('processing') . '/*.json') ?: array();
 
         foreach ($processingFiles as $processingPath) {
             $modifiedAt = @filemtime($processingPath);

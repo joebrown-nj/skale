@@ -53,7 +53,7 @@ class EmailController
         }
 
         if (!$this->emailModel->validateEmail($email)) {
-            return (string) JsonResponse::error(['A valid email is required']);
+            return (string) JsonResponse::error(array('A valid email is required'));
         }
 
         if ($this->emailModel->checkIfEmailIsOnList($email)) {

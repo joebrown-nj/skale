@@ -418,6 +418,10 @@ function inferMetaPageType(pathname = window.location.pathname || '/') {
         return 'portfolio';
     }
 
+    if (normalizedPath === '/our-work') {
+        return 'our-work';
+    }
+
     if (normalizedPath === '/thank-you') {
         return 'thank-you';
     }

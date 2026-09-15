@@ -15,11 +15,11 @@ Environment::boot(dirname(__DIR__, 2));
 
 $db = new MysqliDb($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
 
-$tables = [];
+$tables = array();
 $table = '';
-$fields = [];
-$success = [];
-$error = [];
+$fields = array();
+$success = array();
+$error = array();
 $getId = 0;
 
 $r = $db->rawQuery('SHOW TABLES');

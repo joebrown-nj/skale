@@ -14,7 +14,7 @@ class RequestBlocklistService
     /**
      * @var array<int, string>
      */
-    private const REQUEST_ATTRIBUTES = [
+    private const REQUEST_ATTRIBUTES = array(
         'ip',
         'user_agent',
         'path',
@@ -22,18 +22,18 @@ class RequestBlocklistService
         'referer',
         'query_string',
         'host',
-    ];
+    );
 
     /**
      * @var array<int, string>
      */
-    private const SUBMISSION_ATTRIBUTES = [
+    private const SUBMISSION_ATTRIBUTES = array(
         'email',
         'email_domain',
         'phone',
         'name',
         'message',
-    ];
+    );
 
     public function __construct(
         private readonly RequestBlockRuleModel $requestBlockRuleModel,
@@ -52,7 +52,7 @@ class RequestBlocklistService
         $context = $this->buildSubmissionContext($payload);
         $context['ip'] = $this->resolveClientIp($server ?? $_SERVER);
 
-        return $this->findMatchForContext($context, array_merge(self::SUBMISSION_ATTRIBUTES, ['ip']));
+        return $this->findMatchForContext($context, array_merge(self::SUBMISSION_ATTRIBUTES, array('ip')));
     }
 
     public function getPublicMessage(?RequestBlockRuleEntity $rule, string $fallback = self::DEFAULT_PUBLIC_MESSAGE): string
@@ -96,7 +96,7 @@ class RequestBlocklistService
     {
         $path = $requestPath ?? (parse_url($server['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
 
-        return [
+        return array(
             'ip' => $this->resolveClientIp($server),
             'user_agent' => trim((string) ($server['HTTP_USER_AGENT'] ?? '')),
             'path' => $this->normalizePath($path),
@@ -104,7 +104,7 @@ class RequestBlocklistService
             'referer' => trim((string) ($server['HTTP_REFERER'] ?? '')),
             'query_string' => trim((string) ($server['QUERY_STRING'] ?? '')),
             'host' => trim((string) ($server['HTTP_HOST'] ?? '')),
-        ];
+        );
     }
 
     /**
@@ -115,13 +115,13 @@ class RequestBlocklistService
         $email = trim((string) ($payload['email'] ?? ''));
         $message = (string) ($payload['comment'] ?? $payload['message'] ?? '');
 
-        return [
+        return array(
             'email' => strtolower($email),
             'email_domain' => $this->extractEmailDomain($email),
             'phone' => $this->normalizePhone((string) ($payload['phone'] ?? '')),
             'name' => trim((string) ($payload['name'] ?? '')),
             'message' => trim($message),
-        ];
+        );
     }
 
     private function matchesRule(RequestBlockRuleEntity $rule, string $candidate, string $attribute): bool

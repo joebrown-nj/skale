@@ -30,14 +30,14 @@ class LogController
         $input ??= $_POST;
         $server ??= $_SERVER;
 
-        $data = [
+        $data = array(
             'target' => $this->normalizeTarget($input['target'] ?? ''),
             'url' => $input['url'] ?? '',
             'detail' => $input['detail'] ?? '',
             'userIP' => $server['REMOTE_ADDR'] ?? '',
             'userInfo' => json_encode($this->user),
             'serverInfo' => json_encode($this->sanitizeServerInfo($server)),
-        ];
+        );
 
         return $this->logModel->logButtonClick($data);
     }

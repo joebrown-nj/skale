@@ -16,17 +16,17 @@ Environment::boot(__DIR__);
 $database = Environment::configuration(__DIR__)->database;
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [__DIR__ . '/src/Models/Entities'],
+    paths: array(__DIR__ . '/src/Models/Entities'),
     isDevMode: true,
 );
 
-$connection = DriverManager::getConnection([
+$connection = DriverManager::getConnection(array(
     'dbname' => $database->name,
     'user' => $database->user,
     'password' => $database->password,
     'host' => $database->host,
     'driver' => $database->driver,
-], $config);
+), $config);
 
 $entityManager = new EntityManager($connection, $config);
 

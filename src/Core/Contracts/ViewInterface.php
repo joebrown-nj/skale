@@ -11,5 +11,5 @@ interface ViewInterface
     public function getP3(): ?string;
     public function getUri(): ?string;
     public function getUser(): ?array;
-    public function render(string $view, array $data = []);
+    public function render(string $view, array $data = array());
 }

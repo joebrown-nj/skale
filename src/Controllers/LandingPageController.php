@@ -60,9 +60,9 @@ final class LandingPageController
         }
 
         $input = $request->validated();
-        $details = [];
+        $details = array();
 
-        foreach (['team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'package' => 'Package', 'lead_source' => 'Lead Source'] as $field => $label) {
+        foreach (array('team_size' => 'Team Size', 'website' => 'Website', 'website_goal' => 'Website Goal', 'package' => 'Package', 'lead_source' => 'Lead Source') as $field => $label) {
             if ($input[$field] !== '') {
                 $details[] = $label . ': ' . $input[$field];
             }
@@ -75,7 +75,7 @@ final class LandingPageController
         $input['comment'] = implode(' - ', $details);
 
         if ($input['interest'] !== '') {
-            $input['interests'] = [$input['interest']];
+            $input['interests'] = array($input['interest']);
         }
 
         if ($this->requestBlocklistService->findMatchingSubmissionRule($input, $request->server()) !== null) {
@@ -91,7 +91,7 @@ final class LandingPageController
             $this->contactModel->checkLeadForm($input),
         )));
 
-        if ($validationErrors !== []) {
+        if ($validationErrors !== array()) {
             return JsonResponse::error($validationErrors);
         }
 
@@ -101,14 +101,14 @@ final class LandingPageController
 
         $this->formSubmissionService->deferContactSubmission($input, $this->view->getUser(), $request->server());
 
-        return JsonResponse::success(['redirect' => '/thank-you']);
+        return JsonResponse::success(array('redirect' => '/thank-you'));
     }
 
     private function render(string $template, array $sections): void
     {
-        $data = ['template' => 'inc/landing-pages/' . $template . '.tpl'];
+        $data = array('template' => 'inc/landing-pages/' . $template . '.tpl');
 
-        if ($sections !== []) {
+        if ($sections !== array()) {
             $data['sections'] = $sections;
         }
 

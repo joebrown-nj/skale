@@ -26,23 +26,23 @@ final class SolutionControllerTest extends TestCase
 
     public function testDetailUsesMenuBackedPageContentWithoutChangingItsUrl(): void
     {
-        $menu = (object) ['url' => 'solutions/custom-development'];
-        $content = (object) ['content' => '<main>Custom development</main>'];
+        $menu = (object) array('url' => 'solutions/custom-development');
+        $content = (object) array('content' => '<main>Custom development</main>');
 
         $pageContentModel = $this->createMock(PageContentModel::class);
         $pageContentModel->expects($this->once())
             ->method('getPageContentByUrl')
             ->with('solutions/custom-development')
-            ->willReturn(['menu' => $menu, 'content' => $content]);
+            ->willReturn(array('menu' => $menu, 'content' => $content));
 
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('service-detail', [
+            ->with('service-detail', array(
                 'serviceDetail' => $content,
                 'serviceMenu' => $menu,
-                'serviceContent' => [],
-            ]);
+                'serviceContent' => array(),
+            ));
 
         $controller = new SolutionController(
             $pageContentModel,

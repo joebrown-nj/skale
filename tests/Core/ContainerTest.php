@@ -47,9 +47,9 @@ final class ContainerTest extends TestCase
 
     public static function unresolvableServices(): iterable
     {
-        yield 'untyped argument' => [ServiceWithUntypedArgument::class];
-        yield 'builtin argument' => [ServiceWithBuiltinArgument::class];
-        yield 'union argument' => [ServiceWithUnionArgument::class];
+        yield 'untyped argument' => array(ServiceWithUntypedArgument::class);
+        yield 'builtin argument' => array(ServiceWithBuiltinArgument::class);
+        yield 'union argument' => array(ServiceWithUnionArgument::class);
     }
 
     public function testCircularDependenciesProduceAContainerException(): void

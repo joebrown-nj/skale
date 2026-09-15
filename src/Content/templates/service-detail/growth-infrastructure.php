@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [
+return array(
     // 'name' => 'Growth Infrastructure',
     // 'slug' => 'growth-infrastructure',
 
@@ -15,8 +15,8 @@ return [
     //     'ogImage' => null,
     // ],
 
-    'sections' => [
-        'hero' => [
+    'sections' => array(
+        'hero' => array(
             'enabled' => true,
             'id' => 'growth-infrastructure-hero',
             'tag' => 'section',
@@ -35,41 +35,41 @@ return [
             'highlightClass' => 'text-highlight',
             'description' => 'Skale connects your website, lead funnels, CRM, automation, and reporting so your business can attract better prospects, follow up faster, and convert more opportunities.',
             'descriptionClass' => 'hero-lead mt-4 mb-0',
-            'benefits' => [
+            'benefits' => array(
                 'class' => 'hero-checks',
                 'ariaLabel' => 'Key benefits',
                 'iconClass' => 'bi bi-check-circle-fill',
-                'items' => [
+                'items' => array(
                     'Built around your business',
                     'Clear strategy before execution',
                     'One accountable growth partner',
-                ],
-            ],
-            'buttons' => [
+                ),
+            ),
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Get Your Free Growth Review',
                         'url' => '#consultation',
                         'class' => 'btn btn-primary btn-lg',
                         'target' => null,
                         'rel' => null,
-                    ],
-                    [
+                    ),
+                    array(
                         'label' => 'See How It Works',
                         'url' => '#how-it-works',
                         'class' => 'btn btn-outline-dark btn-lg',
                         'target' => null,
                         'rel' => null,
-                    ],
-                ],
-            ],
-            'note' => [
+                    ),
+                ),
+            ),
+            'note' => array(
                 'text' => 'No pressure. No generic sales pitch. Just a practical conversation about what is holding your business back.',
                 'class' => 'hero-note',
                 'iconClass' => 'bi bi-shield-check',
-            ],
-            'form' => [
+            ),
+            'form' => array(
                 'enabled' => true,
                 'anchorId' => 'consultation',
                 'wrapperClass' => 'hero-form-wrap',
@@ -86,12 +86,12 @@ return [
                 'method' => 'POST',
                 'id' => 'lead-form',
                 'class' => 'ajaxForm',
-                'attributes' => [
+                'attributes' => array(
                     'dataMetaFormName' => 'growth-infrastructure-form',
                     'dataMetaSuccessEvent' => 'Lead',
-                ],
-                'fields' => [
-                    [
+                ),
+                'fields' => array(
+                    array(
                         'type' => 'text',
                         'name' => 'name',
                         'id' => 'name',
@@ -101,8 +101,8 @@ return [
                         'wrapperClass' => 'mb-3',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'email',
                         'name' => 'email',
                         'id' => 'email',
@@ -112,8 +112,8 @@ return [
                         'wrapperClass' => 'mb-3',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'tel',
                         'name' => 'phone',
                         'id' => 'phone',
@@ -126,8 +126,8 @@ return [
                         'labelSuffixClass' => 'fw-normal text-secondary',
                         'inputClass' => 'form-control',
                         'group' => 'contact-details',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'select',
                         'name' => 'team_size',
                         'id' => 'team',
@@ -137,16 +137,16 @@ return [
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-select',
                         'group' => 'contact-details',
-                        'options' => [
-                            ['label' => 'Select', 'value' => ''],
-                            ['label' => 'Just me', 'value' => 'Just me'],
-                            ['label' => '2-5 people', 'value' => '2-5 people'],
-                            ['label' => '6-15 people', 'value' => '6-15 people'],
-                            ['label' => '16-50 people', 'value' => '16-50 people'],
-                            ['label' => '50+ people', 'value' => '50+ people'],
-                        ],
-                    ],
-                    [
+                        'options' => array(
+                            array('label' => 'Select', 'value' => ''),
+                            array('label' => 'Just me', 'value' => 'Just me'),
+                            array('label' => '2-5 people', 'value' => '2-5 people'),
+                            array('label' => '6-15 people', 'value' => '6-15 people'),
+                            array('label' => '16-50 people', 'value' => '16-50 people'),
+                            array('label' => '50+ people', 'value' => '50+ people'),
+                        ),
+                    ),
+                    array(
                         'type' => 'textarea',
                         'name' => 'comment',
                         'id' => 'comment',
@@ -157,29 +157,29 @@ return [
                         'wrapperClass' => 'mb-4',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'hidden',
                         'name' => 'interests[]',
                         'value' => 'solutions',
-                    ],
-                ],
-                'fieldGroups' => [
+                    ),
+                ),
+                'fieldGroups' => array(
                     'contact-details' => 'row g-3 mb-3',
-                ],
-                'submit' => [
+                ),
+                'submit' => array(
                     'label' => 'Request My Free Review',
                     'class' => 'btn btn-skale btn-lg w-100',
-                ],
-                'privacy' => [
+                ),
+                'privacy' => array(
                     'text' => 'No sales pressure. Your information stays private.',
                     'class' => 'small text-secondary text-center mt-3 mb-0',
                     'iconClass' => 'fa-solid fa-lock me-1',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'trustStrip' => [
+        'trustStrip' => array(
             'enabled' => true,
             'id' => 'trust-strip',
             'tag' => 'section',
@@ -189,31 +189,31 @@ return [
             'columnClass' => 'col',
             'itemClass' => 'trust-item',
             'ariaLabel' => 'Why businesses trust Skale',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-person-check',
                     'title' => 'Senior Expertise',
                     'description' => 'Direct access to an experienced partner',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-diagram-3',
                     'title' => 'Systems Thinking',
                     'description' => 'Every tool supports a larger strategy',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-graph-up-arrow',
                     'title' => 'Outcome Focused',
                     'description' => 'Decisions tied to measurable progress',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-headset',
                     'title' => 'Ongoing Support',
                     'description' => 'A long-term partner after launch',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'problems' => [
+        'problems' => array(
             'enabled' => true,
             'id' => 'problems',
             'tag' => 'section',
@@ -232,31 +232,31 @@ return [
             'iconWrapperClass' => 'icon-box',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-funnel',
                     'title' => 'Leads go nowhere',
                     'description' => 'Visitors arrive, but weak calls to action and disconnected follow-up leave good prospects behind.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-arrows-angle-contract',
                     'title' => 'Teams work manually',
                     'description' => 'Employees copy data, chase updates, and repeat tasks that should happen automatically.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-plug',
                     'title' => 'Systems are disconnected',
                     'description' => 'Customer information is spread across spreadsheets, inboxes, apps, and isolated platforms.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-bar-chart-line',
                     'title' => 'Results are unclear',
                     'description' => 'Reporting shows activity, but not which efforts are creating revenue or where improvement is needed.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'outcomes' => [
+        'outcomes' => array(
             'enabled' => true,
             'id' => 'outcomes',
             'tag' => 'section',
@@ -274,27 +274,27 @@ return [
             'descriptionClass' => 'mt-3 mb-0',
             'listClass' => 'outcome-list',
             'iconClass' => 'bi bi-check-circle-fill',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'title' => 'Generate and capture better opportunities',
                     'description' => 'Clear messaging, stronger conversion paths, and lead-focused experiences.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Respond faster and nurture consistently',
                     'description' => 'CRM workflows and automation keep prospects moving without constant manual effort.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Make decisions with reliable data',
                     'description' => 'Reporting connects marketing activity and operational performance to business outcomes.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Build a foundation that can scale',
                     'description' => 'Flexible systems support growth without creating unnecessary complexity or rework.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'serviceComponents' => [
+        'serviceComponents' => array(
             'enabled' => true,
             'id' => 'service-components',
             'tag' => 'section',
@@ -317,62 +317,62 @@ return [
             'iconWrapperClass' => 'icon-box',
             'titleClass' => 'h4',
             'listIconClass' => 'bi bi-check2',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-window',
                     'title' => 'Website & Conversion',
                     'description' => 'Your website should clearly explain your value, establish credibility, and guide visitors toward action.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/website-design-and-development',
-                    'bullets' => [
+                    'bullets' => array(
                         'Website strategy and development',
                         'Landing pages and conversion paths',
                         'Messaging and calls to action',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-megaphone',
                     'title' => 'Marketing',
                     'description' => 'Reach the right audience with focused campaigns designed around qualified traffic and measurable action.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing',
-                    'bullets' => [
+                    'bullets' => array(
                         'SEO and content strategy',
                         'PPC and paid social campaigns',
                         'Email marketing and nurturing',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-people',
                     'title' => 'CRM Solutions',
                     'description' => 'Create a dependable process for capturing, organizing, assigning, and following up with every opportunity.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/crm-solutions',
-                    'bullets' => [
+                    'bullets' => array(
                         'CRM setup and optimization',
                         'Lead routing and pipeline design',
                         'Sales and marketing alignment',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-lightning-charge',
                     'title' => 'Marketing Automation',
                     'description' => 'Remove repetitive work and make important actions happen reliably at the right time.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/marketing-automation',
-                    'bullets' => [
+                    'bullets' => array(
                         'Marketing and sales automation',
                         'Internal workflow automation',
                         'Notifications and follow-up sequences',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-link-45deg',
                     'title' => 'System Integrations',
                     'description' => 'Connect the platforms your business already depends on so information moves without unnecessary handoffs.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/system-integrations',
-                    'bullets' => [
+                    'bullets' => array(
                         'API and platform integrations',
                         'Data synchronization',
                         'Custom integration workflows',
-                    ],
-                ],
+                    ),
+                ),
                 // [
                 //     'iconClass' => 'bi bi-clipboard-data',
                 //     'title' => 'Marketing Analytics',
@@ -384,14 +384,14 @@ return [
                 //         'Continuous conversion optimization',
                 //     ],
                 // ],
-            ],
-            'cta' => [
+            ),
+            'cta' => array(
                 'wrapperClass' => 'text-center mt-5',
                 'label' => 'Talk Through Your Growth Gaps',
                 'url' => '#consultation',
                 'class' => 'btn btn-primary btn-lg',
-            ],
-        ],
+            ),
+        ),
 
         // Reserved for a separate related-services or individual-service listing component.
         // The source HTML does not contain an additional services section beyond serviceComponents.
@@ -410,7 +410,7 @@ return [
         //     'items' => [],
         // ],
 
-        'caseStudy' => [
+        'caseStudy' => array(
             'enabled' => true,
             'id' => 'case-study',
             'tag' => 'section',
@@ -434,17 +434,17 @@ return [
             'metricsRowClass' => 'row g-3',
             'metricColumnClass' => 'col-6',
             'metricClass' => 'metric h-100',
-            'metrics' => [
-                ['value' => '50%+', 'label' => 'Reduction in operating costs'],
-                ['value' => '1M+', 'label' => 'Records supported at scale'],
-                ['value' => 'Faster', 'label' => 'Publishing and delivery workflows'],
-                ['value' => 'Unified', 'label' => 'Data, systems, and processes'],
-            ],
+            'metrics' => array(
+                array('value' => '50%+', 'label' => 'Reduction in operating costs'),
+                array('value' => '1M+', 'label' => 'Records supported at scale'),
+                array('value' => 'Faster', 'label' => 'Publishing and delivery workflows'),
+                array('value' => 'Unified', 'label' => 'Data, systems, and processes'),
+            ),
             'disclaimer' => 'Use only metrics and claims you can verify. Add the client name, testimonial, or logo when permission is available.',
             'disclaimerClass' => 'small mt-3 mb-0',
-        ],
+        ),
 
-        'process' => [
+        'process' => array(
             'enabled' => true,
             'id' => 'how-it-works',
             'tag' => 'section',
@@ -463,27 +463,27 @@ return [
             'stepClass' => 'process-step',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'title' => 'Discover',
                     'description' => 'We learn how your business generates revenue, where work slows down, and what growth means to you.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Prioritize',
                     'description' => 'We identify the highest-impact gaps and create a focused roadmap instead of trying to change everything at once.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Build & Connect',
                     'description' => 'We improve the right experiences, workflows, integrations, campaigns, and reporting systems.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Measure & Improve',
                     'description' => 'We monitor performance, learn from real behavior, and continuously improve what drives results.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'founder' => [
+        'founder' => array(
             'enabled' => true,
             'id' => 'founder',
             'tag' => 'section',
@@ -494,13 +494,13 @@ return [
             'avatarColumnClass' => 'col-lg-auto',
             'contentColumnClass' => 'col-lg',
             'buttonColumnClass' => 'col-lg-auto',
-            'avatar' => [
+            'avatar' => array(
                 'type' => 'initials',
                 'value' => 'JB',
                 'imageUrl' => null,
                 'alt' => 'Joe Brown',
                 'class' => 'founder-avatar',
-            ],
+            ),
             'quoteMark' => '“',
             'quoteMarkClass' => 'quote-mark',
             'heading' => 'You are not handed off to a junior team after the sale.',
@@ -511,14 +511,14 @@ return [
             'emphasis' => 'You receive senior-level thinking, direct communication, and recommendations based on what your business actually needs.',
             'emphasisClass' => 'mb-0',
             'emphasisTextClass' => 'text-dark',
-            'cta' => [
+            'cta' => array(
                 'label' => 'Learn About Skale',
                 'url' => '/about',
                 'class' => 'btn btn-outline-dark',
-            ],
-        ],
+            ),
+        ),
 
-        'qualification' => [
+        'qualification' => array(
             'enabled' => true,
             'id' => 'qualification',
             'tag' => 'section',
@@ -537,23 +537,23 @@ return [
             'iconClass' => 'bi bi-check-circle-fill text-success fs-5',
             'titleClass' => 'd-block',
             'descriptionClass' => 'text-secondary',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'title' => 'You are generating activity, but not enough qualified opportunities.',
                     'description' => 'Traffic, campaigns, and referrals are not consistently becoming customers.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Your team relies on too many manual steps and disconnected tools.',
                     'description' => 'Growth is creating more work instead of greater efficiency.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'You want a long-term partner who can connect strategy and execution.',
                     'description' => 'You need more than a vendor completing isolated tasks.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'faq' => [
+        'faq' => array(
             'enabled' => true,
             'id' => 'faq',
             'tag' => 'section',
@@ -578,41 +578,41 @@ return [
             'openCollapseClass' => 'accordion-collapse collapse show',
             'bodyClass' => 'accordion-body',
             'allowMultipleOpen' => false,
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'id' => 'faq-growth-infrastructure',
                     'question' => 'What exactly is growth infrastructure?',
                     'answer' => 'Growth infrastructure is the connected system behind how your business attracts prospects, captures leads, follows up, delivers information, measures results, and improves performance. It can include your website, CRM, automation, integrations, marketing, analytics, and operational workflows.',
                     'open' => true,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-current-tools',
                     'question' => 'Do we need to replace our current tools?',
                     'answer' => 'Not necessarily. Skale first evaluates what is already working. In many cases, the better answer is to improve, connect, or simplify the tools you already use rather than replace everything.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-one-priority',
                     'question' => 'Can we start with one priority?',
                     'answer' => 'Yes. Many engagements begin with the highest-impact issue, such as a website conversion problem, CRM setup, reporting gap, or manual workflow. The work can then expand based on results and business priorities.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-success',
                     'question' => 'How will we know the work is successful?',
                     'answer' => 'Success measures are defined before implementation. Depending on the engagement, they may include stronger conversion rates, faster response time, fewer manual steps, improved data accuracy, better lead quality, lower acquisition costs, or clearer reporting.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-consultation',
                     'question' => 'What happens during the free consultation?',
                     'answer' => 'We discuss your goals, current systems, biggest obstacles, and where you believe opportunities are being lost. You will leave with a clearer view of the problem and the most practical next step, whether or not we work together.',
                     'open' => false,
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'finalCta' => [
+        'finalCta' => array(
             'enabled' => true,
             'id' => 'final-cta',
             'tag' => 'section',
@@ -627,27 +627,27 @@ return [
             'headingTag' => 'h2',
             'description' => 'Schedule a free consultation to talk through your current systems, your growth goals, and the most valuable place to begin.',
             'descriptionClass' => 'lead mt-3 mb-4',
-            'buttons' => [
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row justify-content-center gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Book My Free Consultation',
                         'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-primary btn-lg',
                         'iconClass' => null,
-                    ],
-                    [
+                    ),
+                    array(
                         'label' => '732-925-4044',
                         'url' => 'tel:+17329254044',
                         'class' => 'btn btn-outline-light btn-lg',
                         'iconClass' => 'bi bi-telephone me-2',
-                    ],
-                ],
-            ],
+                    ),
+                ),
+            ),
             'note' => 'No obligation. No generic package. A practical conversation focused on your business.',
             'noteClass' => 'small mt-3 mb-0',
-        ],
-    ],
+        ),
+    ),
 
     'form' => array(
         'heading' => '',
@@ -751,4 +751,4 @@ return [
             ),
         ),
     )
-];
+);

@@ -1,26 +1,3 @@
-:root {
-    --skale-green: #7ac943;
-    --skale-green-dark: #559d25;
-    --skale-green-light: #eef8e8;
-    --skale-black: #101310;
-    --skale-dark: #171b18;
-    --skale-gray: #626a63;
-    --skale-light: #f6f8f5;
-    --skale-border: #dde3dc;
-    --skale-white: #ffffff;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    color: var(--skale-black);
-    background: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
-
 h1,
 h2,
 h3,
@@ -28,11 +5,6 @@ h4,
 h5 {
     font-weight: 700;
     letter-spacing: -0.025em;
-}
-
-p {
-    color: var(--skale-gray);
-    line-height: 1.7;
 }
 
 .section-padding {
@@ -77,9 +49,6 @@ p {
     background: var(--skale-light);
 }
 
-/*
-* Header
-*/
 .landing-header {
     background: rgba(255, 255, 255, 0.96);
 }
@@ -100,46 +69,19 @@ p {
     color: var(--skale-green-dark);
 }
 
-/*
-* Buttons
-*/
-/* .btn-skale {
-    background: var(--skale-green);
-    border: 2px solid var(--skale-green);
-    color: #101310;
-    border-radius: 7px;
-    padding: 14px 24px;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: all 0.2s ease;
-}
-
-.btn-skale:hover,
-.btn-skale:focus {
-    background: var(--skale-green-dark);
-    border-color: var(--skale-green-dark);
-    color: #fff;
-    transform: translateY(-1px);
-} */
-
-/*
-* Hero
-*/
 .hero {
-    /* position: relative;
-    overflow: hidden;
-    padding: 80px 0 90px; */
+
     background: radial-gradient(circle at 10% 15%, rgba(122, 201, 67, 0.13), transparent 28%),
     radial-gradient(circle at 85% 90%, rgba(122, 201, 67, 0.1), transparent 25%),
     linear-gradient(180deg, #fff 0%, #f8faf7 100%);
 }
 
 .hero-copy {
-    /* max-width: 690px; */
+
 }
 
 .hero-lead {
-/* max-width: 640px; */
+
     font-size: 1.18rem;
 }
 
@@ -162,9 +104,6 @@ p {
     margin-right: 6px;
 }
 
-/*
-* Hero form
-*/
 .conversion-form {
     background: #fff;
     padding: 32px;
@@ -202,9 +141,6 @@ p {
     font-size: 0.76rem;
 }
 
-/*
-* Proof bar
-*/
 .proof-bar {
     border-top: 1px solid var(--skale-border);
     border-bottom: 1px solid var(--skale-border);
@@ -226,9 +162,6 @@ p {
     font-size: 0.85rem;
 }
 
-/*
-* Problem cards
-*/
 .problem-card {
     height: 100%;
     padding: 30px;
@@ -258,9 +191,6 @@ p {
     font-size: 1.3rem;
 }
 
-/*
-* Diagnostic / report visual
-*/
 .report-shell {
     position: relative;
     background: var(--skale-dark);
@@ -314,9 +244,6 @@ p {
     border: 0;
 }
 
-/*
-* Results
-*/
 .change-number {
     color: var(--skale-green-dark);
     font-size: 0.8rem;
@@ -329,9 +256,6 @@ p {
     border-bottom: 1px solid var(--skale-border);
 }
 
-/*
-* Founder/why us
-*/
 .why-box {
     padding: 40px;
     border-radius: 14px;
@@ -356,9 +280,6 @@ p {
     border-radius: 8px;
 }
 
-/*
-* Process
-*/
 .step-number {
     width: 44px;
     height: 44px;
@@ -371,9 +292,6 @@ p {
     font-weight: 800;
 }
 
-/*
-* Final CTA
-*/
 .final-cta {
     position: relative;
     overflow: hidden;
@@ -407,9 +325,6 @@ footer a {
     text-decoration: none;
 }
 
-/*
-* Sticky mobile CTA
-*/
 .mobile-cta {
     display: none;
 }

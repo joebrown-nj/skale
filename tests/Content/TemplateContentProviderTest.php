@@ -20,15 +20,15 @@ final class TemplateContentProviderTest extends TestCase
     #[DataProvider('unsafeViewNames')]
     public function testItRejectsUnsafeViewNames(string $view): void
     {
-        self::assertSame([], (new TemplateContentProvider())->get($view));
+        self::assertSame(array(), (new TemplateContentProvider())->get($view));
     }
 
     public static function unsafeViewNames(): array
     {
-        return [
-            ['../home'],
-            ['error/404'],
-            ['Home'],
-        ];
+        return array(
+            array('../home'),
+            array('error/404'),
+            array('Home'),
+        );
     }
 }

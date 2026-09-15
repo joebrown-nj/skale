@@ -25,7 +25,7 @@ class RequestBlockRuleEntity
     #[ORM\Column(type: 'string', length: 500)]
     private string $ruleValue;
 
-    #[ORM\Column(type: 'boolean', options: ['default' => true])]
+    #[ORM\Column(type: 'boolean', options: array('default' => true))]
     private bool $active = true;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -39,7 +39,7 @@ class RequestBlockRuleEntity
         insertable: false,
         updatable: false,
         generated: 'INSERT',
-        options: ['default' => new CurrentTimestamp()],
+        options: array('default' => new CurrentTimestamp()),
     )]
     private ?\DateTimeInterface $createdAt = null;
 

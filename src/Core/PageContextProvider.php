@@ -11,7 +11,7 @@ class PageContextProvider
     /**
      * @var array<string, array|null>
      */
-    private array $resolvedPages = [];
+    private array $resolvedPages = array();
 
     public function __construct(
         private PageContentModel $pageContentModel,

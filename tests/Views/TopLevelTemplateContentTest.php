@@ -10,7 +10,7 @@ final class TopLevelTemplateContentTest extends TestCase
 {
     public function testTopLevelTemplatesDoNotContainLiteralText(): void
     {
-        $files = glob(dirname(__DIR__, 2) . '/src/Views/templates/*.tpl') ?: [];
+        $files = glob(dirname(__DIR__, 2) . '/src/Views/templates/*.tpl') ?: array();
 
         foreach ($files as $file) {
             $template = (string) file_get_contents($file);

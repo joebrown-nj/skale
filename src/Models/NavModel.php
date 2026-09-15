@@ -28,7 +28,7 @@ class NavModel
             ->getQuery()
             ->getArrayResult();
 
-        $itemsByParent = [];
+        $itemsByParent = array();
 
         foreach ($navItems as $item) {
             $itemsByParent[$item['parentId']][] = $item;
@@ -89,12 +89,12 @@ class NavModel
 
     private function buildNavTree(int $parentId, array $itemsByParent): array
     {
-        $navItems = $itemsByParent[$parentId] ?? [];
-        $tree = [];
+        $navItems = $itemsByParent[$parentId] ?? array();
+        $tree = array();
 
         foreach ($navItems as $item) {
             $children = $this->buildNavTree((int) $item['id'], $itemsByParent);
-            $item['children'] = $children === [] ? '' : $children;
+            $item['children'] = $children === array() ? '' : $children;
             $tree[] = $item;
         }
 

@@ -37,7 +37,7 @@ class BlogModel
             $returnVal = $query->getResult();
         } catch (\Throwable $e) {
             error_log($e->getMessage());
-            return [];
+            return array();
         }
         return $returnVal;
     }
@@ -80,7 +80,7 @@ class BlogModel
     public function getBlogByUrl($url = ''): ?BlogEntity
     {
         $url = explode('/', rtrim($url, '/'));
-        $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findOneBy(['url' => $url]);
+        $returnVal = $this->entityManager->getRepository(BlogEntity::class)->findOneBy(array('url' => $url));
         return $returnVal;
     }
 

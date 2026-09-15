@@ -1,7 +1,7 @@
 .home-callout-bg {
     min-height: auto;
     height: auto;
-    /* background-color: #04010f; */
+
     background-image: url('/images/circle-skale-up-logo-light-bg.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -36,11 +36,6 @@
     width: 2rem;
     height: 2rem;
 }
-
-/* .breadcrumb-container {
-    --bs-breadcrumb-divider: '>'; 
-     margin-top: 75px;
-} */
 
 .footer-social-strip,
 .footer-legal-strip {

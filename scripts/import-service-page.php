@@ -70,7 +70,7 @@ final class ServicePageImporter
             throw new RuntimeException('The HTML file could not be parsed.');
         }
 
-        if ($errors !== []) {
+        if ($errors !== array()) {
             fwrite(STDERR, "Warning: DOMDocument recovered from " . count($errors) . " HTML parsing issue(s).\n");
         }
 
@@ -79,7 +79,7 @@ final class ServicePageImporter
 
     public function import(): array
     {
-        $summary = [
+        $summary = array(
             'page_id' => null,
             'sections' => 0,
             'items' => 0,
@@ -87,7 +87,7 @@ final class ServicePageImporter
             'forms' => 0,
             'fields' => 0,
             'options' => 0,
-        ];
+        );
 
         if (!$this->dryRun) {
             $this->pdo->beginTransaction();
@@ -128,7 +128,7 @@ final class ServicePageImporter
                 $sectionId = $this->dryRun ? $summary['sections'] + 1 : $this->insertSection($sectionData['section']);
                 $summary['sections']++;
 
-                $parentMap = [];
+                $parentMap = array();
                 foreach ($sectionData['items'] as $index => $item) {
                     $parentImportKey = $item['parent_import_key'] ?? null;
                     unset($item['parent_import_key']);
@@ -239,22 +239,22 @@ final class ServicePageImporter
         [$headingText, $highlightText] = $this->headingAndHighlight($heading);
         $note = $this->first($copy, './/*[contains(concat(" ", normalize-space(@class), " "), " hero-note ")]');
 
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//ul[contains(concat(" ", normalize-space(@class), " "), " hero-checks ")]/li', $copy) as $li) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'hero_benefit',
                 'sort_order' => $i,
                 'title' => $this->textWithoutIcons($li),
                 'icon_class' => $this->iconClass($li),
-            ];
+            );
             $i += 10;
         }
 
         $form = $this->first($section, './/form');
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'hero',
                 'section_type' => 'hero',
                 'sort_order' => $sortOrder,
@@ -264,94 +264,94 @@ final class ServicePageImporter
                 'body' => $this->text($note),
                 'html_id' => $section->getAttribute('id') ?: null,
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [
+                'settings' => array(
                     'highlight_text' => $highlightText,
                     'note_icon' => $this->iconClass($note),
                     'content_column' => $this->nearestColumnClass($copy),
                     'form_column' => $form ? $this->nearestColumnClass($form) : null,
-                ],
-            ],
+                ),
+            ),
             'items' => $items,
             'buttons' => $this->parseButtons($copy),
             'form' => $form ? $this->parseForm($form) : null,
-        ];
+        );
     }
 
     private function parseTrustStrip(DOMElement $section, int $sortOrder): array
     {
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//*[contains(concat(" ", normalize-space(@class), " "), " trust-item ")]', $section) as $node) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'trust_item',
                 'sort_order' => $i,
                 'title' => $this->text($this->first($node, './/strong')),
                 'subtitle' => $this->text($this->first($node, './/span[not(contains(concat(" ", normalize-space(@class), " "), " icon-box "))]')),
                 'icon_class' => $this->iconClass($node),
-            ];
+            );
             $i += 10;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'trust',
                 'section_type' => 'trust_strip',
                 'sort_order' => $sortOrder,
                 'heading' => $section->getAttribute('aria-label') ?: null,
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
+                'settings' => array(),
+            ),
             'items' => $items,
-            'buttons' => [],
+            'buttons' => array(),
             'form' => null,
-        ];
+        );
     }
 
     private function parseCardGrid(DOMElement $section, int $sortOrder, string $key, string $cardClass): array
     {
         $intro = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " section-intro ")]');
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//article[contains(concat(" ", normalize-space(@class), " "), " ' . $cardClass . ' ")]', $section) as $card) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'card',
                 'sort_order' => $i,
                 'title' => $this->text($this->first($card, './/h3')),
                 'body' => $this->text($this->first($card, './/p')),
                 'icon_class' => $this->iconClass($card),
-                'settings' => ['column_class' => $this->nearestColumnClass($card)],
-            ];
+                'settings' => array('column_class' => $this->nearestColumnClass($card)),
+            );
             $i += 10;
         }
 
-        return [
-            'section' => $this->baseSection($section, $intro, $key, 'card_grid', $sortOrder, [
+        return array(
+            'section' => $this->baseSection($section, $intro, $key, 'card_grid', $sortOrder, array(
                 'card_style' => $cardClass,
-            ]),
+            )),
             'items' => $items,
             'buttons' => $this->parseButtons($section),
             'form' => null,
-        ];
+        );
     }
 
     private function parseOutcomePanel(DOMElement $section, int $sortOrder): array
     {
         $panel = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " outcome-panel ")]');
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//ul[contains(concat(" ", normalize-space(@class), " "), " outcome-list ")]/li', $panel) as $li) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'outcome',
                 'sort_order' => $i,
                 'title' => $this->text($this->first($li, './/strong')),
                 'subtitle' => $this->text($this->first($li, './/span')),
                 'icon_class' => $this->iconClass($li),
-            ];
+            );
             $i += 10;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'outcomes',
                 'section_type' => 'outcome_panel',
                 'sort_order' => $sortOrder,
@@ -359,12 +359,12 @@ final class ServicePageImporter
                 'heading' => $this->text($this->first($panel, './/h2')),
                 'body' => $this->text($this->first($panel, './/p')),
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
+                'settings' => array(),
+            ),
             'items' => $items,
-            'buttons' => [],
+            'buttons' => array(),
             'form' => null,
-        ];
+        );
     }
 
     private function parseServiceGrid(DOMElement $section, int $sortOrder): array
@@ -377,12 +377,12 @@ final class ServicePageImporter
             $introBody = $paragraphs->length > 0 ? $this->text($paragraphs->item(0)) : null;
         }
 
-        $items = [];
+        $items = array();
         $cardOrder = 10;
         $cardIndex = 1;
         foreach ($this->query('.//article[contains(concat(" ", normalize-space(@class), " "), " service-card ")]', $section) as $card) {
             $importKey = 'service-card-' . $cardIndex;
-            $items[] = [
+            $items[] = array(
                 'import_key' => $importKey,
                 'item_type' => 'service_card',
                 'sort_order' => $cardOrder,
@@ -390,18 +390,18 @@ final class ServicePageImporter
                 'title' => $this->text($this->first($card, './/h3')),
                 'body' => $this->text($this->first($card, './p')),
                 'icon_class' => $this->iconClass($card),
-                'settings' => ['column_class' => $this->nearestColumnClass($card)],
-            ];
+                'settings' => array('column_class' => $this->nearestColumnClass($card)),
+            );
 
             $bulletOrder = 10;
             foreach ($this->query('.//ul/li', $card) as $li) {
-                $items[] = [
+                $items[] = array(
                     'parent_import_key' => $importKey,
                     'item_type' => 'bullet',
                     'sort_order' => $bulletOrder,
                     'title' => $this->textWithoutIcons($li),
                     'icon_class' => $this->iconClass($li),
-                ];
+                );
                 $bulletOrder += 10;
             }
 
@@ -409,8 +409,8 @@ final class ServicePageImporter
             $cardIndex++;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'components',
                 'section_type' => 'service_grid',
                 'sort_order' => $sortOrder,
@@ -418,38 +418,38 @@ final class ServicePageImporter
                 'heading' => $this->text($heading),
                 'body' => $introBody,
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
+                'settings' => array(),
+            ),
             'items' => $items,
             'buttons' => $this->parseButtons($section),
             'form' => null,
-        ];
+        );
     }
 
     private function parseCaseStudy(DOMElement $section, int $sortOrder): array
     {
         $case = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " case-study ")]');
         $paragraphs = $this->query('.//div[contains(@class,"col-lg-6")][1]/p', $case);
-        $bodyParts = [];
+        $bodyParts = array();
         foreach ($paragraphs as $p) {
             $bodyParts[] = $this->text($p);
         }
 
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//*[contains(concat(" ", normalize-space(@class), " "), " metric ")]', $case) as $metric) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'metric',
                 'sort_order' => $i,
                 'metric_value' => $this->text($this->first($metric, './/strong')),
                 'metric_label' => $this->text($this->first($metric, './/span')),
-                'settings' => ['column_class' => $this->nearestColumnClass($metric)],
-            ];
+                'settings' => array('column_class' => $this->nearestColumnClass($metric)),
+            );
             $i += 10;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'case-study',
                 'section_type' => 'case_study',
                 'sort_order' => $sortOrder,
@@ -457,114 +457,114 @@ final class ServicePageImporter
                 'heading' => $this->text($this->first($case, './/h2')),
                 'body' => implode("\n\n", array_filter($bodyParts)),
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
+                'settings' => array(),
+            ),
             'items' => $items,
             'buttons' => $this->parseButtons($case),
             'form' => null,
-        ];
+        );
     }
 
     private function parseProcess(DOMElement $section, int $sortOrder): array
     {
         $intro = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " section-intro ")]');
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//article[contains(concat(" ", normalize-space(@class), " "), " process-card ")]', $section) as $card) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'process_step',
                 'sort_order' => $i,
                 'number_label' => $this->text($this->first($card, './/*[contains(concat(" ", normalize-space(@class), " "), " process-step ")]')),
                 'title' => $this->text($this->first($card, './/h3')),
                 'body' => $this->text($this->first($card, './/p')),
-                'settings' => ['column_class' => $this->nearestColumnClass($card)],
-            ];
+                'settings' => array('column_class' => $this->nearestColumnClass($card)),
+            );
             $i += 10;
         }
 
-        return [
+        return array(
             'section' => $this->baseSection($section, $intro, 'process', 'process', $sortOrder),
             'items' => $items,
             'buttons' => $this->parseButtons($section),
             'form' => null,
-        ];
+        );
     }
 
     private function parseFounder(DOMElement $section, int $sortOrder): array
     {
         $panel = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " founder-panel ")]');
         $paragraphs = $this->query('.//p', $panel);
-        $body = [];
+        $body = array();
         foreach ($paragraphs as $p) {
             $body[] = $this->text($p);
         }
         $avatar = $this->first($panel, './/*[contains(concat(" ", normalize-space(@class), " "), " founder-avatar ")]');
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'founder',
                 'section_type' => 'founder',
                 'sort_order' => $sortOrder,
                 'heading' => $this->text($this->first($panel, './/h2')),
                 'body' => implode("\n\n", array_filter($body)),
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [
+                'settings' => array(
                     'avatar_text' => $this->text($avatar),
                     'avatar_label' => $avatar?->getAttribute('aria-label') ?: null,
-                ],
-            ],
-            'items' => [],
+                ),
+            ),
+            'items' => array(),
             'buttons' => $this->parseButtons($panel),
             'form' => null,
-        ];
+        );
     }
 
     private function parseQualification(DOMElement $section, int $sortOrder): array
     {
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//i[contains(concat(" ", normalize-space(@class), " "), " bi-check-circle-fill ")]/parent::*', $section) as $item) {
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'qualification',
                 'sort_order' => $i,
                 'title' => $this->text($this->first($item, './/strong')),
                 'subtitle' => $this->text($this->first($item, './/span')),
                 'icon_class' => $this->iconClass($item),
-            ];
+            );
             $i += 10;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'qualification',
                 'section_type' => 'qualification',
                 'sort_order' => $sortOrder,
                 'eyebrow' => $this->text($this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " eyebrow ")]')),
                 'heading' => $this->text($this->first($section, './/h2')),
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
+                'settings' => array(),
+            ),
             'items' => $items,
             'buttons' => $this->parseButtons($section),
             'form' => null,
-        ];
+        );
     }
 
     private function parseFaq(DOMElement $section, int $sortOrder): array
     {
-        $items = [];
+        $items = array();
         $i = 10;
         foreach ($this->query('.//*[contains(concat(" ", normalize-space(@class), " "), " accordion-item ")]', $section) as $faq) {
             $button = $this->first($faq, './/button');
-            $items[] = [
+            $items[] = array(
                 'item_type' => 'faq',
                 'sort_order' => $i,
                 'title' => $this->text($button),
                 'body' => $this->text($this->first($faq, './/*[contains(concat(" ", normalize-space(@class), " "), " accordion-body ")]')),
-                'settings' => [
+                'settings' => array(
                     'open_by_default' => $button?->getAttribute('aria-expanded') === 'true',
-                ],
-            ];
+                ),
+            );
             $i += 10;
         }
 
@@ -574,8 +574,8 @@ final class ServicePageImporter
             $introColumn = $introColumn->previousSibling;
         }
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'faq',
                 'section_type' => 'faq',
                 'sort_order' => $sortOrder,
@@ -583,14 +583,14 @@ final class ServicePageImporter
                 'heading' => $this->text($this->first($section, './/h2')),
                 'body' => $this->text($this->first($section, './/p')),
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [
+                'settings' => array(
                     'accordion_id' => $accordion?->getAttribute('id') ?: null,
-                ],
-            ],
+                ),
+            ),
             'items' => $items,
-            'buttons' => [],
+            'buttons' => array(),
             'form' => null,
-        ];
+        );
     }
 
     private function parseFinalCta(DOMElement $section, int $sortOrder): array
@@ -598,8 +598,8 @@ final class ServicePageImporter
         $cta = $this->first($section, './/*[contains(concat(" ", normalize-space(@class), " "), " final-cta ")]');
         $paragraphs = $this->query('.//p', $cta);
 
-        return [
-            'section' => [
+        return array(
+            'section' => array(
                 'section_key' => 'final-cta',
                 'section_type' => 'final_cta',
                 'sort_order' => $sortOrder,
@@ -608,12 +608,12 @@ final class ServicePageImporter
                 'subheading' => $paragraphs->length > 0 ? $this->text($paragraphs->item(0)) : null,
                 'body' => $paragraphs->length > 1 ? $this->text($paragraphs->item($paragraphs->length - 1)) : null,
                 'css_class' => $section->getAttribute('class'),
-                'settings' => [],
-            ],
-            'items' => [],
+                'settings' => array(),
+            ),
+            'items' => array(),
             'buttons' => $this->parseButtons($cta),
             'form' => null,
-        ];
+        );
     }
 
     private function parseForm(DOMElement $form): array
@@ -626,7 +626,7 @@ final class ServicePageImporter
         }
 
         $formKey = $form->getAttribute('dataMetaFormName') ?: ($form->getAttribute('id') ?: $this->slug . '-form');
-        $fields = [];
+        $fields = array();
         $fieldOrder = 10;
 
         foreach ($this->query('.//input | .//select | .//textarea', $form) as $field) {
@@ -636,13 +636,13 @@ final class ServicePageImporter
 
             $tag = strtolower($field->tagName);
             $type = $tag === 'input' ? strtolower($field->getAttribute('type') ?: 'text') : $tag;
-            if (!in_array($type, ['text', 'email', 'tel', 'textarea', 'select', 'checkbox', 'radio', 'hidden'], true)) {
+            if (!in_array($type, array('text', 'email', 'tel', 'textarea', 'select', 'checkbox', 'radio', 'hidden'), true)) {
                 $type = 'text';
             }
 
             $id = $field->getAttribute('id') ?: null;
             $label = $id ? $this->first($form, './/label[@for=' . $this->xpathLiteral($id) . ']') : null;
-            $options = [];
+            $options = array();
 
             if ($type === 'select') {
                 $optionOrder = 10;
@@ -652,18 +652,18 @@ final class ServicePageImporter
                     }
                     $labelText = $this->text($option);
                     $value = $option->hasAttribute('value') ? $option->getAttribute('value') : $labelText;
-                    $options[] = [
+                    $options[] = array(
                         'option_label' => $labelText,
                         'option_value' => $value,
                         'sort_order' => $optionOrder,
                         'is_default' => $option->hasAttribute('selected') ? 1 : 0,
                         'is_enabled' => $option->hasAttribute('disabled') ? 0 : 1,
-                    ];
+                    );
                     $optionOrder += 10;
                 }
             }
 
-            $fields[] = [
+            $fields[] = array(
                 'field_type' => $type,
                 'field_name' => $field->getAttribute('name'),
                 'field_id' => $id,
@@ -677,13 +677,13 @@ final class ServicePageImporter
                 'is_required' => $field->hasAttribute('required') ? 1 : 0,
                 'is_enabled' => $field->hasAttribute('disabled') ? 0 : 1,
                 'sort_order' => $fieldOrder,
-                'validation_rules' => array_filter([
+                'validation_rules' => array_filter(array(
                     'minlength' => $field->getAttribute('minlength') ?: null,
                     'maxlength' => $field->getAttribute('maxlength') ?: null,
                     'pattern' => $field->getAttribute('pattern') ?: null,
-                ], static fn($value) => $value !== null),
+                ), static fn($value) => $value !== null),
                 'options' => $options,
-            ];
+            );
             $fieldOrder += 10;
         }
 
@@ -692,8 +692,8 @@ final class ServicePageImporter
             ? $submit->getAttribute('value')
             : $this->text($submit);
 
-        return [
-            'form' => [
+        return array(
+            'form' => array(
                 'name' => $this->text($this->first($intro, './/h2')) ?: $this->name . ' Form',
                 'form_key' => $this->uniqueFormKey($formKey),
                 'action_url' => $form->getAttribute('action') ?: '',
@@ -708,20 +708,20 @@ final class ServicePageImporter
                 'tracking_form_name' => $form->getAttribute('dataMetaFormName') ?: null,
                 'tracking_success_event' => $form->getAttribute('dataMetaSuccessEvent') ?: null,
                 'is_enabled' => 1,
-            ],
+            ),
             'fields' => $fields,
-        ];
+        );
     }
 
     private function parseButtons(DOMNode $context): array
     {
-        $buttons = [];
+        $buttons = array();
         $i = 10;
         foreach ($this->query('.//a[contains(concat(" ", normalize-space(@class), " "), " btn ")]', $context) as $link) {
             if (!$link instanceof DOMElement) {
                 continue;
             }
-            $classes = preg_split('/\s+/', trim($link->getAttribute('class'))) ?: [];
+            $classes = preg_split('/\s+/', trim($link->getAttribute('class'))) ?: array();
             $style = 'primary';
             foreach ($classes as $candidate) {
                 if (str_starts_with($candidate, 'btn-') && $candidate !== 'btn-lg' && $candidate !== 'btn-sm') {
@@ -730,7 +730,7 @@ final class ServicePageImporter
                 }
             }
 
-            $buttons[] = [
+            $buttons[] = array(
                 'button_key' => null,
                 'label' => $this->textWithoutIcons($link),
                 'url' => $link->getAttribute('href'),
@@ -740,7 +740,7 @@ final class ServicePageImporter
                 'opens_new_window' => $link->getAttribute('target') === '_blank' ? 1 : 0,
                 'tracking_event' => $link->getAttribute('data-event') ?: null,
                 'is_enabled' => 1,
-            ];
+            );
             $i += 10;
         }
         return $buttons;
@@ -752,9 +752,9 @@ final class ServicePageImporter
         string $key,
         string $type,
         int $sortOrder,
-        array $settings = [],
+        array $settings = array(),
     ): array {
-        return [
+        return array(
             'section_key' => $key,
             'section_type' => $type,
             'sort_order' => $sortOrder,
@@ -764,7 +764,7 @@ final class ServicePageImporter
             'html_id' => $section->getAttribute('id') ?: null,
             'css_class' => $section->getAttribute('class'),
             'settings' => $settings,
-        ];
+        );
     }
 
     private function insertPage(): int
@@ -775,13 +775,13 @@ final class ServicePageImporter
              VALUES
                 (:name, :slug, :status, :template, :published_at)',
         );
-        $stmt->execute([
+        $stmt->execute(array(
             'name' => $this->name,
             'slug' => $this->slug,
             'status' => $this->status,
             'template' => $this->template,
             'published_at' => $this->status === 'published' ? date('Y-m-d H:i:s') : null,
-        ]);
+        ));
         return (int) $this->pdo->lastInsertId();
     }
 
@@ -795,7 +795,7 @@ final class ServicePageImporter
                 (:page_id, :section_key, :section_type, :sort_order, :eyebrow, :heading, :subheading, :body,
                  :image_url, :image_alt, :background_style, :css_class, :html_id, :is_enabled, :settings)',
         );
-        $stmt->execute([
+        $stmt->execute(array(
             'page_id' => $this->pageId,
             'section_key' => $data['section_key'],
             'section_type' => $data['section_type'],
@@ -810,8 +810,8 @@ final class ServicePageImporter
             'css_class' => $data['css_class'] ?? null,
             'html_id' => $data['html_id'] ?? null,
             'is_enabled' => $data['is_enabled'] ?? 1,
-            'settings' => $this->json($data['settings'] ?? []),
-        ]);
+            'settings' => $this->json($data['settings'] ?? array()),
+        ));
         return (int) $this->pdo->lastInsertId();
     }
 
@@ -828,7 +828,7 @@ final class ServicePageImporter
                  :icon_class, :number_label, :image_url, :image_alt, :link_text, :link_url, :metric_value,
                  :metric_label, :is_enabled, :settings)',
         );
-        $stmt->execute([
+        $stmt->execute(array(
             'section_id' => $sectionId,
             'parent_item_id' => $data['parent_item_id'] ?? null,
             'item_type' => $data['item_type'] ?? 'item',
@@ -846,8 +846,8 @@ final class ServicePageImporter
             'metric_value' => $data['metric_value'] ?? null,
             'metric_label' => $data['metric_label'] ?? null,
             'is_enabled' => $data['is_enabled'] ?? 1,
-            'settings' => $this->json($data['settings'] ?? []),
-        ]);
+            'settings' => $this->json($data['settings'] ?? array()),
+        ));
         return (int) $this->pdo->lastInsertId();
     }
 
@@ -861,7 +861,7 @@ final class ServicePageImporter
                 (:section_id, :button_key, :label, :url, :style, :icon_class, :sort_order,
                  :opens_new_window, :tracking_event, :is_enabled)',
         );
-        $stmt->execute(['section_id' => $sectionId] + $data);
+        $stmt->execute(array('section_id' => $sectionId) + $data);
     }
 
     private function insertForm(array $data): int
@@ -890,7 +890,7 @@ final class ServicePageImporter
                  :sort_order, :validation_rules)',
         );
         $data['form_id'] = $formId;
-        $data['validation_rules'] = $this->json($data['validation_rules'] ?? []);
+        $data['validation_rules'] = $this->json($data['validation_rules'] ?? array());
         $stmt->execute($data);
         return (int) $this->pdo->lastInsertId();
     }
@@ -903,7 +903,7 @@ final class ServicePageImporter
              VALUES
                 (:form_field_id, :option_label, :option_value, :sort_order, :is_default, :is_enabled)',
         );
-        $stmt->execute(['form_field_id' => $fieldId] + $data);
+        $stmt->execute(array('form_field_id' => $fieldId) + $data);
     }
 
     private function linkFormToSection(int $sectionId, int $formId): void
@@ -911,7 +911,7 @@ final class ServicePageImporter
         $stmt = $this->pdo->prepare(
             'INSERT INTO service_section_forms (section_id, form_id) VALUES (:section_id, :form_id)',
         );
-        $stmt->execute(['section_id' => $sectionId, 'form_id' => $formId]);
+        $stmt->execute(array('section_id' => $sectionId, 'form_id' => $formId));
     }
 
     private function findExistingPageId(): ?int
@@ -920,7 +920,7 @@ final class ServicePageImporter
             return null;
         }
         $stmt = $this->pdo->prepare('SELECT id FROM service_pages WHERE slug = :slug LIMIT 1');
-        $stmt->execute(['slug' => $this->slug]);
+        $stmt->execute(array('slug' => $this->slug));
         $value = $stmt->fetchColumn();
         return $value === false ? null : (int) $value;
     }
@@ -935,18 +935,18 @@ final class ServicePageImporter
              INNER JOIN service_page_sections s ON s.id = ssf.section_id
              WHERE s.service_page_id = :page_id',
         );
-        $stmt->execute(['page_id' => $pageId]);
+        $stmt->execute(array('page_id' => $pageId));
         $formIds = array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
 
         $stmt = $this->pdo->prepare('DELETE FROM service_pages WHERE id = :id');
-        $stmt->execute(['id' => $pageId]);
+        $stmt->execute(array('id' => $pageId));
 
         foreach ($formIds as $formId) {
             $check = $this->pdo->prepare('SELECT COUNT(*) FROM service_section_forms WHERE form_id = :form_id');
-            $check->execute(['form_id' => $formId]);
+            $check->execute(array('form_id' => $formId));
             if ((int) $check->fetchColumn() === 0) {
                 $delete = $this->pdo->prepare('DELETE FROM forms WHERE id = :form_id');
-                $delete->execute(['form_id' => $formId]);
+                $delete->execute(array('form_id' => $formId));
             }
         }
     }
@@ -959,7 +959,7 @@ final class ServicePageImporter
     private function headingAndHighlight(?DOMNode $heading): array
     {
         if (!$heading instanceof DOMElement) {
-            return [null, null];
+            return array(null, null);
         }
         $highlight = $this->first($heading, './/*[contains(concat(" ", normalize-space(@class), " "), " text-highlight ")]');
         $highlightText = $this->text($highlight);
@@ -967,9 +967,9 @@ final class ServicePageImporter
         if ($clone instanceof DOMElement) {
             $highlightClone = $this->first($clone, './/*[contains(concat(" ", normalize-space(@class), " "), " text-highlight ")]');
             $highlightClone?->parentNode?->removeChild($highlightClone);
-            return [$this->text($clone), $highlightText];
+            return array($this->text($clone), $highlightText);
         }
-        return [$this->text($heading), $highlightText];
+        return array($this->text($heading), $highlightText);
     }
 
     private function iconClass(?DOMNode $context): ?string
@@ -985,12 +985,12 @@ final class ServicePageImporter
     {
         while ($node instanceof DOMNode) {
             if ($node instanceof DOMElement) {
-                $classes = preg_split('/\s+/', trim($node->getAttribute('class'))) ?: [];
+                $classes = preg_split('/\s+/', trim($node->getAttribute('class'))) ?: array();
                 $columnClasses = array_values(array_filter(
                     $classes,
                     static fn(string $class): bool => preg_match('/^col(?:-|$)/', $class) === 1,
                 ));
-                if ($columnClasses !== []) {
+                if ($columnClasses !== array()) {
                     return implode(' ', $columnClasses);
                 }
             }
@@ -1083,7 +1083,7 @@ dependency container.
 TXT;
 }
 
-$options = getopt('', [
+$options = getopt('', array(
     'file:',
     'slug:',
     'name:',
@@ -1092,14 +1092,14 @@ $options = getopt('', [
     'replace',
     'dry-run',
     'help',
-]);
+));
 
 if (isset($options['help'])) {
     usage();
     exit(0);
 }
 
-foreach (['file', 'slug', 'name'] as $required) {
+foreach (array('file', 'slug', 'name') as $required) {
     if (!isset($options[$required]) || trim((string) $options[$required]) === '') {
         fwrite(STDERR, "Missing required option --{$required}.\n\n");
         usage();
@@ -1114,7 +1114,7 @@ if ($file === false || !is_file($file) || !is_readable($file)) {
 }
 
 $status = (string) ($options['status'] ?? 'draft');
-if (!in_array($status, ['draft', 'published', 'archived'], true)) {
+if (!in_array($status, array('draft', 'published', 'archived'), true)) {
     fwrite(STDERR, "Invalid --status value. Use draft, published, or archived.\n");
     exit(1);
 }

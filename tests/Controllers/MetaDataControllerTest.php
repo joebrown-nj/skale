@@ -19,17 +19,17 @@ final class MetaDataControllerTest extends TestCase
 
     public function testIndexOutputsPageMetaDataForStandardPage(): void
     {
-        $page = (object) [
+        $page = (object) array(
             'metaKeywords' => 'marketing, seo',
             'metaDescription' => 'Page description',
             'metaTitle' => 'About Us',
-        ];
+        );
 
         $pageContentModel = $this->createMock(PageContentModel::class);
         $pageContentModel->expects($this->once())
             ->method('getPageContentByUrl')
             ->with('about')
-            ->willReturn(['content' => $page]);
+            ->willReturn(array('content' => $page));
 
         $blogModel = $this->createMock(BlogModel::class);
         $blogModel->expects($this->never())
@@ -49,17 +49,17 @@ final class MetaDataControllerTest extends TestCase
 
     public function testIndexCombinesNestedSlugSegmentsForPageLookup(): void
     {
-        $page = (object) [
+        $page = (object) array(
             'metaKeywords' => 'privacy, policy',
             'metaDescription' => 'Privacy details',
             'metaTitle' => 'Privacy Policy',
-        ];
+        );
 
         $pageContentModel = $this->createMock(PageContentModel::class);
         $pageContentModel->expects($this->once())
             ->method('getPageContentByUrl')
             ->with('legal/privacy-policy')
-            ->willReturn(['content' => $page]);
+            ->willReturn(array('content' => $page));
 
         $blogModel = $this->createMock(BlogModel::class);
         $blogModel->expects($this->never())

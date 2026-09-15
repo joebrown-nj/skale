@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 $projectRoot = dirname(__DIR__);
-$files = [
-    $projectRoot . '/vendor/phroute/phroute/src/Phroute/RouteCollector.php' => [
+$files = array(
+    $projectRoot . '/vendor/phroute/phroute/src/Phroute/RouteCollector.php' => array(
         'public function __construct(RouteParser $routeParser = null) {' => 'public function __construct(?RouteParser $routeParser = null) {',
         'public function route($name, array $args = null)' => 'public function route($name, ?array $args = null)',
-    ],
-    $projectRoot . '/vendor/phroute/phroute/src/Phroute/Dispatcher.php' => [
+    ),
+    $projectRoot . '/vendor/phroute/phroute/src/Phroute/Dispatcher.php' => array(
         'public function __construct(RouteDataInterface $data, HandlerResolverInterface $resolver = null)' => 'public function __construct(RouteDataInterface $data, ?HandlerResolverInterface $resolver = null)',
-    ],
-];
+    ),
+);
 
 foreach ($files as $path => $replacements) {
     if (!is_file($path)) {

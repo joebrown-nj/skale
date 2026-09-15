@@ -35,21 +35,21 @@ class MetaDataController
             $blog = $this->blogModel->getBlogByUrl('blog/' . $p2 . '/' . $p3);
 
             if ($blog) {
-                $metaData = json_encode([
+                $metaData = json_encode(array(
                     'keywords' => $blog->metaKeywords,
                     'description' => $blog->metaDescription,
                     'title' => $blog->metaTitle . ' | ' . $this->siteName . ' blog',
-                ]);
+                ));
             }
         } else {
             $page = $this->pageContentModel->getPageContentByUrl($adjustedSlug);
 
             if ($page && isset($page['content'])) {
-                $metaData = json_encode([
+                $metaData = json_encode(array(
                     'keywords' => $page['content']->metaKeywords,
                     'description' => $page['content']->metaDescription,
                     'title' => $page['content']->metaTitle . ' | ' . $this->siteName,
-                ]);
+                ));
             }
         }
 

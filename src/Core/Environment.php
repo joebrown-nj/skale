@@ -13,9 +13,9 @@ final class Environment
     /**
      * @var array<string, true>
      */
-    private static array $bootedRoots = [];
+    private static array $bootedRoots = array();
     /** @var array<string, ApplicationConfig> */
-    private static array $configurations = [];
+    private static array $configurations = array();
 
     private function __construct() {}
 

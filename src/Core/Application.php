@@ -96,7 +96,7 @@ class Application
             $builder->enableCompilation(__DIR__ . '/var/cache/container');
         }
 
-        $builder->addDefinitions([
+        $builder->addDefinitions(array(
             ApplicationConfig::class => $configuration,
             DatabaseConfig::class => $configuration->database,
             MailConfig::class => $configuration->mail,
@@ -120,7 +120,7 @@ class Application
                 => new EmailTemplateRenderer(new Smarty(), $container->get(SiteConfig::class)),
             ContactFormInterface::class => static fn(ContainerInterface $container)
                 => $container->get(ContactModel::class),
-        ]);
+        ));
 
         return $builder->build();
     }

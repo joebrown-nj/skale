@@ -28,11 +28,11 @@ final class TurnstileServiceTest extends TestCase
                     'https://challenges.cloudflare.com/turnstile/v0/siteverify',
                     $url,
                 );
-                $this->assertSame([
+                $this->assertSame(array(
                     'secret' => 'test-secret',
                     'response' => 'valid-token',
                     'remoteip' => '192.0.2.1',
-                ], $data);
+                ), $data);
 
                 return '{"success":true}';
             },
@@ -52,9 +52,9 @@ final class TurnstileServiceTest extends TestCase
     /** @return iterable<string, array{string|false}> */
     public static function invalidResponseProvider(): iterable
     {
-        yield 'unsuccessful verification' => ['{"success":false}'];
-        yield 'invalid JSON' => ['not-json'];
-        yield 'network failure' => [false];
+        yield 'unsuccessful verification' => array('{"success":false}');
+        yield 'invalid JSON' => array('not-json');
+        yield 'network failure' => array(false);
     }
 
     public function testMissingSecretOrInvalidTokenDoesNotCallSiteverify(): void

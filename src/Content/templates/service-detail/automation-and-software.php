@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [
+return array(
     // 'name' => 'Automation & Software',
     // 'slug' => 'automation-and-software',
 
@@ -13,8 +13,8 @@ return [
     //     'robots' => 'index,follow',
     // ],
 
-    'sections' => [
-        'hero' => [
+    'sections' => array(
+        'hero' => array(
             'enabled' => true,
             'id' => 'automation-software-hero',
             'tag' => 'section',
@@ -33,46 +33,46 @@ return [
             'highlightClass' => 'text-highlight text-cyan',
             'description' => 'Skale designs workflow automation, system integrations, internal tools, and custom software that reduce manual effort, improve accuracy, and give your team more time to focus on customers and growth.',
             'descriptionClass' => 'hero-lead lead mt-4 mb-0 text-white-75',
-            'background' => [
+            'background' => array(
                 'class' => 'hero-automation-software-bg',
                 'overlayClass' => 'hero-automation-software-overlay',
-                'decorations' => [
-                    ['class' => 'hero-circuit-grid', 'ariaHidden' => true],
-                    ['class' => 'hero-glow hero-glow-one', 'ariaHidden' => true],
-                    ['class' => 'hero-glow hero-glow-two', 'ariaHidden' => true],
-                ],
-            ],
-            'benefits' => [
+                'decorations' => array(
+                    array('class' => 'hero-circuit-grid', 'ariaHidden' => true),
+                    array('class' => 'hero-glow hero-glow-one', 'ariaHidden' => true),
+                    array('class' => 'hero-glow hero-glow-two', 'ariaHidden' => true),
+                ),
+            ),
+            'benefits' => array(
                 'class' => 'hero-checks hero-checks-light',
                 'ariaLabel' => 'Automation and software benefits',
                 'iconClass' => 'bi bi-check-circle-fill text-cyan',
-                'items' => [
+                'items' => array(
                     'Built around your real workflows',
                     'Connects the tools you already use',
                     'Designed for reliability, adoption, and scale',
-                ],
-            ],
-            'buttons' => [
+                ),
+            ),
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Get Your Free Workflow Review',
                         'url' => '#consultation',
                         'class' => 'btn btn-primary btn-lg',
-                    ],
-                    [
+                    ),
+                    array(
                         'label' => 'See How It Works',
                         'url' => '#how-it-works',
                         'class' => 'btn btn-outline-dark btn-lg',
-                    ],
-                ],
-            ],
-            'note' => [
+                    ),
+                ),
+            ),
+            'note' => array(
                 'text' => 'No generic software pitch. We start by identifying the work that wastes the most time, creates the most errors, or prevents your business from scaling.',
                 'class' => 'hero-note hero-note-light',
                 'iconClass' => 'bi bi-shield-check',
-            ],
-            'form' => [
+            ),
+            'form' => array(
                 'enabled' => true,
                 'anchorId' => 'consultation',
                 'wrapperClass' => 'hero-form-wrap',
@@ -89,30 +89,30 @@ return [
                 'method' => 'POST',
                 'id' => 'automation-software-lead-form',
                 'class' => 'ajaxForm',
-                'attributes' => [
+                'attributes' => array(
                     'dataMetaFormName' => 'automation-and-software-form',
                     'dataMetaSuccessEvent' => 'Lead',
-                ],
-                'fieldGroups' => ['business-details' => 'row g-3 mb-3'],
-                'fields' => [
-                    ['type' => 'text', 'name' => 'name', 'id' => 'name', 'label' => 'Name', 'required' => true, 'autocomplete' => 'name', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'],
-                    ['type' => 'email', 'name' => 'email', 'id' => 'email', 'label' => 'Email', 'required' => true, 'autocomplete' => 'email', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'],
-                    ['type' => 'tel', 'name' => 'phone', 'id' => 'phone', 'label' => 'Phone', 'labelSuffix' => '(optional)', 'required' => false, 'autocomplete' => 'tel', 'wrapperClass' => 'col-sm-6', 'labelClass' => 'form-label fw-semibold', 'labelSuffixClass' => 'fw-normal text-secondary', 'inputClass' => 'form-control', 'group' => 'business-details'],
-                    ['type' => 'select', 'name' => 'team_size', 'id' => 'team-size', 'label' => 'Team size', 'wrapperClass' => 'col-sm-6', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-select', 'group' => 'business-details', 'options' => [
-                        ['label' => 'Select', 'value' => ''], ['label' => 'Just me', 'value' => '1'], ['label' => '2-5 people', 'value' => '2-5'], ['label' => '6-15 people', 'value' => '6-15'], ['label' => '16-50 people', 'value' => '16-50'], ['label' => '50+ people', 'value' => '50-plus'],
-                    ]],
-                    ['type' => 'select', 'name' => 'primary_need', 'id' => 'primary-need', 'label' => 'What do you need most?', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-select', 'options' => [
-                        ['label' => 'Select', 'value' => ''], ['label' => 'Automate repetitive work', 'value' => 'workflow-automation'], ['label' => 'Connect existing systems', 'value' => 'system-integrations'], ['label' => 'Build a custom internal tool', 'value' => 'internal-tool'], ['label' => 'Develop a customer-facing platform', 'value' => 'customer-platform'], ['label' => 'Modernize existing software', 'value' => 'software-modernization'], ['label' => 'Not sure yet', 'value' => 'not-sure'],
-                    ]],
-                    ['type' => 'textarea', 'name' => 'comment', 'id' => 'comment', 'label' => 'What process or system is creating friction?', 'placeholder' => 'Describe the manual work, disconnected tools, reporting problem, or software limitation...', 'rows' => 4, 'wrapperClass' => 'mb-4', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'],
-                    ['type' => 'hidden', 'name' => 'interests[]', 'value' => 'automation-and-software'],
-                ],
-                'submit' => ['label' => 'Request My Free Workflow Review', 'class' => 'btn btn-skale btn-lg w-100'],
-                'privacy' => ['text' => 'No sales pressure. Your information stays private.', 'class' => 'small text-secondary text-center mt-3 mb-0', 'iconClass' => 'fa-solid fa-lock me-1'],
-            ],
-        ],
+                ),
+                'fieldGroups' => array('business-details' => 'row g-3 mb-3'),
+                'fields' => array(
+                    array('type' => 'text', 'name' => 'name', 'id' => 'name', 'label' => 'Name', 'required' => true, 'autocomplete' => 'name', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'),
+                    array('type' => 'email', 'name' => 'email', 'id' => 'email', 'label' => 'Email', 'required' => true, 'autocomplete' => 'email', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'),
+                    array('type' => 'tel', 'name' => 'phone', 'id' => 'phone', 'label' => 'Phone', 'labelSuffix' => '(optional)', 'required' => false, 'autocomplete' => 'tel', 'wrapperClass' => 'col-sm-6', 'labelClass' => 'form-label fw-semibold', 'labelSuffixClass' => 'fw-normal text-secondary', 'inputClass' => 'form-control', 'group' => 'business-details'),
+                    array('type' => 'select', 'name' => 'team_size', 'id' => 'team-size', 'label' => 'Team size', 'wrapperClass' => 'col-sm-6', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-select', 'group' => 'business-details', 'options' => array(
+                        array('label' => 'Select', 'value' => ''), array('label' => 'Just me', 'value' => '1'), array('label' => '2-5 people', 'value' => '2-5'), array('label' => '6-15 people', 'value' => '6-15'), array('label' => '16-50 people', 'value' => '16-50'), array('label' => '50+ people', 'value' => '50-plus'),
+                    )),
+                    array('type' => 'select', 'name' => 'primary_need', 'id' => 'primary-need', 'label' => 'What do you need most?', 'wrapperClass' => 'mb-3', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-select', 'options' => array(
+                        array('label' => 'Select', 'value' => ''), array('label' => 'Automate repetitive work', 'value' => 'workflow-automation'), array('label' => 'Connect existing systems', 'value' => 'system-integrations'), array('label' => 'Build a custom internal tool', 'value' => 'internal-tool'), array('label' => 'Develop a customer-facing platform', 'value' => 'customer-platform'), array('label' => 'Modernize existing software', 'value' => 'software-modernization'), array('label' => 'Not sure yet', 'value' => 'not-sure'),
+                    )),
+                    array('type' => 'textarea', 'name' => 'comment', 'id' => 'comment', 'label' => 'What process or system is creating friction?', 'placeholder' => 'Describe the manual work, disconnected tools, reporting problem, or software limitation...', 'rows' => 4, 'wrapperClass' => 'mb-4', 'labelClass' => 'form-label fw-semibold', 'inputClass' => 'form-control'),
+                    array('type' => 'hidden', 'name' => 'interests[]', 'value' => 'automation-and-software'),
+                ),
+                'submit' => array('label' => 'Request My Free Workflow Review', 'class' => 'btn btn-skale btn-lg w-100'),
+                'privacy' => array('text' => 'No sales pressure. Your information stays private.', 'class' => 'small text-secondary text-center mt-3 mb-0', 'iconClass' => 'fa-solid fa-lock me-1'),
+            ),
+        ),
 
-        'trustStrip' => [
+        'trustStrip' => array(
             'enabled' => true,
             'id' => 'trust-strip',
             'tag' => 'section',
@@ -122,15 +122,15 @@ return [
             'columnClass' => 'col',
             'itemClass' => 'trust-item',
             'ariaLabel' => 'Why businesses trust Skale for automation and software',
-            'items' => [
-                ['iconClass' => 'bi bi-person-check', 'title' => 'Senior Engineering', 'description' => 'Direct access to experienced technical leadership'],
-                ['iconClass' => 'bi bi-diagram-3', 'title' => 'Workflow First', 'description' => 'Technology designed around how your business operates'],
-                ['iconClass' => 'bi bi-plug', 'title' => 'Connected Systems', 'description' => 'Tools, data, and processes working together'],
-                ['iconClass' => 'bi bi-headset', 'title' => 'Long-Term Support', 'description' => 'Ongoing improvement after launch'],
-            ],
-        ],
+            'items' => array(
+                array('iconClass' => 'bi bi-person-check', 'title' => 'Senior Engineering', 'description' => 'Direct access to experienced technical leadership'),
+                array('iconClass' => 'bi bi-diagram-3', 'title' => 'Workflow First', 'description' => 'Technology designed around how your business operates'),
+                array('iconClass' => 'bi bi-plug', 'title' => 'Connected Systems', 'description' => 'Tools, data, and processes working together'),
+                array('iconClass' => 'bi bi-headset', 'title' => 'Long-Term Support', 'description' => 'Ongoing improvement after launch'),
+            ),
+        ),
 
-        'problems' => [
+        'problems' => array(
             'enabled' => true,
             'id' => 'problems',
             'tag' => 'section',
@@ -149,15 +149,15 @@ return [
             'iconWrapperClass' => 'icon-box icon-box-cyan',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                ['iconClass' => 'bi bi-arrow-repeat', 'title' => 'Employees repeat the same work', 'description' => 'People copy information, update spreadsheets, send routine messages, and complete predictable tasks by hand.'],
-                ['iconClass' => 'bi bi-exclamation-triangle', 'title' => 'Manual steps create errors', 'description' => 'Important details are missed, entered inconsistently, or delayed because the process depends on memory and handoffs.'],
-                ['iconClass' => 'bi bi-plug', 'title' => 'Systems do not communicate', 'description' => 'Data is trapped across software, inboxes, spreadsheets, and departments that operate independently.'],
-                ['iconClass' => 'bi bi-box-arrow-in-up-right', 'title' => 'Off-the-shelf tools stop fitting', 'description' => 'Your team adapts its process to software limitations instead of using technology designed around the business.'],
-            ],
-        ],
+            'items' => array(
+                array('iconClass' => 'bi bi-arrow-repeat', 'title' => 'Employees repeat the same work', 'description' => 'People copy information, update spreadsheets, send routine messages, and complete predictable tasks by hand.'),
+                array('iconClass' => 'bi bi-exclamation-triangle', 'title' => 'Manual steps create errors', 'description' => 'Important details are missed, entered inconsistently, or delayed because the process depends on memory and handoffs.'),
+                array('iconClass' => 'bi bi-plug', 'title' => 'Systems do not communicate', 'description' => 'Data is trapped across software, inboxes, spreadsheets, and departments that operate independently.'),
+                array('iconClass' => 'bi bi-box-arrow-in-up-right', 'title' => 'Off-the-shelf tools stop fitting', 'description' => 'Your team adapts its process to software limitations instead of using technology designed around the business.'),
+            ),
+        ),
 
-        'outcomes' => [
+        'outcomes' => array(
             'enabled' => true,
             'id' => 'outcomes',
             'tag' => 'section',
@@ -175,15 +175,15 @@ return [
             'descriptionClass' => 'mt-3 mb-0 text-white-75',
             'listClass' => 'outcome-list',
             'iconClass' => 'bi bi-check-circle-fill',
-            'items' => [
-                ['title' => 'Give time back to your team', 'description' => 'Automate repetitive tasks so employees can focus on customers, decisions, and higher-value work.'],
-                ['title' => 'Reduce preventable mistakes', 'description' => 'Use consistent rules, validations, notifications, and workflows instead of relying on manual execution.'],
-                ['title' => 'Move information automatically', 'description' => 'Connect platforms so data reaches the right system and the right person without duplicate entry.'],
-                ['title' => 'Build capacity without adding complexity', 'description' => 'Create software and processes that support more customers, data, and work without unnecessary overhead.'],
-            ],
-        ],
+            'items' => array(
+                array('title' => 'Give time back to your team', 'description' => 'Automate repetitive tasks so employees can focus on customers, decisions, and higher-value work.'),
+                array('title' => 'Reduce preventable mistakes', 'description' => 'Use consistent rules, validations, notifications, and workflows instead of relying on manual execution.'),
+                array('title' => 'Move information automatically', 'description' => 'Connect platforms so data reaches the right system and the right person without duplicate entry.'),
+                array('title' => 'Build capacity without adding complexity', 'description' => 'Create software and processes that support more customers, data, and work without unnecessary overhead.'),
+            ),
+        ),
 
-        'serviceComponents' => [
+        'serviceComponents' => array(
             'enabled' => true,
             'id' => 'automation-software-services',
             'tag' => 'section',
@@ -207,80 +207,80 @@ return [
             'titleClass' => 'h4',
             'listClass' => 'service-list',
             'listIconClass' => 'bi bi-check2',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-lightning-charge',
                     'title' => 'Workflow Automation',
                     'description' => 'Turn predictable, repetitive processes into reliable workflows that happen automatically.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/automation',
-                    'bullets' => [
+                    'bullets' => array(
                         'Task and approval automation',
                         'Notifications and follow-up sequences',
                         'Scheduled processing and recurring operations',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-link-45deg',
                     'title' => 'System Integrations',
                     'description' => 'Connect the platforms your business depends on so data moves without unnecessary handoffs.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/system-integrations',
-                    'bullets' => [
+                    'bullets' => array(
                         'API and third-party integrations',
                         'Data synchronization between platforms',
                         'Webhook and event-driven workflows',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-window-sidebar',
                     'title' => 'Internal Business Tools',
                     'description' => 'Replace scattered spreadsheets and workarounds with focused software designed for your team.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/software-development',
-                    'bullets' => [
+                    'bullets' => array(
                         'Operations and administration portals',
                         'Task, project, and workflow systems',
                         'Custom dashboards and management tools',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-code-square',
                     'title' => 'Custom Software Development',
                     'description' => 'Build customer-facing or operational software that supports a unique process or business model.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/software-development',
-                    'bullets' => [
+                    'bullets' => array(
                         'Web applications and digital platforms',
                         'Customer and partner portals',
                         'Custom APIs and backend services',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-arrow-clockwise',
                     'title' => 'Software Modernization',
                     'description' => 'Improve aging software that has become slow, unreliable, difficult to maintain, or expensive to operate.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/software-development',
-                    'bullets' => [
+                    'bullets' => array(
                         'Legacy system assessment and planning',
                         'Application and database modernization',
                         'Performance, usability, and reliability improvements',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-robot',
                     'title' => 'AI-Assisted Workflows',
                     'description' => 'Apply AI where it creates practical value without adding unnecessary complexity or risk.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/automation-and-software',
-                    'bullets' => [
+                    'bullets' => array(
                         'Document and data processing',
                         'Reporting, summarization, and classification',
                         'Human-reviewed AI workflow assistance',
-                    ],
-                ],
-            ],
-            'cta' => ['label' => 'Talk Through Your Workflow Gaps', 'url' => '#consultation', 'wrapperClass' => 'text-center mt-5', 'class' => 'btn btn-cyan btn-lg'],
-        ],
+                    ),
+                ),
+            ),
+            'cta' => array('label' => 'Talk Through Your Workflow Gaps', 'url' => '#consultation', 'wrapperClass' => 'text-center mt-5', 'class' => 'btn btn-cyan btn-lg'),
+        ),
 
-        'services' => ['enabled' => false, 'id' => 'related-services', 'tag' => 'section', 'class' => 'section-space', 'containerClass' => 'container', 'items' => []],
+        'services' => array('enabled' => false, 'id' => 'related-services', 'tag' => 'section', 'class' => 'section-space', 'containerClass' => 'container', 'items' => array()),
 
-        'caseStudy' => [
+        'caseStudy' => array(
             'enabled' => true,
             'id' => 'case-study',
             'tag' => 'section',
@@ -303,17 +303,17 @@ return [
             'metricsRowClass' => 'row g-3',
             'metricColumnClass' => 'col-6',
             'metricClass' => 'metric metric-cyan h-100',
-            'metrics' => [
-                ['value' => 'Hours', 'label' => 'Instead of weeks to onboard data'],
-                ['value' => 'Automated', 'label' => 'File detection and processing'],
-                ['value' => 'Fewer', 'label' => 'Manual handoffs and delays'],
-                ['value' => 'Scalable', 'label' => 'Cloud-based data workflow'],
-            ],
+            'metrics' => array(
+                array('value' => 'Hours', 'label' => 'Instead of weeks to onboard data'),
+                array('value' => 'Automated', 'label' => 'File detection and processing'),
+                array('value' => 'Fewer', 'label' => 'Manual handoffs and delays'),
+                array('value' => 'Scalable', 'label' => 'Cloud-based data workflow'),
+            ),
             'disclaimer' => 'Use only approved metrics and client details when publishing. The client name can remain confidential if required.',
             'disclaimerClass' => 'small mt-3 mb-0 text-secondary',
-        ],
+        ),
 
-        'process' => [
+        'process' => array(
             'enabled' => true,
             'id' => 'how-it-works',
             'tag' => 'section',
@@ -332,15 +332,15 @@ return [
             'stepClass' => 'process-step',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                ['step' => '1', 'title' => 'Map the Work', 'description' => 'Document the current process, people, systems, data, decisions, delays, and recurring points of failure.'],
-                ['step' => '2', 'title' => 'Design the System', 'description' => 'Define the improved workflow, automation rules, integrations, user experience, and measures of success.'],
-                ['step' => '3', 'title' => 'Build & Validate', 'description' => 'Develop the solution in focused stages, test it against real scenarios, and refine it with the people who will use it.'],
-                ['step' => '4', 'title' => 'Launch & Improve', 'description' => 'Roll out the system, train users, monitor performance, and improve the workflow as the business evolves.'],
-            ],
-        ],
+            'items' => array(
+                array('step' => '1', 'title' => 'Map the Work', 'description' => 'Document the current process, people, systems, data, decisions, delays, and recurring points of failure.'),
+                array('step' => '2', 'title' => 'Design the System', 'description' => 'Define the improved workflow, automation rules, integrations, user experience, and measures of success.'),
+                array('step' => '3', 'title' => 'Build & Validate', 'description' => 'Develop the solution in focused stages, test it against real scenarios, and refine it with the people who will use it.'),
+                array('step' => '4', 'title' => 'Launch & Improve', 'description' => 'Roll out the system, train users, monitor performance, and improve the workflow as the business evolves.'),
+            ),
+        ),
 
-        'founder' => [
+        'founder' => array(
             'enabled' => true,
             'id' => 'founder',
             'tag' => 'section',
@@ -351,7 +351,7 @@ return [
             'avatarColumnClass' => 'col-lg-auto',
             'contentColumnClass' => 'col-lg',
             'ctaColumnClass' => 'col-lg-auto',
-            'avatar' => ['type' => 'initials', 'value' => 'JB', 'image' => null, 'alt' => 'Joe Brown', 'class' => 'founder-avatar founder-avatar-cyan'],
+            'avatar' => array('type' => 'initials', 'value' => 'JB', 'image' => null, 'alt' => 'Joe Brown', 'class' => 'founder-avatar founder-avatar-cyan'),
             'quoteMark' => '“',
             'quoteMarkClass' => 'quote-mark',
             'heading' => 'You should not have to translate your business problem into a technical specification before asking for help.',
@@ -361,10 +361,10 @@ return [
             'descriptionClass' => 'mb-2',
             'emphasis' => 'You receive direct senior-level guidance focused on the business result first and the appropriate technology second.',
             'emphasisClass' => 'mb-0 text-dark',
-            'cta' => ['label' => 'Learn About Skale', 'url' => '/about', 'class' => 'btn btn-outline-dark'],
-        ],
+            'cta' => array('label' => 'Learn About Skale', 'url' => '/about', 'class' => 'btn btn-outline-dark'),
+        ),
 
-        'qualification' => [
+        'qualification' => array(
             'enabled' => true,
             'id' => 'qualification',
             'tag' => 'section',
@@ -383,15 +383,15 @@ return [
             'iconClass' => 'bi bi-check-circle-fill text-cyan fs-5',
             'titleClass' => 'd-block',
             'descriptionClass' => 'text-secondary',
-            'items' => [
-                ['title' => 'Your team spends too much time on repeatable administrative work.', 'description' => 'Employees are copying data, preparing routine reports, sending updates, or managing predictable processes manually.'],
-                ['title' => 'Important information is spread across disconnected systems.', 'description' => 'Your business relies on spreadsheets, email, software platforms, and databases that do not share information reliably.'],
-                ['title' => 'Existing software no longer fits the way the business operates.', 'description' => 'Workarounds and platform limitations are slowing employees down or preventing the company from offering something new.'],
-                ['title' => 'You want a technical partner who can understand the business behind the request.', 'description' => 'You need strategy, architecture, implementation, training, and ongoing improvement, not simply a developer completing a ticket.'],
-            ],
-        ],
+            'items' => array(
+                array('title' => 'Your team spends too much time on repeatable administrative work.', 'description' => 'Employees are copying data, preparing routine reports, sending updates, or managing predictable processes manually.'),
+                array('title' => 'Important information is spread across disconnected systems.', 'description' => 'Your business relies on spreadsheets, email, software platforms, and databases that do not share information reliably.'),
+                array('title' => 'Existing software no longer fits the way the business operates.', 'description' => 'Workarounds and platform limitations are slowing employees down or preventing the company from offering something new.'),
+                array('title' => 'You want a technical partner who can understand the business behind the request.', 'description' => 'You need strategy, architecture, implementation, training, and ongoing improvement, not simply a developer completing a ticket.'),
+            ),
+        ),
 
-        'faq' => [
+        'faq' => array(
             'enabled' => true,
             'id' => 'faq',
             'tag' => 'section',
@@ -416,18 +416,18 @@ return [
             'openCollapseClass' => 'accordion-collapse collapse show',
             'bodyClass' => 'accordion-body',
             'allowMultipleOpen' => false,
-            'items' => [
-                ['id' => 'faq-automation-opportunities', 'question' => 'How do we know what should be automated?', 'answer' => 'Good automation candidates are usually repeatable, rules-based, time-consuming, error-prone, or dependent on moving information between people and systems. Skale reviews the current process and prioritizes opportunities based on business impact, feasibility, risk, and expected return.', 'open' => true],
-                ['id' => 'faq-existing-tools', 'question' => 'Can you automate the software we already use?', 'answer' => 'Often, yes. Many platforms provide APIs, webhooks, exports, integrations, or automation features that can be connected and extended. We first evaluate what your current tools support before recommending new software.', 'open' => false],
-                ['id' => 'faq-custom-software', 'question' => 'When does custom software make sense?', 'answer' => 'Custom software can make sense when an important workflow is unique to your business, existing products create too many compromises, manual work has become expensive, or a new digital capability could improve your service or create revenue.', 'open' => false],
-                ['id' => 'faq-replace-systems', 'question' => 'Do we need to replace our current systems?', 'answer' => 'Not necessarily. The best solution may be to connect, configure, simplify, or extend what you already use. Replacement is recommended only when the current platform creates significant limitations, cost, risk, or maintenance problems.', 'open' => false],
-                ['id' => 'faq-project-start', 'question' => 'Can we start with one workflow or small project?', 'answer' => 'Yes. Starting with a focused, high-impact workflow is often the safest way to prove value, learn how the system should operate, and create a foundation that can expand over time.', 'open' => false],
-                ['id' => 'faq-support', 'question' => 'What happens after the automation or software launches?', 'answer' => 'Skale can provide documentation, training, monitoring, maintenance, technical support, and ongoing optimization. The level of support depends on the importance and complexity of the system.', 'open' => false],
-                ['id' => 'faq-ai', 'question' => 'Can AI be included in the solution?', 'answer' => 'Yes, when it offers a practical advantage. AI may help classify information, summarize content, process documents, assist users, or identify patterns. We design AI-assisted workflows with appropriate human review, privacy considerations, and fallback behavior.', 'open' => false],
-            ],
-        ],
+            'items' => array(
+                array('id' => 'faq-automation-opportunities', 'question' => 'How do we know what should be automated?', 'answer' => 'Good automation candidates are usually repeatable, rules-based, time-consuming, error-prone, or dependent on moving information between people and systems. Skale reviews the current process and prioritizes opportunities based on business impact, feasibility, risk, and expected return.', 'open' => true),
+                array('id' => 'faq-existing-tools', 'question' => 'Can you automate the software we already use?', 'answer' => 'Often, yes. Many platforms provide APIs, webhooks, exports, integrations, or automation features that can be connected and extended. We first evaluate what your current tools support before recommending new software.', 'open' => false),
+                array('id' => 'faq-custom-software', 'question' => 'When does custom software make sense?', 'answer' => 'Custom software can make sense when an important workflow is unique to your business, existing products create too many compromises, manual work has become expensive, or a new digital capability could improve your service or create revenue.', 'open' => false),
+                array('id' => 'faq-replace-systems', 'question' => 'Do we need to replace our current systems?', 'answer' => 'Not necessarily. The best solution may be to connect, configure, simplify, or extend what you already use. Replacement is recommended only when the current platform creates significant limitations, cost, risk, or maintenance problems.', 'open' => false),
+                array('id' => 'faq-project-start', 'question' => 'Can we start with one workflow or small project?', 'answer' => 'Yes. Starting with a focused, high-impact workflow is often the safest way to prove value, learn how the system should operate, and create a foundation that can expand over time.', 'open' => false),
+                array('id' => 'faq-support', 'question' => 'What happens after the automation or software launches?', 'answer' => 'Skale can provide documentation, training, monitoring, maintenance, technical support, and ongoing optimization. The level of support depends on the importance and complexity of the system.', 'open' => false),
+                array('id' => 'faq-ai', 'question' => 'Can AI be included in the solution?', 'answer' => 'Yes, when it offers a practical advantage. AI may help classify information, summarize content, process documents, assist users, or identify patterns. We design AI-assisted workflows with appropriate human review, privacy considerations, and fallback behavior.', 'open' => false),
+            ),
+        ),
 
-        'finalCta' => [
+        'finalCta' => array(
             'enabled' => true,
             'id' => 'final-cta',
             'tag' => 'section',
@@ -442,21 +442,21 @@ return [
             'headingTag' => 'h2',
             'description' => 'Schedule a free workflow review to discuss how your team works today and where automation, integration, or custom software could create the greatest practical improvement.',
             'descriptionClass' => 'lead mt-3 mb-4',
-            'buttons' => [
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row justify-content-center gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Book My Free Workflow Review',
                         'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-cyan btn-lg',
-                        'iconClass' => null],
-                    ['label' => '732-925-4044', 'url' => 'tel:+17329254044', 'class' => 'btn btn-outline-light btn-lg', 'iconClass' => 'bi bi-telephone me-2'],
-                ],
-            ],
+                        'iconClass' => null),
+                    array('label' => '732-925-4044', 'url' => 'tel:+17329254044', 'class' => 'btn btn-outline-light btn-lg', 'iconClass' => 'bi bi-telephone me-2'),
+                ),
+            ),
             'note' => 'No obligation. No generic package. A practical conversation focused on how your business actually operates.',
             'noteClass' => 'small mt-3 mb-0',
-        ],
-    ],
+        ),
+    ),
 
     'form' => array(
         'heading' => '',
@@ -560,4 +560,4 @@ return [
             ),
         ),
     )
-];
+);

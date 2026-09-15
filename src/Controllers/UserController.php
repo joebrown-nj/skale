@@ -66,11 +66,11 @@ class UserController implements UserLocationProviderInterface
 
     private function buildFallbackLocation(string $ipAddress): array
     {
-        return [
+        return array(
             'ipAddress' => $ipAddress,
             'city_name' => 'Localhost',
             'region_name' => 'Localhost',
             'country_name' => 'Localhost',
-        ];
+        );
     }
 }

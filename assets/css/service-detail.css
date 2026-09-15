@@ -1,37 +1,3 @@
-:root {
-    --skale-dark: #07111f;
-    --skale-dark-2: #102033;
-    --skale-text: #172033;
-    --skale-muted: #64748b;
-    --skale-light: #f6f9fc;
-    --skale-border: #e2e8f0;
-
-    --skale-green: #16c7a1;
-    --skale-green-dark: #0d9f81;
-    --skale-blue: #0ea5e9;
-
-    --skale-white: #ffffff;
-}
-
-body {
-    color: var(--skale-text);
-    background: var(--skale-white);
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    line-height: 1.65;
-}
-
-a {
-    text-decoration: none;
-}
-
 .section-space {
     padding: 6rem 0;
 }
@@ -130,10 +96,6 @@ a {
     background: rgba(255,255,255,.08);
     border-color: rgba(255,255,255,.6);
 }
-
-/* ================================
-    HERO
-================================ */
 
 .service-hero {
     position: relative;
@@ -260,10 +222,6 @@ a {
     font-weight: 650;
 }
 
-/* ================================
-    SYMPTOMS
-================================ */
-
 .symptom-card {
     height: 100%;
 
@@ -299,10 +257,6 @@ a {
     color: var(--skale-muted);
 }
 
-/* ================================
-    SOLUTION
-================================ */
-
 .solution-section {
     background: var(--skale-light);
 }
@@ -328,10 +282,6 @@ a {
     color: var(--skale-muted);
 }
 
-/* ================================
-    INCLUDED
-================================ */
-
 .included-card {
     height: 100%;
 
@@ -352,10 +302,6 @@ a {
     margin-bottom: 0;
     color: var(--skale-muted);
 }
-
-/* ================================
-    PROOF
-================================ */
 
 .proof-section {
     background: var(--skale-dark);
@@ -401,10 +347,6 @@ a {
     font-size: .82rem;
 }
 
-/* ================================
-    PROCESS
-================================ */
-
 .process-step-card {
     height: 100%;
 
@@ -442,10 +384,6 @@ a {
     color: var(--skale-muted);
 }
 
-/* ================================
-    FAQ
-================================ */
-
 .faq-section {
     background: var(--skale-light);
 }
@@ -475,10 +413,6 @@ a {
 .accordion-body {
     color: var(--skale-muted);
 }
-
-/* ================================
-    FINAL CTA / FORM
-================================ */
 
 .cta-section {
     background:
@@ -524,10 +458,6 @@ textarea.form-control {
     color: var(--skale-muted);
     font-size: .82rem;
 }
-
-/* ================================
-    RESPONSIVE
-================================ */
 
 @media (max-width: 991.98px) {
     .service-hero {

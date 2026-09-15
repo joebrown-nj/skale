@@ -14,9 +14,9 @@ trait ValidateMethodTrait
     {
         if ($_SERVER['REQUEST_METHOD'] !== $method) {
             http_response_code(405);
-            return $this->getView()->render($view, [
-                'errors' => ['Method not allowed'],
-            ]);
+            return $this->getView()->render($view, array(
+                'errors' => array('Method not allowed'),
+            ));
         }
         return null;
     }

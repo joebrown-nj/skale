@@ -23,7 +23,7 @@ final class EmailTemplateRendererTest extends TestCase
         try {
             $html = (new EmailTemplateRenderer($smarty, $site))->render('<p>Hello Ada</p>', 'ada@example.com');
         } finally {
-            foreach (glob($compileDirectory . '/*') ?: [] as $file) {
+            foreach (glob($compileDirectory . '/*') ?: array() as $file) {
                 unlink($file);
             }
             rmdir($compileDirectory);

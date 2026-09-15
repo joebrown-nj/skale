@@ -50,37 +50,39 @@ class Routes
         });
 
         // Public routes
-        $this->router->get('/', [HomeController::class, 'index']);
-        $this->router->get('/services', [SolutionController::class, 'redirectLegacyServicesIndex']);
-        $this->router->get('/services/{slug}', [SolutionController::class, 'redirectLegacyServicesDetail']);
-        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'], [SolutionController::class, 'index']);
-        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'] . '/{slug}', [SolutionController::class, 'getSolutionDetail']);
-        $this->router->get('/blog', [BlogController::class, 'index']);
-        $this->router->get('/blog/archive', [BlogController::class, 'archive']);
-        $this->router->get('/blog/{date}/{slug}', [BlogController::class, 'getBlogDetail']);
-        $this->router->get('/contact', [ContactController::class, 'index']);
-        $this->router->get('/portfolio', [PortfolioController::class, 'index']);
+        $this->router->get('/', array(HomeController::class, 'index'));
+        $this->router->get('/services', array(SolutionController::class, 'redirectLegacyServicesIndex'));
+        $this->router->get('/services/{slug}', array(SolutionController::class, 'redirectLegacyServicesDetail'));
+        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'], array(SolutionController::class, 'index'));
+        $this->router->get('/' . $_ENV['URL_SERVICES_SOLUTIONS'] . '/{slug}', array(SolutionController::class, 'getSolutionDetail'));
+        $this->router->get('/blog', array(BlogController::class, 'index'));
+        $this->router->get('/blog/archive', array(BlogController::class, 'archive'));
+        $this->router->get('/blog/{date}/{slug}', array(BlogController::class, 'getBlogDetail'));
+        $this->router->get('/contact', array(ContactController::class, 'index'));
+        $this->router->get('/our-work', array(PortfolioController::class, 'index'));
+        $this->router->get('/our-work/{slug}', array(PortfolioController::class, 'getPortfolioDetail'));
+        $this->router->get('/problems-we-solve', array(SubPageController::class, 'index'));
 
-        $this->router->get('/thank-you', [SubPageController::class, 'thankYou']);
+        $this->router->get('/thank-you', array(SubPageController::class, 'thankYou'));
 
-        $this->router->get('/website-development', [LandingPageController::class, 'websiteDevelopment']);
-        $this->router->get('/website-rescue', [LandingPageController::class, 'websiteRescue']);
-        $this->router->get('/marketing', [LandingPageController::class, 'marketing']);
-        $this->router->get('/automation', [LandingPageController::class, 'automation']);
-        $this->router->get('/task-management', [LandingPageController::class, 'taskManagement']);
+        $this->router->get('/website-development', array(LandingPageController::class, 'websiteDevelopment'));
+        $this->router->get('/website-rescue', array(LandingPageController::class, 'websiteRescue'));
+        $this->router->get('/marketing', array(LandingPageController::class, 'marketing'));
+        $this->router->get('/automation', array(LandingPageController::class, 'automation'));
+        $this->router->get('/task-management', array(LandingPageController::class, 'taskManagement'));
         $this->router->post('/post-lead-form', function (): JsonResponse {
             return $this->container->get(LandingPageController::class)
                 ->postLeadForm(new LeadFormRequest(Request::fromGlobals()));
         });
 
-        $this->router->get('/email-template', [EmailController::class, 'emailTemplate']);
+        $this->router->get('/email-template', array(EmailController::class, 'emailTemplate'));
 
-        $this->registerSegmentedGetRoutes('/meta-data', 3, [MetaDataController::class, 'index']);
+        $this->registerSegmentedGetRoutes('/meta-data', 3, array(MetaDataController::class, 'index'));
 
-        $this->router->post('/', [ContactController::class, 'submit']);
-        $this->router->post('/contact-form', [ContactController::class, 'submit']);
-        $this->router->post('/log-button-click', [LogController::class, 'logButtonClick']);
-        $this->router->post('/email-list-signup', [ContactController::class, 'submit']);
+        $this->router->post('/', array(ContactController::class, 'submit'));
+        $this->router->post('/contact-form', array(ContactController::class, 'submit'));
+        $this->router->post('/log-button-click', array(LogController::class, 'logButtonClick'));
+        $this->router->post('/email-list-signup', array(ContactController::class, 'submit'));
     }
 
     public function dispatch(): void
@@ -100,12 +102,12 @@ class Routes
                     return;
                 }
 
-                $this->container->get(ViewInterface::class)->render('error/403', [
+                $this->container->get(ViewInterface::class)->render('error/403', array(
                     'errorMessage' => $requestBlocklistService->getPublicMessage(
                         $matchedRule,
                         'This request has been blocked for security reasons.',
                     ),
-                ]);
+                ));
 
                 return;
             }
@@ -160,7 +162,7 @@ class Routes
     {
         $this->router->get($basePath, $handler);
 
-        $segments = [];
+        $segments = array();
 
         for ($depth = 1; $depth <= $maxDepth; $depth++) {
             $segments[] = '{p' . $depth . '}';
@@ -195,7 +197,7 @@ class Routes
     {
         return in_array(
             strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET')),
-            ['GET', 'HEAD'],
+            array('GET', 'HEAD'),
             true,
         );
     }

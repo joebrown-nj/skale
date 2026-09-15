@@ -62,7 +62,7 @@
 
 {if $content}
     <!-- ============================ SPECIFIC PROBLEM ============================ -->
-    <header class="service-hero">
+    <header class="hero hero-gradient-02">
         <div class="container">
             {* <div class="breadcrumb-custom" data-aos="fade-up">
             <a href="/">Home</a>
@@ -92,7 +92,7 @@
 
                     <div class="hero-actions d-flex flex-wrap gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
                         {foreach $content.hero.actions as $action}
-                            <a href="{$action.href}" class="{$action.class}">{$action.text}</a>
+                            <a onclick="scrollToEl('{$action.href}')" class="{$action.class} cursor-pointer">{$action.text}</a>
                         {/foreach}
                     </div>
                 </div>

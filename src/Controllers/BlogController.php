@@ -42,13 +42,13 @@ class BlogController
     {
         $selectedCategory = $this->getSelectedCategory();
 
-        $this->view->render('blog-list', [
+        $this->view->render('blog-list', array(
             'blogList' => $this->blogModel->getAllBlogs($selectedCategory),
             'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
             'filterPath' => $this->siteConfig->url . 'blog',
-        ]);
+        ));
     }
 
     public function archive()
@@ -56,12 +56,12 @@ class BlogController
         $selectedCategory = $this->getSelectedCategory();
         $totalCount = $this->blogModel->getBlogTotalCount($selectedCategory);
         $numberOfpages = $totalCount > 0 ? (int) ceil($totalCount / $this->siteConfig->blogItemsPerPage) : 0;
-        $pagesArray = $numberOfpages > 0 ? range(1, $numberOfpages) : [];
+        $pagesArray = $numberOfpages > 0 ? range(1, $numberOfpages) : array();
         $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
         $currentPage = max(1, $currentPage);
         $start = ($currentPage - 1) * $this->siteConfig->blogItemsPerPage;
 
-        $this->view->render('blog-archive', [
+        $this->view->render('blog-archive', array(
             'blogList' => $this->blogModel->getBlogArchive($start, $this->siteConfig->blogItemsPerPage, $selectedCategory),
             'p1Page' => $this->pageContentModel->getPageContentByUrl('blog'),
             'totalCount' => $totalCount,
@@ -71,15 +71,15 @@ class BlogController
             'blogCategories' => $this->blogModel->getBlogCategories(),
             'activeCategory' => $selectedCategory,
             'filterPath' => $this->siteConfig->url . 'blog/archive',
-        ]);
+        ));
     }
 
     public function getBlogDetail($date, $slug)
     {
         $blog = $this->blogModel->getBlogByUrl('blog/' . $date . '/' . $slug);
-        $this->view->render('blog-detail', [
+        $this->view->render('blog-detail', array(
             'blogList' => $this->blogModel->getAllBlogs(),
             'blogDetail' => $blog,
-        ]);
+        ));
     }
 }

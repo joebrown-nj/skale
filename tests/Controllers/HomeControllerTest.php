@@ -19,22 +19,22 @@ final class HomeControllerTest extends TestCase
 {
     protected function tearDown(): void
     {
-        $_GET = [];
+        $_GET = array();
     }
 
     public function testIndexRendersHomeViewWithResolvedData(): void
     {
         $hero = new HomePageEntity();
         $hero->headline = 'Grow faster';
-        $homeCards = [(object) ['title' => 'Card 1']];
+        $homeCards = array((object) array('title' => 'Card 1'));
         $featuredBlog = new BlogEntity();
         $featuredBlog->title = 'Featured';
         $blogListItem = new BlogEntity();
         $blogListItem->title = 'Post 1';
-        $blogList = [$blogListItem];
-        $blogContent = (object) ['metaTitle' => 'Blog'];
-        $howItWorks = ['title' => 'How it works'];
-        $theResults = ['title' => 'The results'];
+        $blogList = array($blogListItem);
+        $blogContent = (object) array('metaTitle' => 'Blog');
+        $howItWorks = array('title' => 'How it works');
+        $theResults = array('title' => 'The results');
 
         $homePageModel = $this->createMock(HomePageModel::class);
         $homePageModel->expects($this->once())
@@ -56,7 +56,7 @@ final class HomeControllerTest extends TestCase
         $pageContentModel->expects($this->once())
             ->method('getPageContentByUrl')
             ->with('blog')
-            ->willReturn(['content' => $blogContent]);
+            ->willReturn(array('content' => $blogContent));
 
         $blogModel = $this->createMock(BlogModel::class);
         $blogModel->expects($this->once())
@@ -71,7 +71,7 @@ final class HomeControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('home', [
+            ->with('home', array(
                 'hero' => $hero,
                 'homeCards' => $homeCards,
                 'blogContent' => $blogContent,
@@ -79,7 +79,7 @@ final class HomeControllerTest extends TestCase
                 'blogList' => $blogList,
                 'howItWorks' => $howItWorks,
                 'theResults' => $theResults,
-            ]);
+            ));
 
         $controller = new HomeController(
             $homePageModel,
@@ -97,11 +97,11 @@ final class HomeControllerTest extends TestCase
     {
         $homePageModel = $this->createStub(HomePageModel::class);
         $homePageModel->method('getHeroContent')->willReturn(null);
-        $homePageModel->method('getHowItWorksContent')->willReturn([]);
-        $homePageModel->method('getTheResultsContent')->willReturn([]);
+        $homePageModel->method('getHowItWorksContent')->willReturn(array());
+        $homePageModel->method('getTheResultsContent')->willReturn(array());
 
         $homeCardsModel = $this->createStub(HomeCardsModel::class);
-        $homeCardsModel->method('getHomeCards')->willReturn([]);
+        $homeCardsModel->method('getHomeCards')->willReturn(array());
 
         $pageContentModel = $this->createMock(PageContentModel::class);
         $pageContentModel->expects($this->once())
@@ -111,7 +111,7 @@ final class HomeControllerTest extends TestCase
 
         $blogModel = $this->createStub(BlogModel::class);
         $blogModel->method('getFeaturedBlog')->willReturn(null);
-        $blogModel->method('getAllBlogs')->willReturn([]);
+        $blogModel->method('getAllBlogs')->willReturn(array());
 
         $emailModel = $this->createStub(EmailServiceInterface::class);
 
@@ -154,10 +154,10 @@ final class HomeControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('unsubscribe', [
+            ->with('unsubscribe', array(
                 'successMessage' => '',
                 'errorMessage' => 'A valid email is required to unsubscribe',
-            ]);
+            ));
 
         $controller = new HomeController(
             $homePageModel,
@@ -193,10 +193,10 @@ final class HomeControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('unsubscribe', [
+            ->with('unsubscribe', array(
                 'successMessage' => 'You have been unsubscribed',
                 'errorMessage' => '',
-            ]);
+            ));
 
         $controller = new HomeController(
             $homePageModel,
@@ -232,10 +232,10 @@ final class HomeControllerTest extends TestCase
         $view = $this->createMock(ViewInterface::class);
         $view->expects($this->once())
             ->method('render')
-            ->with('unsubscribe', [
+            ->with('unsubscribe', array(
                 'successMessage' => '',
                 'errorMessage' => 'There was a problem unsubscribing you. Please try again later.',
-            ]);
+            ));
 
         $controller = new HomeController(
             $homePageModel,

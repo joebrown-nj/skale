@@ -22,10 +22,10 @@ class ContactModel implements ContactFormInterface
     public function validate(array $data): array
     {
         if (FormSubmissionService::containsMaliciousInput($data)) {
-            return ['Invalid or unsafe content detected'];
+            return array('Invalid or unsafe content detected');
         }
 
-        $errors = [];
+        $errors = array();
         $formType = trim((string) ($data['form_type'] ?? 'contact'));
 
         if ($formType !== 'newsletter' && trim((string) ($data['name'] ?? '')) === '') {
@@ -80,10 +80,10 @@ class ContactModel implements ContactFormInterface
     {
         $contact = new ContactEntity();
         $formType = trim((string) ($data['form_type'] ?? 'contact'));
-        $interests = $data['interests'] ?? ($data['interest'] ?? []);
+        $interests = $data['interests'] ?? ($data['interest'] ?? array());
 
         if (!is_array($interests)) {
-            $interests = [$interests];
+            $interests = array($interests);
         }
 
         $contact->setName(trim((string) ($data['name'] ?? 'Newsletter Subscriber')));
@@ -98,16 +98,16 @@ class ContactModel implements ContactFormInterface
     private function buildMessage(array $data, string $formType): string
     {
         $message = trim((string) ($data['comment'] ?? ($data['message'] ?? '')));
-        $context = [];
+        $context = array();
 
-        foreach (['company', 'team_size', 'goal'] as $field) {
+        foreach (array('company', 'team_size', 'goal') as $field) {
             if (trim((string) ($data[$field] ?? '')) !== '') {
                 $context[] = ucwords(str_replace('_', ' ', $field)) . ': ' . trim((string) $data[$field]);
             }
         }
 
         return trim(
-            ucwords(str_replace(['-', '_'], ' ', $formType)) . " form submission\n"
+            ucwords(str_replace(array('-', '_'), ' ', $formType)) . " form submission\n"
             . implode("\n", $context)
             . ($message !== '' ? "\n" . $message : ''),
         );

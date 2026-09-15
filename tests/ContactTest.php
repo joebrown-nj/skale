@@ -11,13 +11,13 @@ final class ContactTest extends TestCase
     public function testCheckEmptyContactForm(): void
     {
         $contactModel = (new \ReflectionClass(ContactModel::class))->newInstanceWithoutConstructor();
-        $empty = $contactModel->checkContactForm([]);
-        $emptyVal = [
+        $empty = $contactModel->checkContactForm(array());
+        $emptyVal = array(
             'Name is required',
             'Email is required',
             'Phone is required',
             'Comment is required',
-        ];
+        );
         $this->assertSame($emptyVal, $empty);
     }
 
@@ -25,51 +25,51 @@ final class ContactTest extends TestCase
     {
         $contactModel = (new \ReflectionClass(ContactModel::class))->newInstanceWithoutConstructor();
 
-        $errors = $contactModel->checkContactForm([
+        $errors = $contactModel->checkContactForm(array(
             'name' => 'Jane Doe',
             'email' => 'not-an-email',
             'phone' => '555-0100',
             'comment' => 'Need help with growth.',
-        ]);
+        ));
 
-        $this->assertSame(['Email is required'], $errors);
+        $this->assertSame(array('Email is required'), $errors);
     }
 
     public function testCheckContactFormReturnsNoErrorsForValidPayload(): void
     {
         $contactModel = (new \ReflectionClass(ContactModel::class))->newInstanceWithoutConstructor();
 
-        $errors = $contactModel->checkContactForm([
+        $errors = $contactModel->checkContactForm(array(
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'phone' => '555-0100',
             'comment' => 'Need help with growth.',
-            'interests' => ['SEO', 'Automation'],
-        ]);
+            'interests' => array('SEO', 'Automation'),
+        ));
 
-        $this->assertSame([], $errors);
+        $this->assertSame(array(), $errors);
     }
 
     public function testDetectsHtmlAndCodePayloadsAsMalicious(): void
     {
         $service = (new \ReflectionClass(FormSubmissionService::class))->newInstanceWithoutConstructor();
 
-        $this->assertTrue($service->containsMaliciousInput([
+        $this->assertTrue($service->containsMaliciousInput(array(
             'name' => '<script>alert("xss")</script>',
             'email' => 'jane@example.com',
             'comment' => 'normal text',
-        ]));
+        )));
 
-        $this->assertTrue($service->containsMaliciousInput([
+        $this->assertTrue($service->containsMaliciousInput(array(
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'comment' => '<?php echo "code"; ?>',
-        ]));
+        )));
 
-        $this->assertFalse($service->containsMaliciousInput([
+        $this->assertFalse($service->containsMaliciousInput(array(
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'comment' => 'This is a normal message with < and > symbols for pricing.',
-        ]));
+        )));
     }
 }

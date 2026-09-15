@@ -35,10 +35,10 @@ class PageContentModel
             return false;
         }
 
-        return [
+        return array(
             'menu' => $result,
             'content' => $result->getPageContent(),
-        ];
+        );
     }
 
     /**

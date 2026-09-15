@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [
+return array(
     // 'name' => 'Demand Generation',
     // 'slug' => 'demand-generation',
 
@@ -15,8 +15,8 @@ return [
     //     'ogImage' => null,
     // ],
 
-    'sections' => [
-        'hero' => [
+    'sections' => array(
+        'hero' => array(
             'enabled' => true,
             'id' => 'demand-generation-hero',
             'tag' => 'section',
@@ -35,59 +35,59 @@ return [
             'highlightClass' => 'text-highlight text-accent',
             'description' => 'Skale connects SEO, paid media, email, landing pages, conversion strategy, and reporting into one measurable system built to attract the right people and move them toward a real sales conversation.',
             'descriptionClass' => 'hero-lead lead mt-4 mb-0 text-white-75',
-            'background' => [
+            'background' => array(
                 'class' => 'hero-demand-generation-bg',
                 'overlayClass' => 'hero-demand-generation-overlay',
-                'decorations' => [
-                    [
+                'decorations' => array(
+                    array(
                         'class' => 'hero-orb hero-orb-one',
                         'ariaHidden' => true,
-                    ],
-                    [
+                    ),
+                    array(
                         'class' => 'hero-orb hero-orb-two',
                         'ariaHidden' => true,
-                    ],
-                    [
+                    ),
+                    array(
                         'class' => 'hero-grid',
                         'ariaHidden' => true,
-                    ],
-                ],
-            ],
-            'benefits' => [
+                    ),
+                ),
+            ),
+            'benefits' => array(
                 'class' => 'hero-checks hero-checks-light',
                 'ariaLabel' => 'Demand generation benefits',
                 'iconClass' => 'bi bi-check-circle-fill text-accent',
-                'items' => [
+                'items' => array(
                     'Strategy built around revenue - not vanity metrics',
                     'Channels that reinforce one another',
                     'Clear reporting from first click to qualified lead',
-                ],
-            ],
-            'buttons' => [
+                ),
+            ),
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Get Your Free Demand Review',
                         'url' => '#consultation',
                         'class' => 'btn btn-primary btn-lg',
                         'target' => null,
                         'rel' => null,
-                    ],
-                    [
+                    ),
+                    array(
                         'label' => 'See the Growth System',
                         'url' => '#how-it-works',
                         'class' => 'btn btn-outline-dark btn-lg',
                         'target' => null,
                         'rel' => null,
-                    ],
-                ],
-            ],
-            'note' => [
+                    ),
+                ),
+            ),
+            'note' => array(
                 'text' => 'No channel pitch. We start by finding where your current marketing is losing attention, leads, or revenue.',
                 'class' => 'hero-note hero-note-light',
                 'iconClass' => 'bi bi-shield-check',
-            ],
-            'form' => [
+            ),
+            'form' => array(
                 'enabled' => true,
                 'anchorId' => 'consultation',
                 'wrapperClass' => 'hero-form-wrap',
@@ -104,12 +104,12 @@ return [
                 'method' => 'POST',
                 'id' => 'demand-generation-lead-form',
                 'class' => 'ajaxForm',
-                'attributes' => [
+                'attributes' => array(
                     'dataMetaFormName' => 'demand-generation-form',
                     'dataMetaSuccessEvent' => 'Lead',
-                ],
-                'fields' => [
-                    [
+                ),
+                'fields' => array(
+                    array(
                         'type' => 'text',
                         'name' => 'name',
                         'id' => 'name',
@@ -119,8 +119,8 @@ return [
                         'wrapperClass' => 'mb-3',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'email',
                         'name' => 'email',
                         'id' => 'email',
@@ -130,8 +130,8 @@ return [
                         'wrapperClass' => 'mb-3',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'tel',
                         'name' => 'phone',
                         'id' => 'phone',
@@ -144,8 +144,8 @@ return [
                         'labelSuffixClass' => 'fw-normal text-secondary',
                         'inputClass' => 'form-control',
                         'group' => 'contact-details',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'select',
                         'name' => 'monthly_marketing_spend',
                         'id' => 'monthly-marketing-spend',
@@ -155,34 +155,34 @@ return [
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-select',
                         'group' => 'contact-details',
-                        'options' => [
-                            [
+                        'options' => array(
+                            array(
                                 'label' => 'Select',
                                 'value' => '',
-                            ],
-                            [
+                            ),
+                            array(
                                 'label' => 'Not currently spending',
                                 'value' => 'none',
-                            ],
-                            [
+                            ),
+                            array(
                                 'label' => 'Under $2,500',
                                 'value' => 'under-2500',
-                            ],
-                            [
+                            ),
+                            array(
                                 'label' => '$2,500-$5,000',
                                 'value' => '2500-5000',
-                            ],
-                            [
+                            ),
+                            array(
                                 'label' => '$5,000-$10,000',
                                 'value' => '5000-10000',
-                            ],
-                            [
+                            ),
+                            array(
                                 'label' => '$10,000+',
                                 'value' => '10000-plus',
-                            ],
-                        ],
-                    ],
-                    [
+                            ),
+                        ),
+                    ),
+                    array(
                         'type' => 'textarea',
                         'name' => 'comment',
                         'id' => 'comment',
@@ -193,29 +193,29 @@ return [
                         'wrapperClass' => 'mb-4',
                         'labelClass' => 'form-label fw-semibold',
                         'inputClass' => 'form-control',
-                    ],
-                    [
+                    ),
+                    array(
                         'type' => 'hidden',
                         'name' => 'interests[]',
                         'value' => 'demand-generation',
-                    ],
-                ],
-                'fieldGroups' => [
+                    ),
+                ),
+                'fieldGroups' => array(
                     'contact-details' => 'row g-3 mb-3',
-                ],
-                'submit' => [
+                ),
+                'submit' => array(
                     'label' => 'Request My Free Demand Review',
                     'class' => 'btn btn-skale btn-lg w-100',
-                ],
-                'privacy' => [
+                ),
+                'privacy' => array(
                     'text' => 'No sales pressure. Your information stays private.',
                     'class' => 'small text-secondary text-center mt-3 mb-0',
                     'iconClass' => 'fa-solid fa-lock me-1',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'trustStrip' => [
+        'trustStrip' => array(
             'enabled' => true,
             'id' => 'trust-strip',
             'tag' => 'section',
@@ -225,31 +225,31 @@ return [
             'columnClass' => 'col',
             'itemClass' => 'trust-item',
             'ariaLabel' => 'Why businesses trust Skale for demand generation',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-bullseye',
                     'title' => 'Qualified Demand',
                     'description' => 'Focus on buyers who are more likely to convert',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-diagram-3',
                     'title' => 'Connected Channels',
                     'description' => 'SEO, paid media, email, and landing pages work together',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-graph-up-arrow',
                     'title' => 'Revenue Visibility',
                     'description' => 'Measure performance beyond clicks and impressions',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-person-check',
                     'title' => 'Senior Strategy',
                     'description' => 'Direct guidance from an experienced growth partner',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'problems' => [
+        'problems' => array(
             'enabled' => true,
             'id' => 'problems',
             'tag' => 'section',
@@ -268,31 +268,31 @@ return [
             'iconWrapperClass' => 'icon-box icon-box-accent',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-megaphone',
                     'title' => 'You attract the wrong traffic',
                     'description' => 'Campaigns generate visits, but too few visitors match your ideal customer or have meaningful intent.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-signpost-split',
                     'title' => 'The message changes by channel',
                     'description' => 'Ads, search listings, emails, and landing pages make different promises and create confusion.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-hourglass-split',
                     'title' => 'Follow-up happens too slowly',
                     'description' => 'Interested prospects wait, receive generic outreach, or disappear before a real conversation begins.',
-                ],
-                [
+                ),
+                array(
                     'iconClass' => 'bi bi-bar-chart',
                     'title' => 'Reporting stops at clicks',
                     'description' => 'You can see activity, but not which channels, offers, and campaigns produce qualified opportunities.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'outcomes' => [
+        'outcomes' => array(
             'enabled' => true,
             'id' => 'outcomes',
             'tag' => 'section',
@@ -310,27 +310,27 @@ return [
             'descriptionClass' => 'mt-3 mb-0 text-white-75',
             'listClass' => 'outcome-list',
             'iconClass' => 'bi bi-check-circle-fill',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'title' => 'Reach people with real buying intent',
                     'description' => 'Use search behavior, audience signals, and focused targeting to prioritize quality over volume.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Create a consistent reason to act',
                     'description' => 'Align ads, content, landing pages, and offers around the problems your customers already want solved.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Convert more attention into conversations',
                     'description' => 'Improve pages, forms, calls to action, and follow-up so qualified interest does not go to waste.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'Know what is creating pipeline',
                     'description' => 'Connect campaign data, analytics, and lead tracking to the outcomes that matter to your business.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'serviceComponents' => [
+        'serviceComponents' => array(
             'enabled' => true,
             'id' => 'demand-generation-services',
             'tag' => 'section',
@@ -354,62 +354,62 @@ return [
             'titleClass' => 'h4',
             'listClass' => 'service-list',
             'listIconClass' => 'bi bi-check2',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'iconClass' => 'bi bi-search',
                     'title' => 'SEO & Content Strategy',
                     'description' => 'Build durable visibility around the questions, problems, and services your ideal customers are actively searching for.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/search-engine-optimization',
-                    'bullets' => [
+                    'bullets' => array(
                         'Keyword and opportunity research',
                         'Technical and on-page SEO',
                         'Service pages and conversion-focused content',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-google',
                     'title' => 'Paid Search',
                     'description' => 'Capture high-intent demand with focused Google Ads campaigns built around qualified actions rather than cheap clicks.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/ppc-solutions',
-                    'bullets' => [
+                    'bullets' => array(
                         'Campaign and account structure',
                         'Keyword, audience, and negative targeting',
                         'Ad copy, landing pages, and conversion tracking',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-meta',
                     'title' => 'Paid Social',
                     'description' => 'Create demand and retarget engaged prospects with Meta campaigns that connect audience, creative, offer, and landing experience.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/ppc-solutions',
-                    'bullets' => [
+                    'bullets' => array(
                         'Audience and campaign strategy',
                         'Creative and message testing',
                         'Retargeting and lead-generation funnels',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-envelope-paper',
                     'title' => 'Email Marketing & Nurturing',
                     'description' => 'Stay relevant after the first interaction with campaigns and automated sequences that educate, qualify, and re-engage.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/email-marketing',
-                    'bullets' => [
+                    'bullets' => array(
                         'Lead nurture sequences',
                         'Newsletter and campaign strategy',
                         'Segmentation and behavior-based automation',
-                    ],
-                ],
-                [
+                    ),
+                ),
+                array(
                     'iconClass' => 'bi bi-window',
                     'title' => 'Landing Pages & Conversion',
                     'description' => 'Turn campaign traffic into action with focused pages that make the next step clear, credible, and easy to complete.',
                     'url' => $_ENV['URL_SERVICES_SOLUTIONS'] . '/conversion-optimization',
-                    'bullets' => [
+                    'bullets' => array(
                         'Campaign landing pages',
                         'Messaging and offer refinement',
                         'Forms, calls to action, and conversion testing',
-                    ],
-                ],
+                    ),
+                ),
                 // [
                 //     'iconClass' => 'bi bi-clipboard-data',
                 //     'title' => 'Analytics & Attribution',
@@ -421,14 +421,14 @@ return [
                 //         'Lead-source and conversion analysis',
                 //     ],
                 // ],
-            ],
-            'cta' => [
+            ),
+            'cta' => array(
                 'label' => 'Talk Through Your Demand Gaps',
                 'url' => '#consultation',
                 'wrapperClass' => 'text-center mt-5',
                 'class' => 'btn btn-accent btn-lg',
-            ],
-        ],
+            ),
+        ),
 
         // 'services' => [
         //     'enabled' => false,
@@ -439,7 +439,7 @@ return [
         //     'items' => [],
         // ],
 
-        'caseStudy' => [
+        'caseStudy' => array(
             'enabled' => true,
             'id' => 'case-study',
             'tag' => 'section',
@@ -462,29 +462,29 @@ return [
             'metricsRowClass' => 'row g-3',
             'metricColumnClass' => 'col-6',
             'metricClass' => 'metric metric-accent h-100',
-            'metrics' => [
-                [
+            'metrics' => array(
+                array(
                     'value' => 'Clearer',
                     'label' => 'Visibility into lead sources',
-                ],
-                [
+                ),
+                array(
                     'value' => 'Faster',
                     'label' => 'Response and follow-up',
-                ],
-                [
+                ),
+                array(
                     'value' => 'Stronger',
                     'label' => 'Message-to-page alignment',
-                ],
-                [
+                ),
+                array(
                     'value' => 'Focused',
                     'label' => 'Optimization around qualified leads',
-                ],
-            ],
+                ),
+            ),
             'disclaimer' => 'Replace this representative example with verified client metrics, a named case study, or a testimonial when available.',
             'disclaimerClass' => 'small mt-3 mb-0 text-secondary',
-        ],
+        ),
 
-        'process' => [
+        'process' => array(
             'enabled' => true,
             'id' => 'how-it-works',
             'tag' => 'section',
@@ -503,31 +503,31 @@ return [
             'stepClass' => 'process-step',
             'titleClass' => 'h5',
             'bodyClass' => 'mb-0',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'step' => '1',
                     'title' => 'Diagnose',
                     'description' => 'Review your audience, channels, offers, landing pages, follow-up, analytics, and current sources of pipeline.',
-                ],
-                [
+                ),
+                array(
                     'step' => '2',
                     'title' => 'Prioritize',
                     'description' => 'Identify the highest-impact gap and establish clear goals, conversion actions, and success measures.',
-                ],
-                [
+                ),
+                array(
                     'step' => '3',
                     'title' => 'Build & Launch',
                     'description' => 'Create or improve campaigns, content, landing pages, tracking, nurture, and lead-management workflows.',
-                ],
-                [
+                ),
+                array(
                     'step' => '4',
                     'title' => 'Measure & Scale',
                     'description' => 'Use real performance data to improve quality, conversion, cost efficiency, and investment decisions.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'founder' => [
+        'founder' => array(
             'enabled' => true,
             'id' => 'founder',
             'tag' => 'section',
@@ -538,13 +538,13 @@ return [
             'avatarColumnClass' => 'col-lg-auto',
             'contentColumnClass' => 'col-lg',
             'ctaColumnClass' => 'col-lg-auto',
-            'avatar' => [
+            'avatar' => array(
                 'type' => 'initials',
                 'value' => 'JB',
                 'image' => null,
                 'alt' => 'Joe Brown',
                 'class' => 'founder-avatar founder-avatar-accent',
-            ],
+            ),
             'quoteMark' => '“',
             'quoteMarkClass' => 'quote-mark',
             'heading' => 'Your marketing strategy should not be separated from your technology and sales process.',
@@ -554,14 +554,14 @@ return [
             'descriptionClass' => 'mb-2',
             'emphasis' => 'You receive senior-level guidance that connects acquisition decisions to the systems responsible for capturing, following up with, and measuring every opportunity.',
             'emphasisClass' => 'mb-0 text-dark',
-            'cta' => [
+            'cta' => array(
                 'label' => 'Learn About Skale',
                 'url' => '/about',
                 'class' => 'btn btn-outline-dark',
-            ],
-        ],
+            ),
+        ),
 
-        'qualification' => [
+        'qualification' => array(
             'enabled' => true,
             'id' => 'qualification',
             'tag' => 'section',
@@ -580,27 +580,27 @@ return [
             'iconClass' => 'bi bi-check-circle-fill text-accent fs-5',
             'titleClass' => 'd-block',
             'descriptionClass' => 'text-secondary',
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'title' => 'You are getting traffic but not enough qualified leads.',
                     'description' => 'Your channels create activity, but the path from click to conversation is inconsistent.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'You are running marketing without reliable attribution.',
                     'description' => 'You cannot confidently explain which campaigns, pages, or sources contribute to pipeline.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'You need strategy and execution connected.',
                     'description' => 'You want one partner who can improve the message, campaigns, pages, tracking, and supporting systems.',
-                ],
-                [
+                ),
+                array(
                     'title' => 'You are prepared to improve before increasing spend.',
                     'description' => 'You value fixing conversion and follow-up gaps instead of simply buying more traffic.',
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'faq' => [
+        'faq' => array(
             'enabled' => true,
             'id' => 'faq',
             'tag' => 'section',
@@ -625,47 +625,47 @@ return [
             'openCollapseClass' => 'accordion-collapse collapse show',
             'bodyClass' => 'accordion-body',
             'allowMultipleOpen' => false,
-            'items' => [
-                [
+            'items' => array(
+                array(
                     'id' => 'faq-demand-generation',
                     'question' => 'What is demand generation?',
                     'answer' => 'Demand generation is the connected process of creating awareness, attracting the right audience, building trust, capturing interest, nurturing prospects, and turning qualified demand into sales opportunities. It can include SEO, paid media, content, email, landing pages, conversion optimization, analytics, and lead-management workflows.',
                     'open' => true,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-channels',
                     'question' => 'Do we need to use every marketing channel?',
                     'answer' => 'No. The right channel mix depends on your audience, offer, sales cycle, budget, existing visibility, and current constraints. It is usually better to operate a smaller number of connected channels well than to spread resources across every available platform.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-existing-campaigns',
                     'question' => 'Can you improve campaigns we already have?',
                     'answer' => 'Yes. Skale can review existing SEO, Google Ads, Meta campaigns, email programs, landing pages, analytics, and follow-up processes. In many cases, the fastest opportunity comes from improving the existing system before launching something new.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-budget',
                     'question' => 'How much should we spend on paid advertising?',
                     'answer' => 'There is no universal amount. Budget should reflect your economics, market, conversion path, sales capacity, and the amount of data needed to make informed decisions. We first make sure the strategy, offer, tracking, and landing experience are strong enough to support paid traffic.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-success',
                     'question' => 'How do you measure success?',
                     'answer' => 'Success measures are defined around your business goals. Depending on the engagement, they may include qualified leads, booked consultations, conversion rate, lead quality, cost per qualified opportunity, organic visibility, email engagement, pipeline contribution, and revenue attribution.',
                     'open' => false,
-                ],
-                [
+                ),
+                array(
                     'id' => 'faq-timeline',
                     'question' => 'How quickly can we expect results?',
                     'answer' => 'Paid campaigns and conversion improvements can generate useful data relatively quickly, while SEO and content typically build momentum over a longer period. The timeline depends on your starting point, market, budget, sales cycle, and the amount of infrastructure that needs to be improved.',
                     'open' => false,
-                ],
-            ],
-        ],
+                ),
+            ),
+        ),
 
-        'finalCta' => [
+        'finalCta' => array(
             'enabled' => true,
             'id' => 'final-cta',
             'tag' => 'section',
@@ -680,27 +680,27 @@ return [
             'headingTag' => 'h2',
             'description' => 'Schedule a free demand review to talk through your audience, channels, conversion path, follow-up, and the most valuable place to improve first.',
             'descriptionClass' => 'lead mt-3 mb-4',
-            'buttons' => [
+            'buttons' => array(
                 'wrapperClass' => 'd-flex flex-column flex-sm-row justify-content-center gap-3',
-                'items' => [
-                    [
+                'items' => array(
+                    array(
                         'label' => 'Book My Free Demand Review',
                         'url' => $_ENV['SITE_URL'] . $_ENV['URL_CONTACT'],
                         'class' => 'btn btn-accent btn-lg',
                         'iconClass' => null,
-                    ],
-                    [
+                    ),
+                    array(
                         'label' => '732-925-4044',
                         'url' => 'tel:+17329254044',
                         'class' => 'btn btn-outline-light btn-lg',
                         'iconClass' => 'bi bi-telephone me-2',
-                    ],
-                ],
-            ],
+                    ),
+                ),
+            ),
             'note' => 'No obligation. No prebuilt package. A practical conversation focused on your current growth system.',
             'noteClass' => 'small mt-3 mb-0',
-        ],
-    ],
+        ),
+    ),
 
     'form' => array(
         'heading' => '',
@@ -804,4 +804,4 @@ return [
             ),
         ),
     )
-];
+);

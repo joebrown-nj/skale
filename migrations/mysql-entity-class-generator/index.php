@@ -90,7 +90,7 @@ if (@$_REQUEST["f"] == "") {
 
         // Exclude Fields
         //Fields name : created_on,created,created_at
-        $exFields = ["created_on", "created", "created_at"];
+        $exFields = array("created_on", "created", "created_at");
 
         $c = "";
         $c = "<?php

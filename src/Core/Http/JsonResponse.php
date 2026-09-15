@@ -12,17 +12,17 @@ final class JsonResponse extends Response
         parent::__construct(
             json_encode($data, JSON_THROW_ON_ERROR),
             $status,
-            ['Content-Type' => 'application/json; charset=UTF-8'],
+            array('Content-Type' => 'application/json; charset=UTF-8'),
         );
     }
 
     public static function success(string|array $message, int $status = 200): self
     {
-        return new self(['success' => $message], $status);
+        return new self(array('success' => $message), $status);
     }
 
     public static function error(string|array $message, int $status = 422): self
     {
-        return new self(['error' => $message], $status);
+        return new self(array('error' => $message), $status);
     }
 }

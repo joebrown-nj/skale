@@ -12,14 +12,14 @@ use Psr\Container\ContainerInterface;
 
 final class RoutesTest extends TestCase
 {
-    private const TEMPLATE_ENV = [
+    private const TEMPLATE_ENV = array(
         'WEB_ROOT' => '',
         'SITE_URL' => 'https://example.test',
         'SITE_URL_DISPLAY' => 'example.test',
         'SITE_EMAIL' => 'hello@example.test',
         'URL_CONTACT' => 'contact',
         'URL_SERVICES_SOLUTIONS' => 'solutions',
-    ];
+    );
 
     protected function setUp(): void
     {
@@ -68,13 +68,13 @@ final class RoutesTest extends TestCase
         $pageContextProvider->expects($this->once())
             ->method('resolve')
             ->with('about')
-            ->willReturn(['content' => (object) []]);
+            ->willReturn(array('content' => (object) array()));
 
         $routes = $this->newRoutesInstance();
         $this->setProperty($routes, 'container', $container);
         $this->setProperty($routes, 'pageContextProvider', $pageContextProvider);
 
-        $this->invokeMethod($routes, 'handleDynamicPageOrNotFound', ['/about']);
+        $this->invokeMethod($routes, 'handleDynamicPageOrNotFound', array('/about'));
     }
 
     public function testRespondSuppressesHeadResponseBodies(): void
@@ -84,9 +84,9 @@ final class RoutesTest extends TestCase
         $routes = $this->newRoutesInstance();
 
         ob_start();
-        $this->invokeMethod($routes, 'respond', [static function (): void {
+        $this->invokeMethod($routes, 'respond', array(static function (): void {
             echo 'response body';
-        }]);
+        }));
         $output = ob_get_clean();
 
         $this->assertSame('', $output);
@@ -101,7 +101,7 @@ final class RoutesTest extends TestCase
         $routes = $this->newRoutesInstance();
 
         ob_start();
-        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $this->invokeMethod($routes, 'handleError', array(new \RuntimeException('Sensitive failure details')));
         $output = (string) ob_get_clean();
 
         $this->assertStringContainsString('Something went wrong', $output);
@@ -117,7 +117,7 @@ final class RoutesTest extends TestCase
         $routes = $this->newRoutesInstance();
 
         ob_start();
-        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $this->invokeMethod($routes, 'handleError', array(new \RuntimeException('Sensitive failure details')));
         $output = (string) ob_get_clean();
 
         $this->assertStringContainsString('Sensitive failure details', $output);
@@ -131,12 +131,12 @@ final class RoutesTest extends TestCase
         $routes = $this->newRoutesInstance();
 
         ob_start();
-        $this->invokeMethod($routes, 'handleError', [new \RuntimeException('Sensitive failure details')]);
+        $this->invokeMethod($routes, 'handleError', array(new \RuntimeException('Sensitive failure details')));
         $output = (string) ob_get_clean();
 
         $this->assertJson($output);
         $this->assertSame(
-            ['error' => 'Something went wrong. Please try again later.'],
+            array('error' => 'Something went wrong. Please try again later.'),
             json_decode($output, true),
         );
     }
@@ -151,7 +151,7 @@ final class RoutesTest extends TestCase
         return $routes;
     }
 
-    private function invokeMethod(object $object, string $method, array $arguments = []): mixed
+    private function invokeMethod(object $object, string $method, array $arguments = array()): mixed
     {
         $reflection = new \ReflectionMethod($object, $method);
         $reflection->setAccessible(true);

@@ -53,8 +53,8 @@ final class EmailQueueServiceTest extends TestCase
 
         $this->assertSame(1, $summary['claimed']);
         $this->assertSame(1, $summary['sent']);
-        $this->assertSame([], glob($this->queueDir . '/pending/*.json') ?: []);
-        $this->assertCount(1, glob($this->queueDir . '/sent/*.json') ?: []);
+        $this->assertSame(array(), glob($this->queueDir . '/pending/*.json') ?: array());
+        $this->assertCount(1, glob($this->queueDir . '/sent/*.json') ?: array());
     }
 
     public function testProcessPendingRetriesFailedEmail(): void
@@ -79,7 +79,7 @@ final class EmailQueueServiceTest extends TestCase
 
         $this->assertSame(1, $summary['claimed']);
         $this->assertSame(1, $summary['retried']);
-        $pendingFiles = glob($this->queueDir . '/pending/*.json') ?: [];
+        $pendingFiles = glob($this->queueDir . '/pending/*.json') ?: array();
 
         $this->assertCount(1, $pendingFiles);
 

@@ -26,8 +26,8 @@ $connection = new mysqli(
 $connection->set_charset('utf8mb4');
 
 try {
-    $buttonClicksTable = resolveTableName($connection, ['log_button_clicks']);
-    $contactsTable = resolveTableName($connection, ['contacts', 'contact']);
+    $buttonClicksTable = resolveTableName($connection, array('log_button_clicks'));
+    $contactsTable = resolveTableName($connection, array('contacts', 'contact'));
 
     $buttonClicksTimestampColumn = resolveTimestampColumn($connection, $buttonClicksTable);
     $contactsTimestampColumn = resolveTimestampColumn($connection, $contactsTable);
@@ -61,7 +61,7 @@ function buildReport(
     $generatedAt = new DateTimeImmutable('now');
     $windowStart = $generatedAt->sub(new DateInterval('P1D'));
 
-    $output = [];
+    $output = array();
     $output[] = 'Daily activity report';
     $output[] = 'Generated: ' . $generatedAt->format('Y-m-d H:i:s');
     $output[] = 'Window: ' . $windowStart->format('Y-m-d H:i:s') . ' to ' . $generatedAt->format('Y-m-d H:i:s');
@@ -83,12 +83,12 @@ function buildReport(
 
 function formatSection(string $table, string $timestampColumn, array $rows): string
 {
-    $output = [];
+    $output = array();
     $output[] = strtoupper($table);
     $output[] = 'Timestamp column: ' . $timestampColumn;
     $output[] = 'Records found: ' . count($rows);
 
-    if ($rows === []) {
+    if ($rows === array()) {
         $output[] = 'No records found in the last 24 hours.';
         return implode(PHP_EOL, $output);
     }
@@ -121,7 +121,7 @@ function formatFieldValue(string $field, mixed $value): string
         return normalizeValue($value);
     }
 
-    $keysToKeep = [
+    $keysToKeep = array(
         'REMOTE_ADDR',
         'SERVER_NAME',
         'SERVER_PORT',
@@ -129,9 +129,9 @@ function formatFieldValue(string $field, mixed $value): string
         'REQUEST_URI',
         'HTTP_REFERER',
         'HTTP_USER_AGENT',
-    ];
+    );
 
-    $summary = [];
+    $summary = array();
 
     foreach ($keysToKeep as $key) {
         if (isset($decoded[$key]) && $decoded[$key] !== '') {
@@ -194,7 +194,7 @@ function resolveTableName(mysqli $connection, array $candidates): string
 
 function resolveTimestampColumn(mysqli $connection, string $table): string
 {
-    $candidateColumns = [
+    $candidateColumns = array(
         'created_at',
         'created_on',
         'created',
@@ -208,9 +208,9 @@ function resolveTimestampColumn(mysqli $connection, string $table): string
         'logged_at',
         'clicked_at',
         'date',
-    ];
+    );
 
-    $columns = [];
+    $columns = array();
     $result = $connection->query('SHOW COLUMNS FROM `' . $connection->real_escape_string($table) . '`');
 
     while ($row = $result->fetch_assoc()) {

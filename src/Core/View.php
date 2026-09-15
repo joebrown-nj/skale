@@ -76,7 +76,7 @@ class View implements ViewInterface
         return $this->user;
     }
 
-    public function render(string $view, array $data = []): void
+    public function render(string $view, array $data = array()): void
     {
         $page = $this->pageContextProvider->resolve($this->uri);
 

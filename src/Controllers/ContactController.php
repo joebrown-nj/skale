@@ -74,9 +74,9 @@ class ContactController
 
         $this->formSubmissionService->deferContactSubmission($input, $user, $_SERVER);
 
-        return (string) JsonResponse::success([
+        return (string) JsonResponse::success(array(
             'redirect' => '/thank-you',
-        ]);
+        ));
     }
 
     private function normalizeInput(array $input): array
@@ -91,7 +91,7 @@ class ContactController
         }
 
         if (isset($input['interest']) && !isset($input['interests'])) {
-            $input['interests'] = [$input['interest']];
+            $input['interests'] = array($input['interest']);
         }
 
         return $input;

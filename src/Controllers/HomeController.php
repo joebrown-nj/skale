@@ -33,7 +33,7 @@ class HomeController
         // $wCU = $this->homePageModel->getWhyChooseUsContent();
         $blogPage = $this->pageContentModel->getPageContentByUrl('blog');
 
-        $data = [
+        $data = array(
             // 'hero' => $this->homePageModel->getHeroContent(),
             // 'homeCards' => $this->homeCardsModel->getHomeCards(),
             // 'blogContent' => $blogPage !== false ? $blogPage['content'] : null,
@@ -41,7 +41,7 @@ class HomeController
             'blogList' => $this->blogModel->getAllBlogs(null, 3),
             // 'howItWorks' => $this->homePageModel->getHowItWorksContent(),
             // 'theResults' => $this->homePageModel->getTheResultsContent(),
-        ];
+        );
 
         $this->view->render('home', $data);
     }
@@ -63,10 +63,10 @@ class HomeController
 
         $this->view->render(
             'unsubscribe',
-            [
+            array(
                 'successMessage' => $successMessage,
                 'errorMessage' => $errorMessage,
-            ],
+            ),
         );
     }
 }

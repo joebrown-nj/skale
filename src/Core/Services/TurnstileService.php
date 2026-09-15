@@ -30,10 +30,10 @@ class TurnstileService
             return false;
         }
 
-        $data = [
+        $data = array(
             'secret' => $secret,
             'response' => $token,
-        ];
+        );
 
         if (filter_var($remoteIp, FILTER_VALIDATE_IP) !== false) {
             $data['remoteip'] = $remoteIp;
@@ -59,15 +59,15 @@ class TurnstileService
     /** @param array<string, string> $data */
     private function requestSiteverify(array $data): string|false
     {
-        $context = stream_context_create([
-            'http' => [
+        $context = stream_context_create(array(
+            'http' => array(
                 'method' => 'POST',
                 'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
                 'content' => http_build_query($data),
                 'timeout' => 10,
                 'ignore_errors' => true,
-            ],
-        ]);
+            ),
+        ));
 
         return @file_get_contents(self::SITEVERIFY_URL, false, $context);
     }

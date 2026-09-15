@@ -11,13 +11,13 @@ final class TemplateContentProvider
     public function get(string $view, $slug): array
     {
         if (!preg_match('/^[a-z0-9-]+$/', $view)) {
-            return [];
+            return array();
         }
 
         $file = self::TEMPLATE_DIRECTORY . DIRECTORY_SEPARATOR . $view . '.php';
 
         if (!is_file($file)) {
-            return [];
+            return array();
         }
 
         $content = require $file;

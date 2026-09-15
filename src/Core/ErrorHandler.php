@@ -11,13 +11,13 @@ final class ErrorHandler
     /**
      * @var list<int>
      */
-    private const FATAL_ERROR_TYPES = [
+    private const FATAL_ERROR_TYPES = array(
         E_ERROR,
         E_PARSE,
         E_CORE_ERROR,
         E_COMPILE_ERROR,
         E_USER_ERROR,
-    ];
+    );
 
     private static bool $registered = false;
     private static bool $isRendering = false;
@@ -30,8 +30,8 @@ final class ErrorHandler
             return;
         }
 
-        set_exception_handler([self::class, 'handleException']);
-        register_shutdown_function([self::class, 'handleShutdown']);
+        set_exception_handler(array(self::class, 'handleException'));
+        register_shutdown_function(array(self::class, 'handleShutdown'));
 
         self::$registered = true;
     }
@@ -91,13 +91,13 @@ final class ErrorHandler
             $smarty->assign('app_name', 'Skaleup');
 
             $uri = trim((string) parse_url((string) ($_SERVER['REQUEST_URI'] ?? '/'), PHP_URL_PATH), '/');
-            $pages = $uri === '' ? [] : explode('/', $uri);
+            $pages = $uri === '' ? array() : explode('/', $uri);
 
-            $smarty->assign([
+            $smarty->assign(array(
                 'page' => null,
-                'data' => [
+                'data' => array(
                     'errorMessage' => $exception !== null ? self::detailedErrorMessage($exception) : '',
-                ],
+                ),
                 'viewName' => 'error/500',
                 'header' => true,
                 'footer' => true,
@@ -105,10 +105,10 @@ final class ErrorHandler
                 'p1' => $pages[0] ?? '',
                 'p2' => $pages[1] ?? '',
                 'p3' => $pages[2] ?? '',
-                'nav' => [],
-                'footerNav' => [],
-                'serviceList' => [],
-            ]);
+                'nav' => array(),
+                'footerNav' => array(),
+                'serviceList' => array(),
+            ));
 
             return $smarty->fetch('error/500.tpl');
         } catch (\Throwable $e) {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [];
+return array();
 
 // return array (
 //   'aria_label_service_list_blog' => 'serviceList blog',

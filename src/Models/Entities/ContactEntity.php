@@ -36,7 +36,7 @@ class ContactEntity
         insertable: false,
         updatable: false,
         generated: 'INSERT',
-        options: ['default' => new CurrentTimestamp()],
+        options: array('default' => new CurrentTimestamp()),
     )]
     public ?\DateTimeInterface $date = null;
 

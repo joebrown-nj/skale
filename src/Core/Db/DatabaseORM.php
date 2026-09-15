@@ -22,7 +22,7 @@ final readonly class DatabaseORM
     public function createEntityManager(): EntityManager
     {
         $config = ORMSetup::createAttributeMetadataConfig(
-            paths: [dirname(__DIR__, 3) . '/src/Models/Entities'],
+            paths: array(dirname(__DIR__, 3) . '/src/Models/Entities'),
             isDevMode: $this->databaseConfiguration->isDevMode,
             cache: $this->databaseConfiguration->isDevMode ? null : $this->productionCache,
         );
@@ -36,13 +36,13 @@ final readonly class DatabaseORM
                 : ProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS,
         );
 
-        $dbParams = [
+        $dbParams = array(
             'dbname' => $this->databaseConfiguration->dbname,
             'user' => $this->databaseConfiguration->user,
             'password' => $this->databaseConfiguration->password,
             'host' => $this->databaseConfiguration->host,
             'driver' => $this->databaseConfiguration->driver,
-        ];
+        );
 
         try {
             $connection = DriverManager::getConnection($dbParams, $config);

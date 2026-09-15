@@ -14,7 +14,7 @@ final class LeadFormRequest
     public function __construct(private readonly Request $request)
     {
         $input = $request->post();
-        $this->data = [
+        $this->data = array(
             'form_type' => 'landing-page',
             'name' => $this->text($input['name'] ?? '', 50),
             'email' => strtolower($this->text($input['email'] ?? '', 100)),
@@ -26,7 +26,7 @@ final class LeadFormRequest
             'lead_source' => $this->text($input['lead_source'] ?? '', 100),
             'interest' => $this->text($input['interest'] ?? '', 100),
             'comment' => $this->text($input['comment'] ?? '', 2000),
-        ];
+        );
     }
 
     /** @return array<string, mixed> */
@@ -51,7 +51,7 @@ final class LeadFormRequest
     /** @return list<string> */
     public function errors(): array
     {
-        $errors = [];
+        $errors = array();
         if ($this->data['name'] === '') {
             $errors[] = 'Name is required';
         }

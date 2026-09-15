@@ -151,7 +151,7 @@ class EmailModel implements EmailServiceInterface
         }
 
         $useStartTls = $this->mailConfig->port !== 587
-            || !in_array(strtolower($this->mailConfig->encryption), ['tls', 'starttls'], true);
+            || !in_array(strtolower($this->mailConfig->encryption), array('tls', 'starttls'), true);
         $this->configureSmtpEndpoint(
             $useStartTls ? 587 : 465,
             $useStartTls ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS,
@@ -201,7 +201,7 @@ class EmailModel implements EmailServiceInterface
         try {
             $signup = $this->entityManager
                 ->getRepository(EmailListSignupsEntity::class)
-                ->findOneBy(['email' => $email]);
+                ->findOneBy(array('email' => $email));
 
             if ($signup === null) {
                 return false;
@@ -235,7 +235,7 @@ class EmailModel implements EmailServiceInterface
 
     public function checkIfEmailIsOnList(string $email): bool
     {
-        $exists = $this->entityManager->getRepository(EmailListSignupsEntity::class)->findOneBy(['email' => $email]);
+        $exists = $this->entityManager->getRepository(EmailListSignupsEntity::class)->findOneBy(array('email' => $email));
         if ($exists) {
             return true;
         }
@@ -259,10 +259,10 @@ class EmailModel implements EmailServiceInterface
             return false;
         }
 
-        $payload = [
+        $payload = array(
             'email' => $email,
             'userInfo' => json_encode($user),
-        ];
+        );
 
         return $this->processEmailListSignup($payload);
     }

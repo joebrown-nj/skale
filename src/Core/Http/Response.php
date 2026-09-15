@@ -10,7 +10,7 @@ class Response
     public function __construct(
         private readonly string $body = '',
         private readonly int $status = 200,
-        private readonly array $headers = [],
+        private readonly array $headers = array(),
     ) {
         if ($status < 100 || $status > 599) {
             throw new \InvalidArgumentException('Invalid HTTP status code.');

@@ -26,7 +26,7 @@ $connection = new mysqli(
 $connection->set_charset('utf8mb4');
 
 try {
-    $buttonClicksTable = resolveTableName($connection, ['log_button_clicks']);
+    $buttonClicksTable = resolveTableName($connection, array('log_button_clicks'));
     $rows = fetchAll($connection, $buttonClicksTable);
     $envKeys = array_keys($_ENV);
 
@@ -42,7 +42,7 @@ try {
 
 function buildSummary(string $table, array $summary): string
 {
-    $output = [];
+    $output = array();
     $output[] = 'Server info cleanup complete';
     $output[] = 'Table: ' . $table;
     $output[] = 'Rows scanned: ' . $summary['scanned'];
@@ -56,23 +56,23 @@ function buildSummary(string $table, array $summary): string
 
 function removeEnvironmentData(mysqli $connection, string $table, array $rows, array $envKeys): array
 {
-    if ($rows === [] || $envKeys === []) {
-        return [
+    if ($rows === array() || $envKeys === array()) {
+        return array(
             'scanned' => count($rows),
             'updated' => 0,
             'unchanged' => count($rows),
             'skipped' => 0,
             'removedKeys' => 0,
-        ];
+        );
     }
 
-    $summary = [
+    $summary = array(
         'scanned' => count($rows),
         'updated' => 0,
         'unchanged' => 0,
         'skipped' => 0,
         'removedKeys' => 0,
-    ];
+    );
 
     $connection->begin_transaction();
 

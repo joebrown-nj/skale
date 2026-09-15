@@ -12,7 +12,7 @@ final class ConfigurationFactory
     public static function fromEnvironment(array $environment, string $projectRoot): ApplicationConfig
     {
         $appEnvironment = strtolower(self::string($environment, 'APP_ENV', 'prod'));
-        $developmentMode = in_array($appEnvironment, ['dev', 'development', 'local', 'test'], true);
+        $developmentMode = in_array($appEnvironment, array('dev', 'development', 'local', 'test'), true);
 
         $database = new DatabaseConfig(
             self::required($environment, 'DB_NAME'),
@@ -126,7 +126,7 @@ final class ConfigurationFactory
     private static function encryption(array $env): string
     {
         $value = strtolower(self::string($env, 'SMTP_SECURE', 'ssl'));
-        if (!in_array($value, ['', 'ssl', 'smtps', 'tls', 'starttls'], true)) {
+        if (!in_array($value, array('', 'ssl', 'smtps', 'tls', 'starttls'), true)) {
             throw new InvalidArgumentException('Environment variable SMTP_SECURE must be ssl, tls, or empty.');
         }
         return $value;

@@ -48,14 +48,14 @@ class SiteDataCache
             return $this->sharedData;
         }
 
-        $this->sharedData = [
+        $this->sharedData = array(
             'nav' => $this->getMainNav(),
             'footerNav' => $this->getFooterNav(),
             'serviceList' => $this->getServiceList(),
             'allServiceList' => $this->getAllServiceList(),
             'contactContent' => $this->getContactContent(),
             'hiddenLinks' => $this->getHiddenLinks(),
-        ];
+        );
 
         return $this->sharedData;
     }

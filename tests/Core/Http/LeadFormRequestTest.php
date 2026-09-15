@@ -17,7 +17,7 @@ final class LeadFormRequestTest extends TestCase
 
     public function testItNormalizesAndLimitsInput(): void
     {
-        $form = new LeadFormRequest(new Request(post: [
+        $form = new LeadFormRequest(new Request(post: array(
             'name' => '  Jane   Doe ',
             'email' => ' JANE@EXAMPLE.COM ',
             'website' => ' https://example.com ',
@@ -26,7 +26,7 @@ final class LeadFormRequestTest extends TestCase
             'lead_source' => ' website-development-ab-version-b ',
             'interest' => ' website-design-and-development ',
             'comment' => str_repeat('x', 2100),
-        ]));
+        )));
         self::assertSame('Jane Doe', $form->validated()['name']);
         self::assertSame('jane@example.com', $form->validated()['email']);
         self::assertSame('https://example.com', $form->validated()['website']);
@@ -35,15 +35,15 @@ final class LeadFormRequestTest extends TestCase
         self::assertSame('website-development-ab-version-b', $form->validated()['lead_source']);
         self::assertSame('website-design-and-development', $form->validated()['interest']);
         self::assertSame(2000, strlen($form->validated()['comment']));
-        self::assertSame([], $form->errors());
+        self::assertSame(array(), $form->errors());
     }
 
     public function testItValidatesCsrfWhenSessionProtectionIsEnabled(): void
     {
         $_SESSION['csrf_token'] = 'expected';
-        $form = new LeadFormRequest(new Request(post: [
+        $form = new LeadFormRequest(new Request(post: array(
             'name' => 'Jane', 'email' => 'jane@example.com', '_csrf_token' => 'wrong',
-        ]));
+        )));
         self::assertContains('The form has expired. Please refresh and try again.', $form->errors());
     }
 }

@@ -8,10 +8,10 @@ final class Request
 {
     /** @param array<string, mixed> $query @param array<string, mixed> $post @param array<string, mixed> $server */
     public function __construct(
-        private readonly array $query = [],
-        private readonly array $post = [],
-        private readonly array $server = [],
-        private readonly array $cookies = [],
+        private readonly array $query = array(),
+        private readonly array $post = array(),
+        private readonly array $server = array(),
+        private readonly array $cookies = array(),
     ) {}
 
     public static function fromGlobals(): self

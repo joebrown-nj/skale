@@ -58,7 +58,7 @@ final class EmailModelTest extends TestCase
             blogItemsPerPage: 10,
         );
 
-        $deprecations = [];
+        $deprecations = array();
         set_error_handler(static function (int $errno, string $errstr) use (&$deprecations): bool {
             if (($errno & (E_DEPRECATED | E_USER_DEPRECATED)) !== 0) {
                 $deprecations[] = $errstr;
@@ -73,7 +73,7 @@ final class EmailModelTest extends TestCase
             restore_error_handler();
         }
 
-        $this->assertSame([], $deprecations);
+        $this->assertSame(array(), $deprecations);
         $this->assertSame(5, $mailer->Timeout);
         $this->assertSame(8, $mailer->getSMTPInstance()->Timelimit);
         $this->assertFalse($mailer->SMTPKeepAlive);

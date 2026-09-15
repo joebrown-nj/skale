@@ -23,21 +23,21 @@ final class EmailTemplateRenderer implements EmailTemplateRendererInterface
 
     public function render(string $content = '', string $email = ''): string
     {
-        return $this->smarty->fetch('contact-response.tpl', [
+        return $this->smarty->fetch('contact-response.tpl', array(
             'content' => $content,
             'recipient_email' => $email,
-            'site' => [
+            'site' => array(
                 'name' => $this->siteConfig->name,
                 'url' => rtrim($this->siteConfig->url, '/') . '/',
                 'email' => $this->siteConfig->email,
                 'phone' => $this->siteConfig->phone,
-            ],
-            'services' => [
-                ['path' => 'solutions/growth-infrastructure', 'title' => 'Websites & Digital Experiences', 'description' => 'Website development, performance improvements, conversion optimization, SEO, and analytics.'],
-                ['path' => 'solutions/automation-software', 'title' => 'Automation & Software', 'description' => 'Workflow automation, custom software, system integrations, and solutions that eliminate repetitive work.'],
-                ['path' => 'solutions/demand-generation', 'title' => 'Marketing & Growth', 'description' => 'PPC, email marketing, digital marketing, conversion strategy, and reporting focused on measurable results.'],
-                ['path' => 'solutions/strategy-and-optimization', 'title' => 'Technology Strategy', 'description' => 'Practical technology guidance designed around your business, existing systems, and growth goals.'],
-            ],
-        ]);
+            ),
+            'services' => array(
+                array('path' => 'solutions/growth-infrastructure', 'title' => 'Websites & Digital Experiences', 'description' => 'Website development, performance improvements, conversion optimization, SEO, and analytics.'),
+                array('path' => 'solutions/automation-software', 'title' => 'Automation & Software', 'description' => 'Workflow automation, custom software, system integrations, and solutions that eliminate repetitive work.'),
+                array('path' => 'solutions/demand-generation', 'title' => 'Marketing & Growth', 'description' => 'PPC, email marketing, digital marketing, conversion strategy, and reporting focused on measurable results.'),
+                array('path' => 'solutions/strategy-and-optimization', 'title' => 'Technology Strategy', 'description' => 'Practical technology guidance designed around your business, existing systems, and growth goals.'),
+            ),
+        ));
     }
 }

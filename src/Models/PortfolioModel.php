@@ -23,4 +23,15 @@ class PortfolioModel
         $portfolioItems = $query->getResult();
         return $portfolioItems;
     }
+
+    public function getPortfolioItemBySlug(string $slug): ?PortfolioEntity
+    {
+        $repository = $this->entityManager->getRepository(PortfolioEntity::class);
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.url = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery();
+        $portfolioItem = $query->getOneOrNullResult();
+        return $portfolioItem;
+    }
 }

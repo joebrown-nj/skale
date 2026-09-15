@@ -4,6 +4,4 @@
     {$page.content->content}
 {/if}
 
-
 {include file="inc/layout/footer.tpl"}
-

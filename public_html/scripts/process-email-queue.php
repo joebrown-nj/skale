@@ -41,11 +41,11 @@ function parseCliOptions(array $argv): array
         }
     }
 
-    return [
+    return array(
         'retryFailed' => $retryFailed,
         'retryId' => $retryId,
         'limit' => $limit,
-    ];
+    );
 }
 
 function requeueFailedJobs(string $projectRoot, ?string $jobId = null): int
@@ -66,7 +66,7 @@ function requeueFailedJobs(string $projectRoot, ?string $jobId = null): int
         : $failedDir . '/*.json';
 
     $moved = 0;
-    $failedFiles = glob($pattern) ?: [];
+    $failedFiles = glob($pattern) ?: array();
     foreach ($failedFiles as $failedPath) {
         $targetPath = $pendingDir . '/' . basename($failedPath);
         if (@copy($failedPath, $targetPath)) {
@@ -77,7 +77,7 @@ function requeueFailedJobs(string $projectRoot, ?string $jobId = null): int
     return $moved;
 }
 
-$options = parseCliOptions($argv ?? []);
+$options = parseCliOptions($argv ?? array());
 $retryCount = 0;
 if ($options['retryFailed'] || $options['retryId'] !== null) {
     $retryCount = requeueFailedJobs($projectRoot, $options['retryId']);

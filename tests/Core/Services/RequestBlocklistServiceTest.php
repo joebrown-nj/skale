@@ -13,15 +13,15 @@ final class RequestBlocklistServiceTest extends TestCase
 {
     public function testMatchesExactIpRuleForRequest(): void
     {
-        $service = $this->buildServiceWithRules([
+        $service = $this->buildServiceWithRules(array(
             $this->buildRule('ip', 'exact', '203.0.113.25'),
-        ]);
+        ));
 
-        $matchedRule = $service->findMatchingRequestRule([
+        $matchedRule = $service->findMatchingRequestRule(array(
             'REMOTE_ADDR' => '203.0.113.25',
             'REQUEST_METHOD' => 'GET',
             'REQUEST_URI' => '/contact',
-        ], '/contact');
+        ), '/contact');
 
         $this->assertInstanceOf(RequestBlockRuleEntity::class, $matchedRule);
         $this->assertSame('ip', $matchedRule?->getAttribute());
@@ -29,15 +29,15 @@ final class RequestBlocklistServiceTest extends TestCase
 
     public function testMatchesCidrIpRuleForRequest(): void
     {
-        $service = $this->buildServiceWithRules([
+        $service = $this->buildServiceWithRules(array(
             $this->buildRule('ip', 'cidr', '203.0.113.0/24'),
-        ]);
+        ));
 
-        $matchedRule = $service->findMatchingRequestRule([
+        $matchedRule = $service->findMatchingRequestRule(array(
             'REMOTE_ADDR' => '203.0.113.88',
             'REQUEST_METHOD' => 'GET',
             'REQUEST_URI' => '/contact',
-        ], '/contact');
+        ), '/contact');
 
         $this->assertInstanceOf(RequestBlockRuleEntity::class, $matchedRule);
         $this->assertSame('cidr', $matchedRule?->getMatchType());
@@ -45,13 +45,13 @@ final class RequestBlocklistServiceTest extends TestCase
 
     public function testMatchesEmailDomainForSubmission(): void
     {
-        $service = $this->buildServiceWithRules([
+        $service = $this->buildServiceWithRules(array(
             $this->buildRule('email_domain', 'exact', 'mailinator.com'),
-        ]);
+        ));
 
-        $matchedRule = $service->findMatchingSubmissionRule([
+        $matchedRule = $service->findMatchingSubmissionRule(array(
             'email' => 'bot@mailinator.com',
-        ]);
+        ));
 
         $this->assertInstanceOf(RequestBlockRuleEntity::class, $matchedRule);
         $this->assertSame('email_domain', $matchedRule?->getAttribute());
@@ -59,13 +59,13 @@ final class RequestBlocklistServiceTest extends TestCase
 
     public function testMatchesNormalizedPhoneForSubmission(): void
     {
-        $service = $this->buildServiceWithRules([
+        $service = $this->buildServiceWithRules(array(
             $this->buildRule('phone', 'exact', '5550109999'),
-        ]);
+        ));
 
-        $matchedRule = $service->findMatchingSubmissionRule([
+        $matchedRule = $service->findMatchingSubmissionRule(array(
             'phone' => '(555) 010-9999',
-        ]);
+        ));
 
         $this->assertInstanceOf(RequestBlockRuleEntity::class, $matchedRule);
         $this->assertSame('phone', $matchedRule?->getAttribute());
@@ -76,7 +76,7 @@ final class RequestBlocklistServiceTest extends TestCase
         $rule = $this->buildRule('ip', 'exact', '203.0.113.25');
         $rule->setBlockMessage('Access denied.');
 
-        $service = $this->buildServiceWithRules([$rule]);
+        $service = $this->buildServiceWithRules(array($rule));
 
         $this->assertSame('Access denied.', $service->getPublicMessage($rule));
     }

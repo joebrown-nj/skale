@@ -32,7 +32,7 @@
 
                 <div class="hero-actions d-flex flex-wrap gap-3 mt-4" data-aos="fade-up" data-aos-delay="300">
                     {foreach from=$content.hero.actions item=action}
-                        <a href="{$action.href}" class="{$action.class}"> {$action.label} </a>
+                        <a onclick="scrollToEl('{$action.href}')" class="{$action.class} cursor-pointer">{$action.label}</a>
                     {/foreach}
                 </div>
             </div>
