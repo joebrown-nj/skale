@@ -1,3 +1,9 @@
+.menu-bar {
+	a.brand, a.header-phone {
+		color:#000;
+	}
+}
+
 h1,
 h2,
 h3,
