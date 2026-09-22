@@ -11,6 +11,20 @@ footer {
     display: none;
 }
 
+.page-content {
+    margin-top:0px;
+}
+
+.main-header, .footer-main {
+	display:none;
+}
+
+body{
+    background:#081120;
+    color:#fff;
+    position:relative;
+}
+
 .thank-you-page::before{
     content:'';
     position:absolute;

@@ -1,6 +1,6 @@
 <form action="{$smarty.ENV.SITE_URL}contact-form" id="contactForm" class="mt-0 row g-3 needs-validation ajaxForm" novalidate method="POST" data-meta-form-name="contact-form" data-meta-success-event="Contact" data-meta-success-custom-event="ContactFormSubmitted" data-meta-start-custom-event="ContactFormStarted" >
     <input type="hidden" name="form_type" value="contact">
-    <div class="row g-3">
+    <div class="row g-3 p-0">
         <div class="col-md-6">
             <input name="name" type="text" class="form-control" placeholder="Full Name"/>
         </div>

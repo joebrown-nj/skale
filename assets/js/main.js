@@ -265,6 +265,7 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     syncMetaTrackingContext(slug);
     updateHeaderBackground(slug);
+    logLandingPage(slug);
     ajaxGetPageMetaData(slug, () => {
         dispatchRoutePageView(slug);
         trackMetaPageView(slug, true);
@@ -676,11 +677,31 @@ function logButtonClick(element) {
     const href = $element.attr('href');
     const formAction = $element.closest('form').attr('action');
     const target = href || formAction || window.location.pathname;
-    const detail = $element.attr('aria-label') || $element.attr('aria-details') || $element.text().trim();
+    const detail = $element.attr('aria-label')
+        || $element.attr('aria-details')
+        || $element.text().trim()
+        || $element.attr('name')
+        || $element.attr('id')
+        || 'Button click';
 
     logInteraction({
         target,
         detail,
+    });
+}
+
+function logFormSubmission(form) {
+    if (!form) {
+        return;
+    }
+
+    const $form = $(form);
+    const target = $form.attr('action') || window.location.pathname;
+    const detail = $form.attr('data-meta-form-name') || form.id || form.name || 'Form submission';
+
+    logInteraction({
+        target,
+        detail: `Form submission: ${detail}`,
     });
 }
 
@@ -886,12 +907,6 @@ $(document).on('click', '.prev-step', function() {
 function ajaxGetPageContent(slug, queryString = '', event = null, addToHistory = true) {
     removeAllAlerts();
 
-    const sourceElement = event?.currentTarget ?? event?.target ?? null;
-
-    if (sourceElement) {
-        logButtonClick(sourceElement);
-    }
-
     showOverlay();
 
     $.ajax({
@@ -936,8 +951,8 @@ function submitAjaxForm(form, submitter = null) {
 
     if (submitter) {
         trackMetaClick(submitter);
-        logButtonClick(submitter);
     }
+    logFormSubmission(form);
     trackMetaFormStart($form[0]);
     showOverlay();
     $form.find('.alert').remove();
@@ -1045,6 +1060,10 @@ $(document).on('click', '.mbtn', function handleMenuClick(event) {
     $('#mainNav').removeClass('show');
 
     return false;
+});
+
+$(document).on('click', 'button, input[type="button"], input[type="submit"], a.btn, .mbtn', function handleButtonClickLogging() {
+    logButtonClick(this);
 });
 
 $(document).on('click', '[data-meta-event], [data-meta-custom-event]', function handleTrackedElementClick() {
