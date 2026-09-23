@@ -14,7 +14,7 @@
                             <span class="text-green">It should get you customers.</span>
                         </h1>
 
-                        <p class="hero-lead mb-0">
+                        <p class="hero-lead mb-0 text-secondary">
                             If people are finding your business but not contacting you, your website may be
                             creating friction instead of opportunity. We build websites that make your value
                             clear, earn trust and give visitors a reason to take the next step.

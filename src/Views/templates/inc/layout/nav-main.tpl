@@ -22,7 +22,7 @@
                                     {/foreach}
 
                                     <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" href="/solutions"><i class="bi bi-grid me-2"></i>View All Solutions</a></li>
+                                    <li><a class="dropdown-item mbtn" aria-label="sub nav View All Solutions" href="/solutions"><i class="bi bi-grid me-2"></i>View All Solutions</a></li>
                                 </ul>
                             {/if}
                         </li>

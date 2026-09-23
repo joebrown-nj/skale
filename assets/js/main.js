@@ -265,7 +265,6 @@ function renderAjaxPageContent(slug, data, queryString = '', addToHistory = true
 
     syncMetaTrackingContext(slug);
     updateHeaderBackground(slug);
-    logLandingPage(slug);
     ajaxGetPageMetaData(slug, () => {
         dispatchRoutePageView(slug);
         trackMetaPageView(slug, true);
