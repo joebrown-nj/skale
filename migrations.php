@@ -10,6 +10,9 @@ return array(
     'migrations_paths' => array(
         'DoctrineMigrations' => './migrations',
     ),
-    'all_or_nothing' => true,
+    // MySQL implicitly commits CREATE/ALTER/DROP TABLE statements, so wrapping
+    // DDL migrations in transactions leaves Doctrine with invalid savepoints.
+    'all_or_nothing' => false,
+    'transactional' => false,
     'check_database_platform' => true,
 );

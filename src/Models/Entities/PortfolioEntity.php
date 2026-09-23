@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -26,6 +28,15 @@ class PortfolioEntity
 
     #[ORM\Column(type: 'string', length: 100)]
     public string $image;
+
+    /** @var Collection<int, TestimonialEntity> */
+    #[ORM\ManyToMany(targetEntity: TestimonialEntity::class, mappedBy: 'projects')]
+    private Collection $testimonials;
+
+    public function __construct()
+    {
+        $this->testimonials = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +87,28 @@ class PortfolioEntity
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /** @return Collection<int, TestimonialEntity> */
+    public function getTestimonials(): Collection
+    {
+        return $this->testimonials;
+    }
+
+    public function addTestimonial(TestimonialEntity $testimonial): self
+    {
+        if (!$this->testimonials->contains($testimonial)) {
+            $this->testimonials->add($testimonial);
+        }
+
+        return $this;
+    }
+
+    public function removeTestimonial(TestimonialEntity $testimonial): self
+    {
+        $this->testimonials->removeElement($testimonial);
 
         return $this;
     }
