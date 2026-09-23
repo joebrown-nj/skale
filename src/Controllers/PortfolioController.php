@@ -31,8 +31,13 @@ class PortfolioController
 
     public function getPortfolioDetail(string $slug)
     {
+        $portfolioItem = $this->portfolioModel->getPortfolioItemBySlug($slug);
+
         $data = array(
-            'portfolioItem' => $this->portfolioModel->getPortfolioItemBySlug($slug),
+            'portfolioItem' => $portfolioItem,
+            'testimonials' => null === $portfolioItem || null === $portfolioItem->getId()
+                ? array()
+                : $this->portfolioModel->getTestimonialsForPortfolioItem($portfolioItem->getId()),
             'content' => $this->content->getBySlug($slug),
         );
         $this->view->render('portfolio-detail', $data);

@@ -68,6 +68,14 @@ return array (
   'text_identified_application_and_workflow_bottlenecks_improved_platform' => 'Identified application and workflow bottlenecks, improved platform performance by approximately 40%, and used automation to reduce manual processing across recurring operations.',
   'text_performance_software_optimization' => 'Performance &bull; Software &bull; Optimization',
   'text_selected_results_reflect_work_completed_by_skale' => 'Selected results reflect work completed by Skale founder Joe Brown during professional and consulting engagements prior to founding Skale. Client and employer details are omitted where appropriate.',
+  // 'testimonials' => array(
+  //   array(
+  //     'text' => 'Skale took the time to understand how our business actually works, then delivered a practical solution that made our process faster, clearer, and easier to manage.',
+  //     'author' => 'Alex Morgan',
+  //     'role' => 'Operations Director',
+  //     'company' => 'Northstar Solutions',
+  //   ),
+  // ),
   'text_how_skale_can_help' => 'How Skale Can Help',
   'text_practical_help_across_the_technology_behind_your' => 'Practical help across the technology behind your business.',
   'text_start_with_one_problem_or_connect_several' => 'Start with one problem or connect several areas together. You don\'t have to figure out which category your problem belongs in before reaching out.',

@@ -22,6 +22,9 @@ class TestimonialEntity
     public string $title;
 
     #[ORM\Column(type: 'text')]
+    public string $shortText = '';
+
+    #[ORM\Column(type: 'text')]
     public string $text;
 
     #[ORM\Column(name: 'testimonialDate', type: 'date_immutable')]
@@ -81,6 +84,15 @@ class TestimonialEntity
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
+    }
+    public function getShortText(): string
+    {
+        return $this->shortText;
+    }
+    public function setShortText(string $shortText): self
+    {
+        $this->shortText = $shortText;
         return $this;
     }
     public function getText(): string

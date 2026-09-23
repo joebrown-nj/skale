@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Core\ErrorHandler;
-use App\Core\Db\DatabaseORM;
-use Doctrine\ORM\EntityManager;
 use App\Models\Entities\PortfolioEntity;
+use App\Models\Entities\TestimonialEntity;
+use Doctrine\ORM\EntityManager;
 
 class PortfolioModel
 {
@@ -33,5 +32,22 @@ class PortfolioModel
             ->getQuery();
         $portfolioItem = $query->getOneOrNullResult();
         return $portfolioItem;
+    }
+
+    /** @return TestimonialEntity[] */
+    public function getTestimonialsForPortfolioItem(int $portfolioItemId): array
+    {
+        return $this->entityManager
+            ->getRepository(TestimonialEntity::class)
+            ->createQueryBuilder('testimonial')
+            ->innerJoin('testimonial.projects', 'project')
+            ->where('project.id = :portfolioItemId')
+            ->andWhere('testimonial.active = :active')
+            ->setParameter('portfolioItemId', $portfolioItemId)
+            ->setParameter('active', true)
+            ->orderBy('testimonial.date', 'DESC')
+            ->addOrderBy('testimonial.id', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

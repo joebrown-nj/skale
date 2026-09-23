@@ -1737,6 +1737,49 @@ h5
 	}
 }
 
+.text-bg-navy {
+    background-color: var(--skale-navy);
+    color: var(--skale-white);
+}
+
+/* =========================
+ Testimonials
+ =========================== */
+
+.testimonial-wrap {
+	max-width: 950px;
+	margin: auto;
+	text-align: center;
+}
+
+.quote-mark {
+	display: block;
+	height: 70px;
+	color: var(--skale-green);
+	font-family: Georgia, serif;
+	font-size: 7rem;
+	line-height: .8;
+	opacity: .9;
+}
+
+.testimonial-quote {
+	margin: 1.5rem auto 2rem;
+	color: #fff;
+	font-size: clamp(1.45rem, 3vw, 2.25rem);
+	line-height: 1.5;
+	letter-spacing: -.025em;
+	font-weight: 400;
+}
+
+.testimonial-name {
+	color: #fff;
+	font-weight: 700;
+}
+
+.testimonial-role {
+	color: rgba(255,255,255,.55);
+}
+
 /* ==========================================================
    SKALE HERO BACKGROUNDS
    Add one class to your hero:

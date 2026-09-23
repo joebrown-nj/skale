@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Doctrine\ORM\EntityManager;
 use App\Models\Entities\HomePageEntity;
+use App\Models\Entities\TestimonialEntity;
 
 class HomePageModel
 {
@@ -60,6 +61,28 @@ class HomePageModel
                 ),
             ),
         );
+    }
+
+    public function getRandomTestimonial(): ?TestimonialEntity
+    {
+        $repository = $this->entityManager->getRepository(TestimonialEntity::class);
+
+        $count = $this->entityManager->createQueryBuilder()
+            ->select('COUNT(e.id)')
+            ->from(TestimonialEntity::class, 'e')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $randomOffset = rand(0, $count - 1);
+
+        $query = $repository->createQueryBuilder('te')
+            ->where('te.active = :active')->setParameter('active', true)
+            ->setFirstResult($randomOffset)
+            ->setMaxResults(1)
+            ->getQuery();
+        $returnVal = $query->getOneOrNullResult();
+
+        return $returnVal;
     }
 
     public function getHowItWorksContent(): array

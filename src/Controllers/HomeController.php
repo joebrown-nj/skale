@@ -39,6 +39,7 @@ class HomeController
             // 'blogContent' => $blogPage !== false ? $blogPage['content'] : null,
             // 'blogFeatured' => $this->blogModel->getFeaturedBlog(),
             'blogList' => $this->blogModel->getAllBlogs(null, 3),
+            'testimonial' => $this->homePageModel->getRandomTestimonial(),
             // 'howItWorks' => $this->homePageModel->getHowItWorksContent(),
             // 'theResults' => $this->homePageModel->getTheResultsContent(),
         );

@@ -17,7 +17,8 @@ export const cssAssets = [
     [`${cssSourceRoot}/website-rescue.css`, `${publicCssRoot}/website-rescue.min.css`],
     [`${cssSourceRoot}/thank-you.css`, `${publicCssRoot}/thank-you.min.css`],
     [`${cssSourceRoot}/header-footer-show.css`, `${publicCssRoot}/header-footer-show.min.css`],
-    [`${cssSourceRoot}/header-footer-hide.css`, `${publicCssRoot}/header-footer-hide.min.css`]
+    [`${cssSourceRoot}/header-footer-hide.css`, `${publicCssRoot}/header-footer-hide.min.css`],
+    [`${cssSourceRoot}/subpage.css`, `${publicCssRoot}/subpage.min.css`]
 ];
 
 export const jsAssets = [

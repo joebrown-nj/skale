@@ -313,6 +313,27 @@
         </div>
     </section>
 
+    {if !empty($data.testimonials)}
+        <!-- ============ TESTIMONIALS ============  -->
+        <section class="section-pad text-bg-navy p-5">
+            <div class="container">
+                <div class="testimonial-wrap" data-aos="fade-up">
+                    <div class="section-label" style="color: var(--skale-green)">From someone who was there</div>
+
+                    <span class="quote-mark">“</span>
+
+                    <blockquote class="testimonial-quote">
+                        {$data.testimonials[0]->shortText}
+                    </blockquote>
+
+                    <div class="testimonial-name">{$data.testimonials[0]->author}</div>
+
+                    <div class="testimonial-role">{$data.testimonials[0]->authorTitle}, {$data.testimonials[0]->company}</div>
+                </div>
+            </div>
+        </section>
+    {/if}
+
     <!-- ============ SKILLS ============  -->
     <section class="py-5">
         <div class="container">

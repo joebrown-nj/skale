@@ -8,6 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 final class TestimonialEntityTest extends TestCase
 {
+    public function testItStoresShortText(): void
+    {
+        $testimonial = (new TestimonialEntity())->setShortText('A concise testimonial summary.');
+
+        $this->assertSame('A concise testimonial summary.', $testimonial->getShortText());
+    }
+
     public function testItManagesProjectAndTestimonialRelationships(): void
     {
         $testimonial = new TestimonialEntity();

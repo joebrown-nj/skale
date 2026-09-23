@@ -163,6 +163,27 @@
         </div>
     </section>
 
+    <!-- ==================== TESTIMONIALS ==================== -->
+    {if $data.testimonial}
+        <section id="testimonials" class="proof-section section-space pt-0">
+            <div class="container">
+                <figure class="testimonial-wrap mb-0" data-aos="fade-up">
+                    <div class="section-eyebrow text-info">Client Testimonial</div>
+                    <span class="quote-mark" aria-hidden="true">“</span>
+                    <blockquote class="testimonial-quote">
+                        {$data.testimonial->shortText}
+                    </blockquote>
+                    <figcaption>
+                        <div class="testimonial-name">{$data.testimonial->author|escape}</div>
+                        <div class="testimonial-role">
+                            {$data.testimonial->authorTitle|escape}{if $data.testimonial->authorTitle && $data.testimonial->company}, {/if}{$data.testimonial->company|escape}
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    {/if}
+
     <!-- ==================== SERVICES ==================== -->
     <section id="services" class="services-section section-space">
         <div class="container">
