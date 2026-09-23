@@ -426,6 +426,10 @@ function inferMetaPageType(pathname = window.location.pathname || '/') {
         return 'thank-you';
     }
 
+    if (normalizedPath === '/about') {
+        return 'about';
+    }
+
     if (normalizedPath === '/blog' || normalizedPath === '/blog/archive') {
         return 'blog';
     }
