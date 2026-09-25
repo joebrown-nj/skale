@@ -5,17 +5,20 @@ namespace App\Controllers;
 use App\Core\Config\SiteConfig;
 use App\Models\BlogModel;
 use App\Models\PageContentModel;
+use App\Models\PortfolioModel;
 
 class MetaDataController
 {
     private BlogModel $blogModel;
     private PageContentModel $pageContentModel;
+    private PortfolioModel $portfolioModel;
     private string $siteName;
 
-    public function __construct(PageContentModel $pageContentModel, BlogModel $blogModel, ?SiteConfig $siteConfig = null)
+    public function __construct(PageContentModel $pageContentModel, BlogModel $blogModel, PortfolioModel $portfolioModel, ?SiteConfig $siteConfig = null)
     {
         $this->pageContentModel = $pageContentModel;
         $this->blogModel = $blogModel;
+        $this->portfolioModel = $portfolioModel;
         $this->siteName = $siteConfig?->name ?? trim((string) ($_ENV['SITE_NAME'] ?? 'Skaleup'));
     }
 
@@ -39,6 +42,16 @@ class MetaDataController
                     'keywords' => $blog->metaKeywords,
                     'description' => $blog->metaDescription,
                     'title' => $blog->metaTitle . ' | ' . $this->siteName . ' blog',
+                ));
+            }
+        } elseif ($p1 == 'our-work' && $p2) {
+            $portfolio = $this->portfolioModel->getPortfolioItemBySlug($p2);
+
+            if ($portfolio) {
+                $metaData = json_encode(array(
+                    'keywords' => '',
+                    'description' => $portfolio->metaDescription,
+                    'title' => $portfolio->metaTitle . ' | ' . $this->siteName . ' portfolio',
                 ));
             }
         } else {

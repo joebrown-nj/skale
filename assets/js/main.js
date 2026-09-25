@@ -414,7 +414,7 @@ function inferMetaPageType(pathname = window.location.pathname || '/') {
         return 'contact';
     }
 
-    if (normalizedPath === '/portfolio') {
+    if (normalizedPath === '/portfolio' || normalizedPath === '/our-work') {
         return 'portfolio';
     }
 

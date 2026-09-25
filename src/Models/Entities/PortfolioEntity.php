@@ -29,6 +29,12 @@ class PortfolioEntity
     #[ORM\Column(type: 'string', length: 100)]
     public string $image;
 
+    #[ORM\Column(type: 'string', length: 100)]
+    public string $metaTitle;
+
+    #[ORM\Column(type: 'string', length: 500)]
+    public string $metaDescription;
+
     /** @var Collection<int, TestimonialEntity> */
     #[ORM\ManyToMany(targetEntity: TestimonialEntity::class, mappedBy: 'projects')]
     private Collection $testimonials;
@@ -87,6 +93,30 @@ class PortfolioEntity
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getMetaTitle(): string
+    {
+        return $this->metaTitle;
+    }
+
+    public function setMetaTitle(string $metaTitle): self
+    {
+        $this->metaTitle = $metaTitle;
+
+        return $this;
+    }
+
+    public function getMetaDescription(): string
+    {
+        return $this->metaDescription;
+    }
+
+    public function setMetaDescription(string $metaDescription): self
+    {
+        $this->metaDescription = $metaDescription;
 
         return $this;
     }
