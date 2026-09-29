@@ -110,8 +110,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($tableData as $d): ?>
-                                        <tr class="clickable-row" data-href="?t=<?= $table ?>&id=<?= $d['id'] ?>">
+                                    <?php foreach ($tableData as $k => $d): ?>
+                                        <?php $id = $d['id'] ?? ($k + 1); ?>
+                                        <tr class="clickable-row" data-href="?t=<?= $table ?>&id=<?= $id ?>">
                                             <?php foreach ($fields as $col): ?>
                                                 <?php if ($col['Type'] !== 'text' && $col['Type'] !== 'longtext' && $col['Field'] !== 'shortText'): ?>
                                                     <td><?= $d[$col['Field']] ? substr(strip_tags($d[$col['Field']]), 0, 150) : '' ?></td>
@@ -170,7 +171,9 @@
     </body>
 
     <script>
-        $('#dataTable').DataTable();
+        $('#dataTable').DataTable({
+            ordering: false
+        });
 
         $(document).on('click', 'tr.clickable-row', function(t){
             window.location = $(this).data("href");
