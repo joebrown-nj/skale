@@ -12,20 +12,14 @@
             </div>
 
             <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
-
                 <img src="{$smarty.ENV.WEB_ROOT}images/{$data.blogDetail->image}" class="img-fluid rounded-4 shadow-sm" alt="{$data.blogDetail->title}">
             </div>
         </div>
-
-
     </div>
 </section>
 
 <section class="article py-5">
-
-
     {$data.blogDetail->content}
-
 
     <div class="article-progress-wrapper">
         <div class="progress article-progress" role="progressbar" aria-label="{$content.aria_label_article_reading_progress}" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
