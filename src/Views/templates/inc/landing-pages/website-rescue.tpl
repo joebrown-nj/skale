@@ -19,94 +19,82 @@
                 </p>
 
                 <div class="d-flex flex-column flex-sm-row gap-3">
-                    <a
-                    onclick="scrollToEl('#rescue-form')"
-                    class="btn btn-rescue btn-lg"
-                    aria-describedby="48-Hour Website Rescue hero"
-                    >
-                    Request Your Website Rescue
-                </a>
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue btn-lg" aria-describedby="48-Hour Website Rescue hero">
+                        Request Your Website Rescue
+                    </a>
 
-                <a
-                onclick="scrollToEl('#packages')"
-                class="btn btn-outline-rescue btn-lg"
-                aria-describedby="48-Hour Website Rescue hero packages"
-                >
-                See Packages
-            </a>
+                    <a onclick="scrollToEl('#packages')" class="btn btn-outline-rescue btn-lg" aria-describedby="48-Hour Website Rescue hero packages">
+                        See Packages
+                    </a>
+                </div>
+
+                <ul class="hero-proof">
+                    <li>Fixed-price options</li>
+                    <li>Fast turnaround</li>
+                    <li>No full redesign required</li>
+                    <li>Senior-level development</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
+                <div class="audit-card">
+                    <div class="audit-label">WEBSITE HEALTH CHECK</div>
+
+                    <h2 class="h4 mb-3">Does any of this look familiar?</h2>
+
+                    <div class="issue-row">
+                        <span class="issue-icon">01</span>
+                        <div>
+                            <strong>Slow load times</strong>
+                            <div class="small text-secondary">
+                                Visitors leave before the page finishes loading.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <span class="issue-icon">02</span>
+                        <div>
+                            <strong>Broken contact forms</strong>
+                            <div class="small text-secondary">Potential customers can't reach you.</div>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <span class="issue-icon">03</span>
+                        <div>
+                            <strong>Poor mobile experience</strong>
+                            <div class="small text-secondary">Layouts break or become difficult to use.</div>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <span class="issue-icon">04</span>
+                        <div>
+                            <strong>Confusing conversion path</strong>
+                            <div class="small text-secondary">
+                                Visitors don't know what they're supposed to do next.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="issue-row">
+                        <span class="issue-icon">05</span>
+                        <div>
+                            <strong>Technical problems</strong>
+                            <div class="small text-secondary">
+                                Plugins, tracking, integrations or deployments aren't working.
+                            </div>
+                        </div>
+                    </div>
+
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue w-100 mt-4" aria-describedby="48-Hour Website Rescue health check">
+                        Let's Fix It
+                    </a>
+                </div>
+            </div>
         </div>
-
-        <ul class="hero-proof">
-            <li>Fixed-price options</li>
-            <li>Fast turnaround</li>
-            <li>No full redesign required</li>
-            <li>Senior-level development</li>
-        </ul>
     </div>
-
-    <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
-        <div class="audit-card">
-            <div class="audit-label">WEBSITE HEALTH CHECK</div>
-
-            <h2 class="h4 mb-3">Does any of this look familiar?</h2>
-
-            <div class="issue-row">
-                <span class="issue-icon">01</span>
-                <div>
-                    <strong>Slow load times</strong>
-                    <div class="small text-secondary">
-                        Visitors leave before the page finishes loading.
-                    </div>
-                </div>
-            </div>
-
-            <div class="issue-row">
-                <span class="issue-icon">02</span>
-                <div>
-                    <strong>Broken contact forms</strong>
-                    <div class="small text-secondary">Potential customers can't reach you.</div>
-                </div>
-            </div>
-
-            <div class="issue-row">
-                <span class="issue-icon">03</span>
-                <div>
-                    <strong>Poor mobile experience</strong>
-                    <div class="small text-secondary">Layouts break or become difficult to use.</div>
-                </div>
-            </div>
-
-            <div class="issue-row">
-                <span class="issue-icon">04</span>
-                <div>
-                    <strong>Confusing conversion path</strong>
-                    <div class="small text-secondary">
-                        Visitors don't know what they're supposed to do next.
-                    </div>
-                </div>
-            </div>
-
-            <div class="issue-row">
-                <span class="issue-icon">05</span>
-                <div>
-                    <strong>Technical problems</strong>
-                    <div class="small text-secondary">
-                        Plugins, tracking, integrations or deployments aren't working.
-                    </div>
-                </div>
-            </div>
-
-            <a
-            onclick="scrollToEl('#rescue-form')"
-            class="btn btn-rescue w-100 mt-4"
-            aria-describedby="48-Hour Website Rescue health check"
-            >
-            Let's Fix It
-        </a>
-    </div>
-</div>
-</div>
-</div>
 </header>
 
 <!-- TRUST STRIP -->
@@ -246,56 +234,52 @@
                     the highest-impact improvements, agree on the scope and start fixing them.
                 </p>
 
-                <a
-                onclick="scrollToEl('#rescue-form')"
-                class="btn btn-rescue"
-                aria-describedby="48-Hour Website Rescue better approach"
-                >
-                Tell Me What's Wrong
-            </a>
-        </div>
+                <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue" aria-describedby="48-Hour Website Rescue better approach">
+                    Tell Me What's Wrong
+                </a>
+            </div>
 
-        <div class="col-lg-6" data-aos="fade-left">
-            <div class="fit-box">
-                <h3 class="h4 mb-4">This is a good fit if…</h3>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="fit-box">
+                    <h3 class="h4 mb-4">This is a good fit if…</h3>
 
-                <div class="fit-item">
-                    <span class="fit-check">✓</span>
-                    <div>
-                        <strong>Your website already exists</strong>
-                        <p class="text-secondary mb-0">You don't want or need to start from scratch.</p>
+                    <div class="fit-item">
+                        <span class="fit-check">✓</span>
+                        <div>
+                            <strong>Your website already exists</strong>
+                            <p class="text-secondary mb-0">You don't want or need to start from scratch.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="fit-item">
-                    <span class="fit-check">✓</span>
-                    <div>
-                        <strong>You can see something isn't working</strong>
-                        <p class="text-secondary mb-0">But you're not sure exactly what's causing it.</p>
+                    <div class="fit-item">
+                        <span class="fit-check">✓</span>
+                        <div>
+                            <strong>You can see something isn't working</strong>
+                            <p class="text-secondary mb-0">But you're not sure exactly what's causing it.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="fit-item">
-                    <span class="fit-check">✓</span>
-                    <div>
-                        <strong>You need experienced help quickly</strong>
-                        <p class="text-secondary mb-0">Not another months-long development engagement.</p>
+                    <div class="fit-item">
+                        <span class="fit-check">✓</span>
+                        <div>
+                            <strong>You need experienced help quickly</strong>
+                            <p class="text-secondary mb-0">Not another months-long development engagement.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="fit-item mb-0">
-                    <span class="fit-check">✓</span>
-                    <div>
-                        <strong>You want a defined scope</strong>
-                        <p class="text-secondary mb-0">
-                            Specific improvements, clear pricing and a clear delivery window.
-                        </p>
+                    <div class="fit-item mb-0">
+                        <span class="fit-check">✓</span>
+                        <div>
+                            <strong>You want a defined scope</strong>
+                            <p class="text-secondary mb-0">
+                                Specific improvements, clear pricing and a clear delivery window.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </section>
 
 <!-- PROCESS -->
@@ -391,88 +375,76 @@
                         <li>Short before/after report</li>
                     </ul>
 
-                    <a
-                    onclick="scrollToEl('#rescue-form')"
-                    class="btn btn-outline-rescue w-100"
-                    aria-describedby="48-Hour Website Rescue Quick Fix package"
-                    >
-                    Start With a Quick Fix
-                </a>
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-outline-rescue w-100" aria-describedby="48-Hour Website Rescue Quick Fix package">
+                        Start With a Quick Fix
+                    </a>
+                </div>
+            </div>
+
+            <!-- WEBSITE RESCUE -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="75">
+                <div class="pricing-card featured">
+                    <span class="popular-badge"> MOST POPULAR </span>
+
+                    <h3 class="h4">Website Rescue</h3>
+
+                    <p class="text-secondary">
+                        For websites with multiple performance, UX or technical problems.
+                    </p>
+
+                    <div class="price my-4">$1,000</div>
+
+                    <ul class="mb-4">
+                        <li>Everything in Quick Fix</li>
+                        <li>5–8 website fixes</li>
+                        <li>Performance optimization</li>
+                        <li>Conversion/UX improvements</li>
+                        <li>Analytics/tracking verification</li>
+                        <li>Basic SEO/technical cleanup</li>
+                        <li>48-hour turnaround</li>
+                    </ul>
+
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue w-100" aria-describedby="48-Hour Website Rescue Website Rescue package">
+                        Rescue My Website
+                    </a>
+                </div>
+            </div>
+
+            <!-- CONVERSION SPRINT -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="pricing-card">
+                    <h3 class="h4">Conversion Sprint</h3>
+
+                    <p class="text-secondary">
+                        For websites needing more significant frontend and conversion work.
+                    </p>
+
+                    <div class="price my-4">$2,000</div>
+
+                    <ul class="mb-4">
+                        <li>Everything in Website Rescue</li>
+                        <li>More substantial frontend work</li>
+                        <li>Landing page redesign or rebuild</li>
+                        <li>Conversion-focused UX improvements</li>
+                        <li>Performance optimization</li>
+                        <li>Analytics/event tracking</li>
+                        <li>5–7 day delivery</li>
+                    </ul>
+
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-outline-rescue w-100" aria-describedby="48-Hour Website Rescue Conversion Sprint package">
+                        Discuss a Conversion Sprint
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- WEBSITE RESCUE -->
-        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="75">
-            <div class="pricing-card featured">
-                <span class="popular-badge"> MOST POPULAR </span>
-
-                <h3 class="h4">Website Rescue</h3>
-
-                <p class="text-secondary">
-                    For websites with multiple performance, UX or technical problems.
-                </p>
-
-                <div class="price my-4">$1,000</div>
-
-                <ul class="mb-4">
-                    <li>Everything in Quick Fix</li>
-                    <li>5–8 website fixes</li>
-                    <li>Performance optimization</li>
-                    <li>Conversion/UX improvements</li>
-                    <li>Analytics/tracking verification</li>
-                    <li>Basic SEO/technical cleanup</li>
-                    <li>48-hour turnaround</li>
-                </ul>
-
-                <a
-                onclick="scrollToEl('#rescue-form')"
-                class="btn btn-rescue w-100"
-                aria-describedby="48-Hour Website Rescue Website Rescue package"
-                >
-                Rescue My Website
-            </a>
+        <div class="text-center mt-4">
+            <p class="small text-secondary mb-0">
+                Not sure which one you need? Send the site first. I'll recommend the smallest package that makes
+                sense for the problem.
+            </p>
         </div>
     </div>
-
-    <!-- CONVERSION SPRINT -->
-    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
-        <div class="pricing-card">
-            <h3 class="h4">Conversion Sprint</h3>
-
-            <p class="text-secondary">
-                For websites needing more significant frontend and conversion work.
-            </p>
-
-            <div class="price my-4">$2,000</div>
-
-            <ul class="mb-4">
-                <li>Everything in Website Rescue</li>
-                <li>More substantial frontend work</li>
-                <li>Landing page redesign or rebuild</li>
-                <li>Conversion-focused UX improvements</li>
-                <li>Performance optimization</li>
-                <li>Analytics/event tracking</li>
-                <li>5–7 day delivery</li>
-            </ul>
-
-            <a
-            onclick="scrollToEl('#rescue-form')"
-            class="btn btn-outline-rescue w-100"
-            aria-describedby="48-Hour Website Rescue Conversion Sprint package"
-            >
-            Discuss a Conversion Sprint
-        </a>
-    </div>
-</div>
-</div>
-
-<div class="text-center mt-4">
-    <p class="small text-secondary mb-0">
-        Not sure which one you need? Send the site first. I'll recommend the smallest package that makes
-        sense for the problem.
-    </p>
-</div>
-</div>
 </section>
 
 <!-- NOT A REDESIGN -->
@@ -495,17 +467,13 @@
                         slipped.
                     </p>
 
-                    <a
-                    onclick="scrollToEl('#rescue-form')"
-                    class="btn btn-rescue"
-                    aria-describedby="48-Hour Website Rescue no redesign section"
-                    >
-                    Show Me Your Website
-                </a>
+                    <a onclick="scrollToEl('#rescue-form')" class="btn btn-rescue" aria-describedby="48-Hour Website Rescue no redesign section">
+                        Show Me Your Website
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
 
 <!-- FAQ -->

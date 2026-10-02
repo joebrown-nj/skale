@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="col-lg-auto">
-                    <a class="{$data.cta.class}" href="{$data.cta.url}">{$data.cta.label}</a>
+                    <a aria-label="{$data.cta.label}" class="mbtn {$data.cta.class}" href="{$data.cta.url}">{$data.cta.label}</a>
                 </div>
             </div>
         </div>

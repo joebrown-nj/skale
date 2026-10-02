@@ -213,7 +213,7 @@
                 </table>
             </div>
 
-            <div class="text-center mt-5"><a href="#project-consultation" class="btn btn-primary btn-lg px-4">Plan My Website Project</a></div>
+            <div class="text-center mt-5"><a onclick="scrollToEl('#project-consultation')" class="btn btn-primary btn-lg px-4">Plan My Website Project</a></div>
         </div>
     </section>
 

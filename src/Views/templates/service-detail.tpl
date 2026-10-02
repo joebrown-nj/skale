@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="text-center mt-5" data-aos="fade-up">
-                    <a href="{$content.symptoms.link.url}" class="btn-skale"> {$content.symptoms.link.text} </a>
+                    <a href="{$content.symptoms.link.url}" class="mbtn btn-skale" aria-label="{$content.aria_label_symptoms_link}"> {$content.symptoms.link.text} </a>
                 </div>
             </div>
         </section>
@@ -258,7 +258,7 @@
                             {$content.founder.founder_copy}
                         </p>
 
-                        <a href="{$content.founder.founder_link}" class="text-white fw-bold">{$content.founder.founder_link_text}</a>
+                        <a href="{$content.founder.founder_link}" class="mbtn text-white fw-bold" aria-label="{$content.aria_label_founder_link}">{$content.founder.founder_link_text}</a>
                     </div>
 
                     <div class="col-lg-5" data-aos="fade-left">

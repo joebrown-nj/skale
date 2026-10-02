@@ -85,7 +85,7 @@
                                     <li>{$feature}</li>
                                 {/foreach}
                             </ul>
-                            <a href="{$service.link}" class="mbtn service-card-link stretched-link">
+                            <a href="{$service.link}" class="mbtn service-card-link stretched-link" aria-label="{$content.aria_label_service_card_link}">
                                 <span> {$service.link_text} </span>
                                 <span aria-hidden="true"> → </span>
                             </a>
@@ -159,7 +159,7 @@
         <div class="row g-3">
             {foreach from=$content.related_categories.categories item=category key=key}
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="{$key*75}">
-                    <a href="{$category.url}" class="related-card">
+                    <a href="{$category.url}" class="mbtn related-card" aria-label="Learn more about {$category.title}">
                         <strong> {$category.title} → </strong>
                         <span> {$category.copy} </span>
                     </a>
@@ -180,7 +180,7 @@
             </div>
 
             <div class="col-lg-4 text-lg-end" data-aos="fade-left">
-                <a href="{$content.finalCTA.buttonUrl}" class="btn-skale"> {$content.finalCTA.buttonText} </a>
+                <a href="{$content.finalCTA.buttonUrl}" class="mbtn btn-skale" aria-label="{$content.aria_label_finalCTA_button}"> {$content.finalCTA.buttonText} </a>
             </div>
         </div>
     </div>

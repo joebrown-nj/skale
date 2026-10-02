@@ -14,7 +14,7 @@
                     <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Lead Generation Funnels</div>
                     <div class="col-sm-6"><i class="fa-solid fa-circle-check"></i>Reporting & Optimization</div>
                 </div>
-                <a href="#strategy-session" class="btn btn-lg btn-warning rounded-pill px-4 fw-semibold">Get My Free Marketing Review</a>
+                <a onclick="scrollToEl('#strategy-session')" class="btn btn-lg btn-warning rounded-pill px-4 fw-semibold">Get My Free Marketing Review</a>
             </div>
 
             <div class="col-lg-5">
@@ -154,7 +154,7 @@
             </div>
 
             <div class="col-lg-5 text-lg-end">
-                <a href="#strategy-session" class="btn btn-warning btn-lg rounded-pill px-4 fw-semibold">Get Your Free Marketing Plan</a>
+                <a onclick="scrollToEl('#strategy-session')" class="btn btn-warning btn-lg rounded-pill px-4 fw-semibold">Get Your Free Marketing Plan</a>
             </div>
         </div>
     </div>
@@ -274,6 +274,6 @@
     <div class="container py-5 text-center">
         <h2 class="display-6 fw-bold mb-3">Ready to Turn Marketing Into a Lead Generation System?</h2>
         <p class="lead text-white-50 mb-4">Get a free strategy session and discover how email, PPC, and social media can work together to bring in better leads.</p>
-        <a href="#strategy-session" class="btn btn-warning btn-lg rounded-pill px-5 fw-semibold">Get My Marketing Plan</a>
+        <a onclick="scrollToEl('#strategy-session')" class="btn btn-warning btn-lg rounded-pill px-5 fw-semibold">Get My Marketing Plan</a>
     </div>
 </section>

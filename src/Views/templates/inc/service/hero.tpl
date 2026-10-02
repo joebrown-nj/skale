@@ -21,7 +21,7 @@
 
                     <div class="{$data.buttons.wrapperClass}">
                         {foreach from=$data.buttons.items item=button}
-                            <a class="{$button.class}" href="{$button.url}">{$button.label}</a>
+                            <a aria-label="{$button.label}" class="mbtn {$button.class}" href="{$button.url}">{$button.label}</a>
                         {/foreach}
                     </div>
 

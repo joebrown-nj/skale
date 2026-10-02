@@ -77,7 +77,7 @@
                             <div class="problem-number">{$problem.heading}</div>
                             <h3>{$problem.title}</h3>
                             <p>{$problem.text}</p>
-                            <a href="/{$problem.link}" class="problem-link stretched-link">
+                            <a href="/{$problem.link}" class="mbtn problem-link stretched-link" aria-label="Learn more about {$problem.title}">
                                 {$problem.link_text}
                             </a>
                         </article>
@@ -417,7 +417,7 @@
 
                     <p class="text-secondary">{$content.text_youll_work_directly_with_someone_who_can}</p>
 
-                    <a href="/about" class="fw-bold text-dark">
+                    <a href="/about" class="mbtn fw-bold text-dark" aria-label="Learn more about Joe and Skale">
                         {$content.text_learn_more_about_joe_and_skale}
                     </a>
                 </div>
@@ -473,7 +473,7 @@
                             <div class="problem-number">{$blog->category}</div>
                             <h3>{$blog->title}</h3>
                             <p>{$blog->shortText|truncate:200:"..."}</p>
-                            <a href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}" class="problem-link stretched-link">
+                            <a href="{$smarty.ENV.SITE_URL}blog/{$blog->datePosted|date_format:"%Y-%m-%d"}/{$blog->url}" class="mbtn problem-link stretched-link" aria-label="Read the full article: {$blog->title}">
                                 Read the article →
                             </a>
                         </article>

@@ -8,4 +8,4 @@ skale<span class="brand-color">.</span>
 skale<span class="brand-color">.</span>
 </a> *}
 
-<a class="brand" href="{$smarty.ENV.SITE_URL}">skale<span class="brand-dot">.</span></a>
+<a class="mbtn brand" href="{$smarty.ENV.SITE_URL}" aria-label="landing page logo link">skale<span class="brand-dot">.</span></a>

@@ -309,7 +309,7 @@
                     <h2 class="h3 mb-2">{$content.text_tell_us_the_outcome_you_need}</h2>
                     <p class="mb-0">{$content.text_we_will_help_you_determine_whether}</p>
                 </div>
-                <a class="btn btn-outline-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_goal}</a>
+                <a aria-label="{$content.aria_label_home_talk_through_your_goal}" class="mbtn btn btn-outline-primary btn-lg flex-shrink-0" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">{$content.text_talk_through_your_goal}</a>
             </div>
         </div>
     </section>
@@ -553,7 +553,7 @@
                 </div>
 
                 <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="100">
-                    <a class="btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}blog">{$content.text_view_all_insights}</a>
+                    <a class="mbtn btn btn-outline-primary" href="{$smarty.ENV.SITE_URL}blog">{$content.text_view_all_insights}</a>
                 </div>
             </div>
 
