@@ -11,7 +11,7 @@
                     skale<span class="brand-dot">.</span>
                 </a>
 
-                <div class="small text-white-50">&copy; {$smarty.now|date_format:"%Y"} Skale. All rights reserved.</div>
+                <div class="small text-white-50">&copy; {$smarty.now|date_format:"%Y"} {$smarty.ENV.SITE_NAME}. All rights reserved.</div>
             </div>
         </div>
     </footer>
@@ -73,7 +73,7 @@
             <hr class="border-secondary my-4">
 
             <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small">
-                <span>&copy; {$smarty.now|date_format:"Y"} <a class="text-reset fw-bold mbtn" aria-label="footer copyright" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_URL_DISPLAY}</a>. All rights reserved.</span>
+                <span>&copy; {$smarty.now|date_format:"Y"} <a class="text-reset fw-bold mbtn" aria-label="footer copyright" href="{$smarty.ENV.SITE_URL}">{$smarty.ENV.SITE_NAME}</a>. All rights reserved.</span>
                 <span>
                     {foreach from=$footerNav item=item key=key name=name}
                         <a aria-label="footer nav {$item.title}" href="{$smarty.ENV.SITE_URL}{$item.url}" class="mbtn {if $p1 == $item.url}active{/if}">
