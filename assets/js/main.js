@@ -4,6 +4,7 @@ const bsOffcanvas = offcanvasElement ? new bootstrap.Offcanvas(offcanvasElement)
 const OVERLAY_FADE_MS = 350;
 const OVERLAY_HIDE_DELAY_MS = 350;
 const MENU_BAR_BG_CLASS = 'menu-bar-bg';
+const MENU_BAR_BG_ROUTES = ['/privacy-policy', '/terms-of-service'];
 let overlayRequestCount = 0;
 let overlayHideTimeoutId = null;
 
@@ -63,10 +64,12 @@ function removeAllAlerts() {
 function updateHeaderBackground(slug) {
     const pageType = document.body?.dataset.pageType;
     const startsHidden = pageType === 'home' || pageType === 'landing';
+    const normalizedSlug = normalizeTrackingPath(slug);
 
     $('header.menu-bar').toggleClass(
         MENU_BAR_BG_CLASS,
-        Boolean(slug && slug !== '/' && !startsHidden),
+        MENU_BAR_BG_ROUTES.includes(normalizedSlug)
+            || Boolean(normalizedSlug !== '/' && !startsHidden),
     );
 }
 
