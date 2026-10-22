@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-4">
-                    <a aria-label="footer brand logo link" class="mbtn footer-brand text-decoration-none" href="/">skale<span class="brand-dot">.</span></a>
+                    <a aria-label="footer brand logo link" class="mbtn footer-brand text-decoration-none" href="/">{$smarty.ENV.SITE_NAME_LOGO}<span class="brand-dot">.</span></a>
                     <p class="mt-3 mb-4">Strategy, technology, and marketing systems built to help businesses work smarter and grow with confidence.</p>
                     <a aria-label="footer contact button" class="mbtn btn btn-outline-light" href="{$smarty.ENV.SITE_URL}{$smarty.ENV.URL_CONTACT}">Start a Conversation</a>
                 </div>
