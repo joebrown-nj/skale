@@ -22,14 +22,15 @@
 {/if}
 
 <section class="blog-list py-5">
-    <div class="container">
+    <div class="container blog-category-filter">
+        {$activeCategory}
         {if $blogCategories}
             <div class="row">
                 <div class="col-md-12">
                     <div class="d-flex flex-wrap gap-2">
-                        <a href="{$filterPath}" class="mbtn btn btn-sm {if !$activeCategory}btn-primary{else}btn-outline-light{/if} rounded-pill" aria-label="All Blog Categories">All</a>
+                        <a href="{$filterPath}" class="mbtn btn btn-sm {if !$activeCategory}btn-primary{else}btn-outline-dark{/if} rounded-pill" aria-label="All Blog Categories">All</a>
                         {foreach from=$blogCategories item=category}
-                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory == $category}btn-primary{else}btn-outline-dark{/if} rounded-pill text-dark" aria-label="Blog Category {$category}">{$category}</a>
+                            <a href="{$filterPath}?category={$category|lower|escape:'url'}" class="mbtn btn btn-sm {if $activeCategory|lower == $category|lower}btn-primary{else}btn-outline-dark{/if} rounded-pill" aria-label="Blog Category {$category}">{$category}</a>
                         {/foreach}
                     </div>
                 </div>
