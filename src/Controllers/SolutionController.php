@@ -54,7 +54,7 @@ class SolutionController
             'wordpress' => 'wordpress-development',
             'analytics-reporting' => 'analytics-and-reporting',
             'marketing-analytics' => 'marketing-analytics-and-growth',
-            'it-solutions' => 'it-solutions',
+            'it-solutions' => 'it-and-technology-solutions',
             'automation' => 'automation-crm-and-integrations',
             'software-development' => 'software-and-business-systems',
             'online-marketing' => 'marketing-analytics-and-growth',
